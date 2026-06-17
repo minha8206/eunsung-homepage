@@ -698,6 +698,888 @@ ul{list-style:none}
 <body>
 <div id="preloader"><div class="preloader-inner"><div class="preloader-logo">EUNSUNG</div><div class="preloader-line"></div></div></div>
 <script>
+(function(){
+  function hidePl(){var p=document.getElementById('preloader');if(p)p.classList.add('hidden');}
+  window.addEventListener('load',function(){setTimeout(hidePl,1000);});
+  setTimeout(hidePl,4000);
+})();
+</script>
+<!-- ═══════ NAV ══════════════════════════════════════════ -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">
+      <span class="en">EUNSUNG</span>
+      <span class="kr">은 성 · 상 판 전 문 제 조</span>
+    </a>
+    <div class="nav-links">
+      <a href="#materials-overview">소재</a>
+      <a href="#materials-detail">제품 상세</a>
+      <a href="#cases">시공사례</a>
+      <a href="#process">제작과정</a>
+      <a href="#contact">문의</a>
+    </div>
+    <a href="https://open.kakao.com/o/sS7BnYyc" class="nav-cta" target="_blank">무료 견적</a>
+    <button class="nav-ham" id="ham-btn" aria-label="메뉴">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu">
+  <button class="close-btn" id="close-menu">✕</button>
+  <a href="#materials-overview" class="mob-link">소재</a>
+  <a href="#materials-detail" class="mob-link">제품 상세</a>
+  <a href="#cases" class="mob-link">시공사례</a>
+  <a href="#process" class="mob-link">제작과정</a>
+  <a href="#contact" class="mob-link">문의</a>
+</div>
+<!-- ═══════ HERO SLIDER ══════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-slides">
+    <div class="hero-slide active">
+      <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1920&q=85" alt="고급 주방 세라믹 상판" loading="eager">
+    </div>
+    <div class="hero-slide">
+      <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?w=1920&q=85" alt="모던 키친 아일랜드" loading="lazy">
+    </div>
+    <div class="hero-slide">
+      <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1920&q=85" alt="세라믹 마블 텍스처" loading="lazy">
+    </div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="label hero-label">EUNSUNG · 은성 · Since 2010</p>
+    <h1 class="hero-title">
+      공간을 완성하는 상판,<br>
+      <em>처음부터 끝까지</em><br>
+      은성이 직접 만듭니다
+    </h1>
+    <p class="hero-sub">경기도 포천 직영공장 · LX하우시스 공식 대리점<br>세라믹·MMA·이스톤·BMC 맞춤제작 원스톱</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">무료 견적 받기</a>
+      <a href="#materials-overview" class="btn-outline">소재 살펴보기</a>
+    </div>
+  </div>
+  <div class="hero-dots">
+    <div class="hero-dot active" data-idx="0"></div>
+    <div class="hero-dot" data-idx="1"></div>
+    <div class="hero-dot" data-idx="2"></div>
+  </div>
+  <div class="scroll-hint"><span class="scroll-line"></span><span>SCROLL</span></div>
+</section>
+
+<!-- ═══════ TRUST BAR ════════════════════════════════════ -->
+<section id="trust">
+  <div class="trust-grid container">
+    <div class="trust-item">
+      <div class="trust-num"><span class="counter" data-to="15">0</span><sup>+</sup></div>
+      <div class="trust-text-block">
+        <div class="t">년 제조 경험</div>
+        <div class="s">Years of expertise</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num"><span class="counter" data-to="2000">0</span><sup>+</sup></div>
+      <div class="trust-text-block">
+        <div class="t">납품 완료</div>
+        <div class="s">Projects delivered</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">LX</div>
+      <div class="trust-text-block">
+        <div class="t">공식 대리점</div>
+        <div class="s">LX Hausys authorized</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">4</div>
+      <div class="trust-text-block">
+        <div class="t">전문 소재</div>
+        <div class="s">Ceramic · MMA · E-Stone · BMC</div>
+      </div>
+    </div>
+    <div class="trust-item" style="border-right:none">
+      <div class="trust-num"><span class="counter" data-to="100">0</span></div>
+      <div class="trust-text-block">
+        <div class="t">% 맞춤 제작</div>
+        <div class="s">Full custom production</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ PARTNERS BAR ═══════════════════════════════════ -->
+<section id="partners">
+  <div class="container">
+    <div class="partners-inner">
+      <span class="partners-label">PARTNERS &amp; CLIENTS</span>
+      <div class="partners-list">
+        <div class="partner-item fade-up">LX HAUSYS<span>공식 대리점</span></div>
+        <span class="partner-sep">·</span>
+        <div class="partner-item fade-up">인테리어 업체<span>다수 협력사</span></div>
+        <span class="partner-sep">·</span>
+        <div class="partner-item fade-up">카페 · 레스토랑<span>상업시설 납품</span></div>
+        <span class="partner-sep">·</span>
+        <div class="partner-item fade-up">건설사<span>단지 규모 공급</span></div>
+        <span class="partner-sep">·</span>
+        <div class="partner-item fade-up">호텔 · 리조트<span>프리미엄 시공</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ═══════ ABOUT ═════════════════════════════════════════ -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="about-inner">
+      <div>
+        <p class="label about-label">ABOUT EUNSUNG</p>
+        <h2 class="about-title">
+          단순한 납품이 아닌,<br>
+          <em>실무형 파트너</em>로
+        </h2>
+        <p class="about-body">
+          (주)은성은 경기도 포천에 직영공장을 보유한 인조대리석·세라믹 상판 전문 제조기업입니다.
+          BMC 인조대리석을 시작으로 현재는 세라믹·MMA·이스톤까지 전 소재군을 취급하며,
+          LX하우시스 공식 대리점으로 프리미엄 소재를 직접 공급합니다.<br><br>
+          소재 선택부터 정밀 가공, 배송, 시공, 사후 관리까지 모든 과정을 외주 없이 내재화하여
+          일관된 품질을 보장합니다. 인테리어 업체, 카페·음식점, 건설사, 개인 고객 모두
+          같은 수준의 전문 서비스를 받으실 수 있습니다.
+        </p>
+        <div class="about-tags">
+          <span class="about-tag">포천 직영공장</span>
+          <span class="about-tag">LX Hausys 공식대리점</span>
+          <span class="about-tag">외주 없는 내재화 생산</span>
+          <span class="about-tag">전국 배송</span>
+          <span class="about-tag">수도권 직접 시공</span>
+        </div>
+      </div>
+      <div class="about-img-wrap fade-up">
+        <img class="about-img-main" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='540'%3E%3Crect width='800' height='540' fill='%231E1A17'/%3E%3Ctext x='400' y='270' text-anchor='middle' dominant-baseline='middle' font-family='sans-serif' font-size='13' fill='%236B645E' letter-spacing='2'%3E사진 추가 예정%3C/text%3E%3C/svg%3E" alt="은성 직영공장 제작 현장" loading="lazy">
+        <div class="about-img-badge">
+          <div class="bn">15<sup>+</sup></div>
+          <div class="bs">YEARS OF EXPERTISE</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ MATERIALS OVERVIEW ════════════════════════════ -->
+<section id="materials-overview" class="section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <p class="label">MATERIALS</p>
+      <h2 class="section-title">4가지 소재, 하나의 전문성</h2>
+      <p class="section-sub">용도와 예산에 맞는 최적의 소재를 제안해드립니다. 진입은 BMC로, 감동은 세라믹으로.</p>
+    </div>
+    <div class="mat-grid">
+      <!-- BMC -->
+      <div class="mat-card" onclick="openTab('bmc')">
+        <img class="mat-card-img" src="https://eunseong-ceramic.netlify.app/images/colors/04.jpg" alt="BMC 인조대리석" loading="lazy">
+        <div class="mat-hover-info">
+          <span class="mat-tier">ENTRY · 가성비</span>
+          <p>10년+ 노하우<br>싱크대·식탁·욕실<br>온라인 주문 가능</p>
+        </div>
+        <div class="mat-card-body">
+          <div class="mat-badge">입문 추천</div>
+          <div class="mat-name">BMC</div>
+          <div class="mat-kr">인조대리석 · Acrylic</div>
+        </div>
+      </div>
+      <!-- MMA -->
+      <div class="mat-card" onclick="openTab('mma')">
+        <img class="mat-card-img" src="https://eunseong-ceramic.netlify.app/images/sink/00.png" alt="MMA 인조대리석" loading="lazy">
+        <div class="mat-hover-info">
+          <span class="mat-tier">MID-RANGE · 실용</span>
+          <p>이음매 없는 시공<br>욕실·아일랜드<br>열성형 맞춤가공</p>
+        </div>
+        <div class="mat-card-body">
+          <div class="mat-badge">인기 1위</div>
+          <div class="mat-name">MMA</div>
+          <div class="mat-kr">인조대리석 · Seamless</div>
+        </div>
+      </div>
+      <!-- E-Stone -->
+      <div class="mat-card" onclick="openTab('estone')">
+        <img class="mat-card-img" src="https://eunseong-ceramic.netlify.app/images/colors/05.jpg" alt="이스톤 VIATERA" loading="lazy">
+        <div class="mat-hover-info">
+          <span class="mat-tier">PREMIUM · 고급</span>
+          <p>천연석영 90%+<br>NSF·GREENGUARD 인증<br>LX Hausys 정품</p>
+        </div>
+        <div class="mat-card-body">
+          <div class="mat-badge">LX 정품</div>
+          <div class="mat-name">E-Stone</div>
+          <div class="mat-kr">VIATERA · 석영계열</div>
+        </div>
+      </div>
+      <!-- Ceramic -->
+      <div class="mat-card" onclick="openTab('ceramic')">
+        <img class="mat-card-img" src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80" alt="세라믹 포세린" loading="lazy">
+        <div class="mat-hover-info">
+          <span class="mat-tier">ULTRA-PREMIUM · 최고급</span>
+          <p>내열 800°C<br>흡수율 0%<br>스크래치 무적</p>
+        </div>
+        <div class="mat-card-body">
+          <div class="mat-badge">최고 사양</div>
+          <div class="mat-name">Ceramic</div>
+          <div class="mat-kr">포세린 · Porcelain</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ═══════ MATERIAL DETAIL TABS ═════════════════════════ -->
+<section id="materials-detail" class="section">
+  <div class="container">
+    <div class="section-header fade-up" style="text-align:left;margin-bottom:0">
+      <p class="label">MATERIAL DETAIL</p>
+      <h2 class="section-title" style="margin-top:10px">소재 상세 안내</h2>
+    </div>
+    <div class="tab-nav" style="margin-top:32px">
+      <button class="tab-btn active" data-tab="ceramic" onclick="openTab('ceramic')">세라믹 / 포세린 ★</button>
+      <button class="tab-btn" data-tab="estone" onclick="openTab('estone')">이스톤 (VIATERA)</button>
+      <button class="tab-btn" data-tab="mma" onclick="openTab('mma')">MMA 인조대리석</button>
+      <button class="tab-btn" data-tab="bmc" onclick="openTab('bmc')">BMC 인조대리석</button>
+    </div>
+
+    <!-- TAB: CERAMIC -->
+    <div class="tab-panel active" id="tab-ceramic">
+      <div class="mat-panel-layout">
+        <div class="mat-panel-left">
+          <div class="title">세라믹 / 포세린</div>
+          <p class="desc">흡수율 0.5% 이하의 고밀도 포세린. 열·스크래치·오염 저항성이 최고 수준이며 고급 인테리어 공간에 이상적입니다. 카페 바테이블, 주방 아일랜드, 식당 홀 테이블에 가장 많이 선택됩니다.</p>
+          <div class="spec-tags">
+            <span class="spec-tag">내열 800°C</span>
+            <span class="spec-tag">흡수율 0%</span>
+            <span class="spec-tag">스크래치 극강</span>
+            <span class="spec-tag">항균</span>
+            <span class="spec-tag">친환경</span>
+            <span class="spec-tag">규격 20T / 12T</span>
+          </div>
+          <div class="colors-title">COLOR COLLECTION</div>
+          <div class="colors-grid">
+            <div class="color-item"><img class="color-swatch" src="https://m2img.lxzin.com/zinPrd/thumFileSeq/202501/20/dddad119-183a-44de-9aa1-4b25c4b13ac4.jpg/dims/resize/300x300" alt="칼라카타 비앙코" loading="lazy"><div class="color-name">칼라카타 비앙코</div><div class="color-sub">Calacatta Bianco</div><div class="color-code">WM101</div></div>
+            <div class="color-item"><img class="color-swatch" src="https://m2img.lxzin.com/zinPrd/thumFileSeq/202501/31/e6355224-35e5-4a2c-9fb8-633235c6b39f.jpg/dims/resize/300x300" alt="트라몬토" loading="lazy"><div class="color-name">트라몬토</div><div class="color-sub">Tramonto</div><div class="color-code">ST107</div></div>
+            <div class="color-item"><img class="color-swatch" src="https://m2img.lxzin.com/zinPrd/thumFileSeq/202501/31/ec62f7e1-a159-4d6e-a9df-f19ca0f3cdde.jpg/dims/resize/300x300" alt="아이보리 콘크리트" loading="lazy"><div class="color-name">아이보리 콘크리트</div><div class="color-sub">Ivory Concrete</div><div class="color-code">CC101</div></div>
+            <div class="color-item"><img class="color-swatch" src="https://m2img.lxzin.com/zinPrd/thumFileSeq/202501/31/9f3afe06-a563-453a-9538-47bab88a6dd2.jpg/dims/resize/300x300" alt="베이지 바살트" loading="lazy"><div class="color-name">베이지 바살트</div><div class="color-sub">Beige Basalt</div><div class="color-code">ST104</div></div>
+            <div class="color-item"><img class="color-swatch" src="https://m2img.lxzin.com/zinPrd/thumFileSeq/202501/31/2c76a676-8b1c-4c70-9d08-bc5e003a7ab8.jpg/dims/resize/300x300" alt="트레버티노 세토소" loading="lazy"><div class="color-name">트레버티노 세토소</div><div class="color-sub">Travertino Setoso</div><div class="color-code">ST105</div></div>
+          </div>
+        </div>
+        <div class="mat-panel-right">
+          <div class="feature-list">
+            <div class="feature-item"><div class="feature-icon">🔥</div><div><div class="ft">최강 내열성</div><div class="fs">800°C 이상의 직화도 견딥니다. 냄비를 직접 올려도 변색·변형이 없습니다.</div></div></div>
+            <div class="feature-item"><div class="feature-icon">💧</div><div><div class="ft">흡수율 제로</div><div class="fs">흡수율 0%에 가까운 밀도로 커피·와인 등 강한 착색제도 스며들지 않습니다.</div></div></div>
+            <div class="feature-item"><div class="feature-icon">✦</div><div><div class="ft">스크래치 강도 최상</div><div class="fs">Mohs 경도 7 이상. 칼로 긁어도 흠집이 남지 않습니다.</div></div></div>
+            <div class="feature-item"><div class="feature-icon">✓</div><div><div class="ft">다양한 마감 선택</div><div class="fs">Polished(유광) / Silk / Velvet / Leather / Matte 5가지 질감 선택 가능.</div></div></div>
+          </div>
+          <a href="https://open.kakao.com/o/sS7BnYyc" class="cta-link" target="_blank">세라믹 견적 문의하기 →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: ESTONE -->
+    <div class="tab-panel" id="tab-estone">
+      <div class="mat-panel-layout">
+        <div class="mat-panel-left">
+          <div class="lx-badge"><span>★ LX Hausys VIATERA 공식 대리점</span></div>
+          <div class="title">이스톤 VIATERA</div>
+          <p class="desc">천연 석영 90% 이상으로 구성된 프리미엄 엔지니어드 스톤. NSF 식품안전 인증 및 GREENGUARD 친환경 인증을 보유한 최고급 소재입니다. 위생 기준이 까다로운 호텔·상업시설에 특히 적합합니다.</p>
+          <div class="spec-tags">
+            <span class="spec-tag">천연석영 90%+</span>
+            <span class="spec-tag">NSF 식품안전인증</span>
+            <span class="spec-tag">GREENGUARD 친환경</span>
+            <span class="spec-tag">항균</span>
+            <span class="spec-tag">규격 20T</span>
+          </div>
+          <div class="colors-title">VIATERA COLLECTION</div>
+          <div class="colors-grid">
+            <div class="color-item"><img class="color-swatch" src="https://m2img.lxzin.com/zinPrd/thumFileSeq/202501/16/ec58d318-d2aa-4159-b671-eee33b5f9ad8.jpg/dims/resize/300x300" alt="칼라카타 빅토리아" loading="lazy"><div class="color-name">칼라카타 빅토리아</div><div class="color-sub">Calacatta Victoria</div><div class="color-code">MP008</div></div>
+            <div class="color-item"><img class="color-swatch" src="https://m2img.lxzin.com/zinPrd/thumFileSeq/202501/16/6ea46de7-85e8-424f-b64c-bafef80ab655.jpg/dims/resize/300x300" alt="판타지 레이스" loading="lazy"><div class="color-name">판타지 레이스</div><div class="color-sub">Fantasy Lace</div><div class="color-code">MP007</div></div>
+            <div class="color-item"><img class="color-swatch" src="https://m2img.lxzin.com/zinPrd/thumFileSeq/202312/11/45f973cb-7085-4cd5-bdb4-b1e58ce85259.jpg/dims/resize/300x300" alt="레이스 스완" loading="lazy"><div class="color-name">레이스 스완</div><div class="color-sub">Lace Swan</div><div class="color-code">LU101</div></div>
+            <div class="color-item"><img class="color-swatch" src="https://m2img.lxzin.com/upload/product/201804/20180410/99E0C71F-D7B7-8B1F-9E95-84E8671E341A_thumb_l.jpg/dims/resize/300x300" alt="스완 레이크" loading="lazy"><div class="color-name">스완 레이크</div><div class="color-sub">Swan Lake</div><div class="color-code">FL502</div></div>
+            <div class="color-item"><img class="color-swatch" src="https://m2img.lxzin.com/upload/product/202101/20210112/12B3718A-1F1D-920A-119F-136C252BC87E_thumb_l.jpg/dims/resize/300x300" alt="스털링 실버" loading="lazy"><div class="color-name">스털링 실버</div><div class="color-sub">Sterling Silver</div><div class="color-code">LU103</div></div>
+            <div class="color-item"><img class="color-swatch" src="https://m2img.lxzin.com/upload/product/202001/20200104/C104A226-C331-A848-EB5F-2A47941B1FAA_thumb_l.jpg/dims/resize/300x300" alt="네오 레이크 파웰" loading="lazy"><div class="color-name">네오 레이크 파웰</div><div class="color-sub">Neo Lake Powell</div><div class="color-code">FL504</div></div>
+          </div>
+        </div>
+        <div class="mat-panel-right">
+          <div class="feature-list">
+            <div class="feature-item"><div class="feature-icon">◆</div><div><div class="ft">천연석영 90%+ 구성</div><div class="fs">자연석의 아름다움을 그대로 담으면서 가공성과 내구성을 더했습니다.</div></div></div>
+            <div class="feature-item"><div class="feature-icon">✓</div><div><div class="ft">NSF 식품안전 인증</div><div class="fs">주방 조리대에 사용해도 안전한 수준의 식품안전 공인 인증을 보유합니다.</div></div></div>
+            <div class="feature-item"><div class="feature-icon">✓</div><div><div class="ft">GREENGUARD 친환경 인증</div><div class="fs">실내 공기질 유해물질 기준을 충족하는 친환경 자재입니다.</div></div></div>
+            <div class="feature-item"><div class="feature-icon">◈</div><div><div class="ft">LX Hausys 정품 직공급</div><div class="fs">공식 대리점으로 정품 보증 및 브랜드 A/S 혜택이 적용됩니다.</div></div></div>
+          </div>
+          <a href="https://open.kakao.com/o/sS7BnYyc" class="cta-link" target="_blank">이스톤 견적 문의하기 →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: MMA -->
+    <div class="tab-panel" id="tab-mma">
+      <div class="mat-panel-layout">
+        <div class="mat-panel-left">
+          <div class="title">MMA 인조대리석</div>
+          <p class="desc">이음매 없는 시공이 가능한 최고 인기 소재. 열성형이 가능해 복잡한 곡선도 정밀하게 제작됩니다. 욕실 세면대 일체형 시공, 주방 아일랜드, 카운터 등 다양한 용도에 가장 많이 선택됩니다.</p>
+          <div class="spec-tags">
+            <span class="spec-tag">이음매 없는 시공</span>
+            <span class="spec-tag">열성형 가능</span>
+            <span class="spec-tag">다양한 색상</span>
+            <span class="spec-tag">가공성 우수</span>
+            <span class="spec-tag">내수성</span>
+          </div>
+          <div class="colors-title">MMA COLOR LINE</div>
+          <div class="colors-grid">
+            <div class="color-item"><img class="color-swatch" src="https://eunseong-ceramic.netlify.app/images/sink/00.png" alt="싱크대상판" loading="lazy"><div class="color-name">싱크대 상판</div><div class="color-code">표준 제작</div></div>
+            <div class="color-item"><img class="color-swatch" src="https://eunseong-ceramic.netlify.app/images/sink-basin/00.png" alt="욕실세면대" loading="lazy"><div class="color-name">욕실 세면대</div><div class="color-code">일체형 제작</div></div>
+            <div class="color-item"><img class="color-swatch" src="https://eunseong-ceramic.netlify.app/images/sink/01.png" alt="아일랜드" loading="lazy"><div class="color-name">주방 아일랜드</div><div class="color-code">맞춤 제작</div></div>
+            <div class="color-item"><img class="color-swatch" src="https://eunseong-ceramic.netlify.app/images/sink-basin/01.png" alt="맞춤제작" loading="lazy"><div class="color-name">맞춤 제작</div><div class="color-code">형태 자유</div></div>
+          </div>
+        </div>
+        <div class="mat-panel-right">
+          <div class="feature-list">
+            <div class="feature-item"><div class="feature-icon">∞</div><div><div class="ft">이음매 없는 완벽한 마감</div><div class="fs">연결 부위가 보이지 않아 청소가 쉽고 위생적입니다. 욕실 세면대 일체형에 최적.</div></div></div>
+            <div class="feature-item"><div class="feature-icon">◐</div><div><div class="ft">열성형 / 곡선 가공</div><div class="fs">가열 후 원하는 형태로 성형 가능. 라운드 엣지, 곡선 아일랜드도 정밀 제작됩니다.</div></div></div>
+            <div class="feature-item"><div class="feature-icon">✦</div><div><div class="ft">무한 색상 · 패턴</div><div class="fs">수백 가지 색상과 패턴 중 선택 가능. 공간의 콘셉트에 맞게 커스터마이즈.</div></div></div>
+            <div class="feature-item"><div class="feature-icon">◎</div><div><div class="ft">흠집 보수 가능</div><div class="fs">표면에 흠집이 생기면 연마·재광택으로 복원 가능합니다.</div></div></div>
+          </div>
+          <a href="https://open.kakao.com/o/sS7BnYyc" class="cta-link" target="_blank">MMA 견적 문의하기 →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: BMC -->
+    <div class="tab-panel" id="tab-bmc">
+      <div class="mat-panel-layout">
+        <div class="mat-panel-left">
+          <div class="title">BMC 인조대리석</div>
+          <p class="desc">은성이 10년 이상 다뤄온 핵심 소재. 가격 경쟁력과 실용성이 강점으로, 싱크대·식탁·욕실 등 다양한 용도에 활용됩니다. 온라인 주문부터 전국 배송까지 가장 빠르게 진행되는 제품군입니다.</p>
+          <div class="spec-tags">
+            <span class="spec-tag">10년+ 노하우</span>
+            <span class="spec-tag">가성비 최상</span>
+            <span class="spec-tag">다양한 용도</span>
+            <span class="spec-tag">내수성</span>
+            <span class="spec-tag">온라인 주문 가능</span>
+          </div>
+          <div class="colors-title">BMC COLOR LINE</div>
+          <div class="colors-grid">
+            <div class="color-item"><img class="color-swatch" src="https://images.unsplash.com/photo-1615529179035-e760f6a2dcee?w=300&q=80" alt="솔리드 화이트" loading="lazy"><div class="color-name">솔리드 화이트</div><div class="color-code">단색</div></div>
+            <div class="color-item"><img class="color-swatch" src="https://eunseong-ceramic.netlify.app/images/colors/04.jpg" alt="크림 화이트" loading="lazy"><div class="color-name">크림 화이트</div><div class="color-code">크림톤</div></div>
+            <div class="color-item"><img class="color-swatch" src="https://eunseong-ceramic.netlify.app/images/colors/03.jpg" alt="라이트 그레이" loading="lazy"><div class="color-name">라이트 그레이</div><div class="color-code">그레이</div></div>
+            <div class="color-item"><img class="color-swatch" src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=300&q=80" alt="베이지 마블" loading="lazy"><div class="color-name">베이지 마블</div><div class="color-code">베이지+브라운</div></div>
+            <div class="color-item"><img class="color-swatch" src="https://eunseong-ceramic.netlify.app/images/colors/02.jpg" alt="화이트 마블" loading="lazy"><div class="color-name">화이트 마블</div><div class="color-code">흰색+줄무늬</div></div>
+            <div class="color-item"><img class="color-swatch" src="https://images.unsplash.com/photo-1615529328331-f8917597711f?w=300&q=80" alt="다크 그레이" loading="lazy"><div class="color-name">다크 그레이</div><div class="color-code">다크</div></div>
+          </div>
+        </div>
+        <div class="mat-panel-right">
+          <div class="feature-list">
+            <div class="feature-item"><div class="feature-icon">₩</div><div><div class="ft">합리적인 가격</div><div class="fs">세라믹·이스톤 대비 30~50% 낮은 비용으로 동급 품질을 구현합니다.</div></div></div>
+            <div class="feature-item"><div class="feature-icon">▲</div><div><div class="ft">10년 이상 검증된 소재</div><div class="fs">은성의 시작부터 함께한 소재. 수천 건의 납품으로 검증된 신뢰성.</div></div></div>
+            <div class="feature-item"><div class="feature-icon">→</div><div><div class="ft">빠른 납기</div><div class="fs">일반 규격 제품은 7~10일 이내 출고. 긴급 건 별도 협의 가능.</div></div></div>
+            <div class="feature-item"><div class="feature-icon">◈</div><div><div class="ft">다양한 용도 · 커스터마이즈</div><div class="fs">색상·크기·두께 모두 맞춤 제작. 싱크대·식탁·욕실 어디든 대응합니다.</div></div></div>
+          </div>
+          <a href="https://open.kakao.com/o/sS7BnYyc" class="cta-link" target="_blank">BMC 견적 문의하기 →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- ═══════ COMPARISON TABLE ═══════════════════════════════ -->
+<section id="mat-compare" class="section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <p class="label">COMPARE</p>
+      <h2 class="section-title">소재 비교표</h2>
+      <p class="section-sub">공간 용도와 예산에 맞는 소재를 빠르게 비교해보세요.</p>
+    </div>
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>항목</th>
+            <th>세라믹</th>
+            <th>이스톤</th>
+            <th>MMA</th>
+            <th>BMC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>내열성</td>
+            <td class="best">800°C+</td>
+            <td>300°C</td>
+            <td>150°C</td>
+            <td>100°C</td>
+          </tr>
+          <tr>
+            <td>내스크래치</td>
+            <td class="best">Mohs 7+</td>
+            <td>Mohs 6</td>
+            <td>보통</td>
+            <td>보통</td>
+          </tr>
+          <tr>
+            <td>이음매</td>
+            <td>있음</td>
+            <td>있음</td>
+            <td class="best">없음</td>
+            <td>있음</td>
+          </tr>
+          <tr>
+            <td>흡수율</td>
+            <td class="best">0%</td>
+            <td>0.02%</td>
+            <td>낮음</td>
+            <td>낮음</td>
+          </tr>
+          <tr>
+            <td>가격대</td>
+            <td>최고급</td>
+            <td>고급</td>
+            <td>중급</td>
+            <td class="best">실속</td>
+          </tr>
+          <tr>
+            <td>추천 용도</td>
+            <td>카페·레스토랑·주방</td>
+            <td>호텔·상업·주방</td>
+            <td>욕실·아일랜드</td>
+            <td class="best">싱크대·식탁·욕실</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="compare-note">* 수치는 소재 특성 비교 기준이며, 정확한 규격은 상담 후 확인 가능합니다.</p>
+  </div>
+</section>
+<!-- ═══════ CASES ════════════════════════════════════════ -->
+<section id="cases" class="section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <p class="label">PORTFOLIO</p>
+      <h2 class="section-title">시공 사례</h2>
+      <p class="section-sub">실제 납품·시공된 현장입니다. 각 공간에 녹아든 소재의 결을 확인하세요.</p>
+    </div>
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">전체</button>
+      <button class="filter-btn" data-filter="kitchen">주방 / 아일랜드</button>
+      <button class="filter-btn" data-filter="bath">욕실 / 세면대</button>
+      <button class="filter-btn" data-filter="cafe">카페 / 상업시설</button>
+      <button class="filter-btn" data-filter="office">오피스 / 호텔</button>
+    </div>
+    <div class="cases-grid">
+
+      <!-- CASE 01 : 서울 성수동 하이엔드 아파트 -->
+      <div class="case-card" data-cat="kitchen">
+        <img class="case-img case-img--premium" src="./images/cases/seongsu-03.jpg" alt="서울 성수동 고급 아파트 주방 아일랜드 세라믹 시공 전경" loading="lazy">
+        <div class="case-info">
+          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">주방</span><span class="case-tag">아파트</span></div>
+          <div class="case-title">서울 성수동 — 하이엔드 아파트 주방 풀 시공</div>
+          <div class="case-body">성수동 고급 아파트의 주방 전체를 의뢰받은 프로젝트입니다. 3m가 넘는 대형 아일랜드 상판부터 벽면 카운터, 쿡탑 후드 상부까지 웜 샌드스톤 세라믹으로 통일 시공해 공간에 일체감을 부여했습니다.</div>
+          <div class="case-meta"><span>소재: 세라믹 포세린</span><span>용도: 아파트 주방 전체</span><span>2025.04</span></div>
+        </div>
+      </div>
+
+      <!-- CASE 02 : 성수동 싱크 클로즈업 -->
+      <div class="case-card" data-cat="kitchen">
+        <img class="case-img case-img--premium" src="./images/cases/seongsu-01.jpg" alt="성수동 아파트 주방 아일랜드 언더마운트 싱크 세라믹 상판 클로즈업" loading="lazy">
+        <div class="case-info">
+          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">디테일</span></div>
+          <div class="case-title">이음매 없는 언더마운트 — 싱크 통합 시공</div>
+          <div class="case-body">세라믹 상판과 언더마운트 싱크의 접합부를 이음매 없이 마감하는 것은 숙련된 가공 기술이 필요합니다. 오차 0.3mm 이내 절삭과 현장 맞춤 마감으로 완성된 이 단면이 은성 기술력의 핵심입니다.</div>
+          <div class="case-meta"><span>소재: 세라믹 포세린</span><span>용도: 싱크 통합 커팅</span><span>2025.04</span></div>
+        </div>
+      </div>
+
+      <!-- CASE 03 : 성수동 주방 조감 -->
+      <div class="case-card" data-cat="kitchen">
+        <img class="case-img case-img--premium" src="./images/cases/seongsu-02.jpg" alt="성수동 아파트 주방 전체 레이아웃 세라믹 아일랜드 조감" loading="lazy">
+        <div class="case-info">
+          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">주방</span><span class="case-tag">레이아웃</span></div>
+          <div class="case-title">성수동 — 아일랜드 중심 주방 동선 설계</div>
+          <div class="case-body">아일랜드 상판을 중심으로 조리, 수납, 다이닝이 자연스럽게 연결되는 동선을 고려한 시공입니다. 상판 소재의 통일성이 공간 전체 흐름을 하나로 묶어줍니다.</div>
+          <div class="case-meta"><span>소재: 세라믹 포세린</span><span>용도: 아파트 주방 아일랜드</span><span>2025.04</span></div>
+        </div>
+      </div>
+
+      <!-- CASE 04 : 성수동 측면 카운터 -->
+      <div class="case-card" data-cat="kitchen">
+        <img class="case-img case-img--premium" src="./images/cases/seongsu-04.jpg" alt="성수동 아파트 주방 측면 카운터탑 월캐비닛 세라믹 시공 전경" loading="lazy">
+        <div class="case-info">
+          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">카운터</span><span class="case-tag">월시공</span></div>
+          <div class="case-title">성수동 — 벽면 카운터 &amp; 월캐비닛 일체 시공</div>
+          <div class="case-body">아일랜드와 동일한 소재를 벽면 카운터와 후드 상부까지 연장 시공해 공간 전체에 일관된 결을 부여했습니다. 소재 통일감과 시공 완성도를 가장 잘 보여주는 앵글입니다.</div>
+          <div class="case-meta"><span>소재: 세라믹 포세린</span><span>용도: 벽면 카운터 전체</span><span>2025.04</span></div>
+        </div>
+      </div>
+
+      <!-- CASE 05 : 서울 동대문구 주방 상판 교체 -->
+      <div class="case-card" data-cat="kitchen">
+        <img class="case-img" src="./images/cases/dongdaemun-01.jpg" alt="서울 동대문구 아파트 주방 마블 세라믹 상판 교체" loading="lazy">
+        <div class="case-info">
+          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">주방</span><span class="case-tag">상판교체</span></div>
+          <div class="case-title">서울 동대문구 — 기존 주방 상판 교체 시공</div>
+          <div class="case-body">이미 완성된 공간의 상판만 교체한 프로젝트입니다. 화이트 캐비닛과 다크 백스플래시 사이에 마블 패턴 세라믹이 들어오자 브릿지 역할을 정확히 소화했습니다.</div>
+          <div class="case-meta"><span>소재: 세라믹 마블 화이트</span><span>용도: 주방 상판 교체</span><span>2025.03</span></div>
+        </div>
+      </div>
+
+      <!-- CASE 06 : 마블 베이닝 디테일 -->
+      <div class="case-card" data-cat="kitchen">
+        <img class="case-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='540'%3E%3Crect width='800' height='540' fill='%231E1A17'/%3E%3Ctext x='400' y='270' text-anchor='middle' dominant-baseline='middle' font-family='sans-serif' font-size='13' fill='%236B645E' letter-spacing='2'%3E사진 추가 예정%3C/text%3E%3C/svg%3E" alt="마블 세라믹 상판 베이닝 디테일" loading="lazy">
+        <div class="case-info">
+          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">디테일</span></div>
+          <div class="case-title">마블 베이닝 — 소재가 공간을 바꾸는 순간</div>
+          <div class="case-body">천연 대리석의 흐르는 결을 그대로 재현한 마블 화이트 세라믹. 내오염성과 내열성은 천연석보다 뛰어나면서 고급감은 그대로입니다.</div>
+          <div class="case-meta"><span>소재: 세라믹 마블 화이트</span><span>용도: 언더마운트 싱크 통합</span><span>2025.03</span></div>
+        </div>
+      </div>
+
+      <!-- CASE 07 : 서울 선릉 대기업 임원회의실 -->
+      <div class="case-card" data-cat="office">
+        <img class="case-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='540'%3E%3Crect width='800' height='540' fill='%231E1A17'/%3E%3Ctext x='400' y='270' text-anchor='middle' dominant-baseline='middle' font-family='sans-serif' font-size='13' fill='%236B645E' letter-spacing='2'%3E사진 추가 예정%3C/text%3E%3C/svg%3E" alt="서울 선릉 대기업 임원회의실 칼라카타 세라믹 테이블" loading="lazy">
+        <div class="case-info">
+          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">오피스</span><span class="case-tag">회의실</span></div>
+          <div class="case-title">서울 선릉 — 대기업 임원회의실 세라믹 테이블</div>
+          <div class="case-body">선릉 오피스 대기업 임원회의실의 5m 대형 테이블 프로젝트입니다. 칼라카타 화이트 세라믹으로 공간 품격을 결정하고, 케이블 매니지먼트 박스 통합 가공까지 포함한 완전 맞춤 제작.</div>
+          <div class="case-meta"><span>소재: 세라믹 칼라카타 화이트</span><span>용도: 임원 회의실 테이블</span><span>2024.11</span></div>
+        </div>
+      </div>
+
+      <!-- CASE 08 : 서울 도곡동 아파트 -->
+      <div class="case-card" data-cat="kitchen">
+        <img class="case-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='540'%3E%3Crect width='800' height='540' fill='%231E1A17'/%3E%3Ctext x='400' y='270' text-anchor='middle' dominant-baseline='middle' font-family='sans-serif' font-size='13' fill='%236B645E' letter-spacing='2'%3E사진 추가 예정%3C/text%3E%3C/svg%3E" alt="서울 도곡동 아파트 주방 아이보리 세라믹 통합 시공" loading="lazy">
+        <div class="case-info">
+          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">주방</span><span class="case-tag">하이글로스</span></div>
+          <div class="case-title">서울 도곡동 — 주방 전 구역 세라믹 통일 시공</div>
+          <div class="case-body">창가 수납 카운터, 아일랜드, 벽면 주방 카운터까지 동일한 아이보리 하이글로스 세라믹으로 통일해 일관된 고급감을 부여했습니다. 인덕션 통합 가공, 더블 언더마운트 싱크까지 포함.</div>
+          <div class="case-meta"><span>소재: 세라믹 아이보리 하이글로스</span><span>용도: 주방 3개 구역 통합</span><span>2025.05</span></div>
+        </div>
+      </div>
+
+      <!-- CASE 09 : 도곡동 더블싱크 -->
+      <div class="case-card" data-cat="kitchen">
+        <img class="case-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='540'%3E%3Crect width='800' height='540' fill='%231E1A17'/%3E%3Ctext x='400' y='270' text-anchor='middle' dominant-baseline='middle' font-family='sans-serif' font-size='13' fill='%236B645E' letter-spacing='2'%3E사진 추가 예정%3C/text%3E%3C/svg%3E" alt="도곡동 더블싱크 오크 캐비닛 세라믹" loading="lazy">
+        <div class="case-info">
+          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">더블싱크</span></div>
+          <div class="case-title">더블 언더마운트 + 오크 캐비닛 조합</div>
+          <div class="case-body">라이트 오크 우드 상부장과 아이보리 세라믹 상판의 조합. 더블 언더마운트 싱크와 쿡탑 구멍을 단일 상판에서 동시 커팅하는 것은 정밀 CAD 계산이 필수입니다.</div>
+          <div class="case-meta"><span>소재: 세라믹 아이보리 하이글로스</span><span>용도: 더블싱크 + 쿡탑 통합</span><span>2025.05</span></div>
+        </div>
+      </div>
+
+      <!-- CASE 10 : 경기도 양평 펜션 -->
+      <div class="case-card" data-cat="cafe">
+        <img class="case-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='540'%3E%3Crect width='800' height='540' fill='%231E1A17'/%3E%3Ctext x='400' y='270' text-anchor='middle' dominant-baseline='middle' font-family='sans-serif' font-size='13' fill='%236B645E' letter-spacing='2'%3E사진 추가 예정%3C/text%3E%3C/svg%3E" alt="경기도 양평 펜션 주방 그레이지 세라믹 워터폴 아일랜드" loading="lazy">
+        <div class="case-info">
+          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">펜션</span><span class="case-tag">워터폴</span></div>
+          <div class="case-title">경기도 양평 — 펜션 주방 세라믹 전체 시공</div>
+          <div class="case-body">양평 숲속 펜션 주방 전체를 의뢰받은 프로젝트입니다. 그레이지 톤 무광 세라믹을 아일랜드 상판·측면 워터폴 패널·사이드보드·벽면 카운터까지 동일하게 적용해 내추럴 모던 감성을 통일했습니다.</div>
+          <div class="case-meta"><span>소재: 세라믹 그레이지 무광</span><span>용도: 펜션 주방 전체</span><span>2025.04</span></div>
+        </div>
+      </div>
+
+      <!-- CASE 11 : 워터폴 엣지 디테일 -->
+      <div class="case-card" data-cat="cafe">
+        <img class="case-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='540'%3E%3Crect width='800' height='540' fill='%231E1A17'/%3E%3Ctext x='400' y='270' text-anchor='middle' dominant-baseline='middle' font-family='sans-serif' font-size='13' fill='%236B645E' letter-spacing='2'%3E사진 추가 예정%3C/text%3E%3C/svg%3E" alt="세라믹 워터폴 엣지 + 언더마운트 싱크 디테일" loading="lazy">
+        <div class="case-info">
+          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">워터폴</span><span class="case-tag">디테일</span></div>
+          <div class="case-title">워터폴 엣지 — 상판이 공간이 되는 설계</div>
+          <div class="case-body">아일랜드 상판이 측면으로 그대로 흘러내리는 워터폴 엣지. 같은 소재·같은 결이 연속되면서 캐비닛이 사라지고 하나의 석재 덩어리처럼 보이는 효과를 냅니다.</div>
+          <div class="case-meta"><span>소재: 세라믹 그레이지 무광</span><span>용도: 워터폴 아일랜드</span><span>2025.04</span></div>
+        </div>
+      </div>
+
+      <!-- CASE 12 : 경기도 여주 고급 펜션 -->
+      <div class="case-card" data-cat="cafe">
+        <img class="case-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='540'%3E%3Crect width='800' height='540' fill='%231E1A17'/%3E%3Ctext x='400' y='270' text-anchor='middle' dominant-baseline='middle' font-family='sans-serif' font-size='13' fill='%236B645E' letter-spacing='2'%3E사진 추가 예정%3C/text%3E%3C/svg%3E" alt="경기도 여주 고급 펜션 주방 앤스러사이트 세라믹 아일랜드 전경" loading="lazy">
+        <div class="case-info">
+          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">펜션</span><span class="case-tag">복층</span></div>
+          <div class="case-title">경기도 여주 — 고급 펜션 주방 세라믹 전체 시공</div>
+          <div class="case-body">여주 프리미엄 펜션의 대형 오픈 키친 프로젝트입니다. 짙은 앤스러사이트 세라믹을 아일랜드·벽면 카운터·백스플래시·다이닝 테이블 상판까지 전 구역에 통일 적용해 고급 리조트 감성의 주방을 완성했습니다.</div>
+          <div class="case-meta"><span>소재: 세라믹 앤스러사이트 다크</span><span>용도: 펜션 오픈 키친 전체</span><span>2025.05</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- ═══════ PROCESS ════════════════════════════════════════ -->
+<section id="process" class="section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <p class="label">HOW WE WORK</p>
+      <h2 class="section-title">제작 과정</h2>
+      <p class="section-sub">상담부터 시공까지 모든 과정을 외주 없이 직접 진행합니다.</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <div class="step-label">STEP 01</div>
+        <div class="step-title">상담 및 현장 실측</div>
+        <div class="step-body">공간 용도·예산·취향 파악 후 소재·색상 샘플 제안.<br>필요 시 현장 방문 실측 진행.</div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <div class="step-label">STEP 02</div>
+        <div class="step-title">도면 설계 &amp; 견적</div>
+        <div class="step-body">CAD 기반 정밀 도면 작성, 가공 사양 확정.<br>상세 견적서 1~2 영업일 내 제출.</div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <div class="step-label">STEP 03</div>
+        <div class="step-title">공장 정밀 가공</div>
+        <div class="step-body">포천 직영공장 CNC 절삭·엣지 가공·표면 처리.<br>오차 0.3mm 이내 품질관리 후 출고.</div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">04</div>
+        <div class="step-label">STEP 04</div>
+        <div class="step-title">납품 &amp; 현장 시공</div>
+        <div class="step-body">자체 운송으로 안전 납품.<br>숙련 기사 현장 설치, 싱크·쿡탑 컷아웃 맞춤 마감.</div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">05</div>
+        <div class="step-label">STEP 05</div>
+        <div class="step-title">사후 관리</div>
+        <div class="step-body">시공 완료 후 하자 점검 및 보수 대응.</div>
+        <div class="step-quote">"한 번 맡기면 끝까지 책임집니다."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ REVIEWS ════════════════════════════════════════ -->
+<section id="reviews" class="section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <p class="label" style="color:rgba(255,255,255,.4)">REVIEWS</p>
+      <h2 class="section-title">고객 후기</h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card fade-up fade-up-d1">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"마포 카페 오픈 전에 바테이블을 교체했는데, 솔직히 이렇게까지 달라질 줄 몰랐어요. 손님들이 테이블 보고 먼저 물어봐요. 내열도 기대 이상이고 커피 얼룩이 하나도 안 남아서 청소가 반으로 줄었습니다."</p>
+        <div class="review-footer">
+          <div>
+            <div class="reviewer-name">김○○ 대표</div>
+            <div class="reviewer-info">서울 마포구 · 스페셜티 카페 운영</div>
+          </div>
+          <div class="review-date">2024.04</div>
+        </div>
+      </div>
+      <div class="review-card fade-up fade-up-d2">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"인테리어 업체 하면서 여러 상판 업체 써봤는데 은성이 납기를 제일 잘 지켜요. 특히 단지 납품처럼 물량이 많을 때도 일정이 안 밀려요. 직영공장이라 중간 마진도 없고 가격 협의도 되고. 파트너로 계속 쓸 것 같습니다."</p>
+        <div class="review-footer">
+          <div>
+            <div class="reviewer-name">이○○ 실장</div>
+            <div class="reviewer-info">성남 분당 · 인테리어 업체 운영</div>
+          </div>
+          <div class="review-date">2024.02</div>
+        </div>
+      </div>
+      <div class="review-card fade-up fade-up-d3">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"욕실 세면대 MMA로 맞춤 제작 의뢰했는데 이음매가 진짜 하나도 안 보여요. 기존 세면대에서 항상 물때가 끼던 연결 부위가 없으니까 아직도 처음 설치한 것처럼 깨끗합니다. 상담부터 시공까지 전달이 빠르고 친절했어요."</p>
+        <div class="review-footer">
+          <div>
+            <div class="reviewer-name">박○○ 님</div>
+            <div class="reviewer-info">경기 수원 · 30평대 아파트 욕실 리모델링</div>
+          </div>
+          <div class="review-date">2024.01</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FAQ ═════════════════════════════════════════════ -->
+<section id="faq" class="section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <p class="label">FAQ</p>
+      <h2 class="section-title">자주 묻는 질문</h2>
+    </div>
+    <div class="faq-wrap">
+      <div class="faq-item">
+        <div class="faq-q">가격은 얼마인가요?<div class="faq-icon">+</div></div>
+        <div class="faq-a">소재 종류, 두께, 크기, 가공 방식에 따라 가격이 달라집니다. 정확한 견적은 상담 후 1~2 영업일 내 제출해 드립니다. 카카오 채널로 규격·용도를 알려주시면 빠르게 안내드립니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">최소 주문 수량이 있나요?<div class="faq-icon">+</div></div>
+        <div class="faq-a">1개부터 주문 가능합니다. 개인 1장 주문부터 대규모 단지 납품까지 수량 제한 없이 진행합니다. 부담 없이 문의해 주세요.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">샘플을 받아볼 수 있나요?<div class="faq-icon">+</div></div>
+        <div class="faq-a">포천 쇼룸 방문 또는 택배로 실물 샘플 신청이 가능합니다. 카카오 채널 또는 전화로 문의하시면 빠르게 발송해 드립니다. 직접 실측 및 방문 상담도 가능합니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">납기는 얼마나 걸리나요?<div class="faq-icon">+</div></div>
+        <div class="faq-a">일반 규격 제품은 약 7~10일, 맞춤 가공 제품은 10~14일 소요됩니다. 긴급 건은 별도 협의 가능하며, 단지 납품 등 대량 건은 일정 협의 후 진행합니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">전국 배송 되나요?<div class="faq-icon">+</div></div>
+        <div class="faq-a">전국 배송 가능합니다. 도서산간 지역은 추가 배송비가 발생할 수 있으며, 파손 방지를 위한 전문 포장으로 발송합니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">세라믹과 포세린 차이가 있나요?<div class="faq-icon">+</div></div>
+        <div class="faq-a">포세린은 흡수율 0.5% 이하의 고밀도 세라믹입니다. 일반 세라믹보다 내구성이 높고 오염에 강해 상업 공간에 특히 적합합니다. 저희가 취급하는 세라믹은 모두 포세린 등급입니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">설치·시공도 해주시나요?<div class="faq-icon">+</div></div>
+        <div class="faq-a">10년 이상 경력의 전문 시공팀이 직접 시공합니다. 어떤 업체보다 깔끔하고 정밀하게 완성해드립니다. 수도권은 직접 방문 시공, 지방은 협력 업체와 연결해 드립니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">두께는 어떻게 선택하나요?<div class="faq-icon">+</div></div>
+        <div class="faq-a">식탁·홈바·카페테이블에는 12T, 주방 카운터·아일랜드·상업 공간에는 20T를 권장합니다. 용도와 공간에 따라 상담 후 최적 두께를 안내해 드립니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ═══════ B2B ════════════════════════════════════════════ -->
+<section id="b2b" class="section">
+  <div class="container">
+    <div class="b2b-inner">
+      <div>
+        <p class="label">B2B PARTNERSHIP</p>
+        <h2 class="b2b-title">인테리어 업체·<br><em>건설사·호텔</em>에<br>공급합니다</h2>
+        <p class="b2b-desc">은성은 개인 고객뿐 아니라 인테리어 업체, 건설사, 호텔·리조트, 카페 체인 등 B2B 파트너와 장기적으로 협력합니다. 직영공장 공급으로 중간 마진 없이 합리적인 단가를 제공합니다.</p>
+        <div class="b2b-list">
+          <div class="b2b-item">
+            <div class="b2b-icon">01</div>
+            <div>
+              <strong>직영공장 단가 제공</strong>
+              <p>중간 유통 없이 공장 직공급. 대량 발주 시 추가 단가 협의 가능합니다.</p>
+            </div>
+          </div>
+          <div class="b2b-item">
+            <div class="b2b-icon">02</div>
+            <div>
+              <strong>납기 준수 보장</strong>
+              <p>직영공장 스케줄 관리로 납기를 지킵니다. 일정이 중요한 건설·인테리어 현장에 최적입니다.</p>
+            </div>
+          </div>
+          <div class="b2b-item">
+            <div class="b2b-icon">03</div>
+            <div>
+              <strong>전담 담당자 배정</strong>
+              <p>B2B 파트너에게는 전담 담당자를 배정해 빠른 견적과 기술 지원을 제공합니다.</p>
+            </div>
+          </div>
+        </div>
+        <a href="#contact" class="btn-primary">B2B 파트너십 문의</a>
+      </div>
+      <div class="b2b-stats">
+        <div class="b2b-stat fade-up fade-up-d1">
+          <div class="b2b-num"><span class="counter" data-to="2000">0</span><sup>+</sup></div>
+          <div class="b2b-stat-label">납품 완료 건수</div>
+        </div>
+        <div class="b2b-stat fade-up fade-up-d2">
+          <div class="b2b-num"><span class="counter" data-to="15">0</span><sup>+</sup></div>
+          <div class="b2b-stat-label">제조 경력 (년)</div>
+        </div>
+        <div class="b2b-stat fade-up fade-up-d3">
+          <div class="b2b-num">4</div>
+          <div class="b2b-stat-label">전문 소재</div>
+        </div>
+        <div class="b2b-stat fade-up fade-up-d4">
+          <div class="b2b-num"><span class="counter" data-to="100">0</span></div>
+          <div class="b2b-stat-label">% 맞춤 제작</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CONTACT ═══════════════════════════════════════ -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <p class="label">CONTACT</p>
+      <h2 class="section-title">문의 · 견적</h2>
+      <p class="section-sub">어떤 공간이든, 어떤 소재든 — 먼저 물어보세요</p>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-info-title">빠른 답변을<br><em>약속드립니다</em></div>
+        <p class="contact-desc">평일 오전 9시 ~ 오후 6시 운영. 견적 문의는 카카오 채널이 가장 빠릅니다. 샘플 신청·현장 실측 방문도 가능하니 부담 없이 연락 주세요.</p>
+        <ul class="contact-list">
+          <li><span class="ci-label">TEL</span><span class="ci-val">031-544-7272</span></li>
+          <li><span class="ci-label">KAKAO</span><span class="ci-val">카카오 채널 <a href="https://open.kakao.com/o/sS7BnYyc" target="_blank" style="color:var(--gold)">바로가기 →</a></span></li>
+          <li><span class="ci-label">ADDR</span><span class="ci-val">경기도 포천시 — 쇼룸 방문 상담 가능</span></li>
+          <li><span class="ci-label">BIZ</span><span class="ci-val">사업자번호 328-88-00420</span></li>
+        </ul>
+      </div>
+      <div>
+        <form onsubmit="return false">
+          <div class="form-row">
+            <div class="form-group">
+              <label>성함</label>
+              <input type="text" placeholder="홍길동">
+            </div>
+            <div class="form-group">
+              <label>연락처</label>
+              <input type="tel" placeholder="010-0000-0000">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>소재 종류</label>
+            <select>
+              <option value="">선택해 주세요</option>
+              <option>세라믹 / 포세린</option>
+              <option>이스톤 (VIATERA)</option>
+              <option>MMA 인조대리석</option>
+              <option>BMC 인조대리석</option>
+              <option>미정 / 상담 후 결정</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>문의 내용</label>
+            <textarea placeholder="원하시는 색상, 규격, 용도(주방/욕실/카페 등), 수량을 간단히 적어주세요."></textarea>
+          </div>
+          <button class="form-submit" type="submit">견적 문의 보내기</button>
+          <p class="form-note">* 카카오 채널로 문의하시면 더 빠르게 답변드립니다.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FOOTER ══════════════════════════════════════════ -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">EUNSUNG</div>
+        <p class="footer-tagline">(주)은성 · 상판 전문 제조<br>세라믹 · MMA · 이스톤 · BMC<br>LX Hausys VIATERA 공식 대리점</p>
+      </div>
+      <div class="footer-links">
+        <a href="#materials-overview">소재 안내</a>
+        <a href="#materials-detail">제품 상세</a>
+        <a href="#cases">시공 사례</a>
+        <a href="#process">제작 과정</a>
+        <a href="#contact">문의 · 견적</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-legal">상호: (주)은성 &nbsp;|&nbsp; 사업자등록번호: 328-88-00420 &nbsp;|&nbsp; 경기도 포천시<br>Copyright © 2025 EUNSUNG Co., Ltd. All rights reserved.</p>
+      <a href="https://open.kakao.com/o/sS7BnYyc" target="_blank" style="color:rgba(255,255,255,.5);font-size:.7rem;letter-spacing:.06em">카카오 채널 문의 →</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════ FLOATING CTA ════════════════════════════════════ -->
+<div id="float-cta">
+  <a href="https://open.kakao.com/o/sS7BnYyc" target="_blank" class="float-btn float-kakao" title="카카오 문의">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M12 3C7.03 3 3 6.36 3 10.5c0 2.56 1.53 4.82 3.86 6.21L5.8 20.1c-.1.28.2.5.46.35l4.36-2.88c.45.06.91.09 1.38.09 4.97 0 9-3.36 9-7.5S16.97 3 12 3z" fill="#3C1E1E"/></svg>
+  </a>
+  <a href="tel:031-544-7272" class="float-btn float-phone" title="전화 문의">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" fill="white"/></svg>
+  </a>
+</div>
+
+<script>
 /* ═══ 1. CORE UI — 외부 라이브러리 불필요 ══════════════════ */
 
 /* NAV */
