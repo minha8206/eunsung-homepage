@@ -688,6 +688,17 @@ ul{list-style:none}
 
 /* ── REVIEWS LABEL FIX ─────────────────────────────────── */
 #reviews .section-header .label{color:var(--ink3)!important}
+
+/* ── MATERIALS COMPOSITE IMAGE ─────────────────────────── */
+.mat-composite{position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;margin-bottom:48px;border:1px solid var(--border2)}
+.mat-composite-img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.85)}
+.mat-composite-overlay{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr}
+.mat-composite-cell{position:relative;display:flex;align-items:flex-end;padding:20px;border:1px solid rgba(191,142,90,.12)}
+.mat-composite-cell::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(10,9,8,.75) 0%,transparent 60%);pointer-events:none}
+.mat-composite-label{position:relative;z-index:1}
+.mat-composite-label strong{display:block;font-family:var(--serif);font-size:1.1rem;font-weight:300;color:var(--white);letter-spacing:.06em;line-height:1.1}
+.mat-composite-label small{font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;color:var(--gold);text-transform:uppercase;display:block;margin-top:3px}
+@media(max-width:600px){.mat-composite{aspect-ratio:4/3}.mat-composite-label strong{font-size:.85rem}}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -856,7 +867,7 @@ ul{list-style:none}
         </div>
       </div>
       <div class="about-img-wrap fade-up">
-        <img class="about-img-main" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='540'%3E%3Crect width='800' height='540' fill='%231E1A17'/%3E%3Ctext x='400' y='270' text-anchor='middle' dominant-baseline='middle' font-family='sans-serif' font-size='13' fill='%236B645E' letter-spacing='2'%3E사진 추가 예정%3C/text%3E%3C/svg%3E" alt="은성 직영공장 제작 현장" loading="lazy">
+        <img class="about-img-main" src="./images/about-interior.jpg" alt="은성 고급 인테리어 시공 사례" loading="lazy">
         <div class="about-img-badge">
           <div class="bn">15<sup>+</sup></div>
           <div class="bs">YEARS OF EXPERTISE</div>
@@ -873,6 +884,36 @@ ul{list-style:none}
       <p class="label">MATERIALS</p>
       <h2 class="section-title">4가지 소재, 하나의 전문성</h2>
       <p class="section-sub">용도와 예산에 맞는 최적의 소재를 제안해드립니다. 진입은 BMC로, 감동은 세라믹으로.</p>
+    </div>
+    <!-- AI 생성 소재 쇼케이스 복합 이미지 -->
+    <div class="mat-composite fade-up">
+      <img class="mat-composite-img" src="./images/materials-grid.jpg" alt="세라믹·MMA·이스톤·BMC 소재 쇼케이스" loading="lazy">
+      <div class="mat-composite-overlay">
+        <div class="mat-composite-cell">
+          <div class="mat-composite-label">
+            <strong>Ceramic</strong>
+            <small>포세린 · 최고급</small>
+          </div>
+        </div>
+        <div class="mat-composite-cell">
+          <div class="mat-composite-label">
+            <strong>MMA</strong>
+            <small>인조대리석 · 이음매없음</small>
+          </div>
+        </div>
+        <div class="mat-composite-cell">
+          <div class="mat-composite-label">
+            <strong>E-Stone</strong>
+            <small>VIATERA · LX 정품</small>
+          </div>
+        </div>
+        <div class="mat-composite-cell">
+          <div class="mat-composite-label">
+            <strong>BMC</strong>
+            <small>인조대리석 · 가성비</small>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="mat-grid">
       <!-- BMC -->
