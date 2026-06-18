@@ -372,106 +372,122 @@ ul{list-style:none}
 /* ═══════════════════════════════════════════════════════
    CASES
 ══════════════════════════════════════════════════════ */
-#cases{background:var(--bg2)}
-.filter-bar{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:48px}
-.filter-btn{
-  padding:8px 20px;border:1px solid var(--border);
-  font-size:.75rem;letter-spacing:.06em;color:var(--ink3);
-  border-radius:2px;transition:all .3s
+#cases{background:var(--bg)}
+
+/* Filter bar — pill-row luxury */
+.filter-bar{
+  display:flex;flex-wrap:wrap;gap:0;justify-content:center;
+  border:1px solid rgba(191,142,90,.18);border-radius:2px;
+  overflow:hidden;width:fit-content;margin:0 auto 56px
 }
-.filter-btn.active,.filter-btn:hover{background:var(--gold);color:var(--white);border-color:var(--gold)}
-/* ═══ CASES — Cosentino-style full-bleed overlay ════════ */
-.cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--bg)}
+.filter-btn{
+  padding:11px 26px;border:none;
+  border-right:1px solid rgba(191,142,90,.14);
+  font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink3);background:transparent;
+  transition:all .3s;font-family:var(--mono);white-space:nowrap;cursor:pointer
+}
+.filter-btn:last-child{border-right:none}
+.filter-btn.active,.filter-btn:hover{background:rgba(191,142,90,.1);color:var(--gold)}
+
+/* ── MASONRY GRID ── */
+.cases-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  grid-auto-rows:260px;grid-auto-flow:dense;
+  gap:3px;background:rgba(191,142,90,.05)
+}
+.case-card--hero{grid-column:span 2;grid-row:span 2}
+.case-card--banner{grid-column:span 3;grid-row:span 2}
+.case-card.hidden{display:none!important}
+
+/* card base */
 .case-card{
   position:relative;overflow:hidden;cursor:pointer;
-  aspect-ratio:3/4;background:var(--bg2);
+  background:var(--bg2)
 }
-.case-card:first-child,.case-card:nth-child(4){grid-column:span 2;aspect-ratio:16/9}
-.case-card.hidden{display:none}
 
-/* image fills entire card */
+/* full-bleed image */
 .case-img{
   position:absolute;inset:0;width:100%;height:100%;
   object-fit:cover;
-  transition:transform .9s cubic-bezier(.4,0,.2,1),filter .6s ease;
+  transition:transform .9s cubic-bezier(.4,0,.2,1),filter .6s ease
 }
 .case-card:hover .case-img{transform:scale(1.07)}
 .case-img--premium{filter:brightness(1.04) contrast(1.07) saturate(1.1)}
-.case-card:hover .case-img--premium{filter:brightness(.9) contrast(1.1) saturate(1.15)}
+.case-card:hover .case-img--premium{filter:brightness(.88) contrast(1.1) saturate(1.15)}
 
-/* gradient vignette — always on, deepens on hover */
+/* gradient vignette — deepens on hover */
 .case-card::before{
   content:'';position:absolute;inset:0;z-index:1;
   background:linear-gradient(
     to top,
-    rgba(10,9,8,.97) 0%,
-    rgba(10,9,8,.5)  40%,
-    rgba(10,9,8,.08) 100%
+    rgba(8,7,6,.98) 0%,
+    rgba(8,7,6,.52) 42%,
+    rgba(8,7,6,.05) 100%
   );
-  opacity:.75;transition:opacity .6s ease;
+  opacity:.78;transition:opacity .5s ease
 }
 .case-card:hover::before{opacity:1}
 
-/* info: overlaid on image */
+/* corner arrow via ::after */
+.case-card::after{
+  content:'↗';
+  position:absolute;top:20px;right:20px;z-index:2;
+  width:32px;height:32px;border-radius:50%;
+  border:1px solid rgba(191,142,90,.22);
+  color:var(--gold);font-size:.78rem;
+  line-height:32px;text-align:center;
+  opacity:0;transform:scale(.78);
+  transition:opacity .3s ease .15s,transform .3s ease .15s
+}
+.case-card:hover::after{opacity:1;transform:scale(1)}
+
+/* info overlay */
 .case-info{
   position:absolute;bottom:0;left:0;right:0;
-  padding:32px 28px 28px;z-index:2;
+  padding:28px 24px 22px;z-index:2
 }
-
-.case-tags{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.case-tags{display:flex;gap:5px;margin-bottom:10px;flex-wrap:wrap}
 .case-tag{
-  font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;
-  padding:3px 9px;background:rgba(191,142,90,.12);color:var(--gold);
-  border:1px solid rgba(191,142,90,.3);border-radius:1px;
+  font-family:var(--mono);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:2px 8px;background:rgba(191,142,90,.08);color:var(--gold);
+  border:1px solid rgba(191,142,90,.22);border-radius:1px
 }
-
 .case-title{
-  font-family:var(--serif);font-size:1.05rem;font-weight:300;
-  color:var(--white);line-height:1.35;margin-bottom:0;
-  transition:margin-bottom .4s var(--ease);
+  font-family:var(--serif);font-size:.95rem;font-weight:300;
+  color:var(--white);line-height:1.4;margin-bottom:0;
+  transition:margin-bottom .4s var(--ease)
 }
-.case-card:hover .case-title{margin-bottom:14px}
+.case-card:hover .case-title{margin-bottom:12px}
 
-/* description — slides in on hover */
+/* description — slides up on hover */
 .case-body{
-  font-size:.74rem;color:rgba(242,237,232,.62);
+  font-size:.72rem;color:rgba(242,237,232,.56);
   line-height:1.8;font-weight:300;
   overflow:hidden;max-height:0;opacity:0;
-  transition:max-height .55s var(--ease),opacity .4s ease .1s;
+  transition:max-height .55s var(--ease),opacity .4s ease .1s
 }
-.case-card:hover .case-body{max-height:110px;opacity:1}
+.case-card:hover .case-body{max-height:130px;opacity:1}
 
 /* meta row — fades up on hover */
 .case-meta{
   display:flex;gap:10px;flex-wrap:wrap;
-  border-top:1px solid rgba(191,142,90,.18);
-  padding-top:10px;margin-top:10px;
+  border-top:1px solid rgba(191,142,90,.14);
+  padding-top:9px;margin-top:9px;
   opacity:0;transform:translateY(6px);
-  transition:opacity .35s ease .22s,transform .35s ease .22s;
+  transition:opacity .35s ease .22s,transform .35s ease .22s
 }
-.case-meta span{font-size:.62rem;color:var(--ink3);font-family:var(--mono)}
+.case-meta span{font-size:.6rem;color:var(--ink3);font-family:var(--mono)}
 .case-card:hover .case-meta{opacity:1;transform:none}
 
-/* arrow icon */
-.case-arrow{
-  position:absolute;top:24px;right:24px;z-index:2;
-  width:36px;height:36px;border-radius:50%;
-  border:1px solid rgba(191,142,90,.3);
-  display:flex;align-items:center;justify-content:center;
-  color:var(--gold);font-size:.85rem;
-  opacity:0;transform:scale(.8);
-  transition:opacity .3s ease .2s,transform .3s ease .2s,border-color .3s;
-}
-.case-card:hover .case-arrow{opacity:1;transform:scale(1)}
-.case-arrow:hover{border-color:var(--gold);background:var(--gold-pale)}
-
 @media(max-width:900px){
-  .cases-grid{grid-template-columns:1fr 1fr}
-  .case-card:first-child,.case-card:nth-child(4){grid-column:span 1;aspect-ratio:3/4}
+  .cases-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:220px}
+  .case-card--hero{grid-column:span 2}
+  .case-card--banner{grid-column:span 2}
 }
 @media(max-width:560px){
-  .cases-grid{grid-template-columns:1fr}
-  .case-card,.case-card:first-child,.case-card:nth-child(4){aspect-ratio:4/3}
+  .cases-grid{grid-template-columns:1fr;grid-auto-rows:280px}
+  .case-card--hero,.case-card--banner{grid-column:span 1!important;grid-row:span 1!important}
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -1306,15 +1322,15 @@ ul{list-style:none}
     </div>
     <div class="filter-bar">
       <button class="filter-btn active" data-filter="all">전체</button>
-      <button class="filter-btn" data-filter="kitchen">주방 / 아일랜드</button>
-      <button class="filter-btn" data-filter="bath">욕실 / 세면대</button>
-      <button class="filter-btn" data-filter="cafe">카페 / 상업시설</button>
-      <button class="filter-btn" data-filter="office">오피스 / 호텔</button>
+      <button class="filter-btn" data-filter="kitchen">주방·아일랜드</button>
+      <button class="filter-btn" data-filter="bath">욕실·세면대</button>
+      <button class="filter-btn" data-filter="cafe">카페·상업시설</button>
+      <button class="filter-btn" data-filter="office">오피스·호텔</button>
     </div>
     <div class="cases-grid">
 
       <!-- CASE 01 : 서울 성수동 하이엔드 아파트 -->
-      <div class="case-card" data-cat="kitchen">
+      <div class="case-card case-card--hero" data-cat="kitchen">
         <img class="case-img case-img--premium" src="./images/cases/seongsu-03.jpg" alt="서울 성수동 고급 아파트 주방 아일랜드 세라믹 시공 전경" loading="lazy">
         <div class="case-info">
           <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">주방</span><span class="case-tag">아파트</span></div>
@@ -1380,7 +1396,7 @@ ul{list-style:none}
       </div>
 
       <!-- CASE 07 : 서울 선릉 대기업 임원회의실 -->
-      <div class="case-card" data-cat="office">
+      <div class="case-card case-card--banner" data-cat="office">
         <img class="case-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='540'%3E%3Crect width='800' height='540' fill='%231E1A17'/%3E%3Ctext x='400' y='270' text-anchor='middle' dominant-baseline='middle' font-family='sans-serif' font-size='13' fill='%236B645E' letter-spacing='2'%3E사진 추가 예정%3C/text%3E%3C/svg%3E" alt="서울 선릉 대기업 임원회의실 칼라카타 세라믹 테이블" loading="lazy">
         <div class="case-info">
           <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">오피스</span><span class="case-tag">회의실</span></div>
