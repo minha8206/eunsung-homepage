@@ -490,6 +490,129 @@ ul{list-style:none}
   .case-card--hero,.case-card--banner{grid-column:span 1!important;grid-row:span 1!important}
 }
 
+/* ── 프로젝트 카운터 ── */
+.cases-counter{text-align:center;margin-bottom:40px;line-height:1}
+.cases-counter-num{
+  font-family:var(--serif);font-size:clamp(3rem,6vw,5rem);
+  color:var(--gold);display:inline;letter-spacing:-.02em
+}
+.cases-counter-label{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;
+  color:var(--ink3);display:block;margin-top:6px
+}
+
+/* ── 카드 스크롤 reveal ── */
+.case-card{opacity:0;transform:translateY(24px)}
+.case-card.revealed{opacity:1;transform:none;transition:opacity .6s ease,transform .6s ease}
+
+/* ── 필터 전환 (fade+scale) ── */
+.case-card.hiding{
+  opacity:0!important;transform:scale(.94)!important;
+  transition:opacity .25s ease,transform .25s ease!important;pointer-events:none
+}
+
+/* ── VIEW 커스텀 커서 ── */
+.case-view-cursor{
+  position:fixed;width:60px;height:60px;border-radius:50%;
+  background:rgba(191,142,90,.92);color:#1a1612;
+  font-family:var(--mono);font-size:.56rem;letter-spacing:.14em;
+  display:flex;align-items:center;justify-content:center;
+  pointer-events:none;z-index:8000;
+  transform:translate(-50%,-50%) scale(0);opacity:0;
+  transition:transform .3s cubic-bezier(.4,0,.2,1),opacity .3s
+}
+.case-view-cursor.active{transform:translate(-50%,-50%) scale(1);opacity:1}
+
+/* ── 라이트박스 ── */
+.lb-overlay{
+  position:fixed;inset:0;background:rgba(6,5,4,.85);
+  z-index:8900;opacity:0;pointer-events:none;transition:opacity .4s
+}
+.lb-overlay.on{opacity:1;pointer-events:all}
+#lb{
+  position:fixed;z-index:9000;background:var(--bg);
+  display:flex;flex-direction:column;overflow:hidden;
+  pointer-events:none;opacity:0;
+  transition:top .5s cubic-bezier(.4,0,.2,1),left .5s cubic-bezier(.4,0,.2,1),
+             width .5s cubic-bezier(.4,0,.2,1),height .5s cubic-bezier(.4,0,.2,1),opacity .35s
+}
+#lb.open{opacity:1;pointer-events:all;top:0!important;left:0!important;width:100vw!important;height:100dvh!important}
+.lb-top{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 28px;flex-shrink:0;border-bottom:1px solid rgba(191,142,90,.1)
+}
+.lb-project{font-family:var(--serif);font-size:1rem;font-weight:300;color:var(--white)}
+.lb-sub{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;color:var(--gold);margin-top:4px}
+.lb-close{
+  background:none;border:1px solid rgba(191,142,90,.25);
+  color:var(--gold);width:36px;height:36px;border-radius:50%;
+  font-size:1rem;cursor:pointer;flex-shrink:0;
+  transition:background .2s,border-color .2s;display:flex;align-items:center;justify-content:center
+}
+.lb-close:hover{background:rgba(191,142,90,.12);border-color:var(--gold)}
+.lb-stage{
+  flex:1;position:relative;overflow:hidden;background:#000;min-height:0
+}
+.lb-slide{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity .45s ease
+}
+.lb-slide.active{opacity:1}
+.lb-slide img{width:100%;height:100%;object-fit:contain}
+.lb-arrow{
+  position:absolute;top:50%;transform:translateY(-50%);z-index:2;
+  background:rgba(10,9,8,.6);border:1px solid rgba(191,142,90,.2);
+  color:var(--gold);width:44px;height:44px;border-radius:50%;
+  font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:background .2s,border-color .2s;flex-shrink:0
+}
+.lb-arrow:hover{background:rgba(191,142,90,.15);border-color:var(--gold)}
+.lb-prev{left:16px}.lb-next{right:16px}
+.lb-arrow[hidden]{display:none}
+.lb-dots{
+  display:flex;gap:6px;justify-content:center;padding:12px 0;flex-shrink:0
+}
+.lb-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:rgba(191,142,90,.25);border:none;cursor:pointer;transition:background .2s
+}
+.lb-dot.active{background:var(--gold)}
+.lb-bottom{
+  padding:18px 28px 20px;flex-shrink:0;border-top:1px solid rgba(191,142,90,.08);
+  display:flex;align-items:center;justify-content:space-between;gap:16px
+}
+.lb-desc{
+  font-size:.76rem;color:rgba(242,237,232,.58);line-height:1.8;
+  flex:1;max-height:80px;overflow:hidden
+}
+.lb-cta{
+  flex-shrink:0;padding:10px 20px;background:var(--gold);color:#1a1612;
+  font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;
+  border-radius:2px;text-decoration:none;white-space:nowrap;transition:opacity .2s
+}
+.lb-cta:hover{opacity:.85}
+.lb-swipe-hint{
+  position:absolute;bottom:70px;left:50%;transform:translateX(-50%);
+  color:rgba(242,237,232,.35);font-size:.62rem;font-family:var(--mono);letter-spacing:.1em;
+  pointer-events:none;animation:swipeHint 2.5s ease forwards;display:none
+}
+@keyframes swipeHint{0%{opacity:0;transform:translateX(-50%) translateY(6px)}20%{opacity:1;transform:translateX(-50%)}80%{opacity:1}100%{opacity:0}}
+@media(max-width:560px){
+  .lb-swipe-hint{display:block}
+  .lb-bottom{flex-direction:column;align-items:flex-start}
+  .lb-desc{max-height:60px;font-size:.7rem}
+  .lb-cta{width:100%;text-align:center}
+  .lb-top{padding:14px 16px}
+  .lb-arrow{width:36px;height:36px;font-size:1rem}
+  .lb-prev{left:8px}.lb-next{right:8px}
+}
+
+/* ── 필터 탭 모바일 스크롤 ── */
+@media(max-width:600px){
+  .filter-bar{width:100%;overflow-x:auto;flex-wrap:nowrap;justify-content:flex-start;border-radius:0;border-left:none;border-right:none}
+  .filter-btn{padding:11px 18px;flex-shrink:0}
+}
+
 /* ═══════════════════════════════════════════════════════
    PROCESS
 ══════════════════════════════════════════════════════ */
@@ -1320,144 +1443,181 @@ ul{list-style:none}
       <h2 class="section-title">시공 사례</h2>
       <p class="section-sub">실제 납품·시공된 현장입니다. 각 공간에 녹아든 소재의 결을 확인하세요.</p>
     </div>
+    <div class="cases-counter fade-up" id="cases-counter-wrap">
+      <span class="cases-counter-num" id="cases-count">0</span>
+      <span class="cases-counter-label">개 프로젝트 · 서울/경기</span>
+    </div>
     <div class="filter-bar">
       <button class="filter-btn active" data-filter="all">전체</button>
       <button class="filter-btn" data-filter="kitchen">주방·아일랜드</button>
-      <button class="filter-btn" data-filter="bath">욕실·세면대</button>
       <button class="filter-btn" data-filter="cafe">카페·상업시설</button>
       <button class="filter-btn" data-filter="office">오피스·호텔</button>
+      <button class="filter-btn" data-filter="bath">욕실·세면대</button>
     </div>
-    <div class="cases-grid">
+    <div class="cases-grid" id="cases-grid">
 
-      <!-- CASE 01 : 서울 성수동 하이엔드 아파트 -->
-      <div class="case-card case-card--hero" data-cat="kitchen">
-        <img class="case-img case-img--premium" src="./images/cases/seongsu-03.jpg" alt="서울 성수동 고급 아파트 주방 아일랜드 세라믹 시공 전경" loading="lazy">
+      <!-- 한남동 HERO -->
+      <div class="case-card case-card--hero" data-cat="cafe"
+        data-title="한남동 — 프리미엄 라운지 카운터" data-material="MMA 크림 화이트"
+        data-usage="카페·상업시설" data-date="2026.06"
+        data-desc="한남동 소재 프리미엄 라운지의 카운터탑 시공 사례입니다. 유려하게 곡선을 그리는 대형 카운터는 크림 화이트 MMA 인조대리석을 열성형 가공해 이음매 없이 완성했습니다. 황금빛 펜던트 조명 아래 소재의 부드러운 광택이 공간의 격을 높이며, 방문객에게 첫 순간부터 강렬한 인상을 남기는 설계입니다. 곡선형 카운터 측면 패널까지 동일 소재로 마감한 원피스 시공입니다."
+        data-imgs="./images/cases/hannamdong/01.png,./images/cases/hannamdong/02.png" data-hero="0">
+        <img class="case-img case-img--premium" src="./images/cases/hannamdong/01.png" alt="한남동 프리미엄 라운지 MMA 카운터" loading="lazy">
         <div class="case-info">
-          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">주방</span><span class="case-tag">아파트</span></div>
-          <div class="case-title">서울 성수동 — 하이엔드 아파트 주방 풀 시공</div>
-          <div class="case-body">성수동 고급 아파트의 주방 전체를 의뢰받은 프로젝트입니다. 3m가 넘는 대형 아일랜드 상판부터 벽면 카운터, 쿡탑 후드 상부까지 웜 샌드스톤 세라믹으로 통일 시공해 공간에 일체감을 부여했습니다.</div>
-          <div class="case-meta"><span>소재: 세라믹 포세린</span><span>용도: 아파트 주방 전체</span><span>2025.04</span></div>
+          <div class="case-tags"><span class="case-tag">MMA</span><span class="case-tag">카페·상업</span></div>
+          <div class="case-title">한남동 — 프리미엄 라운지 카운터</div>
+          <div class="case-body">황금빛 펜던트 조명 아래 곡선형 MMA 카운터. 열성형 이음매 없는 시공.</div>
+          <div class="case-meta"><span>MMA 크림 화이트</span><span>카페·상업시설</span><span>2026.06</span></div>
         </div>
       </div>
 
-      <!-- CASE 02 : 성수동 싱크 클로즈업 -->
-      <div class="case-card" data-cat="kitchen">
-        <img class="case-img case-img--premium" src="./images/cases/seongsu-01.jpg" alt="성수동 아파트 주방 아일랜드 언더마운트 싱크 세라믹 상판 클로즈업" loading="lazy">
+      <!-- 선릉 -->
+      <div class="case-card" data-cat="office"
+        data-title="선릉 — 대기업 임원회의실 세라믹 테이블" data-material="세라믹 칼라카타 화이트"
+        data-usage="오피스·호텔" data-date="2026.06"
+        data-desc="서울 선릉 소재 대기업 임원회의실의 5m 대형 컨퍼런스 테이블 프로젝트입니다. 칼라카타 화이트 세라믹의 우아한 베이닝이 공간 전체의 품격을 결정합니다. 케이블 매니지먼트 트레이 통합 가공을 포함한 완전 맞춤 제작으로, 기능성과 고급감을 동시에 충족하는 프리미엄 오피스 솔루션을 완성했습니다."
+        data-imgs="./images/cases/seolleung/01.jpg" data-hero="0">
+        <img class="case-img case-img--premium" src="./images/cases/seolleung/01.jpg" alt="선릉 대기업 임원회의실 세라믹 테이블" loading="lazy">
         <div class="case-info">
-          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">디테일</span></div>
-          <div class="case-title">이음매 없는 언더마운트 — 싱크 통합 시공</div>
-          <div class="case-body">세라믹 상판과 언더마운트 싱크의 접합부를 이음매 없이 마감하는 것은 숙련된 가공 기술이 필요합니다. 오차 0.3mm 이내 절삭과 현장 맞춤 마감으로 완성된 이 단면이 은성 기술력의 핵심입니다.</div>
-          <div class="case-meta"><span>소재: 세라믹 포세린</span><span>용도: 싱크 통합 커팅</span><span>2025.04</span></div>
+          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">오피스</span></div>
+          <div class="case-title">선릉 — 대기업 임원회의실</div>
+          <div class="case-body">5m 칼라카타 화이트 세라믹. 케이블 트레이 통합 맞춤 제작.</div>
+          <div class="case-meta"><span>세라믹 칼라카타</span><span>오피스·호텔</span><span>2026.06</span></div>
         </div>
       </div>
 
-      <!-- CASE 03 : 성수동 주방 조감 -->
-      <div class="case-card" data-cat="kitchen">
-        <img class="case-img case-img--premium" src="./images/cases/seongsu-02.jpg" alt="성수동 아파트 주방 전체 레이아웃 세라믹 아일랜드 조감" loading="lazy">
+      <!-- 성수동 -->
+      <div class="case-card" data-cat="kitchen"
+        data-title="성수동 — 대형 아일랜드 MMA 시공" data-material="MMA 베이지 무광"
+        data-usage="주방·아일랜드" data-date="2026.06"
+        data-desc="성수동 리뉴얼 아파트의 대형 주방 아일랜드 시공 사례입니다. 베이지 톤의 무광 MMA 상판을 라이트 오크 캐비닛과 매치하여 자연스럽고 고급스러운 조화를 이끌어냈습니다. 언더마운트 싱크와 인덕션 컷아웃을 정밀 가공해 깔끔한 마감을 완성했으며, 동일 소재를 벽면 카운터까지 연장 적용해 공간 전체에 통일감을 부여했습니다."
+        data-imgs="./images/cases/seongsu/01.jpg,./images/cases/seongsu/02.jpg,./images/cases/seongsu/03.jpg" data-hero="0">
+        <img class="case-img case-img--premium" src="./images/cases/seongsu/01.jpg" alt="성수동 아파트 주방 아일랜드" loading="lazy">
         <div class="case-info">
-          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">주방</span><span class="case-tag">레이아웃</span></div>
-          <div class="case-title">성수동 — 아일랜드 중심 주방 동선 설계</div>
-          <div class="case-body">아일랜드 상판을 중심으로 조리, 수납, 다이닝이 자연스럽게 연결되는 동선을 고려한 시공입니다. 상판 소재의 통일성이 공간 전체 흐름을 하나로 묶어줍니다.</div>
-          <div class="case-meta"><span>소재: 세라믹 포세린</span><span>용도: 아파트 주방 아일랜드</span><span>2025.04</span></div>
+          <div class="case-tags"><span class="case-tag">MMA</span><span class="case-tag">아일랜드</span></div>
+          <div class="case-title">성수동 — 대형 아일랜드 시공</div>
+          <div class="case-body">오크 캐비닛 + 베이지 MMA 아일랜드. 싱크·인덕션 통합 가공.</div>
+          <div class="case-meta"><span>MMA 베이지 무광</span><span>주방·아일랜드</span><span>2026.06</span></div>
         </div>
       </div>
 
-      <!-- CASE 04 : 성수동 측면 카운터 -->
-      <div class="case-card" data-cat="kitchen">
-        <img class="case-img case-img--premium" src="./images/cases/seongsu-04.jpg" alt="성수동 아파트 주방 측면 카운터탑 월캐비닛 세라믹 시공 전경" loading="lazy">
+      <!-- 여주 BANNER -->
+      <div class="case-card case-card--banner" data-cat="cafe"
+        data-title="여주 — 프리미엄 펜션 오픈 키친 전체 시공" data-material="세라믹 다크 그레이"
+        data-usage="카페·상업시설" data-date="2026.05"
+        data-desc="경기도 여주의 대형 오픈 키친 펜션 프로젝트입니다. 3m를 넘는 대형 아일랜드와 다이닝 테이블을 다크 그레이 세라믹으로 통일 시공해 고급 리조트 감성을 구현했습니다. 층고가 높은 개방형 공간에서도 소재의 무게감이 중심을 잡아주며, 자연채광 아래 세라믹의 질감이 더욱 돋보입니다. 벽면 카운터, 백스플래시까지 동일 소재로 완성한 일체형 시공입니다."
+        data-imgs="./images/cases/yeoju/01.jpg,./images/cases/yeoju/02.jpg,./images/cases/yeoju/03.jpg" data-hero="0">
+        <img class="case-img case-img--premium" src="./images/cases/yeoju/01.jpg" alt="여주 펜션 오픈 키친 세라믹 아일랜드" loading="lazy">
         <div class="case-info">
-          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">카운터</span><span class="case-tag">월시공</span></div>
-          <div class="case-title">성수동 — 벽면 카운터 &amp; 월캐비닛 일체 시공</div>
-          <div class="case-body">아일랜드와 동일한 소재를 벽면 카운터와 후드 상부까지 연장 시공해 공간 전체에 일관된 결을 부여했습니다. 소재 통일감과 시공 완성도를 가장 잘 보여주는 앵글입니다.</div>
-          <div class="case-meta"><span>소재: 세라믹 포세린</span><span>용도: 벽면 카운터 전체</span><span>2025.04</span></div>
+          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">펜션</span><span class="case-tag">오픈키친</span></div>
+          <div class="case-title">여주 — 프리미엄 펜션 오픈 키친 전체 시공</div>
+          <div class="case-body">대형 개방형 공간. 다크 그레이 세라믹으로 아일랜드·카운터·다이닝 통일 시공.</div>
+          <div class="case-meta"><span>세라믹 다크 그레이</span><span>카페·상업시설</span><span>2026.05</span></div>
         </div>
       </div>
 
-      <!-- CASE 05 : 서울 동대문구 주방 상판 교체 -->
-      <div class="case-card" data-cat="kitchen">
-        <img class="case-img" src="./images/cases/dongdaemun-01.jpg" alt="서울 동대문구 아파트 주방 마블 세라믹 상판 교체" loading="lazy">
+      <!-- 여의도 -->
+      <div class="case-card" data-cat="kitchen"
+        data-title="여의도 — 다크 월넛 아일랜드 세라믹" data-material="세라믹 다크 그레이"
+        data-usage="주방·아일랜드" data-date="2026.06"
+        data-desc="여의도 프리미엄 아파트 주방 아일랜드 시공 프로젝트입니다. 다크 월넛 캐비닛과 다크 그레이 세라믹 상판의 조합이 절제된 고급미를 완성합니다. 워크스테이션 싱크와 쿡탑 커팅을 아일랜드 단일 피스에서 구현해 기능성과 심미성을 동시에 충족시켰습니다. 펜트하우스급 주방의 무게감을 소재 하나로 완성한 사례입니다."
+        data-imgs="./images/cases/yeouido/01.jpg,./images/cases/yeouido/02.jpg" data-hero="1">
+        <img class="case-img case-img--premium" src="./images/cases/yeouido/02.jpg" alt="여의도 아파트 주방 아일랜드" loading="lazy">
         <div class="case-info">
-          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">주방</span><span class="case-tag">상판교체</span></div>
-          <div class="case-title">서울 동대문구 — 기존 주방 상판 교체 시공</div>
-          <div class="case-body">이미 완성된 공간의 상판만 교체한 프로젝트입니다. 화이트 캐비닛과 다크 백스플래시 사이에 마블 패턴 세라믹이 들어오자 브릿지 역할을 정확히 소화했습니다.</div>
-          <div class="case-meta"><span>소재: 세라믹 마블 화이트</span><span>용도: 주방 상판 교체</span><span>2025.03</span></div>
+          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">아일랜드</span></div>
+          <div class="case-title">여의도 — 다크 월넛 아일랜드</div>
+          <div class="case-body">다크 월넛 캐비닛 + 다크 그레이 세라믹. 워크스테이션 싱크 통합.</div>
+          <div class="case-meta"><span>세라믹 다크 그레이</span><span>주방·아일랜드</span><span>2026.06</span></div>
         </div>
       </div>
 
-      <!-- CASE 06 : 마블 베이닝 디테일 -->
-      <div class="case-card" data-cat="kitchen">
-        <img class="case-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='540'%3E%3Crect width='800' height='540' fill='%231E1A17'/%3E%3Ctext x='400' y='270' text-anchor='middle' dominant-baseline='middle' font-family='sans-serif' font-size='13' fill='%236B645E' letter-spacing='2'%3E사진 추가 예정%3C/text%3E%3C/svg%3E" alt="마블 세라믹 상판 베이닝 디테일" loading="lazy">
+      <!-- 도곡동 -->
+      <div class="case-card" data-cat="kitchen"
+        data-title="도곡동 — 화이트 마블 세라믹 주방" data-material="세라믹 화이트 마블"
+        data-usage="주방·아일랜드" data-date="2026.06"
+        data-desc="도곡동 아파트 주방 리모델링 프로젝트입니다. 크리미 화이트 마블 패턴 세라믹 상판이 숲이 내려다보이는 창가와 자연스럽게 어우러져 프리미엄 주거 공간의 분위기를 완성합니다. 인덕션과 싱크대 커팅을 동일 상판에서 정밀 가공해 군더더기 없는 동선을 구현했습니다."
+        data-imgs="./images/cases/dokgok/01.jpg,./images/cases/dokgok/02.jpg" data-hero="0">
+        <img class="case-img case-img--premium" src="./images/cases/dokgok/01.jpg" alt="도곡동 화이트 마블 세라믹 주방" loading="lazy">
         <div class="case-info">
-          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">디테일</span></div>
-          <div class="case-title">마블 베이닝 — 소재가 공간을 바꾸는 순간</div>
-          <div class="case-body">천연 대리석의 흐르는 결을 그대로 재현한 마블 화이트 세라믹. 내오염성과 내열성은 천연석보다 뛰어나면서 고급감은 그대로입니다.</div>
-          <div class="case-meta"><span>소재: 세라믹 마블 화이트</span><span>용도: 언더마운트 싱크 통합</span><span>2025.03</span></div>
+          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">마블</span></div>
+          <div class="case-title">도곡동 — 화이트 마블 세라믹</div>
+          <div class="case-body">숲 뷰 창가와 어우러지는 크리미 마블. 인덕션·싱크 통합 가공.</div>
+          <div class="case-meta"><span>세라믹 화이트 마블</span><span>주방·아일랜드</span><span>2026.06</span></div>
         </div>
       </div>
 
-      <!-- CASE 07 : 서울 선릉 대기업 임원회의실 -->
-      <div class="case-card case-card--banner" data-cat="office">
-        <img class="case-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='540'%3E%3Crect width='800' height='540' fill='%231E1A17'/%3E%3Ctext x='400' y='270' text-anchor='middle' dominant-baseline='middle' font-family='sans-serif' font-size='13' fill='%236B645E' letter-spacing='2'%3E사진 추가 예정%3C/text%3E%3C/svg%3E" alt="서울 선릉 대기업 임원회의실 칼라카타 세라믹 테이블" loading="lazy">
+      <!-- 동대문구 -->
+      <div class="case-card" data-cat="kitchen"
+        data-title="동대문구 — 이스톤 라이트 마블 주방" data-material="이스톤 라이트 마블"
+        data-usage="주방·아일랜드" data-date="2026.06"
+        data-desc="서울 동대문구 아파트 주방 상판 교체 프로젝트입니다. 크리미 베이지 마블 이스톤 상판이 화이트 캐비닛과 그레이 백스플래시 타일 사이에서 브릿지 역할을 완벽하게 수행합니다. 대형 언더마운트 싱크와 인덕션 커팅을 포함해 기존 공간의 한계를 극복한 맞춤 시공입니다."
+        data-imgs="./images/cases/dongdaemun/01.jpg,./images/cases/dongdaemun/02.jpg" data-hero="0">
+        <img class="case-img case-img--premium" src="./images/cases/dongdaemun/01.jpg" alt="동대문구 이스톤 마블 주방" loading="lazy">
         <div class="case-info">
-          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">오피스</span><span class="case-tag">회의실</span></div>
-          <div class="case-title">서울 선릉 — 대기업 임원회의실 세라믹 테이블</div>
-          <div class="case-body">선릉 오피스 대기업 임원회의실의 5m 대형 테이블 프로젝트입니다. 칼라카타 화이트 세라믹으로 공간 품격을 결정하고, 케이블 매니지먼트 박스 통합 가공까지 포함한 완전 맞춤 제작.</div>
-          <div class="case-meta"><span>소재: 세라믹 칼라카타 화이트</span><span>용도: 임원 회의실 테이블</span><span>2024.11</span></div>
+          <div class="case-tags"><span class="case-tag">이스톤</span><span class="case-tag">마블</span></div>
+          <div class="case-title">동대문구 — 이스톤 라이트 마블</div>
+          <div class="case-body">베이지 마블로 화이트 캐비닛·그레이 타일 사이 브릿지. 싱크 통합.</div>
+          <div class="case-meta"><span>이스톤 라이트 마블</span><span>주방·아일랜드</span><span>2026.06</span></div>
         </div>
       </div>
 
-      <!-- CASE 08 : 서울 도곡동 아파트 -->
-      <div class="case-card" data-cat="kitchen">
-        <img class="case-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='540'%3E%3Crect width='800' height='540' fill='%231E1A17'/%3E%3Ctext x='400' y='270' text-anchor='middle' dominant-baseline='middle' font-family='sans-serif' font-size='13' fill='%236B645E' letter-spacing='2'%3E사진 추가 예정%3C/text%3E%3C/svg%3E" alt="서울 도곡동 아파트 주방 아이보리 세라믹 통합 시공" loading="lazy">
+      <!-- 마포 -->
+      <div class="case-card" data-cat="kitchen"
+        data-title="마포 — 화이트 마블 세라믹 싱크 시공" data-material="세라믹 화이트 마블"
+        data-usage="주방·아일랜드" data-date="2026.06"
+        data-desc="마포구 아파트 주방 상판 교체 프로젝트입니다. 화이트 마블 패턴 세라믹 상판이 그레이 백스플래시 타일과 대비를 이루며 고급스러운 주방 분위기를 만들어냅니다. 대형 언더마운트 싱크를 정밀 커팅해 기존 캐비닛을 그대로 활용하면서도 완전히 새로운 주방으로 변화시킨 성공적인 교체 시공입니다."
+        data-imgs="./images/cases/mapo/01.jpg,./images/cases/mapo/02.jpg" data-hero="1">
+        <img class="case-img case-img--premium" src="./images/cases/mapo/02.jpg" alt="마포 화이트 마블 주방" loading="lazy">
         <div class="case-info">
-          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">주방</span><span class="case-tag">하이글로스</span></div>
-          <div class="case-title">서울 도곡동 — 주방 전 구역 세라믹 통일 시공</div>
-          <div class="case-body">창가 수납 카운터, 아일랜드, 벽면 주방 카운터까지 동일한 아이보리 하이글로스 세라믹으로 통일해 일관된 고급감을 부여했습니다. 인덕션 통합 가공, 더블 언더마운트 싱크까지 포함.</div>
-          <div class="case-meta"><span>소재: 세라믹 아이보리 하이글로스</span><span>용도: 주방 3개 구역 통합</span><span>2025.05</span></div>
+          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">마블</span></div>
+          <div class="case-title">마포 — 화이트 마블 싱크 시공</div>
+          <div class="case-body">그레이 백스플래시 vs 마블 세라믹 대비. 정밀 언더마운트 커팅.</div>
+          <div class="case-meta"><span>세라믹 화이트 마블</span><span>주방·아일랜드</span><span>2026.06</span></div>
         </div>
       </div>
 
-      <!-- CASE 09 : 도곡동 더블싱크 -->
-      <div class="case-card" data-cat="kitchen">
-        <img class="case-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='540'%3E%3Crect width='800' height='540' fill='%231E1A17'/%3E%3Ctext x='400' y='270' text-anchor='middle' dominant-baseline='middle' font-family='sans-serif' font-size='13' fill='%236B645E' letter-spacing='2'%3E사진 추가 예정%3C/text%3E%3C/svg%3E" alt="도곡동 더블싱크 오크 캐비닛 세라믹" loading="lazy">
+      <!-- 양평 -->
+      <div class="case-card" data-cat="kitchen"
+        data-title="양평 — 내추럴 모던 아일랜드" data-material="MMA 라이트 그레이"
+        data-usage="주방·아일랜드" data-date="2026.06"
+        data-desc="경기도 양평 리조트 주방 시공 사례입니다. 자연 소재 루버 패널과 조화를 이루는 라이트 그레이 MMA 아일랜드 상판으로 내추럴 모던 감성을 구현했습니다. 넓은 조리 공간과 언더마운트 싱크가 하나의 소재로 통합되어 심플하고 기능적인 주방을 완성합니다."
+        data-imgs="./images/cases/yangpyeong/01.png" data-hero="0">
+        <img class="case-img case-img--premium" src="./images/cases/yangpyeong/01.png" alt="양평 리조트 주방 아일랜드" loading="lazy">
         <div class="case-info">
-          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">더블싱크</span></div>
-          <div class="case-title">더블 언더마운트 + 오크 캐비닛 조합</div>
-          <div class="case-body">라이트 오크 우드 상부장과 아이보리 세라믹 상판의 조합. 더블 언더마운트 싱크와 쿡탑 구멍을 단일 상판에서 동시 커팅하는 것은 정밀 CAD 계산이 필수입니다.</div>
-          <div class="case-meta"><span>소재: 세라믹 아이보리 하이글로스</span><span>용도: 더블싱크 + 쿡탑 통합</span><span>2025.05</span></div>
+          <div class="case-tags"><span class="case-tag">MMA</span><span class="case-tag">아일랜드</span></div>
+          <div class="case-title">양평 — 내추럴 모던 아일랜드</div>
+          <div class="case-body">루버 패널·목재와 조화. 라이트 그레이 MMA 원피스 아일랜드.</div>
+          <div class="case-meta"><span>MMA 라이트 그레이</span><span>주방·아일랜드</span><span>2026.06</span></div>
         </div>
       </div>
 
-      <!-- CASE 10 : 경기도 양평 펜션 -->
-      <div class="case-card" data-cat="cafe">
-        <img class="case-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='540'%3E%3Crect width='800' height='540' fill='%231E1A17'/%3E%3Ctext x='400' y='270' text-anchor='middle' dominant-baseline='middle' font-family='sans-serif' font-size='13' fill='%236B645E' letter-spacing='2'%3E사진 추가 예정%3C/text%3E%3C/svg%3E" alt="경기도 양평 펜션 주방 그레이지 세라믹 워터폴 아일랜드" loading="lazy">
+      <!-- 남양주 -->
+      <div class="case-card" data-cat="kitchen"
+        data-title="남양주 — 신축 아파트 주방 MMA 시공" data-material="MMA 화이트"
+        data-usage="주방·아일랜드" data-date="2026.06"
+        data-desc="남양주 신축 아파트 주방 복합 시공 사례입니다. 화이트 톤 MMA 인조대리석으로 주방 상판과 수납 카운터를 통일 제작해 공간 전체에 깔끔하고 밝은 분위기를 연출했습니다. 빌트인 가전 맞춤 컷아웃까지 포함한 원스톱 시공으로 마감했습니다."
+        data-imgs="./images/cases/namyangju/01.jpg" data-hero="0">
+        <img class="case-img" src="./images/cases/namyangju/01.jpg" alt="남양주 신축 아파트 주방 MMA" loading="lazy">
         <div class="case-info">
-          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">펜션</span><span class="case-tag">워터폴</span></div>
-          <div class="case-title">경기도 양평 — 펜션 주방 세라믹 전체 시공</div>
-          <div class="case-body">양평 숲속 펜션 주방 전체를 의뢰받은 프로젝트입니다. 그레이지 톤 무광 세라믹을 아일랜드 상판·측면 워터폴 패널·사이드보드·벽면 카운터까지 동일하게 적용해 내추럴 모던 감성을 통일했습니다.</div>
-          <div class="case-meta"><span>소재: 세라믹 그레이지 무광</span><span>용도: 펜션 주방 전체</span><span>2025.04</span></div>
+          <div class="case-tags"><span class="case-tag">MMA</span><span class="case-tag">주방</span></div>
+          <div class="case-title">남양주 — 신축 아파트 주방 시공</div>
+          <div class="case-body">화이트 MMA. 빌트인 가전 맞춤 컷아웃 원스톱 시공.</div>
+          <div class="case-meta"><span>MMA 화이트</span><span>주방·아일랜드</span><span>2026.06</span></div>
         </div>
       </div>
 
-      <!-- CASE 11 : 워터폴 엣지 디테일 -->
-      <div class="case-card" data-cat="cafe">
-        <img class="case-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='540'%3E%3Crect width='800' height='540' fill='%231E1A17'/%3E%3Ctext x='400' y='270' text-anchor='middle' dominant-baseline='middle' font-family='sans-serif' font-size='13' fill='%236B645E' letter-spacing='2'%3E사진 추가 예정%3C/text%3E%3C/svg%3E" alt="세라믹 워터폴 엣지 + 언더마운트 싱크 디테일" loading="lazy">
+      <!-- 홍대 -->
+      <div class="case-card" data-cat="bath"
+        data-title="홍대 — 화이트 마블 욕실 카운터" data-material="세라믹 화이트 마블"
+        data-usage="욕실·세면대" data-date="2026.06"
+        data-desc="홍대 인근 주거 리모델링 프로젝트의 욕실 시공 사례입니다. 화이트 마블 패턴 세라믹을 욕실 카운터탑 전면에 적용해 호텔식 고급 욕실 분위기를 연출했습니다. 슬림한 엣지 마감과 깔끔한 라인으로 공간이 넓어 보이는 시각적 효과까지 더했습니다."
+        data-imgs="./images/cases/hongdae/01.jpg,./images/cases/hongdae/02.jpg" data-hero="1">
+        <img class="case-img" src="./images/cases/hongdae/02.jpg" alt="홍대 화이트 마블 욕실" loading="lazy">
         <div class="case-info">
-          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">워터폴</span><span class="case-tag">디테일</span></div>
-          <div class="case-title">워터폴 엣지 — 상판이 공간이 되는 설계</div>
-          <div class="case-body">아일랜드 상판이 측면으로 그대로 흘러내리는 워터폴 엣지. 같은 소재·같은 결이 연속되면서 캐비닛이 사라지고 하나의 석재 덩어리처럼 보이는 효과를 냅니다.</div>
-          <div class="case-meta"><span>소재: 세라믹 그레이지 무광</span><span>용도: 워터폴 아일랜드</span><span>2025.04</span></div>
-        </div>
-      </div>
-
-      <!-- CASE 12 : 경기도 여주 고급 펜션 -->
-      <div class="case-card" data-cat="cafe">
-        <img class="case-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='540'%3E%3Crect width='800' height='540' fill='%231E1A17'/%3E%3Ctext x='400' y='270' text-anchor='middle' dominant-baseline='middle' font-family='sans-serif' font-size='13' fill='%236B645E' letter-spacing='2'%3E사진 추가 예정%3C/text%3E%3C/svg%3E" alt="경기도 여주 고급 펜션 주방 앤스러사이트 세라믹 아일랜드 전경" loading="lazy">
-        <div class="case-info">
-          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">펜션</span><span class="case-tag">복층</span></div>
-          <div class="case-title">경기도 여주 — 고급 펜션 주방 세라믹 전체 시공</div>
-          <div class="case-body">여주 프리미엄 펜션의 대형 오픈 키친 프로젝트입니다. 짙은 앤스러사이트 세라믹을 아일랜드·벽면 카운터·백스플래시·다이닝 테이블 상판까지 전 구역에 통일 적용해 고급 리조트 감성의 주방을 완성했습니다.</div>
-          <div class="case-meta"><span>소재: 세라믹 앤스러사이트 다크</span><span>용도: 펜션 오픈 키친 전체</span><span>2025.05</span></div>
+          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">욕실</span></div>
+          <div class="case-title">홍대 — 화이트 마블 욕실 카운터</div>
+          <div class="case-body">마블 패턴 세라믹으로 호텔식 욕실 완성. 슬림 엣지 마감.</div>
+          <div class="case-meta"><span>세라믹 화이트 마블</span><span>욕실·세면대</span><span>2026.06</span></div>
         </div>
       </div>
 
@@ -1796,17 +1956,213 @@ document.querySelectorAll('.faq-q').forEach(function(q) {
   });
 });
 
-/* CASE FILTER */
+/* ═══ CASE FILTER (fade+scale) ══════════════════════════ */
 document.querySelectorAll('.filter-btn').forEach(function(btn) {
   btn.addEventListener('click', function() {
     document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
     btn.classList.add('active');
     var f = btn.dataset.filter;
     document.querySelectorAll('.case-card').forEach(function(c) {
-      c.classList.toggle('hidden', f !== 'all' && c.dataset.cat !== f);
+      var match = f === 'all' || c.dataset.cat === f;
+      if (!match) {
+        c.classList.add('hiding');
+        setTimeout(function() { c.classList.add('hidden'); c.classList.remove('hiding'); }, 260);
+      } else {
+        c.classList.remove('hidden');
+        requestAnimationFrame(function() { c.classList.remove('hiding'); });
+      }
     });
   });
 });
+
+/* ═══ CASE COUNTER ═══════════════════════════════════════ */
+var casesCountEl = document.getElementById('cases-count');
+if (casesCountEl) {
+  var casesCountDone = false;
+  var _casesIO = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting && !casesCountDone) {
+        casesCountDone = true;
+        var target = 11, val = 0, step = target / 50;
+        var t = setInterval(function() {
+          val = Math.min(val + step, target);
+          casesCountEl.textContent = Math.floor(val);
+          if (val >= target) { casesCountEl.textContent = target; clearInterval(t); }
+        }, 20);
+      }
+    });
+  }, { threshold: 0.3 });
+  var casesSec = document.getElementById('cases');
+  if (casesSec) _casesIO.observe(casesSec);
+}
+
+/* ═══ CARD SCROLL REVEAL ══════════════════════════════════ */
+var _cardIO = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { e.target.classList.add('revealed'); _cardIO.unobserve(e.target); }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.case-card').forEach(function(c, i) {
+  c.style.transitionDelay = (i % 4) * 0.07 + 's';
+  _cardIO.observe(c);
+});
+
+/* ═══ VIEW CURSOR ═════════════════════════════════════════ */
+var _cur = document.getElementById('case-view-cursor');
+var _grid = document.getElementById('cases-grid');
+if (_cur && _grid) {
+  _grid.addEventListener('mousemove', function(e) {
+    _cur.style.left = e.clientX + 'px';
+    _cur.style.top  = e.clientY + 'px';
+  });
+  _grid.addEventListener('mouseenter', function() { _cur.classList.add('active'); });
+  _grid.addEventListener('mouseleave', function() { _cur.classList.remove('active'); });
+  document.querySelectorAll('.case-card').forEach(function(c) {
+    c.style.cursor = 'none';
+  });
+}
+
+/* ═══ LIGHTBOX ════════════════════════════════════════════ */
+(function() {
+  var lb = document.getElementById('lb');
+  var lbOv = document.getElementById('lb-overlay');
+  var lbClose = document.getElementById('lb-close');
+  var lbStage = document.getElementById('lb-stage');
+  var lbPrev = document.getElementById('lb-prev');
+  var lbNext = document.getElementById('lb-next');
+  var lbDots = document.getElementById('lb-dots');
+  var lbProject = document.getElementById('lb-project');
+  var lbSub = document.getElementById('lb-sub');
+  var lbDesc = document.getElementById('lb-desc');
+  var lbSwipeHint = document.getElementById('lb-swipe-hint');
+  if (!lb) return;
+
+  var curIdx = 0, imgs = [], isOpen = false;
+
+  function openLb(card) {
+    var rect = card.getBoundingClientRect();
+    imgs = (card.dataset.imgs || '').split(',').filter(Boolean);
+    var heroIdx = parseInt(card.dataset.hero || '0', 10);
+    curIdx = heroIdx;
+
+    lb.style.top    = rect.top    + 'px';
+    lb.style.left   = rect.left   + 'px';
+    lb.style.width  = rect.width  + 'px';
+    lb.style.height = rect.height + 'px';
+    lb.style.opacity = '0';
+    lb.style.borderRadius = '6px';
+
+    lbProject.textContent = card.dataset.title || '';
+    lbSub.textContent = (card.dataset.material || '') + (card.dataset.date ? '  ·  ' + card.dataset.date : '');
+    lbDesc.textContent = card.dataset.desc || '';
+
+    buildSlides();
+    buildDots();
+    goTo(curIdx, false);
+
+    lbOv.classList.add('on');
+    document.body.style.overflow = 'hidden';
+
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        lb.style.transition = 'top .5s cubic-bezier(.4,0,.2,1), left .5s cubic-bezier(.4,0,.2,1), width .5s cubic-bezier(.4,0,.2,1), height .5s cubic-bezier(.4,0,.2,1), opacity .35s, border-radius .4s';
+        lb.style.top    = '0px';
+        lb.style.left   = '0px';
+        lb.style.width  = '100vw';
+        lb.style.height = '100dvh';
+        lb.style.opacity = '1';
+        lb.style.borderRadius = '0px';
+        lb.classList.add('open');
+        isOpen = true;
+      });
+    });
+
+    if (lbSwipeHint) {
+      lbSwipeHint.style.opacity = '1';
+      setTimeout(function() { lbSwipeHint.style.opacity = '0'; }, 2500);
+    }
+  }
+
+  function closeLb() {
+    lb.classList.remove('open');
+    lb.style.transition = 'top .4s cubic-bezier(.4,0,.2,1), left .4s, width .4s, height .4s, opacity .3s, border-radius .3s';
+    lb.style.opacity = '0';
+    lbOv.classList.remove('on');
+    document.body.style.overflow = '';
+    isOpen = false;
+    setTimeout(function() {
+      lb.style.transition = '';
+      lb.style.top = '0'; lb.style.left = '0';
+      lb.style.width = '0'; lb.style.height = '0';
+    }, 420);
+  }
+
+  function buildSlides() {
+    lbStage.innerHTML = '';
+    imgs.forEach(function(src, i) {
+      var div = document.createElement('div');
+      div.className = 'lb-slide' + (i === curIdx ? ' active' : '');
+      var img = document.createElement('img');
+      img.src = src.trim();
+      img.alt = '';
+      div.appendChild(img);
+      lbStage.appendChild(div);
+    });
+  }
+
+  function buildDots() {
+    lbDots.innerHTML = '';
+    if (imgs.length <= 1) return;
+    imgs.forEach(function(_, i) {
+      var d = document.createElement('button');
+      d.className = 'lb-dot' + (i === curIdx ? ' active' : '');
+      d.setAttribute('aria-label', (i + 1) + '번째 사진');
+      d.addEventListener('click', function() { goTo(i, true); });
+      lbDots.appendChild(d);
+    });
+  }
+
+  function goTo(idx, animate) {
+    var slides = lbStage.querySelectorAll('.lb-slide');
+    var dots = lbDots.querySelectorAll('.lb-dot');
+    slides.forEach(function(s) { s.classList.remove('active'); });
+    dots.forEach(function(d) { d.classList.remove('active'); });
+    curIdx = ((idx % imgs.length) + imgs.length) % imgs.length;
+    if (slides[curIdx]) slides[curIdx].classList.add('active');
+    if (dots[curIdx]) dots[curIdx].classList.add('active');
+    lbPrev.style.display = imgs.length > 1 ? '' : 'none';
+    lbNext.style.display = imgs.length > 1 ? '' : 'none';
+  }
+
+  /* card click → open */
+  document.querySelectorAll('.case-card').forEach(function(card) {
+    card.addEventListener('click', function() { openLb(card); });
+  });
+
+  /* close */
+  lbClose.addEventListener('click', closeLb);
+  lbOv.addEventListener('click', closeLb);
+
+  /* arrows */
+  lbPrev.addEventListener('click', function(e) { e.stopPropagation(); goTo(curIdx - 1, true); });
+  lbNext.addEventListener('click', function(e) { e.stopPropagation(); goTo(curIdx + 1, true); });
+
+  /* keyboard */
+  document.addEventListener('keydown', function(e) {
+    if (!isOpen) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft')  goTo(curIdx - 1, true);
+    if (e.key === 'ArrowRight') goTo(curIdx + 1, true);
+  });
+
+  /* touch swipe */
+  var swipeStartX = 0;
+  lbStage.addEventListener('touchstart', function(e) { swipeStartX = e.touches[0].clientX; }, { passive: true });
+  lbStage.addEventListener('touchend', function(e) {
+    var dx = e.changedTouches[0].clientX - swipeStartX;
+    if (Math.abs(dx) > 40) goTo(curIdx + (dx < 0 ? 1 : -1), true);
+  });
+})();
 
 /* FADE-UP (IntersectionObserver) */
 var _io = new IntersectionObserver(function(entries) {
@@ -1922,5 +2278,34 @@ window.addEventListener('load', function() {
   ScrollTrigger.refresh();
 });
 </script>
+
+<!-- ═══ LIGHTBOX ════════════════════════════════════════ -->
+<div class="lb-overlay" id="lb-overlay"></div>
+<div id="lb">
+  <div class="lb-top">
+    <div>
+      <div class="lb-project" id="lb-project"></div>
+      <div class="lb-sub" id="lb-sub"></div>
+    </div>
+    <button class="lb-close" id="lb-close" aria-label="닫기">✕</button>
+  </div>
+  <div class="lb-stage" id="lb-stage">
+    <!-- slides injected by JS -->
+    <button class="lb-arrow lb-prev" id="lb-prev" aria-label="이전">&#8592;</button>
+    <button class="lb-arrow lb-next" id="lb-next" aria-label="다음">&#8594;</button>
+  </div>
+  <div class="lb-dots" id="lb-dots"></div>
+  <div class="lb-bottom">
+    <div class="lb-desc" id="lb-desc"></div>
+    <a class="lb-cta" id="lb-cta" href="https://open.kakao.com/o/s8gZbGPf" target="_blank" rel="noopener">
+      카카오톡 문의하기 ↗
+    </a>
+  </div>
+  <div class="lb-swipe-hint" id="lb-swipe-hint">← 밀어서 사진 넘기기 →</div>
+</div>
+
+<!-- ═══ VIEW CURSOR ════════════════════════════════════ -->
+<div class="case-view-cursor" id="case-view-cursor">VIEW</div>
+
 </body>
 </html>
