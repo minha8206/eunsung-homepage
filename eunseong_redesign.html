@@ -261,24 +261,28 @@ ul{list-style:none}
    MATERIALS OVERVIEW
 ══════════════════════════════════════════════════════ */
 #materials-overview{background:var(--bg2)}
+#materials-overview .container{max-width:100%;padding:0}
+#materials-overview .section-header{padding:0 40px;margin-bottom:40px}
 .mat-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:1px;background:var(--border2);
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:4px;background:var(--border2);
 }
 .mat-card{
   background:var(--bg3);position:relative;overflow:hidden;cursor:pointer;
-  border:1px solid transparent;
   transition:all .4s var(--ease);
 }
-.mat-card:hover{border-color:var(--gold);transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,.5);z-index:1}
+.mat-card:hover{z-index:1}
 .mat-card-img{
-  width:100%;height:clamp(220px,28vw,420px);max-height:420px;object-fit:cover;
+  width:100%;height:clamp(500px,50vw,700px);object-fit:cover;
   filter:brightness(.8) contrast(1.1) saturate(1.15);
-  transition:transform .6s var(--ease),filter .4s
+  transition:transform .7s var(--ease),filter .4s;
+  display:block
 }
+.mat-card-img.ceramic-img{filter:brightness(1.0) contrast(1.0) saturate(1.0)}
 .mat-card:hover .mat-card-img{transform:scale(1.04);filter:brightness(.55) contrast(1.15) saturate(1.2)}
+.mat-card:hover .mat-card-img.ceramic-img{filter:brightness(.75) contrast(1.1) saturate(1.1)}
 .mat-card-body{
-  position:absolute;bottom:0;left:0;right:0;padding:24px 20px;
+  position:absolute;bottom:0;left:0;right:0;padding:28px 24px;
   background:linear-gradient(transparent,rgba(10,9,8,.88));
   transition:background .4s
 }
@@ -286,19 +290,18 @@ ul{list-style:none}
 .mat-badge{
   display:inline-block;padding:3px 8px;background:var(--gold);
   font-size:.6rem;font-weight:500;letter-spacing:.1em;color:var(--white);
-  border-radius:1px;margin-bottom:8px
+  border-radius:1px;margin-bottom:10px
 }
-.mat-name{font-family:var(--serif);font-size:1.3rem;font-weight:300;color:var(--white);line-height:1.2;margin-bottom:4px}
-.mat-kr{font-size:.7rem;color:rgba(255,255,255,.5);letter-spacing:.06em}
+.mat-name{font-family:var(--serif);font-size:1.6rem;font-weight:300;color:var(--white);line-height:1.2;margin-bottom:4px}
+.mat-kr{font-size:.72rem;color:rgba(255,255,255,.55);letter-spacing:.06em}
 .mat-hover-info{
   position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
   text-align:center;opacity:0;transition:opacity .3s;pointer-events:none
 }
 .mat-card:hover .mat-hover-info{opacity:1}
-.mat-hover-info p{font-size:.75rem;color:rgba(255,255,255,.8);line-height:1.8}
-.mat-tier{display:inline-block;margin-bottom:8px;font-family:var(--mono);font-size:.65rem;letter-spacing:.14em;color:var(--gold-light)}
-@media(max-width:900px){.mat-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:500px){.mat-grid{grid-template-columns:1fr}}
+.mat-hover-info p{font-size:.78rem;color:rgba(255,255,255,.85);line-height:1.9}
+.mat-tier{display:inline-block;margin-bottom:10px;font-family:var(--mono);font-size:.65rem;letter-spacing:.14em;color:var(--gold-light)}
+@media(max-width:600px){.mat-grid{grid-template-columns:1fr}.mat-card-img{height:clamp(320px,70vw,500px)}}
 
 /* ═══════════════════════════════════════════════════════
    MATERIAL DETAIL TABS
@@ -1133,36 +1136,6 @@ ul{list-style:none}
       <h2 class="section-title">4가지 소재, 하나의 전문성</h2>
       <p class="section-sub">용도와 예산에 맞는 최적의 소재를 제안해드립니다. 진입은 BMC로, 감동은 세라믹으로.</p>
     </div>
-    <!-- AI 생성 소재 쇼케이스 복합 이미지 -->
-    <div class="mat-composite fade-up">
-      <img class="mat-composite-img" src="./images/materials-grid.jpg" alt="세라믹·MMA·이스톤·BMC 소재 쇼케이스" loading="lazy">
-      <div class="mat-composite-overlay">
-        <div class="mat-composite-cell">
-          <div class="mat-composite-label">
-            <strong>Ceramic</strong>
-            <small>포세린 · 최고급</small>
-          </div>
-        </div>
-        <div class="mat-composite-cell">
-          <div class="mat-composite-label">
-            <strong>MMA</strong>
-            <small>인조대리석 · 이음매없음</small>
-          </div>
-        </div>
-        <div class="mat-composite-cell">
-          <div class="mat-composite-label">
-            <strong>E-Stone</strong>
-            <small>VIATERA · LX 정품</small>
-          </div>
-        </div>
-        <div class="mat-composite-cell">
-          <div class="mat-composite-label">
-            <strong>BMC</strong>
-            <small>인조대리석 · 가성비</small>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="mat-grid">
       <!-- BMC -->
       <div class="mat-card" onclick="openTab('bmc')">
@@ -1205,7 +1178,7 @@ ul{list-style:none}
       </div>
       <!-- Ceramic -->
       <div class="mat-card" onclick="openTab('ceramic')">
-        <img class="mat-card-img" src="./images/세라믹.png" alt="세라믹 포세린" loading="lazy">
+        <img class="mat-card-img ceramic-img" src="./images/세라믹.png" alt="세라믹 포세린" loading="lazy">
         <div class="mat-hover-info">
           <span class="mat-tier">ULTRA-PREMIUM · 최고급</span>
           <p>내열 800°C<br>흡수율 0%<br>스크래치 무적</p>
