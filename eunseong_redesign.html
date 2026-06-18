@@ -491,7 +491,8 @@ ul{list-style:none}
 }
 
 /* ── 프로젝트 카운터 ── */
-.cases-counter{text-align:center;margin-bottom:40px;line-height:1}
+.cases-counter{text-align:center;margin-bottom:40px;line-height:1;opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}
+.cases-counter.visible{opacity:1;transform:none}
 .cases-counter-num{
   font-family:var(--serif);font-size:clamp(3rem,6vw,5rem);
   color:var(--gold);display:inline;letter-spacing:-.02em
@@ -1443,7 +1444,7 @@ ul{list-style:none}
       <h2 class="section-title">시공 사례</h2>
       <p class="section-sub">실제 납품·시공된 현장입니다. 각 공간에 녹아든 소재의 결을 확인하세요.</p>
     </div>
-    <div class="cases-counter fade-up" id="cases-counter-wrap">
+    <div class="cases-counter" id="cases-counter-wrap">
       <span class="cases-counter-num" id="cases-count">0</span>
       <span class="cases-counter-label">개 프로젝트 · 서울/경기</span>
     </div>
@@ -1977,12 +1978,15 @@ document.querySelectorAll('.filter-btn').forEach(function(btn) {
 
 /* ═══ CASE COUNTER ═══════════════════════════════════════ */
 var casesCountEl = document.getElementById('cases-count');
-if (casesCountEl) {
+var casesCountWrap = document.getElementById('cases-counter-wrap');
+if (casesCountEl && casesCountWrap) {
   var casesCountDone = false;
   var _casesIO = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) {
       if (e.isIntersecting && !casesCountDone) {
         casesCountDone = true;
+        _casesIO.unobserve(e.target);
+        casesCountWrap.classList.add('visible');
         var target = 11, val = 0, step = target / 50;
         var t = setInterval(function() {
           val = Math.min(val + step, target);
@@ -1991,9 +1995,8 @@ if (casesCountEl) {
         }, 20);
       }
     });
-  }, { threshold: 0.3 });
-  var casesSec = document.getElementById('cases');
-  if (casesSec) _casesIO.observe(casesSec);
+  }, { threshold: 0.6, rootMargin: '0px 0px -60px 0px' });
+  _casesIO.observe(casesCountWrap);
 }
 
 /* ═══ CARD SCROLL REVEAL ══════════════════════════════════ */
@@ -2241,7 +2244,7 @@ window.addEventListener('load', function() {
     ['.partner-item',  '#partners',     'top 90%', 0.08],
     ['.mat-card',      '.mat-grid',     'top 80%', 0.10],
     ['.process-step',  '.process-grid', 'top 80%', 0.12],
-    ['.case-card',     '.cases-grid',   'top 80%', 0.08],
+    /* case-card reveal handled by IntersectionObserver separately */
     ['.b2b-stat',      '.b2b-stats',    'top 80%', 0.10],
     ['.compare-table tr', '.compare-table', 'top 85%', 0.05],
   ].forEach(function(c) {
