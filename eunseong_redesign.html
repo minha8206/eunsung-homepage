@@ -336,6 +336,10 @@ ul{list-style:none}
   transition:transform .3s,box-shadow .3s
 }
 .color-item:hover .color-swatch{transform:scale(1.03);box-shadow:0 6px 24px rgba(0,0,0,.5)}
+#tab-bmc .color-swatch{filter:brightness(1.1) contrast(1.05) saturate(1.2)}
+#tab-bmc .color-item:hover .color-swatch{filter:brightness(1.15) contrast(1.08) saturate(1.25)}
+.bmc-card-img{filter:brightness(1.1) contrast(1.05) saturate(1.2)}
+.mat-card:hover .bmc-card-img{filter:brightness(.65)}
 .color-name{font-size:.68rem;color:var(--ink2);line-height:1.4}
 .color-code{font-size:.6rem;color:var(--ink3);margin-top:2px}
 .color-sub{font-size:.65rem;color:var(--ink3);margin-top:1px;letter-spacing:.04em}
@@ -1014,7 +1018,7 @@ ul{list-style:none}
     <div class="mat-grid">
       <!-- BMC -->
       <div class="mat-card" onclick="openTab('bmc')">
-        <img class="mat-card-img" src="https://eunseong-ceramic.netlify.app/images/colors/04.jpg" alt="BMC 인조대리석" loading="lazy">
+        <img class="mat-card-img bmc-card-img" src="./images/bmc/bmc-es001.jpg" alt="BMC 인조대리석" loading="lazy">
         <div class="mat-hover-info">
           <span class="mat-tier">ENTRY · 가성비</span>
           <p>10년+ 노하우<br>싱크대·식탁·욕실<br>온라인 주문 가능</p>
@@ -1200,12 +1204,14 @@ ul{list-style:none}
           </div>
           <div class="colors-title">BMC COLOR LINE</div>
           <div class="colors-grid">
-            <div class="color-item"><img class="color-swatch" src="https://images.unsplash.com/photo-1615529179035-e760f6a2dcee?w=300&q=80" alt="솔리드 화이트" loading="lazy"><div class="color-name">솔리드 화이트</div><div class="color-code">단색</div></div>
-            <div class="color-item"><img class="color-swatch" src="https://eunseong-ceramic.netlify.app/images/colors/04.jpg" alt="크림 화이트" loading="lazy"><div class="color-name">크림 화이트</div><div class="color-code">크림톤</div></div>
-            <div class="color-item"><img class="color-swatch" src="https://eunseong-ceramic.netlify.app/images/colors/03.jpg" alt="라이트 그레이" loading="lazy"><div class="color-name">라이트 그레이</div><div class="color-code">그레이</div></div>
-            <div class="color-item"><img class="color-swatch" src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=300&q=80" alt="베이지 마블" loading="lazy"><div class="color-name">베이지 마블</div><div class="color-code">베이지+브라운</div></div>
-            <div class="color-item"><img class="color-swatch" src="https://eunseong-ceramic.netlify.app/images/colors/02.jpg" alt="화이트 마블" loading="lazy"><div class="color-name">화이트 마블</div><div class="color-code">흰색+줄무늬</div></div>
-            <div class="color-item"><img class="color-swatch" src="https://images.unsplash.com/photo-1615529328331-f8917597711f?w=300&q=80" alt="다크 그레이" loading="lazy"><div class="color-name">다크 그레이</div><div class="color-code">다크</div></div>
+            <div class="color-item"><img class="color-swatch" src="./images/bmc/bmc-es001.jpg" alt="바이컬 화이트" loading="lazy"><div class="color-name">바이컬 화이트</div><div class="color-code">ES-001</div></div>
+            <div class="color-item"><img class="color-swatch" src="./images/bmc/bmc-es002.jpg" alt="바이컬 그레이" loading="lazy"><div class="color-name">바이컬 그레이</div><div class="color-code">ES-002</div></div>
+            <div class="color-item"><img class="color-swatch" src="./images/bmc/bmc-es003.jpg" alt="바이컬 브라운" loading="lazy"><div class="color-name">바이컬 브라운</div><div class="color-code">ES-003</div></div>
+            <div class="color-item"><img class="color-swatch" src="./images/bmc/bmc-es004.jpg" alt="바이컬 밀키" loading="lazy"><div class="color-name">바이컬 밀키</div><div class="color-code">ES-004</div></div>
+            <div class="color-item"><img class="color-swatch" src="./images/bmc/bmc-es005.jpg" alt="솔 슬로우" loading="lazy"><div class="color-name">솔 슬로우</div><div class="color-code">ES-005</div></div>
+            <div class="color-item"><img class="color-swatch" src="./images/bmc/bmc-es006.jpg" alt="바이컬 크리스탈" loading="lazy"><div class="color-name">바이컬 크리스탈</div><div class="color-code">ES-006</div></div>
+            <div class="color-item"><img class="color-swatch" src="./images/bmc/bmc-es007.jpg" alt="바이컬 시오트" loading="lazy"><div class="color-name">바이컬 시오트</div><div class="color-code">ES-007</div></div>
+            <div class="color-item"><img class="color-swatch" src="./images/bmc/bmc-es008.jpg" alt="바이컬 아티스" loading="lazy"><div class="color-name">바이컬 아티스</div><div class="color-code">ES-008</div></div>
           </div>
         </div>
         <div class="mat-panel-right">
