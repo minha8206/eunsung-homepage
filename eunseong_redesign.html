@@ -544,7 +544,7 @@ ul{list-style:none}
 
 /* ── 시공사례 라이트박스 ── */
 .lb-overlay{
-  position:fixed;inset:0;background:rgba(0,0,0,.95);
+  position:fixed;inset:0;background:rgba(0,0,0,.92);
   z-index:10000;opacity:0;pointer-events:none;transition:opacity .4s
 }
 .lb-overlay.on{opacity:1;pointer-events:all}
@@ -555,15 +555,53 @@ ul{list-style:none}
              width .5s cubic-bezier(.4,0,.2,1),height .5s cubic-bezier(.4,0,.2,1),opacity .35s,border-radius .4s
 }
 #lb.open{opacity:1;pointer-events:all;top:0!important;left:0!important;width:100vw!important;height:100dvh!important}
-/* stage */
+/* stage — fullscreen */
 .lb-stage{position:absolute;inset:0;background:#000;overflow:hidden}
 .lb-slide{
   position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
   opacity:0;transition:opacity .45s ease
 }
 .lb-slide.active{opacity:1}
-.lb-slide img{width:100%;height:100%;object-fit:contain}
-/* arrows & close — siblings of stage inside #lb */
+.lb-slide img{width:100%;height:100%;object-fit:cover}
+/* gradient info overlay at bottom */
+.lb-info{
+  position:absolute;bottom:0;left:0;right:0;z-index:15;
+  background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.5) 40%,rgba(0,0,0,0) 70%);
+  padding:120px 48px 40px;
+  pointer-events:none
+}
+.lb-info>*{pointer-events:auto}
+.lb-dots{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.lb-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:rgba(191,142,90,.35);border:none;cursor:pointer;transition:background .2s
+}
+.lb-dot.active{background:var(--gold)}
+.lb-info-title{
+  font-family:var(--serif);font-size:1.55rem;font-weight:700;color:#fff;
+  margin-bottom:10px;line-height:1.3
+}
+.lb-info-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px}
+.lb-panel-tag{
+  font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;
+  background:rgba(191,142,90,.18);color:var(--gold);
+  border:1px solid rgba(191,142,90,.35);padding:3px 9px;border-radius:2px
+}
+.lb-info-date{
+  font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;
+  color:rgba(242,237,232,.45);margin-bottom:12px
+}
+.lb-info-desc{
+  font-size:.82rem;color:rgba(242,237,232,.8);line-height:1.85;
+  max-width:600px;margin-bottom:20px
+}
+.lb-cta{
+  display:inline-block;padding:10px 22px;background:var(--gold);color:#1a1612;
+  font-family:var(--mono);font-size:.63rem;letter-spacing:.1em;
+  border-radius:2px;text-decoration:none;text-align:center;transition:opacity .2s
+}
+.lb-cta:hover{opacity:.85}
+/* arrows & close */
 .lb-arrow,.lb-close{
   position:absolute;z-index:20;
   background:rgba(10,9,8,.65);border:1px solid rgba(191,142,90,.25);
@@ -575,68 +613,19 @@ ul{list-style:none}
 .lb-arrow{top:50%;width:44px;height:44px;font-size:1.2rem;transform:translateY(-50%)}
 .lb-close{top:16px;right:16px;width:36px;height:36px;font-size:1rem}
 .lb-prev{left:16px}
-.lb-next{right:392px}
-/* panel */
-.lb-panel{
-  position:absolute;top:0;right:0;bottom:0;width:360px;
-  background:rgba(10,10,10,.97);border-left:2px solid var(--gold);
-  display:flex;flex-direction:column;padding:48px 28px 28px;overflow-y:auto;
-  transform:translateX(100%);
-  transition:transform .45s cubic-bezier(.4,0,.2,1) .3s
-}
-#lb.open .lb-panel{transform:translateX(0)}
-.lb-panel-title{
-  font-family:var(--serif);font-size:1.05rem;font-weight:300;color:var(--white);
-  margin-bottom:12px;line-height:1.45
-}
-.lb-panel-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px}
-.lb-panel-tag{
-  font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;
-  background:rgba(191,142,90,.12);color:var(--gold);
-  border:1px solid rgba(191,142,90,.28);padding:3px 9px;border-radius:2px
-}
-.lb-panel-date{
-  font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;
-  color:var(--ink3);margin-bottom:14px
-}
-.lb-panel-divider{height:1px;background:rgba(191,142,90,.2);margin-bottom:14px;flex-shrink:0}
-.lb-panel-desc{
-  font-size:.76rem;color:rgba(242,237,232,.62);line-height:1.9;
-  flex:1;overflow-y:auto;margin-bottom:14px
-}
-.lb-dots{display:flex;gap:6px;margin-bottom:18px;flex-shrink:0;flex-wrap:wrap}
-.lb-dot{
-  width:6px;height:6px;border-radius:50%;
-  background:rgba(191,142,90,.25);border:none;cursor:pointer;transition:background .2s
-}
-.lb-dot.active{background:var(--gold)}
-.lb-cta{
-  padding:11px 18px;background:var(--gold);color:#1a1612;
-  font-family:var(--mono);font-size:.63rem;letter-spacing:.1em;
-  border-radius:2px;text-decoration:none;text-align:center;
-  transition:opacity .2s;flex-shrink:0
-}
-.lb-cta:hover{opacity:.85}
+.lb-next{right:16px}
 .lb-swipe-hint{
-  position:absolute;bottom:16px;left:50%;transform:translateX(-50%);
+  position:absolute;bottom:52%;left:50%;transform:translate(-50%,50%);
   color:rgba(242,237,232,.38);font-size:.6rem;font-family:var(--mono);letter-spacing:.1em;
-  pointer-events:none;display:none;white-space:nowrap
+  pointer-events:none;display:none;white-space:nowrap;z-index:16
 }
 @keyframes swipeHint{0%,100%{opacity:0}20%,80%{opacity:1}}
 @media(max-width:768px){
-  .lb-next{right:16px}
-  .lb-panel{
-    top:auto;left:0;right:0;bottom:0;width:100%;height:46vh;
-    border-left:none;border-top:2px solid var(--gold);
-    padding:14px 18px 18px;
-    transform:translateY(100%);
-    transition:transform .4s cubic-bezier(.4,0,.2,1) .3s
-  }
-  #lb.open .lb-panel{transform:translateY(0)}
-  .lb-swipe-hint{display:block}
-  .lb-panel-title{font-size:.92rem}
-  .lb-panel-desc{font-size:.7rem;line-height:1.75;max-height:72px;overflow:hidden}
+  .lb-info{padding:80px 22px 28px}
+  .lb-info-title{font-size:1.1rem}
+  .lb-info-desc{font-size:.75rem;line-height:1.7;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
   .lb-close{top:10px;right:10px;width:32px;height:32px;font-size:.85rem}
+  .lb-swipe-hint{display:block}
 }
 @media(max-width:480px){
   .lb-arrow{width:36px;height:36px;font-size:1rem}
@@ -659,7 +648,7 @@ ul{list-style:none}
   display:flex;align-items:center;justify-content:center;overflow:hidden
 }
 .ml-stage img{
-  max-width:90%;max-height:85vh;object-fit:contain;
+  max-width:60vw;max-height:70vh;object-fit:contain;
   transform:scale(.88);transition:transform .4s cubic-bezier(.4,0,.2,1)
 }
 #ml.open .ml-stage img{transform:scale(1)}
@@ -1567,172 +1556,171 @@ ul{list-style:none}
       <button class="filter-btn" data-filter="kitchen">주방·아일랜드</button>
       <button class="filter-btn" data-filter="cafe">카페·상업시설</button>
       <button class="filter-btn" data-filter="office">오피스·호텔</button>
-      <button class="filter-btn" data-filter="bath">욕실·세면대</button>
     </div>
     <div class="cases-grid" id="cases-grid">
 
       <!-- 한남동 HERO -->
       <div class="case-card case-card--hero" data-cat="cafe"
-        data-title="한남동 — 프리미엄 라운지 카운터" data-material="MMA 크림 화이트"
+        data-title="한남동 — 프리미엄 라운지 카운터" data-material="포세린 아이보리 화이트"
         data-usage="카페·상업시설" data-date="2026.06"
-        data-desc="한남동 소재 프리미엄 라운지의 카운터탑 시공 사례입니다. 유려하게 곡선을 그리는 대형 카운터는 크림 화이트 MMA 인조대리석을 열성형 가공해 이음매 없이 완성했습니다. 황금빛 펜던트 조명 아래 소재의 부드러운 광택이 공간의 격을 높이며, 방문객에게 첫 순간부터 강렬한 인상을 남기는 설계입니다. 곡선형 카운터 측면 패널까지 동일 소재로 마감한 원피스 시공입니다."
+        data-desc="한남동 프리미엄 라운지의 바 카운터·바닥재 일체 시공 사례입니다. 아이보리 포세린 세라믹이 둥근 곡선형 카운터 상판부터 바닥 대형 타일까지 연속 적용되어, 고급 상업공간 특유의 통일감을 완성합니다. 흡수율 0.5% 이하의 포세린 세라믹은 강도 높은 상업 환경에서도 흠집·착색 없이 장기 유지가 가능해 카페·라운지에 최적입니다. 인접 리테일 공간의 쇼케이스 카운터까지 동일 소재로 마감한 원스톱 상업시설 시공입니다."
         data-imgs="./images/cases/hannamdong/01.png,./images/cases/hannamdong/02.png" data-hero="0">
-        <img class="case-img case-img--premium" src="./images/cases/hannamdong/01.png" alt="한남동 프리미엄 라운지 MMA 카운터" loading="lazy">
+        <img class="case-img case-img--premium" src="./images/cases/hannamdong/01.png" alt="한남동 프리미엄 라운지 포세린 카운터" loading="lazy">
         <div class="case-info">
-          <div class="case-tags"><span class="case-tag">MMA</span><span class="case-tag">카페·상업</span></div>
+          <div class="case-tags"><span class="case-tag">포세린</span><span class="case-tag">카페·상업</span></div>
           <div class="case-title">한남동 — 프리미엄 라운지 카운터</div>
-          <div class="case-body">황금빛 펜던트 조명 아래 곡선형 MMA 카운터. 열성형 이음매 없는 시공.</div>
-          <div class="case-meta"><span>MMA 크림 화이트</span><span>카페·상업시설</span><span>2026.06</span></div>
+          <div class="case-body">아이보리 포세린 세라믹으로 바 카운터와 바닥재를 통일 시공한 프리미엄 라운지.</div>
+          <div class="case-meta"><span>포세린 아이보리 화이트</span><span>카페·상업시설</span><span>2026.06</span></div>
         </div>
       </div>
 
       <!-- 선릉 -->
       <div class="case-card" data-cat="office"
-        data-title="선릉 — 대기업 임원회의실 세라믹 테이블" data-material="세라믹 칼라카타 화이트"
+        data-title="선릉 — 대기업 임원회의실 포세린 테이블" data-material="포세린 칼라카타 화이트"
         data-usage="오피스·호텔" data-date="2026.06"
-        data-desc="서울 선릉 소재 대기업 임원회의실의 5m 대형 컨퍼런스 테이블 프로젝트입니다. 칼라카타 화이트 세라믹의 우아한 베이닝이 공간 전체의 품격을 결정합니다. 케이블 매니지먼트 트레이 통합 가공을 포함한 완전 맞춤 제작으로, 기능성과 고급감을 동시에 충족하는 프리미엄 오피스 솔루션을 완성했습니다."
+        data-desc="선릉 소재 대기업 임원 회의실의 대형 컨퍼런스 테이블 프로젝트입니다. 칼라카타 화이트 포세린 세라믹 특유의 섬세한 베이닝이 5m 넓이의 상판 전면을 가로질러 공간 전체의 품격을 높입니다. 케이블 매니지먼트 트레이 통합 가공을 포함한 완전 맞춤 제작으로, 기능성과 고급감을 동시에 충족하는 프리미엄 오피스 솔루션을 완성했습니다. Mohs 경도 7 이상의 포세린 소재가 일상적인 회의실 환경에서도 흠집 없이 유지됩니다."
         data-imgs="./images/cases/seolleung/01.jpg" data-hero="0">
-        <img class="case-img case-img--premium" src="./images/cases/seolleung/01.jpg" alt="선릉 대기업 임원회의실 세라믹 테이블" loading="lazy">
+        <img class="case-img case-img--premium" src="./images/cases/seolleung/01.jpg" alt="선릉 대기업 임원회의실 포세린 테이블" loading="lazy">
         <div class="case-info">
-          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">오피스</span></div>
+          <div class="case-tags"><span class="case-tag">포세린</span><span class="case-tag">오피스</span></div>
           <div class="case-title">선릉 — 대기업 임원회의실</div>
-          <div class="case-body">5m 칼라카타 화이트 세라믹. 케이블 트레이 통합 맞춤 제작.</div>
-          <div class="case-meta"><span>세라믹 칼라카타</span><span>오피스·호텔</span><span>2026.06</span></div>
+          <div class="case-body">5m 칼라카타 화이트 포세린 세라믹. 케이블 트레이 통합 맞춤 제작.</div>
+          <div class="case-meta"><span>포세린 칼라카타</span><span>오피스·호텔</span><span>2026.06</span></div>
         </div>
       </div>
 
       <!-- 성수동 -->
       <div class="case-card" data-cat="kitchen"
-        data-title="성수동 — 대형 아일랜드 MMA 시공" data-material="MMA 베이지 무광"
+        data-title="성수동 — 대형 아일랜드 포세린 시공" data-material="포세린 크림 베이지"
         data-usage="주방·아일랜드" data-date="2026.06"
-        data-desc="성수동 리뉴얼 아파트의 대형 주방 아일랜드 시공 사례입니다. 베이지 톤의 무광 MMA 상판을 라이트 오크 캐비닛과 매치하여 자연스럽고 고급스러운 조화를 이끌어냈습니다. 언더마운트 싱크와 인덕션 컷아웃을 정밀 가공해 깔끔한 마감을 완성했으며, 동일 소재를 벽면 카운터까지 연장 적용해 공간 전체에 통일감을 부여했습니다."
+        data-desc="성수동 대형 아파트 주방 리뉴얼 프로젝트입니다. 크림 베이지 포세린 세라믹 아일랜드 상판을 라이트 오크 캐비닛과 매치해 자연스럽고 고급스러운 주방을 완성했습니다. 언더마운트 싱크와 쿡탑 컷아웃을 일체형으로 정밀 가공하고, 동일 소재를 벽면 카운터까지 연장 적용해 공간 전체에 일관된 톤을 부여했습니다. 포세린 세라믹의 치밀한 표면이 주방 환경의 열·오염에 대한 완벽한 내구성을 보장합니다."
         data-imgs="./images/cases/seongsu/01.jpg,./images/cases/seongsu/02.jpg,./images/cases/seongsu/03.jpg" data-hero="0">
-        <img class="case-img case-img--premium" src="./images/cases/seongsu/01.jpg" alt="성수동 아파트 주방 아일랜드" loading="lazy">
+        <img class="case-img case-img--premium" src="./images/cases/seongsu/01.jpg" alt="성수동 아파트 주방 아일랜드 포세린" loading="lazy">
         <div class="case-info">
-          <div class="case-tags"><span class="case-tag">MMA</span><span class="case-tag">아일랜드</span></div>
+          <div class="case-tags"><span class="case-tag">포세린</span><span class="case-tag">아일랜드</span></div>
           <div class="case-title">성수동 — 대형 아일랜드 시공</div>
-          <div class="case-body">오크 캐비닛 + 베이지 MMA 아일랜드. 싱크·인덕션 통합 가공.</div>
-          <div class="case-meta"><span>MMA 베이지 무광</span><span>주방·아일랜드</span><span>2026.06</span></div>
+          <div class="case-body">오크 캐비닛 + 크림 베이지 포세린 아일랜드. 싱크·인덕션 통합 가공.</div>
+          <div class="case-meta"><span>포세린 크림 베이지</span><span>주방·아일랜드</span><span>2026.06</span></div>
         </div>
       </div>
 
       <!-- 여주 BANNER -->
-      <div class="case-card case-card--banner" data-cat="cafe"
-        data-title="여주 — 프리미엄 펜션 오픈 키친 전체 시공" data-material="세라믹 다크 그레이"
-        data-usage="카페·상업시설" data-date="2026.05"
-        data-desc="경기도 여주의 대형 오픈 키친 펜션 프로젝트입니다. 3m를 넘는 대형 아일랜드와 다이닝 테이블을 다크 그레이 세라믹으로 통일 시공해 고급 리조트 감성을 구현했습니다. 층고가 높은 개방형 공간에서도 소재의 무게감이 중심을 잡아주며, 자연채광 아래 세라믹의 질감이 더욱 돋보입니다. 벽면 카운터, 백스플래시까지 동일 소재로 완성한 일체형 시공입니다."
+      <div class="case-card case-card--banner" data-cat="kitchen"
+        data-title="여주 — 단독주택 오픈 키친 전체 시공" data-material="포세린 다크 그레이"
+        data-usage="주방·아일랜드" data-date="2026.05"
+        data-desc="경기도 여주 단독주택의 대형 오픈 키친 전체 시공 프로젝트입니다. 높은 층고와 전면 통창이 돋보이는 개방형 공간에 다크 그레이 포세린 세라믹을 선택해, 3m 이상의 대형 아일랜드와 벽면 카운터를 하나의 소재로 완성했습니다. 자연채광 아래 포세린의 무게감 있는 질감이 고급 주택의 분위기를 극대화하며, 쿡탑·싱크 통합 가공부터 카운터탑까지 빈틈없이 처리한 일체형 시공입니다."
         data-imgs="./images/cases/yeoju/01.jpg,./images/cases/yeoju/02.jpg,./images/cases/yeoju/03.jpg" data-hero="0">
-        <img class="case-img case-img--premium" src="./images/cases/yeoju/01.jpg" alt="여주 펜션 오픈 키친 세라믹 아일랜드" loading="lazy">
+        <img class="case-img case-img--premium" src="./images/cases/yeoju/01.jpg" alt="여주 단독주택 오픈 키친 포세린 아일랜드" loading="lazy">
         <div class="case-info">
-          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">펜션</span><span class="case-tag">오픈키친</span></div>
-          <div class="case-title">여주 — 프리미엄 펜션 오픈 키친 전체 시공</div>
-          <div class="case-body">대형 개방형 공간. 다크 그레이 세라믹으로 아일랜드·카운터·다이닝 통일 시공.</div>
-          <div class="case-meta"><span>세라믹 다크 그레이</span><span>카페·상업시설</span><span>2026.05</span></div>
+          <div class="case-tags"><span class="case-tag">포세린</span><span class="case-tag">단독주택</span><span class="case-tag">오픈키친</span></div>
+          <div class="case-title">여주 — 단독주택 오픈 키친 전체 시공</div>
+          <div class="case-body">높은 층고·전면 통창. 다크 그레이 포세린으로 아일랜드·카운터 통일 시공.</div>
+          <div class="case-meta"><span>포세린 다크 그레이</span><span>주방·아일랜드</span><span>2026.05</span></div>
         </div>
       </div>
 
       <!-- 여의도 -->
       <div class="case-card" data-cat="kitchen"
-        data-title="여의도 — 다크 월넛 아일랜드 세라믹" data-material="세라믹 다크 그레이"
+        data-title="여의도 — 라이트 그레이 아일랜드 포세린" data-material="포세린 라이트 그레이"
         data-usage="주방·아일랜드" data-date="2026.06"
-        data-desc="여의도 프리미엄 아파트 주방 아일랜드 시공 프로젝트입니다. 다크 월넛 캐비닛과 다크 그레이 세라믹 상판의 조합이 절제된 고급미를 완성합니다. 워크스테이션 싱크와 쿡탑 커팅을 아일랜드 단일 피스에서 구현해 기능성과 심미성을 동시에 충족시켰습니다. 펜트하우스급 주방의 무게감을 소재 하나로 완성한 사례입니다."
+        data-desc="여의도 프리미엄 아파트 주방 아일랜드 시공 프로젝트입니다. 라이트 그레이 포세린 세라믹 상판을 월넛 계열 캐비닛과 매치하여 절제된 고급미를 완성했습니다. 워크스테이션 싱크와 쿡탑 컷아웃을 아일랜드 단일 피스에서 구현해 기능성과 심미성을 동시에 충족시켰으며, 상부장까지 연결되는 공간 전체의 조화로운 마감을 완성했습니다."
         data-imgs="./images/cases/yeouido/01.jpg,./images/cases/yeouido/02.jpg" data-hero="1">
-        <img class="case-img case-img--premium" src="./images/cases/yeouido/02.jpg" alt="여의도 아파트 주방 아일랜드" loading="lazy">
+        <img class="case-img case-img--premium" src="./images/cases/yeouido/02.jpg" alt="여의도 아파트 주방 아일랜드 포세린" loading="lazy">
         <div class="case-info">
-          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">아일랜드</span></div>
-          <div class="case-title">여의도 — 다크 월넛 아일랜드</div>
-          <div class="case-body">다크 월넛 캐비닛 + 다크 그레이 세라믹. 워크스테이션 싱크 통합.</div>
-          <div class="case-meta"><span>세라믹 다크 그레이</span><span>주방·아일랜드</span><span>2026.06</span></div>
+          <div class="case-tags"><span class="case-tag">포세린</span><span class="case-tag">아일랜드</span></div>
+          <div class="case-title">여의도 — 라이트 그레이 아일랜드</div>
+          <div class="case-body">라이트 그레이 포세린 + 월넛 캐비닛 조합. 싱크·쿡탑 통합 가공.</div>
+          <div class="case-meta"><span>포세린 라이트 그레이</span><span>주방·아일랜드</span><span>2026.06</span></div>
         </div>
       </div>
 
       <!-- 도곡동 -->
       <div class="case-card" data-cat="kitchen"
-        data-title="도곡동 — 화이트 마블 세라믹 주방" data-material="세라믹 화이트 마블"
+        data-title="도곡동 — 화이트 마블 포세린 주방" data-material="포세린 화이트 마블"
         data-usage="주방·아일랜드" data-date="2026.06"
-        data-desc="도곡동 아파트 주방 리모델링 프로젝트입니다. 크리미 화이트 마블 패턴 세라믹 상판이 숲이 내려다보이는 창가와 자연스럽게 어우러져 프리미엄 주거 공간의 분위기를 완성합니다. 인덕션과 싱크대 커팅을 동일 상판에서 정밀 가공해 군더더기 없는 동선을 구현했습니다."
+        data-desc="도곡동 아파트 주방 상판 리모델링 프로젝트입니다. 크리미 화이트 마블 패턴 포세린 세라믹 상판이 녹음이 내려다보이는 창가와 어우러져 자연스럽고 품격 있는 주방 분위기를 완성합니다. 인덕션 컷아웃과 언더마운트 싱크를 동일 상판에서 정밀 가공해, 군더더기 없이 깔끔한 동선과 마감을 구현했습니다. 포세린 세라믹의 고광택 표면이 창가 자연광을 아름답게 반영합니다."
         data-imgs="./images/cases/dokgok/01.jpg,./images/cases/dokgok/02.jpg" data-hero="0">
-        <img class="case-img case-img--premium" src="./images/cases/dokgok/01.jpg" alt="도곡동 화이트 마블 세라믹 주방" loading="lazy">
+        <img class="case-img case-img--premium" src="./images/cases/dokgok/01.jpg" alt="도곡동 화이트 마블 포세린 주방" loading="lazy">
         <div class="case-info">
-          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">마블</span></div>
-          <div class="case-title">도곡동 — 화이트 마블 세라믹</div>
-          <div class="case-body">숲 뷰 창가와 어우러지는 크리미 마블. 인덕션·싱크 통합 가공.</div>
-          <div class="case-meta"><span>세라믹 화이트 마블</span><span>주방·아일랜드</span><span>2026.06</span></div>
+          <div class="case-tags"><span class="case-tag">포세린</span><span class="case-tag">마블</span></div>
+          <div class="case-title">도곡동 — 화이트 마블 포세린</div>
+          <div class="case-body">녹음 뷰 창가와 어우러지는 크리미 마블 포세린. 인덕션·싱크 통합 가공.</div>
+          <div class="case-meta"><span>포세린 화이트 마블</span><span>주방·아일랜드</span><span>2026.06</span></div>
         </div>
       </div>
 
       <!-- 동대문구 -->
       <div class="case-card" data-cat="kitchen"
-        data-title="동대문구 — 이스톤 라이트 마블 주방" data-material="이스톤 라이트 마블"
+        data-title="동대문구 — 라이트 마블 포세린 주방" data-material="포세린 라이트 마블"
         data-usage="주방·아일랜드" data-date="2026.06"
-        data-desc="서울 동대문구 아파트 주방 상판 교체 프로젝트입니다. 크리미 베이지 마블 이스톤 상판이 화이트 캐비닛과 그레이 백스플래시 타일 사이에서 브릿지 역할을 완벽하게 수행합니다. 대형 언더마운트 싱크와 인덕션 커팅을 포함해 기존 공간의 한계를 극복한 맞춤 시공입니다."
+        data-desc="동대문구 아파트 주방 상판 교체 프로젝트입니다. 크리미 베이지 마블 포세린 세라믹 상판이 화이트 캐비닛과 그레이 포세린 백스플래시 사이에서 세련된 레이어드 주방을 완성합니다. L자형 구조에 대형 언더마운트 싱크와 인덕션 컷아웃을 포함, 기존 캐비닛을 최대한 활용하면서도 완전히 새로운 주방으로 변화시킨 교체 시공입니다."
         data-imgs="./images/cases/dongdaemun/01.jpg,./images/cases/dongdaemun/02.jpg" data-hero="0">
-        <img class="case-img case-img--premium" src="./images/cases/dongdaemun/01.jpg" alt="동대문구 이스톤 마블 주방" loading="lazy">
+        <img class="case-img case-img--premium" src="./images/cases/dongdaemun/01.jpg" alt="동대문구 라이트 마블 포세린 주방" loading="lazy">
         <div class="case-info">
-          <div class="case-tags"><span class="case-tag">이스톤</span><span class="case-tag">마블</span></div>
-          <div class="case-title">동대문구 — 이스톤 라이트 마블</div>
-          <div class="case-body">베이지 마블로 화이트 캐비닛·그레이 타일 사이 브릿지. 싱크 통합.</div>
-          <div class="case-meta"><span>이스톤 라이트 마블</span><span>주방·아일랜드</span><span>2026.06</span></div>
+          <div class="case-tags"><span class="case-tag">포세린</span><span class="case-tag">마블</span></div>
+          <div class="case-title">동대문구 — 라이트 마블 포세린</div>
+          <div class="case-body">크리미 마블 포세린으로 화이트 캐비닛·그레이 백스플래시 레이어드. 싱크 통합.</div>
+          <div class="case-meta"><span>포세린 라이트 마블</span><span>주방·아일랜드</span><span>2026.06</span></div>
         </div>
       </div>
 
       <!-- 마포 -->
       <div class="case-card" data-cat="kitchen"
-        data-title="마포 — 화이트 마블 세라믹 싱크 시공" data-material="세라믹 화이트 마블"
+        data-title="마포 — 화이트 마블 포세린 주방 시공" data-material="포세린 화이트 마블"
         data-usage="주방·아일랜드" data-date="2026.06"
-        data-desc="마포구 아파트 주방 상판 교체 프로젝트입니다. 화이트 마블 패턴 세라믹 상판이 그레이 백스플래시 타일과 대비를 이루며 고급스러운 주방 분위기를 만들어냅니다. 대형 언더마운트 싱크를 정밀 커팅해 기존 캐비닛을 그대로 활용하면서도 완전히 새로운 주방으로 변화시킨 성공적인 교체 시공입니다."
+        data-desc="마포구 아파트 주방 상판 교체 프로젝트입니다. 화이트 마블 포세린 세라믹 상판을 기존 캐비닛 구조에 맞춰 정밀 제작·설치해, 공사 범위를 최소화하면서도 주방 분위기를 완전히 새롭게 바꿨습니다. 라이트 그레이 포세린 아일랜드부터 화이트 마블 포세린 카운터까지, 두 가지 포세린 소재의 조화로운 배치로 주방에 다채로운 레이어를 더했습니다."
         data-imgs="./images/cases/mapo/01.jpg,./images/cases/mapo/02.jpg" data-hero="1">
-        <img class="case-img case-img--premium" src="./images/cases/mapo/02.jpg" alt="마포 화이트 마블 주방" loading="lazy">
+        <img class="case-img case-img--premium" src="./images/cases/mapo/02.jpg" alt="마포 화이트 마블 포세린 주방" loading="lazy">
         <div class="case-info">
-          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">마블</span></div>
-          <div class="case-title">마포 — 화이트 마블 싱크 시공</div>
-          <div class="case-body">그레이 백스플래시 vs 마블 세라믹 대비. 정밀 언더마운트 커팅.</div>
-          <div class="case-meta"><span>세라믹 화이트 마블</span><span>주방·아일랜드</span><span>2026.06</span></div>
+          <div class="case-tags"><span class="case-tag">포세린</span><span class="case-tag">마블</span></div>
+          <div class="case-title">마포 — 화이트 마블 포세린 시공</div>
+          <div class="case-body">포세린 아일랜드 + 화이트 마블 포세린 카운터. 기존 캐비닛 활용 교체 시공.</div>
+          <div class="case-meta"><span>포세린 화이트 마블</span><span>주방·아일랜드</span><span>2026.06</span></div>
         </div>
       </div>
 
       <!-- 양평 -->
       <div class="case-card" data-cat="kitchen"
-        data-title="양평 — 내추럴 모던 아일랜드" data-material="MMA 라이트 그레이"
+        data-title="양평 — 내추럴 모던 포세린 아일랜드" data-material="포세린 라이트 그레이"
         data-usage="주방·아일랜드" data-date="2026.06"
-        data-desc="경기도 양평 리조트 주방 시공 사례입니다. 자연 소재 루버 패널과 조화를 이루는 라이트 그레이 MMA 아일랜드 상판으로 내추럴 모던 감성을 구현했습니다. 넓은 조리 공간과 언더마운트 싱크가 하나의 소재로 통합되어 심플하고 기능적인 주방을 완성합니다."
+        data-desc="경기도 양평 주거 공간의 주방 아일랜드 시공 사례입니다. 라이트 그레이 포세린 세라믹 상판이 내추럴 원목 루버 패널 벽과 어우러져 자연 친화적 모던 감성을 완성했습니다. 넓은 조리 공간과 언더마운트 싱크를 하나의 소재로 통합해 기능적이면서도 군더더기 없는 심플한 주방을 구현한 사례입니다."
         data-imgs="./images/cases/yangpyeong/01.png" data-hero="0">
-        <img class="case-img case-img--premium" src="./images/cases/yangpyeong/01.png" alt="양평 리조트 주방 아일랜드" loading="lazy">
+        <img class="case-img case-img--premium" src="./images/cases/yangpyeong/01.png" alt="양평 내추럴 모던 포세린 아일랜드" loading="lazy">
         <div class="case-info">
-          <div class="case-tags"><span class="case-tag">MMA</span><span class="case-tag">아일랜드</span></div>
-          <div class="case-title">양평 — 내추럴 모던 아일랜드</div>
-          <div class="case-body">루버 패널·목재와 조화. 라이트 그레이 MMA 원피스 아일랜드.</div>
-          <div class="case-meta"><span>MMA 라이트 그레이</span><span>주방·아일랜드</span><span>2026.06</span></div>
+          <div class="case-tags"><span class="case-tag">포세린</span><span class="case-tag">아일랜드</span></div>
+          <div class="case-title">양평 — 내추럴 모던 포세린 아일랜드</div>
+          <div class="case-body">원목 루버 패널과 어우러지는 라이트 그레이 포세린 아일랜드.</div>
+          <div class="case-meta"><span>포세린 라이트 그레이</span><span>주방·아일랜드</span><span>2026.06</span></div>
         </div>
       </div>
 
       <!-- 남양주 -->
       <div class="case-card" data-cat="kitchen"
-        data-title="남양주 — 신축 아파트 주방 MMA 시공" data-material="MMA 화이트"
+        data-title="남양주 — 신축 아파트 포세린 주방 시공" data-material="포세린 크림 화이트"
         data-usage="주방·아일랜드" data-date="2026.06"
-        data-desc="남양주 신축 아파트 주방 복합 시공 사례입니다. 화이트 톤 MMA 인조대리석으로 주방 상판과 수납 카운터를 통일 제작해 공간 전체에 깔끔하고 밝은 분위기를 연출했습니다. 빌트인 가전 맞춤 컷아웃까지 포함한 원스톱 시공으로 마감했습니다."
+        data-desc="남양주 신축 아파트 주방 전체 상판 시공 프로젝트입니다. 크림 화이트 포세린 세라믹으로 주방 카운터와 상부 수납 선반까지 통일 시공해, 공간 전체에 밝고 깔끔한 분위기를 연출했습니다. 빌트인 가전 맞춤 컷아웃을 포함한 원스톱 시공으로 신축 아파트의 초기 설치 비용을 최적화했습니다."
         data-imgs="./images/cases/namyangju/01.jpg" data-hero="0">
-        <img class="case-img" src="./images/cases/namyangju/01.jpg" alt="남양주 신축 아파트 주방 MMA" loading="lazy">
+        <img class="case-img" src="./images/cases/namyangju/01.jpg" alt="남양주 신축 아파트 포세린 주방" loading="lazy">
         <div class="case-info">
-          <div class="case-tags"><span class="case-tag">MMA</span><span class="case-tag">주방</span></div>
-          <div class="case-title">남양주 — 신축 아파트 주방 시공</div>
-          <div class="case-body">화이트 MMA. 빌트인 가전 맞춤 컷아웃 원스톱 시공.</div>
-          <div class="case-meta"><span>MMA 화이트</span><span>주방·아일랜드</span><span>2026.06</span></div>
+          <div class="case-tags"><span class="case-tag">포세린</span><span class="case-tag">주방</span></div>
+          <div class="case-title">남양주 — 신축 아파트 포세린 주방 시공</div>
+          <div class="case-body">크림 화이트 포세린. 카운터·상부 선반 통일 시공, 빌트인 컷아웃 포함.</div>
+          <div class="case-meta"><span>포세린 크림 화이트</span><span>주방·아일랜드</span><span>2026.06</span></div>
         </div>
       </div>
 
       <!-- 홍대 -->
-      <div class="case-card" data-cat="bath"
-        data-title="홍대 — 화이트 마블 욕실 카운터" data-material="세라믹 화이트 마블"
-        data-usage="욕실·세면대" data-date="2026.06"
-        data-desc="홍대 인근 주거 리모델링 프로젝트의 욕실 시공 사례입니다. 화이트 마블 패턴 세라믹을 욕실 카운터탑 전면에 적용해 호텔식 고급 욕실 분위기를 연출했습니다. 슬림한 엣지 마감과 깔끔한 라인으로 공간이 넓어 보이는 시각적 효과까지 더했습니다."
+      <div class="case-card" data-cat="kitchen"
+        data-title="홍대 — 화이트 마블 포세린 주방 시공" data-material="포세린 화이트 마블"
+        data-usage="주방·아일랜드" data-date="2026.06"
+        data-desc="홍대 인근 주거 리모델링 프로젝트의 주방 상판 시공 사례입니다. 화이트 마블 패턴 포세린 세라믹을 주방 카운터탑 전면에 적용해 밝고 세련된 주방 환경을 완성했습니다. 상부장부터 하부 카운터까지 통일된 소재 구성으로 공간에 안정감과 고급스러운 분위기를 더했습니다."
         data-imgs="./images/cases/hongdae/01.jpg,./images/cases/hongdae/02.jpg" data-hero="1">
-        <img class="case-img" src="./images/cases/hongdae/02.jpg" alt="홍대 화이트 마블 욕실" loading="lazy">
+        <img class="case-img" src="./images/cases/hongdae/02.jpg" alt="홍대 화이트 마블 포세린 주방" loading="lazy">
         <div class="case-info">
-          <div class="case-tags"><span class="case-tag">세라믹</span><span class="case-tag">욕실</span></div>
-          <div class="case-title">홍대 — 화이트 마블 욕실 카운터</div>
-          <div class="case-body">마블 패턴 세라믹으로 호텔식 욕실 완성. 슬림 엣지 마감.</div>
-          <div class="case-meta"><span>세라믹 화이트 마블</span><span>욕실·세면대</span><span>2026.06</span></div>
+          <div class="case-tags"><span class="case-tag">포세린</span><span class="case-tag">주방</span></div>
+          <div class="case-title">홍대 — 화이트 마블 포세린 주방 시공</div>
+          <div class="case-body">화이트 마블 포세린으로 상부장·하부 카운터 통일. 밝고 세련된 주방.</div>
+          <div class="case-meta"><span>포세린 화이트 마블</span><span>주방·아일랜드</span><span>2026.06</span></div>
         </div>
       </div>
 
@@ -2465,18 +2453,17 @@ window.addEventListener('load', function() {
   <div class="lb-stage" id="lb-stage">
     <div class="lb-swipe-hint" id="lb-swipe-hint">← 밀어서 사진 넘기기 →</div>
   </div>
+  <div class="lb-info">
+    <div class="lb-dots" id="lb-dots"></div>
+    <div class="lb-info-title" id="lb-panel-title"></div>
+    <div class="lb-info-tags" id="lb-panel-tags"></div>
+    <div class="lb-info-date" id="lb-panel-date"></div>
+    <div class="lb-info-desc" id="lb-panel-desc"></div>
+    <a class="lb-cta" href="https://open.kakao.com/o/sS7BnYyc" target="_blank" rel="noopener">이런 시공 문의하기 ↗</a>
+  </div>
   <button class="lb-arrow lb-prev" id="lb-prev" aria-label="이전">&#8592;</button>
   <button class="lb-arrow lb-next" id="lb-next" aria-label="다음">&#8594;</button>
   <button class="lb-close" id="lb-close" aria-label="닫기">✕</button>
-  <div class="lb-panel" id="lb-panel">
-    <div class="lb-panel-title" id="lb-panel-title"></div>
-    <div class="lb-panel-tags" id="lb-panel-tags"></div>
-    <div class="lb-panel-date" id="lb-panel-date"></div>
-    <div class="lb-panel-divider"></div>
-    <div class="lb-panel-desc" id="lb-panel-desc"></div>
-    <div class="lb-dots" id="lb-dots"></div>
-    <a class="lb-cta" id="lb-cta" href="https://open.kakao.com/o/sS7BnYyc" target="_blank" rel="noopener">이런 시공 문의하기 ↗</a>
-  </div>
 </div>
 
 <!-- ═══ LIGHTBOX 소재 ════════════════════════════════════════ -->
