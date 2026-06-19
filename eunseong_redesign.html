@@ -545,11 +545,11 @@ ul{list-style:none}
 /* ── 시공사례 라이트박스 ── */
 .lb-overlay{
   position:fixed;inset:0;background:rgba(0,0,0,.95);
-  z-index:8900;opacity:0;pointer-events:none;transition:opacity .4s
+  z-index:10000;opacity:0;pointer-events:none;transition:opacity .4s
 }
 .lb-overlay.on{opacity:1;pointer-events:all}
 #lb{
-  position:fixed;z-index:9000;background:#000;overflow:hidden;
+  position:fixed;z-index:10001;background:#000;overflow:hidden;
   pointer-events:none;opacity:0;
   transition:top .5s cubic-bezier(.4,0,.2,1),left .5s cubic-bezier(.4,0,.2,1),
              width .5s cubic-bezier(.4,0,.2,1),height .5s cubic-bezier(.4,0,.2,1),opacity .35s,border-radius .4s
@@ -646,11 +646,11 @@ ul{list-style:none}
 /* ── 소재 라이트박스 ── */
 .ml-overlay{
   position:fixed;inset:0;background:rgba(0,0,0,.92);
-  z-index:8800;opacity:0;pointer-events:none;transition:opacity .35s
+  z-index:10000;opacity:0;pointer-events:none;transition:opacity .35s
 }
 .ml-overlay.on{opacity:1;pointer-events:all}
 #ml{
-  position:fixed;inset:0;z-index:8900;
+  position:fixed;inset:0;z-index:10001;
   pointer-events:none;opacity:0;transition:opacity .35s
 }
 #ml.open{opacity:1;pointer-events:all}
@@ -2142,6 +2142,9 @@ if (_cur && _grid) {
   });
 }
 
+/* ═══ LIGHTBOX — DOM 완전 파싱 후 실행 ════════════════════════════ */
+document.addEventListener('DOMContentLoaded', function() {
+
 /* ═══ LIGHTBOX 시공사례 ════════════════════════════════════════════ */
 (function() {
   var lb          = document.getElementById('lb');
@@ -2338,6 +2341,8 @@ if (_cur && _grid) {
     if (isMlOpen && e.key === 'Escape') closeMl();
   });
 })();
+
+}); /* end DOMContentLoaded */
 
 /* FADE-UP (IntersectionObserver) */
 var _io = new IntersectionObserver(function(entries) {
