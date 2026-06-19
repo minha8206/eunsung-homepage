@@ -542,88 +542,182 @@ ul{list-style:none}
 }
 .case-view-cursor.active{transform:translate(-50%,-50%) scale(1);opacity:1}
 
-/* ── 라이트박스 ── */
+/* ── 시공사례 라이트박스 ── */
 .lb-overlay{
-  position:fixed;inset:0;background:rgba(6,5,4,.85);
+  position:fixed;inset:0;background:rgba(0,0,0,.95);
   z-index:8900;opacity:0;pointer-events:none;transition:opacity .4s
 }
 .lb-overlay.on{opacity:1;pointer-events:all}
 #lb{
-  position:fixed;z-index:9000;background:var(--bg);
-  display:flex;flex-direction:column;overflow:hidden;
+  position:fixed;z-index:9000;background:#000;overflow:hidden;
   pointer-events:none;opacity:0;
   transition:top .5s cubic-bezier(.4,0,.2,1),left .5s cubic-bezier(.4,0,.2,1),
-             width .5s cubic-bezier(.4,0,.2,1),height .5s cubic-bezier(.4,0,.2,1),opacity .35s
+             width .5s cubic-bezier(.4,0,.2,1),height .5s cubic-bezier(.4,0,.2,1),opacity .35s,border-radius .4s
 }
 #lb.open{opacity:1;pointer-events:all;top:0!important;left:0!important;width:100vw!important;height:100dvh!important}
-.lb-top{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:20px 28px;flex-shrink:0;border-bottom:1px solid rgba(191,142,90,.1)
-}
-.lb-project{font-family:var(--serif);font-size:1rem;font-weight:300;color:var(--white)}
-.lb-sub{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;color:var(--gold);margin-top:4px}
-.lb-close{
-  background:none;border:1px solid rgba(191,142,90,.25);
-  color:var(--gold);width:36px;height:36px;border-radius:50%;
-  font-size:1rem;cursor:pointer;flex-shrink:0;
-  transition:background .2s,border-color .2s;display:flex;align-items:center;justify-content:center
-}
-.lb-close:hover{background:rgba(191,142,90,.12);border-color:var(--gold)}
-.lb-stage{
-  flex:1;position:relative;overflow:hidden;background:#000;min-height:0
-}
+/* stage */
+.lb-stage{position:absolute;inset:0;background:#000;overflow:hidden}
 .lb-slide{
   position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
   opacity:0;transition:opacity .45s ease
 }
 .lb-slide.active{opacity:1}
 .lb-slide img{width:100%;height:100%;object-fit:contain}
-.lb-arrow{
-  position:absolute;top:50%;transform:translateY(-50%);z-index:2;
-  background:rgba(10,9,8,.6);border:1px solid rgba(191,142,90,.2);
-  color:var(--gold);width:44px;height:44px;border-radius:50%;
-  font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;
-  transition:background .2s,border-color .2s;flex-shrink:0
+/* arrows & close — siblings of stage inside #lb */
+.lb-arrow,.lb-close{
+  position:absolute;z-index:20;
+  background:rgba(10,9,8,.65);border:1px solid rgba(191,142,90,.25);
+  color:var(--gold);border-radius:50%;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s,border-color .2s
 }
-.lb-arrow:hover{background:rgba(191,142,90,.15);border-color:var(--gold)}
-.lb-prev{left:16px}.lb-next{right:16px}
-.lb-arrow[hidden]{display:none}
-.lb-dots{
-  display:flex;gap:6px;justify-content:center;padding:12px 0;flex-shrink:0
+.lb-arrow:hover,.lb-close:hover{background:rgba(191,142,90,.14);border-color:var(--gold)}
+.lb-arrow{top:50%;width:44px;height:44px;font-size:1.2rem;transform:translateY(-50%)}
+.lb-close{top:16px;right:16px;width:36px;height:36px;font-size:1rem}
+.lb-prev{left:16px}
+.lb-next{right:392px}
+/* panel */
+.lb-panel{
+  position:absolute;top:0;right:0;bottom:0;width:360px;
+  background:rgba(10,10,10,.97);border-left:2px solid var(--gold);
+  display:flex;flex-direction:column;padding:48px 28px 28px;overflow-y:auto;
+  transform:translateX(100%);
+  transition:transform .45s cubic-bezier(.4,0,.2,1) .3s
 }
+#lb.open .lb-panel{transform:translateX(0)}
+.lb-panel-title{
+  font-family:var(--serif);font-size:1.05rem;font-weight:300;color:var(--white);
+  margin-bottom:12px;line-height:1.45
+}
+.lb-panel-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px}
+.lb-panel-tag{
+  font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;
+  background:rgba(191,142,90,.12);color:var(--gold);
+  border:1px solid rgba(191,142,90,.28);padding:3px 9px;border-radius:2px
+}
+.lb-panel-date{
+  font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;
+  color:var(--ink3);margin-bottom:14px
+}
+.lb-panel-divider{height:1px;background:rgba(191,142,90,.2);margin-bottom:14px;flex-shrink:0}
+.lb-panel-desc{
+  font-size:.76rem;color:rgba(242,237,232,.62);line-height:1.9;
+  flex:1;overflow-y:auto;margin-bottom:14px
+}
+.lb-dots{display:flex;gap:6px;margin-bottom:18px;flex-shrink:0;flex-wrap:wrap}
 .lb-dot{
   width:6px;height:6px;border-radius:50%;
   background:rgba(191,142,90,.25);border:none;cursor:pointer;transition:background .2s
 }
 .lb-dot.active{background:var(--gold)}
-.lb-bottom{
-  padding:18px 28px 20px;flex-shrink:0;border-top:1px solid rgba(191,142,90,.08);
-  display:flex;align-items:center;justify-content:space-between;gap:16px
-}
-.lb-desc{
-  font-size:.76rem;color:rgba(242,237,232,.58);line-height:1.8;
-  flex:1;max-height:80px;overflow:hidden
-}
 .lb-cta{
-  flex-shrink:0;padding:10px 20px;background:var(--gold);color:#1a1612;
-  font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;
-  border-radius:2px;text-decoration:none;white-space:nowrap;transition:opacity .2s
+  padding:11px 18px;background:var(--gold);color:#1a1612;
+  font-family:var(--mono);font-size:.63rem;letter-spacing:.1em;
+  border-radius:2px;text-decoration:none;text-align:center;
+  transition:opacity .2s;flex-shrink:0
 }
 .lb-cta:hover{opacity:.85}
 .lb-swipe-hint{
-  position:absolute;bottom:70px;left:50%;transform:translateX(-50%);
-  color:rgba(242,237,232,.35);font-size:.62rem;font-family:var(--mono);letter-spacing:.1em;
-  pointer-events:none;animation:swipeHint 2.5s ease forwards;display:none
+  position:absolute;bottom:16px;left:50%;transform:translateX(-50%);
+  color:rgba(242,237,232,.38);font-size:.6rem;font-family:var(--mono);letter-spacing:.1em;
+  pointer-events:none;display:none;white-space:nowrap
 }
-@keyframes swipeHint{0%{opacity:0;transform:translateX(-50%) translateY(6px)}20%{opacity:1;transform:translateX(-50%)}80%{opacity:1}100%{opacity:0}}
-@media(max-width:560px){
+@keyframes swipeHint{0%,100%{opacity:0}20%,80%{opacity:1}}
+@media(max-width:768px){
+  .lb-next{right:16px}
+  .lb-panel{
+    top:auto;left:0;right:0;bottom:0;width:100%;height:46vh;
+    border-left:none;border-top:2px solid var(--gold);
+    padding:14px 18px 18px;
+    transform:translateY(100%);
+    transition:transform .4s cubic-bezier(.4,0,.2,1) .3s
+  }
+  #lb.open .lb-panel{transform:translateY(0)}
   .lb-swipe-hint{display:block}
-  .lb-bottom{flex-direction:column;align-items:flex-start}
-  .lb-desc{max-height:60px;font-size:.7rem}
-  .lb-cta{width:100%;text-align:center}
-  .lb-top{padding:14px 16px}
+  .lb-panel-title{font-size:.92rem}
+  .lb-panel-desc{font-size:.7rem;line-height:1.75;max-height:72px;overflow:hidden}
+  .lb-close{top:10px;right:10px;width:32px;height:32px;font-size:.85rem}
+}
+@media(max-width:480px){
   .lb-arrow{width:36px;height:36px;font-size:1rem}
   .lb-prev{left:8px}.lb-next{right:8px}
+}
+
+/* ── 소재 라이트박스 ── */
+.ml-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.92);
+  z-index:8800;opacity:0;pointer-events:none;transition:opacity .35s
+}
+.ml-overlay.on{opacity:1;pointer-events:all}
+#ml{
+  position:fixed;inset:0;z-index:8900;
+  pointer-events:none;opacity:0;transition:opacity .35s
+}
+#ml.open{opacity:1;pointer-events:all}
+.ml-stage{
+  position:absolute;inset:0;right:320px;
+  display:flex;align-items:center;justify-content:center;overflow:hidden
+}
+.ml-stage img{
+  max-width:90%;max-height:85vh;object-fit:contain;
+  transform:scale(.88);transition:transform .4s cubic-bezier(.4,0,.2,1)
+}
+#ml.open .ml-stage img{transform:scale(1)}
+.ml-panel{
+  position:absolute;top:0;right:0;bottom:0;width:320px;
+  background:rgba(10,10,10,.97);border-left:2px solid var(--gold);
+  display:flex;flex-direction:column;padding:48px 26px 28px;overflow-y:auto;
+  transform:translateX(100%);
+  transition:transform .4s cubic-bezier(.4,0,.2,1) .18s
+}
+#ml.open .ml-panel{transform:translateX(0)}
+.ml-close{
+  position:absolute;top:14px;right:14px;
+  background:rgba(10,9,8,.65);border:1px solid rgba(191,142,90,.3);
+  color:var(--gold);width:34px;height:34px;border-radius:50%;
+  font-size:.9rem;cursor:pointer;
+  transition:background .2s,border-color .2s;
+  display:flex;align-items:center;justify-content:center
+}
+.ml-close:hover{background:rgba(191,142,90,.12);border-color:var(--gold)}
+.ml-kr{
+  font-family:var(--sans);font-size:1.1rem;font-weight:600;
+  color:var(--white);margin-bottom:5px;line-height:1.3
+}
+.ml-en{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;
+  color:var(--gold);margin-bottom:4px
+}
+.ml-code{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;
+  color:var(--ink3);margin-bottom:18px
+}
+.ml-divider{height:1px;background:rgba(191,142,90,.22);margin-bottom:14px;flex-shrink:0}
+.ml-desc{
+  font-size:.76rem;color:rgba(242,237,232,.62);line-height:1.9;
+  flex:1;overflow-y:auto;margin-bottom:22px
+}
+.ml-cta{
+  padding:11px 18px;background:var(--gold);color:#1a1612;
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;
+  border-radius:2px;text-decoration:none;text-align:center;
+  transition:opacity .2s;flex-shrink:0
+}
+.ml-cta:hover{opacity:.85}
+.color-item{cursor:pointer;transition:opacity .2s}
+.color-item:hover{opacity:.85}
+.color-item:hover .color-swatch{transform:scale(1.04);transition:transform .25s ease}
+@media(max-width:768px){
+  .ml-stage{right:0;bottom:45vh}
+  .ml-panel{
+    top:auto;left:0;right:0;bottom:0;width:100%;height:45vh;
+    border-left:none;border-top:2px solid var(--gold);
+    padding:14px 18px 20px;transform:translateY(100%);
+    transition:transform .4s cubic-bezier(.4,0,.2,1) .18s
+  }
+  #ml.open .ml-panel{transform:translateY(0)}
+  .ml-kr{font-size:.95rem}
+  .ml-desc{font-size:.7rem;line-height:1.75}
 }
 
 /* ── 필터 탭 모바일 스크롤 ── */
@@ -2048,74 +2142,71 @@ if (_cur && _grid) {
   });
 }
 
-/* ═══ LIGHTBOX ════════════════════════════════════════════ */
+/* ═══ LIGHTBOX 시공사례 ════════════════════════════════════════════ */
 (function() {
-  var lb = document.getElementById('lb');
-  var lbOv = document.getElementById('lb-overlay');
-  var lbClose = document.getElementById('lb-close');
-  var lbStage = document.getElementById('lb-stage');
-  var lbPrev = document.getElementById('lb-prev');
-  var lbNext = document.getElementById('lb-next');
-  var lbDots = document.getElementById('lb-dots');
-  var lbProject = document.getElementById('lb-project');
-  var lbSub = document.getElementById('lb-sub');
-  var lbDesc = document.getElementById('lb-desc');
+  var lb          = document.getElementById('lb');
+  var lbOv        = document.getElementById('lb-overlay');
+  var lbClose     = document.getElementById('lb-close');
+  var lbStage     = document.getElementById('lb-stage');
+  var lbPrev      = document.getElementById('lb-prev');
+  var lbNext      = document.getElementById('lb-next');
+  var lbDots      = document.getElementById('lb-dots');
+  var lbTitle     = document.getElementById('lb-panel-title');
+  var lbTags      = document.getElementById('lb-panel-tags');
+  var lbDate      = document.getElementById('lb-panel-date');
+  var lbDesc      = document.getElementById('lb-panel-desc');
   var lbSwipeHint = document.getElementById('lb-swipe-hint');
   if (!lb) return;
 
-  var curIdx = 0, imgs = [], isOpen = false;
+  var curIdx = 0, imgs = [], isLbOpen = false;
 
   function openLb(card) {
     var rect = card.getBoundingClientRect();
     imgs = (card.dataset.imgs || '').split(',').filter(Boolean);
-    var heroIdx = parseInt(card.dataset.hero || '0', 10);
-    curIdx = heroIdx;
+    curIdx = parseInt(card.dataset.hero || '0', 10);
 
-    lb.style.top    = rect.top    + 'px';
-    lb.style.left   = rect.left   + 'px';
-    lb.style.width  = rect.width  + 'px';
-    lb.style.height = rect.height + 'px';
-    lb.style.opacity = '0';
-    lb.style.borderRadius = '6px';
+    lb.style.top = rect.top + 'px'; lb.style.left = rect.left + 'px';
+    lb.style.width = rect.width + 'px'; lb.style.height = rect.height + 'px';
+    lb.style.opacity = '0'; lb.style.borderRadius = '6px';
 
-    lbProject.textContent = card.dataset.title || '';
-    lbSub.textContent = (card.dataset.material || '') + (card.dataset.date ? '  ·  ' + card.dataset.date : '');
+    /* populate panel */
+    lbTitle.textContent = card.dataset.title || '';
+    lbTags.innerHTML = '';
+    ['material','usage'].forEach(function(k) {
+      if (card.dataset[k]) {
+        var t = document.createElement('span');
+        t.className = 'lb-panel-tag'; t.textContent = card.dataset[k];
+        lbTags.appendChild(t);
+      }
+    });
+    lbDate.textContent = card.dataset.date || '';
     lbDesc.textContent = card.dataset.desc || '';
 
-    buildSlides();
-    buildDots();
-    goTo(curIdx, false);
-
+    buildSlides(); buildDots(); goTo(curIdx, false);
     lbOv.classList.add('on');
     document.body.style.overflow = 'hidden';
 
     requestAnimationFrame(function() {
       requestAnimationFrame(function() {
-        lb.style.transition = 'top .5s cubic-bezier(.4,0,.2,1), left .5s cubic-bezier(.4,0,.2,1), width .5s cubic-bezier(.4,0,.2,1), height .5s cubic-bezier(.4,0,.2,1), opacity .35s, border-radius .4s';
-        lb.style.top    = '0px';
-        lb.style.left   = '0px';
-        lb.style.width  = '100vw';
-        lb.style.height = '100dvh';
-        lb.style.opacity = '1';
-        lb.style.borderRadius = '0px';
-        lb.classList.add('open');
-        isOpen = true;
+        lb.style.transition = 'top .5s cubic-bezier(.4,0,.2,1),left .5s cubic-bezier(.4,0,.2,1),width .5s cubic-bezier(.4,0,.2,1),height .5s cubic-bezier(.4,0,.2,1),opacity .35s,border-radius .4s';
+        lb.style.top = '0px'; lb.style.left = '0px';
+        lb.style.width = '100vw'; lb.style.height = '100dvh';
+        lb.style.opacity = '1'; lb.style.borderRadius = '0px';
+        lb.classList.add('open'); isLbOpen = true;
       });
     });
 
     if (lbSwipeHint) {
-      lbSwipeHint.style.opacity = '1';
-      setTimeout(function() { lbSwipeHint.style.opacity = '0'; }, 2500);
+      lbSwipeHint.style.animation = 'none'; lbSwipeHint.offsetHeight;
+      lbSwipeHint.style.animation = 'swipeHint 2.5s ease forwards';
     }
   }
 
   function closeLb() {
     lb.classList.remove('open');
-    lb.style.transition = 'top .4s cubic-bezier(.4,0,.2,1), left .4s, width .4s, height .4s, opacity .3s, border-radius .3s';
-    lb.style.opacity = '0';
-    lbOv.classList.remove('on');
-    document.body.style.overflow = '';
-    isOpen = false;
+    lb.style.transition = 'top .4s cubic-bezier(.4,0,.2,1),left .4s,width .4s,height .4s,opacity .3s,border-radius .3s';
+    lb.style.opacity = '0'; lbOv.classList.remove('on');
+    document.body.style.overflow = ''; isLbOpen = false;
     setTimeout(function() {
       lb.style.transition = '';
       lb.style.top = '0'; lb.style.left = '0';
@@ -2124,15 +2215,12 @@ if (_cur && _grid) {
   }
 
   function buildSlides() {
-    lbStage.innerHTML = '';
+    lbStage.querySelectorAll('.lb-slide').forEach(function(s) { s.remove(); });
     imgs.forEach(function(src, i) {
       var div = document.createElement('div');
       div.className = 'lb-slide' + (i === curIdx ? ' active' : '');
-      var img = document.createElement('img');
-      img.src = src.trim();
-      img.alt = '';
-      div.appendChild(img);
-      lbStage.appendChild(div);
+      var img = document.createElement('img'); img.src = src.trim(); img.alt = '';
+      div.appendChild(img); lbStage.appendChild(div);
     });
   }
 
@@ -2150,43 +2238,104 @@ if (_cur && _grid) {
 
   function goTo(idx, animate) {
     var slides = lbStage.querySelectorAll('.lb-slide');
-    var dots = lbDots.querySelectorAll('.lb-dot');
+    var dots   = lbDots.querySelectorAll('.lb-dot');
     slides.forEach(function(s) { s.classList.remove('active'); });
     dots.forEach(function(d) { d.classList.remove('active'); });
     curIdx = ((idx % imgs.length) + imgs.length) % imgs.length;
     if (slides[curIdx]) slides[curIdx].classList.add('active');
-    if (dots[curIdx]) dots[curIdx].classList.add('active');
-    lbPrev.style.display = imgs.length > 1 ? '' : 'none';
-    lbNext.style.display = imgs.length > 1 ? '' : 'none';
+    if (dots[curIdx])   dots[curIdx].classList.add('active');
+    var show = imgs.length > 1;
+    lbPrev.style.display = show ? '' : 'none';
+    lbNext.style.display = show ? '' : 'none';
   }
 
-  /* card click → open */
   document.querySelectorAll('.case-card').forEach(function(card) {
     card.addEventListener('click', function() { openLb(card); });
   });
-
-  /* close */
   lbClose.addEventListener('click', closeLb);
   lbOv.addEventListener('click', closeLb);
-
-  /* arrows */
   lbPrev.addEventListener('click', function(e) { e.stopPropagation(); goTo(curIdx - 1, true); });
   lbNext.addEventListener('click', function(e) { e.stopPropagation(); goTo(curIdx + 1, true); });
 
-  /* keyboard */
   document.addEventListener('keydown', function(e) {
-    if (!isOpen) return;
-    if (e.key === 'Escape') closeLb();
-    if (e.key === 'ArrowLeft')  goTo(curIdx - 1, true);
-    if (e.key === 'ArrowRight') goTo(curIdx + 1, true);
+    if (!isLbOpen) return;
+    if (e.key === 'Escape')      closeLb();
+    if (e.key === 'ArrowLeft')   goTo(curIdx - 1, true);
+    if (e.key === 'ArrowRight')  goTo(curIdx + 1, true);
   });
 
-  /* touch swipe */
-  var swipeStartX = 0;
-  lbStage.addEventListener('touchstart', function(e) { swipeStartX = e.touches[0].clientX; }, { passive: true });
-  lbStage.addEventListener('touchend', function(e) {
-    var dx = e.changedTouches[0].clientX - swipeStartX;
+  var swipeX = 0;
+  lbStage.addEventListener('touchstart', function(e) { swipeX = e.touches[0].clientX; }, { passive: true });
+  lbStage.addEventListener('touchend',   function(e) {
+    var dx = e.changedTouches[0].clientX - swipeX;
     if (Math.abs(dx) > 40) goTo(curIdx + (dx < 0 ? 1 : -1), true);
+  });
+})();
+
+/* ═══ LIGHTBOX 소재 ════════════════════════════════════════════ */
+(function() {
+  var ml     = document.getElementById('ml');
+  var mlOv   = document.getElementById('ml-overlay');
+  var mlClose = document.getElementById('ml-close');
+  var mlStage = document.getElementById('ml-stage');
+  var mlKr   = document.getElementById('ml-kr');
+  var mlEn   = document.getElementById('ml-en');
+  var mlCode = document.getElementById('ml-code');
+  var mlDesc = document.getElementById('ml-desc');
+  if (!ml) return;
+
+  var isMlOpen = false;
+  var mlCurImg = null;
+
+  var matDesc = {
+    ceramic: '흡수율 0.5% 이하의 고밀도 포세린으로, 내열·내스크래치·항균 성능이 최고 수준입니다. Mohs 경도 7 이상으로 칼로 긁어도 흠집이 남지 않으며, 커피·와인 등 강한 착색제도 스며들지 않습니다. 고급 카페·호텔·주방 아일랜드에 가장 많이 선택되는 프리미엄 소재입니다.',
+    estone:  '천연 석영 90% 이상으로 구성된 LX Hausys VIATERA 엔지니어드 스톤입니다. NSF 식품안전 인증 및 GREENGUARD 친환경 인증을 보유하며, 공식 대리점으로 정품을 직공급합니다. 자연석의 아름다움과 뛰어난 내구성을 동시에 충족합니다.',
+    mma:     '이음매 없는 시공이 가능한 아크릴계 인조대리석으로, 욕실 세면대 일체형·곡선 카운터에 최적입니다. 열성형으로 다양한 형태 가공이 가능하며, 표면 흠집 발생 시 연마·재광택으로 원상 복원이 가능합니다.',
+    bmc:     '은성이 10년 이상 다뤄온 핵심 소재로, 뛰어난 가성비와 빠른 납기가 강점입니다. 세라믹 대비 30~50% 낮은 비용으로 동급 품질을 구현하며, 일반 규격 제품은 7~10일 이내 출고 가능합니다.'
+  };
+
+  function getMatId(item) {
+    var panel = item.closest('.tab-panel');
+    return panel ? panel.id.replace('tab-', '') : 'ceramic';
+  }
+
+  function openMl(item) {
+    var img  = item.querySelector('img.color-swatch');
+    if (!img) return;
+    var kr   = item.querySelector('.color-name');
+    var en   = item.querySelector('.color-sub');
+    var code = item.querySelector('.color-code');
+    var mid  = getMatId(item);
+
+    if (mlCurImg) { mlCurImg.remove(); mlCurImg = null; }
+    mlCurImg = document.createElement('img');
+    mlCurImg.src = img.src; mlCurImg.alt = img.alt || '';
+    mlStage.appendChild(mlCurImg);
+
+    mlKr.textContent   = kr   ? kr.textContent   : '';
+    mlEn.textContent   = en   ? en.textContent   : '';
+    mlCode.textContent = code ? code.textContent : '';
+    mlDesc.textContent = matDesc[mid] || '';
+
+    mlOv.classList.add('on'); ml.classList.add('open');
+    document.body.style.overflow = 'hidden'; isMlOpen = true;
+  }
+
+  function closeMl() {
+    ml.classList.remove('open'); mlOv.classList.remove('on');
+    document.body.style.overflow = ''; isMlOpen = false;
+    setTimeout(function() {
+      if (mlCurImg) { mlCurImg.remove(); mlCurImg = null; }
+    }, 420);
+  }
+
+  document.querySelectorAll('.color-item').forEach(function(item) {
+    item.addEventListener('click', function() { openMl(item); });
+  });
+  mlClose.addEventListener('click', closeMl);
+  mlOv.addEventListener('click', closeMl);
+  document.addEventListener('keydown', function(e) {
+    if (isMlOpen && e.key === 'Escape') closeMl();
   });
 })();
 
@@ -2305,29 +2454,39 @@ window.addEventListener('load', function() {
 });
 </script>
 
-<!-- ═══ LIGHTBOX ════════════════════════════════════════ -->
+<!-- ═══ LIGHTBOX 시공사례 ════════════════════════════════════════ -->
 <div class="lb-overlay" id="lb-overlay"></div>
 <div id="lb">
-  <div class="lb-top">
-    <div>
-      <div class="lb-project" id="lb-project"></div>
-      <div class="lb-sub" id="lb-sub"></div>
-    </div>
-    <button class="lb-close" id="lb-close" aria-label="닫기">✕</button>
-  </div>
   <div class="lb-stage" id="lb-stage">
-    <!-- slides injected by JS -->
-    <button class="lb-arrow lb-prev" id="lb-prev" aria-label="이전">&#8592;</button>
-    <button class="lb-arrow lb-next" id="lb-next" aria-label="다음">&#8594;</button>
+    <div class="lb-swipe-hint" id="lb-swipe-hint">← 밀어서 사진 넘기기 →</div>
   </div>
-  <div class="lb-dots" id="lb-dots"></div>
-  <div class="lb-bottom">
-    <div class="lb-desc" id="lb-desc"></div>
-    <a class="lb-cta" id="lb-cta" href="https://open.kakao.com/o/s8gZbGPf" target="_blank" rel="noopener">
-      카카오톡 문의하기 ↗
-    </a>
+  <button class="lb-arrow lb-prev" id="lb-prev" aria-label="이전">&#8592;</button>
+  <button class="lb-arrow lb-next" id="lb-next" aria-label="다음">&#8594;</button>
+  <button class="lb-close" id="lb-close" aria-label="닫기">✕</button>
+  <div class="lb-panel" id="lb-panel">
+    <div class="lb-panel-title" id="lb-panel-title"></div>
+    <div class="lb-panel-tags" id="lb-panel-tags"></div>
+    <div class="lb-panel-date" id="lb-panel-date"></div>
+    <div class="lb-panel-divider"></div>
+    <div class="lb-panel-desc" id="lb-panel-desc"></div>
+    <div class="lb-dots" id="lb-dots"></div>
+    <a class="lb-cta" id="lb-cta" href="https://open.kakao.com/o/sS7BnYyc" target="_blank" rel="noopener">이런 시공 문의하기 ↗</a>
   </div>
-  <div class="lb-swipe-hint" id="lb-swipe-hint">← 밀어서 사진 넘기기 →</div>
+</div>
+
+<!-- ═══ LIGHTBOX 소재 ════════════════════════════════════════ -->
+<div class="ml-overlay" id="ml-overlay"></div>
+<div id="ml">
+  <div class="ml-stage" id="ml-stage"></div>
+  <div class="ml-panel" id="ml-panel">
+    <button class="ml-close" id="ml-close" aria-label="닫기">✕</button>
+    <div class="ml-kr" id="ml-kr"></div>
+    <div class="ml-en" id="ml-en"></div>
+    <div class="ml-code" id="ml-code"></div>
+    <div class="ml-divider"></div>
+    <div class="ml-desc" id="ml-desc"></div>
+    <a class="ml-cta" href="https://open.kakao.com/o/sS7BnYyc" target="_blank" rel="noopener">소재 문의하기 ↗</a>
+  </div>
 </div>
 
 <!-- ═══ VIEW CURSOR ════════════════════════════════════ -->
