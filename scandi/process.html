@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>제작 과정 · EUNSEONG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.pc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:22px}
+.pc-step{padding:20px 0 0;border-top:2px solid rgba(47,59,58,.14)}
+.pc-num{font:600 12px 'Manrope';letter-spacing:.08em;color:#b8935f;margin-bottom:18px}
+.pc-title{font-family:'Cormorant Garamond';font-weight:500;font-size:21px;color:#2f3b3a}
+.pc-desc{font:400 13px/1.7 'Manrope';color:#5c6f69;margin-top:8px}
+@media (max-width:900px){ .pc-grid{grid-template-columns:1fr 1fr} .sc-nav{display:none} }
+@media (max-width:520px){ .pc-grid{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="sc-topnav">
+  <a href="index.html" class="sc-brand">
+    <svg width="28" height="28" viewBox="0 0 32 32"><circle cx="16" cy="16" r="13" fill="none" stroke="#b8935f" stroke-width="1.6"/><circle cx="16" cy="16" r="4.5" fill="#b8935f"/></svg>
+    <span style="line-height:1"><span class="sc-brand-name">EUNSEONG</span><span class="sc-brand-sub">SURFACE STUDIO</span></span>
+  </a>
+  <nav class="sc-nav">
+    <a href="index.html#materials">소재</a>
+    <a href="showroom.html">쇼룸</a>
+    <a href="portfolio.html">시공사례</a>
+    <a href="process.html" class="is-active">제작과정</a>
+    <a href="index.html#inquiry">문의</a>
+  </nav>
+  <a href="index.html#inquiry" class="sc-cta">상담 신청</a>
+</div>
+
+<!-- ===================== PROCESS ===================== -->
+<section style="background:#faf8f3;padding:160px 5vw 130px">
+  <div style="max-width:1280px;margin:0 auto">
+    <div class="eyebrow" style="color:#b8935f">PROCESS · 진행 과정</div>
+    <div style="font-family:'Cormorant Garamond';font-weight:500;font-size:clamp(32px,4.4vw,54px);line-height:1.08;color:#2f3b3a;margin-bottom:64px">상담부터 시공까지.</div>
+    <div class="pc-grid">
+      <div class="pc-step"><div class="pc-num">01</div><div class="pc-title">상담</div><div class="pc-desc">공간, 예산, 소재 취향을 함께 검토합니다.</div></div>
+      <div class="pc-step"><div class="pc-num">02</div><div class="pc-title">실측</div><div class="pc-desc">레이저 실측으로 밀리미터까지 정확하게.</div></div>
+      <div class="pc-step"><div class="pc-num">03</div><div class="pc-title">정밀가공</div><div class="pc-desc">5축 CNC, 폭포 엣지, 북매치 이음까지.</div></div>
+      <div class="pc-step"><div class="pc-num">04</div><div class="pc-title">시공</div><div class="pc-desc">자체 시공팀이 설치·실링·마감까지.</div></div>
+      <div class="pc-step"><div class="pc-num">05</div><div class="pc-title">사후관리</div><div class="pc-desc">보증, 관리 가이드, 보수까지 함께합니다.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="sc-footer-simple">
+  <div class="sc-footer-simple-inner">
+    <div class="sc-footer-legal">© 2026 (주)은성 EUNSEONG Co., Ltd. · 경기도 포천</div>
+    <a href="index.html" style="font:400 11.5px 'Manrope';color:rgba(244,248,246,.6);text-decoration:none">홈으로 돌아가기</a>
+  </div>
+</footer>
+
+</body>
+</html>
