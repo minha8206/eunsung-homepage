@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EUNSEONG · Scandi — 잘 사는 집을 위한, 따뜻한 표면</title>
+<meta name="description" content="라이트 오크와 크림 화이트, 은은한 채광. 세라믹·엔지니어드 스톤·솔리드 서페이스로 군더더기 없는 주방과 욕실을 완성하는 은성 표면 스튜디오.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased;background:#faf8f3}
+html{scroll-behavior:smooth}
+.sc-card{background:#fff;overflow:hidden;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s;box-shadow:0 20px 46px -30px rgba(40,54,50,.45)}
+.sc-card:hover{transform:translateY(-8px);box-shadow:0 34px 60px -30px rgba(40,54,50,.5)}
+.sc-nav a{text-decoration:none;transition:opacity .3s}
+.sc-nav a:hover{opacity:.6}
+.sc-btn{transition:.3s}
+.sc-btn:hover{opacity:.88}
+.sc-input{width:100%;padding:15px 16px;background:#fff;border:1px solid rgba(47,59,58,.16);border-radius:16px;color:#2f3b3a;font:400 14px 'Manrope';outline:none}
+.sc-input::placeholder{color:#8a968f}
+
+/* nav */
+.sc-nav-bar{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:20px 5vw;background:#faf8f3d9;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(47,59,58,.08);color:#2f3b3a}
+
+/* hero */
+.sc-hero{position:relative;height:100vh;width:100%;overflow:hidden;background:#1a1f1e;display:flex;align-items:flex-end}
+.sc-hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;z-index:1}
+/* TODO: 실사진 준비되면 아래 background를 url('images/hero-slide-1.jpg') center/cover 등으로 교체 */
+.sc-hero-slide.s1{background-image:radial-gradient(ellipse at 30% 20%,rgba(255,255,255,.35),transparent 55%),linear-gradient(135deg,#f4ecdb 0%,#e5d1a8 45%,#b8935f 100%);animation:sc-hero-kb 17s linear infinite}
+.sc-hero-slide.s2{background-image:radial-gradient(circle at 22% 30%,rgba(255,255,255,.14),transparent 40%),radial-gradient(circle at 55% 55%,rgba(255,255,255,.09),transparent 45%),radial-gradient(circle at 82% 35%,rgba(255,255,255,.12),transparent 40%),linear-gradient(160deg,#454f4b 0%,#262e2c 55%,#121615 100%);animation:sc-hero-kb 17s linear infinite;animation-delay:-8.5s}
+@keyframes sc-hero-kb{
+  0%{opacity:1;transform:scale(1)}
+  41.18%{opacity:1;transform:scale(1.066)}
+  50%{opacity:0;transform:scale(1.08)}
+  50.01%{opacity:0;transform:scale(1)}
+  91.18%{opacity:0;transform:scale(1)}
+  100%{opacity:1;transform:scale(1)}
+}
+@media (prefers-reduced-motion:reduce){
+  .sc-hero-slide{animation:none!important;transform:none!important}
+  .sc-hero-slide.s1{opacity:1!important}
+  .sc-hero-slide.s2{opacity:0!important}
+}
+.sc-hero-grad{position:absolute;inset:0;z-index:2;background:linear-gradient(0deg,rgba(20,26,25,.68),rgba(20,26,25,.06) 55%,rgba(20,26,25,.2))}
+.sc-hero-inner{position:relative;z-index:3;max-width:900px;padding:0 6vw 100px}
+.sc-hero-dots{position:absolute;left:50%;bottom:34px;transform:translateX(-50%);z-index:3;display:flex;gap:10px}
+.sc-hero-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.42);transition:.4s}
+.sc-hero-dot.active{background:#fff;width:22px;border-radius:4px}
+
+/* materials feature strip */
+.sc-strip-row{display:grid;grid-template-columns:.9fr 1.4fr;gap:0;border-top:1px solid rgba(47,59,58,.14)}
+.sc-strip-row.rev{grid-template-columns:1.4fr .9fr}
+.sc-strip-text{padding:32px 28px 32px 0;display:flex;flex-direction:column;justify-content:center}
+.sc-strip-row.rev .sc-strip-text{padding:32px 0 32px 28px}
+.sc-strip-img{height:260px;border-radius:22px;overflow:hidden;background-size:cover;background-position:center;filter:brightness(1.05) saturate(1.02)}
+.sc-strip-row.last{border-bottom:1px solid rgba(47,59,58,.14)}
+
+/* store */
+.sc-store{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+
+/* inquiry */
+.sc-inquiry-grid{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:64px}
+
+/* footer */
+.sc-footer-grid{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:40px}
+
+@media (max-width:980px){
+  .sc-nav-bar nav{display:none!important}
+  .sc-hero-inner{padding:0 6vw 64px}
+  #materials > div > div:first-child,
+  .sc-store,
+  .sc-inquiry-grid{grid-template-columns:1fr!important}
+  .sc-strip-row,.sc-strip-row.rev{grid-template-columns:1fr!important}
+  .sc-strip-row.rev .sc-strip-text{padding:24px 0}
+  .sc-strip-text{padding:24px 0}
+  .sc-store > div:last-child{order:-1}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="sc-nav-bar">
+  <a href="#top" style="display:flex;align-items:center;gap:11px;text-decoration:none;color:inherit">
+    <svg width="28" height="28" viewBox="0 0 32 32"><circle cx="16" cy="16" r="13" fill="none" stroke="#b8935f" stroke-width="1.6"/><circle cx="16" cy="16" r="4.5" fill="#b8935f"/></svg>
+    <span style="line-height:1"><span style="display:block;font:600 15px 'Manrope';letter-spacing:.2em">EUNSEONG</span><span style="display:block;font:500 8px 'Manrope';letter-spacing:.28em;opacity:.5;margin-top:3px">SURFACE STUDIO</span></span>
+  </a>
+  <nav class="sc-nav" style="display:flex;gap:30px;color:#2f3b3a">
+    <a href="#materials" style="font:500 12.5px 'Manrope';letter-spacing:.02em;color:inherit">소재</a>
+    <a href="eunseong_redesign.html#about" style="font:500 12.5px 'Manrope';letter-spacing:.02em;color:inherit">쇼룸</a>
+    <a href="eunseong_redesign.html#cases" style="font:500 12.5px 'Manrope';letter-spacing:.02em;color:inherit">시공사례</a>
+    <a href="eunseong_redesign.html#process" style="font:500 12.5px 'Manrope';letter-spacing:.02em;color:inherit">제작과정</a>
+    <a href="#inquiry" style="font:500 12.5px 'Manrope';letter-spacing:.02em;color:inherit">문의</a>
+  </nav>
+  <a href="#inquiry" style="display:flex;align-items:center;gap:8px;padding:10px 20px;border-radius:16px;background:#b8935f;color:#fff;font:600 12px 'Manrope';text-decoration:none">상담 신청</a>
+</div>
+
+<!-- ===================== HERO (Full-bleed) ===================== -->
+<div id="top" class="sc-hero">
+  <div class="sc-hero-slide s1" role="img" aria-label="라이트 오크와 캘라카타 골드 대리석 아일랜드가 있는 밝고 따뜻한 주방"></div>
+  <div class="sc-hero-slide s2" role="img" aria-label="대형 스톤·세라믹 슬랩이 전시된 은성 쇼룸"></div>
+  <div class="sc-hero-grad"></div>
+  <div class="sc-hero-inner">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:26px">
+      <div style="width:34px;height:1.5px;background:#b8935f"></div>
+      <div style="font:600 10px 'Manrope';letter-spacing:.36em;color:#f4f8f6">EUNSEONG SURFACE STUDIO</div>
+    </div>
+    <div style="font-family:'Cormorant Garamond';font-weight:500;font-style:normal;font-size:clamp(44px,6vw,92px);line-height:1.08;color:#fff;text-shadow:0 16px 44px rgba(0,0,0,.35)">잘 사는 집을 위한,<br>따뜻한 표면.</div>
+    <div style="font:400 16px/1.85 'Manrope';color:rgba(255,255,255,.82);max-width:480px;margin-top:26px">라이트 오크와 크림 화이트, 은은한 채광. 세라믹·엔지니어드 스톤·솔리드 서페이스로 완성하는 주방과 욕실.</div>
+    <a href="eunseong_redesign.html#about" class="sc-btn" style="display:inline-flex;align-items:center;gap:10px;margin-top:38px;padding:16px 32px;background:#b8935f;color:#fff;font:600 12.5px 'Manrope';letter-spacing:.06em;text-decoration:none;border-radius:16px">쇼룸 둘러보기</a>
+  </div>
+  <div class="sc-hero-dots">
+    <span class="sc-hero-dot active"></span>
+    <span class="sc-hero-dot"></span>
+  </div>
+</div>
+
+<!-- ===================== MATERIALS ===================== -->
+<section id="materials" style="background:#faf8f3;padding:128px 5vw;scroll-margin-top:64px">
+  <div style="max-width:1280px;margin:0 auto">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:28px;margin-bottom:56px">
+      <div>
+        <div style="font:600 11px 'Manrope';letter-spacing:.3em;color:#b8935f;margin-bottom:16px">MATERIALS · 소재</div>
+        <div style="font-family:'Cormorant Garamond';font-weight:500;font-style:normal;font-size:clamp(32px,4.4vw,54px);line-height:1.08;color:#2f3b3a">네 가지 표면,<br>하나의 결.</div>
+      </div>
+      <div style="max-width:440px;font:400 14.5px/1.85 'Manrope';color:#5c6f69">성형 컴파운드부터 대형 세라믹까지, 은성의 모든 표면재는 포천 공장에서 하나의 정밀한 기준으로 가공됩니다.</div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:2px">
+      <div class="sc-strip-row">
+        <div class="sc-strip-text">
+          <div style="font:600 11px 'Manrope';letter-spacing:.08em;color:#b8935f;margin-bottom:10px">01 · CERAMIC</div>
+          <div style="font-family:'Cormorant Garamond';font-weight:500;font-size:34px;color:#2f3b3a;margin-bottom:10px">포세린</div>
+          <div style="font:400 13.5px/1.75 'Manrope';color:#5c6f69">최대 3200×1600mm 대형 소결 슬랩. UV·열에 강해 바닥·벽면에 이상적입니다.</div>
+        </div>
+        <div class="sc-strip-img" style="background-image:url('images/material-ceramic.webp')"></div>
+      </div>
+      <div class="sc-strip-row rev">
+        <div class="sc-strip-img" style="background-image:url('images/material-estone.webp')"></div>
+        <div class="sc-strip-text">
+          <div style="font:600 11px 'Manrope';letter-spacing:.08em;color:#b8935f;margin-bottom:10px">02 · E-STONE</div>
+          <div style="font-family:'Cormorant Garamond';font-weight:500;font-size:34px;color:#2f3b3a;margin-bottom:10px">비아테라</div>
+          <div style="font:400 13.5px/1.75 'Manrope';color:#5c6f69">천연석의 깊이와 일관성. 스크래치·오염에 강해 매일 쓰는 조리대에 적합합니다.</div>
+        </div>
+      </div>
+      <div class="sc-strip-row">
+        <div class="sc-strip-text">
+          <div style="font:600 11px 'Manrope';letter-spacing:.08em;color:#b8935f;margin-bottom:10px">03 · MMA</div>
+          <div style="font-family:'Cormorant Garamond';font-weight:500;font-size:34px;color:#2f3b3a;margin-bottom:10px">하이막스</div>
+          <div style="font:400 13.5px/1.75 'Manrope';color:#5c6f69">이음새 없이 곡선을 성형할 수 있는 따뜻한 질감의 아크릴 소재입니다.</div>
+        </div>
+        <div class="sc-strip-img" style="background-image:url('images/material-mma.webp')"></div>
+      </div>
+      <div class="sc-strip-row rev last">
+        <div class="sc-strip-img" style="background-image:url('images/material-bmc.webp')"></div>
+        <div class="sc-strip-text">
+          <div style="font:600 11px 'Manrope';letter-spacing:.08em;color:#b8935f;margin-bottom:10px">04 · BMC</div>
+          <div style="font-family:'Cormorant Garamond';font-weight:500;font-size:34px;color:#2f3b3a;margin-bottom:10px">BMC</div>
+          <div style="font:400 13.5px/1.75 'Manrope';color:#5c6f69">이음새 없는 위생 도기와 성형 건축 부재를 위한 내열성 열경화 컴파운드.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STORE ===================== -->
+<section id="store" style="background:#faf8f3;padding:128px 5vw;scroll-margin-top:64px">
+  <div class="sc-store">
+    <div>
+      <div style="font:600 11px 'Manrope';letter-spacing:.3em;color:#b8935f;margin-bottom:16px">ONLINE · 온라인 사업부</div>
+      <div style="font-family:'Cormorant Garamond';font-weight:500;font-style:normal;font-size:clamp(30px,4vw,48px);line-height:1.1;color:#2f3b3a;margin-bottom:22px">쇼룸을 집에서.</div>
+      <div style="font:400 14.5px/1.9 'Manrope';color:#5c6f69;max-width:460px;margin-bottom:30px">소재를 둘러보고, 샘플 키트를 주문하고, 집을 나서지 않고도 맞춤 견적을 요청하세요.</div>
+      <a href="#inquiry" style="display:inline-flex;align-items:center;gap:10px;background:#2f3b3a;color:#fff;padding:15px 28px;border-radius:16px;font:600 12px 'Manrope';text-decoration:none">스토어 방문하기</a>
+    </div>
+    <div style="position:relative;height:400px;border-radius:22px;overflow:hidden;box-shadow:0 40px 80px -40px rgba(40,54,50,.4)">
+      <div style="position:absolute;inset:0;background:url('images/scandi-store-marble.jpg') center/cover"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== INQUIRY ===================== -->
+<section id="inquiry" style="background:#faf8f3;padding:128px 5vw;scroll-margin-top:64px">
+  <div class="sc-inquiry-grid">
+    <div>
+      <div style="font:600 11px 'Manrope';letter-spacing:.3em;color:#b8935f;margin-bottom:16px">INQUIRY · 문의</div>
+      <div style="font-family:'Cormorant Garamond';font-weight:500;font-style:normal;font-size:clamp(30px,4vw,48px);line-height:1.1;color:#2f3b3a;margin-bottom:16px">프로젝트를 시작해보세요.</div>
+      <div style="font:400 14.5px/1.85 'Manrope';color:#5c6f69;max-width:460px;margin-bottom:30px">공간에 대해 알려주세요. 영업일 기준 하루 안에 샘플과 견적으로 답변드립니다.</div>
+
+      <div id="sc-thanks" style="display:none;padding:36px;border:1px solid rgba(47,59,58,.15);border-radius:22px;background:#fff">
+        <div style="font-family:'Cormorant Garamond';font-weight:500;font-size:26px;color:#2f3b3a;margin-bottom:10px">감사합니다.</div>
+        <div style="font:400 13.5px/1.8 'Manrope';color:#5c6f69">문의가 정상적으로 접수되었습니다. 영업일 기준 하루 안에 연락드립니다.</div>
+      </div>
+
+      <form id="sc-form" onsubmit="return scSendInquiry(event)">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <input class="sc-input" name="name" placeholder="성함" required>
+          <input class="sc-input" name="phone" placeholder="연락처" required>
+        </div>
+        <select class="sc-input" name="type" style="margin-top:12px;color:#5c6f69">
+          <option>프로젝트 유형</option><option>주거 주방</option><option>욕실</option><option>상업공간</option><option>외장·벽면</option>
+        </select>
+        <textarea class="sc-input" name="message" placeholder="내용" rows="4" style="margin-top:12px;resize:vertical"></textarea>
+        <button type="submit" style="width:100%;margin-top:16px;padding:16px;background:#b8935f;color:#fff;border:none;border-radius:16px;font:600 12.5px 'Manrope';cursor:pointer" class="sc-btn">문의 보내기</button>
+      </form>
+    </div>
+    <div style="border:1px solid rgba(47,59,58,.12);border-radius:22px;padding:40px 36px;background:#fff">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:26px">
+        <svg width="26" height="26" viewBox="0 0 32 32"><circle cx="16" cy="16" r="13" fill="none" stroke="#b8935f" stroke-width="1.6"/><circle cx="16" cy="16" r="4.5" fill="#b8935f"/></svg>
+        <div style="line-height:1.3"><div style="font:700 14px 'Manrope';letter-spacing:.1em;color:#2f3b3a">(주)은성</div><div style="font:500 9.5px 'Manrope';letter-spacing:.16em;color:#5c6f69;margin-top:3px">EUNSEONG CO., LTD.</div></div>
+      </div>
+      <div style="height:1px;background:rgba(47,59,58,.1);margin-bottom:24px"></div>
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div><div style="font:600 10px 'Manrope';letter-spacing:.16em;color:#b8935f;margin-bottom:6px">SPECIALTY · 전문 분야</div><div style="font:400 13.5px/1.7 'Manrope';color:#425048">인조대리석 및 상판 가공 전문</div></div>
+        <div><div style="font:600 10px 'Manrope';letter-spacing:.16em;color:#b8935f;margin-bottom:6px">LOCATION · 위치</div><div style="font:400 13.5px/1.7 'Manrope';color:#425048">경기도 포천시 가산면 정금로 356-39</div></div>
+        <div><div style="font:600 10px 'Manrope';letter-spacing:.16em;color:#b8935f;margin-bottom:6px">CONTACT · 문의</div><div style="font:400 13.5px/1.7 'Manrope';color:#425048">031-544-7272 · eunsung8585@naver.com</div></div>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1240px;margin:44px auto 0">
+    <iframe title="EUNSEONG 위치 지도" src="https://www.google.com/maps?q=%EA%B2%BD%EA%B8%B0%EB%8F%84+%ED%8F%AC%EC%B2%9C%EC%8B%9C+%EA%B0%80%EC%82%B0%EB%A9%B4+%EC%A0%95%EA%B8%88%EB%A1%9C+356-39&output=embed" style="width:100%;height:320px;border:0;border-radius:22px;filter:sepia(.08) saturate(.9)" loading="lazy"></iframe>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer style="background:#2f3b3a;padding:64px 5vw 36px">
+  <div class="sc-footer-grid">
+    <div style="max-width:300px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+        <svg width="24" height="24" viewBox="0 0 32 32"><circle cx="16" cy="16" r="13" fill="none" stroke="#b8935f" stroke-width="1.6"/><circle cx="16" cy="16" r="4.5" fill="#b8935f"/></svg>
+        <div style="font:700 14px 'Manrope';letter-spacing:.18em;color:#fbfcfa">EUNSEONG</div>
+      </div>
+      <div style="font:400 12.5px/1.8 'Manrope';color:rgba(244,248,246,.55)">세라믹, 엔지니어드 스톤, 솔리드 서페이스 — 포천에서 가공해 어디든 배송합니다.</div>
+    </div>
+    <div style="display:flex;gap:56px;flex-wrap:wrap">
+      <div><div style="font:600 10.5px 'Manrope';letter-spacing:.16em;color:#b8935f;margin-bottom:14px">MATERIALS</div><div style="display:flex;flex-direction:column;gap:10px"><a href="#materials" style="font:400 12.5px 'Manrope';color:rgba(244,248,246,.6);text-decoration:none">BMC</a><a href="#materials" style="font:400 12.5px 'Manrope';color:rgba(244,248,246,.6);text-decoration:none">MMA</a><a href="#materials" style="font:400 12.5px 'Manrope';color:rgba(244,248,246,.6);text-decoration:none">E-Stone</a><a href="#materials" style="font:400 12.5px 'Manrope';color:rgba(244,248,246,.6);text-decoration:none">Ceramic</a></div></div>
+      <div><div style="font:600 10.5px 'Manrope';letter-spacing:.16em;color:#b8935f;margin-bottom:14px">COMPANY</div><div style="display:flex;flex-direction:column;gap:10px"><a href="eunseong_redesign.html#cases" style="font:400 12.5px 'Manrope';color:rgba(244,248,246,.6);text-decoration:none">Portfolio</a><a href="eunseong_redesign.html#process" style="font:400 12.5px 'Manrope';color:rgba(244,248,246,.6);text-decoration:none">Process</a><a href="#top" style="font:400 12.5px 'Manrope';color:rgba(244,248,246,.6);text-decoration:none">Showroom</a></div></div>
+      <div><div style="font:600 10.5px 'Manrope';letter-spacing:.16em;color:#b8935f;margin-bottom:14px">SUPPORT</div><div style="display:flex;flex-direction:column;gap:10px"><a href="#store" style="font:400 12.5px 'Manrope';color:rgba(244,248,246,.6);text-decoration:none">Store</a><a href="#inquiry" style="font:400 12.5px 'Manrope';color:rgba(244,248,246,.6);text-decoration:none">Inquiry</a></div></div>
+    </div>
+  </div>
+  <div style="max-width:1280px;margin:40px auto 0;padding-top:22px;border-top:1px solid rgba(244,248,246,.1);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px">
+    <div style="font:400 11.5px 'Manrope';color:rgba(244,248,246,.4)">© 2026 (주)은성 EUNSEONG Co., Ltd. · 경기도 포천</div>
+    <div style="font:400 11.5px 'Manrope';color:rgba(244,248,246,.4)">031-544-7272 · eunsung8585@naver.com</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var dots=document.querySelectorAll('.sc-hero-dot');
+  if(!dots.length) return;
+  var i=0;
+  setInterval(function(){
+    i=(i+1)%dots.length;
+    dots.forEach(function(d,idx){d.classList.toggle('active',idx===i)});
+  },8500);
+})();
+
+function scSendInquiry(e){
+  e.preventDefault();
+  document.getElementById('sc-form').style.display = 'none';
+  document.getElementById('sc-thanks').style.display = 'block';
+  return false;
+}
+</script>
+</body>
+</html>
