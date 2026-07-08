@@ -31,6 +31,14 @@ img{max-width:100%;display:block}
 .sc-nav a.is-active{color:var(--accent)}
 .sc-cta{display:flex;align-items:center;gap:8px;padding:10px 20px;border-radius:var(--radius);background:var(--accent);color:#fff;font:600 12px var(--font-body);text-decoration:none;transition:.3s}
 .sc-cta:hover{opacity:.88}
+.sc-nav-actions{display:flex;align-items:center;gap:18px}
+.sc-icon-btn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;padding:0;border:none;border-radius:50%;background:transparent;color:var(--ink);cursor:pointer;transition:background .3s,color .3s}
+.sc-icon-btn:hover{background:rgba(184,147,95,.12);color:var(--accent)}
+.sc-icon-btn svg{width:17px;height:17px}
+.sc-lang{display:flex;align-items:center;gap:6px;font:600 11px var(--font-body);letter-spacing:.06em;cursor:pointer;user-select:none}
+.sc-lang span{opacity:.4;transition:opacity .3s,color .3s}
+.sc-lang span.is-active{opacity:1;color:var(--accent)}
+.sc-lang-sep{opacity:.3!important;cursor:default}
 
 /* buttons */
 .sc-btn{display:inline-flex;align-items:center;gap:10px;padding:16px 32px;font:600 12.5px var(--font-body);letter-spacing:.06em;text-decoration:none;border-radius:var(--radius);transition:.3s;cursor:pointer;border:none}
