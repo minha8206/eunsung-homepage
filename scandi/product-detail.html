@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#ffffff;font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#a8763f;text-decoration:none}
+a:hover{color:#c9a24b}
+.nav-mid{display:flex;align-items:center;gap:48px}
+.nav-mid a{font:500 16px/1 'Manrope';letter-spacing:.02em;text-decoration:none;position:relative;padding:4px 0;white-space:nowrap;color:#1a1a1a;transition:color .2s}
+.nav-mid a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:1.5px;background:currentColor;transition:width .35s}
+.nav-mid a:hover{color:#bf8e5a}
+.nav-mid a:hover::after{width:100%}
+.nav-drop{display:inline-flex;align-items:center}
+.nav-right{display:flex;align-items:center;gap:11px;flex-shrink:0}
+.nav-ic{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;cursor:pointer;border:1px solid rgba(14,36,64,.18);background:rgba(255,255,255,.08);transition:.3s}
+.nav-ic:hover{background:rgba(14,36,64,.06)}
+.nav-ic svg{width:16px;height:16px}
+.lang{font:700 11px 'Manrope';letter-spacing:.08em;display:flex;gap:5px;align-items:center}
+.nav-drop-menu{position:absolute;top:24px;left:50%;transform:translate(-50%,6px);opacity:0;visibility:hidden;transition:.3s ease;background:rgba(251,250,250,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(14,36,64,.08);border-radius:10px;box-shadow:0 26px 54px -22px rgba(14,36,64,.4);padding:10px;min-width:190px;z-index:40}
+.nav-drop:hover .nav-drop-menu{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.nav-drop-item{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:10px 14px;font:600 11px 'Manrope';letter-spacing:.08em;color:#0e2440;text-decoration:none;border-radius:7px;transition:.25s}
+.nav-drop-item:hover{background:rgba(201,162,75,.1);color:#a8763f}
+.nav-drop-item span{font:500 10px 'Manrope';letter-spacing:.02em;opacity:.5}
+.hero-img{cursor:zoom-in;transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.hero-img:hover{transform:scale(1.02)}
+.btn-gold{display:grid;place-items:center;padding:16px 20px;background:#0e2440;color:#fff;font:700 12.5px 'Manrope';letter-spacing:.12em;text-decoration:none;transition:.3s;border:1px solid #0e2440;cursor:pointer}
+.btn-gold:hover{background:#c9a24b;border-color:#c9a24b;color:#fff}
+.btn-line{display:grid;place-items:center;padding:16px 20px;background:#fff;color:#0e2440;font:700 12.5px 'Manrope';letter-spacing:.12em;text-decoration:none;transition:.3s;border:1px solid rgba(14,36,64,.28)}
+.btn-line:hover{border-color:#c9a24b;color:#a8763f}
+.more-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:16px;background:#fff;border:1px solid rgba(14,36,64,.16);font:700 12px 'Manrope';letter-spacing:.16em;color:#0e2440;cursor:pointer;transition:.3s}
+.more-btn:hover{border-color:#c9a24b;color:#a8763f;background:#fdfbf7}
+.more-btn svg{transition:transform .35s ease}
+.more-btn[data-open="1"] svg{transform:rotate(180deg)}
+.qcard .qimg{transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.qcard:hover .qimg{transform:scale(1.04)}
+.refcard .rimg{transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.refcard:hover .rimg{transform:scale(1.04)}
+</style>
+</helmet>
+
+<!-- ===================== HEADER (기존 동일) ===================== -->
+<div style="position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:19px 5vw;background:rgba(251,250,250,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(14,36,64,.08);color:#0e2440">
+  <a href="index.html" style="display:flex;align-items:center;gap:11px;text-decoration:none;color:inherit">
+    <svg width="34" height="34" viewBox="0 0 92 92"><circle cx="46" cy="46" r="43" fill="none" stroke="#0e2440" stroke-width="4"></circle><circle cx="46" cy="46" r="36" fill="none" stroke="#0e2440" stroke-width="1.2"></circle><text x="46" y="57" text-anchor="middle" style="font:600 30px 'Cormorant Garamond';fill:#0e2440">ES</text><path d="M46 11 L49 16 L46 21 L43 16 Z" fill="#c9a24b"></path><path d="M46 71 L49 76 L46 81 L43 76 Z" fill="#c9a24b"></path></svg>
+    <span style="font:600 22px 'Cormorant Garamond';letter-spacing:.22em;line-height:1">EUNSUNG</span>
+  </a>
+  <nav class="nav-mid">
+    <a href="about.html">회사소개</a>
+    <a href="index.html#materials">소재</a>
+    <div class="nav-drop" style="position:relative">
+      <a href="showroom.html" style="color:#a8763f">쇼룸</a>
+      <div class="nav-drop-menu">
+        <a class="nav-drop-item" href="showroom.html?cat=PORCELAIN">PORCELAIN <span>포세린</span></a>
+        <a class="nav-drop-item" href="showroom.html?cat=VIATERA">VIATERA <span>비아테라</span></a>
+        <a class="nav-drop-item" href="showroom.html?cat=HIMACS">HIMACS <span>하이막스</span></a>
+        <a class="nav-drop-item" href="showroom.html?cat=BMC">BMC <span>인조대리석</span></a>
+      </div>
+    </div>
+    <a href="index.html#portfolio">시공사례</a><a href="index.html#process">제작과정</a><a href="index.html#inquiry">문의</a>
+  </nav>
+  <div class="nav-right">
+    <span class="nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg></span>
+    <span class="lang"><b style="opacity:.5">EN</b><span style="opacity:.4">|</span><b>KO</b></span>
+    <span class="nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"></path></svg></span>
+  </div>
+</div>
+
+<sc-if value="{{ found }}" hint-placeholder-val="{{ true }}">
+
+<!-- ===================== SHEET BAR ===================== -->
+<div style="max-width:1320px;margin:0 auto;padding:106px 4vw 0">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:20px;padding:20px 0;border-bottom:1px solid rgba(14,36,64,.14);flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:9px;font:600 10px 'Manrope';letter-spacing:.24em;color:#8a93a1">
+      <a href="index.html" style="color:#8a93a1">홈</a><span>›</span>
+      <a href="showroom.html" style="color:#8a93a1">쇼룸</a><span>›</span>
+      <a href="{{ catHref }}" style="color:#8a93a1">{{ catKo }}</a><span>›</span>
+      <b style="color:#0e2440">{{ enUpper }}</b>
+    </div>
+    <div style="display:flex;gap:26px;font:600 10px 'Manrope';letter-spacing:.22em;color:#8a93a1"><span>SHEET {{ sheetNo }}</span><span style="color:#a8763f">{{ catEn }} · {{ catKo }}</span></div>
+  </div>
+</div>
+
+<!-- ===================== HERO : SPECIMEN + INFO ===================== -->
+<div data-screen-label="제품 상세 상단" style="max-width:1320px;margin:0 auto;padding:0 4vw;display:grid;grid-template-columns:minmax(0,60fr) minmax(0,40fr)">
+
+  <!-- 좌: 시편 이미지 (온전하게, 주석 없이) -->
+  <div style="padding:52px 52px 52px 0;border-right:1px solid rgba(14,36,64,.14)">
+    <div style="position:relative;aspect-ratio:4/3;overflow:hidden;background:#f2f0ec;outline:1px solid rgba(14,36,64,.22);outline-offset:9px;cursor:zoom-in" onClick="{{ openZoom }}">
+      <div class="hero-img" style="position:absolute;inset:0;background:url('{{ img }}') center/cover;filter:{{ tint }}"></div>
+      <div style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.92);padding:7px 13px;font:700 10px 'Manrope';letter-spacing:.2em;color:#0e2440">{{ code }} · {{ finishUpper }}</div>
+      <div style="position:absolute;right:14px;bottom:14px;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.9);display:grid;place-items:center;pointer-events:none;box-shadow:0 6px 16px -6px rgba(14,36,64,.3)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0e2440" stroke-width="1.8"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3M11 8v6M8 11h6"></path></svg>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:26px;font:500 10.5px 'Manrope';letter-spacing:.16em;color:#8a93a1">
+      <span>{{ catEn }} / {{ code }}</span>
+      <span style="color:#a8763f;cursor:pointer" onClick="{{ openZoom }}">클릭하면 크게 볼 수 있습니다 ⊕</span>
+    </div>
+
+    <!-- 상세정보 더 보기 -->
+    <div style="margin-top:24px">
+      <button class="more-btn" data-open="{{ moreOpen01 }}" onClick="{{ toggleMore }}">
+        {{ moreLabel }}
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg>
+      </button>
+      <sc-if value="{{ moreOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="border:1px solid rgba(14,36,64,.14);border-top:none;padding:10px 26px 16px;background:#fdfcfa">
+          <sc-for list="{{ infoRows }}" as="r" hint-placeholder-count="7">
+            <div style="display:grid;grid-template-columns:110px 1fr;gap:18px;padding:13px 0;border-bottom:1px solid rgba(14,36,64,.07)">
+              <span style="font:600 10.5px 'Manrope';letter-spacing:.16em;color:#8a93a1">{{ r.k }}</span>
+              <span style="font:500 13px 'Manrope';color:#1c2733">{{ r.v }}</span>
+            </div>
+          </sc-for>
+          <div style="font:400 11px 'Manrope';color:#a7afbb;padding-top:12px">* 실제 슬라브의 결과 색감은 로트에 따라 차이가 있을 수 있습니다. 포천 쇼룸에서 실물 확인을 권장합니다.</div>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+
+  <!-- 우: 정보 패널 -->
+  <div style="padding:52px 0 52px 48px">
+    <div style="font:600 10.5px 'Manrope';letter-spacing:.34em;color:#a8763f">{{ catEn }} · {{ catKo }}</div>
+    <h1 style="margin:14px 0 0;font:500 52px/1 'Cormorant Garamond';color:#0e2440">{{ en }}</h1>
+    <div style="font:500 14px 'Manrope';color:#8a93a1;margin-top:9px">{{ ko }}</div>
+    <div style="font:400 13px/1.85 'Manrope';color:#5a6474;margin-top:18px">{{ desc }}</div>
+
+    <div style="margin-top:28px;border-top:1px solid rgba(14,36,64,.14)">
+      <sc-for list="{{ specRows }}" as="r" hint-placeholder-count="6">
+        <div style="display:grid;grid-template-columns:96px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid rgba(14,36,64,.08);align-items:baseline">
+          <span style="font:600 10px 'Manrope';letter-spacing:.18em;color:#8a93a1">{{ r.k }}</span>
+          <span style="font:500 12.5px 'Manrope';color:#1c2733">{{ r.v }}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="margin-top:24px;background:#f6f4ef;border-left:2px solid #c9a24b;padding:15px 19px;font:400 12px/1.7 'Manrope';color:#5a6474"><b style="color:#0e2440">가격은 문의해 주세요.</b> 시공 면적·가공 사양 기준으로 정확한 견적을 안내드립니다.</div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px">
+      <a class="btn-gold" href="index.html#inquiry">견적 요청</a>
+      <a class="btn-line" href="#">카카오톡 상담</a>
+    </div>
+
+    <!-- LX 공식 딜러 신뢰 라인 -->
+    <div style="display:flex;align-items:center;gap:10px;margin-top:22px;padding:13px 16px;border:1px solid rgba(201,162,75,.4);background:#fdfbf6">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a8763f" stroke-width="1.8" style="flex-shrink:0"><path d="M12 2l2.4 6.6L21 9l-5 4.6L17.4 21 12 17.3 6.6 21 8 13.6 3 9l6.6-.4z"></path></svg>
+      <span style="font:600 11px/1.5 'Manrope';letter-spacing:.04em;color:#a8763f">LX Hausys 공식 딜러 — 정품 슬라브만 취급합니다</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== WHY EUNSUNG · LX 강조 밴드 ===================== -->
+<div data-screen-label="공식 딜러 강조" style="background:#f4f7fa;border-top:1px solid rgba(14,36,64,.08);border-bottom:1px solid rgba(14,36,64,.08);margin-top:8px">
+  <div style="max-width:1320px;margin:0 auto;padding:72px 4vw;display:grid;grid-template-columns:minmax(0,40fr) minmax(0,60fr);gap:56px;align-items:center">
+    <div>
+      <div style="font:600 10px 'Manrope';letter-spacing:.34em;color:#a8763f">WHY EUNSUNG</div>
+      <div style="font:500 36px/1.2 'Cormorant Garamond';color:#0e2440;margin-top:14px">LX Hausys 정품 상판,<br>은성이 가장 잘 다룹니다</div>
+      <div style="font:400 13.5px/1.85 'Manrope';color:#5a6474;margin-top:18px">비아테라·하이막스 공식 딜러로서 정품 슬라브를 상시 보유하고, 포천 자체 공장에서 재단부터 시공까지 중간 유통 없이 직접 책임집니다.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div style="background:#fff;border:1px solid rgba(14,36,64,.08);padding:24px 26px"><div style="font:500 30px 'Cormorant Garamond';color:#0e2440">공식 딜러</div><div style="font:600 10.5px 'Manrope';letter-spacing:.14em;color:#a8763f;margin-top:6px">LX HAUSYS AUTHORIZED</div><div style="font:400 12px/1.7 'Manrope';color:#7a8494;margin-top:8px">비아테라 · 하이막스 정품 인증 취급점</div></div>
+      <div style="background:#fff;border:1px solid rgba(14,36,64,.08);padding:24px 26px"><div style="font:500 30px 'Cormorant Garamond';color:#0e2440">자체 공장</div><div style="font:600 10.5px 'Manrope';letter-spacing:.14em;color:#a8763f;margin-top:6px">POCHEON FACTORY</div><div style="font:400 12px/1.7 'Manrope';color:#7a8494;margin-top:8px">CNC 재단·엣지·싱크홀 가공을 직접</div></div>
+      <div style="background:#fff;border:1px solid rgba(14,36,64,.08);padding:24px 26px"><div style="font:500 30px 'Cormorant Garamond';color:#0e2440">직시공</div><div style="font:600 10.5px 'Manrope';letter-spacing:.14em;color:#a8763f;margin-top:6px">NATIONWIDE INSTALL</div><div style="font:400 12px/1.7 'Manrope';color:#7a8494;margin-top:8px">숙련 시공팀이 실측부터 마무리까지</div></div>
+      <div style="background:#fff;border:1px solid rgba(14,36,64,.08);padding:24px 26px"><div style="font:500 30px 'Cormorant Garamond';color:#0e2440">정품 보증</div><div style="font:600 10.5px 'Manrope';letter-spacing:.14em;color:#a8763f;margin-top:6px">MANUFACTURER WARRANTY</div><div style="font:400 12px/1.7 'Manrope';color:#7a8494;margin-top:8px">제조사 보증이 그대로 적용됩니다</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 소재의 성질 ===================== -->
+<div data-screen-label="소재의 성질" style="max-width:1320px;margin:0 auto;padding:96px 4vw 0">
+  <div style="text-align:center">
+    <div style="font:600 10px 'Manrope';letter-spacing:.34em;color:#a8763f">MATERIAL QUALITIES</div>
+    <div style="font:500 36px 'Cormorant Garamond';color:#0e2440;margin-top:12px">소재의 성질</div>
+    <div style="width:52px;height:1px;background:#c9a24b;margin:26px auto 0"></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:26px;margin-top:52px">
+    <sc-for list="{{ qualities }}" as="q" hint-placeholder-count="4">
+      <div class="qcard">
+        <div style="position:relative;aspect-ratio:4/3;overflow:hidden;background:#f2f0ec">
+          <div class="qimg" style="position:absolute;inset:0;background:url('{{ q.img }}') center/cover"></div>
+        </div>
+        <div style="font:italic 500 22px 'Cormorant Garamond';color:#c9a24b;margin-top:18px">{{ q.num }}</div>
+        <div style="font:700 14.5px 'Manrope';color:#1c2733;margin-top:8px">{{ q.title }}</div>
+        <div style="font:400 12.5px/1.8 'Manrope';color:#7a8494;margin-top:8px">{{ q.desc }}</div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+
+<!-- ===================== 대형 텍스처 ===================== -->
+<div style="max-width:1320px;margin:0 auto;padding:88px 4vw 0">
+  <div style="position:relative;height:68vh;min-height:420px;overflow:hidden;background:#f2f0ec;cursor:zoom-in" onClick="{{ openZoom }}">
+    <div style="position:absolute;inset:0;background:url('{{ img }}') center/cover;filter:{{ tint }}"></div>
+    <div style="position:absolute;left:22px;bottom:20px;font:600 10px 'Manrope';letter-spacing:.26em;color:rgba(255,255,255,.9);text-shadow:0 1px 8px rgba(0,0,0,.4)">{{ enUpper }} — FULL SLAB TEXTURE</div>
+  </div>
+</div>
+
+<!-- ===================== 레퍼런스 ===================== -->
+<div data-screen-label="레퍼런스" style="max-width:1320px;margin:0 auto;padding:96px 4vw 0">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;border-bottom:2px solid #0e2440;padding-bottom:14px">
+    <h2 style="margin:0;font:500 28px 'Cormorant Garamond';color:#0e2440">은성이 시공한 공간</h2>
+    <span style="font:600 10px 'Manrope';letter-spacing:.28em;color:#a8763f">INSTALLED BY EUNSUNG</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:30px">
+    <sc-for list="{{ refs }}" as="r" hint-placeholder-count="3">
+      <div class="refcard">
+        <div style="position:relative;aspect-ratio:4/3;overflow:hidden;background:#f2f0ec">
+          <div class="rimg" style="position:absolute;inset:0;background:url('{{ r.img }}') center/cover"></div>
+        </div>
+        <div style="font:500 12.5px 'Manrope';color:#5a6474;margin-top:12px">{{ r.label }}</div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="font:400 11.5px 'Manrope';color:#a7afbb;margin-top:18px">* 시공 사진은 임시 이미지이며, 실제 시공 사례로 교체 예정입니다.</div>
+</div>
+
+<div style="height:120px"></div>
+
+<!-- ===================== ZOOM LIGHTBOX ===================== -->
+<sc-if value="{{ zoomed }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;z-index:60;background:rgba(8,11,16,.92);display:grid;place-items:center;cursor:zoom-out" onClick="{{ closeZoom }}">
+    <div style="width:min(88vw,1100px);height:88vh;background:url('{{ img }}') center/contain no-repeat;filter:{{ tint }}"></div>
+    <div style="position:absolute;top:22px;right:26px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.4);display:grid;place-items:center">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+    </div>
+    <div style="position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font:600 11px 'Manrope';letter-spacing:.24em;color:rgba(255,255,255,.65)">{{ enUpper }} · {{ code }}</div>
+  </div>
+</sc-if>
+
+</sc-if>
+
+<!-- ===================== NOT FOUND ===================== -->
+<sc-if value="{{ notFound }}" hint-placeholder-val="{{ false }}">
+  <div style="padding:220px 4vw 140px;text-align:center">
+    <div style="font:500 32px 'Cormorant Garamond';color:#8a93a1">제품을 찾을 수 없습니다</div>
+    <div style="font:400 13px 'Manrope';color:#a7afbb;margin:12px 0 28px">주소가 잘못되었거나 삭제된 제품입니다.</div>
+    <a href="showroom.html" style="font:700 12px 'Manrope';letter-spacing:.12em;color:#a8763f;border:1px solid rgba(201,162,75,.5);padding:14px 28px;display:inline-block">쇼룸으로 돌아가기</a>
+  </div>
+</sc-if>
+
+<!-- ===================== FOOTER (기존 동일) ===================== -->
+<footer style="background:#080b10;padding:72px 5vw 40px">
+  <div style="max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:44px">
+    <div style="max-width:300px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
+        <svg width="30" height="30" viewBox="0 0 92 92"><circle cx="46" cy="46" r="43" fill="none" stroke="#e3c789" stroke-width="4"></circle><circle cx="46" cy="46" r="36" fill="none" stroke="#e3c789" stroke-width="1.2"></circle><text x="46" y="57" text-anchor="middle" style="font:600 30px 'Cormorant Garamond';fill:#f3efe6">ES</text><path d="M46 11 L49 16 L46 21 L43 16 Z" fill="#c9a24b"></path><path d="M46 71 L49 76 L46 81 L43 76 Z" fill="#c9a24b"></path></svg>
+        <div style="font:700 15px 'Manrope';letter-spacing:.24em;color:#fff">EUNSUNG</div>
+      </div>
+      <div style="font:400 13px/1.8 'Manrope';color:rgba(255,255,255,.45);margin-bottom:4px">세라믹, 엔지니어드 스톤, 솔리드 서페이스를 위한 피지털 플래그십 — 포천에서 가공해 어디든 배송합니다.</div>
+      <div style="font:400 11.5px/1.65 'Manrope';color:rgba(255,255,255,.25)">A phygital flagship for ceramic, engineered stone and solid surface — fabricated in Pocheon, delivered everywhere.</div>
+    </div>
+    <div style="display:flex;gap:64px;flex-wrap:wrap">
+      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">MATERIALS</div><div style="display:flex;flex-direction:column;gap:11px"><a href="showroom.html?cat=PORCELAIN" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Porcelain</a><a href="showroom.html?cat=VIATERA" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Viatera</a><a href="showroom.html?cat=HIMACS" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Himacs</a><a href="showroom.html?cat=BMC" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">BMC</a></div></div>
+      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">COMPANY</div><div style="display:flex;flex-direction:column;gap:11px"><a href="index.html#portfolio" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Portfolio</a><a href="index.html#process" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Process</a><a href="showroom.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Showroom</a></div></div>
+      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">SUPPORT</div><div style="display:flex;flex-direction:column;gap:11px"><a href="index.html#store" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Store</a><a href="index.html#inquiry" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Inquiry</a><a href="index.html#inquiry" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">FAQ</a></div></div>
+    </div>
+  </div>
+  <div style="max-width:1280px;margin:48px auto 0;padding-top:26px;border-top:1px solid rgba(255,255,255,.09)">
+    <div style="display:flex;flex-wrap:wrap;gap:8px 22px;margin-bottom:16px;font:400 12px/1.7 'Manrope';color:rgba(255,255,255,.45)">
+      <span>상호 (주)은성</span><span>대표자 이언기</span><span>사업자등록번호 328-88-00420</span><span>주소 경기도 포천시 가산면 정금로 356-39</span><span>전화 031-544-7272</span><span>이메일 eunsung8585@naver.com</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px">
+      <div style="font:400 12px 'Manrope';color:rgba(255,255,255,.4)">© 2026 (주)은성 EUNSUNG Co., Ltd. · 인조대리석 및 상판 가공 · 경기도 포천</div>
+      <div style="font:400 12px 'Manrope';color:rgba(255,255,255,.4)">Instagram · KakaoTalk · Naver</div>
+    </div>
+  </div>
+</footer>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { zoomed: false, loaded: false, moreOpen: false };
+
+  QUALITIES = {
+    PORCELAIN: [
+      { title: '고온 내열', desc: '1200℃ 소성 세라믹 — 뜨거운 냄비가 직접 닿아도 변색과 변형이 없습니다.', img: 'assets/hero-kitchen.png' },
+      { title: '내스크래치', desc: '유리보다 단단한 표면 경도로 칼자국·마모 걱정 없이 오래 사용합니다.', img: 'assets/slab-wall.png' },
+      { title: '자외선 안정', desc: '직사광선에도 색이 바래지 않아 창가·외부 공간에도 안심입니다.', img: 'assets/lobby-cream.png' },
+      { title: '대형 슬랩', desc: '1600×3200 대판 — 이음매를 최소화한 웅장한 면 연출이 가능합니다.', img: 'assets/island-quartzite.png' },
+    ],
+    VIATERA: [
+      { title: '내스크래치', desc: '쿼츠 93%의 표면 경도. 칼끝이 닿아도 흠집이 남지 않습니다.', img: 'assets/island-quartzite.png' },
+      { title: '비다공성', desc: '커피·와인·김칫국물이 스며들지 않아 얼룩 걱정이 없습니다.', img: 'assets/hero-kitchen.png' },
+      { title: '항균 표면', desc: '박테리아·곰팡이 성장을 억제해 조리 공간에 안전합니다.', img: 'assets/island-marble.png' },
+      { title: '일관된 결', desc: '천연석과 달리 슬라브 간 편차 없이 균일한 패턴을 유지합니다.', img: 'assets/slab-wall.png' },
+    ],
+    HIMACS: [
+      { title: '이음매 없는 시공', desc: '조인트가 보이지 않는 심리스 접합 — 곡면·일체형 싱크도 가능합니다.', img: 'assets/hero-kitchen.png' },
+      { title: '복원 가능', desc: '생활 기스는 샌딩만으로 새것처럼 — 반영구적으로 사용합니다.', img: 'assets/lobby-cream.png' },
+      { title: '열성형 곡면', desc: '열을 가해 자유로운 곡선 형태로 성형할 수 있는 유일한 소재군입니다.', img: 'assets/island-marble.png' },
+      { title: '위생 인증', desc: 'NSF 위생 인증 — 병원·주방 등 위생이 중요한 공간의 표준입니다.', img: 'assets/slab-wall.png' },
+    ],
+    BMC: [
+      { title: '맞춤 성형', desc: '포천 공장에서 주문 치수 그대로 성형 — 현장 맞춤이 자유롭습니다.', img: 'assets/about-factory-interior.png' },
+      { title: '합리적 선택', desc: '천연석의 질감을 합리적인 비용으로 — 가성비가 가장 좋은 소재입니다.', img: 'assets/hero-kitchen.png' },
+      { title: '보수 용이', desc: '부분 파손도 현장에서 간단히 보수 — 유지관리 부담이 적습니다.', img: 'assets/island-marble.png' },
+      { title: '균일 품질', desc: '자체 생산 라인의 품질 관리로 로트 간 편차를 최소화합니다.', img: 'assets/about-warehouse-agv.png' },
+    ],
+  };
+
+  async componentDidMount() {
+    const mod = await import('./catalog-data.js');
+    await mod.getCatalog();
+    const code = new URLSearchParams(window.location.search).get('code') || '';
+    this.product = mod.findProduct(code);
+    this.TONE_LABEL = mod.TONE_LABEL;
+    this.REFERENCES = mod.REFERENCES;
+    this.setState({ loaded: true });
+    this._onKey = (e) => { if (e.key === 'Escape' && this.state.zoomed) this.setState({ zoomed: false }); };
+    window.addEventListener('keydown', this._onKey);
+  }
+  componentWillUnmount() { window.removeEventListener('keydown', this._onKey); }
+
+  renderVals() {
+    const { zoomed, loaded, moreOpen } = this.state;
+    const p = this.product;
+    if (!loaded || !p) {
+      return {
+        found: !loaded, notFound: loaded && !p, zoomed: false,
+        en: '', ko: '', desc: '', code: '', img: '', tint: 'none', enUpper: '', finishUpper: '', sheetNo: '',
+        catKo: '', catEn: '', catHref: 'showroom.html',
+        specRows: [], infoRows: [], refs: [], qualities: [],
+        moreOpen: false, moreOpen01: '0', moreLabel: '상세정보 더 보기',
+        toggleMore: () => {}, openZoom: () => {}, closeZoom: () => {},
+      };
+    }
+    const toneLabel = this.TONE_LABEL[p.tone] || p.tone;
+    const nums = ['01', '02', '03', '04'];
+    return {
+      found: true, notFound: false, zoomed,
+      en: p.en, ko: p.ko, desc: p.desc || '', code: p.code, img: p.img, tint: p.tint,
+      enUpper: p.en.toUpperCase(), finishUpper: p.finish.toUpperCase(),
+      sheetNo: p.code,
+      catKo: p.catKo, catEn: p.catEn,
+      catHref: 'showroom.html?cat=' + p.catKey,
+      specRows: [
+        { k: 'MATERIAL', v: p.material },
+        { k: 'FINISH', v: p.finish },
+        { k: 'SIZE', v: p.size + ' · ' + p.thick },
+        { k: 'COLOR', v: toneLabel + ' · ' + p.en },
+        { k: 'BRAND', v: p.brand },
+        { k: 'ORIGIN', v: p.origin },
+      ],
+      infoRows: [
+        { k: '재질', v: p.material },
+        { k: '마감', v: p.finish },
+        { k: '사이즈', v: p.size + ' · ' + p.thick },
+        { k: '색상', v: toneLabel },
+        { k: '컬러명', v: p.ko + ' (' + p.en + ')' },
+        { k: '스타일', v: p.style },
+        { k: '제조국', v: p.origin },
+        { k: '브랜드', v: p.brand },
+        { k: '제품코드', v: p.code },
+      ],
+      refs: this.REFERENCES[p.tone] || [],
+      qualities: (this.QUALITIES[p.catKey] || []).map((q, i) => ({ ...q, num: nums[i] })),
+      moreOpen, moreOpen01: moreOpen ? '1' : '0',
+      moreLabel: moreOpen ? '상세정보 접기' : '상세정보 더 보기',
+      toggleMore: () => this.setState(s => ({ moreOpen: !s.moreOpen })),
+      openZoom: () => this.setState({ zoomed: true }),
+      closeZoom: () => this.setState({ zoomed: false }),
+    };
+  }
+}
+
+</script>
+</body>
+</html>

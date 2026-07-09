@@ -1,136 +1,307 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>쇼룸 · EUNSEONG</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
-<style>
-body{background:#0b0f15}
-@keyframes eyePulse{0%{transform:scale(1);opacity:.55}70%{transform:scale(2.4);opacity:0}100%{opacity:0}}
-.scene{position:relative;width:100%;height:100vh;min-height:720px;overflow:hidden;cursor:crosshair}
-.eye{position:absolute;width:42px;height:42px;border-radius:50%;border:none;cursor:pointer;display:grid;place-items:center;background:rgba(255,255,255,.14);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 4px 20px rgba(0,0,0,.25),inset 0 0 0 1px rgba(255,255,255,.45);z-index:6;transition:transform .3s;padding:0;display:none}
-.eye:hover{transform:scale(1.16)}
-.eye::before{content:'';position:absolute;inset:-3px;border-radius:50%;border:1px solid rgba(255,255,255,.7);animation:eyePulse 2.6s ease-out infinite}
-.eye svg{width:19px;height:19px;display:block}
-.zbtn{display:flex;align-items:center;gap:11px;padding:10px 16px 10px 14px;border-left:2px solid rgba(255,255,255,.25);background:transparent;cursor:pointer;color:#eef3f8;text-align:left;transition:.35s;opacity:.5}
-.zbtn:hover{opacity:1;background:rgba(255,255,255,.06)}
-.specrow{display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.1)}
-.specrow span:first-child{font:600 10px 'Manrope';letter-spacing:.18em;color:rgba(255,255,255,.45)}
-.specrow span:last-child{font:500 13px 'Manrope';color:#eef3f8;text-align:right}
-.cta{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:15px;font:600 12px 'Manrope';letter-spacing:.14em;cursor:pointer;border:none;transition:.3s}
-.sc-topnav{background:rgba(250,248,243,.85)}
-</style>
-<script src="vendor/three.min.js"></script>
+<script src="./support.js"></script>
 </head>
 <body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#ffffff;font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#a8763f;text-decoration:none}
+a:hover{color:#c9a24b}
+.nav-mid{display:flex;align-items:center;gap:48px}
+.nav-mid a{font:500 16px/1 'Manrope';letter-spacing:.02em;text-decoration:none;position:relative;padding:4px 0;white-space:nowrap;color:#1a1a1a;transition:color .2s}
+.nav-mid a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:1.5px;background:currentColor;transition:width .35s}
+.nav-mid a:hover{color:#bf8e5a}
+.nav-mid a:hover::after{width:100%}
+.nav-drop{display:inline-flex;align-items:center}
+.nav-right{display:flex;align-items:center;gap:11px;flex-shrink:0}
+.nav-ic{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;cursor:pointer;border:1px solid rgba(14,36,64,.18);background:rgba(255,255,255,.08);transition:.3s}
+.nav-ic:hover{background:rgba(14,36,64,.06)}
+.nav-ic svg{width:16px;height:16px}
+.lang{font:700 11px 'Manrope';letter-spacing:.08em;display:flex;gap:5px;align-items:center}
+.nav-drop-menu{position:absolute;top:24px;left:50%;transform:translate(-50%,6px);opacity:0;visibility:hidden;transition:.3s ease;background:rgba(251,250,250,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(14,36,64,.08);border-radius:10px;box-shadow:0 26px 54px -22px rgba(14,36,64,.4);padding:10px;min-width:190px;z-index:40}
+.nav-drop:hover .nav-drop-menu{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.nav-drop-item{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:10px 14px;font:600 11px 'Manrope';letter-spacing:.08em;color:#0e2440;text-decoration:none;border-radius:7px;transition:.25s}
+.nav-drop-item:hover{background:rgba(201,162,75,.1);color:#a8763f}
+.nav-drop-item span{font:500 10px 'Manrope';letter-spacing:.02em;opacity:.5}
+.pcard{cursor:pointer}
+.pcard .pimg{transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.pcard:hover .pimg{transform:scale(1.05)}
+.pcard .pveil{opacity:0;transition:opacity .45s ease}
+.pcard:hover .pveil{opacity:1}
+.ctab{position:relative;background:none;border:none;padding:20px 4px 18px;cursor:pointer;transition:color .3s}
+.ctab::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:2px;background:#c9a24b;transform:scaleX(0);transition:transform .35s ease}
+.ctab[data-on="1"]::after{transform:scaleX(1)}
+.fchip{border:1px solid rgba(14,36,64,.16);background:#fff;border-radius:30px;padding:8px 17px;font:500 12px 'Manrope';color:#3d4757;cursor:pointer;transition:.25s;white-space:nowrap}
+.fchip:hover{border-color:#c9a24b;color:#a8763f}
+.fchip[data-on="1"]{background:#0e2440;border-color:#0e2440;color:#fff}
+.pgbtn{width:38px;height:38px;border:none;background:none;border-radius:50%;font:500 13px 'Manrope';color:#5a6474;cursor:pointer;transition:.25s;display:grid;place-items:center}
+.pgbtn:hover{background:rgba(201,162,75,.12);color:#a8763f}
+.pgbtn[data-on="1"]{background:#c9a24b;color:#fff;font-weight:700}
+select.srt{appearance:none;-webkit-appearance:none;border:1px solid rgba(14,36,64,.16);background:#fff url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%235a6474' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 14px center;border-radius:30px;padding:9px 36px 9px 17px;font:500 12px 'Manrope';color:#3d4757;cursor:pointer;outline:none}
+select.srt:hover{border-color:#c9a24b}
+</style>
+</helmet>
 
-<!-- NAV -->
-<div class="sc-topnav">
-  <a href="index.html" class="sc-brand">
-    <svg width="28" height="28" viewBox="0 0 32 32"><circle cx="16" cy="16" r="13" fill="none" stroke="#b8935f" stroke-width="1.6"/><circle cx="16" cy="16" r="4.5" fill="#b8935f"/></svg>
-    <span style="line-height:1"><span class="sc-brand-name">EUNSEONG</span><span class="sc-brand-sub">CERAMIC · STONE · SURFACE</span></span>
+<!-- ===================== HEADER (기존 동일) ===================== -->
+<div style="position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:19px 5vw;background:rgba(251,250,250,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(14,36,64,.08);color:#0e2440">
+  <a href="index.html" style="display:flex;align-items:center;gap:11px;text-decoration:none;color:inherit">
+    <svg width="34" height="34" viewBox="0 0 92 92"><circle cx="46" cy="46" r="43" fill="none" stroke="#0e2440" stroke-width="4"></circle><circle cx="46" cy="46" r="36" fill="none" stroke="#0e2440" stroke-width="1.2"></circle><text x="46" y="57" text-anchor="middle" style="font:600 30px 'Cormorant Garamond';fill:#0e2440">ES</text><path d="M46 11 L49 16 L46 21 L43 16 Z" fill="#c9a24b"></path><path d="M46 71 L49 76 L46 81 L43 76 Z" fill="#c9a24b"></path></svg>
+    <span style="font:600 22px 'Cormorant Garamond';letter-spacing:.22em;line-height:1">EUNSUNG</span>
   </a>
-  <nav class="sc-nav">
+  <nav class="nav-mid">
     <a href="about.html">회사소개</a>
     <a href="index.html#materials">소재</a>
-    <a href="showroom.html" class="is-active">쇼룸</a>
-    <a href="portfolio.html">시공사례</a>
-    <a href="process.html">제작과정</a>
-    <a href="index.html#inquiry">문의</a>
-  </nav>
-  <div class="sc-nav-actions">
-    <button type="button" class="sc-icon-btn" aria-label="검색">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-    </button>
-    <div class="sc-lang">
-      <span class="sc-lang-en">EN</span><span class="sc-lang-sep">|</span><span class="sc-lang-ko is-active">KO</span>
+    <div class="nav-drop" style="position:relative">
+      <a href="#" style="color:#a8763f">쇼룸</a>
+      <div class="nav-drop-menu">
+        <a class="nav-drop-item" href="showroom.html?cat=PORCELAIN">PORCELAIN <span>포세린</span></a>
+        <a class="nav-drop-item" href="showroom.html?cat=VIATERA">VIATERA <span>비아테라</span></a>
+        <a class="nav-drop-item" href="showroom.html?cat=HIMACS">HIMACS <span>하이막스</span></a>
+        <a class="nav-drop-item" href="showroom.html?cat=BMC">BMC <span>인조대리석</span></a>
+      </div>
     </div>
-    <button type="button" class="sc-icon-btn" aria-label="마이페이지">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20c1.7-4 4.2-6 7.5-6s5.8 2 7.5 6"/></svg>
-    </button>
+    <a href="index.html#portfolio">시공사례</a><a href="index.html#process">제작과정</a><a href="index.html#inquiry">문의</a>
+  </nav>
+  <div class="nav-right">
+    <span class="nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg></span>
+    <span class="lang"><b style="opacity:.5">EN</b><span style="opacity:.4">|</span><b>KO</b></span>
+    <span class="nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"></path></svg></span>
   </div>
 </div>
 
-<!-- ===================== SHOWROOM · 3D BY MATERIAL ===================== -->
-<div id="showroom" class="scene" style="background:#0b0f15;cursor:grab">
-  <canvas id="sr-canvas" style="position:absolute;inset:0;width:100%;height:100%;display:block"></canvas>
-  <div style="position:absolute;inset:0;z-index:8;pointer-events:none;background:linear-gradient(180deg,rgba(11,15,21,.5),rgba(11,15,21,0) 20%,rgba(11,15,21,0) 66%,rgba(11,15,21,.7)),linear-gradient(90deg,rgba(11,15,21,.42),rgba(11,15,21,0) 28%)"></div>
-
-  <div id="sr-load" style="position:absolute;inset:0;display:grid;place-items:center;background:#0b0f15;z-index:40;color:#aeb8c4;font:500 11px 'Manrope';letter-spacing:.4em">LOADING SHOWROOM…</div>
-
-  <!-- material category selector -->
-  <div style="position:absolute;left:26px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:4px;z-index:15;background:rgba(8,11,16,.46);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px 12px">
-    <div style="font:600 9px 'Manrope';letter-spacing:.32em;color:rgba(255,255,255,.45);margin:0 0 8px 14px">MATERIALS · 소재</div>
-    <button class="zbtn" data-mat="CERAMIC"><span style="font:600 11px 'Manrope';letter-spacing:.08em;width:66px">CERAMIC</span><span style="font:500 11px 'Manrope';opacity:.8">세라믹 슬랩</span></button>
-    <button class="zbtn" data-mat="ESTONE"><span style="font:600 11px 'Manrope';letter-spacing:.08em;width:66px">E-STONE</span><span style="font:500 11px 'Manrope';opacity:.8">엔지니어드 스톤</span></button>
-    <button class="zbtn" data-mat="MMA"><span style="font:600 11px 'Manrope';letter-spacing:.08em;width:66px">MMA</span><span style="font:500 11px 'Manrope';opacity:.8">아크릴 솔리드</span></button>
-    <button class="zbtn" data-mat="BMC"><span style="font:600 11px 'Manrope';letter-spacing:.08em;width:66px">BMC</span><span style="font:500 11px 'Manrope';opacity:.8">몰딩 컴파운드</span></button>
-  </div>
-
-  <!-- headline -->
-  <div style="position:absolute;left:30px;bottom:30px;z-index:12;pointer-events:none;color:#eef3f8">
-    <div id="zone-tag" style="font:600 11px 'Manrope';letter-spacing:.5em;margin-bottom:10px"></div>
-    <div id="zone-title" style="font:500 58px/.92 'Cormorant Garamond';text-shadow:0 12px 40px rgba(0,0,0,.35)"></div>
-    <div id="zone-lx" style="display:inline-flex;align-items:center;gap:7px;margin-top:14px;padding:8px 16px;border-radius:20px">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2l2.4 6.6L21 9l-5 4.6L17.4 21 12 17.3 6.6 21 8 13.6 3 9l6.6-.4z"/></svg>
-      <span style="font:700 10px 'Manrope';letter-spacing:.12em">LX Hausys 공식 딜러 · AUTHORIZED DEALER</span>
+<!-- ===================== PAGE HEAD ===================== -->
+<div style="max-width:1440px;margin:0 auto;padding:150px 4vw 0">
+  <div style="font:600 11px 'Manrope';letter-spacing:.44em;color:#a8763f;margin-bottom:14px">SHOWROOM · 쇼룸</div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
+    <h1 style="margin:0;font:500 54px/1.02 'Cormorant Garamond';color:#0e2440">Surface Collection</h1>
+    <div style="display:flex;align-items:center;gap:7px;padding:8px 15px;border:1px solid rgba(201,162,75,.45);border-radius:20px;margin-bottom:6px">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#a8763f" stroke-width="2"><path d="M12 2l2.4 6.6L21 9l-5 4.6L17.4 21 12 17.3 6.6 21 8 13.6 3 9l6.6-.4z"></path></svg>
+      <span style="font:700 10px 'Manrope';letter-spacing:.12em;color:#a8763f">LX Hausys 공식 딜러 · AUTHORIZED DEALER</span>
     </div>
   </div>
-  <div id="zone-hint" style="position:absolute;right:30px;bottom:30px;z-index:12;font:600 11px 'Manrope';letter-spacing:.2em;display:flex;align-items:center;gap:9px">DRAG TO LOOK · CLICK A SLAB TO ZOOM <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+  <p style="margin:16px 0 0;font:400 14.5px/1.75 'Manrope';color:#7a8494;max-width:560px">포세린 슬랩부터 비아테라, 하이막스, BMC 인조대리석까지 — 포천 자체 공장에서 가공하는 전 소재 컬렉션입니다.</p>
+</div>
 
-  <!-- slab lightbox · zoom -->
-  <div id="sel-panel" style="position:absolute;inset:0;z-index:35;display:none;background:rgba(5,7,11,.93);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)">
-    <div id="lb-stage" style="flex:1;position:relative;overflow:hidden;cursor:grab;touch-action:none;height:100%;display:flex">
-      <div style="flex:1;position:relative">
-        <div id="lb-img" style="position:absolute;left:50%;top:50%;width:min(44vw,600px);height:76%;transform:translate(-50%,-50%);box-shadow:0 70px 150px rgba(0,0,0,.85),inset 0 0 0 1px rgba(255,255,255,.06);will-change:transform"></div>
-        <div style="position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font:600 10px 'Manrope';letter-spacing:.24em;color:rgba(255,255,255,.45);white-space:nowrap">SCROLL / PINCH TO ZOOM · DRAG TO PAN</div>
+<!-- ===================== CATEGORY TABS ===================== -->
+<div id="cat-tabs" data-screen-label="카테고리 탭" style="position:sticky;top:64px;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);margin-top:40px;border-bottom:1px solid rgba(14,36,64,.1)">
+  <div style="max-width:1440px;margin:0 auto;padding:0 4vw;display:flex;gap:38px">
+    <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="4">
+      <button class="ctab" data-on="{{ t.on }}" onClick="{{ t.click }}">
+        <span style="display:block;font:600 14px 'Manrope';letter-spacing:.04em;color:{{ t.ink }}">{{ t.ko }}</span>
+        <span style="display:block;font:600 9.5px 'Manrope';letter-spacing:.24em;color:{{ t.sub }};margin-top:4px">{{ t.en }}</span>
+      </button>
+    </sc-for>
+  </div>
+</div>
+
+<!-- ===================== FILTERS + COUNT/SORT ===================== -->
+<div style="max-width:1440px;margin:0 auto;padding:30px 4vw 0">
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <span style="font:600 10.5px 'Manrope';letter-spacing:.22em;color:#8a93a1;width:52px;flex-shrink:0">색상</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <sc-for list="{{ toneChips }}" as="c" hint-placeholder-count="5">
+          <button class="fchip" data-on="{{ c.on }}" onClick="{{ c.click }}">{{ c.label }}</button>
+        </sc-for>
       </div>
-      <div id="sel-side" style="width:392px;max-width:88%;background:linear-gradient(180deg,rgba(14,20,28,.97),rgba(10,14,20,.99));box-shadow:-30px 0 70px rgba(0,0,0,.5);display:flex;flex-direction:column;padding:32px 30px 30px;overflow:auto">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start">
-          <div id="sel-pcode-top" style="color:#e3c789;font:600 10px 'Manrope';letter-spacing:.3em;padding-top:8px"></div>
-          <div id="sel-close" style="width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.08);display:grid;place-items:center;cursor:pointer;color:#fff;font:300 22px 'Manrope'">×</div>
-        </div>
-        <div id="sel-name" style="font:500 38px/1 'Cormorant Garamond';color:#fff;margin:12px 0 2px"></div>
-        <div id="sel-nameko" style="font:500 13px 'Manrope';color:rgba(227,199,137,.85);margin-bottom:14px"></div>
-        <div id="sel-blurb" style="font:400 13px/1.7 'Manrope';color:rgba(255,255,255,.6);margin-bottom:16px"></div>
-        <div class="specrow"><span>PRODUCT CODE</span><span id="sel-pcode"></span></div>
-        <div class="specrow"><span>ORIGIN</span><span id="sel-origin"></span></div>
-        <div class="specrow"><span>AVAILABLE SIZE</span><span id="sel-sizes"></span></div>
-        <div class="specrow"><span>FINISH</span><span id="sel-finish"></span></div>
-        <div class="specrow"><span>CATEGORY</span><span id="sel-code"></span></div>
-        <div style="flex:1"></div>
-        <div style="display:flex;flex-direction:column;gap:9px;margin-top:24px">
-          <button class="cta" style="background:#c9a24b;color:#0b0f15">REQUEST A QUOTE <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-          <div style="display:flex;gap:9px">
-            <button class="cta" style="flex:1;background:transparent;color:#eef3f8;border:1px solid rgba(255,255,255,.3)">1:1 CONSULT</button>
-            <button id="sel-cart" class="cta" style="flex:1;background:rgba(227,199,137,.14);color:#e3c789;border:1px solid rgba(227,199,137,.4)">+ MY PROJECT</button>
+    </div>
+  </div>
+
+  <div id="grid-top" style="display:flex;justify-content:space-between;align-items:center;gap:16px;margin:34px 0 22px;padding-top:24px;border-top:1px solid rgba(14,36,64,.08)">
+    <div style="font:500 13px 'Manrope';color:#3d4757">총 <b style="color:#a8763f;font-weight:700">{{ total }}</b>개의 상품</div>
+    <select class="srt" value="{{ sort }}" onChange="{{ setSort }}">
+      <option value="rec">추천순</option>
+      <option value="name">이름순</option>
+    </select>
+  </div>
+</div>
+
+<!-- ===================== PRODUCT GRID ===================== -->
+<div data-screen-label="제품 그리드" style="max-width:1440px;margin:0 auto;padding:0 4vw">
+  <sc-if value="{{ hasItems }}" hint-placeholder-val="{{ true }}">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:52px 28px">
+      <sc-for list="{{ pageItems }}" as="p" hint-placeholder-count="8">
+        <div class="pcard" onClick="{{ p.open }}">
+          <div style="position:relative;aspect-ratio:2/3;overflow:hidden;background:#f2f0ec">
+            <div class="pimg" style="position:absolute;inset:0;background:url('{{ p.img }}') center/cover;filter:{{ p.tint }}"></div>
+            <div class="pveil" style="position:absolute;inset:0;display:flex;align-items:flex-end;background:linear-gradient(180deg,rgba(14,36,64,0) 55%,rgba(14,36,64,.55))">
+              <span style="font:600 11px 'Manrope';letter-spacing:.2em;color:#fff;padding:0 0 18px 18px;display:flex;align-items:center;gap:8px">자세히 보기 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+            </div>
+          </div>
+          <div style="padding-top:16px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
+              <div style="font:500 21px/1.1 'Cormorant Garamond';color:#1c2733">{{ p.en }}</div>
+              <div style="font:600 10px 'Manrope';letter-spacing:.18em;color:#c9a24b;flex-shrink:0">{{ p.code }}</div>
+            </div>
+            <div style="font:500 12px 'Manrope';letter-spacing:.02em;color:#8a93a1;margin-top:5px">{{ p.ko }}</div>
           </div>
         </div>
-      </div>
+      </sc-for>
     </div>
-  </div>
+  </sc-if>
+  <sc-if value="{{ noItems }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:90px 0;text-align:center">
+      <div style="font:500 26px 'Cormorant Garamond';color:#8a93a1">조건에 맞는 상품이 없습니다</div>
+      <div style="font:400 13px 'Manrope';color:#a7afbb;margin-top:10px">필터를 조정해 다시 시도해 보세요.</div>
+    </div>
+  </sc-if>
 
-  <!-- editorial story panel (slides from left) -->
-  <div id="story-panel" style="position:absolute;inset:0;z-index:36;display:none;background:rgba(8,11,16,.55);backdrop-filter:blur(5px)">
-    <div id="story-card" style="width:472px;max-width:92%;height:100%;background:linear-gradient(180deg,#f7f3ec,#ece2d1);box-shadow:34px 0 80px rgba(0,0,0,.45);overflow:auto;position:relative">
-      <div id="story-img" style="height:196px;background-size:cover;background-position:center;position:relative">
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(247,243,236,0) 45%,rgba(247,243,236,1))"></div>
-      </div>
-      <div style="padding:6px 48px 48px">
-        <div id="story-tag" style="font:600 11px 'Manrope';letter-spacing:.34em;color:#a8763f;margin-bottom:14px"></div>
-        <div id="story-title" style="font:500 44px/1.04 'Cormorant Garamond';color:#1c222a;margin-bottom:24px"></div>
-        <div id="story-paras"></div>
-        <div style="display:flex;align-items:center;gap:10px;margin-top:14px;font:600 12px 'Manrope';letter-spacing:.15em;color:#1c222a;border-bottom:1.5px solid #c9a24b;padding-bottom:7px;width:fit-content;cursor:pointer">REQUEST SAMPLES <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-      </div>
-      <div id="story-close" style="position:absolute;top:20px;right:20px;width:36px;height:36px;border-radius:50%;background:rgba(20,26,34,.35);display:grid;place-items:center;cursor:pointer;color:#fff;font:300 24px 'Manrope'">×</div>
+  <!-- pagination -->
+  <sc-if value="{{ showPager }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;justify-content:center;align-items:center;gap:6px;margin-top:64px">
+      <button class="pgbtn" onClick="{{ prevPage }}" aria-label="이전 페이지"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 6l-6 6 6 6"></path></svg></button>
+      <sc-for list="{{ pages }}" as="pg" hint-placeholder-count="3">
+        <button class="pgbtn" data-on="{{ pg.on }}" onClick="{{ pg.click }}">{{ pg.n }}</button>
+      </sc-for>
+      <button class="pgbtn" onClick="{{ nextPage }}" aria-label="다음 페이지"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 6l6 6-6 6"></path></svg></button>
     </div>
-  </div>
+  </sc-if>
 </div>
 
-<script src="showroom.js"></script>
+<div style="height:110px"></div>
+
+<!-- ===================== FOOTER (기존 동일) ===================== -->
+<footer style="background:#080b10;padding:72px 5vw 40px">
+  <div style="max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:44px">
+    <div style="max-width:300px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
+        <svg width="30" height="30" viewBox="0 0 92 92"><circle cx="46" cy="46" r="43" fill="none" stroke="#e3c789" stroke-width="4"></circle><circle cx="46" cy="46" r="36" fill="none" stroke="#e3c789" stroke-width="1.2"></circle><text x="46" y="57" text-anchor="middle" style="font:600 30px 'Cormorant Garamond';fill:#f3efe6">ES</text><path d="M46 11 L49 16 L46 21 L43 16 Z" fill="#c9a24b"></path><path d="M46 71 L49 76 L46 81 L43 76 Z" fill="#c9a24b"></path></svg>
+        <div style="font:700 15px 'Manrope';letter-spacing:.24em;color:#fff">EUNSUNG</div>
+      </div>
+      <div style="font:400 13px/1.8 'Manrope';color:rgba(255,255,255,.45);margin-bottom:4px">세라믹, 엔지니어드 스톤, 솔리드 서페이스를 위한 피지털 플래그십 — 포천에서 가공해 어디든 배송합니다.</div>
+      <div style="font:400 11.5px/1.65 'Manrope';color:rgba(255,255,255,.25)">A phygital flagship for ceramic, engineered stone and solid surface — fabricated in Pocheon, delivered everywhere.</div>
+    </div>
+    <div style="display:flex;gap:64px;flex-wrap:wrap">
+      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">MATERIALS</div><div style="display:flex;flex-direction:column;gap:11px"><a href="showroom.html?cat=PORCELAIN" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Porcelain</a><a href="showroom.html?cat=VIATERA" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Viatera</a><a href="showroom.html?cat=HIMACS" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Himacs</a><a href="showroom.html?cat=BMC" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">BMC</a></div></div>
+      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">COMPANY</div><div style="display:flex;flex-direction:column;gap:11px"><a href="index.html#portfolio" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Portfolio</a><a href="index.html#process" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Process</a><a href="showroom.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Showroom</a></div></div>
+      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">SUPPORT</div><div style="display:flex;flex-direction:column;gap:11px"><a href="index.html#store" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Store</a><a href="index.html#inquiry" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Inquiry</a><a href="index.html#inquiry" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">FAQ</a></div></div>
+    </div>
+  </div>
+  <div style="max-width:1280px;margin:48px auto 0;padding-top:26px;border-top:1px solid rgba(255,255,255,.09)">
+    <div style="display:flex;flex-wrap:wrap;gap:8px 22px;margin-bottom:16px;font:400 12px/1.7 'Manrope';color:rgba(255,255,255,.45)">
+      <span>상호 (주)은성</span><span>대표자 이언기</span><span>사업자등록번호 328-88-00420</span><span>주소 경기도 포천시 가산면 정금로 356-39</span><span>전화 031-544-7272</span><span>이메일 eunsung8585@naver.com</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px">
+      <div style="font:400 12px 'Manrope';color:rgba(255,255,255,.4)">© 2026 (주)은성 EUNSUNG Co., Ltd. · 인조대리석 및 상판 가공 · 경기도 포천</div>
+      <div style="font:400 12px 'Manrope';color:rgba(255,255,255,.4)">Instagram · KakaoTalk · Naver</div>
+    </div>
+  </div>
+</footer>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { cat: 'PORCELAIN', tone: 'all', spec: 'all', sort: 'rec', page: 1 };
+
+  async componentDidMount() {
+    const mod = await import('./catalog-data.js');
+    this.DATA = await mod.getCatalog();
+    // URL → 상태 복원 (상세에서 뒤로가기 시 필터/페이지 유지)
+    const q = new URLSearchParams(window.location.search);
+    const st = {};
+    const cat = (q.get('cat') || '').toUpperCase();
+    if (this.DATA[cat]) st.cat = cat;
+    if (['all', 'white', 'beige', 'gray', 'dark'].includes(q.get('tone'))) st.tone = q.get('tone');
+    if (q.get('spec')) st.spec = q.get('spec');
+    if (['rec', 'name'].includes(q.get('sort'))) st.sort = q.get('sort');
+    const pg = parseInt(q.get('page'), 10);
+    if (pg > 0) st.page = pg;
+    this.setState(st);
+  }
+
+  set(patch) {
+    const next = { ...this.state, ...patch };
+    this.setState(patch);
+    // 상태 → URL 동기화 (replaceState라 히스토리 오염 없음)
+    const q = new URLSearchParams();
+    q.set('cat', next.cat);
+    if (next.tone !== 'all') q.set('tone', next.tone);
+    if (next.spec !== 'all') q.set('spec', next.spec);
+    if (next.sort !== 'rec') q.set('sort', next.sort);
+    if (next.page > 1) q.set('page', String(next.page));
+    try { window.history.replaceState(null, '', '?' + q.toString()); } catch (e) {}
+  }
+
+  PER_PAGE = 20;
+  TONES = [['all', '전체'], ['white', '화이트'], ['beige', '베이지'], ['gray', '그레이'], ['dark', '다크']];
+
+  scrollToGrid() {
+    const el = document.getElementById('grid-top');
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - 150;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  }
+
+  setSort = (e) => this.set({ sort: e.target.value, page: 1 });
+  goPage(p, max) {
+    const page = Math.min(Math.max(1, p), max);
+    if (page !== this.state.page) { this.set({ page }); this.scrollToGrid(); }
+  }
+
+  renderVals() {
+    const empty = {
+      tabs: [], toneChips: [], specChips: [], total: 0, sort: this.state.sort, setSort: this.setSort,
+      pageItems: [], hasItems: false, noItems: false, pages: [], showPager: false,
+      prevPage: () => {}, nextPage: () => {},
+    };
+    if (!this.DATA) return empty;
+
+    const { cat, tone, spec, sort, page } = this.state;
+    const cats = this.DATA;
+    const cur = cats[cat];
+
+    let items = cur.items.filter(p => (tone === 'all' || p.tone === tone) && (spec === 'all' || p.spec === spec));
+    if (sort === 'name') items = items.slice().sort((a, b) => a.en.localeCompare(b.en));
+
+    const total = items.length;
+    const maxPage = Math.max(1, Math.ceil(total / this.PER_PAGE));
+    const safePage = Math.min(page, maxPage);
+    const pageItems = items.slice((safePage - 1) * this.PER_PAGE, safePage * this.PER_PAGE).map(p => ({
+      ...p,
+      open: () => { window.location.href = 'product-detail.html?code=' + p.code; },
+    }));
+
+    const tabs = Object.keys(cats).map(k => ({
+      ko: cats[k].ko, en: cats[k].en,
+      on: k === cat ? '1' : '0',
+      ink: k === cat ? '#0e2440' : '#8a93a1',
+      sub: k === cat ? '#c9a24b' : '#b6bdc7',
+      click: () => this.set({ cat: k, tone: 'all', spec: 'all', page: 1 }),
+    }));
+
+    const toneChips = this.TONES.map(([v, label]) => ({
+      label, on: v === tone ? '1' : '0', click: () => this.set({ tone: v, page: 1 }),
+    }));
+
+    const specSet = [...new Set(cur.items.map(p => p.spec))];
+    const specChips = [{ label: '전체', on: spec === 'all' ? '1' : '0', click: () => this.set({ spec: 'all', page: 1 }) }]
+      .concat(specSet.map(s => ({ label: s, on: s === spec ? '1' : '0', click: () => this.set({ spec: s, page: 1 }) })));
+
+    const pages = Array.from({ length: maxPage }, (_, i) => ({
+      n: i + 1, on: (i + 1) === safePage ? '1' : '0', click: () => this.goPage(i + 1, maxPage),
+    }));
+
+    return {
+      tabs, toneChips, specChips, total, sort, setSort: this.setSort,
+      pageItems, hasItems: total > 0, noItems: total === 0,
+      pages, showPager: maxPage > 1,
+      prevPage: () => this.goPage(safePage - 1, maxPage),
+      nextPage: () => this.goPage(safePage + 1, maxPage),
+    };
+  }
+}
+
+</script>
 </body>
 </html>

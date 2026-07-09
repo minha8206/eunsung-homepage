@@ -1,0 +1,6 @@
+[
+  { "name": "바이컬 화이트", "code": "ES-001", "collection": "바이컬", "image": "https://minha8206.github.io/eunsung-homepage/images/bmc/bmc-es001.jpg" },
+  { "name": "바이컬 브라운", "code": "ES-003", "collection": "바이컬", "image": "https://minha8206.github.io/eunsung-homepage/images/bmc/bmc-es003.jpg" },
+  { "name": "바이컬 그레이", "code": "ES-002", "collection": "바이컬", "image": "https://minha8206.github.io/eunsung-homepage/images/bmc/bmc-es008.jpg" },
+  { "name": "바이컬 밀키", "code": "ES-004", "collection": "바이컬", "image": "https://minha8206.github.io/eunsung-homepage/images/bmc/bmc-es007.jpg" }
+]

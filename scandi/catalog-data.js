@@ -1,0 +1,207 @@
+// 은성 쇼룸 카탈로그 — LX하우시스 실제 라인업 기준 (TERACANTO / VIATERA / HIMACS 공식 컬러명)
+// 이미지는 임시 텍스처입니다. 공식 제품 이미지를 받으면 각 제품의 img 값만 교체하세요.
+
+export const TONE_LABEL = { white: '화이트', beige: '베이지', gray: '그레이', dark: '다크' };
+
+export const CATALOG = {
+  PORCELAIN: {
+    ko: '포세린', en: 'PORCELAIN',
+    items: [], // fetch로 채워짐 — getCatalog() 참고
+  },
+  VIATERA: {
+    ko: '비아테라', en: 'VIATERA',
+    items: [], // fetch로 채워짐 — getCatalog() 참고
+  },
+  HIMACS: {
+    ko: '하이막스', en: 'HIMACS',
+    items: [], // fetch로 채워짐 — getCatalog() 참고
+  },
+  BMC: {
+    ko: 'BMC 인조대리석', en: 'BMC',
+    items: [], // fetch로 채워짐 — getCatalog() 참고
+  },
+};
+
+export function findProduct(code) {
+  for (const key of Object.keys(CATALOG)) {
+    const p = CATALOG[key].items.find(it => it.code === code);
+    if (p) return { ...p, catKey: key, catKo: CATALOG[key].ko, catEn: CATALOG[key].en };
+  }
+  return null;
+}
+
+// ── HIMACS 실데이터 (data/products-himacs.json, LX지인 하이막스 126개) ──
+// 이름 키워드로 색상(tone)을 자동 추정합니다. 공식 컬러 분류가 아니므로
+// 색상 필터 결과가 어색하면 이 표를 조정하세요.
+const HM_DARK = ['블랙','나이트','차콜','에보니','오닉스','다크','시크','니로','버건디','엄버','딥','쉐도우','미드나잇','커피','레드','에메랄드','에머랄드','사파이어','루비'];
+const HM_GRAY = ['그레이','스틸','실버','스모크','콘크리트','윈디','쿨','슬레이트','미스트','더스크','그린'];
+const HM_BEIGE = ['베이지','크림','아이보리','샌드','아몬드','코튼','마키아토','다즐링','카모마일','쿠키','클레이','캐니언','플루마','앙고라','테라','파비아','비스크','에크루','리넨','헤리티지','스웨이드','바나나','오렌지'];
+const HM_WHITE = ['화이트','블랑','스노우','새틴','알파인','다이아몬드','고스트','아틱','비앙코','펄','밀키','아이스','오팔'];
+const HM_OVERRIDE = { '아이스버그': 'gray', '토라노': 'white', '제미니': 'white', '산타아나': 'dark', '모닝캄': 'white', '스와니': 'gray', '코로나': 'beige', '마자린 블루': 'gray' };
+const HM_COLLECTION_DEFAULT = { '오로라&칼라카타': 'white', '그라빌라': 'beige', '그라나이트': 'gray', '솔리드': 'gray', '인텐스 울트라': 'gray', '루센트': 'dark', '콘크리트': 'gray', '볼케닉스': 'dark', '루시아': 'white', '에스터': 'gray', '테라조': 'beige' };
+const HM_STYLE = { '오로라&칼라카타': '마블 · Marble', '그라빌라': '스톤 · Stone', '그라나이트': '스톤 · Stone', '솔리드': '솔리드 · Solid', '인텐스 울트라': '솔리드 · Solid', '루센트': '솔리드 · Solid', '콘크리트': '콘크리트 · Concrete', '볼케닉스': '스톤 · Stone', '루시아': '마블 · Marble', '에스터': '솔리드 · Solid', '테라조': '테라조 · Terrazzo' };
+const HM_DESC = {
+  white: '하이막스 화이트 계열 특유의 깨끗하고 안정된 인상 — 이음매 없는 시공으로 어떤 공간에도 무난하게 어울립니다.',
+  beige: '따뜻한 웜톤의 하이막스 베이지 계열 — 우드 소재와 배색했을 때 특히 잘 어울리는 컬러입니다.',
+  gray: '차분한 뉴트럴 톤의 하이막스 그레이 계열 — 모던하고 도시적인 공간 연출에 적합합니다.',
+  dark: '깊이감 있는 하이막스 다크 톤 — 공간에 무게감과 고급스러운 존재감을 더합니다.',
+};
+const HM_SPECS = ['760×3680 · 12T', '910×3680 · 12T'];
+
+function classifyHimacsTone(name, collection) {
+  if (HM_OVERRIDE[name]) return HM_OVERRIDE[name];
+  for (const k of HM_DARK) if (name.includes(k)) return 'dark';
+  for (const k of HM_GRAY) if (name.includes(k)) return 'gray';
+  for (const k of HM_BEIGE) if (name.includes(k)) return 'beige';
+  for (const k of HM_WHITE) if (name.includes(k)) return 'white';
+  return HM_COLLECTION_DEFAULT[collection] || 'white';
+}
+
+// ── PORCELAIN(TERACANTO) 실데이터 (data/products-terracanto.json, LX지인 포세린 23개) ──
+const PC_DARK_STRONG = ['블랙'];
+const PC_GRAY_STRONG = ['그레이', '그리지오'];
+const PC_BEIGE_STRONG = ['베이지', '크림', '아이보리'];
+const PC_WHITE_STRONG = ['화이트', '비앙코'];
+const PC_DARK_WEAK = [];
+const PC_GRAY_WEAK = ['그라나이트', '실버', '스틸'];
+const PC_BEIGE_WEAK = ['트래버티노', '트레버티노', '크레모', '델리카토', '도라토'];
+const PC_WHITE_WEAK = ['칼라카타', '스타투아리오', '앱솔루트', '히말라야'];
+const PC_COLLECTION_DEFAULT = { '라이트 마블 룩': 'white', '다크 마블 룩': 'dark', '콘크리트 룩': 'gray', '스톤 룩': 'beige' };
+const PC_STYLE = { '라이트 마블 룩': '마블 · Marble', '다크 마블 룩': '마블 · Marble', '콘크리트 룩': '콘크리트 · Concrete', '스톤 룩': '스톤 · Stone' };
+const PC_DESC = {
+  white: 'TERACANTO 화이트 계열 특유의 맑고 정제된 인상 — 대형 슬랩으로 이음매를 최소화한 웅장한 면 연출이 가능합니다.',
+  beige: '따뜻한 웜톤의 TERACANTO 베이지 계열 — 내추럴한 우드 소재와 배색했을 때 특히 잘 어울립니다.',
+  gray: '차분한 뉴트럴 톤의 TERACANTO 그레이 계열 — 모던하고 도시적인 공간 연출에 적합합니다.',
+  dark: '깊이감 있는 TERACANTO 다크 톤 — 공간에 무게감과 고급스러운 존재감을 더합니다.',
+};
+const PC_SPECS = ['1600×3200 · 12T', '1600×3200 · 20T'];
+
+function classifyPorcelainTone(name, collection) {
+  for (const k of PC_DARK_STRONG) if (name.includes(k)) return 'dark';
+  for (const k of PC_GRAY_STRONG) if (name.includes(k)) return 'gray';
+  for (const k of PC_BEIGE_STRONG) if (name.includes(k)) return 'beige';
+  for (const k of PC_WHITE_STRONG) if (name.includes(k)) return 'white';
+  for (const k of PC_DARK_WEAK) if (name.includes(k)) return 'dark';
+  for (const k of PC_GRAY_WEAK) if (name.includes(k)) return 'gray';
+  for (const k of PC_BEIGE_WEAK) if (name.includes(k)) return 'beige';
+  for (const k of PC_WHITE_WEAK) if (name.includes(k)) return 'white';
+  return PC_COLLECTION_DEFAULT[collection] || 'white';
+}
+
+// ── VIATERA 실데이터 (data/products-viatera.json, LX지인 이스톤(비아테라) 70개) ──
+const VT_DARK = ['블랙', '오닉스', '마르퀴나', '시크'];
+const VT_GRAY = ['그레이', '실버', '콘크리트'];
+const VT_BEIGE = ['베이지', '골드', '카퍼'];
+const VT_WHITE = ['화이트', '펄', '칼라카타', '스완', '클라우드', '스노우'];
+const VT_OVERRIDE = { '칼라카타 골드': 'white' };
+const VT_COLLECTION_DEFAULT = { '럭셔리': 'beige', '플로라': 'white', '로열': 'beige', '문명': 'dark', '노블': 'beige', '모노': 'gray', '미러': 'dark', '멀티': 'dark', '퓨어': 'white', 'LEV': 'beige' };
+const VT_STYLE = { '럭셔리': '마블 · Marble', '플로라': '마블 · Marble', '로열': '마블 · Marble', '문명': '스톤 · Stone', '노블': '마블 · Marble', '모노': '솔리드 · Solid', '미러': '스톤 · Stone', '멀티': '마블 · Marble', '퓨어': '솔리드 · Solid', 'LEV': '마블 · Marble' };
+const VT_DESC = {
+  white: '비아테라 화이트 계열 특유의 맑고 정제된 인상 — 쿼츠 함량 최대 93%의 뛰어난 내구성으로 어떤 공간에도 무난하게 어울립니다.',
+  beige: '따뜻한 웜톤의 비아테라 베이지 계열 — 골드·카퍼 톤 베인이 우드 소재와 배색했을 때 특히 잘 어울립니다.',
+  gray: '차분한 뉴트럴 톤의 비아테라 그레이 계열 — 모던하고 도시적인 공간 연출에 적합합니다.',
+  dark: '깊이감 있는 비아테라 다크 톤 — 공간에 무게감과 고급스러운 존재감을 더합니다.',
+};
+const VT_SPECS = ['1630×3230 · 20T', '1630×3230 · 30T'];
+
+function classifyViateraTone(name, collection) {
+  if (VT_OVERRIDE[name]) return VT_OVERRIDE[name];
+  for (const k of VT_DARK) if (name.includes(k)) return 'dark';
+  for (const k of VT_GRAY) if (name.includes(k)) return 'gray';
+  for (const k of VT_BEIGE) if (name.includes(k)) return 'beige';
+  for (const k of VT_WHITE) if (name.includes(k)) return 'white';
+  return VT_COLLECTION_DEFAULT[collection] || 'white';
+}
+
+// ── BMC 실데이터 (data/products-bmc.json, 은성 자체 BMC 바이컬 라인 4종) ──
+const BMC_TONE = { '바이컬 화이트': 'white', '바이컬 브라운': 'dark', '바이컬 그레이': 'gray', '바이컬 밀키': 'white' };
+const BMC_STYLE = { '바이컬': '솔리드 · Solid' };
+const BMC_DESC = {
+  white: '포천 자체 공장에서 주문 치수로 성형하는 은성 BMC 화이트 톤 — 세면대·상판 일체형 제작이 가능합니다.',
+  beige: '포천 자체 공장에서 주문 치수로 성형하는 은성 BMC 베이지 톤 — 세면대·상판 일체형 제작이 가능합니다.',
+  gray: '포천 자체 공장에서 주문 치수로 성형하는 은성 BMC 그레이 톤 — 세면대·상판 일체형 제작이 가능합니다.',
+  dark: '포천 자체 공장에서 주문 치수로 성형하는 은성 BMC 다크 톤 — 세면대·상판 일체형 제작이 가능합니다.',
+};
+const BMC_SPECS = ['주문 성형 · 10T', '주문 성형 · 15T'];
+
+function classifyBmcTone(name) {
+  return BMC_TONE[name] || 'white';
+}
+
+function mapRealItems(raw, { classify, desc, style, styleDefault, specs, finish, brand, origin, material }) {
+  return raw.map((p, i) => {
+    const tone = classify(p.name, p.collection);
+    const spec = specs[i % specs.length];
+    const [size, thick] = spec.split(' · ');
+    return {
+      en: p.name, ko: p.collection, tone,
+      desc: desc[tone],
+      code: p.code, spec, size, thick,
+      finish,
+      style: style[p.collection] || styleDefault,
+      brand, origin, material,
+      img: p.image, tint: 'none',
+    };
+  });
+}
+
+let catalogLoaded = null;
+
+// data/products-himacs.json, data/products-terracanto.json을 fetch로 불러와
+// CATALOG.HIMACS.items / CATALOG.PORCELAIN.items를 채운 뒤 CATALOG를 반환합니다.
+// 여러 번 호출해도 fetch는 한 번만 실행됩니다.
+export function getCatalog() {
+  if (!catalogLoaded) {
+    catalogLoaded = Promise.all([
+      fetch('data/products-himacs.json').then(res => res.json()),
+      fetch('data/products-terracanto.json').then(res => res.json()),
+      fetch('data/products-viatera.json').then(res => res.json()),
+      fetch('data/products-bmc.json').then(res => res.json()),
+    ])
+      .then(([himacsRaw, terracantoRaw, viateraRaw, bmcRaw]) => {
+        CATALOG.HIMACS.items = mapRealItems(himacsRaw, {
+          classify: classifyHimacsTone, desc: HM_DESC, style: HM_STYLE, styleDefault: '솔리드 · Solid',
+          specs: HM_SPECS, finish: 'Matte', brand: 'LX Hausys HIMACS', origin: '한국', material: '아크릴 솔리드 서페이스',
+        });
+        CATALOG.PORCELAIN.items = mapRealItems(terracantoRaw, {
+          classify: classifyPorcelainTone, desc: PC_DESC, style: PC_STYLE, styleDefault: '스톤 · Stone',
+          specs: PC_SPECS, finish: 'Polished', brand: 'LX Hausys TERACANTO', origin: '이탈리아 (Made in Italy)', material: '포세린 슬랩 (TERACANTO)',
+        });
+        CATALOG.VIATERA.items = mapRealItems(viateraRaw, {
+          classify: classifyViateraTone, desc: VT_DESC, style: VT_STYLE, styleDefault: '마블 · Marble',
+          specs: VT_SPECS, finish: 'Polished', brand: 'LX Hausys VIATERA', origin: '한국 · 미국', material: '엔지니어드 스톤 (쿼츠 최대 93%)',
+        });
+        CATALOG.BMC.items = mapRealItems(bmcRaw, {
+          classify: classifyBmcTone, desc: BMC_DESC, style: BMC_STYLE, styleDefault: '솔리드 · Solid',
+          specs: BMC_SPECS, finish: 'Matte', brand: '(주)은성 BMC', origin: '한국 (포천 자체 공장)', material: 'BMC 인조대리석',
+        });
+        return CATALOG;
+      })
+      .catch(err => { console.error('카탈로그 데이터 로드 실패', err); return CATALOG; });
+  }
+  return catalogLoaded;
+}
+
+// 레퍼런스 시공 사진 (임시)
+export const REFERENCES = {
+  white: [
+    { img: 'assets/hero-kitchen.png', label: '주방 아일랜드 상판 시공' },
+    { img: 'assets/lobby-cream.png', label: '호텔 로비 벽면 마감' },
+    { img: 'assets/slab-wall.png', label: '거실 아트월 슬랩 시공' },
+  ],
+  beige: [
+    { img: 'assets/island-marble.png', label: '주방 아일랜드 상판 시공' },
+    { img: 'assets/lobby-cream.png', label: '라운지 카운터 마감' },
+    { img: 'assets/hero-kitchen.png', label: '레지던스 주방 시공' },
+  ],
+  gray: [
+    { img: 'assets/island-quartzite.png', label: '아일랜드 상판 시공' },
+    { img: 'assets/slab-wall.png', label: '욕실 벽면 슬랩 시공' },
+    { img: 'assets/hero-kitchen.png', label: '주방 전체 마감' },
+  ],
+  dark: [
+    { img: 'assets/penthouse-onyx.png', label: '펜트하우스 아트월 시공' },
+    { img: 'assets/marble-dark.png', label: '카운터 상판 시공' },
+    { img: 'assets/slab-wall.png', label: '라운지 벽면 마감' },
+  ],
+};
