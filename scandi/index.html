@@ -8,10 +8,10 @@
 <body>
 <!-- ===================== SCROLL-EXPAND VIDEO HERO (outside x-dc: framework re-renders/hides x-dc's own subtree, which would orphan our JS-controlled nodes) ===================== -->
 <section class="vhero" id="videoHero">
-  <div class="vhero-bg" id="vheroBg" style="background-image:url('assets/hero-kitchen.png')"></div>
+  <div class="vhero-bg" id="vheroBg" style="background-image:url('assets/showroom-hero.jpg')"></div>
   <div class="vhero-stage">
     <div class="vhero-media" id="vheroMedia">
-      <video id="vheroVideo" src="assets/video/hero-scroll.mp4" poster="assets/hero-kitchen.png" muted loop playsinline autoplay preload="auto"></video>
+      <video id="vheroVideo" src="assets/video/hero-scroll.mp4" poster="assets/showroom-hero.jpg" muted loop playsinline preload="auto"></video>
       <div class="vhero-media-shade"></div>
     </div>
     <div class="vhero-title">
@@ -31,7 +31,7 @@
 <style>
 /* ===== VIDEO SCROLL-EXPAND HERO ===== */
 .vhero{position:relative;width:100%;overflow:hidden;background:#0e0a06}
-.vhero-bg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:0}
+.vhero-bg{position:absolute;inset:0;background-size:contain;background-position:center;background-repeat:no-repeat;z-index:0}
 .vhero-bg::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.25)}
 .vhero-stage{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100dvh;min-height:640px}
 .vhero-media{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border-radius:18px;overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,.45);z-index:1}
@@ -86,10 +86,12 @@ html{scroll-behavior:smooth}
 .glass-nav{position:absolute;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:18px 30px;background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,0));backdrop-filter:blur(2px)}
 a{color:#a8763f}
 a:hover{color:#c9a24b}
-.nav-mid{display:flex;gap:28px;align-items:center}
-.nav-mid a{color:inherit;font:500 12px/1 'Manrope';letter-spacing:.14em;text-decoration:none;position:relative;padding:4px 0;white-space:nowrap}
+.nav-mid{display:flex;align-items:center;gap:48px}
+.nav-mid a{color:inherit;font:500 16px/1 'Manrope';letter-spacing:.02em;text-decoration:none;position:relative;padding:4px 0;white-space:nowrap;transition:color .2s}
 .nav-mid a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:1.5px;background:currentColor;transition:width .35s}
+.nav-mid a:hover{color:#bf8e5a}
 .nav-mid a:hover::after{width:100%}
+.nav-drop{display:inline-flex;align-items:center}
 .nav-right{display:flex;align-items:center;gap:11px;flex-shrink:0}
 .nav-ic{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;cursor:pointer;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.08);transition:.3s}
 .nav-ic:hover{background:rgba(255,255,255,.22)}
@@ -108,11 +110,27 @@ a:hover{color:#c9a24b}
 .hs.on .kb{animation:kbA 13s ease-out both}
 .hs.alt.on .kb{animation:kbB 13s ease-out both}
 .hdot{width:8px;height:8px;border-radius:5px;background:rgba(255,255,255,.28);cursor:pointer;transition:.5s;border:none;padding:0}
-.hero-s{position:absolute;inset:0;opacity:0;transition:opacity 2.2s ease;pointer-events:none;overflow:hidden}
-.hero-s.on{opacity:1;pointer-events:auto}
-.hero-kb{position:absolute;inset:-6%}
-.hero-s.on .hero-kb{animation:kbA 15s ease-out both}
-.hero-dot{width:8px;height:8px;border-radius:5px;background:rgba(160,150,130,.4);cursor:pointer;transition:.5s;border:none;padding:0}
+@keyframes heroKbZoom{0%{transform:scale(1)}100%{transform:scale(1.08)}}
+.hero-kb-bg{position:relative;flex:0 0 auto;width:1024px;max-width:92vw;aspect-ratio:1024/572;background-size:cover;background-position:center;background-repeat:no-repeat;border-radius:4px;box-shadow:0 30px 70px -20px rgba(14,36,64,.35);animation:heroKbZoom 20s ease-out forwards;overflow:hidden}
+
+/* ===== MATERIALS · HORIZONTAL BANNERS ===== */
+.mbanner{display:flex;height:380px;border-radius:14px;overflow:hidden;box-shadow:0 20px 50px -30px rgba(14,36,64,.5);margin-bottom:24px}
+.mbanner-image{flex:1 1 auto;position:relative;background-size:cover;background-position:center}
+.mbanner-image::after{content:'';position:absolute;inset:0;background:rgba(14,20,30,.22)}
+.mbanner-panel{flex:0 0 min(42%,460px);display:flex;flex-direction:column;justify-content:center;padding:36px 44px;background:rgba(255,253,249,.94)}
+.mbanner-eyebrow{font:600 10px 'Manrope';letter-spacing:.14em;color:#b8924a}
+.mbanner-title{font:500 32px 'Cormorant Garamond';color:#0e2440}
+.mbanner-desc-ko{font:400 13.5px/1.72 'Manrope';color:rgba(14,36,64,.6);margin-bottom:4px}
+.mbanner-desc-en{font:400 11.5px/1.6 'Manrope';color:rgba(14,36,64,.4);margin-bottom:18px}
+.mbanner-chips{display:flex;flex-wrap:wrap;gap:7px}
+.mbanner-chip{font:600 10px 'Manrope';letter-spacing:.06em;color:#0e2440;background:rgba(14,36,64,.06);padding:6px 11px;border-radius:20px}
+.mbanner-badge{display:flex;align-items:center;gap:6px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(14,36,64,.08)}
+.mbanner-badge span{font:700 9.5px 'Manrope';letter-spacing:.1em;color:#a8763f}
+@media (max-width:768px){
+  .mbanner{flex-direction:column;height:auto}
+  .mbanner-image{height:220px;order:1}
+  .mbanner-panel{order:2;flex:none;width:100%}
+}
 .nav-drop-menu{position:absolute;top:24px;left:50%;transform:translate(-50%,6px);opacity:0;visibility:hidden;transition:.3s ease;background:rgba(251,250,250,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(14,36,64,.08);border-radius:10px;box-shadow:0 26px 54px -22px rgba(14,36,64,.4);padding:10px;min-width:190px;z-index:40}
 .nav-drop:hover .nav-drop-menu{opacity:1;visibility:visible;transform:translate(-50%,0)}
 .nav-drop-item{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:10px 14px;font:600 11px 'Manrope';letter-spacing:.08em;color:#0e2440;text-decoration:none;border-radius:7px;transition:.25s}
@@ -132,7 +150,7 @@ a:hover{color:#c9a24b}
     <svg width="34" height="34" viewBox="0 0 92 92"><circle cx="46" cy="46" r="43" fill="none" stroke="#0e2440" stroke-width="4"></circle><circle cx="46" cy="46" r="36" fill="none" stroke="#0e2440" stroke-width="1.2"></circle><text x="46" y="57" text-anchor="middle" style="font:600 30px 'Cormorant Garamond';fill:#0e2440">ES</text><path d="M46 11 L49 16 L46 21 L43 16 Z" fill="#c9a24b"></path><path d="M46 71 L49 76 L46 81 L43 76 Z" fill="#c9a24b"></path></svg>
     <span style="font:600 22px 'Cormorant Garamond';letter-spacing:.22em;line-height:1">EUNSUNG</span>
   </a>
-  <nav class="nav-mid" style="color:#0e2440">
+  <nav class="nav-mid" style="color:#1a1a1a">
     <a href="about.html">회사소개</a>
     <a href="index.html#materials">소재</a>
     <div class="nav-drop" style="position:relative">
@@ -153,124 +171,83 @@ a:hover{color:#c9a24b}
   </div>
 </div>
 <!-- ===================== HERO · FULLSCREEN CROSSFADE ===================== -->
-<div id="top" style="position:relative;height:100vh;width:100vw;min-height:640px;overflow:hidden;background:#0e0a06">
+<div id="top" style="position:relative;width:100%;overflow:hidden;background:#f5f2ec;padding:120px 8vw">
 
-  <!-- ============ HERO SLIDE 1 · LUXURY KITCHEN ============ -->
-  <div class="hero-s" data-hero-slide>
-    <div style="position:absolute;inset:0;background:url('assets/island-quartzite.png') center 64%/cover no-repeat"></div>
-  </div>
+  <!-- background watermark -->
+  <div style="position:absolute;right:4vw;bottom:6%;z-index:0;pointer-events:none;user-select:none;font:700 clamp(48px,8vw,150px)/1 'Cormorant Garamond';letter-spacing:.02em;color:#eae5dc;white-space:nowrap">EUNSUNG</div>
 
-  <!-- ============ HERO SLIDE 2 · SLAB GALLERY ============ -->
-  <div class="hero-s" data-hero-slide>
-    <div style="position:absolute;inset:0;background:linear-gradient(180deg,#15171a,#2b2e33 46%,#3a3e44 72%,#26292d)"></div>
-    <!-- ceiling spots -->
-    <div style="position:absolute;left:8%;right:8%;top:5%;display:flex;justify-content:space-between">
-      <div style="width:10px;height:10px;border-radius:50%;background:radial-gradient(circle,#fff8e8,#c8b285 60%,transparent 80%);box-shadow:0 0 24px 8px rgba(255,240,200,.35)"></div>
-      <div style="width:10px;height:10px;border-radius:50%;background:radial-gradient(circle,#fff8e8,#c8b285 60%,transparent 80%);box-shadow:0 0 24px 8px rgba(255,240,200,.35)"></div>
-      <div style="width:10px;height:10px;border-radius:50%;background:radial-gradient(circle,#fff8e8,#c8b285 60%,transparent 80%);box-shadow:0 0 24px 8px rgba(255,240,200,.35)"></div>
-      <div style="width:10px;height:10px;border-radius:50%;background:radial-gradient(circle,#fff8e8,#c8b285 60%,transparent 80%);box-shadow:0 0 24px 8px rgba(255,240,200,.35)"></div>
-      <div style="width:10px;height:10px;border-radius:50%;background:radial-gradient(circle,#fff8e8,#c8b285 60%,transparent 80%);box-shadow:0 0 24px 8px rgba(255,240,200,.35)"></div>
-      <div style="width:10px;height:10px;border-radius:50%;background:radial-gradient(circle,#fff8e8,#c8b285 60%,transparent 80%);box-shadow:0 0 24px 8px rgba(255,240,200,.35)"></div>
+  <div style="position:relative;z-index:5;display:flex;flex-wrap:wrap;align-items:center;gap:60px;max-width:1280px;margin:0 auto">
+    <div style="flex:1 1 420px;max-width:520px">
+      <div style="display:flex;align-items:center;gap:13px;margin-bottom:34px">
+        <div style="width:38px;height:1.5px;background:#e3c789"></div>
+        <div style="font:600 10px 'Manrope';letter-spacing:.4em;color:#b8924a">EUNSUNG · CERAMIC STONE SURFACE</div>
+      </div>
+      <div style="font:500 clamp(48px,6.4vw,100px)/1.04 'Cormorant Garamond';color:#0a0908">Ceramic, for the<br>well-lived home.</div>
+      <div style="width:72px;height:2px;background:#c9a24b;margin:36px 0 26px"></div>
+      <div style="font:400 16px/1.9 'Manrope';color:rgba(14,36,64,.6);max-width:520px">주방 아일랜드부터 욕실, 파사드까지 — 포천 팩토리에서 가공한 대형 세라믹 슬랩이 하이엔드 레지던스의 격을 완성합니다.</div>
+      <a href="showroom.html" style="margin-top:44px;display:inline-flex;align-items:center;gap:11px;padding:17px 40px;background:#c9a24b;color:#16202c;font:600 12px 'Manrope';letter-spacing:.26em;text-decoration:none;transition:.35s;border-radius:2px" style-hover="background:#e3c789">쇼룸 입장 · ENTER SHOWROOM</a>
     </div>
-    <!-- slab row -->
-    <div style="position:absolute;left:0;right:0;bottom:16%;height:64%;display:flex;justify-content:center;align-items:flex-end;gap:2.2vw;padding:0 6vw">
-      <div style="width:11vw;height:88%;background:url('assets/marble-dark.png') 30% 40%/cover no-repeat;box-shadow:0 40px 70px rgba(0,0,0,.55),inset 0 0 0 1px rgba(255,255,255,.08);position:relative;overflow:hidden"><div style="position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.14) 46%,transparent 60%)"></div></div>
-      <div style="width:11vw;height:96%;background:url('assets/marble-white.png') 20% 30%/cover no-repeat;box-shadow:0 40px 70px rgba(0,0,0,.55),inset 0 0 0 1px rgba(255,255,255,.08);position:relative;overflow:hidden"><div style="position:absolute;inset:0;background:linear-gradient(115deg,transparent 34%,rgba(255,255,255,.2) 50%,transparent 64%)"></div></div>
-      <div style="width:11vw;height:90%;background:url('assets/marble-gold.png') 45% 45%/cover no-repeat;box-shadow:0 40px 70px rgba(0,0,0,.55),inset 0 0 0 1px rgba(255,255,255,.08);position:relative;overflow:hidden"><div style="position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.16) 46%,transparent 60%)"></div></div>
-      <div style="width:11vw;height:98%;background:url('assets/mw2.png') 50% 40%/cover no-repeat;box-shadow:0 40px 70px rgba(0,0,0,.55),inset 0 0 0 1px rgba(255,255,255,.08);position:relative;overflow:hidden"><div style="position:absolute;inset:0;background:linear-gradient(115deg,transparent 36%,rgba(255,255,255,.2) 52%,transparent 66%)"></div></div>
-      <div style="width:11vw;height:92%;background:url('assets/marble-dark.png') 70% 60%/cover no-repeat;filter:hue-rotate(8deg);box-shadow:0 40px 70px rgba(0,0,0,.55),inset 0 0 0 1px rgba(255,255,255,.08);position:relative;overflow:hidden"><div style="position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.13) 46%,transparent 60%)"></div></div>
-      <div style="width:11vw;height:95%;background:url('assets/marble-gold.png') 20% 60%/cover no-repeat;box-shadow:0 40px 70px rgba(0,0,0,.55),inset 0 0 0 1px rgba(255,255,255,.08);position:relative;overflow:hidden"><div style="position:absolute;inset:0;background:linear-gradient(115deg,transparent 32%,rgba(255,255,255,.17) 48%,transparent 62%)"></div></div>
-      <div style="width:11vw;height:89%;background:url('assets/marble-white.png') 65% 55%/cover no-repeat;box-shadow:0 40px 70px rgba(0,0,0,.55),inset 0 0 0 1px rgba(255,255,255,.08);position:relative;overflow:hidden"><div style="position:absolute;inset:0;background:linear-gradient(115deg,transparent 34%,rgba(255,255,255,.2) 50%,transparent 64%)"></div></div>
-    </div>
-    <!-- pebble / floor strip -->
-    <div style="position:absolute;left:0;right:0;bottom:0;height:16.5%;background:linear-gradient(180deg,#43474d,#232629 78%)"></div>
-    <div style="position:absolute;left:0;right:0;bottom:13.5%;height:3.5%;background:repeating-radial-gradient(circle at 6px 4px,#9aa0a6 0 2px,#6d7278 2px 4px,#4b4f54 4px 6px);opacity:.5"></div>
-    <!-- floor reflections -->
-    <div style="position:absolute;left:0;right:0;bottom:2%;height:11%;display:flex;justify-content:center;gap:2.2vw;padding:0 6vw;opacity:.16;transform:scaleY(-1);filter:blur(2px)">
-      <div style="width:11vw;background:url('assets/marble-dark.png') 30% 40%/cover no-repeat"></div>
-      <div style="width:11vw;background:url('assets/marble-white.png') 20% 30%/cover no-repeat"></div>
-      <div style="width:11vw;background:url('assets/marble-gold.png') 45% 45%/cover no-repeat"></div>
-      <div style="width:11vw;background:url('assets/mw2.png') 50% 40%/cover no-repeat"></div>
-      <div style="width:11vw;background:url('assets/marble-dark.png') 70% 60%/cover no-repeat"></div>
-      <div style="width:11vw;background:url('assets/marble-gold.png') 20% 60%/cover no-repeat"></div>
-      <div style="width:11vw;background:url('assets/marble-white.png') 65% 55%/cover no-repeat"></div>
-    </div>
-    <!-- soft top vignette -->
-    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,12,.55),transparent 30%,transparent 75%,rgba(10,10,12,.45))"></div>
-  </div>
 
-  <!-- dark overlay for legibility (flat, no blur) -->
-  <div style="position:absolute;inset:0;background:rgba(0,0,0,.32);z-index:2;pointer-events:none"></div>
-
-  <!-- headline overlay -->
-  <div style="position:absolute;left:0;right:0;top:0;bottom:0;z-index:5;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:0 8vw;max-width:900px">
-    <div style="display:flex;align-items:center;gap:13px;margin-bottom:34px">
-      <div style="width:38px;height:1.5px;background:#e3c789"></div>
-      <div style="font:600 10px 'Manrope';letter-spacing:.4em;color:rgba(243,239,230,.85)">EUNSUNG · CERAMIC STONE SURFACE</div>
-    </div>
-    <div style="font:500 clamp(48px,6.4vw,100px)/1.04 'Cormorant Garamond';color:#f8f5ef;text-shadow:0 16px 50px rgba(0,0,0,.5)">Ceramic, for the<br>well-lived home.</div>
-    <div style="width:72px;height:2px;background:#c9a24b;margin:36px 0 26px"></div>
-    <div style="font:400 16px/1.9 'Manrope';color:rgba(243,239,230,.82);max-width:520px">주방 아일랜드부터 욕실, 파사드까지 — 포천 팩토리에서 가공한 대형 세라믹 슬랩이 하이엔드 레지던스의 격을 완성합니다.</div>
-    <a href="showroom.html" style="margin-top:44px;display:inline-flex;align-items:center;gap:11px;padding:17px 40px;background:#c9a24b;color:#16202c;font:600 12px 'Manrope';letter-spacing:.26em;text-decoration:none;transition:.35s;border-radius:2px" style-hover="background:#e3c789">쇼룸 입장 · ENTER SHOWROOM</a>
-  </div>
-
-  <!-- indicator -->
-  <div style="position:absolute;left:50%;bottom:40px;transform:translateX(-50%);z-index:20;display:flex;align-items:center;gap:10px">
-    <button class="hero-dot" data-hero-dot></button>
-    <button class="hero-dot" data-hero-dot></button>
+    <!-- ============ SHOWROOM CORRIDOR PHOTO (55.jpg) ============ -->
+    <div class="hero-kb-bg" style="background-image:url('assets/showroom-corridor.jpg')"></div>
   </div>
 </div>
 
 <!-- ===================== MATERIALS ===================== -->
-<section id="materials" style="background:#f5f2ec;padding:120px 5vw;scroll-margin-top:64px">
+<section id="materials" style="background:#ede9e1;padding:120px 5vw;scroll-margin-top:64px">
   <div style="max-width:1280px;margin:0 auto">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:28px;margin-bottom:60px">
       <div>
+        <div style="width:60px;height:1px;background:#bf8e5a;margin-bottom:16px"></div>
         <div style="font:600 12px 'Manrope';letter-spacing:.42em;color:#b8924a;margin-bottom:16px">MATERIALS · 소재</div>
         <div style="font:500 clamp(38px,5vw,64px)/1.02 'Cormorant Garamond';color:#0e2440">Four surfaces.<br>One standard.</div>
         <div style="margin-top:18px;font:400 13.5px/1.8 'Manrope';color:rgba(14,36,64,.5);max-width:460px">2009년 BMC 인조대리석 가공 전문으로 출발해, 세라믹·E-Stone·MMA·BMC 전 라인업을 다루는 종합 표면재 기업으로 성장했습니다.</div>
       </div>
       <div style="max-width:420px"><div style="font:400 15px/1.85 'Manrope';color:rgba(14,36,64,.62)">성형 컴파운드부터 대형 세라믹까지, 은성의 모든 표면재는 포천 공장에서 하나의 정밀 기준으로 가공됩니다.</div><div style="margin-top:8px;font:400 12.5px/1.7 'Manrope';color:rgba(14,36,64,.4)">From molded composites to large-format ceramic, every EUNSUNG surface is fabricated in our Pocheon facility to a single benchmark of precision.</div></div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px">
-      <div style="background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 20px 50px -30px rgba(14,36,64,.5);transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s" style-hover="transform:translateY(-10px);box-shadow:0 42px 74px -34px rgba(14,36,64,.55)">
-        <div style="height:220px;background:url('https://minha8206.github.io/eunsung-homepage/images/material-ceramic.webp') center/cover"></div>
-        <div style="padding:26px 24px 30px">
-          <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px"><div style="font:500 27px 'Cormorant Garamond';color:#0e2440">포세린</div><div style="font:600 10px 'Manrope';letter-spacing:.14em;color:#b8924a">Ceramic · Porcelain</div></div>
-          <div style="font:400 13.5px/1.72 'Manrope';color:rgba(14,36,64,.6);margin-bottom:4px">최대 3200×1600mm 대형 소결 슬랩 — UV에 강하고 열에 강해 파사드·바닥·벽면에 이상적입니다.</div>
-          <div style="font:400 11.5px/1.6 'Manrope';color:rgba(14,36,64,.4);margin-bottom:18px">Large-format sintered slabs up to 3200×1600mm — UV-stable and heatproof for facades, floors and walls.</div>
-          <div style="display:flex;flex-wrap:wrap;gap:7px"><span style="font:600 10px 'Manrope';letter-spacing:.06em;color:#0e2440;background:rgba(14,36,64,.06);padding:6px 11px;border-radius:20px">UV-stable</span><span style="font:600 10px 'Manrope';letter-spacing:.06em;color:#0e2440;background:rgba(14,36,64,.06);padding:6px 11px;border-radius:20px">Heatproof</span><span style="font:600 10px 'Manrope';letter-spacing:.06em;color:#0e2440;background:rgba(14,36,64,.06);padding:6px 11px;border-radius:20px">Large-format</span></div>
-          <div style="display:flex;align-items:center;gap:6px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(14,36,64,.08)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#a8763f" stroke-width="2"><path d="M12 2l2.4 6.6L21 9l-5 4.6L17.4 21 12 17.3 6.6 21 8 13.6 3 9l6.6-.4z"/></svg><span style="font:700 9.5px 'Manrope';letter-spacing:.1em;color:#a8763f">LX Hausys 공식 딜러</span></div>
+    <div>
+      <!-- 포세린 (panel right) -->
+      <div class="mbanner">
+        <div class="mbanner-image" style="background-image:url('assets/material-porcelain.jpg')"></div>
+        <div class="mbanner-panel">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">포세린</div><div class="mbanner-eyebrow" style="margin-bottom:0">Ceramic · Porcelain</div></div>
+          <div class="mbanner-desc-ko">최대 3200×1600mm 대형 소결 슬랩 — UV에 강하고 열에 강해 파사드·바닥·벽면에 이상적입니다.</div>
+          <div class="mbanner-desc-en">Large-format sintered slabs up to 3200×1600mm — UV-stable and heatproof for facades, floors and walls.</div>
+          <div class="mbanner-chips"><span class="mbanner-chip">UV-stable</span><span class="mbanner-chip">Heatproof</span><span class="mbanner-chip">Large-format</span></div>
+          <div class="mbanner-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#a8763f" stroke-width="2"><path d="M12 2l2.4 6.6L21 9l-5 4.6L17.4 21 12 17.3 6.6 21 8 13.6 3 9l6.6-.4z"/></svg><span>LX Hausys 공식 딜러</span></div>
         </div>
       </div>
-      <div style="background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 20px 50px -30px rgba(14,36,64,.5);transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s" style-hover="transform:translateY(-10px);box-shadow:0 42px 74px -34px rgba(14,36,64,.55)">
-        <div style="height:220px;background:url('https://minha8206.github.io/eunsung-homepage/images/material-estone.webp') center/cover"></div>
-        <div style="padding:26px 24px 30px">
-          <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px"><div style="font:500 27px 'Cormorant Garamond';color:#0e2440">비아테라</div><div style="font:600 10px 'Manrope';letter-spacing:.14em;color:#b8924a">엔지니어드 스톤 · E-Stone</div></div>
-          <div style="font:400 13.5px/1.72 'Manrope';color:rgba(14,36,64,.6);margin-bottom:4px">천연석의 깊이와 산업적 일관성을 겸비한 소재 — 스크래치와 오염에 강해 매일 쓰는 조리대에 적합합니다.</div>
-          <div style="font:400 11.5px/1.6 'Manrope';color:rgba(14,36,64,.4);margin-bottom:18px">The depth of natural stone with industrial consistency — scratch- and stain-resistant for daily worktops.</div>
-          <div style="display:flex;flex-wrap:wrap;gap:7px"><span style="font:600 10px 'Manrope';letter-spacing:.06em;color:#0e2440;background:rgba(14,36,64,.06);padding:6px 11px;border-radius:20px">Scratch-proof</span><span style="font:600 10px 'Manrope';letter-spacing:.06em;color:#0e2440;background:rgba(14,36,64,.06);padding:6px 11px;border-radius:20px">Stain-proof</span><span style="font:600 10px 'Manrope';letter-spacing:.06em;color:#0e2440;background:rgba(14,36,64,.06);padding:6px 11px;border-radius:20px">High-density</span></div>
-          <div style="display:flex;align-items:center;gap:6px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(14,36,64,.08)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#a8763f" stroke-width="2"><path d="M12 2l2.4 6.6L21 9l-5 4.6L17.4 21 12 17.3 6.6 21 8 13.6 3 9l6.6-.4z"/></svg><span style="font:700 9.5px 'Manrope';letter-spacing:.1em;color:#a8763f">LX Hausys 공식 딜러</span></div>
+      <!-- 비아테라 (panel left) -->
+      <div class="mbanner">
+        <div class="mbanner-panel">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">비아테라</div><div class="mbanner-eyebrow" style="margin-bottom:0">엔지니어드 스톤 · E-Stone</div></div>
+          <div class="mbanner-desc-ko">천연석의 깊이와 산업적 일관성을 겸비한 소재 — 스크래치와 오염에 강해 매일 쓰는 조리대에 적합합니다.</div>
+          <div class="mbanner-desc-en">The depth of natural stone with industrial consistency — scratch- and stain-resistant for daily worktops.</div>
+          <div class="mbanner-chips"><span class="mbanner-chip">Scratch-proof</span><span class="mbanner-chip">Stain-proof</span><span class="mbanner-chip">High-density</span></div>
+          <div class="mbanner-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#a8763f" stroke-width="2"><path d="M12 2l2.4 6.6L21 9l-5 4.6L17.4 21 12 17.3 6.6 21 8 13.6 3 9l6.6-.4z"/></svg><span>LX Hausys 공식 딜러</span></div>
+        </div>
+        <div class="mbanner-image" style="background-image:url('assets/material-viatera.jpg')"></div>
+      </div>
+      <!-- 하이막스 (panel right) -->
+      <div class="mbanner">
+        <div class="mbanner-image" style="background-image:url('assets/material-himacs.jpg')"></div>
+        <div class="mbanner-panel">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">하이막스</div><div class="mbanner-eyebrow" style="margin-bottom:0">MMA 인조대리석</div></div>
+          <div class="mbanner-desc-ko">이음새 없이 곡선을 성형할 수 있는 따뜻한 질감의 아크릴 소재로, 완전한 보수도 가능합니다.</div>
+          <div class="mbanner-desc-en">Warm, fully repairable acrylic surface that thermoforms into seamless curves with no visible joins.</div>
+          <div class="mbanner-chips"><span class="mbanner-chip">Seamless</span><span class="mbanner-chip">Thermoformable</span><span class="mbanner-chip">Repairable</span></div>
+          <div class="mbanner-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#a8763f" stroke-width="2"><path d="M12 2l2.4 6.6L21 9l-5 4.6L17.4 21 12 17.3 6.6 21 8 13.6 3 9l6.6-.4z"/></svg><span>LX Hausys 공식 딜러</span></div>
         </div>
       </div>
-      <div style="background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 20px 50px -30px rgba(14,36,64,.5);transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s" style-hover="transform:translateY(-10px);box-shadow:0 42px 74px -34px rgba(14,36,64,.55)">
-        <div style="height:220px;background:url('https://minha8206.github.io/eunsung-homepage/images/material-mma.webp') center/cover"></div>
-        <div style="padding:26px 24px 30px">
-          <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px"><div style="font:500 27px 'Cormorant Garamond';color:#0e2440">하이막스</div><div style="font:600 10px 'Manrope';letter-spacing:.14em;color:#b8924a">MMA 인조대리석</div></div>
-          <div style="font:400 13.5px/1.72 'Manrope';color:rgba(14,36,64,.6);margin-bottom:4px">이음새 없이 곡선을 성형할 수 있는 따뜻한 질감의 아크릴 소재로, 완전한 보수도 가능합니다.</div>
-          <div style="font:400 11.5px/1.6 'Manrope';color:rgba(14,36,64,.4);margin-bottom:18px">Warm, fully repairable acrylic surface that thermoforms into seamless curves with no visible joins.</div>
-          <div style="display:flex;flex-wrap:wrap;gap:7px"><span style="font:600 10px 'Manrope';letter-spacing:.06em;color:#0e2440;background:rgba(14,36,64,.06);padding:6px 11px;border-radius:20px">Seamless</span><span style="font:600 10px 'Manrope';letter-spacing:.06em;color:#0e2440;background:rgba(14,36,64,.06);padding:6px 11px;border-radius:20px">Thermoformable</span><span style="font:600 10px 'Manrope';letter-spacing:.06em;color:#0e2440;background:rgba(14,36,64,.06);padding:6px 11px;border-radius:20px">Repairable</span></div>
-          <div style="display:flex;align-items:center;gap:6px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(14,36,64,.08)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#a8763f" stroke-width="2"><path d="M12 2l2.4 6.6L21 9l-5 4.6L17.4 21 12 17.3 6.6 21 8 13.6 3 9l6.6-.4z"/></svg><span style="font:700 9.5px 'Manrope';letter-spacing:.1em;color:#a8763f">LX Hausys 공식 딜러</span></div>
+      <!-- BMC (panel left) -->
+      <div class="mbanner" style="margin-bottom:0">
+        <div class="mbanner-panel">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">BMC</div><div class="mbanner-eyebrow" style="margin-bottom:0">성형 컴파운드</div></div>
+          <div class="mbanner-desc-ko">이음새 없는 위생 도기와 성형 건축 부재를 위한 내열성 열경화 컴파운드.</div>
+          <div class="mbanner-desc-en">Heat-resistant thermoset composite for seamless sanitary ware and molded architectural forms.</div>
+          <div class="mbanner-chips"><span class="mbanner-chip">Heat-resistant</span><span class="mbanner-chip">Hygienic</span><span class="mbanner-chip">Moldable</span></div>
         </div>
-      </div>
-      <div style="background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 20px 50px -30px rgba(14,36,64,.5);transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s" style-hover="transform:translateY(-10px);box-shadow:0 42px 74px -34px rgba(14,36,64,.55)">
-        <div style="height:220px;background:url('https://minha8206.github.io/eunsung-homepage/images/material-bmc.webp') center/cover"></div>
-        <div style="padding:26px 24px 30px">
-          <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px"><div style="font:500 27px 'Cormorant Garamond';color:#0e2440">BMC</div><div style="font:600 10px 'Manrope';letter-spacing:.14em;color:#b8924a">성형 컴파운드</div></div>
-          <div style="font:400 13.5px/1.72 'Manrope';color:rgba(14,36,64,.6);margin-bottom:4px">이음새 없는 위생 도기와 성형 건축 부재를 위한 내열성 열경화 컴파운드.</div>
-          <div style="font:400 11.5px/1.6 'Manrope';color:rgba(14,36,64,.4);margin-bottom:18px">Heat-resistant thermoset composite for seamless sanitary ware and molded architectural forms.</div>
-          <div style="display:flex;flex-wrap:wrap;gap:7px"><span style="font:600 10px 'Manrope';letter-spacing:.06em;color:#0e2440;background:rgba(14,36,64,.06);padding:6px 11px;border-radius:20px">Heat-resistant</span><span style="font:600 10px 'Manrope';letter-spacing:.06em;color:#0e2440;background:rgba(14,36,64,.06);padding:6px 11px;border-radius:20px">Hygienic</span><span style="font:600 10px 'Manrope';letter-spacing:.06em;color:#0e2440;background:rgba(14,36,64,.06);padding:6px 11px;border-radius:20px">Moldable</span></div>
-        </div>
+        <div class="mbanner-image" style="background-image:url('assets/material-bmc.jpg')"></div>
       </div>
     </div>
   </div>
@@ -489,32 +466,6 @@ class Component extends DCLogic {
     st.addEventListener('pointerup', up); st.addEventListener('pointercancel', up);
   }
 
-  componentDidMount() {
-    this.initHero();
-  }
-
-  initHero() {
-    const slides = document.querySelectorAll('[data-hero-slide]');
-    const dots = Array.from(document.querySelectorAll('[data-hero-dot]'));
-    if (!slides.length) return;
-    let i = 0;
-    const show = (n) => {
-      slides.forEach((s, k) => {
-        s.classList.toggle('on', k === n);
-        if (k === n) { const kb = s.querySelector('.hero-kb'); if (kb) { kb.style.animation = 'none'; void kb.offsetWidth; kb.style.animation = ''; } }
-      });
-      dots.forEach((d, k) => { const on = k === n; d.style.background = on ? '#c9a24b' : 'rgba(160,150,130,.4)'; d.style.width = on ? '26px' : '8px'; });
-    };
-    const arm = () => { clearInterval(this._heroTimer); this._heroTimer = setInterval(() => { i = (i + 1) % slides.length; show(i); }, 7000); };
-    show(0); arm();
-    dots.forEach((d, k) => d.addEventListener('click', () => { i = k; show(i); arm(); }));
-  }
-
-  componentWillUnmount() {
-    clearInterval(this._heroTimer);
-  }
-
-
   renderVals() {
     const all = this.PORTFOLIO.map(it => ({ ...it, open: () => this.openCase(it) }));
     const sel = this.state.caseSel;
@@ -554,6 +505,19 @@ class Component extends DCLogic {
     var showContent = false;
     var touchStartY = 0;
     var isMobile = window.innerWidth < 768;
+    var videoDuration = 0;
+
+    if (videoEl) {
+      videoEl.addEventListener('loadedmetadata', function () {
+        videoDuration = videoEl.duration || 0;
+      });
+    }
+
+    function scrubVideo() {
+      if (!videoEl || !videoDuration) return;
+      if (!videoEl.paused) videoEl.pause();
+      videoEl.currentTime = scrollProgress * videoDuration;
+    }
 
     function render() {
       var mediaWidth = 300 + scrollProgress * (isMobile ? 650 : 1250);
@@ -567,6 +531,7 @@ class Component extends DCLogic {
       wordL.style.transform = 'translateX(-' + textTranslate + 'vw)';
       wordR.style.transform = 'translateX(' + textTranslate + 'vw)';
       hintEl.style.opacity = String(Math.max(0, 1 - scrollProgress * 4));
+      if (!fullyExpanded) scrubVideo();
     }
 
     function setShowContent(v) {
@@ -581,6 +546,7 @@ class Component extends DCLogic {
       if (scrollProgress >= 1) {
         fullyExpanded = true;
         setShowContent(true);
+        if (videoEl) videoEl.play().catch(function () {});
       } else if (scrollProgress < 0.75) {
         setShowContent(false);
       }
@@ -639,7 +605,6 @@ class Component extends DCLogic {
     window.addEventListener('resize', onResize);
 
     render();
-    if (videoEl) videoEl.play().catch(function () {});
   }
 
   if (document.readyState === 'loading') {
