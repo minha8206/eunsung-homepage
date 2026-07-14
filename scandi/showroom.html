@@ -17,8 +17,8 @@ html{scroll-behavior:smooth}
 body{margin:0;background:#ffffff;font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 a{color:#a8763f;text-decoration:none}
 a:hover{color:#c9a24b}
-.nav-mid{display:flex;align-items:center;gap:48px}
-.nav-mid a{font:500 16px/1 'Manrope';letter-spacing:.02em;text-decoration:none;position:relative;padding:4px 0;white-space:nowrap;color:#1a1a1a;transition:color .2s}
+.nav-mid{display:flex;align-items:center;gap:32px}
+.nav-mid a{font:500 15px/1 'Manrope';letter-spacing:.02em;text-decoration:none;position:relative;padding:4px 0;white-space:nowrap;color:#1a1a1a;transition:color .2s}
 .nav-mid a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:1.5px;background:currentColor;transition:width .35s}
 .nav-mid a:hover{color:#bf8e5a}
 .nav-mid a:hover::after{width:100%}
@@ -41,14 +41,70 @@ a:hover{color:#c9a24b}
 .ctab{position:relative;background:none;border:none;padding:20px 4px 18px;cursor:pointer;transition:color .3s}
 .ctab::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:2px;background:#c9a24b;transform:scaleX(0);transition:transform .35s ease}
 .ctab[data-on="1"]::after{transform:scaleX(1)}
-.fchip{border:1px solid rgba(14,36,64,.16);background:#fff;border-radius:30px;padding:8px 17px;font:500 12px 'Manrope';color:#3d4757;cursor:pointer;transition:.25s;white-space:nowrap}
-.fchip:hover{border-color:#c9a24b;color:#a8763f}
-.fchip[data-on="1"]{background:#0e2440;border-color:#0e2440;color:#fff}
 .pgbtn{width:38px;height:38px;border:none;background:none;border-radius:50%;font:500 13px 'Manrope';color:#5a6474;cursor:pointer;transition:.25s;display:grid;place-items:center}
 .pgbtn:hover{background:rgba(201,162,75,.12);color:#a8763f}
 .pgbtn[data-on="1"]{background:#c9a24b;color:#fff;font-weight:700}
 select.srt{appearance:none;-webkit-appearance:none;border:1px solid rgba(14,36,64,.16);background:#fff url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%235a6474' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 14px center;border-radius:30px;padding:9px 36px 9px 17px;font:500 12px 'Manrope';color:#3d4757;cursor:pointer;outline:none}
 select.srt:hover{border-color:#c9a24b}
+.filter-bar{display:flex;align-items:center;gap:24px;flex-wrap:wrap;padding:18px 0 22px;border-bottom:1px solid rgba(14,36,64,.08);margin-bottom:24px}
+.filter-bar-sep{width:1px;height:18px;background:rgba(14,36,64,.1);flex-shrink:0}
+.filter-bar-group{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.filter-bar .filter-reset{margin-bottom:0;margin-left:auto}
+.filter-reset{font:600 11px 'Manrope';letter-spacing:.04em;color:#BF8E5A;background:none;border:none;cursor:pointer;padding:0;margin-bottom:22px;display:inline-flex;align-items:center;gap:5px}
+.filter-reset:hover{opacity:.7}
+.filter-label{font:600 10.5px 'Manrope';letter-spacing:.2em;color:#8a93a1;margin-bottom:16px;display:block}
+.filter-bar .filter-label{margin-bottom:0;flex-shrink:0}
+.filter-divider{height:1px;background:rgba(14,36,64,.08);margin:26px 0}
+.filter-search{position:relative}
+.filter-bar .filter-search{width:190px;flex-shrink:0}
+.filter-search input{width:100%;border:none;border-bottom:1.5px solid rgba(14,36,64,.16);background:transparent;padding:9px 24px 9px 2px;font:400 13.5px 'Manrope';color:#1c2733;outline:none;transition:border-color .2s}
+.filter-search input:focus{border-color:#BF8E5A}
+.filter-search input::placeholder{color:#a7afbb}
+.filter-search svg{position:absolute;right:2px;top:50%;transform:translateY(-50%);pointer-events:none;color:#a7afbb}
+.swatch-wrap{display:flex;flex-wrap:wrap;gap:12px}
+.swatch{width:22px;height:22px;border-radius:50%;padding:0;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease;flex:none;border:none}
+.swatch:hover{transform:scale(1.1)}
+.swatch[data-light="1"]{box-shadow:inset 0 0 0 1px rgba(14,36,64,.18)}
+.swatch[data-on="1"]{box-shadow:0 0 0 2px #fff,0 0 0 4px #BF8E5A}
+.swatch[data-light="1"][data-on="1"]{box-shadow:inset 0 0 0 1px rgba(14,36,64,.18),0 0 0 2px #fff,0 0 0 4px #BF8E5A}
+.style-list{display:flex;flex-direction:column;gap:2px}
+.style-item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 4px 9px 12px;border-left:2px solid transparent;font:500 13px 'Manrope';color:#3d4757;cursor:pointer;transition:.2s;text-align:left;background:none;border-top:none;border-right:none;width:100%}
+.style-item:hover{color:#a8763f}
+.style-item[data-on="1"]{color:#BF8E5A;border-left-color:#BF8E5A;font-weight:600}
+.style-item span{font:500 11px 'Manrope';color:#a7afbb}
+.style-row{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.style-pill{background:none;border:none;border-bottom:1.5px solid transparent;padding:2px 0;font:500 12.5px 'Manrope';color:#5a6474;cursor:pointer;white-space:nowrap;transition:.2s}
+.style-pill:hover{color:#a8763f}
+.style-pill[data-on="1"]{color:#BF8E5A;border-bottom-color:#BF8E5A;font-weight:600}
+.style-pill span{font:500 10.5px 'Manrope';color:#a7afbb;margin-left:3px}
+.filter-mobile-bar{display:none;margin-bottom:20px}
+.filter-open-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(14,36,64,.16);background:#fff;border-radius:30px;padding:10px 18px;font:600 12px 'Manrope';color:#1c2733;cursor:pointer}
+.filter-open-btn b{color:#BF8E5A;font-weight:700}
+@media (max-width:960px){
+  .filter-bar{display:none}
+  .filter-mobile-bar{display:flex}
+}
+.filter-sheet-backdrop{position:fixed;inset:0;z-index:50;background:rgba(14,20,28,.4);display:flex;align-items:flex-end}
+.filter-sheet{background:#fff;width:100%;max-height:82vh;overflow-y:auto;border-radius:20px 20px 0 0;padding:22px 22px 28px}
+.filter-sheet-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.filter-sheet-head span{font:500 20px 'Cormorant Garamond';color:#0e2440}
+.filter-sheet-close{border:none;background:none;font:300 26px 'Manrope';color:#8a93a1;cursor:pointer;line-height:1;padding:0}
+.filter-sheet-apply{width:100%;margin-top:24px;padding:15px;background:#0e2440;color:#fff;border:none;border-radius:30px;font:600 13px 'Manrope';letter-spacing:.06em;cursor:pointer}
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:52px 28px}
+@media (max-width:960px){.pgrid{grid-template-columns:repeat(3,1fr);gap:36px 20px}}
+@media (max-width:640px){.pgrid{grid-template-columns:repeat(2,1fr);gap:28px 14px}}
+.nav-drop-item-sep{border-top:1px solid rgba(14,36,64,.08);margin-top:4px;padding-top:14px}
+.nav-toggle-input{display:none}
+.nav-burger{display:none;width:34px;height:34px;border-radius:50%;align-items:center;justify-content:center;border:1px solid rgba(14,36,64,.18);background:rgba(255,255,255,.08);cursor:pointer}
+.nav-burger svg{width:16px;height:16px}
+.nav-mobile-panel{display:none;position:fixed;top:64px;left:0;right:0;z-index:29;background:#fbfaf8;border-bottom:1px solid rgba(14,36,64,.1);box-shadow:0 24px 50px -28px rgba(14,36,64,.35);padding:8px 6vw 20px;flex-direction:column}
+.nav-mobile-panel a{padding:14px 2px;font:500 15px 'Manrope';color:#0e2440;text-decoration:none;border-bottom:1px solid rgba(14,36,64,.07)}
+.nav-mobile-panel a.nav-mobile-sub{padding-left:18px;font-size:13px;color:rgba(14,36,64,.6)}
+.nav-toggle-input:checked ~ .nav-mobile-panel{display:flex}
+@media (max-width:860px){
+.nav-mid{display:none}
+.nav-burger{display:inline-flex}
+}
 .brand-logo{display:flex;align-items:baseline;gap:.6em;font-size:1.75rem;transition:opacity .3s ease}
 .brand-logo:hover{opacity:.7}
 .brand-en{font:600 1.75rem 'Cormorant Garamond',serif;letter-spacing:.15em;text-transform:uppercase;color:#111;line-height:1}
@@ -62,29 +118,41 @@ select.srt:hover{border-color:#c9a24b}
 </helmet>
 
 <!-- ===================== HEADER (기존 동일) ===================== -->
+<input type="checkbox" id="nav-toggle" class="nav-toggle-input">
 <div style="position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:19px 5vw;background:rgba(251,250,250,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(14,36,64,.08);color:#0e2440">
   <a href="index.html" class="brand-logo" style="text-decoration:none;color:inherit">
     <span class="brand-en">EUNSUNG</span><span class="brand-kr">은성</span>
   </a>
   <nav class="nav-mid">
-    <a href="about.html">회사소개</a>
-    <a href="index.html#materials">소재</a>
     <div class="nav-drop" style="position:relative">
-      <a href="#" style="color:#a8763f">쇼룸</a>
+      <a href="about.html">회사소개</a>
       <div class="nav-drop-menu">
-        <a class="nav-drop-item" href="showroom.html?cat=PORCELAIN">PORCELAIN <span>포세린</span></a>
-        <a class="nav-drop-item" href="showroom.html?cat=VIATERA">VIATERA <span>비아테라</span></a>
-        <a class="nav-drop-item" href="showroom.html?cat=HIMACS">HIMACS <span>하이막스</span></a>
-        <a class="nav-drop-item" href="showroom.html?cat=BMC">BMC <span>인조대리석</span></a>
+        <a class="nav-drop-item" href="about.html">회사소개</a>
+        <a class="nav-drop-item nav-drop-item-sep" href="process.html">제작과정</a>
       </div>
     </div>
-    <a href="portfolio.html">시공사례</a><a href="process.html">제작과정</a><a href="index.html#inquiry">문의</a>
+    <a href="showroom.html?cat=PORCELAIN">포세린</a>
+    <a href="showroom.html?cat=VIATERA">비아테라</a>
+    <a href="showroom.html?cat=HIMACS">하이막스</a>
+    <a href="showroom.html?cat=BMC">BMC</a>
+    <a href="portfolio.html">시공사례</a><a href="index.html#inquiry">문의</a>
   </nav>
   <div class="nav-right">
     <span class="nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg></span>
     <span class="lang"><b style="opacity:.5">EN</b><span style="opacity:.4">|</span><b>KO</b></span>
     <span class="nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"></path></svg></span>
+    <label for="nav-toggle" class="nav-burger" aria-label="메뉴 열기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16"/></svg></label>
   </div>
+</div>
+<div class="nav-mobile-panel">
+  <a href="about.html">회사소개</a>
+  <a href="process.html" class="nav-mobile-sub">제작과정</a>
+  <a href="showroom.html?cat=PORCELAIN">포세린</a>
+  <a href="showroom.html?cat=VIATERA">비아테라</a>
+  <a href="showroom.html?cat=HIMACS">하이막스</a>
+  <a href="showroom.html?cat=BMC">BMC</a>
+  <a href="portfolio.html">시공사례</a>
+  <a href="index.html#inquiry">문의</a>
 </div>
 
 <!-- ===================== PAGE HEAD ===================== -->
@@ -112,32 +180,54 @@ select.srt:hover{border-color:#c9a24b}
   </div>
 </div>
 
-<!-- ===================== FILTERS + COUNT/SORT ===================== -->
-<div style="max-width:1440px;margin:0 auto;padding:30px 4vw 0">
-  <div style="display:flex;flex-direction:column;gap:14px">
-    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-      <span style="font:600 10.5px 'Manrope';letter-spacing:.22em;color:#8a93a1;width:52px;flex-shrink:0">색상</span>
-      <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <sc-for list="{{ toneChips }}" as="c" hint-placeholder-count="5">
-          <button class="fchip" data-on="{{ c.on }}" onClick="{{ c.click }}">{{ c.label }}</button>
+<!-- ===================== FILTERS + PRODUCT GRID ===================== -->
+<div data-screen-label="제품 그리드" style="max-width:1440px;margin:0 auto;padding:30px 4vw 0">
+  <div class="filter-bar">
+    <div class="filter-bar-group filter-search">
+      <input type="text" placeholder="제품명 검색" value="{{ search }}" onInput="{{ onSearchInput }}">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg>
+    </div>
+    <div class="filter-bar-sep"></div>
+    <div class="filter-bar-group">
+      <span class="filter-label">색상</span>
+      <div class="swatch-wrap">
+        <sc-for list="{{ colorSwatches }}" as="c" hint-placeholder-count="6">
+          <button class="swatch" style="background:{{ c.hex }}" data-on="{{ c.on }}" data-light="{{ c.light }}" title="{{ c.label }}" onClick="{{ c.click }}"></button>
         </sc-for>
       </div>
     </div>
+    <div class="filter-bar-sep"></div>
+    <div class="filter-bar-group">
+      <span class="filter-label">스타일</span>
+      <div class="style-row">
+        <sc-for list="{{ styleList }}" as="s" hint-placeholder-count="4">
+          <button class="style-pill" data-on="{{ s.on }}" onClick="{{ s.click }}">{{ s.label }}<span>({{ s.count }})</span></button>
+        </sc-for>
+      </div>
+    </div>
+    <sc-if value="{{ hasActiveFilters }}" hint-placeholder-val="{{ false }}">
+      <button class="filter-reset" onClick="{{ resetFilters }}">전체 초기화 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5"></path></svg></button>
+    </sc-if>
   </div>
 
-  <div id="grid-top" style="display:flex;justify-content:space-between;align-items:center;gap:16px;margin:34px 0 22px;padding-top:24px;border-top:1px solid rgba(14,36,64,.08)">
+  <div class="filter-mobile-bar">
+    <button class="filter-open-btn" onClick="{{ openFilterSheet }}">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M7 12h10M10 18h4"></path></svg>
+      필터
+      <sc-if value="{{ hasActiveFilters }}" hint-placeholder-val="{{ false }}"><span style="width:6px;height:6px;border-radius:50%;background:#BF8E5A;display:inline-block"></span></sc-if>
+    </button>
+  </div>
+
+  <div id="grid-top" style="display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:22px">
     <div style="font:500 13px 'Manrope';color:#3d4757">총 <b style="color:#a8763f;font-weight:700">{{ total }}</b>개의 상품</div>
     <select class="srt" value="{{ sort }}" onChange="{{ setSort }}">
       <option value="rec">추천순</option>
       <option value="name">이름순</option>
     </select>
   </div>
-</div>
 
-<!-- ===================== PRODUCT GRID ===================== -->
-<div data-screen-label="제품 그리드" style="max-width:1440px;margin:0 auto;padding:0 4vw">
   <sc-if value="{{ hasItems }}" hint-placeholder-val="{{ true }}">
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:52px 28px">
+    <div class="pgrid">
       <sc-for list="{{ pageItems }}" as="p" hint-placeholder-count="8">
         <div class="pcard" onClick="{{ p.open }}">
           <div style="position:relative;aspect-ratio:2/3;overflow:hidden;background:#f2f0ec">
@@ -161,6 +251,7 @@ select.srt:hover{border-color:#c9a24b}
     <div style="padding:90px 0;text-align:center">
       <div style="font:500 26px 'Cormorant Garamond';color:#8a93a1">조건에 맞는 상품이 없습니다</div>
       <div style="font:400 13px 'Manrope';color:#a7afbb;margin-top:10px">필터를 조정해 다시 시도해 보세요.</div>
+      <button class="filter-reset" style="margin-top:18px" onClick="{{ resetFilters }}">필터 초기화</button>
     </div>
   </sc-if>
 
@@ -175,6 +266,40 @@ select.srt:hover{border-color:#c9a24b}
     </div>
   </sc-if>
 </div>
+
+<!-- ===================== MOBILE FILTER SHEET ===================== -->
+<sc-if value="{{ filterSheetOpen }}" hint-placeholder-val="{{ false }}">
+  <div class="filter-sheet-backdrop" onClick="{{ closeFilterSheet }}">
+    <div class="filter-sheet" onClick="{{ stop }}">
+      <div class="filter-sheet-head">
+        <span>필터</span>
+        <button class="filter-sheet-close" onClick="{{ closeFilterSheet }}">×</button>
+      </div>
+      <sc-if value="{{ hasActiveFilters }}" hint-placeholder-val="{{ false }}">
+        <button class="filter-reset" onClick="{{ resetFilters }}">전체 초기화 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5"></path></svg></button>
+      </sc-if>
+      <div class="filter-search">
+        <input type="text" placeholder="제품명 검색" value="{{ search }}" onInput="{{ onSearchInput }}">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg>
+      </div>
+      <div class="filter-divider"></div>
+      <span class="filter-label">색상 · COLOR</span>
+      <div class="swatch-wrap">
+        <sc-for list="{{ colorSwatches }}" as="c" hint-placeholder-count="6">
+          <button class="swatch" style="background:{{ c.hex }}" data-on="{{ c.on }}" data-light="{{ c.light }}" title="{{ c.label }}" onClick="{{ c.click }}"></button>
+        </sc-for>
+      </div>
+      <div class="filter-divider"></div>
+      <span class="filter-label">스타일 · STYLE</span>
+      <div class="style-list">
+        <sc-for list="{{ styleList }}" as="s" hint-placeholder-count="4">
+          <button class="style-item" data-on="{{ s.on }}" onClick="{{ s.click }}">{{ s.label }}<span>({{ s.count }})</span></button>
+        </sc-for>
+      </div>
+      <button class="filter-sheet-apply" onClick="{{ closeFilterSheet }}">{{ total }}개 결과 보기</button>
+    </div>
+  </div>
+</sc-if>
 
 <div style="height:110px"></div>
 
@@ -209,18 +334,23 @@ select.srt:hover{border-color:#c9a24b}
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { cat: 'PORCELAIN', tone: 'all', spec: 'all', sort: 'rec', page: 1 };
+  state = { cat: 'PORCELAIN', search: '', colors: [], styles: [], sort: 'rec', page: 1, filterSheetOpen: false };
 
   async componentDidMount() {
     const mod = await import('./catalog-data.js');
     this.DATA = await mod.getCatalog();
+    this.COLOR_LABEL = mod.COLOR_LABEL;
+    this.COLOR_SWATCH = mod.COLOR_SWATCH;
+    this.COLOR_LIGHT = mod.COLOR_LIGHT;
+    this.COLOR_ORDER = mod.COLOR_ORDER;
     // URL → 상태 복원 (상세에서 뒤로가기 시 필터/페이지 유지)
     const q = new URLSearchParams(window.location.search);
     const st = {};
     const cat = (q.get('cat') || '').toUpperCase();
     if (this.DATA[cat]) st.cat = cat;
-    if (['all', 'white', 'beige', 'gray', 'dark'].includes(q.get('tone'))) st.tone = q.get('tone');
-    if (q.get('spec')) st.spec = q.get('spec');
+    if (q.get('q')) st.search = q.get('q');
+    if (q.get('color')) st.colors = q.get('color').split(',').filter(Boolean);
+    if (q.get('style')) st.styles = q.get('style').split(',').filter(Boolean);
     if (['rec', 'name'].includes(q.get('sort'))) st.sort = q.get('sort');
     const pg = parseInt(q.get('page'), 10);
     if (pg > 0) st.page = pg;
@@ -233,15 +363,15 @@ class Component extends DCLogic {
     // 상태 → URL 동기화 (replaceState라 히스토리 오염 없음)
     const q = new URLSearchParams();
     q.set('cat', next.cat);
-    if (next.tone !== 'all') q.set('tone', next.tone);
-    if (next.spec !== 'all') q.set('spec', next.spec);
+    if (next.search) q.set('q', next.search);
+    if (next.colors.length) q.set('color', next.colors.join(','));
+    if (next.styles.length) q.set('style', next.styles.join(','));
     if (next.sort !== 'rec') q.set('sort', next.sort);
     if (next.page > 1) q.set('page', String(next.page));
     try { window.history.replaceState(null, '', '?' + q.toString()); } catch (e) {}
   }
 
   PER_PAGE = 20;
-  TONES = [['all', '전체'], ['white', '화이트'], ['beige', '베이지'], ['gray', '그레이'], ['dark', '다크']];
 
   scrollToGrid() {
     const el = document.getElementById('grid-top');
@@ -252,6 +382,22 @@ class Component extends DCLogic {
   }
 
   setSort = (e) => this.set({ sort: e.target.value, page: 1 });
+  onSearchInput = (e) => this.set({ search: e.target.value, page: 1 });
+  toggleColor(c) {
+    const has = this.state.colors.includes(c);
+    const colors = has ? this.state.colors.filter(x => x !== c) : [...this.state.colors, c];
+    this.set({ colors, page: 1 });
+  }
+  toggleStyle(s) {
+    const has = this.state.styles.includes(s);
+    const styles = has ? this.state.styles.filter(x => x !== s) : [...this.state.styles, s];
+    this.set({ styles, page: 1 });
+  }
+  resetFilters = () => this.set({ search: '', colors: [], styles: [], page: 1 });
+  openFilterSheet = () => this.setState({ filterSheetOpen: true });
+  closeFilterSheet = () => this.setState({ filterSheetOpen: false });
+  stop = (e) => e.stopPropagation();
+
   goPage(p, max) {
     const page = Math.min(Math.max(1, p), max);
     if (page !== this.state.page) { this.set({ page }); this.scrollToGrid(); }
@@ -259,17 +405,24 @@ class Component extends DCLogic {
 
   renderVals() {
     const empty = {
-      tabs: [], toneChips: [], specChips: [], total: 0, sort: this.state.sort, setSort: this.setSort,
+      tabs: [], colorSwatches: [], styleList: [], total: 0, sort: this.state.sort, setSort: this.setSort,
+      search: '', onSearchInput: this.onSearchInput, hasActiveFilters: false, resetFilters: this.resetFilters,
+      filterSheetOpen: false, openFilterSheet: this.openFilterSheet, closeFilterSheet: this.closeFilterSheet, stop: this.stop,
       pageItems: [], hasItems: false, noItems: false, pages: [], showPager: false,
       prevPage: () => {}, nextPage: () => {},
     };
     if (!this.DATA) return empty;
 
-    const { cat, tone, spec, sort, page } = this.state;
+    const { cat, search, colors, styles, sort, page, filterSheetOpen } = this.state;
     const cats = this.DATA;
     const cur = cats[cat];
 
-    let items = cur.items.filter(p => (tone === 'all' || p.tone === tone) && (spec === 'all' || p.spec === spec));
+    const q = search.trim().toLowerCase();
+    let items = cur.items.filter(p =>
+      (!q || p.en.toLowerCase().includes(q) || p.ko.toLowerCase().includes(q)) &&
+      (colors.length === 0 || colors.includes(p.color)) &&
+      (styles.length === 0 || styles.includes(p.style))
+    );
     if (sort === 'name') items = items.slice().sort((a, b) => a.en.localeCompare(b.en));
 
     const total = items.length;
@@ -285,23 +438,34 @@ class Component extends DCLogic {
       on: k === cat ? '1' : '0',
       ink: k === cat ? '#0e2440' : '#8a93a1',
       sub: k === cat ? '#c9a24b' : '#b6bdc7',
-      click: () => this.set({ cat: k, tone: 'all', spec: 'all', page: 1 }),
+      click: () => this.set({ cat: k, search: '', colors: [], styles: [], page: 1 }),
     }));
 
-    const toneChips = this.TONES.map(([v, label]) => ({
-      label, on: v === tone ? '1' : '0', click: () => this.set({ tone: v, page: 1 }),
+    const colorCounts = {};
+    cur.items.forEach(p => { colorCounts[p.color] = (colorCounts[p.color] || 0) + 1; });
+    const colorSwatches = this.COLOR_ORDER.filter(c => colorCounts[c]).map(c => ({
+      key: c, label: this.COLOR_LABEL[c], hex: this.COLOR_SWATCH[c],
+      on: colors.includes(c) ? '1' : '0', light: this.COLOR_LIGHT.has(c) ? '1' : '0',
+      click: () => this.toggleColor(c),
     }));
 
-    const specSet = [...new Set(cur.items.map(p => p.spec))];
-    const specChips = [{ label: '전체', on: spec === 'all' ? '1' : '0', click: () => this.set({ spec: 'all', page: 1 }) }]
-      .concat(specSet.map(s => ({ label: s, on: s === spec ? '1' : '0', click: () => this.set({ spec: s, page: 1 }) })));
+    const styleCounts = {};
+    cur.items.forEach(p => { styleCounts[p.style] = (styleCounts[p.style] || 0) + 1; });
+    const styleList = Object.keys(styleCounts).sort().map(s => ({
+      key: s, label: s, count: styleCounts[s],
+      on: styles.includes(s) ? '1' : '0', click: () => this.toggleStyle(s),
+    }));
 
     const pages = Array.from({ length: maxPage }, (_, i) => ({
       n: i + 1, on: (i + 1) === safePage ? '1' : '0', click: () => this.goPage(i + 1, maxPage),
     }));
 
     return {
-      tabs, toneChips, specChips, total, sort, setSort: this.setSort,
+      tabs, colorSwatches, styleList, total, sort, setSort: this.setSort,
+      search, onSearchInput: this.onSearchInput,
+      hasActiveFilters: !!(search || colors.length || styles.length),
+      resetFilters: this.resetFilters,
+      filterSheetOpen, openFilterSheet: this.openFilterSheet, closeFilterSheet: this.closeFilterSheet, stop: this.stop,
       pageItems, hasItems: total > 0, noItems: total === 0,
       pages, showPager: maxPage > 1,
       prevPage: () => this.goPage(safePage - 1, maxPage),

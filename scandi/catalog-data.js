@@ -128,6 +128,33 @@ function classifyBmcTone(name) {
   return BMC_TONE[name] || 'white';
 }
 
+// ── 색상 필터용 세분화 (White/Ivory/Beige/Gold/Brown/Gray/Dark Gray/Black) ──
+// 기존 4단계 tone(white/beige/gray/dark)을 이름 키워드로 한 번 더 세분화합니다.
+// 공식 컬러 분류가 아니라 이름 기반 근사치이므로, 결과가 어색하면 키워드를 조정하세요.
+const COLOR_GOLD_KW = ['골드'];
+const COLOR_IVORY_KW = ['아이보리'];
+const COLOR_BLACK_KW = ['블랙', '오닉스', '에보니', '나이트', '미드나잇'];
+const COLOR_BROWN_KW = ['브라운', '카퍼', '엄버', '커피', '호두', '월넛'];
+
+export const COLOR_LABEL = { white: 'White', ivory: 'Ivory', beige: 'Beige', gold: 'Gold', brown: 'Brown', gray: 'Gray', darkgray: 'Dark Gray', black: 'Black' };
+export const COLOR_SWATCH = { white: '#F5F3EE', ivory: '#F0E6D2', beige: '#E3D0B0', gold: '#C9A24B', brown: '#6B4A32', gray: '#9CA3AF', darkgray: '#4B5563', black: '#1A1A1A' };
+export const COLOR_LIGHT = new Set(['white', 'ivory', 'beige']);
+export const COLOR_ORDER = ['white', 'ivory', 'beige', 'gold', 'brown', 'gray', 'darkgray', 'black'];
+
+function refineColor(name, tone) {
+  if (tone === 'beige') {
+    if (COLOR_IVORY_KW.some(k => name.includes(k))) return 'ivory';
+    if (COLOR_GOLD_KW.some(k => name.includes(k))) return 'gold';
+    return 'beige';
+  }
+  if (tone === 'dark') {
+    if (COLOR_BROWN_KW.some(k => name.includes(k))) return 'brown';
+    if (COLOR_BLACK_KW.some(k => name.includes(k))) return 'black';
+    return 'darkgray';
+  }
+  return tone; // white → white, gray → gray
+}
+
 function mapRealItems(raw, { classify, desc, style, styleDefault, specs, finish, brand, origin, material }) {
   return raw.map((p, i) => {
     const tone = classify(p.name, p.collection);
@@ -135,6 +162,7 @@ function mapRealItems(raw, { classify, desc, style, styleDefault, specs, finish,
     const [size, thick] = spec.split(' · ');
     return {
       en: p.name, ko: p.collection, tone,
+      color: refineColor(p.name, tone),
       desc: desc[tone],
       code: p.code, spec, size, thick,
       finish,
