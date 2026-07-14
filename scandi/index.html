@@ -52,7 +52,7 @@
 <helmet data-dc-atomics>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@200;300;400;500;600;700;800&family=Noto+Serif+KR:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#e9eef2;font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
@@ -136,6 +136,15 @@ a:hover{color:#c9a24b}
 .nav-drop-item{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:10px 14px;font:600 11px 'Manrope';letter-spacing:.08em;color:#0e2440;text-decoration:none;border-radius:7px;transition:.25s}
 .nav-drop-item:hover{background:rgba(201,162,75,.1);color:#a8763f}
 .nav-drop-item span{font:500 10px 'Manrope';letter-spacing:.02em;opacity:.5}
+.brand-logo{display:flex;align-items:baseline;gap:6px}
+.brand-en{font:500 1.5rem 'Cormorant Garamond',serif;letter-spacing:.12em;text-transform:uppercase;color:#0e2440;line-height:1;transition:color .3s ease}
+.brand-en .accent{color:#bf8e5a;font-weight:700}
+.brand-logo:hover .brand-en{color:#bf8e5a}
+.brand-kr{font:400 .8rem 'Noto Serif KR',serif;opacity:.45;color:#0e2440;line-height:1;white-space:nowrap}
+@media (max-width:640px){
+.brand-en{font-size:1.15rem;letter-spacing:.1em}
+.brand-kr{font-size:.7rem}
+}
 </style>
 </helmet>
 
@@ -146,9 +155,8 @@ a:hover{color:#c9a24b}
 <filter id="mbDark" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.006 0.02" numOctaves="5" seed="9" result="n1"/><feColorMatrix in="n1" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  .34 .34 .34 0 0" result="l1"/><feComponentTransfer in="l1" result="b1"><feFuncA type="table" tableValues="0 0 0 0.2 1 0.2 0 0 0"/></feComponentTransfer><feGaussianBlur in="b1" stdDeviation="0.5" result="b1b"/><feFlood flood-color="#e3e9f0" result="cw"/><feComposite in="cw" in2="b1b" operator="in" result="white"/><feTurbulence type="fractalNoise" baseFrequency="0.013 0.035" numOctaves="3" seed="31" result="n2"/><feColorMatrix in="n2" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  .34 .34 .34 0 0" result="l2"/><feComponentTransfer in="l2" result="b2"><feFuncA type="table" tableValues="0 0 0 0 0.7 0 0 0 0"/></feComponentTransfer><feFlood flood-color="#c9a24b" result="cg2"/><feComposite in="cg2" in2="b2" operator="in" result="gold"/><feMerge><feMergeNode in="white"/><feMergeNode in="gold"/></feMerge></filter>
 </defs></svg>
 <div style="position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:19px 5vw;background:rgba(251,250,250,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(14,36,64,.08);color:#0e2440">
-  <a href="index.html" style="display:flex;align-items:center;gap:11px;text-decoration:none;color:inherit">
-    <svg width="34" height="34" viewBox="0 0 92 92"><circle cx="46" cy="46" r="43" fill="none" stroke="#0e2440" stroke-width="4"></circle><circle cx="46" cy="46" r="36" fill="none" stroke="#0e2440" stroke-width="1.2"></circle><text x="46" y="57" text-anchor="middle" style="font:600 30px 'Cormorant Garamond';fill:#0e2440">ES</text><path d="M46 11 L49 16 L46 21 L43 16 Z" fill="#c9a24b"></path><path d="M46 71 L49 76 L46 81 L43 76 Z" fill="#c9a24b"></path></svg>
-    <span style="font:600 22px 'Cormorant Garamond';letter-spacing:.22em;line-height:1">EUNSUNG</span>
+  <a href="index.html" class="brand-logo" style="text-decoration:none;color:inherit">
+    <span class="brand-en"><span class="accent">E</span>UN<span class="accent">S</span>UNG</span><span class="brand-kr">은성</span>
   </a>
   <nav class="nav-mid" style="color:#1a1a1a">
     <a href="about.html">회사소개</a>
@@ -162,7 +170,7 @@ a:hover{color:#c9a24b}
         <a class="nav-drop-item" href="showroom.html?cat=BMC">BMC <span>인조대리석</span></a>
       </div>
     </div>
-    <a href="index.html#portfolio">시공사례</a><a href="index.html#process">제작과정</a><a href="index.html#inquiry">문의</a>
+    <a href="portfolio.html">시공사례</a><a href="process.html">제작과정</a><a href="index.html#inquiry">문의</a>
   </nav>
   <div class="nav-right">
     <span class="nav-ic" style="border-color:rgba(14,36,64,.18)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
@@ -253,86 +261,6 @@ a:hover{color:#c9a24b}
   </div>
 </section>
 
-<!-- ===================== PORTFOLIO ===================== -->
-<section id="portfolio" style="background:#0e2440;padding:120px 5vw;scroll-margin-top:64px">
-  <div style="max-width:1280px;margin:0 auto">
-    <div style="margin-bottom:54px">
-      <div style="font:600 12px 'Manrope';letter-spacing:.42em;color:#c9a24b;margin-bottom:16px">PORTFOLIO · 시공 사례</div>
-      <div style="font:500 clamp(38px,5vw,64px)/1.02 'Cormorant Garamond';color:#fff">Surfaces, in place.</div>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:20px">
-      <sc-for list="{{ portfolioVisible }}" as="item" hint-placeholder-count="4">
-        <div onClick="{{ item.open }}" style="grid-column:span {{ item.span }};position:relative;height:360px;border-radius:14px;overflow:hidden;cursor:pointer;display:block;box-shadow:0 30px 60px -34px rgba(0,0,0,.7)">
-          <div style="position:absolute;inset:0;background:url('{{ item.img }}') center/cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.06)"></div>
-          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,18,34,0) 42%,rgba(6,14,26,.88))"></div>
-          <div style="position:absolute;top:18px;right:18px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.12);backdrop-filter:blur(6px);display:grid;place-items:center;color:#fff"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
-          <div style="position:absolute;left:30px;bottom:28px;color:#fff">
-            <div style="font:600 10px 'Manrope';letter-spacing:.24em;color:#e3c789;margin-bottom:8px">{{ item.cap }}</div>
-            <div style="font:500 28px/1.15 'Cormorant Garamond'">{{ item.loc }} — {{ item.name }}</div>
-            <div style="font:500 12px 'Manrope';opacity:.7;margin-top:4px">{{ item.sub }}</div>
-          </div>
-        </div>
-      </sc-for>
-    </div>
-    <div style="display:flex;justify-content:center;margin-top:44px">
-      <button onClick="{{ togglePortfolio }}" style="display:inline-flex;align-items:center;gap:11px;background:transparent;border:1px solid rgba(255,255,255,.25);color:#fff;padding:15px 34px;border-radius:40px;font:600 12px 'Manrope';letter-spacing:.16em;cursor:pointer;transition:.3s" style-hover="background:#c9a24b;color:#0b0f15;border-color:#c9a24b">{{ portfolioBtnLabel }} <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="{{ portfolioChevron }}"><path d="M6 9l6 6 6-6"/></svg></button>
-    </div>
-  </div>
-
-  <!-- case lightbox · zoom -->
-  <sc-if value="{{ caseOpen }}" hint-placeholder-val="{{ false }}">
-    <div style="position:fixed;inset:0;z-index:60;display:flex;background:rgba(5,7,11,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)" onClick="{{ closeCase }}">
-      <div id="case-lb-stage" onClick="{{ stopCase }}" style="flex:1;position:relative;overflow:hidden;cursor:grab;touch-action:none">
-        <div id="case-lb-img" style="position:absolute;left:50%;top:50%;width:min(70vw,1100px);height:82%;transform:translate(-50%,-50%);background:#10141a url('{{ caseSel.img }}') center/contain no-repeat;box-shadow:0 70px 150px rgba(0,0,0,.85);will-change:transform"></div>
-        <div style="position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font:600 10px 'Manrope';letter-spacing:.24em;color:rgba(255,255,255,.45);white-space:nowrap">SCROLL / PINCH TO ZOOM · DRAG TO PAN</div>
-        <div onClick="{{ closeCase }}" style="position:absolute;top:24px;right:24px;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center;cursor:pointer;color:#fff;font:300 24px 'Manrope'">×</div>
-      </div>
-      <div onClick="{{ stopCase }}" style="width:392px;max-width:88%;background:linear-gradient(180deg,rgba(14,20,28,.97),rgba(10,14,20,.99));box-shadow:-30px 0 70px rgba(0,0,0,.5);display:flex;flex-direction:column;padding:36px 32px 32px;overflow:auto">
-        <div style="color:#e3c789;font:600 10px 'Manrope';letter-spacing:.3em;margin-bottom:14px">{{ caseSel.cap }}</div>
-        <div style="font:500 38px/1.1 'Cormorant Garamond';color:#fff;margin-bottom:6px">{{ caseSel.loc }}</div>
-        <div style="font:500 16px/1.4 'Manrope';color:rgba(227,199,137,.85);margin-bottom:18px">{{ caseSel.name }}</div>
-        <div style="font:400 13px/1.7 'Manrope';color:rgba(255,255,255,.6);margin-bottom:20px">{{ caseSel.desc }}</div>
-        <div class="specrow"><span>MATERIAL</span><span>{{ caseSel.sub }}</span></div>
-        <div class="specrow"><span>CATEGORY</span><span>{{ caseSel.cap }}</span></div>
-        <div style="flex:1"></div>
-        <a href="#inquiry" onClick="{{ closeCase }}" class="cta" style="background:#c9a24b;color:#0b0f15;margin-top:24px;text-decoration:none">비슷한 시공 문의하기 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      </div>
-    </div>
-  </sc-if>
-</section>
-
-<!-- ===================== PROCESS ===================== -->
-<section id="process" style="background:#fbfaf8;padding:120px 5vw;scroll-margin-top:64px">
-  <div style="max-width:1280px;margin:0 auto">
-    <div style="font:600 12px 'Manrope';letter-spacing:.42em;color:#b8924a;margin-bottom:16px">PROCESS · 진행 과정</div>
-    <div style="font:500 clamp(38px,5vw,64px)/1.02 'Cormorant Garamond';color:#0e2440;margin-bottom:64px">From consultation<br>to installation.</div>
-    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px">
-      <div style="padding:4px 22px;border-left:1px solid rgba(14,36,64,.14)"><div style="font:600 13px 'Manrope';letter-spacing:.1em;color:#b8924a;margin-bottom:22px">01</div><div style="font:500 23px 'Cormorant Garamond';color:#0e2440">Consulting</div><div style="font:600 11px 'Manrope';letter-spacing:.12em;color:rgba(14,36,64,.42);margin:5px 0 13px">상담</div><div style="font:400 13px/1.72 'Manrope';color:rgba(14,36,64,.6);margin-bottom:4px">온라인 또는 포천 쇼룸에서 공간, 예산, 소재 취향을 함께 검토합니다.</div><div style="font:400 11px/1.55 'Manrope';color:rgba(14,36,64,.38)">We review your space, budget and material intent — online or at our Pocheon showroom.</div></div>
-      <div style="padding:4px 22px;border-left:1px solid rgba(14,36,64,.14)"><div style="font:600 13px 'Manrope';letter-spacing:.1em;color:#b8924a;margin-bottom:22px">02</div><div style="font:500 23px 'Cormorant Garamond';color:#0e2440">Measure</div><div style="font:600 11px 'Manrope';letter-spacing:.12em;color:rgba(14,36,64,.42);margin:5px 0 13px">실측</div><div style="font:400 13px/1.72 'Manrope';color:rgba(14,36,64,.6);margin-bottom:4px">현장 레이저 실측으로 모든 치수를 밀리미터 단위까지 정확하게 확보합니다.</div><div style="font:400 11px/1.55 'Manrope';color:rgba(14,36,64,.38)">On-site laser measurement captures every dimension for a millimetre-accurate template.</div></div>
-      <div style="padding:4px 22px;border-left:1px solid rgba(14,36,64,.14)"><div style="font:600 13px 'Manrope';letter-spacing:.1em;color:#b8924a;margin-bottom:22px">03</div><div style="font:500 23px 'Cormorant Garamond';color:#0e2440">Fabrication</div><div style="font:600 11px 'Manrope';letter-spacing:.12em;color:rgba(14,36,64,.42);margin:5px 0 13px">정밀가공</div><div style="font:400 13px/1.72 'Manrope';color:rgba(14,36,64,.6);margin-bottom:4px">자체 공장에서 5축 CNC 가공, 마이터 폭포 엣지, 북매치 이음까지 완성합니다.</div><div style="font:400 11px/1.55 'Manrope';color:rgba(14,36,64,.38)">5-axis CNC profiling, mitred waterfall edges and book-matched seams in our own facility.</div></div>
-      <div style="padding:4px 22px;border-left:1px solid rgba(14,36,64,.14)"><div style="font:600 13px 'Manrope';letter-spacing:.1em;color:#b8924a;margin-bottom:22px">04</div><div style="font:500 23px 'Cormorant Garamond';color:#0e2440">Installation</div><div style="font:600 11px 'Manrope';letter-spacing:.12em;color:rgba(14,36,64,.42);margin:5px 0 13px">시공</div><div style="font:400 13px/1.72 'Manrope';color:rgba(14,36,64,.6);margin-bottom:4px">자체 시공팀이 설치·실링·마감까지 진행해 이음 없는 완성도를 남깁니다.</div><div style="font:400 11px/1.55 'Manrope';color:rgba(14,36,64,.38)">Our own crews set, seal and finish on site — leaving a seamless surface, not a job site.</div></div>
-      <div style="padding:4px 22px;border-left:1px solid rgba(14,36,64,.14)"><div style="font:600 13px 'Manrope';letter-spacing:.1em;color:#b8924a;margin-bottom:22px">05</div><div style="font:500 23px 'Cormorant Garamond';color:#0e2440">After-care</div><div style="font:600 11px 'Manrope';letter-spacing:.12em;color:rgba(14,36,64,.42);margin:5px 0 13px">사후관리</div><div style="font:400 13px/1.72 'Manrope';color:rgba(14,36,64,.6);margin-bottom:4px">보증, 관리 가이드, 보수까지 — 솔리드 서페이스와 스톤은 수십 년간 새것처럼 유지됩니다.</div><div style="font:400 11px/1.55 'Manrope';color:rgba(14,36,64,.38)">Warranty, cleaning guidance and repair — solid surface and stone renew for decades.</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== STORE / ONLINE ===================== -->
-<section id="store" style="background:#eef2f4;padding:120px 5vw;scroll-margin-top:64px">
-  <div style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
-    <div>
-      <div style="font:600 12px 'Manrope';letter-spacing:.42em;color:#b8924a;margin-bottom:16px">ONLINE · 온라인 사업부</div>
-      <div style="font:500 clamp(36px,4.5vw,58px)/1.03 'Cormorant Garamond';color:#0e2440;margin-bottom:24px">The showroom,<br>now online.</div>
-      <div style="font:400 15.5px/1.9 'Manrope';color:rgba(14,36,64,.65);max-width:480px;margin-bottom:6px">수십 년간 건축가와 시공사에 공급해온 가공력을 이제 누구나 이용할 수 있습니다 — 소재를 둘러보고, 샘플 키트를 주문하고, 집을 나서지 않고도 맞춤 견적을 요청하세요.</div>
-      <div style="font:400 13px/1.75 'Manrope';color:rgba(14,36,64,.4);max-width:480px;margin-bottom:34px">For decades we supplied architects and contractors. Now the same fabrication is open to you — browse surfaces, order sample kits, and request a made-to-measure quote without leaving home.</div>
-      <a href="#inquiry" style="display:inline-flex;align-items:center;gap:11px;background:#0e2440;color:#fff;padding:16px 30px;border-radius:40px;font:600 12px 'Manrope';letter-spacing:.16em;text-decoration:none;transition:.3s" style-hover="background:#c9a24b;color:#0b0f15">스토어 방문 · VISIT THE STORE <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-    </div>
-    <div style="position:relative;height:470px;border-radius:16px;overflow:hidden;box-shadow:0 44px 84px -42px rgba(14,36,64,.55)">
-      <div style="position:absolute;inset:0;background:url('assets/marble-gold.png') center/cover"></div>
-      <div style="position:absolute;top:0;left:0;width:44%;height:100%;background:linear-gradient(90deg,rgba(255,255,255,.5),transparent);animation:sheen 8s ease-in-out infinite"></div>
-    </div>
-  </div>
-</section>
-
 <!-- ===================== INQUIRY ===================== -->
 <section id="inquiry" style="background:#0b0f15;padding:120px 5vw;scroll-margin-top:64px">
   <div style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:72px">
@@ -396,8 +324,8 @@ a:hover{color:#c9a24b}
     </div>
     <div style="display:flex;gap:64px;flex-wrap:wrap">
       <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">MATERIALS</div><div style="display:flex;flex-direction:column;gap:11px"><a href="#materials" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">BMC</a><a href="#materials" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">MMA</a><a href="#materials" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">E-Stone</a><a href="#materials" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Ceramic</a></div></div>
-      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">COMPANY</div><div style="display:flex;flex-direction:column;gap:11px"><a href="#portfolio" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Portfolio</a><a href="#process" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Process</a><a href="#top" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Showroom</a></div></div>
-      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">SUPPORT</div><div style="display:flex;flex-direction:column;gap:11px"><a href="#store" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Store</a><a href="#inquiry" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Inquiry</a><a href="#inquiry" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">FAQ</a></div></div>
+      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">COMPANY</div><div style="display:flex;flex-direction:column;gap:11px"><a href="portfolio.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Portfolio</a><a href="process.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Process</a><a href="#top" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Showroom</a></div></div>
+      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">SUPPORT</div><div style="display:flex;flex-direction:column;gap:11px"><a href="showroom.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Store</a><a href="#inquiry" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Inquiry</a><a href="#inquiry" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">FAQ</a></div></div>
     </div>
   </div>
   <div style="max-width:1280px;margin:48px auto 0;padding-top:26px;border-top:1px solid rgba(255,255,255,.09)">

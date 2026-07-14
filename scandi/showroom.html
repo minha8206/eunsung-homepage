@@ -10,7 +10,7 @@
 <helmet data-dc-atomics>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Manrope:wght@400;500;600;700;800&family=Noto+Serif+KR:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -49,14 +49,22 @@ a:hover{color:#c9a24b}
 .pgbtn[data-on="1"]{background:#c9a24b;color:#fff;font-weight:700}
 select.srt{appearance:none;-webkit-appearance:none;border:1px solid rgba(14,36,64,.16);background:#fff url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%235a6474' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 14px center;border-radius:30px;padding:9px 36px 9px 17px;font:500 12px 'Manrope';color:#3d4757;cursor:pointer;outline:none}
 select.srt:hover{border-color:#c9a24b}
+.brand-logo{display:flex;align-items:baseline;gap:6px}
+.brand-en{font:500 1.5rem 'Cormorant Garamond',serif;letter-spacing:.12em;text-transform:uppercase;color:#0e2440;line-height:1;transition:color .3s ease}
+.brand-en .accent{color:#bf8e5a;font-weight:700}
+.brand-logo:hover .brand-en{color:#bf8e5a}
+.brand-kr{font:400 .8rem 'Noto Serif KR',serif;opacity:.45;color:#0e2440;line-height:1;white-space:nowrap}
+@media (max-width:640px){
+.brand-en{font-size:1.15rem;letter-spacing:.1em}
+.brand-kr{font-size:.7rem}
+}
 </style>
 </helmet>
 
 <!-- ===================== HEADER (기존 동일) ===================== -->
 <div style="position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:19px 5vw;background:rgba(251,250,250,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(14,36,64,.08);color:#0e2440">
-  <a href="index.html" style="display:flex;align-items:center;gap:11px;text-decoration:none;color:inherit">
-    <svg width="34" height="34" viewBox="0 0 92 92"><circle cx="46" cy="46" r="43" fill="none" stroke="#0e2440" stroke-width="4"></circle><circle cx="46" cy="46" r="36" fill="none" stroke="#0e2440" stroke-width="1.2"></circle><text x="46" y="57" text-anchor="middle" style="font:600 30px 'Cormorant Garamond';fill:#0e2440">ES</text><path d="M46 11 L49 16 L46 21 L43 16 Z" fill="#c9a24b"></path><path d="M46 71 L49 76 L46 81 L43 76 Z" fill="#c9a24b"></path></svg>
-    <span style="font:600 22px 'Cormorant Garamond';letter-spacing:.22em;line-height:1">EUNSUNG</span>
+  <a href="index.html" class="brand-logo" style="text-decoration:none;color:inherit">
+    <span class="brand-en"><span class="accent">E</span>UN<span class="accent">S</span>UNG</span><span class="brand-kr">은성</span>
   </a>
   <nav class="nav-mid">
     <a href="about.html">회사소개</a>
@@ -70,7 +78,7 @@ select.srt:hover{border-color:#c9a24b}
         <a class="nav-drop-item" href="showroom.html?cat=BMC">BMC <span>인조대리석</span></a>
       </div>
     </div>
-    <a href="index.html#portfolio">시공사례</a><a href="index.html#process">제작과정</a><a href="index.html#inquiry">문의</a>
+    <a href="portfolio.html">시공사례</a><a href="process.html">제작과정</a><a href="index.html#inquiry">문의</a>
   </nav>
   <div class="nav-right">
     <span class="nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg></span>
@@ -183,8 +191,8 @@ select.srt:hover{border-color:#c9a24b}
     </div>
     <div style="display:flex;gap:64px;flex-wrap:wrap">
       <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">MATERIALS</div><div style="display:flex;flex-direction:column;gap:11px"><a href="showroom.html?cat=PORCELAIN" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Porcelain</a><a href="showroom.html?cat=VIATERA" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Viatera</a><a href="showroom.html?cat=HIMACS" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Himacs</a><a href="showroom.html?cat=BMC" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">BMC</a></div></div>
-      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">COMPANY</div><div style="display:flex;flex-direction:column;gap:11px"><a href="index.html#portfolio" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Portfolio</a><a href="index.html#process" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Process</a><a href="showroom.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Showroom</a></div></div>
-      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">SUPPORT</div><div style="display:flex;flex-direction:column;gap:11px"><a href="index.html#store" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Store</a><a href="index.html#inquiry" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Inquiry</a><a href="index.html#inquiry" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">FAQ</a></div></div>
+      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">COMPANY</div><div style="display:flex;flex-direction:column;gap:11px"><a href="portfolio.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Portfolio</a><a href="process.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Process</a><a href="showroom.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Showroom</a></div></div>
+      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">SUPPORT</div><div style="display:flex;flex-direction:column;gap:11px"><a href="showroom.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Store</a><a href="index.html#inquiry" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Inquiry</a><a href="index.html#inquiry" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">FAQ</a></div></div>
     </div>
   </div>
   <div style="max-width:1280px;margin:48px auto 0;padding-top:26px;border-top:1px solid rgba(255,255,255,.09)">
