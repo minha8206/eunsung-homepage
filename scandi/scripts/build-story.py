@@ -155,16 +155,20 @@ def main():
         scene_durs.append(dur)
 
     # ---- scene 5: photos, ken burns + internal crossfades ----
+    # zoompan does per-frame integer-pixel cropping; at a mild pre-scale the crop
+    # window only moves ~1px/frame, so rounding noise reads as a visible shake.
+    # Supersampling well above the final crop range (here 4x) makes that per-frame
+    # step several pixels wide so the +/-0.5px rounding is no longer perceptible.
     photo_labels = []
-    W2, H2 = round(W * 1.15), round(H * 1.15)
+    W2, H2 = W * 4, H * 4
     for pi, fname in enumerate(PHOTO_FILES):
         idx = add_image_input(fname)
         raw = f"photo{pi}_raw"
         grd = f"photo{pi}_grd"
         filters.append(
-            f"[{idx}:v]scale={W2}:{H2}:force_original_aspect_ratio=increase,crop={W2}:{H2},"
+            f"[{idx}:v]scale={W2}:{H2}:force_original_aspect_ratio=increase:flags=lanczos,crop={W2}:{H2},"
             f"zoompan=z='1+0.06*on/({PHOTO_FRAMES-1})':"
-            f"x='(iw-iw/zoom)/2':y='(ih-ih/zoom)/2':d={PHOTO_FRAMES}:s={W}x{H}:fps={FPS},setsar=1[{raw}]"
+            f"x='trunc((iw-iw/zoom)/2)':y='trunc((ih-ih/zoom)/2)':d={PHOTO_FRAMES}:s={W}x{H}:fps={FPS},setsar=1[{raw}]"
         )
         filters.append(grade(raw, grd))
         photo_labels.append(grd)

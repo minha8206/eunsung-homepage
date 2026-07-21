@@ -11,7 +11,7 @@
   <div class="vhero-bg" id="vheroBg" style="background-image:url('assets/showroom-hero.jpg')"></div>
   <div class="vhero-stage">
     <div class="vhero-media" id="vheroMedia">
-      <video id="vheroVideo" src="assets/video/hero-scroll.mp4" poster="assets/showroom-hero.jpg" muted loop playsinline preload="auto"></video>
+      <video id="vheroVideo" src="assets/video/hero-scroll.mp4" poster="assets/showroom-hero.jpg" muted loop playsinline preload="auto" disablepictureinpicture controlsList="nodownload noremoteplayback"></video>
       <div class="vhero-media-shade"></div>
     </div>
     <div class="vhero-title">
@@ -46,7 +46,42 @@
 .vhero-eyebrow{font:600 11px 'Manrope';letter-spacing:.3em;color:#c9a24b;margin-bottom:18px}
 .vhero-heading{font:500 clamp(28px,4vw,46px)/1.25 'Cormorant Garamond';color:#f8f5ef;margin-bottom:20px}
 .vhero-desc{font:400 15px/1.9 'Manrope';color:rgba(243,239,230,.72)}
+.ceramic-video-section{position:relative;width:100%;height:100vh;min-height:520px;overflow:hidden;background:#0e0a06}
+.ceramic-video-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 </style>
+
+<!-- ===================== CERAMIC · FULL-BLEED STORY VIDEO (outside x-dc: same reason as the video hero above — re-renders would strip the muted/loop attributes we manage via JS and orphan the autoplay/pause logic) ===================== -->
+<div id="top" class="ceramic-video-section">
+  <video id="storyVideo" class="ceramic-video-bg" autoplay muted loop playsinline preload="auto" disablepictureinpicture controlsList="nodownload noremoteplayback">
+    <source src="assets/story-montage.mp4" type="video/mp4">
+  </video>
+
+  <!-- ============ PRESERVED FOR LATER RE-INTEGRATION AS OVERLAY ON TOP OF THE FULL-BLEED VIDEO ============
+
+  background watermark:
+  <div style="position:absolute;right:4vw;bottom:6%;z-index:0;pointer-events:none;user-select:none;font:700 clamp(48px,8vw,150px)/1 'Cormorant Garamond';letter-spacing:.02em;color:#eae5dc;white-space:nowrap">EUNSUNG</div>
+
+  text block + CTA + old card-style video:
+  <div style="position:relative;z-index:5;display:flex;flex-wrap:wrap;align-items:center;gap:60px;max-width:1280px;margin:0 auto">
+    <div style="flex:1 1 420px;max-width:520px">
+      <div style="display:flex;align-items:center;gap:13px;margin-bottom:34px">
+        <div style="width:38px;height:1.5px;background:#e3c789"></div>
+        <div style="font:600 10px 'Manrope';letter-spacing:.4em;color:#b8924a">EUNSUNG · CERAMIC STONE SURFACE</div>
+      </div>
+      <div style="font:500 clamp(48px,6.4vw,100px)/1.04 'Cormorant Garamond';color:#0a0908">Ceramic, for the<br>well-lived home.</div>
+      <div style="width:72px;height:2px;background:#c9a24b;margin:36px 0 26px"></div>
+      <div style="font:400 16px/1.9 'Manrope';color:rgba(14,36,64,.6);max-width:520px">주방 아일랜드부터 욕실, 파사드까지 — 포천 팩토리에서 가공한 대형 세라믹 슬랩이 하이엔드 레지던스의 격을 완성합니다.</div>
+      <a href="showroom.html" style="margin-top:44px;display:inline-flex;align-items:center;gap:11px;padding:17px 40px;background:#c9a24b;color:#16202c;font:600 12px 'Manrope';letter-spacing:.26em;text-decoration:none;transition:.35s;border-radius:2px" style-hover="background:#e3c789">쇼룸 입장 · ENTER SHOWROOM</a>
+    </div>
+
+    <div class="story-video-wrap" id="storyVideoWrap">
+      <video id="storyVideoOld" class="story-video" autoplay muted loop playsinline preload="metadata">
+        <source src="assets/story-montage.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+  ============================================================================================== -->
+</div>
 
 <x-dc>
 <helmet data-dc-atomics>
@@ -112,14 +147,6 @@ a:hover{color:#c9a24b}
 .hdot{width:8px;height:8px;border-radius:5px;background:rgba(255,255,255,.28);cursor:pointer;transition:.5s;border:none;padding:0}
 @keyframes heroKbZoom{0%{transform:scale(1)}100%{transform:scale(1.08)}}
 .hero-kb-bg{position:relative;flex:0 0 auto;width:1024px;max-width:92vw;aspect-ratio:1024/572;background-size:cover;background-position:center;background-repeat:no-repeat;border-radius:4px;box-shadow:0 30px 70px -20px rgba(14,36,64,.35);animation:heroKbZoom 20s ease-out forwards;overflow:hidden}
-
-/* ===== CERAMIC SECTION · STORY MONTAGE VIDEO ===== */
-.story-video-wrap{position:relative;flex:1 1 480px;min-width:320px;max-width:660px;width:100%;aspect-ratio:1024/572;border-radius:8px;overflow:hidden;box-shadow:0 24px 60px -22px rgba(14,36,64,.28);opacity:0;transform:translateY(16px);transition:opacity 1s ease,transform 1s ease}
-.story-video-wrap.in-view{opacity:1;transform:translateY(0)}
-.story-video{width:100%;height:100%;object-fit:cover;display:block;background:#ede9e1}
-@media (max-width:900px){
-  .story-video-wrap{max-width:100%}
-}
 
 /* ===== MATERIALS · HORIZONTAL BANNERS ===== */
 .mbanner{display:flex;height:380px;border-radius:14px;overflow:hidden;box-shadow:0 20px 50px -30px rgba(14,36,64,.5);margin-bottom:24px}
@@ -209,32 +236,6 @@ a:hover{color:#c9a24b}
   <a href="showroom.html?cat=BMC">BMC</a>
   <a href="portfolio.html">시공사례</a>
   <a href="index.html#inquiry">문의</a>
-</div>
-<!-- ===================== HERO · FULLSCREEN CROSSFADE ===================== -->
-<div id="top" style="position:relative;width:100%;overflow:hidden;background:#f5f2ec;padding:120px 8vw">
-
-  <!-- background watermark -->
-  <div style="position:absolute;right:4vw;bottom:6%;z-index:0;pointer-events:none;user-select:none;font:700 clamp(48px,8vw,150px)/1 'Cormorant Garamond';letter-spacing:.02em;color:#eae5dc;white-space:nowrap">EUNSUNG</div>
-
-  <div style="position:relative;z-index:5;display:flex;flex-wrap:wrap;align-items:center;gap:60px;max-width:1280px;margin:0 auto">
-    <div style="flex:1 1 420px;max-width:520px">
-      <div style="display:flex;align-items:center;gap:13px;margin-bottom:34px">
-        <div style="width:38px;height:1.5px;background:#e3c789"></div>
-        <div style="font:600 10px 'Manrope';letter-spacing:.4em;color:#b8924a">EUNSUNG · CERAMIC STONE SURFACE</div>
-      </div>
-      <div style="font:500 clamp(48px,6.4vw,100px)/1.04 'Cormorant Garamond';color:#0a0908">Ceramic, for the<br>well-lived home.</div>
-      <div style="width:72px;height:2px;background:#c9a24b;margin:36px 0 26px"></div>
-      <div style="font:400 16px/1.9 'Manrope';color:rgba(14,36,64,.6);max-width:520px">주방 아일랜드부터 욕실, 파사드까지 — 포천 팩토리에서 가공한 대형 세라믹 슬랩이 하이엔드 레지던스의 격을 완성합니다.</div>
-      <a href="showroom.html" style="margin-top:44px;display:inline-flex;align-items:center;gap:11px;padding:17px 40px;background:#c9a24b;color:#16202c;font:600 12px 'Manrope';letter-spacing:.26em;text-decoration:none;transition:.35s;border-radius:2px" style-hover="background:#e3c789">쇼룸 입장 · ENTER SHOWROOM</a>
-    </div>
-
-    <!-- ============ STORY MONTAGE VIDEO ============ -->
-    <div class="story-video-wrap" id="storyVideoWrap">
-      <video id="storyVideo" class="story-video" autoplay muted loop playsinline preload="metadata">
-        <source src="assets/story-montage.mp4" type="video/mp4">
-      </video>
-    </div>
-  </div>
 </div>
 
 <!-- ===================== MATERIALS ===================== -->
@@ -580,23 +581,30 @@ class Component extends DCLogic {
 
 (function () {
   function init() {
-    var wrap = document.getElementById('storyVideoWrap');
+    var section = document.getElementById('top');
     var video = document.getElementById('storyVideo');
-    if (!wrap || !video || !('IntersectionObserver' in window)) return;
+    if (!section || !video) return;
+
+    // the page's template renderer strips the bare `muted`/`loop` attributes on re-render,
+    // which also blocks autoplay (Chrome requires muted=true at play() time) — enforce both
+    // as live DOM properties instead of relying on the HTML attributes surviving.
+    video.muted = true;
+    video.loop = true;
+    video.play().catch(function () {});
+
+    if (!('IntersectionObserver' in window)) return;
 
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          wrap.classList.add('in-view');
           video.play().catch(function () {});
         } else {
-          wrap.classList.remove('in-view');
           video.pause();
         }
       });
     }, { threshold: 0.2 });
 
-    observer.observe(wrap);
+    observer.observe(section);
   }
 
   if (document.readyState === 'loading') {
