@@ -113,6 +113,14 @@ a:hover{color:#c9a24b}
 @keyframes heroKbZoom{0%{transform:scale(1)}100%{transform:scale(1.08)}}
 .hero-kb-bg{position:relative;flex:0 0 auto;width:1024px;max-width:92vw;aspect-ratio:1024/572;background-size:cover;background-position:center;background-repeat:no-repeat;border-radius:4px;box-shadow:0 30px 70px -20px rgba(14,36,64,.35);animation:heroKbZoom 20s ease-out forwards;overflow:hidden}
 
+/* ===== CERAMIC SECTION · STORY MONTAGE VIDEO ===== */
+.story-video-wrap{position:relative;flex:1 1 480px;min-width:320px;max-width:660px;width:100%;aspect-ratio:1024/572;border-radius:8px;overflow:hidden;box-shadow:0 24px 60px -22px rgba(14,36,64,.28);opacity:0;transform:translateY(16px);transition:opacity 1s ease,transform 1s ease}
+.story-video-wrap.in-view{opacity:1;transform:translateY(0)}
+.story-video{width:100%;height:100%;object-fit:cover;display:block;background:#ede9e1}
+@media (max-width:900px){
+  .story-video-wrap{max-width:100%}
+}
+
 /* ===== MATERIALS · HORIZONTAL BANNERS ===== */
 .mbanner{display:flex;height:380px;border-radius:14px;overflow:hidden;box-shadow:0 20px 50px -30px rgba(14,36,64,.5);margin-bottom:24px}
 .mbanner-image{flex:1 1 auto;position:relative;background-size:cover;background-position:center}
@@ -220,8 +228,12 @@ a:hover{color:#c9a24b}
       <a href="showroom.html" style="margin-top:44px;display:inline-flex;align-items:center;gap:11px;padding:17px 40px;background:#c9a24b;color:#16202c;font:600 12px 'Manrope';letter-spacing:.26em;text-decoration:none;transition:.35s;border-radius:2px" style-hover="background:#e3c789">쇼룸 입장 · ENTER SHOWROOM</a>
     </div>
 
-    <!-- ============ SHOWROOM CORRIDOR PHOTO (55.jpg) ============ -->
-    <div class="hero-kb-bg" style="background-image:url('assets/showroom-corridor.jpg')"></div>
+    <!-- ============ STORY MONTAGE VIDEO ============ -->
+    <div class="story-video-wrap" id="storyVideoWrap">
+      <video id="storyVideo" class="story-video" autoplay muted loop playsinline preload="metadata">
+        <source src="assets/story-montage.mp4" type="video/mp4">
+      </video>
+    </div>
   </div>
 </div>
 
@@ -240,7 +252,7 @@ a:hover{color:#c9a24b}
     <div>
       <!-- 포세린 (panel right) -->
       <div class="mbanner">
-        <div class="mbanner-image" style="background-image:url('assets/material-porcelain.jpg')"></div>
+        <div class="mbanner-image" style="background-image:url('assets/porcelain.jpg')"></div>
         <div class="mbanner-panel">
           <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">포세린</div><div class="mbanner-eyebrow" style="margin-bottom:0">Ceramic · Porcelain</div></div>
           <div class="mbanner-desc-ko">최대 3200×1600mm 대형 소결 슬랩 — UV에 강하고 열에 강해 파사드·바닥·벽면에 이상적입니다.</div>
@@ -258,11 +270,11 @@ a:hover{color:#c9a24b}
           <div class="mbanner-chips"><span class="mbanner-chip">Scratch-proof</span><span class="mbanner-chip">Stain-proof</span><span class="mbanner-chip">High-density</span></div>
           <div class="mbanner-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#a8763f" stroke-width="2"><path d="M12 2l2.4 6.6L21 9l-5 4.6L17.4 21 12 17.3 6.6 21 8 13.6 3 9l6.6-.4z"/></svg><span>LX Hausys 공식 딜러</span></div>
         </div>
-        <div class="mbanner-image" style="background-image:url('assets/material-viatera.jpg')"></div>
+        <div class="mbanner-image" style="background-image:url('assets/viatera.jpg')"></div>
       </div>
       <!-- 하이막스 (panel right) -->
       <div class="mbanner">
-        <div class="mbanner-image" style="background-image:url('assets/material-himacs.jpg')"></div>
+        <div class="mbanner-image" style="background-image:url('assets/himacs.jpg')"></div>
         <div class="mbanner-panel">
           <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">하이막스</div><div class="mbanner-eyebrow" style="margin-bottom:0">MMA 인조대리석</div></div>
           <div class="mbanner-desc-ko">이음새 없이 곡선을 성형할 수 있는 따뜻한 질감의 아크릴 소재로, 완전한 보수도 가능합니다.</div>
@@ -279,7 +291,7 @@ a:hover{color:#c9a24b}
           <div class="mbanner-desc-en">Heat-resistant thermoset composite for seamless sanitary ware and molded architectural forms.</div>
           <div class="mbanner-chips"><span class="mbanner-chip">Heat-resistant</span><span class="mbanner-chip">Hygienic</span><span class="mbanner-chip">Moldable</span></div>
         </div>
-        <div class="mbanner-image" style="background-image:url('assets/material-bmc.jpg')"></div>
+        <div class="mbanner-image" style="background-image:url('assets/material-viatera.jpg')"></div>
       </div>
     </div>
   </div>
@@ -557,6 +569,34 @@ class Component extends DCLogic {
     window.addEventListener('resize', onResize);
 
     render();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+
+(function () {
+  function init() {
+    var wrap = document.getElementById('storyVideoWrap');
+    var video = document.getElementById('storyVideo');
+    if (!wrap || !video || !('IntersectionObserver' in window)) return;
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          wrap.classList.add('in-view');
+          video.play().catch(function () {});
+        } else {
+          wrap.classList.remove('in-view');
+          video.pause();
+        }
+      });
+    }, { threshold: 0.2 });
+
+    observer.observe(wrap);
   }
 
   if (document.readyState === 'loading') {
