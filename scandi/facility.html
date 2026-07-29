@@ -80,8 +80,8 @@ a:hover{color:#c9a24b}
 .ft-title{font:500 26px/1.25 'Cormorant Garamond';color:#0e2440;margin-bottom:22px}
 
 .ft-photo-wrap{position:relative;overflow:hidden;border:1px solid rgba(14,36,64,.08);width:78vw;max-width:1100px}
-.ft-row-lg .ft-photo-wrap{width:90vw;max-width:1300px}
 .ft-photo{width:100%;aspect-ratio:3/2;background-size:cover;background-position:center;background-color:#f4f4f2;transition:transform .6s ease}
+.ft-photo.ft-photo-contain{background-size:contain;background-repeat:no-repeat}
 .ft-photo-wrap:hover .ft-photo{transform:scale(1.03)}
 .ft-num-bg{position:absolute;top:16px;left:16px;font:400 150px/1 'Cormorant Garamond';color:rgba(191,142,90,.12);z-index:1;pointer-events:none;user-select:none}
 
@@ -97,7 +97,7 @@ a:hover{color:#c9a24b}
 .ft-group-label{padding:44px 0 26px 44px;letter-spacing:.22em}
 .ft-row{padding:0 0 56px 44px}
 .ft-content{max-width:none}
-.ft-photo-wrap,.ft-row-lg .ft-photo-wrap{width:100%;max-width:none}
+.ft-photo-wrap{width:100%;max-width:none}
 .ft-num-bg{font-size:72px;top:10px;left:10px}
 .ft-title{font-size:22px}
 }
@@ -183,7 +183,7 @@ a:hover{color:#c9a24b}
         <div class="ft-title">도면 작업</div>
         <div class="ft-photo-wrap">
           <div class="ft-num-bg">02</div>
-          <div class="ft-photo" style="background-image:url('images/facility/도면작업.png')"></div>
+          <div class="ft-photo ft-photo-contain" style="background-image:url('images/facility/도면작업.png')"></div>
         </div>
         <div class="ft-headline">도면은 곧 가공 데이터입니다.</div>
         <div class="ft-body">실측 수치로 정리된 CAD 도면은 가공 장비와 직접 연동됩니다. 사람이 수치를 옮겨 적는 과정이 없기 때문에, 도면에서 가공으로 전달되는 과정에서 생기는 오차가 존재하지 않습니다.</div>
@@ -220,7 +220,7 @@ a:hover{color:#c9a24b}
 
     <div class="ft-group-label">PROCESSING · 가공</div>
 
-    <div class="ft-row ft-row-lg" data-step="5">
+    <div class="ft-row" data-step="5">
       <div class="ft-rail"><div class="ft-node"><div class="ft-node-dot"></div></div></div>
       <div class="ft-content">
         <div class="ft-num">05</div>
@@ -235,7 +235,7 @@ a:hover{color:#c9a24b}
       </div>
     </div>
 
-    <div class="ft-row ft-row-lg" data-step="6">
+    <div class="ft-row" data-step="6">
       <div class="ft-rail"><div class="ft-node"><div class="ft-node-dot"></div></div></div>
       <div class="ft-content">
         <div class="ft-num">06</div>
@@ -250,7 +250,7 @@ a:hover{color:#c9a24b}
       </div>
     </div>
 
-    <div class="ft-row ft-row-lg" data-step="7">
+    <div class="ft-row" data-step="7">
       <div class="ft-rail"><div class="ft-node"><div class="ft-node-dot"></div></div></div>
       <div class="ft-content">
         <div class="ft-num">07</div>
