@@ -46,42 +46,7 @@
 .vhero-eyebrow{font:600 11px 'Manrope';letter-spacing:.3em;color:#c9a24b;margin-bottom:18px}
 .vhero-heading{font:500 clamp(28px,4vw,46px)/1.25 'Cormorant Garamond';color:#f8f5ef;margin-bottom:20px}
 .vhero-desc{font:400 15px/1.9 'Manrope';color:rgba(243,239,230,.72)}
-.ceramic-video-section{position:relative;width:100%;height:100vh;min-height:520px;overflow:hidden;background:#0e0a06}
-.ceramic-video-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 </style>
-
-<!-- ===================== CERAMIC · FULL-BLEED STORY VIDEO (outside x-dc: same reason as the video hero above — re-renders would strip the muted/loop attributes we manage via JS and orphan the autoplay/pause logic) ===================== -->
-<div id="top" class="ceramic-video-section">
-  <video id="storyVideo" class="ceramic-video-bg" autoplay muted loop playsinline preload="auto" disablepictureinpicture controlsList="nodownload noremoteplayback">
-    <source src="assets/story-montage.mp4" type="video/mp4">
-  </video>
-
-  <!-- ============ PRESERVED FOR LATER RE-INTEGRATION AS OVERLAY ON TOP OF THE FULL-BLEED VIDEO ============
-
-  background watermark:
-  <div style="position:absolute;right:4vw;bottom:6%;z-index:0;pointer-events:none;user-select:none;font:700 clamp(48px,8vw,150px)/1 'Cormorant Garamond';letter-spacing:.02em;color:#eae5dc;white-space:nowrap">EUNSUNG</div>
-
-  text block + CTA + old card-style video:
-  <div style="position:relative;z-index:5;display:flex;flex-wrap:wrap;align-items:center;gap:60px;max-width:1280px;margin:0 auto">
-    <div style="flex:1 1 420px;max-width:520px">
-      <div style="display:flex;align-items:center;gap:13px;margin-bottom:34px">
-        <div style="width:38px;height:1.5px;background:#e3c789"></div>
-        <div style="font:600 10px 'Manrope';letter-spacing:.4em;color:#b8924a">EUNSUNG · CERAMIC STONE SURFACE</div>
-      </div>
-      <div style="font:500 clamp(48px,6.4vw,100px)/1.04 'Cormorant Garamond';color:#0a0908">Ceramic, for the<br>well-lived home.</div>
-      <div style="width:72px;height:2px;background:#c9a24b;margin:36px 0 26px"></div>
-      <div style="font:400 16px/1.9 'Manrope';color:rgba(14,36,64,.6);max-width:520px">주방 아일랜드부터 욕실, 파사드까지 — 포천 팩토리에서 가공한 대형 세라믹 슬랩이 하이엔드 레지던스의 격을 완성합니다.</div>
-      <a href="showroom.html" style="margin-top:44px;display:inline-flex;align-items:center;gap:11px;padding:17px 40px;background:#c9a24b;color:#16202c;font:600 12px 'Manrope';letter-spacing:.26em;text-decoration:none;transition:.35s;border-radius:2px" style-hover="background:#e3c789">쇼룸 입장 · ENTER SHOWROOM</a>
-    </div>
-
-    <div class="story-video-wrap" id="storyVideoWrap">
-      <video id="storyVideoOld" class="story-video" autoplay muted loop playsinline preload="metadata">
-        <source src="assets/story-montage.mp4" type="video/mp4">
-      </video>
-    </div>
-  </div>
-  ============================================================================================== -->
-</div>
 
 <x-dc>
 <helmet data-dc-atomics>
@@ -166,6 +131,11 @@ a:hover{color:#c9a24b}
   .mbanner-image{height:220px;order:1}
   .mbanner-panel{order:2;flex:none;width:100%}
 }
+
+/* ===== OUR STORY · MONTAGE VIDEO ===== */
+.ceramic-video-section{background:#f5f2ec;padding:120px 5vw}
+.ceramic-video-inner{max-width:1280px;margin:0 auto}
+.ceramic-video-bg{width:100%;height:78vh;min-height:420px;max-height:820px;object-fit:cover;display:block;border-radius:12px;box-shadow:0 24px 60px -24px rgba(14,36,64,.28)}
 .nav-drop-menu{position:absolute;top:24px;left:50%;transform:translate(-50%,6px);opacity:0;visibility:hidden;transition:.3s ease;background:rgba(251,250,250,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(14,36,64,.08);border-radius:10px;box-shadow:0 26px 54px -22px rgba(14,36,64,.4);padding:10px;min-width:190px;z-index:40}
 .nav-drop:hover .nav-drop-menu{opacity:1;visibility:visible;transform:translate(-50%,0)}
 .nav-drop-item{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:10px 14px;font:600 11px 'Manrope';letter-spacing:.08em;color:#0e2440;text-decoration:none;border-radius:7px;transition:.25s}
@@ -212,6 +182,7 @@ a:hover{color:#c9a24b}
       <div class="nav-drop-menu">
         <a class="nav-drop-item" href="about.html">회사소개</a>
         <a class="nav-drop-item nav-drop-item-sep" href="process.html">제작과정</a>
+        <a class="nav-drop-item" href="facility.html">설비라인</a>
       </div>
     </div>
     <a href="showroom.html?cat=PORCELAIN">포세린</a>
@@ -230,6 +201,7 @@ a:hover{color:#c9a24b}
 <div class="nav-mobile-panel">
   <a href="about.html">회사소개</a>
   <a href="process.html" class="nav-mobile-sub">제작과정</a>
+  <a href="facility.html" class="nav-mobile-sub">설비라인</a>
   <a href="showroom.html?cat=PORCELAIN">포세린</a>
   <a href="showroom.html?cat=VIATERA">비아테라</a>
   <a href="showroom.html?cat=HIMACS">하이막스</a>
@@ -295,6 +267,15 @@ a:hover{color:#c9a24b}
         <div class="mbanner-image" style="background-image:url('assets/material-viatera.jpg')"></div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ===================== OUR STORY · MONTAGE VIDEO ===================== -->
+<section id="top" class="ceramic-video-section">
+  <div class="ceramic-video-inner">
+    <video id="storyVideo" class="ceramic-video-bg" autoplay muted loop playsinline preload="auto" disablepictureinpicture controlsList="nodownload noremoteplayback">
+      <source src="assets/story-montage.mp4" type="video/mp4">
+    </video>
   </div>
 </section>
 
@@ -581,30 +562,66 @@ class Component extends DCLogic {
 
 (function () {
   function init() {
-    var section = document.getElementById('top');
-    var video = document.getElementById('storyVideo');
-    if (!section || !video) return;
+    // the page's template renderer strips the bare `muted`/`loop` attributes whenever it
+    // re-renders this (x-dc-managed) node, which also blocks autoplay (Chrome requires
+    // muted=true at play() time). Enforce both as live DOM properties, and keep re-enforcing
+    // since the stripping can happen repeatedly, not just once at load.
+    //
+    // The section/video nodes also don't exist yet at DOMContentLoaded time — the runtime
+    // loads React from a CDN and mounts this subtree asynchronously, and can later replace
+    // the node entirely on re-render. So this can't grab the elements once and bail if
+    // they're missing; it has to keep polling and rebind whenever the live node changes.
+    var boundVideo = null;
+    var boundSection = null;
+    var mo = null;
+    var io = null;
 
-    // the page's template renderer strips the bare `muted`/`loop` attributes on re-render,
-    // which also blocks autoplay (Chrome requires muted=true at play() time) — enforce both
-    // as live DOM properties instead of relying on the HTML attributes surviving.
-    video.muted = true;
-    video.loop = true;
-    video.play().catch(function () {});
+    function enforcePlaybackAttrs(video) {
+      var changed = false;
+      if (!video.muted) { video.muted = true; changed = true; }
+      if (!video.loop) { video.loop = true; changed = true; }
+      if (changed) video.play().catch(function () {});
+    }
 
-    if (!('IntersectionObserver' in window)) return;
+    function bindVideo(video) {
+      if (video === boundVideo) return;
+      if (mo) mo.disconnect();
+      boundVideo = video;
+      enforcePlaybackAttrs(video);
+      video.play().catch(function () {});
+      if ('MutationObserver' in window) {
+        mo = new MutationObserver(function () { enforcePlaybackAttrs(video); });
+        mo.observe(video, { attributes: true, attributeFilter: ['muted', 'loop'] });
+      }
+    }
 
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          video.play().catch(function () {});
-        } else {
-          video.pause();
-        }
-      });
-    }, { threshold: 0.2 });
+    function bindSection(section) {
+      if (section === boundSection || !('IntersectionObserver' in window)) return;
+      if (io) io.disconnect();
+      boundSection = section;
+      io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          var video = document.getElementById('storyVideo');
+          if (!video) return;
+          if (entry.isIntersecting) video.play().catch(function () {});
+          else video.pause();
+        });
+      }, { threshold: 0.2 });
+      io.observe(section);
+    }
 
-    observer.observe(section);
+    function poll() {
+      var video = document.getElementById('storyVideo');
+      var section = document.getElementById('top');
+      if (video) {
+        bindVideo(video);
+        enforcePlaybackAttrs(video);
+      }
+      if (section) bindSection(section);
+    }
+
+    poll();
+    setInterval(poll, 1000);
   }
 
   if (document.readyState === 'loading') {

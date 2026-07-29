@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@200;300;400;500;600;700;800&family=Noto+Serif+KR:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f5f1e8;font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth}
+a{color:#a8763f}
+a:hover{color:#c9a24b}
+.nav-mid{display:flex;align-items:center;gap:32px}
+.nav-mid a{color:inherit;font:500 15px/1 'Manrope';letter-spacing:.02em;text-decoration:none;position:relative;padding:4px 0;white-space:nowrap;transition:color .2s}
+.nav-mid a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:1.5px;background:currentColor;transition:width .35s}
+.nav-mid a:hover{color:#bf8e5a}
+.nav-mid a:hover::after{width:100%}
+.nav-drop{display:inline-flex;align-items:center}
+.nav-right{display:flex;align-items:center;gap:11px;flex-shrink:0}
+.nav-ic{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;cursor:pointer;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.08);transition:.3s}
+.nav-ic:hover{background:rgba(255,255,255,.22)}
+.nav-ic svg{width:16px;height:16px}
+.lang{font:700 11px 'Manrope';letter-spacing:.08em;display:flex;gap:5px;align-items:center}
+.lang b{cursor:pointer}
+.nav-drop-menu{position:absolute;top:24px;left:50%;transform:translate(-50%,6px);opacity:0;visibility:hidden;transition:.3s ease;background:rgba(251,250,250,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(14,36,64,.08);border-radius:10px;box-shadow:0 26px 54px -22px rgba(14,36,64,.4);padding:10px;min-width:190px;z-index:40}
+.nav-drop:hover .nav-drop-menu{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.nav-drop-item{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:10px 14px;font:600 11px 'Manrope';letter-spacing:.08em;color:#0e2440;text-decoration:none;border-radius:7px;transition:.25s}
+.nav-drop-item:hover{background:rgba(201,162,75,.1);color:#a8763f}
+.nav-drop-item span{font:500 10px 'Manrope';letter-spacing:.02em;opacity:.5}
+.nav-drop-item-sep{border-top:1px solid rgba(14,36,64,.08);margin-top:4px;padding-top:14px}
+.nav-toggle-input{display:none}
+.nav-burger{display:none;width:34px;height:34px;border-radius:50%;align-items:center;justify-content:center;border:1px solid rgba(14,36,64,.18);background:rgba(255,255,255,.08);cursor:pointer}
+.nav-burger svg{width:16px;height:16px}
+.nav-mobile-panel{display:none;position:fixed;top:64px;left:0;right:0;z-index:29;background:#fbfaf8;border-bottom:1px solid rgba(14,36,64,.1);box-shadow:0 24px 50px -28px rgba(14,36,64,.35);padding:8px 6vw 20px;flex-direction:column}
+.nav-mobile-panel a{padding:14px 2px;font:500 15px 'Manrope';color:#0e2440;text-decoration:none;border-bottom:1px solid rgba(14,36,64,.07)}
+.nav-mobile-panel a.nav-mobile-sub{padding-left:18px;font-size:13px;color:rgba(14,36,64,.6)}
+.nav-toggle-input:checked ~ .nav-mobile-panel{display:flex}
+@media (max-width:860px){
+.nav-mid{display:none}
+.nav-burger{display:inline-flex}
+}
+.brand-logo{display:flex;align-items:baseline;gap:.6em;font-size:1.75rem;transition:opacity .3s ease}
+.brand-logo:hover{opacity:.7}
+.brand-en{font:600 1.75rem 'Cormorant Garamond',serif;letter-spacing:.15em;text-transform:uppercase;color:#111;line-height:1}
+.brand-kr{font:400 .85rem 'Noto Serif KR',serif;opacity:.5;color:#111;line-height:1;white-space:nowrap}
+@media (max-width:640px){
+.brand-logo{font-size:1.35rem}
+.brand-en{font-size:1.35rem;letter-spacing:.12em}
+.brand-kr{font-size:.72rem}
+}
+
+/* ===== FACILITY TIMELINE ===== */
+.ft-intro{max-width:760px;margin:0 auto;text-align:center;padding:0 5vw}
+.ft-wrap{max-width:1180px;margin:0 auto;position:relative;padding:0 5vw}
+.ft-steps{position:relative;padding:70px 0 20px}
+.ft-line-track{position:absolute;left:calc(5vw + 31px);top:70px;bottom:40px;width:2px;background:linear-gradient(to bottom,rgba(191,142,90,0) 0%,rgba(191,142,90,.2) 6%,rgba(191,142,90,.2) 94%,rgba(191,142,90,0) 100%)}
+.ft-line-fill{position:absolute;left:calc(5vw + 31px);top:70px;width:2px;height:0;background:#bf8e5a;box-shadow:0 0 10px rgba(191,142,90,.45)}
+.ft-group-label{font:700 11px 'Manrope';letter-spacing:.24em;color:#a8763f;margin:0 0 22px 92px;padding-top:64px}
+.ft-group-label:first-of-type{padding-top:0}
+.ft-row{display:flex;gap:28px;align-items:flex-start}
+.ft-rail{flex:0 0 64px}
+.ft-node{width:30px;height:30px;margin-left:17px;border-radius:50%;background:#f5f1e8;border:2px solid rgba(191,142,90,.35);display:grid;place-items:center;transition:border-color .4s,background .4s}
+.ft-node-dot{width:8px;height:8px;border-radius:50%;background:rgba(191,142,90,.35);transition:background .4s,transform .4s}
+.ft-row.in-view .ft-node{border-color:#bf8e5a;background:#fffdf9}
+.ft-row.in-view .ft-node-dot{background:#bf8e5a;transform:scale(1.15)}
+.ft-left{flex:0 0 220px;position:sticky;top:110px;align-self:flex-start}
+.ft-num{font:600 13px 'Manrope';letter-spacing:.12em;color:#bf8e5a;margin-bottom:10px}
+.ft-title{font:500 27px/1.25 'Cormorant Garamond';color:#0e2440}
+.ft-right{flex:1;min-width:0;padding-bottom:96px;opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease}
+.ft-row.in-view .ft-right{opacity:1;transform:translateY(0)}
+.ft-row:last-of-type .ft-right{padding-bottom:8px}
+.ft-photo{width:100%;max-width:620px;aspect-ratio:16/9;border-radius:16px;border:1px solid rgba(14,36,64,.08);box-shadow:0 24px 54px -34px rgba(14,36,64,.35);background-color:#e7dfcf;background-size:cover;background-position:center}
+.ft-row-lg .ft-photo{max-width:none}
+.ft-headline{font:500 22px/1.5 'Noto Serif KR';color:#0e2440;margin:26px 0 12px;max-width:480px}
+.ft-body{font:400 14.5px/1.8 'Manrope';color:rgba(14,36,64,.6);max-width:460px}
+@media (max-width:860px){
+.ft-line-track,.ft-line-fill{left:calc(6vw + 14px)}
+.ft-rail{flex:0 0 40px}
+.ft-node{margin-left:1px}
+.ft-group-label{margin-left:64px}
+.ft-row{flex-wrap:wrap;gap:14px 28px}
+.ft-left{position:static;flex:0 0 auto}
+.ft-title{font-size:22px}
+.ft-right{flex:1 1 100%;padding-bottom:64px}
+.ft-photo{max-width:none}
+}
+</style>
+</helmet>
+
+<!-- NAV -->
+<input type="checkbox" id="nav-toggle" class="nav-toggle-input">
+<div style="position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:19px 5vw;background:rgba(251,250,250,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(14,36,64,.08);color:#0e2440">
+  <a href="index.html" class="brand-logo" style="text-decoration:none;color:inherit">
+    <span class="brand-en">EUNSUNG</span><span class="brand-kr">은성</span>
+  </a>
+  <nav class="nav-mid" style="color:#1a1a1a">
+    <div class="nav-drop" style="position:relative">
+      <a href="#" style="color:#a8763f">회사소개</a>
+      <div class="nav-drop-menu">
+        <a class="nav-drop-item" href="about.html">회사소개</a>
+        <a class="nav-drop-item nav-drop-item-sep" href="process.html">제작과정</a>
+        <a class="nav-drop-item" href="facility.html">설비라인</a>
+      </div>
+    </div>
+    <a href="showroom.html?cat=PORCELAIN">포세린</a>
+    <a href="showroom.html?cat=VIATERA">비아테라</a>
+    <a href="showroom.html?cat=HIMACS">하이막스</a>
+    <a href="showroom.html?cat=BMC">BMC</a>
+    <a href="portfolio.html">시공사례</a><a href="index.html#inquiry">문의</a>
+  </nav>
+  <div class="nav-right">
+    <span class="nav-ic" style="border-color:rgba(14,36,64,.18)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
+    <span class="lang"><b style="opacity:.5">EN</b><span style="opacity:.4">|</span><b>KO</b></span>
+    <span class="nav-ic" style="border-color:rgba(14,36,64,.18)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></span>
+    <label for="nav-toggle" class="nav-burger" aria-label="메뉴 열기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16"/></svg></label>
+  </div>
+</div>
+<div class="nav-mobile-panel">
+  <a href="about.html">회사소개</a>
+  <a href="process.html" class="nav-mobile-sub">제작과정</a>
+  <a href="facility.html" class="nav-mobile-sub">설비라인</a>
+  <a href="showroom.html?cat=PORCELAIN">포세린</a>
+  <a href="showroom.html?cat=VIATERA">비아테라</a>
+  <a href="showroom.html?cat=HIMACS">하이막스</a>
+  <a href="showroom.html?cat=BMC">BMC</a>
+  <a href="portfolio.html">시공사례</a>
+  <a href="index.html#inquiry">문의</a>
+</div>
+
+<!-- ===================== FACILITY INTRO ===================== -->
+<section style="background:#f5f1e8;padding:170px 5vw 30px">
+  <div class="ft-intro">
+    <div style="font:600 12px 'Manrope';letter-spacing:.42em;color:#b8924a;margin-bottom:16px">FACILITY · 설비라인</div>
+    <div style="font:500 clamp(32px,4vw,52px)/1.15 'Cormorant Garamond';color:#0e2440;margin-bottom:18px">한 장의 슬랩이<br>공간이 되기까지.</div>
+    <div style="font:400 15px/1.85 'Manrope';color:rgba(14,36,64,.6)">실측부터 현장 시공까지, 은성이 직접 관리하는 10단계 생산 공정입니다.</div>
+  </div>
+</section>
+
+<!-- ===================== TIMELINE ===================== -->
+<section class="ft-wrap">
+  <div class="ft-steps" id="ftSteps">
+    <div class="ft-line-track"></div>
+    <div class="ft-line-fill" id="ftLineFill"></div>
+
+    <div class="ft-group-label">PREPARATION · 사전 준비</div>
+
+    <div class="ft-row" data-step="1">
+      <div class="ft-rail"><div class="ft-node"><div class="ft-node-dot"></div></div></div>
+      <div class="ft-left"><div class="ft-num">01</div><div class="ft-title">실측</div></div>
+      <div class="ft-right">
+        <div class="ft-photo" style="background-image:url('images/facility/실측.jpg')"></div>
+        <div class="ft-headline">밀리미터의 오차도 남기지 않습니다.</div>
+        <div class="ft-body">레이저 실측 장비로 현장의 각도와 단차까지 빠짐없이 기록합니다. 기록된 수치는 그대로 다음 단계인 도면 작업으로 이어져, 현장과 도면 사이의 오차를 처음부터 차단합니다.</div>
+      </div>
+    </div>
+
+    <div class="ft-row" data-step="2">
+      <div class="ft-rail"><div class="ft-node"><div class="ft-node-dot"></div></div></div>
+      <div class="ft-left"><div class="ft-num">02</div><div class="ft-title">도면 작업</div></div>
+      <div class="ft-right">
+        <div class="ft-photo" style="background-image:url('images/facility/도면작업.png')"></div>
+        <div class="ft-headline">도면은 곧 가공 데이터입니다.</div>
+        <div class="ft-body">실측 수치로 정리된 CAD 도면은 가공 장비와 직접 연동됩니다. 사람이 수치를 옮겨 적는 과정이 없기 때문에, 도면에서 가공으로 전달되는 과정에서 생기는 오차가 존재하지 않습니다.</div>
+      </div>
+    </div>
+
+    <div class="ft-row" data-step="3">
+      <div class="ft-rail"><div class="ft-node"><div class="ft-node-dot"></div></div></div>
+      <div class="ft-left"><div class="ft-num">03</div><div class="ft-title">자재 입고 및 검수</div></div>
+      <div class="ft-right">
+        <div class="ft-photo" style="background-image:url('images/facility/자재입고및검수.png')"></div>
+        <div class="ft-headline">들여오는 자재부터 다시 확인합니다.</div>
+        <div class="ft-body">은성은 LX Hausys 정식 대리점으로서, 입고되는 모든 슬랩을 전수 검수합니다. 규격과 색상 로트, 표면 상태까지 하나씩 확인한 자재만 가공 라인에 투입됩니다.</div>
+      </div>
+    </div>
+
+    <div class="ft-row" data-step="4">
+      <div class="ft-rail"><div class="ft-node"><div class="ft-node-dot"></div></div></div>
+      <div class="ft-left"><div class="ft-num">04</div><div class="ft-title">슬랩 배치</div></div>
+      <div class="ft-right">
+        <div class="ft-photo" style="background-image:url('images/facility/슬랩배치.png')"></div>
+        <div class="ft-headline">결의 방향까지 미리 정합니다.</div>
+        <div class="ft-body">도면에 맞춰 슬랩을 배치하며 무늬결과 이음선의 위치를 재단 전에 확정합니다. 잘라내기 전에 완성된 모습을 먼저 확인하는 단계입니다.</div>
+      </div>
+    </div>
+
+    <div class="ft-group-label">PROCESSING · 가공</div>
+
+    <div class="ft-row ft-row-lg" data-step="5">
+      <div class="ft-rail"><div class="ft-node"><div class="ft-node-dot"></div></div></div>
+      <div class="ft-left"><div class="ft-num">05</div><div class="ft-title">재단</div></div>
+      <div class="ft-right">
+        <div class="ft-photo" style="background-image:url('images/facility/재단.png')"></div>
+        <div class="ft-headline">도면 그대로, 오차 없이 잘라냅니다.</div>
+        <div class="ft-body">대형 가공 설비가 도면 데이터를 그대로 읽어 슬랩을 재단합니다. 직선과 곡선이 만나는 지점까지 동일한 정밀도로 처리합니다.</div>
+      </div>
+    </div>
+
+    <div class="ft-row ft-row-lg" data-step="6">
+      <div class="ft-rail"><div class="ft-node"><div class="ft-node-dot"></div></div></div>
+      <div class="ft-left"><div class="ft-num">06</div><div class="ft-title">타공 및 씽크볼 가공</div></div>
+      <div class="ft-right">
+        <div class="ft-photo" style="background-image:url('images/facility/타공및씽크볼가공.png')"></div>
+        <div class="ft-headline">취성이 강한 소재일수록, 손끝은 더 세심해집니다.</div>
+        <div class="ft-body">포세린은 강도는 높지만 충격에는 예민한 소재입니다. 씽크볼과 콘센트 홀 하나까지 크랙 없이 정밀하게 타공하는 것이 이 공정의 기준입니다.</div>
+      </div>
+    </div>
+
+    <div class="ft-row ft-row-lg" data-step="7">
+      <div class="ft-rail"><div class="ft-node"><div class="ft-node-dot"></div></div></div>
+      <div class="ft-left"><div class="ft-num">07</div><div class="ft-title">엣지 가공 및 연마 폴리싱</div></div>
+      <div class="ft-right">
+        <div class="ft-photo" style="background-image:url('images/facility/엣지가공및연마폴리싱.png')"></div>
+        <div class="ft-headline">만졌을 때 느껴지는 마감이 다릅니다.</div>
+        <div class="ft-body">형태에 맞춰 엣지의 각을 잡고, 표면은 단계별 연마로 광택을 끌어올립니다. 눈으로 보는 것을 넘어 손으로 확인해도 이음이 느껴지지 않도록 마무리합니다.</div>
+      </div>
+    </div>
+
+    <div class="ft-group-label">COMPLETION · 완성</div>
+
+    <div class="ft-row" data-step="8">
+      <div class="ft-rail"><div class="ft-node"><div class="ft-node-dot"></div></div></div>
+      <div class="ft-left"><div class="ft-num">08</div><div class="ft-title">최종 검수</div></div>
+      <div class="ft-right">
+        <div class="ft-photo" style="background-image:url('images/facility/최종검수.png')"></div>
+        <div class="ft-headline">출고 전, 마지막으로 한 번 더 봅니다.</div>
+        <div class="ft-body">치수와 표면, 컬러 매칭까지 처음 도면과 비교해 다시 확인합니다. 이 기준을 통과한 제품만 다음 단계로 넘어갑니다.</div>
+      </div>
+    </div>
+
+    <div class="ft-row" data-step="9">
+      <div class="ft-rail"><div class="ft-node"><div class="ft-node-dot"></div></div></div>
+      <div class="ft-left"><div class="ft-num">09</div><div class="ft-title">운반</div></div>
+      <div class="ft-right">
+        <div class="ft-photo" style="background-image:url('images/facility/운반.png')"></div>
+        <div class="ft-headline">여기서부터는 파손 방지가 곧 품질입니다.</div>
+        <div class="ft-body">슬랩 전용 거치대와 완충재로 고정해 운송 중 흔들림과 파손을 방지합니다. 현장에 도착하는 순간까지 검수된 상태 그대로 유지합니다.</div>
+      </div>
+    </div>
+
+    <div class="ft-row" data-step="10">
+      <div class="ft-rail"><div class="ft-node"><div class="ft-node-dot"></div></div></div>
+      <div class="ft-left"><div class="ft-num">10</div><div class="ft-title">현장 시공</div></div>
+      <div class="ft-right">
+        <div class="ft-photo" style="background-image:url('images/facility/시공.png')"></div>
+        <div class="ft-headline">처음 실측한 사람이, 마지막까지 함께합니다.</div>
+        <div class="ft-body">실측부터 시공까지 전 과정을 은성의 시공팀이 직접 책임집니다. 담당이 바뀌며 생기는 공백 없이, 처음 약속한 완성도를 한 팀이 끝까지 지킵니다.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== FOOTER (shared) ===================== -->
+<footer style="background:#080b10;padding:72px 5vw 40px">
+  <div style="max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:44px">
+    <div style="max-width:300px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
+        <svg width="30" height="30" viewBox="0 0 92 92"><circle cx="46" cy="46" r="43" fill="none" stroke="#e3c789" stroke-width="4"></circle><circle cx="46" cy="46" r="36" fill="none" stroke="#e3c789" stroke-width="1.2"></circle><text x="46" y="57" text-anchor="middle" style="font:600 30px 'Cormorant Garamond';fill:#f3efe6">ES</text><path d="M46 11 L49 16 L46 21 L43 16 Z" fill="#c9a24b"></path><path d="M46 71 L49 76 L46 81 L43 76 Z" fill="#c9a24b"></path></svg>
+        <div style="font:700 15px 'Manrope';letter-spacing:.24em;color:#fff">EUNSUNG</div>
+      </div>
+      <div style="font:400 13px/1.8 'Manrope';color:rgba(255,255,255,.45);margin-bottom:4px">세라믹, 엔지니어드 스톤, 솔리드 서페이스를 위한 피지털 플래그십 — 포천에서 가공해 어디든 배송합니다.</div>
+      <div style="font:400 11.5px/1.65 'Manrope';color:rgba(255,255,255,.25)">A phygital flagship for ceramic, engineered stone and solid surface — fabricated in Pocheon, delivered everywhere.</div>
+    </div>
+    <div style="display:flex;gap:64px;flex-wrap:wrap">
+      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">MATERIALS</div><div style="display:flex;flex-direction:column;gap:11px"><a href="index.html#materials" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">BMC</a><a href="index.html#materials" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">MMA</a><a href="index.html#materials" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">E-Stone</a><a href="index.html#materials" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Ceramic</a></div></div>
+      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">COMPANY</div><div style="display:flex;flex-direction:column;gap:11px"><a href="portfolio.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Portfolio</a><a href="process.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Process</a><a href="facility.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Facility</a></div></div>
+      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">SUPPORT</div><div style="display:flex;flex-direction:column;gap:11px"><a href="showroom.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Store</a><a href="index.html#inquiry" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Inquiry</a><a href="index.html#inquiry" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">FAQ</a></div></div>
+    </div>
+  </div>
+  <div style="max-width:1280px;margin:48px auto 0;padding-top:26px;border-top:1px solid rgba(255,255,255,.09)">
+    <div style="display:flex;flex-wrap:wrap;gap:8px 22px;margin-bottom:16px;font:400 12px/1.7 'Manrope';color:rgba(255,255,255,.45)">
+      <span>상호 (주)은성</span><span>대표자 이언기</span><span>사업자등록번호 328-88-00420</span><span>주소 경기도 포천시 가산면 정금로 356-39</span><span>전화 031-544-7272</span><span>이메일 eunsung8585@naver.com</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px">
+      <div style="font:400 12px 'Manrope';color:rgba(255,255,255,.4)">© 2026 (주)은성 EUNSUNG Co., Ltd. · 인조대리석 및 상판 가공 · 경기도 포천</div>
+      <div style="font:400 12px 'Manrope';color:rgba(255,255,255,.4)">Instagram · KakaoTalk · Naver</div>
+    </div>
+  </div>
+</footer>
+
+</x-dc>
+<script>
+(function () {
+  function init() {
+    var stepsEl = null;
+    var fillEl = null;
+    var rows = [];
+    var io = null;
+    var ticking = false;
+
+    function updateLine() {
+      if (!stepsEl || !fillEl) return;
+      var rect = stepsEl.getBoundingClientRect();
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      var total = rect.height;
+      if (total <= 0) return;
+      var raw = (vh * 0.35 - rect.top) / total;
+      var progress = Math.min(1, Math.max(0, raw));
+      fillEl.style.height = (progress * total) + 'px';
+    }
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        updateLine();
+        ticking = false;
+      });
+    }
+
+    function bind() {
+      var newSteps = document.getElementById('ftSteps');
+      var newFill = document.getElementById('ftLineFill');
+      if (!newSteps || !newFill) return false;
+      if (newSteps === stepsEl) { updateLine(); return true; }
+
+      stepsEl = newSteps;
+      fillEl = newFill;
+      rows = Array.prototype.slice.call(stepsEl.querySelectorAll('.ft-row'));
+
+      if (io) io.disconnect();
+      if ('IntersectionObserver' in window) {
+        io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) entry.target.classList.add('in-view');
+          });
+        }, { threshold: 0.2, rootMargin: '0px 0px -10% 0px' });
+        rows.forEach(function (r) { io.observe(r); });
+      } else {
+        rows.forEach(function (r) { r.classList.add('in-view'); });
+      }
+
+      updateLine();
+      return true;
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+
+    var tries = 0;
+    var poll = setInterval(function () {
+      tries++;
+      if (bind() || tries > 100) clearInterval(poll);
+    }, 100);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body>
+</html>
