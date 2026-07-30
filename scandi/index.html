@@ -135,11 +135,10 @@ a:hover{color:#c9a24b}
 /* ===== OUR STORY · MONTAGE VIDEO ===== */
 .story-montage-section{position:relative;width:100%;min-height:100vh;margin:0;padding:0;background:#0B0D12;overflow:hidden}
 .story-montage-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#0B0D12}
-.story-montage-overlay{position:absolute;inset:0;background:rgba(8,10,15,.22)}
 .story-montage-text{position:absolute;z-index:2;left:8%;right:8%;bottom:12%;max-width:560px;pointer-events:none;opacity:0;transform:translateY(30px);transition:opacity 1.2s ease,transform 1.2s ease}
 .story-montage-text.is-visible{opacity:1;transform:translateY(0)}
-.story-montage-label{font:600 13px 'Manrope';letter-spacing:.3em;text-transform:uppercase;color:#C9A24B;margin-bottom:18px;text-shadow:0 2px 20px rgba(0,0,0,.4)}
-.story-montage-headline{font:500 clamp(30px,3.4vw,46px)/1.35 'Noto Serif KR';color:#F5F1E8;text-shadow:0 2px 20px rgba(0,0,0,.4)}
+.story-montage-label{font:600 13px 'Manrope';letter-spacing:.3em;text-transform:uppercase;color:#C9A24B;margin-bottom:18px;text-shadow:0 2px 24px rgba(0,0,0,.55)}
+.story-montage-headline{font:500 clamp(30px,3.4vw,46px)/1.35 'Noto Serif KR';color:#F5F1E8;text-shadow:0 2px 24px rgba(0,0,0,.55)}
 @media (max-width:768px){
   .story-montage-text{max-width:none}
   .story-montage-label{font-size:11px;letter-spacing:.25em;margin-bottom:12px}
@@ -284,7 +283,6 @@ a:hover{color:#c9a24b}
   <video id="storyVideo" class="story-montage-video" autoplay muted loop playsinline preload="auto" disablepictureinpicture controlsList="nodownload noremoteplayback">
     <source src="assets/story-montage.mp4" type="video/mp4">
   </video>
-  <div class="story-montage-overlay"></div>
   <div class="story-montage-text" id="storyMontageText">
     <div class="story-montage-label">CRAFTED IN POCHEON</div>
     <div class="story-montage-headline">한 장의 슬랩이<br>공간이 되기까지</div>
@@ -646,17 +644,36 @@ class Component extends DCLogic {
 <script>
 (function () {
   function init() {
-    var textEl = document.getElementById('storyMontageText');
-    if (!textEl) return;
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          textEl.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.3 });
-    observer.observe(textEl);
+    // same rationale as the video-enforcement script above: this node lives inside
+    // the x-dc-managed subtree and can be replaced wholesale on re-render, which
+    // would orphan an observer attached once at load. Poll and rebind instead of
+    // grabbing the element a single time.
+    var boundEl = null;
+    var observer = null;
+
+    function bindText(el) {
+      if (el === boundEl) return;
+      boundEl = el;
+      if (observer) observer.disconnect();
+      if (el.classList.contains('is-visible')) return;
+      observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.3 });
+      observer.observe(el);
+    }
+
+    function poll() {
+      var el = document.getElementById('storyMontageText');
+      if (el) bindText(el);
+    }
+
+    poll();
+    setInterval(poll, 1000);
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
