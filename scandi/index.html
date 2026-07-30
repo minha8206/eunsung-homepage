@@ -20,7 +20,13 @@
       <h2 class="vhero-word" id="vheroWordL">EUNSUNG</h2>
       <h2 class="vhero-word" id="vheroWordR">STUDIO</h2>
     </div>
-    <div class="vhero-hint" id="vheroHint">SCROLL TO EXPAND</div>
+    <div class="vhero-hint" id="vheroHint">
+      <span class="vhero-hint-label">SCROLL TO EXPAND</span>
+      <span class="vhero-hint-chevrons" aria-hidden="true">
+        <svg class="vhero-chevron vhero-chevron--1" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="rgba(255,255,255,.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg class="vhero-chevron vhero-chevron--2" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="rgba(255,255,255,.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+    </div>
   </div>
   <div class="vhero-content" id="vheroContent">
     <div class="vhero-content-inner">
@@ -41,7 +47,14 @@
 .vhero-media-shade{position:absolute;inset:0;background:rgba(0,0,0,.32)}
 .vhero-title{position:relative;z-index:2;display:flex;gap:18px;align-items:baseline;justify-content:center;flex-wrap:wrap;pointer-events:none}
 .vhero-word{font:500 clamp(40px,7vw,110px) 'Cormorant Garamond';color:#f8f5ef;margin:0;text-shadow:0 16px 50px rgba(0,0,0,.5)}
-.vhero-hint{position:absolute;left:50%;bottom:40px;transform:translateX(-50%);z-index:2;font:600 11px 'Manrope';letter-spacing:.3em;color:rgba(243,239,230,.7);transition:opacity .4s ease}
+.vhero-hint{position:absolute;left:50%;bottom:40px;transform:translateX(-50%);z-index:2;font:600 11px 'Manrope';letter-spacing:.3em;color:rgba(243,239,230,.7);transition:opacity .4s ease;display:flex;flex-direction:column;align-items:center;pointer-events:none}
+.vhero-hint-label{display:block;animation:vheroHintPulse 3s ease-in-out infinite}
+.vhero-hint-chevrons{display:flex;flex-direction:column;align-items:center;margin-top:8px}
+.vhero-chevron{width:24px;height:24px;display:block;opacity:0;animation:vheroChevronFlow 1.6s ease-in-out infinite}
+.vhero-chevron--1{animation-delay:0s;margin-bottom:-8px}
+.vhero-chevron--2{animation-delay:.2s}
+@keyframes vheroHintPulse{0%,100%{opacity:.6}50%{opacity:1}}
+@keyframes vheroChevronFlow{0%{opacity:0;transform:translateY(0)}50%{opacity:1;transform:translateY(6px)}100%{opacity:0;transform:translateY(12px)}}
 .vhero-content{opacity:0;transition:opacity .7s ease;padding:100px 8vw 120px;position:relative;z-index:1}
 .vhero-content.on{opacity:1}
 .vhero-content-inner{max-width:720px;margin:0 auto;text-align:center}
