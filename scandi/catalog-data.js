@@ -210,26 +210,16 @@ export function getCatalog() {
   return catalogLoaded;
 }
 
-// 레퍼런스 시공 사진 (임시)
+// 레퍼런스 시공 사진 (실제 시공 사례)
+const REFERENCE_WORKS = [
+  { img: 'assets/ref-kitchen.jpg', label: '주방 상판 및 씽크 시공' },
+  { img: 'assets/ref-cafe-counter.jpg', label: '카페 카운터 상판 시공' },
+  { img: 'assets/ref-wall-top.jpg', label: '벽체 및 상판 마감 시공' },
+];
+
 export const REFERENCES = {
-  white: [
-    { img: 'assets/hero-kitchen.png', label: '주방 아일랜드 상판 시공' },
-    { img: 'assets/lobby-cream.png', label: '호텔 로비 벽면 마감' },
-    { img: 'assets/slab-wall.png', label: '거실 아트월 슬랩 시공' },
-  ],
-  beige: [
-    { img: 'assets/island-marble.png', label: '주방 아일랜드 상판 시공' },
-    { img: 'assets/lobby-cream.png', label: '라운지 카운터 마감' },
-    { img: 'assets/hero-kitchen.png', label: '레지던스 주방 시공' },
-  ],
-  gray: [
-    { img: 'assets/island-quartzite.png', label: '아일랜드 상판 시공' },
-    { img: 'assets/slab-wall.png', label: '욕실 벽면 슬랩 시공' },
-    { img: 'assets/hero-kitchen.png', label: '주방 전체 마감' },
-  ],
-  dark: [
-    { img: 'assets/penthouse-onyx.png', label: '펜트하우스 아트월 시공' },
-    { img: 'assets/marble-dark.png', label: '카운터 상판 시공' },
-    { img: 'assets/slab-wall.png', label: '라운지 벽면 마감' },
-  ],
+  white: REFERENCE_WORKS,
+  beige: REFERENCE_WORKS,
+  gray: REFERENCE_WORKS,
+  dark: REFERENCE_WORKS,
 };
