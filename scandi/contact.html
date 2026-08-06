@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>문의하기 — EUNSUNG 은성</title>
+<meta name="description" content="(주)은성 문의하기 — 견적·시공·자재 문의와 포천 쇼룸 방문 예약을 접수합니다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@200;300;400;500;600;700;800&family=Noto+Serif+KR:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/inquiry-widget.css">
+<script src="assets/js/inquiry-widget.js" defer></script>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#F5F1E8;font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased;color:#0e2440}
+html{scroll-behavior:smooth}
+a{color:#a8763f}
+a:hover{color:#c9a24b}
+
+/* ---------- 헤더 (전 페이지 공통) ---------- */
+.nav-mid{display:flex;align-items:center;gap:32px}
+.nav-mid a{color:inherit;font:500 15px/1 'Manrope';letter-spacing:.02em;text-decoration:none;position:relative;padding:4px 0;white-space:nowrap;transition:color .2s}
+.nav-mid a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:1.5px;background:currentColor;transition:width .35s}
+.nav-mid a:hover{color:#bf8e5a}
+.nav-mid a:hover::after{width:100%}
+.nav-drop{display:inline-flex;align-items:center}
+.nav-right{display:flex;align-items:center;gap:11px;flex-shrink:0}
+.nav-ic{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;cursor:pointer;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.08);transition:.3s}
+.nav-ic:hover{background:rgba(255,255,255,.22)}
+.nav-ic svg{width:16px;height:16px}
+.lang{font:700 11px 'Manrope';letter-spacing:.08em;display:flex;gap:5px;align-items:center}
+.lang b{cursor:pointer}
+.nav-drop-menu{position:absolute;top:24px;left:50%;transform:translate(-50%,6px);opacity:0;visibility:hidden;transition:.3s ease;background:rgba(251,250,250,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(14,36,64,.08);border-radius:10px;box-shadow:0 26px 54px -22px rgba(14,36,64,.4);padding:10px;min-width:190px;z-index:40}
+.nav-drop:hover .nav-drop-menu{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.nav-drop-item{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:10px 14px;font:600 11px 'Manrope';letter-spacing:.08em;color:#0e2440;text-decoration:none;border-radius:7px;transition:.25s}
+.nav-drop-item:hover{background:rgba(201,162,75,.1);color:#a8763f}
+.nav-drop-item-sep{border-top:1px solid rgba(14,36,64,.08);margin-top:4px;padding-top:14px}
+.nav-toggle-input{display:none}
+.nav-burger{display:none;width:34px;height:34px;border-radius:50%;align-items:center;justify-content:center;border:1px solid rgba(14,36,64,.18);background:rgba(255,255,255,.08);cursor:pointer}
+.nav-burger svg{width:16px;height:16px}
+.nav-mobile-panel{display:none;position:fixed;top:64px;left:0;right:0;z-index:29;background:#F5F1E8;border-bottom:1px solid rgba(14,36,64,.1);box-shadow:0 24px 50px -28px rgba(14,36,64,.35);padding:8px 6vw 20px;flex-direction:column}
+.nav-mobile-panel a{padding:14px 2px;font:500 15px 'Manrope';color:#0e2440;text-decoration:none;border-bottom:1px solid rgba(14,36,64,.07)}
+.nav-mobile-panel a.nav-mobile-sub{padding-left:18px;font-size:13px;color:rgba(14,36,64,.6)}
+.nav-toggle-input:checked ~ .nav-mobile-panel{display:flex}
+@media (max-width:860px){
+.nav-mid{display:none}
+.nav-burger{display:inline-flex}
+}
+.brand-logo{display:flex;align-items:baseline;gap:.6em;font-size:1.75rem;transition:opacity .3s ease}
+.brand-logo:hover{opacity:.7}
+.brand-en{font:600 1.75rem 'Cormorant Garamond',serif;letter-spacing:.15em;text-transform:uppercase;color:#111;line-height:1}
+.brand-kr{font:400 .85rem 'Noto Serif KR',serif;opacity:.5;color:#111;line-height:1;white-space:nowrap}
+@media (max-width:640px){
+.brand-logo{font-size:1.35rem}
+.brand-en{font-size:1.35rem;letter-spacing:.12em}
+.brand-kr{font-size:.72rem}
+}
+
+/* ---------- 히어로 ---------- */
+.ct-hero{max-width:1280px;margin:0 auto;padding:150px 5vw 0;text-align:center}
+.ct-eyebrow{font:600 10px 'Manrope';letter-spacing:.34em;color:#BF8E5A}
+.ct-title{font:500 44px/1.3 'Noto Serif KR',serif;color:#0e2440;margin-top:16px}
+.ct-lead{font:400 15px/1.9 'Manrope';color:rgba(14,36,64,.6);margin-top:20px}
+.ct-rule{width:52px;height:1px;background:#BF8E5A;margin:34px auto 0}
+@media (max-width:640px){
+.ct-hero{padding-top:118px}
+.ct-title{font-size:32px}
+.ct-lead{font-size:14px}
+}
+
+/* ---------- 본문 2단 ---------- */
+.ct-body{max-width:1280px;margin:0 auto;padding:76px 5vw 110px;display:grid;grid-template-columns:minmax(0,0.82fr) minmax(0,1.18fr);gap:88px;align-items:start}
+@media (max-width:940px){
+.ct-body{grid-template-columns:1fr;gap:64px;padding-top:56px}
+}
+
+/* 좌측 — 연락 정보 */
+.ct-side-head{font:600 10px 'Manrope';letter-spacing:.28em;color:#BF8E5A}
+.ct-side-title{font:500 26px/1.5 'Noto Serif KR',serif;color:#0e2440;margin-top:14px}
+.ct-side-note{font:400 13.5px/1.9 'Manrope';color:rgba(14,36,64,.55);margin-top:14px}
+.ct-info{margin-top:44px}
+.ct-info-item{padding:26px 0;border-top:1px solid rgba(191,142,90,.32)}
+.ct-info-item:last-child{border-bottom:1px solid rgba(191,142,90,.32)}
+.ct-info-label{font:600 10px 'Manrope';letter-spacing:.2em;color:#BF8E5A}
+.ct-info-value{font:500 19px/1.5 'Cormorant Garamond',serif;color:#0e2440;margin-top:10px;letter-spacing:.02em}
+.ct-info-value a{color:inherit;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .25s,color .25s}
+.ct-info-value a:hover{color:#BF8E5A;border-bottom-color:#BF8E5A}
+.ct-info-sub{font:400 13px/1.8 'Manrope';color:rgba(14,36,64,.55);margin-top:8px}
+.ct-hours{display:flex;justify-content:space-between;gap:18px;font:400 13.5px/1.9 'Manrope';color:rgba(14,36,64,.72)}
+.ct-hours span:last-child{color:rgba(14,36,64,.5);white-space:nowrap}
+
+/* 우측 — 폼 */
+.ct-form-wrap{background:rgba(255,255,255,.5);border:1px solid rgba(191,142,90,.22);padding:52px 52px 46px}
+@media (max-width:640px){.ct-form-wrap{padding:34px 22px 32px}}
+.ct-form-head{font:500 24px/1.5 'Noto Serif KR',serif;color:#0e2440}
+.ct-form-note{font:400 13px/1.8 'Manrope';color:rgba(14,36,64,.5);margin-top:10px}
+.ct-req{color:#BF8E5A}
+.ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px 30px;margin-top:38px}
+.ct-field{display:flex;flex-direction:column}
+.ct-field.is-full{grid-column:1 / -1}
+@media (max-width:640px){
+.ct-grid{grid-template-columns:1fr;gap:24px}
+.ct-field.is-full{grid-column:auto}
+}
+.ct-label{font:600 10px 'Manrope';letter-spacing:.18em;color:rgba(14,36,64,.62);text-transform:uppercase}
+.ct-input,.ct-select,.ct-textarea{
+  width:100%;margin-top:11px;padding:9px 2px;background:transparent;border:none;
+  border-bottom:1px solid rgba(14,36,64,.22);border-radius:0;
+  font:400 15px/1.6 'Manrope';color:#0e2440;transition:border-color .25s;
+}
+.ct-input::placeholder,.ct-textarea::placeholder{color:rgba(14,36,64,.3)}
+.ct-input:focus,.ct-select:focus,.ct-textarea:focus{outline:none;border-bottom-color:#BF8E5A}
+.ct-select{
+  appearance:none;-webkit-appearance:none;cursor:pointer;
+  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23BF8E5A' stroke-width='1.4'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 2px center;padding-right:22px;
+}
+.ct-textarea{min-height:148px;resize:vertical;line-height:1.85}
+.ct-field.has-error .ct-input,.ct-field.has-error .ct-select,.ct-field.has-error .ct-textarea{border-bottom-color:#BF8E5A}
+
+.ct-agree{grid-column:1 / -1;margin-top:6px;display:flex;align-items:flex-start;gap:12px}
+@media (max-width:640px){.ct-agree{grid-column:auto}}
+.ct-agree input{appearance:none;-webkit-appearance:none;flex:none;width:18px;height:18px;margin:2px 0 0;border:1px solid rgba(14,36,64,.3);background:transparent;cursor:pointer;transition:.2s;position:relative}
+.ct-agree input:checked{background:#BF8E5A;border-color:#BF8E5A}
+.ct-agree input:checked::after{content:'';position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #fff;border-width:0 1.6px 1.6px 0;transform:rotate(45deg)}
+.ct-agree label{font:400 13px/1.8 'Manrope';color:rgba(14,36,64,.62);cursor:pointer}
+.ct-agree.has-error label{color:#BF8E5A}
+
+.ct-msg{grid-column:1 / -1;min-height:20px;font:500 13px/1.7 'Manrope';color:#BF8E5A}
+@media (max-width:640px){.ct-msg{grid-column:auto}}
+.ct-submit{
+  grid-column:1 / -1;margin-top:12px;padding:17px 28px;border:1px solid #BF8E5A;background:#BF8E5A;color:#fff;
+  font:600 12px 'Manrope';letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:background .3s,border-color .3s,color .3s;
+}
+@media (max-width:640px){.ct-submit{grid-column:auto}}
+.ct-submit:hover{background:#0e2440;border-color:#0e2440;color:#fff}
+.ct-submit:disabled{opacity:.55;cursor:default}
+.ct-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+/* 감사 메시지 */
+.ct-thanks{display:none;text-align:center;padding:48px 12px 40px}
+.ct-thanks.is-on{display:block}
+.ct-thanks-mark{width:46px;height:46px;margin:0 auto;border:1px solid #BF8E5A;border-radius:50%;display:grid;place-items:center;color:#BF8E5A;font:400 20px/1 'Manrope'}
+.ct-thanks-title{font:500 24px/1.5 'Noto Serif KR',serif;color:#0e2440;margin-top:24px}
+.ct-thanks-text{font:400 14px/1.9 'Manrope';color:rgba(14,36,64,.6);margin-top:14px}
+.ct-form-inner.is-off{display:none}
+</style>
+</head>
+<body>
+
+<input type="checkbox" id="nav-toggle" class="nav-toggle-input">
+<div style="position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:19px 5vw;background:rgba(245,241,232,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(14,36,64,.08);color:#0e2440">
+  <a href="index.html" class="brand-logo" style="text-decoration:none;color:inherit">
+    <span class="brand-en">EUNSUNG</span><span class="brand-kr">은성</span>
+  </a>
+  <nav class="nav-mid" style="color:#1a1a1a">
+    <div class="nav-drop" style="position:relative">
+      <a href="#">회사소개</a>
+      <div class="nav-drop-menu">
+        <a class="nav-drop-item" href="about.html">회사소개</a>
+        <a class="nav-drop-item nav-drop-item-sep" href="facility.html">설비라인</a>
+      </div>
+    </div>
+    <a href="showroom.html?cat=PORCELAIN">포세린</a>
+    <a href="showroom.html?cat=VIATERA">비아테라</a>
+    <a href="showroom.html?cat=HIMACS">하이막스</a>
+    <a href="showroom.html?cat=BMC">BMC</a>
+    <a href="portfolio.html">시공사례</a><a href="contact.html" style="color:#a8763f">문의</a>
+  </nav>
+  <div class="nav-right">
+    <span class="nav-ic" style="border-color:rgba(14,36,64,.18)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
+    <span class="lang"><b style="opacity:.5">EN</b><span style="opacity:.4">|</span><b>KO</b></span>
+    <span class="nav-ic" style="border-color:rgba(14,36,64,.18)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></span>
+    <label for="nav-toggle" class="nav-burger" aria-label="메뉴 열기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16"/></svg></label>
+  </div>
+</div>
+<div class="nav-mobile-panel">
+  <a href="about.html">회사소개</a>
+  <a href="facility.html" class="nav-mobile-sub">설비라인</a>
+  <a href="showroom.html?cat=PORCELAIN">포세린</a>
+  <a href="showroom.html?cat=VIATERA">비아테라</a>
+  <a href="showroom.html?cat=HIMACS">하이막스</a>
+  <a href="showroom.html?cat=BMC">BMC</a>
+  <a href="portfolio.html">시공사례</a>
+  <a href="contact.html">문의</a>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<div class="ct-hero">
+  <div class="ct-eyebrow">CONTACT</div>
+  <h1 class="ct-title">문의하기</h1>
+  <p class="ct-lead">공간에 대한 고민, 은성이 함께 답을 찾습니다.<br>도면 한 장이든 막연한 구상이든 편하게 남겨주세요.</p>
+  <div class="ct-rule"></div>
+</div>
+
+<!-- ===================== BODY ===================== -->
+<div class="ct-body">
+
+  <!-- 좌측 · 연락 정보 -->
+  <div>
+    <div class="ct-side-head">GET IN TOUCH</div>
+    <div class="ct-side-title">바로 연결되는<br>상담 창구</div>
+    <div class="ct-side-note">급하신 건은 전화나 카카오톡이 가장 빠릅니다. 도면·현장 사진이 있으시면 함께 보내주시면 상담이 훨씬 정확해집니다.</div>
+
+    <div class="ct-info">
+      <div class="ct-info-item">
+        <div class="ct-info-label">TEL</div>
+        <div class="ct-info-value"><a href="tel:0315447272">031-544-7272</a></div>
+        <div class="ct-info-sub">상담·견적 문의</div>
+      </div>
+      <div class="ct-info-item">
+        <div class="ct-info-label">KAKAOTALK</div>
+        <div class="ct-info-value"><a href="https://open.kakao.com/o/sS7BnYyc" target="_blank" rel="noopener">카카오톡 채널 상담</a></div>
+        <div class="ct-info-sub">사진·도면 전송이 편리합니다</div>
+      </div>
+      <div class="ct-info-item">
+        <div class="ct-info-label">E-MAIL</div>
+        <div class="ct-info-value"><a href="mailto:eunsung8585@naver.com">eunsung8585@naver.com</a></div>
+      </div>
+      <div class="ct-info-item">
+        <div class="ct-info-label">SHOWROOM &amp; FACTORY</div>
+        <div class="ct-info-value">경기도 포천시 가산면 정금로 356-39</div>
+        <div class="ct-info-sub">쇼룸과 가공 공장이 함께 있어, 실제 슬랩과 설비를 한자리에서 보실 수 있습니다. 방문은 예약을 권해드립니다.</div>
+      </div>
+      <div class="ct-info-item">
+        <div class="ct-info-label">HOURS</div>
+        <div style="margin-top:12px">
+          <div class="ct-hours"><span>평일</span><span>09:00 — 18:00</span></div>
+          <div class="ct-hours"><span>토요일</span><span>09:00 — 13:00</span></div>
+          <div class="ct-hours"><span>일요일 · 공휴일</span><span>휴무</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 우측 · 문의 폼 -->
+  <div class="ct-form-wrap">
+    <div class="ct-form-inner" id="ctInner">
+      <div class="ct-form-head">문의 남기기</div>
+      <div class="ct-form-note"><span class="ct-req">*</span> 표시는 필수 항목입니다. 영업일 기준 1일 내에 연락드립니다.</div>
+
+      <form id="ctForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+        <input type="hidden" name="form-name" value="contact">
+        <p class="ct-hp"><label>이 항목은 비워두세요 <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+
+        <div class="ct-grid">
+          <div class="ct-field" data-field="name">
+            <label class="ct-label" for="ctName">이름 <span class="ct-req">*</span></label>
+            <input class="ct-input" id="ctName" name="이름" type="text" autocomplete="name" placeholder="홍길동">
+          </div>
+
+          <div class="ct-field" data-field="phone">
+            <label class="ct-label" for="ctPhone">연락처 <span class="ct-req">*</span></label>
+            <input class="ct-input" id="ctPhone" name="연락처" type="tel" inputmode="tel" autocomplete="tel" placeholder="010-0000-0000">
+          </div>
+
+          <div class="ct-field" data-field="email">
+            <label class="ct-label" for="ctEmail">이메일</label>
+            <input class="ct-input" id="ctEmail" name="이메일" type="email" autocomplete="email" placeholder="name@example.com">
+          </div>
+
+          <div class="ct-field" data-field="type">
+            <label class="ct-label" for="ctType">문의 유형 <span class="ct-req">*</span></label>
+            <select class="ct-select" id="ctType" name="문의유형">
+              <option value="">선택해 주세요</option>
+              <option>견적 문의</option>
+              <option>시공 문의</option>
+              <option>자재 문의</option>
+              <option>쇼룸 방문 예약</option>
+              <option>기타</option>
+            </select>
+          </div>
+
+          <div class="ct-field" data-field="material">
+            <label class="ct-label" for="ctMaterial">관심 소재</label>
+            <select class="ct-select" id="ctMaterial" name="관심소재">
+              <option value="">선택 안 함</option>
+              <option>포세린</option>
+              <option>비아테라</option>
+              <option>하이막스</option>
+              <option>BMC</option>
+              <option>미정</option>
+            </select>
+          </div>
+
+          <div class="ct-field" data-field="region">
+            <label class="ct-label" for="ctRegion">시공 지역</label>
+            <input class="ct-input" id="ctRegion" name="시공지역" type="text" placeholder="예) 서울 성동구">
+          </div>
+
+          <div class="ct-field is-full" data-field="message">
+            <label class="ct-label" for="ctMessage">문의 내용 <span class="ct-req">*</span></label>
+            <textarea class="ct-textarea" id="ctMessage" name="문의내용" placeholder="공간 종류(주방·욕실·상업공간 등), 대략적인 규모, 희망 일정을 적어주시면 더 정확하게 안내드릴 수 있습니다."></textarea>
+          </div>
+
+          <div class="ct-agree" data-field="agree">
+            <input type="checkbox" id="ctAgree" name="개인정보동의" value="동의">
+            <label for="ctAgree">상담 회신을 위해 이름·연락처·문의 내용을 수집·이용하는 데 동의합니다. 수집한 정보는 상담 목적에만 사용하고 3년 후 파기합니다. <span class="ct-req">*</span></label>
+          </div>
+
+          <div class="ct-msg" id="ctMsg" role="status" aria-live="polite"></div>
+
+          <button class="ct-submit" id="ctSubmit" type="submit">문의 보내기</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="ct-thanks" id="ctThanks">
+      <div class="ct-thanks-mark">✓</div>
+      <div class="ct-thanks-title">문의가 접수되었습니다</div>
+      <div class="ct-thanks-text">영업일 기준 1일 내 연락드리겠습니다.<br>급하신 경우 031-544-7272로 전화 주세요.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== FOOTER ===================== -->
+<footer style="background:#0e1a17;padding:72px 5vw 34px">
+  <div style="max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:48px">
+    <div style="max-width:300px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
+        <svg width="30" height="30" viewBox="0 0 92 92"><circle cx="46" cy="46" r="43" fill="none" stroke="#e3c789" stroke-width="4"></circle><circle cx="46" cy="46" r="36" fill="none" stroke="#e3c789" stroke-width="1.2"></circle><text x="46" y="57" text-anchor="middle" style="font:600 30px 'Cormorant Garamond';fill:#f3efe6">ES</text><path d="M46 11 L49 16 L46 21 L43 16 Z" fill="#c9a24b"></path><path d="M46 71 L49 76 L46 81 L43 76 Z" fill="#c9a24b"></path></svg>
+        <div style="font:700 15px 'Manrope';letter-spacing:.24em;color:#fff">EUNSUNG</div>
+      </div>
+      <div style="font:400 13px/1.8 'Manrope';color:rgba(255,255,255,.45)">세라믹, 엔지니어드 스톤, 솔리드 서페이스를 위한 피지털 플래그십 — 포천에서 가공해 어디든 배송합니다.</div>
+    </div>
+    <div style="display:flex;gap:64px;flex-wrap:wrap">
+      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">MATERIALS</div><div style="display:flex;flex-direction:column;gap:11px"><a href="index.html#materials" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">BMC</a><a href="index.html#materials" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">MMA</a><a href="index.html#materials" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">E-Stone</a><a href="index.html#materials" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Ceramic</a></div></div>
+      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">COMPANY</div><div style="display:flex;flex-direction:column;gap:11px"><a href="portfolio.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Portfolio</a><a href="facility.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Facility</a><a href="showroom.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Showroom</a></div></div>
+      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">SUPPORT</div><div style="display:flex;flex-direction:column;gap:11px"><a href="showroom.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Store</a><a href="contact.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Inquiry</a></div></div>
+    </div>
+  </div>
+  <div style="max-width:1280px;margin:48px auto 0;padding-top:26px;border-top:1px solid rgba(255,255,255,.09)">
+    <div style="display:flex;flex-wrap:wrap;gap:8px 22px;margin-bottom:16px;font:400 12px/1.7 'Manrope';color:rgba(255,255,255,.45)">
+      <span>상호 (주)은성</span><span>대표자 이언기</span><span>사업자등록번호 328-88-00420</span><span>주소 경기도 포천시 가산면 정금로 356-39</span><span>전화 031-544-7272</span><span>이메일 eunsung8585@naver.com</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px">
+      <div style="font:400 11.5px 'Manrope';color:rgba(244,248,246,.4)">© 2026 (주)은성 EUNSUNG Co., Ltd. · 경기도 포천</div>
+      <a href="index.html" style="font:400 11.5px 'Manrope';color:rgba(244,248,246,.6);text-decoration:none">홈으로 돌아가기</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var form = document.getElementById('ctForm');
+  if (!form) return;
+  var msg = document.getElementById('ctMsg');
+  var submit = document.getElementById('ctSubmit');
+  var inner = document.getElementById('ctInner');
+  var thanks = document.getElementById('ctThanks');
+
+  /* 시공사례 상세에서 넘어온 경우 해당 사례명을 문의 내용에 미리 채운다. */
+  (function prefillFromCase() {
+    var raw = new URLSearchParams(location.search).get('case');
+    if (!raw) return;
+    var name = raw.trim().slice(0, 120);
+    if (!name) return;
+    var ta = document.getElementById('ctMessage');
+    var type = document.getElementById('ctType');
+    ta.value = '[' + name + '] 사례와 비슷한 시공을 문의드립니다.\n\n';
+    if (type && !type.value) type.value = '시공 문의';
+    // 커서를 본문 끝에 두어 바로 이어서 쓸 수 있게 한다.
+    try { ta.setSelectionRange(ta.value.length, ta.value.length); } catch (e) {}
+  })();
+
+  function fieldOf(key) { return form.querySelector('[data-field="' + key + '"]'); }
+  function clearErrors() {
+    Array.prototype.forEach.call(form.querySelectorAll('.has-error'), function (el) {
+      el.classList.remove('has-error');
+    });
+    msg.textContent = '';
+  }
+  function fail(key, text, el) {
+    var f = fieldOf(key);
+    if (f) f.classList.add('has-error');
+    msg.textContent = text;
+    if (el && el.focus) el.focus();
+    return false;
+  }
+
+  function validate() {
+    clearErrors();
+    var name = document.getElementById('ctName');
+    var phone = document.getElementById('ctPhone');
+    var email = document.getElementById('ctEmail');
+    var type = document.getElementById('ctType');
+    var message = document.getElementById('ctMessage');
+    var agree = document.getElementById('ctAgree');
+
+    if (!name.value.trim()) return fail('name', '이름을 입력해 주세요.', name);
+    if (!phone.value.trim()) return fail('phone', '연락처를 입력해 주세요.', phone);
+    if (phone.value.replace(/\D/g, '').length < 9) return fail('phone', '연락처를 다시 확인해 주세요.', phone);
+    if (email.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+      return fail('email', '이메일 주소를 다시 확인해 주세요.', email);
+    }
+    if (!type.value) return fail('type', '문의 유형을 선택해 주세요.', type);
+    if (!message.value.trim()) return fail('message', '문의 내용을 입력해 주세요.', message);
+    if (!agree.checked) return fail('agree', '개인정보 수집·이용에 동의해 주세요.', agree);
+    return true;
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!validate()) return;
+
+    submit.disabled = true;
+    submit.textContent = '보내는 중…';
+    msg.textContent = '';
+
+    var body = new URLSearchParams(new FormData(form)).toString();
+    fetch(location.pathname, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: body,
+    })
+      .then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        inner.classList.add('is-off');
+        thanks.classList.add('is-on');
+        thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      })
+      .catch(function () {
+        submit.disabled = false;
+        submit.textContent = '문의 보내기';
+        msg.textContent = '전송에 실패했습니다. 잠시 후 다시 시도하시거나 031-544-7272로 연락해 주세요.';
+      });
+  });
+
+  /* 입력을 고치기 시작하면 해당 항목의 경고 표시를 즉시 지운다. */
+  form.addEventListener('input', function (e) {
+    var f = e.target.closest ? e.target.closest('.ct-field, .ct-agree') : null;
+    if (f && f.classList.contains('has-error')) { f.classList.remove('has-error'); msg.textContent = ''; }
+  });
+  form.addEventListener('change', function (e) {
+    var f = e.target.closest ? e.target.closest('.ct-field, .ct-agree') : null;
+    if (f && f.classList.contains('has-error')) { f.classList.remove('has-error'); msg.textContent = ''; }
+  });
+})();
+</script>
+</body>
+</html>

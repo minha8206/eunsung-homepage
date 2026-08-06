@@ -150,7 +150,7 @@ a:hover{color:#c9a24b}
     <a href="showroom.html?cat=VIATERA">비아테라</a>
     <a href="showroom.html?cat=HIMACS">하이막스</a>
     <a href="showroom.html?cat=BMC">BMC</a>
-    <a href="portfolio.html">시공사례</a><a href="index.html#inquiry">문의</a>
+    <a href="portfolio.html">시공사례</a><a href="contact.html">문의</a>
   </nav>
   <div class="nav-right">
     <span class="nav-ic" style="border-color:rgba(14,36,64,.18)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
@@ -167,7 +167,7 @@ a:hover{color:#c9a24b}
   <a href="showroom.html?cat=HIMACS">하이막스</a>
   <a href="showroom.html?cat=BMC">BMC</a>
   <a href="portfolio.html">시공사례</a>
-  <a href="index.html#inquiry">문의</a>
+  <a href="contact.html">문의</a>
 </div>
 
 <!-- ===================== PORTFOLIO · LIST ===================== -->
@@ -238,7 +238,7 @@ a:hover{color:#c9a24b}
     </div>
 
     <div class="pdetail-actions">
-      <a href="index.html#inquiry" class="pdetail-cta">비슷한 시공 문의하기</a>
+      <a href="{{ caseSel.contactHref }}" class="pdetail-cta">비슷한 시공 문의하기</a>
       <a href="{{ listHref }}" class="pdetail-back">← 목록으로</a>
       <div class="pdetail-nav">
         <a href="{{ caseSel.prevHref }}">← 이전 사례</a>
@@ -330,6 +330,7 @@ class Component extends DCLogic {
       photoDots: [], photoThumbs: [], prevHref: '#', nextHref: '#',
       arrowClass: 'pdetail-arrow is-hidden',
       viewerHint: '', prevPhoto: () => {}, nextPhoto: () => {},
+      contactHref: 'contact.html',
     };
 
     if (found) {
@@ -360,6 +361,7 @@ class Component extends DCLogic {
         })),
         prevHref: '#case/' + prev.id,
         nextHref: '#case/' + next.id,
+        contactHref: 'contact.html?case=' + encodeURIComponent(found.title),
       };
     }
 
