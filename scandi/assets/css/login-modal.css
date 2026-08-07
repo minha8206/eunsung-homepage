@@ -57,8 +57,30 @@
 }
 .lm-sub{
   font:400 13px/1.7 'Manrope',system-ui,sans-serif;
-  color:rgba(14,36,64,.5);margin:0 0 24px;text-align:center;
+  color:rgba(14,36,64,.5);margin:0 0 20px;text-align:center;
 }
+
+/* ---- tabs (로그인 / 회원가입) ---- */
+.lm-tabs{
+  width:100%;display:flex;gap:4px;margin-bottom:20px;
+  padding:4px;border-radius:13px;background:rgba(14,36,64,.05);
+}
+.lm-tab{
+  flex:1;padding:9px 8px;border:1px solid transparent;border-radius:10px;
+  background:none;cursor:pointer;
+  font:600 13px/1 'Manrope',system-ui,sans-serif;
+  color:rgba(14,36,64,.48);transition:.25s;
+}
+.lm-tab:hover{color:#0e2440}
+.lm-tab.is-active{
+  background:#fff;color:#0e2440;
+  border-color:rgba(191,142,90,.3);
+  box-shadow:0 6px 14px -8px rgba(14,36,64,.45);
+}
+
+/* ---- panels ---- */
+.lm-panel{width:100%;display:none;flex-direction:column;align-items:center}
+.lm-panel.is-active{display:flex}
 
 /* ---- fields ---- */
 .lm-fields{width:100%;display:flex;flex-direction:column;gap:10px}
@@ -90,6 +112,15 @@
 .lm-notice.is-shown{display:block}
 .lm-notice.is-error{background:rgba(190,60,60,.07);color:#a83a3a;border:1px solid rgba(190,60,60,.16)}
 .lm-notice.is-info{background:rgba(191,142,90,.09);color:#8a6234;border:1px solid rgba(191,142,90,.24)}
+
+/* ---- per-field hint (비밀번호 확인 일치 여부) ---- */
+.lm-hint{
+  display:none;margin:-2px 0 0 3px;
+  font:500 11.5px/1.5 'Manrope',system-ui,sans-serif;
+}
+.lm-hint.is-shown{display:block}
+.lm-hint.is-bad{color:#a83a3a}
+.lm-hint.is-good{color:#3f7a4f}
 
 /* ---- forgot ---- */
 .lm-forgot-row{width:100%;display:flex;justify-content:flex-end;margin-top:12px}
@@ -135,7 +166,18 @@
 .lm-social svg{width:21px;height:21px;display:block}
 .lm-social .lm-kakao{background:#FEE500;border-color:rgba(0,0,0,.06);color:#3C1E1E}
 .lm-social .lm-kakao:hover{background:#f5dd00}
-.lm-social .lm-apple{color:#000}
+
+/* ---- "이미 계정이 있으신가요? 로그인" ---- */
+.lm-swap{
+  width:100%;margin-top:18px;text-align:center;
+  font:400 12.5px/1.6 'Manrope',system-ui,sans-serif;color:rgba(14,36,64,.5);
+}
+.lm-swap button{
+  background:none;border:none;padding:0;margin-left:5px;cursor:pointer;
+  font:600 12.5px 'Manrope',system-ui,sans-serif;color:#bf8e5a;
+  text-decoration:underline;text-underline-offset:2px;transition:color .2s;
+}
+.lm-swap button:hover{color:#a8763f}
 
 @media (max-width:480px){
   .lm-overlay{padding:16px}
