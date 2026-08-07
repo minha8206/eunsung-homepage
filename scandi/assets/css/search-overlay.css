@@ -1,0 +1,115 @@
+/* ===== SEARCH OVERLAY (common across all pages) =====
+   헤더 돋보기 아이콘으로 열린다. 상단에서 슬라이드 다운.
+   팔레트는 로그인 모달과 동일 — 크림 #fbfaf8, 네이비 #0e2440, 골드 #bf8e5a. */
+
+.so-overlay{
+  position:fixed;inset:0;z-index:10001;
+  display:flex;justify-content:center;align-items:flex-start;
+  padding:0 20px;
+  background:rgba(14,36,64,.42);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .28s ease,visibility .28s ease;
+  font-family:'Manrope',system-ui,sans-serif;
+}
+.so-overlay.is-open{opacity:1;visibility:visible;pointer-events:auto}
+
+.so-panel{
+  width:100%;max-width:760px;
+  max-height:min(80vh,720px);
+  display:flex;flex-direction:column;overflow:hidden;
+  background:linear-gradient(180deg,#fbfaf8 0%,#fff 38%);
+  border:1px solid rgba(14,36,64,.08);border-top:none;
+  border-radius:0 0 20px 20px;
+  box-shadow:0 40px 90px -30px rgba(14,36,64,.5);
+  color:#0e2440;
+  transform:translateY(-26px);opacity:0;
+  transition:transform .34s cubic-bezier(.22,1,.36,1),opacity .3s ease;
+}
+.so-overlay.is-open .so-panel{transform:translateY(0);opacity:1}
+
+/* ---- 검색 바 ---- */
+.so-bar{
+  flex-shrink:0;display:flex;align-items:center;gap:13px;
+  padding:20px 22px;border-bottom:1px solid rgba(14,36,64,.09);
+}
+.so-bar-ic{width:20px;height:20px;flex-shrink:0;color:rgba(14,36,64,.34)}
+.so-input{
+  flex:1;min-width:0;border:none;background:none;outline:none;padding:0;
+  font:500 18px/1.4 'Manrope',system-ui,sans-serif;color:#0e2440;
+}
+.so-input::placeholder{color:rgba(14,36,64,.32);font-weight:400}
+.so-close{
+  flex-shrink:0;width:32px;height:32px;border-radius:50%;
+  display:grid;place-items:center;padding:0;cursor:pointer;
+  border:1px solid rgba(14,36,64,.1);background:rgba(255,255,255,.7);
+  color:rgba(14,36,64,.5);transition:.25s;
+}
+.so-close:hover{background:rgba(14,36,64,.06);color:#0e2440}
+.so-close svg{width:15px;height:15px}
+
+/* ---- 결과 영역 ---- */
+.so-body{
+  flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;
+  padding:6px 10px 14px;
+  scrollbar-width:thin;scrollbar-color:rgba(14,36,64,.2) transparent;
+}
+.so-body::-webkit-scrollbar{width:6px}
+.so-body::-webkit-scrollbar-track{background:transparent}
+.so-body::-webkit-scrollbar-thumb{background:rgba(14,36,64,.16);border-radius:3px}
+
+.so-sec{
+  padding:15px 12px 7px;
+  font:700 10px 'Manrope',system-ui,sans-serif;
+  letter-spacing:.2em;color:#bf8e5a;
+}
+.so-item{
+  display:flex;align-items:center;gap:13px;
+  padding:10px 12px;border-radius:10px;
+  text-decoration:none;color:inherit;transition:background .18s;
+}
+.so-item:hover,.so-item.is-active{background:rgba(191,142,90,.11)}
+.so-thumb{
+  width:44px;height:44px;flex-shrink:0;border-radius:8px;object-fit:cover;
+  background:rgba(14,36,64,.06);border:1px solid rgba(14,36,64,.07);
+}
+.so-thumb.is-broken{visibility:hidden}
+.so-ic{
+  width:44px;height:44px;flex-shrink:0;border-radius:8px;
+  display:grid;place-items:center;
+  background:rgba(191,142,90,.1);color:#a8763f;
+}
+.so-ic svg{width:18px;height:18px}
+.so-txt{display:block;min-width:0;flex:1}
+.so-name{display:block;font:600 14.5px/1.4 'Manrope',system-ui,sans-serif;color:#0e2440;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.so-meta{display:block;font:400 12px/1.5 'Manrope',system-ui,sans-serif;color:rgba(14,36,64,.5);margin-top:3px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.so-more{
+  display:block;padding:11px 12px 4px;
+  font:500 12.5px 'Manrope',system-ui,sans-serif;color:#a8763f;text-decoration:none;
+}
+.so-more:hover{text-decoration:underline}
+
+/* ---- 안내 / 결과 없음 ---- */
+.so-hint{
+  padding:34px 20px 40px;text-align:center;
+  font:400 13.5px/1.8 'Manrope',system-ui,sans-serif;color:rgba(14,36,64,.45);
+}
+.so-empty{padding:34px 20px 38px;text-align:center}
+.so-empty-t{font:600 15px/1.6 'Manrope',system-ui,sans-serif;color:#0e2440}
+.so-empty-s{font:400 13px/1.7 'Manrope',system-ui,sans-serif;color:rgba(14,36,64,.5);margin-top:7px}
+.so-empty-btn{
+  display:inline-block;margin-top:18px;padding:11px 22px;border-radius:10px;
+  background:#0e2440;color:#fff;text-decoration:none;
+  font:600 13px 'Manrope',system-ui,sans-serif;transition:.25s;
+}
+.so-empty-btn:hover{background:#16304f;color:#fff}
+
+@media (max-width:640px){
+  .so-overlay{padding:0 10px}
+  .so-panel{max-height:88vh;border-radius:0 0 16px 16px}
+  .so-bar{padding:16px 16px;gap:10px}
+  .so-input{font-size:16px}
+  .so-thumb,.so-ic{width:38px;height:38px}
+}
