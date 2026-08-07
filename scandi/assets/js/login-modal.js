@@ -22,6 +22,7 @@
   var ICON_PHONE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.36 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>';
   var ICON_PIN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>';
   var ICON_BUILDING = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V5a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v16"/><path d="M16 9h3a2 2 0 0 1 2 2v10"/><path d="M9 7h3M9 11h3M9 15h3"/></svg>';
+  var ICON_LOGOUT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>';
 
   /* Brand marks are inlined rather than hot-linked to svgrepo.com (as the
      21st.dev reference does) so the modal has no external asset dependency. */
@@ -33,8 +34,22 @@
      the 7 HTML files stay untouched. */
   var DAUM_SRC = 'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
 
-  var PENDING_LOGIN = '로그인 기능은 준비 중입니다. 문의는 카카오톡 또는 031-544-7272로 부탁드립니다.';
-  var PENDING_SIGNUP = '회원가입 기능은 준비 중입니다. 문의는 카카오톡 또는 031-544-7272로 부탁드립니다.';
+  /* ===================== Supabase =====================
+     supabase-js v2 는 첫 인증 요청 또는 페이지 로드 직후 세션 확인 시점에
+     CDN 에서 불러온다. 세션은 localStorage 에 저장되므로 같은 오리진의
+     7개 페이지 전체에서 로그인 상태가 유지된다. */
+  var SUPABASE_URL = 'https://iqjnvsrvpbubwvrfobtg.supabase.co';
+
+  /* ▼▼▼ 여기에 sb_publishable_... 키를 붙여넣으세요 ▼▼▼ */
+  var SUPABASE_KEY = '';
+  /* ▲▲▲ 이 한 줄만 채우면 인증이 동작합니다 ▲▲▲ */
+
+  var SUPABASE_SRC = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+
+  var sb = null;          /* supabase client */
+  var sbLoading = false;
+  var sbWaiters = [];
+  var currentUser = null;
 
   var COPY = {
     login:  { title: '로그인',   sub: '은성 회원 서비스를 이용하시려면 로그인해 주세요.' },
@@ -185,6 +200,181 @@
 
   function validPhone(v) {
     return /^\d{2,3}-\d{3,4}-\d{4}$/.test(v);
+  }
+
+  /* ---------- supabase 클라이언트 ---------- */
+  function loadSupabase(onReady, onFail) {
+    if (sb) { onReady(sb); return; }
+    if (!SUPABASE_KEY) { onFail('nokey'); return; }
+
+    sbWaiters.push({ ok: onReady, fail: onFail });
+    if (sbLoading) return;
+    sbLoading = true;
+
+    function flush(client, err) {
+      sbLoading = false;
+      var list = sbWaiters;
+      sbWaiters = [];
+      list.forEach(function (w) {
+        if (client) w.ok(client); else w.fail(err);
+      });
+    }
+
+    function create() {
+      if (!window.supabase || !window.supabase.createClient) { flush(null, 'init'); return; }
+      try {
+        sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+      } catch (err) {
+        flush(null, 'init');
+        return;
+      }
+      bindAuthEvents();
+      flush(sb, null);
+    }
+
+    if (window.supabase && window.supabase.createClient) { create(); return; }
+
+    var s = document.getElementById('lmSbScript');
+    if (!s) {
+      s = document.createElement('script');
+      s.id = 'lmSbScript';
+      s.src = SUPABASE_SRC;
+      s.async = true;
+      document.head.appendChild(s);
+    }
+    s.addEventListener('load', create, { once: true });
+    s.addEventListener('error', function () {
+      s.parentNode && s.parentNode.removeChild(s);
+      flush(null, 'network');
+    }, { once: true });
+  }
+
+  function bindAuthEvents() {
+    sb.auth.onAuthStateChange(function (event, session) {
+      currentUser = session ? session.user : null;
+      renderAuthUI();
+    });
+    sb.auth.getSession().then(function (res) {
+      currentUser = (res && res.data && res.data.session) ? res.data.session.user : null;
+      renderAuthUI();
+    })['catch'](function () { /* 세션 없음 — 로그아웃 상태 유지 */ });
+  }
+
+  /* Supabase 영문 에러를 한글 안내로 옮긴다. 매칭되지 않는 건 원문을 노출하지
+     않고 일반 문구로 처리한다. */
+  function authMessage(err) {
+    var m = String((err && (err.message || err.error_description)) || '').toLowerCase();
+    var code = (err && err.code) || '';
+
+    if (code === 'user_already_exists' || m.indexOf('already registered') >= 0 || m.indexOf('already been registered') >= 0) {
+      return '이미 가입된 이메일입니다. 로그인 탭에서 로그인해 주세요.';
+    }
+    if (code === 'weak_password' || m.indexOf('password should be at least') >= 0) {
+      return '비밀번호는 6자 이상이어야 합니다.';
+    }
+    if (m.indexOf('invalid login credentials') >= 0) {
+      return '이메일 또는 비밀번호가 올바르지 않습니다.';
+    }
+    if (m.indexOf('email not confirmed') >= 0) {
+      return '이메일 인증이 완료되지 않았습니다. 받은 메일함에서 인증 링크를 확인해 주세요.';
+    }
+    if (m.indexOf('unable to validate email') >= 0 || m.indexOf('invalid email') >= 0) {
+      return '올바른 이메일 주소를 입력해 주세요.';
+    }
+    if (m.indexOf('for security purposes') >= 0 || m.indexOf('rate limit') >= 0 || m.indexOf('too many') >= 0) {
+      return '요청이 너무 잦습니다. 잠시 후 다시 시도해 주세요.';
+    }
+    if (m.indexOf('failed to fetch') >= 0 || m.indexOf('network') >= 0) {
+      return '네트워크 오류로 처리하지 못했습니다. 연결 상태를 확인해 주세요.';
+    }
+    return '처리 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.';
+  }
+
+  function serviceMessage(reason) {
+    if (reason === 'nokey') return '로그인 서비스가 아직 설정되지 않았습니다. 잠시 후 다시 시도해 주세요.';
+    return '로그인 서비스를 불러오지 못했습니다. 네트워크 상태를 확인해 주세요.';
+  }
+
+  function setBusy(btn, busy, label) {
+    btn.disabled = busy;
+    btn.textContent = label;
+    btn.style.opacity = busy ? '.6' : '';
+    btn.style.cursor = busy ? 'default' : '';
+  }
+
+  /* ---------- 헤더 로그인 상태 ---------- */
+  function findPersonIcon() {
+    var ics = document.querySelectorAll('.nav-ic');
+    for (var i = 0; i < ics.length; i++) {
+      if (ics[i].querySelector('path[d^="M4 21c0-4"]')) return ics[i];
+    }
+    return null;
+  }
+
+  function buildAccountChip() {
+    var el = document.createElement('div');
+    el.className = 'lm-account';
+    el.id = 'lmAccount';
+    el.innerHTML =
+      '<button type="button" class="lm-account-btn" id="lmAccountBtn" aria-haspopup="true" aria-expanded="false">' +
+        ICON_USER +
+        '<span class="lm-account-name"></span>' +
+        '<svg class="lm-account-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>' +
+      '</button>' +
+      '<div class="lm-account-menu">' +
+        '<div class="lm-account-email"></div>' +
+        '<button type="button" class="lm-account-logout" id="lmLogout">' + ICON_LOGOUT + '<span>로그아웃</span></button>' +
+      '</div>';
+
+    el.querySelector('#lmAccountBtn').addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = !el.classList.contains('is-open');
+      el.classList.toggle('is-open', open);
+      this.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    el.querySelector('#lmLogout').addEventListener('click', function (e) {
+      e.stopPropagation();
+      el.classList.remove('is-open');
+      signOut();
+    });
+    return el;
+  }
+
+  /* x-dc 가 헤더를 다시 그리면 칩이 사라지므로, 아래 renderAuthUI 를
+     MutationObserver 로 다시 호출해 상태를 복구한다. 이미 반영된 상태에서는
+     DOM 을 건드리지 않으므로 관찰 -> 수정 무한루프가 생기지 않는다. */
+  function renderAuthUI() {
+    var icon = findPersonIcon();
+    if (!icon || !icon.parentNode) return;
+    var chip = document.getElementById('lmAccount');
+
+    if (currentUser) {
+      if (!chip) {
+        chip = buildAccountChip();
+        icon.parentNode.insertBefore(chip, icon.nextSibling);
+      }
+      var meta = currentUser.user_metadata || {};
+      var label = meta.name || String(currentUser.email || '').split('@')[0];
+      var nameEl = chip.querySelector('.lm-account-name');
+      var mailEl = chip.querySelector('.lm-account-email');
+      if (nameEl.textContent !== label) nameEl.textContent = label;
+      if (mailEl.textContent !== (currentUser.email || '')) mailEl.textContent = currentUser.email || '';
+      if (icon.style.display !== 'none') icon.style.display = 'none';
+    } else {
+      if (chip && chip.parentNode) chip.parentNode.removeChild(chip);
+      if (icon.style.display === 'none') icon.style.display = '';
+    }
+  }
+
+  function signOut() {
+    if (!sb) { currentUser = null; renderAuthUI(); return; }
+    sb.auth.signOut().then(function () {
+      currentUser = null;
+      renderAuthUI();
+    })['catch'](function () {
+      currentUser = null;
+      renderAuthUI();
+    });
   }
 
   /* ---------- 다음 우편번호 ---------- */
@@ -376,7 +566,28 @@
         notice('login', '올바른 이메일 주소를 입력해 주세요.', 'error');
         return;
       }
-      notice('login', PENDING_LOGIN, 'info');
+
+      var btn = document.getElementById('lmSubmit');
+      setBusy(btn, true, '로그인 중…');
+      clearNotices();
+
+      loadSupabase(function (client) {
+        client.auth.signInWithPassword({ email: email, password: password })
+          .then(function (res) {
+            setBusy(btn, false, '로그인');
+            if (res.error) { notice('login', authMessage(res.error), 'error'); return; }
+            currentUser = res.data && res.data.user ? res.data.user : null;
+            document.getElementById('lmForm').reset();
+            renderAuthUI();
+            setOpen(false);
+          })['catch'](function () {
+            setBusy(btn, false, '로그인');
+            notice('login', '처리 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.', 'error');
+          });
+      }, function (reason) {
+        setBusy(btn, false, '로그인');
+        notice('login', serviceMessage(reason), 'error');
+      });
     });
 
     document.getElementById('lmForgot').addEventListener('click', function () {
@@ -429,10 +640,58 @@
         notice('signup', '비밀번호가 일치하지 않습니다.', 'error');
         return;
       }
-      notice('signup', PENDING_SIGNUP, 'info');
+
+      var checked = document.querySelector('input[name="lmJoinType"]:checked');
+      var payload = {
+        name: name,
+        phone: phone,
+        zonecode: document.getElementById('lmSuZip').value,
+        address: addr,
+        address_detail: document.getElementById('lmSuAddrDetail').value.trim(),
+        join_type: checked ? checked.value : '일반 고객'
+      };
+
+      var btn = document.getElementById('lmSubmitSignup');
+      setBusy(btn, true, '가입 처리 중…');
+      clearNotices();
+
+      loadSupabase(function (client) {
+        client.auth.signUp({ email: email, password: password, options: { data: payload } })
+          .then(function (res) {
+            setBusy(btn, false, '회원가입');
+            if (res.error) { notice('signup', authMessage(res.error), 'error'); return; }
+
+            /* 이메일 확인이 켜진 프로젝트에서 이미 가입된 주소로 요청하면
+               Supabase 는 에러 대신 identities 가 빈 사용자를 돌려준다. */
+            var user = res.data && res.data.user;
+            if (user && user.identities && user.identities.length === 0) {
+              notice('signup', '이미 가입된 이메일입니다. 로그인 탭에서 로그인해 주세요.', 'error');
+              return;
+            }
+
+            /* 이메일 확인이 꺼져 있으면 곧바로 세션이 발급된다. */
+            if (res.data && res.data.session) {
+              currentUser = user;
+              document.getElementById('lmFormSignup').reset();
+              renderAuthUI();
+              setOpen(false);
+              return;
+            }
+
+            document.getElementById('lmFormSignup').reset();
+            setTab('login');
+            notice('login', '인증 메일을 보냈습니다. 이메일을 확인해 주세요.', 'info');
+          })['catch'](function () {
+            setBusy(btn, false, '회원가입');
+            notice('signup', '처리 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.', 'error');
+          });
+      }, function (reason) {
+        setBusy(btn, false, '회원가입');
+        notice('signup', serviceMessage(reason), 'error');
+      });
     });
 
-    /* ---------- 소셜 (구글 / 카카오톡) ---------- */
+    /* ---------- 소셜 (구글 / 카카오톡) — 아직 준비 중 ---------- */
     Array.prototype.forEach.call(overlay.querySelectorAll('[data-social]'), function (btn) {
       btn.addEventListener('click', function () {
         var mode = btn.getAttribute('data-mode');
@@ -440,6 +699,30 @@
         notice(mode, btn.getAttribute('data-social') + ' ' + verb + '은 준비 중입니다.', 'info');
       });
     });
+
+    /* ---------- 계정 드롭다운 바깥 클릭 ---------- */
+    document.addEventListener('click', function (e) {
+      var chip = document.getElementById('lmAccount');
+      if (chip && !chip.contains(e.target)) {
+        chip.classList.remove('is-open');
+        var btn = chip.querySelector('.lm-account-btn');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    /* ---------- 세션 복구 (전 페이지 공통) ----------
+       키가 없거나 CDN 이 막히면 조용히 로그아웃 상태로 남는다. */
+    loadSupabase(function () { /* bindAuthEvents 가 세션을 반영한다 */ },
+                 function () { /* 서비스 미설정 — 헤더는 기본 아이콘 유지 */ });
+
+    /* x-dc 가 헤더를 다시 그려도 로그인 칩이 복구되도록 감시한다. */
+    if (window.MutationObserver) {
+      var pending = null;
+      new MutationObserver(function () {
+        if (pending) return;
+        pending = setTimeout(function () { pending = null; renderAuthUI(); }, 80);
+      }).observe(document.body, { childList: true, subtree: true });
+    }
   }
 
   if (document.readyState === 'loading') {

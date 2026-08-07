@@ -4,6 +4,56 @@
    wipes it. Palette follows the site system — cream #fbfaf8, navy #0e2440,
    gold #bf8e5a, Noto Serif KR for the Korean title. */
 
+/* ===== 헤더 로그인 상태 (person 아이콘 자리) =====
+   .nav-right 안, person 아이콘 바로 뒤에 삽입된다. 7개 페이지 헤더가 모두
+   크림 배경 + #0e2440 텍스트라 한 벌로 충분하다. */
+.lm-account{
+  position:relative;display:flex;align-items:center;flex-shrink:0;
+  font-family:'Manrope',system-ui,sans-serif;
+}
+.lm-account-btn{
+  display:flex;align-items:center;gap:7px;height:34px;padding:0 11px 0 10px;
+  border-radius:999px;border:1px solid rgba(14,36,64,.18);
+  background:rgba(255,255,255,.35);color:#0e2440;cursor:pointer;
+  font:600 12.5px/1 'Manrope',system-ui,sans-serif;transition:.25s;
+}
+.lm-account-btn:hover{background:#fff;border-color:rgba(191,142,90,.5)}
+.lm-account-btn > svg{width:15px;height:15px;flex-shrink:0;opacity:.65}
+.lm-account-name{max-width:104px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lm-account-caret{width:11px;height:11px;opacity:.45;transition:transform .25s}
+.lm-account.is-open .lm-account-caret{transform:rotate(180deg)}
+
+.lm-account-menu{
+  position:absolute;top:calc(100% + 10px);right:0;z-index:41;min-width:198px;
+  padding:8px;border-radius:12px;
+  background:rgba(251,250,250,.97);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(14,36,64,.08);
+  box-shadow:0 26px 54px -22px rgba(14,36,64,.4);
+  opacity:0;visibility:hidden;transform:translateY(6px);
+  transition:opacity .25s ease,visibility .25s ease,transform .25s ease;
+}
+.lm-account.is-open .lm-account-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.lm-account-email{
+  padding:7px 11px 10px;margin-bottom:6px;
+  border-bottom:1px solid rgba(14,36,64,.08);
+  font:400 11.5px/1.5 'Manrope',system-ui,sans-serif;
+  color:rgba(14,36,64,.5);word-break:break-all;
+}
+.lm-account-logout{
+  width:100%;display:flex;align-items:center;gap:9px;
+  padding:10px 11px;border:none;border-radius:8px;background:none;cursor:pointer;
+  font:600 12.5px/1 'Manrope',system-ui,sans-serif;color:#0e2440;
+  text-align:left;transition:.22s;
+}
+.lm-account-logout:hover{background:rgba(201,162,75,.12);color:#a8763f}
+.lm-account-logout svg{width:15px;height:15px;flex-shrink:0}
+
+@media (max-width:480px){
+  .lm-account-name{max-width:70px}
+  .lm-account-btn{padding:0 9px 0 8px;font-size:12px}
+}
+
 .lm-overlay{
   position:fixed;inset:0;z-index:10000;
   display:flex;align-items:center;justify-content:center;padding:24px;
