@@ -241,6 +241,8 @@ a:hover{color:#c9a24b}
       <form id="ctForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
         <input type="hidden" name="form-name" value="contact">
         <p class="ct-hp"><label>이 항목은 비워두세요 <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <!-- Web3Forms 허니팟 — 사람에게는 보이지 않는다. 체크돼 오면 스팸으로 처리된다. -->
+        <input type="checkbox" id="ctBotcheck" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
 
         <div class="ct-grid">
           <div class="ct-field" data-field="name">
@@ -389,22 +391,45 @@ a:hover{color:#c9a24b}
     return true;
   }
 
+  /* Web3Forms 로 전송한다. access key 는 브라우저에 노출되는 것을 전제로
+     발급되는 공개 키이며, 스팸 차단은 아래 botcheck 허니팟이 담당한다. */
+  var W3F_KEY = '2aadeeeb-b668-4969-b3dc-0a5efe6072e8';
+  var W3F_URL = 'https://api.web3forms.com/submit';
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     if (!validate()) return;
 
+    var name = document.getElementById('ctName').value.trim();
+    var phone = document.getElementById('ctPhone').value.trim();
+    var type = document.getElementById('ctType').value;
+    var message = document.getElementById('ctMessage').value.trim();
+    var bot = document.getElementById('ctBotcheck');
+
     submit.disabled = true;
-    submit.textContent = '보내는 중…';
+    submit.textContent = '전송 중…';
     msg.textContent = '';
 
-    var body = new URLSearchParams(new FormData(form)).toString();
-    fetch(location.pathname, {
+    var payload = {
+      access_key: W3F_KEY,
+      subject: '[홈페이지 문의] ' + name + ' — ' + type,
+      from_name: 'EUNSUNG 홈페이지',
+      botcheck: !!(bot && bot.checked),
+      '이름': name,
+      '연락처': phone,
+      '문의 유형': type,
+      '문의 내용': message
+    };
+
+    fetch(W3F_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: body,
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(payload)
     })
-      .then(function (res) {
-        if (!res.ok) throw new Error('HTTP ' + res.status);
+      .then(function (res) { return res.json().catch(function () { return {}; }); })
+      .then(function (data) {
+        if (!data || data.success !== true) throw new Error(data && data.message ? data.message : 'failed');
+        form.reset();
         inner.classList.add('is-off');
         thanks.classList.add('is-on');
         thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });

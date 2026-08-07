@@ -433,6 +433,15 @@ window.I18N_EN = {
   '수집 항목 이름·연락처·문의 내용 · 상담 목적에만 사용하고 3년 후 파기합니다.':
     'Collected: name, contact, message · used only for this inquiry and deleted after three years.',
   '문의 보내기': 'Send inquiry',
+  '전송 중…': 'Sending…',
+  '전송에 실패했습니다. 잠시 후 다시 시도하시거나 031-544-7272로 연락해 주세요.':
+    'Sending failed. Please try again shortly, or call 031-544-7272.',
+  '이름을 입력해 주세요.': 'Please enter your name.',
+  '연락처를 입력해 주세요.': 'Please enter your phone number.',
+  '연락처를 다시 확인해 주세요.': 'Please check your phone number.',
+  '문의 유형을 선택해 주세요.': 'Please select an inquiry type.',
+  '문의 내용을 입력해 주세요.': 'Please enter your message.',
+  '개인정보 수집·이용에 동의해 주세요.': 'Please agree to the collection and use of your personal data.',
   '문의가 접수되었습니다': 'Your inquiry has been received',
   '영업일 기준 1일 내 연락드리겠습니다.': 'We will be in touch within one business day.',
   '급하신 경우 031-544-7272로 전화 주세요.': 'If it is urgent, please call 031-544-7272.',
