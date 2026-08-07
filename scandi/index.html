@@ -14,6 +14,7 @@
 <script src="js/i18n.js" defer></script>
 <link rel="stylesheet" href="assets/css/mobile.css">
 <link rel="stylesheet" href="assets/css/mobile-overlays.css">
+<link rel="stylesheet" href="assets/css/mobile-pages.css">
 <script src="assets/js/mobile-nav.js" defer></script>
 </head>
 <body>
@@ -475,6 +476,34 @@ class Component extends DCLogic {
     var contentEl = document.getElementById('vheroContent');
     var videoEl = document.getElementById('vheroVideo');
     if (!mediaEl) return;
+
+    /* ── 모바일: 스크롤 확장 연출을 쓰지 않는다 ──
+       이 연출은 wheel/touchmove 를 preventDefault 로 가로채고 window.scrollTo(0,0)
+       으로 페이지를 붙잡는다. 모바일에서는 주소창 높이 변화·관성 스크롤과 충돌해
+       페이지가 잠긴 것처럼 느껴진다. 그래서 ≤769px 에서는 연출을 끄고
+       정적 풀스크린 영상 + 텍스트로 단순화한다. 레이아웃은 mobile-pages.css 가
+       맡고, 여기서는 이벤트를 아예 붙이지 않는다. 데스크톱 경로는 그대로다. */
+    if (window.matchMedia('(max-width: 769px)').matches) {
+      if (contentEl) contentEl.classList.add('on');
+      if (videoEl) {
+        videoEl.muted = true;
+        videoEl.playsInline = true;
+        var mp = videoEl.play();
+        if (mp && mp['catch']) {
+          mp['catch'](function () {
+            /* 자동재생이 막히면 첫 사용자 조작 때 한 번 더 시도한다 */
+            var once = function () {
+              ['pointerdown', 'touchstart', 'scroll'].forEach(function (t) { window.removeEventListener(t, once); });
+              videoEl.play()['catch'](function () {});
+            };
+            ['pointerdown', 'touchstart', 'scroll'].forEach(function (t) {
+              window.addEventListener(t, once, { once: true, passive: true });
+            });
+          });
+        }
+      }
+      return;
+    }
 
     var scrollProgress = 0;
     var fullyExpanded = false;
