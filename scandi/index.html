@@ -17,7 +17,7 @@
   <div class="vhero-bg" id="vheroBg" style="background-image:url('assets/showroom-hero.jpg')"></div>
   <div class="vhero-stage">
     <div class="vhero-media" id="vheroMedia">
-      <video id="vheroVideo" src="assets/video/hero-scroll.mp4" poster="assets/showroom-hero.jpg" muted loop playsinline preload="auto" disablepictureinpicture controlsList="nodownload noremoteplayback"></video>
+      <video id="vheroVideo" src="assets/video/hero-scroll.mp4" poster="assets/showroom-hero.jpg" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture controlsList="nodownload noremoteplayback"></video>
       <div class="vhero-media-shade"></div>
     </div>
     <div class="vhero-title">
@@ -301,7 +301,7 @@ a:hover{color:#c9a24b}
     <source src="assets/story-montage.mp4" type="video/mp4">
   </video>
   <div class="story-montage-text" id="storyMontageText">
-    <div class="story-montage-label">CRAFTED IN POCHEON</div>
+    <div class="story-montage-label">CRAFTED BY EUNSUNG</div>
     <div class="story-montage-headline">한 장의 슬랩이<br>공간이 되기까지</div>
   </div>
 </section>
@@ -490,6 +490,48 @@ class Component extends DCLogic {
       videoEl.currentTime = scrollProgress * videoDuration;
     }
 
+    /* ---- 자동재생 보험 ----
+       이 영상은 확장이 끝나기 전까지 스크롤로 스크럽되는(=의도적으로 일시정지된)
+       상태다. 그래서 "재생돼야 하는 구간"(fullyExpanded)에서만 재생을 보장한다.
+       무조건 재생을 걸면 위 scrubVideo 와 서로 싸운다. */
+    var retryBound = false;
+    var RETRY_EVENTS = ['pointerdown', 'touchstart', 'keydown', 'wheel'];
+
+    function tryPlay() {
+      if (!videoEl) return;
+      // Chrome 은 play() 호출 시점에 muted 여야 자동재생을 허용한다
+      videoEl.muted = true;
+      videoEl.playsInline = true;
+      var pr = videoEl.play();
+      if (pr && typeof pr['catch'] === 'function') {
+        pr['catch'](function () { bindRetryOnce(); });
+      }
+    }
+
+    /* 자동재생이 차단되면 첫 사용자 조작 때 한 번 더 시도한다 */
+    function bindRetryOnce() {
+      if (retryBound) return;
+      retryBound = true;
+      function retry() {
+        RETRY_EVENTS.forEach(function (t) { window.removeEventListener(t, retry); });
+        retryBound = false;
+        if (fullyExpanded) tryPlay();
+      }
+      RETRY_EVENTS.forEach(function (t) {
+        window.addEventListener(t, retry, { once: true, passive: true });
+      });
+    }
+
+    if (videoEl) {
+      // loop 가 걸려 있어도 끊기는 경우가 있어 보강한다.
+      // 스크럽 구간에서는 fullyExpanded 가 false 라 개입하지 않는다.
+      ['ended', 'stalled', 'pause'].forEach(function (t) {
+        videoEl.addEventListener(t, function () {
+          if (fullyExpanded && videoEl.paused) tryPlay();
+        });
+      });
+    }
+
     function render() {
       var mediaWidth = 300 + scrollProgress * (isMobile ? 650 : 1250);
       var mediaHeight = 400 + scrollProgress * (isMobile ? 200 : 400);
@@ -517,7 +559,7 @@ class Component extends DCLogic {
       if (scrollProgress >= 1) {
         fullyExpanded = true;
         setShowContent(true);
-        if (videoEl) videoEl.play().catch(function () {});
+        tryPlay();
       } else if (scrollProgress < 0.75) {
         setShowContent(false);
       }
