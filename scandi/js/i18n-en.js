@@ -12,7 +12,8 @@ window.I18N_EN = {
   '회사소개': 'About',
   '설비라인': 'Process',
   '포세린': 'Porcelain',
-  '비아테라': 'Viatera',
+  /* LX 공식 표기를 따른다 — VIATERA / HIMACS 는 대문자 */
+  '비아테라': 'VIATERA',
   '하이막스': 'HIMACS',
   '시공사례': 'Projects',
   '문의': 'Contact',
@@ -37,8 +38,8 @@ window.I18N_EN = {
   '© 2026 (주)은성 EUNSUNG Co., Ltd.': '© 2026 EUNSUNG Co., Ltd.',
   '© 2026 (주)은성 EUNSUNG Co., Ltd. · 인조대리석 및 상판 가공':
     '© 2026 EUNSUNG Co., Ltd. · Solid surface and countertop fabrication',
-  '세라믹, 엔지니어드 스톤, 솔리드 서페이스를 위한 피지털 플래그십 — 포천에서 가공해 어디든 배송합니다.':
-    'A phygital flagship for ceramic, engineered stone and solid surface — fabricated in Pocheon, delivered anywhere.',
+  '포세린·비아테라·하이막스·BMC — 소재 선별부터 가공, 시공까지 은성이 직접 합니다.':
+    'Porcelain, VIATERA, HIMACS, BMC — sourced, fabricated and installed by EUNSUNG.',
 
   /* ───────── index · 히어로 / 소재 ───────── */
   '표면은 공간의 인상을 결정합니다.': 'Surface defines the space.',

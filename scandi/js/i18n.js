@@ -113,15 +113,13 @@
   }
 
   /* ---------- 토글 표시 ---------- */
+  /* 각 <b> 의 글자를 보고 칠한다. 마크업이 KO|EN 이든 EN|KO 이든 상관없다. */
   function paintToggle() {
-    Array.prototype.forEach.call(document.querySelectorAll('.lang'), function (box) {
-      var bs = box.querySelectorAll('b');
-      if (bs.length < 2) return;
-      /* 마크업 순서는 EN | KO */
-      bs[0].style.opacity = lang === 'en' ? '1' : '.5';
-      bs[1].style.opacity = lang === 'ko' ? '1' : '.5';
-      bs[0].style.cursor = 'pointer';
-      bs[1].style.cursor = 'pointer';
+    Array.prototype.forEach.call(document.querySelectorAll('.lang b'), function (b) {
+      var code = norm(b.textContent).toLowerCase();
+      if (code !== 'ko' && code !== 'en') return;
+      b.style.opacity = code === lang ? '1' : '.5';
+      b.style.cursor = 'pointer';
     });
   }
 
