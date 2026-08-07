@@ -1,0 +1,527 @@
+/* ===== 영문 번역 사전 =====
+   키는 화면에 나오는 한국어 원문(공백 정규화 후), 값은 영문.
+   값이 '__HIDE__' 이면 EN 모드에서 그 요소를 숨긴다 —
+   한/영이 이미 병기된 자리에서 영문이 두 번 나오지 않게 하기 위한 장치.
+
+   제품 개별 데이터(컬러별 설명 등)는 이번 단계 범위에서 제외했다. */
+window.I18N_EN = {
+
+  /* ───────── 공통 · 헤더 / 내비게이션 ───────── */
+  /* 로고의 한글 첨자 — EN 에서는 옆의 EUNSUNG 과 겹치므로 숨긴다 */
+  '은성': '__HIDE__',
+  '회사소개': 'About',
+  '설비라인': 'Process',
+  '포세린': 'Porcelain',
+  '비아테라': 'Viatera',
+  '하이막스': 'HIMACS',
+  '시공사례': 'Projects',
+  '문의': 'Contact',
+  '메뉴 열기': 'Open menu',
+  '홈': 'Home',
+  '쇼룸': 'Showroom',
+  '홈으로 돌아가기': 'Back to home',
+  '쇼룸으로 돌아가기': 'Back to showroom',
+
+  /* ───────── 공통 · 푸터 / 회사 정보 ───────── */
+  '(주)은성': 'EUNSUNG Co., Ltd.',
+  '상호 (주)은성': 'Company EUNSUNG Co., Ltd.',
+  '대표자 이언기': 'CEO Lee Eon-gi',
+  '사업자등록번호 328-88-00420': 'Business Reg. No. 328-88-00420',
+  '주소 경기도 포천시 가산면 정금로 356-39':
+    'Address 356-39 Jeonggeum-ro, Gasan-myeon, Pocheon-si, Gyeonggi-do, Korea',
+  '경기도 포천시 가산면 정금로 356-39':
+    '356-39 Jeonggeum-ro, Gasan-myeon, Pocheon-si, Gyeonggi-do, Korea',
+  '전화 031-544-7272': 'Tel 031-544-7272',
+  '이메일 eunsung8585@naver.com': 'Email eunsung8585@naver.com',
+  '인조대리석 및 상판 가공 전문': 'Solid surface and countertop fabrication',
+  '© 2026 (주)은성 EUNSUNG Co., Ltd.': '© 2026 EUNSUNG Co., Ltd.',
+  '© 2026 (주)은성 EUNSUNG Co., Ltd. · 인조대리석 및 상판 가공':
+    '© 2026 EUNSUNG Co., Ltd. · Solid surface and countertop fabrication',
+  '세라믹, 엔지니어드 스톤, 솔리드 서페이스를 위한 피지털 플래그십 — 포천에서 가공해 어디든 배송합니다.':
+    'A phygital flagship for ceramic, engineered stone and solid surface — fabricated in Pocheon, delivered anywhere.',
+
+  /* ───────── index · 히어로 / 소재 ───────── */
+  '표면은 공간의 인상을 결정합니다.': 'Surface defines the space.',
+  '은성은 그 기준을 만듭니다.': 'EUNSUNG defines the surface.',
+  'LX하우시스 공식 파트너 — 원자재 선별부터 재단·시공까지 직영 설비에서 완성합니다.':
+    'Official partner of LX Hausys — from raw material selection to cutting and installation, completed in our own facility.',
+  'MATERIALS · 소재': 'MATERIALS',
+  '2009년 BMC 인조대리석 가공 전문으로 출발해, 세라믹·E-Stone·MMA·BMC 전 라인업을 다루는 종합 표면재 기업으로 성장했습니다.':
+    'Founded in 2009 as a BMC solid-surface fabricator, EUNSUNG now covers the full surface line — Porcelain, Viatera, HIMACS and BMC.',
+  '성형 컴파운드부터 대형 세라믹까지, 은성의 모든 표면재는 포천 공장에서 하나의 정밀 기준으로 가공됩니다.':
+    'From molded compounds to large-format ceramic, every EUNSUNG surface is fabricated in our Pocheon facility to a single benchmark of precision.',
+
+  '엔지니어드 스톤': 'Engineered Stone',
+  'MMA 인조대리석': 'MMA Solid Surface',
+  '성형 컴파운드': 'Molding Compound',
+
+  '1200°C 이상 고온 소성으로 완성되는 대형 세라믹 슬랩. 열·자외선·흡수에 강해 실내외 구분 없이 시공됩니다.':
+    'Large-format ceramic slabs fired above 1200°C — resistant to heat, UV and water absorption, for interior and exterior alike.',
+  '천연 석영 기반의 엔지니어드 스톤. 천연석의 깊이감과 산업적 균일함을 동시에 갖춘 프리미엄 상판재입니다.':
+    'Engineered stone built on natural quartz — the depth of real stone with industrial consistency, for premium worktops.',
+  '100% 아크릴계(MMA) 솔리드 서페이스. 이음새 없는 접합과 곡면 성형이 가능해 디자인 제약이 없습니다.':
+    '100% acrylic (MMA) solid surface — seamless joins and thermoformed curves leave no design constraints.',
+  '열과 충격에 강한 열경화성 성형 컴파운드. 일체 성형으로 이음새 없이 매끄럽게 마감됩니다.':
+    'A heat- and impact-resistant thermoset molding compound, finished seamlessly in a single molded piece.',
+
+  '3200×1600 대형 규격': '3200×1600 large format',
+  '열·긁힘·오염에 강함': 'Heat, scratch and stain resistant',
+  '실내외 시공': 'Interior and exterior',
+  '석영 90% 이상': 'Over 90% quartz',
+  '스크래치·오염 강함': 'Scratch and stain resistant',
+  '주방 상판 최적': 'Ideal for kitchen worktops',
+  '이음새 없는 시공': 'Seamless installation',
+  '곡선 성형 가능': 'Thermoformable curves',
+  '샌딩 복원 가능': 'Restorable by sanding',
+  '일체 성형 마감': 'Single-piece molded finish',
+  '내열·내충격': 'Heat and impact resistant',
+  '위생적 표면': 'Hygienic surface',
+
+  '한 장의 슬랩이': 'From a single slab,',
+  '공간이 되기까지': 'to a finished space',
+  '공간이 되기까지.': 'to a finished space.',
+
+  /* ───────── index · 문의 폼 ───────── */
+  'INQUIRY · 문의': 'INQUIRY',
+  'CONTACT · 문의': 'CONTACT',
+  'LOCATION · 위치': 'LOCATION',
+  'SPECIALTY · 전문 분야': 'SPECIALTY',
+  '공간에 대해 알려주세요. 저희 팀이 영업일 기준 하루 안에 샘플과 견적으로 답변드립니다.':
+    'Tell us about your space. Our team replies within one business day with samples and a quotation.',
+  'Name · 성함': 'Name',
+  'Phone / Email · 연락처': 'Phone / Email',
+  'Project type · 프로젝트 유형': 'Project type',
+  'Tell us about your space · 내용': 'Tell us about your space',
+  'Residential kitchen · 주거 주방': 'Residential kitchen',
+  'Bathroom / vanity · 욕실': 'Bathroom / vanity',
+  'Commercial / hospitality · 상업공간': 'Commercial / hospitality',
+  'Facade / feature wall · 외장·벽면': 'Facade / feature wall',
+  '문의 보내기 · SEND INQUIRY': 'SEND INQUIRY',
+  '문의가 정상적으로 접수되었습니다. 저희 팀이 영업일 기준 하루 안에 연락드립니다.':
+    'Your inquiry has been received. Our team will be in touch within one business day.',
+  '접기': 'Show less',
+
+  /* ───────── about ───────── */
+  'ABOUT EUNSUNG · 회사소개': 'ABOUT EUNSUNG',
+  '대한민국 표면재의 기준을 다시 씁니다': 'Redefining the standard of surface in Korea.',
+  'Redefining the standard of surface in Korea.': '__HIDE__',
+  '2009년 설립 이래 BMC부터 포세린까지, 은성은 표면재의 모든 것을 다룹니다.':
+    'Since 2009, from BMC to porcelain — EUNSUNG covers every surface.',
+  'Since our founding in 2009, EUNSUNG has covered every surface — from BMC to porcelain.': '__HIDE__',
+
+  'OUR STORY · 연혁': 'OUR STORY',
+  '하나의 소재에서, 모든 표면의 기준으로': 'From one material, to every surface.',
+  'From one material, to every surface.': '__HIDE__',
+  '2009 · 창립': '2009 · FOUNDED',
+  '2026 · 현재': '2026 · TODAY',
+  'BMC 인조대리석 가공 전문으로 시작': 'Beginning as a BMC solid-surface specialist',
+  '경기도 포천에서 BMC 인조대리석 가공을 전문으로 창립한 이래, 싱크대와 상판 가공의 정밀도로 신뢰를 쌓아왔습니다.':
+    'Founded in Pocheon, Gyeonggi-do as a BMC solid-surface specialist, earning trust through precision sink and countertop work.',
+  'Founded in Pocheon in 2009 specializing in BMC solid-surface fabrication, building trust through precision sink and countertop work.': '__HIDE__',
+  '포세린·비아테라·하이막스·BMC, 표면재의 전 과정을 다루는 회사로':
+    'Porcelain, Viatera, HIMACS and BMC — the full surface process, in one house',
+  'A full-line surface company across porcelain, Viatera, HIMACS and BMC — supplying premium materials directly as an official partner of LX Hausys, Korea\'s No.1 surface brand.': '__HIDE__',
+
+  'ONE-STOP SYSTEM · 원스톱 체계': 'ONE-STOP SYSTEM',
+  '수급부터 시공까지, 은성 안에서 완결됩니다': 'From sourcing to installation — complete under one roof.',
+  'One house. Every step.': '__HIDE__',
+  '은성은 자재 수급부터 정밀 가공, 현장 시공까지 표면재의 전 과정을 직접 수행하는 원스톱 기업입니다. 중간 유통 단계를 거치지 않는 만큼, 품질과 일정을 스스로 통제합니다.':
+    'EUNSUNG handles sourcing, precision fabrication and on-site installation directly. With no intermediaries, we control both quality and schedule ourselves.',
+  'EUNSUNG handles sourcing, precision fabrication and on-site installation directly — no intermediaries, full control over quality and schedule.': '__HIDE__',
+  '01 · 유통 SOURCING': '01 · SOURCING',
+  '02 · 가공 FABRICATION': '02 · FABRICATION',
+  '03 · 시공 INSTALLATION': '03 · INSTALLATION',
+  '좋은 표면은 좋은 슬랩에서 시작됩니다': 'A great surface begins with a great slab',
+  '밀리미터의 오차도 허용하지 않습니다': 'Not a millimetre of tolerance',
+  '만든 사람이 끝까지 책임집니다': 'The hands that make it see it through',
+  '국내 1위 소재기업 LX하우시스를 비롯한 신뢰도 높은 원자재를 직접 수급합니다.':
+    'We source directly from trusted suppliers, led by LX Hausys, Korea’s No.1 surface brand.',
+  '경기도 포천 대형 가공 설비에서 재단부터 마감까지 직접 처리합니다.':
+    'Cutting through finishing is handled in-house at our large-scale Pocheon facility.',
+  '현장 실측부터 마감 시공까지 자체 시공팀이 책임지고 완성합니다.':
+    'Our own installation team carries the work from on-site measurement to final finish.',
+
+  'FACILITY · 생산 시설': 'FACILITY',
+  '규모가 만드는 정밀함': 'Precision at scale.',
+  'Precision at scale.': '__HIDE__',
+  '경기도 포천에 위치한 대형 가공 설비에서 정밀 가공을 통해 최상의 품질을 공급합니다. 체계적인 재고 관리와 자동화 설비로 신속한 자재 공급도 함께 실현합니다.':
+    'Our large-scale facility in Pocheon delivers top-tier quality through precision fabrication, backed by systematic inventory management and automated supply.',
+  'Our large-scale fabrication facility in Pocheon, Gyeonggi-do, delivers top-tier quality through precision processing — backed by systematic inventory management and automated supply.': '__HIDE__',
+  'MATERIAL SCALE · 자재 규모': 'MATERIAL SCALE',
+  '수백 가지 컬러, 단 하나의 기준': 'Hundreds of colors. One standard.',
+  'Hundreds of colors. One standard.': '__HIDE__',
+  '수백 가지 인조대리석 컬러 라인업': 'Hundreds of solid-surface colors in stock',
+  '다양한 공간과 프로젝트에 맞춰 폭넓은 컬러·패턴을 즉시 대응합니다.':
+    'A broad range of colors and patterns, ready for any space or project.',
+  'BMC 자체 생산 라인 보유': 'Our own BMC production line',
+  'BMC 인조대리석을 자체 생산해 외주 없이 품질과 납기를 직접 관리합니다.':
+    'We produce BMC solid surface ourselves — quality and lead time managed directly, with no outsourcing.',
+
+  'EUNSUNG IN NUMBERS · 숫자로 보는 은성': 'EUNSUNG IN NUMBERS',
+  '설립연도 · FOUNDED': 'FOUNDED',
+  '업력 · YEARS OF EXPERTISE': 'YEARS OF EXPERTISE',
+  '취급 소재 · MATERIAL LINES': 'MATERIAL LINES',
+  '국내 1위 소재기업 · 공식 파트너': 'KOREA’S NO.1 SURFACE BRAND · OFFICIAL PARTNER',
+  'WHY EUNSUNG · 경쟁력': 'WHY EUNSUNG',
+  '품질과 속도, 그리고 장인의 손': 'Quality. Speed. Craftsmanship.',
+  'Quality. Speed. Craftsmanship.': '__HIDE__',
+  '품질 · QUALITY': 'QUALITY',
+  '납기 · SPEED': 'SPEED',
+  '가공 실력 · CRAFTSMANSHIP': 'CRAFTSMANSHIP',
+  '기준 이하의 슬랩은 라인에 올리지 않습니다.': 'A slab below standard never reaches the line.',
+  '직영이기에 가능한 속도로 약속을 지킵니다.': 'Owning every step is how we keep our dates.',
+  '기계가 재단하고, 사람이 완성합니다.': 'The machine cuts. The craftsman finishes.',
+
+  'WHO WE SERVE · 공급 대상': 'WHO WE SERVE',
+  '집 한 채의 정성으로, 프로젝트 전체를': 'From a single home, to the whole project.',
+  'From a single home, to the whole project.': '__HIDE__',
+  '개인 고객 · INDIVIDUAL': 'INDIVIDUAL',
+  'B2B 파트너 · PROJECT': 'PROJECT',
+  '1:1 맞춤 제작': 'Made to measure',
+  '인테리어 · 건설사 · 호텔': 'Interiors · Developers · Hotels',
+  '가정용 싱크대, 상판부터 인테리어 표면재까지 개인 고객의 공간에 맞춘 1:1 맞춤 제작을 제공합니다.':
+    'From kitchen sinks and worktops to interior surfaces — made to measure for your space.',
+  '인테리어 업체, 건설사, 호텔 등 다양한 프로젝트 현장에 대량 공급과 시공을 지원합니다.':
+    'Volume supply and installation for interior firms, developers, hotels and other project sites.',
+
+  'CERTIFICATION · 인증 및 파트너십': 'CERTIFICATION & PARTNERSHIP',
+  '이름 있는 소재만 다룹니다': 'Only proven materials.',
+  'Only proven materials.': '__HIDE__',
+  'EUNSUNG is an official partner of LX Hausys, Korea\'s No.1 surface brand — across porcelain, Viatera and HIMACS.': '__HIDE__',
+  'COMPANY INFO · 회사 정보': 'COMPANY INFO',
+  /* <b> 강조 때문에 텍스트 노드가 쪼개진 문장들 — 조각 단위로 매칭한다 */
+  '포세린, 비아테라, 하이막스, BMC 전 라인업을 다루며,':
+    'Covering the full line — Porcelain, Viatera, HIMACS and BMC — as the',
+  '국내 1위 소재기업 LX하우시스의 공식 파트너': 'official partner of LX Hausys, Korea’s No.1 surface brand',
+  '로서 프리미엄 소재를 직접 공급하는 종합 표면재 기업으로 성장했습니다.':
+    ', supplying premium materials directly.',
+  '은성은': 'EUNSUNG is the',
+  '대한민국 1위 소재기업 LX하우시스 공식 파트너': 'official partner of LX Hausys, Korea’s No.1 surface brand',
+  '입니다. 포세린 · 비아테라 · 하이막스 세 라인 모두 이미 검증된 소재로, 안심하고 사용하실 수 있습니다.':
+    '. Porcelain, Viatera and HIMACS — three lines whose reliability is already proven.',
+  '· LX하우시스 파트너 소재': '· LX Hausys partner material',
+  '년': ' yrs',
+  '종': ' lines',
+
+  /* COMPANY INFO 표 */
+  '상호 · COMPANY': 'COMPANY',
+  '대표자 · CEO': 'CEO',
+  '이언기': 'Lee Eon-gi',
+  '사업자등록번호 · BIZ. NO': 'BIZ. NO',
+  '전화 · TEL': 'TEL',
+  '주소 · ADDRESS': 'ADDRESS',
+  '이메일 · EMAIL': 'EMAIL',
+
+  /* ───────── facility (설비라인) ───────── */
+  'FACILITY · 설비라인': 'PROCESS',
+  '은성은 유통하지 않고 직접 가공합니다. 실측부터 현장 시공까지, 한 팀이 관리하는 10단계 공정입니다.':
+    'EUNSUNG does not distribute — we fabricate. Ten stages, from measurement to installation, managed by one team.',
+  'PREPARATION · 사전 준비': 'PREPARATION',
+  'PROCESSING · 가공': 'PROCESSING',
+  'COMPLETION · 완성': 'COMPLETION',
+  '자재 입고 및 검수': 'Material intake and inspection',
+  '들여오는 자재부터 다시 확인합니다.': 'It starts with checking what comes in.',
+  '은성은 LX Hausys 정식 대리점으로서, 입고되는 모든 슬랩을 전수 검수합니다. 규격과 색상 로트, 표면 상태까지 하나씩 확인한 자재만 가공 라인에 투입됩니다.':
+    'As an authorised LX Hausys dealer, we inspect every incoming slab. Only material verified for dimension, colour lot and surface condition enters the line.',
+  '실측': 'On-site measurement',
+  '밀리미터의 오차도 남기지 않습니다.': 'Not a millimetre is left to chance.',
+  '레이저 실측 장비로 현장의 각도와 단차까지 빠짐없이 기록합니다. 기록된 수치는 그대로 다음 단계인 도면 작업으로 이어져, 현장과 도면 사이의 오차를 처음부터 차단합니다.':
+    'Laser measurement records every angle and level change on site. Those figures carry straight into drafting, eliminating any gap between site and drawing.',
+  '도면 작업': 'Drafting',
+  '도면은 곧 가공 데이터입니다.': 'The drawing is the machine data.',
+  '실측 수치로 정리된 CAD 도면은 가공 장비와 직접 연동됩니다. 사람이 수치를 옮겨 적는 과정이 없기 때문에, 도면에서 가공으로 전달되는 과정에서 생기는 오차가 존재하지 않습니다.':
+    'CAD drawings built from measured figures feed the machines directly. Nothing is transcribed by hand, so nothing is lost between drawing and cut.',
+  '슬랩 배치': 'Slab layout',
+  '결의 방향까지 미리 정합니다.': 'Even the direction of the veining is decided first.',
+  '도면에 맞춰 슬랩을 배치하며 무늬결과 이음선의 위치를 재단 전에 확정합니다. 잘라내기 전에 완성된 모습을 먼저 확인하는 단계입니다.':
+    'Slabs are laid out against the drawing, fixing veining and seam positions before any cut. The finished look is confirmed first.',
+  '재단': 'Cutting',
+  '도면 그대로, 오차 없이 잘라냅니다.': 'Cut exactly to the drawing.',
+  '대형 가공 설비가 도면 데이터를 그대로 읽어 슬랩을 재단합니다. 직선과 곡선이 만나는 지점까지 동일한 정밀도로 처리합니다.':
+    'Large-format machinery reads the drawing data and cuts accordingly — the same precision where straight meets curve.',
+  '타공 및 씽크볼 가공': 'Cutouts and sink openings',
+  '취성이 강한 소재일수록, 장비는 더 정밀해야 합니다.': 'The more brittle the material, the finer the machine must be.',
+  '포세린은 강도는 높지만 충격에는 예민한 소재입니다. 씽크볼과 콘센트 홀 하나까지 크랙 없이 정밀하게 타공하는 것이 이 공정의 기준입니다.':
+    'Porcelain is hard but impact-sensitive. Every sink opening and socket hole is cut without a crack — that is the standard here.',
+  '엣지 가공 및 연마 폴리싱': 'Edge profiling and polishing',
+  '만졌을 때 느껴지는 마감이 다릅니다.': 'The finish you feel is the difference.',
+  '형태에 맞춰 엣지의 각을 잡고, 표면은 단계별 연마로 광택을 끌어올립니다. 눈으로 보는 것을 넘어 손으로 확인해도 이음이 느껴지지 않도록 마무리합니다.':
+    'Edges are profiled to form and surfaces polished in stages. Finished so the join cannot be felt, let alone seen.',
+  '최종 검수': 'Final inspection',
+  '출고 전, 마지막으로 한 번 더 봅니다.': 'One last look before it leaves.',
+  '치수와 표면, 컬러 매칭까지 처음 도면과 비교해 다시 확인합니다. 이 기준을 통과한 제품만 다음 단계로 넘어갑니다.':
+    'Dimensions, surface and colour matching are checked again against the original drawing. Only what passes moves on.',
+  '운반': 'Transport',
+  '여기서부터는 파손 방지가 곧 품질입니다.': 'From here, protection is quality.',
+  '슬랩 전용 거치대와 완충재로 고정해 운송 중 흔들림과 파손을 방지합니다. 현장에 도착하는 순간까지 검수된 상태 그대로 유지합니다.':
+    'Secured on dedicated slab frames with cushioning against movement and damage — arriving exactly as inspected.',
+  '현장 시공': 'Installation',
+  '처음 실측한 사람이, 마지막까지 함께합니다.': 'The person who measured it is there at the end.',
+  '실측부터 시공까지 전 과정을 은성의 시공팀이 직접 책임집니다. 담당이 바뀌며 생기는 공백 없이, 처음 약속한 완성도를 한 팀이 끝까지 지킵니다.':
+    'Our own team owns every stage from measurement to installation. No handovers, no gaps — one team holds the standard promised at the start.',
+  '이 공정 그대로, 당신의 공간에': 'This same process, in your space',
+  '실측부터 시공까지, 은성의 10단계 공정으로 견적을 받아보세요.':
+    'From measurement to installation — request a quotation built on our ten-stage process.',
+  '견적 문의하기': 'Request a quote',
+  '시공사례 보기': 'View projects',
+
+  /* ───────── portfolio (시공사례) ───────── */
+  'PORTFOLIO · 시공 사례': 'PORTFOLIO',
+  '공간이 증명합니다': 'Spaces that speak for themselves.',
+  '말보다 결과로 — 은성이 시공한 실제 현장입니다.':
+    'Results over words — actual sites completed by EUNSUNG.',
+  '← 목록으로': '← Back to list',
+  '← 이전 사례': '← Previous project',
+  '다음 사례 →': 'Next project →',
+  '이전 사진': 'Previous photo',
+  '다음 사진': 'Next photo',
+  '닫기': 'Close',
+  '비슷한 시공 문의하기': 'Enquire about similar work',
+
+  /* ───────── showroom ───────── */
+  'SHOWROOM · 쇼룸': 'SHOWROOM',
+  'LX Hausys 공식 딜러 · AUTHORIZED DEALER': 'LX HAUSYS AUTHORIZED DEALER',
+  '포세린 슬랩부터 비아테라, 하이막스, BMC 인조대리석까지 — 포천 자체 공장에서 가공하는 전 소재 컬렉션입니다.':
+    'From porcelain slabs to Viatera, HIMACS and BMC solid surface — the full collection, fabricated in our own Pocheon facility.',
+  /* 카테고리 · 스타일 분류 (개별 컬러명은 이번 범위 제외) */
+  'BMC 인조대리석': 'BMC Solid Surface',
+  '마블 · Marble': 'Marble',
+  '솔리드 · Solid': 'Solid',
+  '스톤 · Stone': 'Stone',
+  '콘크리트 · Concrete': 'Concrete',
+  '테라조 · Terrazzo': 'Terrazzo',
+
+  '필터': 'Filter',
+  '필터 초기화': 'Reset filters',
+  '전체 초기화': 'Reset all',
+  '제품명 검색': 'Search by name',
+  '색상': 'Colour',
+  '색상 · COLOR': 'COLOUR',
+  '스타일': 'Style',
+  '스타일 · STYLE': 'STYLE',
+  '추천순': 'Recommended',
+  '이름순': 'By name',
+  '자세히 보기': 'View details',
+  '이전 페이지': 'Previous page',
+  '다음 페이지': 'Next page',
+  '총': 'Total',
+  '개의 상품': 'products',
+  '조건에 맞는 상품이 없습니다': 'No products match your filters',
+  '필터를 조정해 다시 시도해 보세요.': 'Try adjusting the filters.',
+
+  /* ───────── product detail ───────── */
+  '가격은 문의해 주세요.': 'Price on request.',
+  '시공 면적·가공 사양 기준으로 정확한 견적을 안내드립니다.':
+    'We quote precisely, based on area and fabrication specification.',
+  '견적 요청': 'Request a quote',
+  '카카오톡 상담': 'KakaoTalk',
+  '1:1 맞춤 제작 가능': 'Made to measure',
+  '공식 파트너 · 정품 슬라브 취급': 'Official partner · genuine slabs only',
+  '소재의 성질': 'Material qualities',
+  '상세정보 더 보기': 'More details',
+  '상세정보 접기': 'Fewer details',
+
+  /* 소재 라벨 */
+  '아크릴 솔리드 서페이스': 'Acrylic solid surface',
+  '포세린 슬랩 (TERACANTO)': 'Porcelain slab (TERACANTO)',
+  '엔지니어드 스톤 (쿼츠 최대 93%)': 'Engineered stone (up to 93% quartz)',
+
+  /* 소재의 성질 카드 — 4개 소재 공통 UI */
+  '고온 내열': 'Heat resistant',
+  '1200℃ 소성 세라믹 — 뜨거운 냄비가 직접 닿아도 변색과 변형이 없습니다.':
+    'Ceramic fired at 1200℃ — no discolouration or deformation, even from a hot pan set directly on it.',
+  '내스크래치': 'Scratch resistant',
+  '유리보다 단단한 표면 경도로 칼자국·마모 걱정 없이 오래 사용합니다.':
+    'Harder than glass, so knife marks and wear are not a concern.',
+  '자외선 안정': 'UV stable',
+  '직사광선에도 색이 바래지 않아 창가·외부 공간에도 안심입니다.':
+    'Colour holds under direct sunlight — safe by windows and outdoors.',
+  '대형 슬랩': 'Large format',
+  '1600×3200 대판 — 이음매를 최소화한 웅장한 면 연출이 가능합니다.':
+    '1600×3200 slabs — expansive surfaces with minimal seams.',
+  '쿼츠 93%의 표면 경도. 칼끝이 닿아도 흠집이 남지 않습니다.':
+    'Surface hardness from 93% quartz — a knife edge leaves no mark.',
+  '비다공성': 'Non-porous',
+  '커피·와인·김칫국물이 스며들지 않아 얼룩 걱정이 없습니다.':
+    'Coffee, wine and sauces cannot soak in, so staining is not an issue.',
+  '항균 표면': 'Antibacterial',
+  '박테리아·곰팡이 성장을 억제해 조리 공간에 안전합니다.':
+    'Inhibits bacteria and mould growth — safe for food preparation.',
+  '일관된 결': 'Consistent pattern',
+  '천연석과 달리 슬라브 간 편차 없이 균일한 패턴을 유지합니다.':
+    'Unlike natural stone, the pattern stays uniform from slab to slab.',
+  '이음매 없는 시공': 'Seamless installation',
+  '조인트가 보이지 않는 심리스 접합 — 곡면·일체형 싱크도 가능합니다.':
+    'Invisible joins — curved forms and integrated sinks included.',
+  '복원 가능': 'Restorable',
+  '생활 기스는 샌딩만으로 새것처럼 — 반영구적으로 사용합니다.':
+    'Everyday scratches sand out like new — effectively for life.',
+  '열성형 곡면': 'Thermoformed curves',
+  '열을 가해 자유로운 곡선 형태로 성형할 수 있는 유일한 소재군입니다.':
+    'The only material family that can be heat-formed into free curves.',
+  '위생 인증': 'Hygiene certified',
+  'NSF 위생 인증 — 병원·주방 등 위생이 중요한 공간의 표준입니다.':
+    'NSF certified — the standard for hospitals, kitchens and other hygiene-critical spaces.',
+  '맞춤 성형': 'Made to order',
+  '포천 공장에서 주문 치수 그대로 성형 — 현장 맞춤이 자유롭습니다.':
+    'Moulded to your dimensions at our Pocheon facility — freely adapted on site.',
+  '합리적 선택': 'Sensible choice',
+  '천연석의 질감을 합리적인 비용으로 — 가성비가 가장 좋은 소재입니다.':
+    'The character of natural stone at a sensible cost — the best value in the range.',
+  '보수 용이': 'Easily repaired',
+  '부분 파손도 현장에서 간단히 보수 — 유지관리 부담이 적습니다.':
+    'Local damage is repaired on site — minimal maintenance burden.',
+  '균일 품질': 'Consistent quality',
+  '자체 생산 라인의 품질 관리로 로트 간 편차를 최소화합니다.':
+    'In-house production control keeps lot-to-lot variation minimal.',
+
+  /* 레퍼런스 캡션 */
+  '주방 상판 및 씽크 시공': 'Kitchen worktop and sink',
+  '카페 카운터 상판 시공': 'Café counter top',
+  '벽체 및 상판 마감 시공': 'Wall and worktop finish',
+  '은성이 시공한 공간': 'Spaces completed by EUNSUNG',
+  '클릭하면 크게 볼 수 있습니다 ⊕': 'Click to enlarge ⊕',
+  '제품을 찾을 수 없습니다': 'Product not found',
+  '주소가 잘못되었거나 삭제된 제품입니다.': 'The address is incorrect, or this product has been removed.',
+  '정품 슬라브의 가치를 아는 곳,': 'Those who know what a genuine slab is worth —',
+  '재단부터 시공까지 은성이 완성합니다': 'EUNSUNG completes it, from cut to installation',
+  '공식 파트너로서 정품 슬라브를 상시 보유하고, 자체 공장에서 재단부터 시공까지 중간 유통 없이 직접 책임집니다.':
+    'As an official partner we hold genuine slabs in stock, and take direct responsibility from cutting to installation in our own facility — with no intermediaries.',
+  '공식 딜러': 'Authorised dealer',
+  '비아테라 · 하이막스 정품 인증 취급점': 'Certified for genuine Viatera and HIMACS',
+  '자체 공장': 'Own facility',
+  'CNC 재단·엣지·싱크홀 가공을 직접': 'CNC cutting, edging and sink cutouts in-house',
+  '직시공': 'Direct installation',
+  '숙련 시공팀이 실측부터 마무리까지': 'A skilled team, from measurement to final finish',
+  '정품 보증': 'Genuine warranty',
+  '제조사 보증이 그대로 적용됩니다': 'The manufacturer’s warranty applies in full',
+
+  /* ───────── contact (문의하기) ───────── */
+  '문의하기': 'Contact',
+  '문의하기 — EUNSUNG 은성': 'Contact — EUNSUNG',
+  '공간에 대한 고민, 은성이 함께 답을 찾습니다.': 'Whatever the space, EUNSUNG will help you find the answer.',
+  '도면 한 장이든 막연한 구상이든 편하게 남겨주세요.': 'A drawing or just an idea — send it over.',
+  '상담 안내': 'How to reach us',
+  '급하신 건은 전화나 카카오톡이 가장 빠릅니다. 도면·현장 사진이 있으시면 함께 보내주시면 상담이 훨씬 정확해집니다.':
+    'For anything urgent, a call or KakaoTalk is fastest. Drawings or site photos make the consultation far more precise.',
+  '상담·견적 문의': 'Consultation and quotes',
+  '카카오톡 채널 상담': 'KakaoTalk channel',
+  '사진·도면 전송이 편리합니다': 'Convenient for sending photos and drawings',
+  '쇼룸과 가공 공장이 함께 있어, 실제 슬랩과 설비를 한자리에서 보실 수 있습니다. 방문은 예약을 권해드립니다.':
+    'Showroom and fabrication facility share one site, so you can see real slabs and machinery together. Appointments are recommended.',
+  '평일': 'Weekdays',
+  '점심시간': 'Lunch break',
+  '12:00 — 13:00 (휴게)': '12:00 — 13:00 (closed)',
+  '토요일 · 일요일 · 공휴일': 'Sat · Sun · Public holidays',
+  '휴무': 'Closed',
+  '문의 남기기': 'Send an inquiry',
+  '필수 항목 · 영업일 기준 1일 내 연락드립니다': 'Required · we reply within one business day',
+  '이름': 'Name',
+  '홍길동': 'Your name',
+  '연락처': 'Phone',
+  '문의 유형': 'Inquiry type',
+  '선택해 주세요': 'Please select',
+  '견적 문의': 'Quotation',
+  '시공 문의': 'Installation',
+  '자재 문의': 'Materials',
+  '쇼룸 방문 예약': 'Showroom visit',
+  '기타': 'Other',
+  '문의 내용': 'Message',
+  '공간 종류(주방·욕실·상업공간 등), 대략적인 규모, 희망 일정을 적어주세요. 관심 소재나 시공 지역이 있으시면 함께 적어주세요.':
+    'Tell us the type of space (kitchen, bathroom, commercial), approximate size and your preferred timeline. Do mention any material or location in mind.',
+  '상담 회신을 위한 개인정보 수집·이용에 동의합니다': 'I agree to the collection and use of my personal data for this inquiry',
+  '수집 항목 이름·연락처·문의 내용 · 상담 목적에만 사용하고 3년 후 파기합니다.':
+    'Collected: name, contact, message · used only for this inquiry and deleted after three years.',
+  '문의 보내기': 'Send inquiry',
+  '문의가 접수되었습니다': 'Your inquiry has been received',
+  '영업일 기준 1일 내 연락드리겠습니다.': 'We will be in touch within one business day.',
+  '급하신 경우 031-544-7272로 전화 주세요.': 'If it is urgent, please call 031-544-7272.',
+  '이 항목은 비워두세요': 'Leave this field empty',
+
+  /* ───────── 로그인 / 회원가입 모달 ───────── */
+  '로그인': 'Sign in',
+  '회원가입': 'Create account',
+  '은성 회원 서비스를 이용하시려면 로그인해 주세요.': 'Sign in to use EUNSUNG member services.',
+  '은성 회원으로 가입하고 서비스를 이용해 보세요.': 'Create an EUNSUNG account to get started.',
+  '이메일': 'Email',
+  '비밀번호': 'Password',
+  '비밀번호 확인': 'Confirm password',
+  '비밀번호를 잊으셨나요?': 'Forgot your password?',
+  '또는 간편 로그인': 'Or sign in with',
+  '또는 간편 가입': 'Or sign up with',
+  '이미 계정이 있으신가요?': 'Already have an account?',
+  '가입 유형': 'Account type',
+  '일반 고객': 'Individual',
+  '인테리어·시공 업체': 'Interior / trade',
+  '상세주소 (동/호수 등)': 'Address line 2 (unit, floor)',
+  '주소': 'Address',
+  '주소 검색': 'Find address',
+  '주소 검색 닫기': 'Close address search',
+  '로그아웃': 'Sign out',
+  '회원': 'Member',
+  '카카오 계정': 'Kakao account',
+  '로그인 중…': 'Signing in…',
+  '가입 처리 중…': 'Creating account…',
+  '구글로 로그인': 'Sign in with Google',
+  '카카오톡으로 로그인': 'Sign in with KakaoTalk',
+  '구글로 가입': 'Sign up with Google',
+  '카카오톡으로 가입': 'Sign up with KakaoTalk',
+  '구글 로그인 페이지로 이동합니다…': 'Redirecting to Google…',
+  '카카오톡 로그인 페이지로 이동합니다…': 'Redirecting to KakaoTalk…',
+  '이메일과 비밀번호를 모두 입력해 주세요.': 'Please enter both your email and password.',
+  '올바른 이메일 주소를 입력해 주세요.': 'Please enter a valid email address.',
+  '이메일 또는 비밀번호가 올바르지 않습니다.': 'Incorrect email or password.',
+  '이미 가입된 이메일입니다. 로그인해 주세요.': 'This email is already registered. Please sign in.',
+  '비밀번호는 6자 이상이어야 합니다.': 'Password must be at least 6 characters.',
+  '비밀번호가 일치합니다.': 'Passwords match.',
+  '비밀번호가 일치하지 않습니다.': 'Passwords do not match.',
+  '상세주소를 제외한 모든 항목을 입력해 주세요.': 'Please complete every field except address line 2.',
+  '연락처를 010-0000-0000 형식으로 입력해 주세요.': 'Please enter your phone as 010-0000-0000.',
+  '사용할 수 없는 이메일 주소입니다. 실제 사용 중인 주소를 입력해 주세요.':
+    'This email address cannot be used. Please enter one you actively use.',
+  '요청이 너무 잦습니다. 잠시 후 다시 시도해 주세요.': 'Too many requests. Please try again shortly.',
+  '네트워크 오류로 처리하지 못했습니다. 연결 상태를 확인해 주세요.':
+    'A network error prevented this. Please check your connection.',
+  '처리 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.': 'Something went wrong. Please try again shortly.',
+  '이메일 인증이 완료되지 않았습니다. 받은 메일함에서 인증 링크를 확인해 주세요.':
+    'Your email is not verified yet. Please check your inbox for the verification link.',
+  '로그인 서비스가 아직 설정되지 않았습니다. 잠시 후 다시 시도해 주세요.':
+    'Sign-in is not available yet. Please try again shortly.',
+  '로그인 서비스를 불러오지 못했습니다. 네트워크 상태를 확인해 주세요.':
+    'Could not load the sign-in service. Please check your connection.',
+  '비밀번호 찾기는 준비 중입니다. 031-544-7272로 문의해 주세요.':
+    'Password recovery is coming soon. Please call 031-544-7272.',
+  '주소 검색을 불러오는 중입니다…': 'Loading address search…',
+  '주소 검색 서비스를 불러오지 못했습니다. 네트워크 상태를 확인한 뒤 다시 시도해 주세요.':
+    'Could not load the address search. Please check your connection and try again.',
+
+  /* ───────── 검색 오버레이 ───────── */
+  '검색': 'Search',
+  '검색어': 'Search term',
+  '검색 닫기': 'Close search',
+  '제품명 · 컬러명 · 코드 또는 페이지를 검색하세요': 'Search products, colours, codes or pages',
+  '제품 데이터를 불러오는 중입니다…': 'Loading product data…',
+  '제품명이나 컬러 코드를 입력해 보세요.': 'Try a product name or colour code.',
+  '예) 칼라카타, 오로라 블랑, M617, 비아테라': 'e.g. Calacatta, Aurora Blanc, M617, Viatera',
+  '제품 · ': 'Products · ',
+  '나머지 ': 'View the remaining ',
+  '건은 쇼룸에서 보기 →': ' in the showroom →',
+  '건': ' results',
+  '검색 결과가 없습니다.': 'No results found.',
+  '찾으시는 소재나 컬러가 있으시면 문의해 주세요.': 'Tell us the material or colour you are looking for.',
+  '재고와 대체 컬러를 안내드립니다.': 'We will advise on stock and alternatives.',
+  '페이지': 'Pages',
+  '2009년 설립부터 지금까지, 은성이 걸어온 길': 'The road EUNSUNG has travelled since 2009',
+  '포천 자체 공장의 재단부터 시공까지 전 공정': 'Every stage, from cutting to installation, in our own Pocheon facility',
+  '1200°C 고온 소성으로 완성되는 대형 세라믹 슬랩': 'Large-format ceramic slabs fired above 1200°C',
+  '천연 석영 기반의 프리미엄 엔지니어드 스톤': 'Premium engineered stone built on natural quartz',
+  '이음새 없는 100% 아크릴 솔리드 서페이스': 'Seamless 100% acrylic solid surface',
+  '자체 생산하는 열경화성 성형 컴파운드': 'Thermoset molding compound, produced in-house',
+  '주방·욕실·상업공간 시공 레퍼런스': 'Kitchen, bathroom and commercial references',
+  '견적·시공·자재 문의와 쇼룸 방문 예약': 'Quotes, installation, materials and showroom visits',
+
+  /* ───────── 플로팅 문의 위젯 ─────────
+     (버튼 aria-label '문의하기' 는 위 contact 항목을 그대로 쓴다) */
+  '카카오톡 문의': 'Ask on KakaoTalk',
+  '전화 문의 031-544-7272': 'Call 031-544-7272'
+};
