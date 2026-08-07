@@ -152,7 +152,7 @@ a:hover{color:#c9a24b}
           <sc-for list="{{ infoRows }}" as="r" hint-placeholder-count="7">
             <div style="display:grid;grid-template-columns:110px 1fr;gap:18px;padding:13px 0;border-bottom:1px solid rgba(14,36,64,.07)">
               <span style="font:600 10.5px 'Manrope';letter-spacing:.16em;color:#8a93a1">{{ r.k }}</span>
-              <span style="font:500 13px 'Manrope';color:#1c2733">{{ r.v }}</span>
+              <span style="font:500 13px/1.7 'Manrope';color:#1c2733;white-space:pre-line">{{ r.v }}</span>
             </div>
           </sc-for>
           <div style="font:400 11px 'Manrope';color:#a7afbb;padding-top:12px">* 실제 슬라브의 결과 색감은 로트에 따라 차이가 있을 수 있습니다. 포천 쇼룸에서 실물 확인을 권장합니다.</div>
@@ -169,12 +169,16 @@ a:hover{color:#c9a24b}
     <div style="font:400 13px/1.85 'Manrope';color:#5a6474;margin-top:18px">{{ desc }}</div>
 
     <div style="margin-top:28px;border-top:1px solid rgba(14,36,64,.14)">
-      <sc-for list="{{ specRows }}" as="r" hint-placeholder-count="6">
+      <sc-for list="{{ specRows }}" as="r" hint-placeholder-count="5">
         <div style="display:grid;grid-template-columns:96px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid rgba(14,36,64,.08);align-items:baseline">
           <span style="font:600 10px 'Manrope';letter-spacing:.18em;color:#8a93a1">{{ r.k }}</span>
-          <span style="font:500 12.5px 'Manrope';color:#1c2733">{{ r.v }}</span>
+          <span style="font:500 12.5px/1.7 'Manrope';color:#1c2733;white-space:pre-line">{{ r.v }}</span>
         </div>
       </sc-for>
+      <div style="display:grid;grid-template-columns:96px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid rgba(14,36,64,.08);align-items:baseline">
+        <span style="font:600 10px 'Manrope';letter-spacing:.18em;color:#8a93a1">CUSTOM</span>
+        <span style="font:500 12.5px 'Manrope';color:#1c2733">1:1 맞춤 제작 가능</span>
+      </div>
     </div>
 
     <div style="margin-top:24px;background:#f6f4ef;border-left:2px solid #c9a24b;padding:15px 19px;font:400 12px/1.7 'Manrope';color:#5a6474"><b style="color:#0e2440">가격은 문의해 주세요.</b> 시공 면적·가공 사양 기준으로 정확한 견적을 안내드립니다.</div>
@@ -184,11 +188,13 @@ a:hover{color:#c9a24b}
       <a class="btn-line" href="#">카카오톡 상담</a>
     </div>
 
-    <!-- LX 공식 딜러 신뢰 라인 -->
-    <div style="display:flex;align-items:center;gap:10px;margin-top:22px;padding:13px 16px;border:1px solid rgba(201,162,75,.4);background:#fdfbf6">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a8763f" stroke-width="1.8" style="flex-shrink:0"><path d="M12 2l2.4 6.6L21 9l-5 4.6L17.4 21 12 17.3 6.6 21 8 13.6 3 9l6.6-.4z"></path></svg>
-      <span style="font:600 11px/1.5 'Manrope';letter-spacing:.04em;color:#a8763f">LX Hausys 공식 딜러 — 정품 슬라브만 취급합니다</span>
-    </div>
+    <!-- LX 공식 파트너 — 배경/테두리 없이 로고 + 무채색 캡션만 -->
+    <sc-if value="{{ showLx }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;align-items:center;gap:11px;margin-top:22px">
+        <img src="images/lx-hausys-logo.png" alt="LX Hausys" style="height:20px;width:auto;display:block;flex-shrink:0">
+        <span style="font:500 11.5px/1.5 'Manrope';color:#8a93a1">공식 파트너 · 정품 슬라브 취급</span>
+      </div>
+    </sc-if>
   </div>
 </div>
 
@@ -197,14 +203,15 @@ a:hover{color:#c9a24b}
   <div style="max-width:1320px;margin:0 auto;padding:72px 4vw;display:grid;grid-template-columns:minmax(0,40fr) minmax(0,60fr);gap:56px;align-items:center">
     <div>
       <div style="font:600 10px 'Manrope';letter-spacing:.34em;color:#a8763f">WHY EUNSUNG</div>
-      <div style="font:500 36px/1.2 'Cormorant Garamond';color:#0e2440;margin-top:14px">LX Hausys 정품 상판,<br>은성이 가장 잘 다룹니다</div>
-      <div style="font:400 13.5px/1.85 'Manrope';color:#5a6474;margin-top:18px">비아테라·하이막스 공식 딜러로서 정품 슬라브를 상시 보유하고, 포천 자체 공장에서 재단부터 시공까지 중간 유통 없이 직접 책임집니다.</div>
+      <div style="font:500 36px/1.2 'Cormorant Garamond';color:#0e2440;margin-top:14px">정품 슬라브의 가치를 아는 곳,<br>재단부터 시공까지 은성이 완성합니다</div>
+      <div style="font:400 13.5px/1.85 'Manrope';color:#5a6474;margin-top:18px">공식 파트너로서 정품 슬라브를 상시 보유하고, 자체 공장에서 재단부터 시공까지 중간 유통 없이 직접 책임집니다.</div>
+      <img src="images/lx-hausys-logo.png" alt="LX Hausys" style="height:24px;width:auto;display:block;margin-top:26px">
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
-      <div style="background:#fff;border:1px solid rgba(14,36,64,.08);padding:24px 26px"><div style="font:500 30px 'Cormorant Garamond';color:#0e2440">공식 딜러</div><div style="font:600 10.5px 'Manrope';letter-spacing:.14em;color:#a8763f;margin-top:6px">LX HAUSYS AUTHORIZED</div><div style="font:400 12px/1.7 'Manrope';color:#7a8494;margin-top:8px">비아테라 · 하이막스 정품 인증 취급점</div></div>
-      <div style="background:#fff;border:1px solid rgba(14,36,64,.08);padding:24px 26px"><div style="font:500 30px 'Cormorant Garamond';color:#0e2440">자체 공장</div><div style="font:600 10.5px 'Manrope';letter-spacing:.14em;color:#a8763f;margin-top:6px">POCHEON FACTORY</div><div style="font:400 12px/1.7 'Manrope';color:#7a8494;margin-top:8px">CNC 재단·엣지·싱크홀 가공을 직접</div></div>
-      <div style="background:#fff;border:1px solid rgba(14,36,64,.08);padding:24px 26px"><div style="font:500 30px 'Cormorant Garamond';color:#0e2440">직시공</div><div style="font:600 10.5px 'Manrope';letter-spacing:.14em;color:#a8763f;margin-top:6px">NATIONWIDE INSTALL</div><div style="font:400 12px/1.7 'Manrope';color:#7a8494;margin-top:8px">숙련 시공팀이 실측부터 마무리까지</div></div>
-      <div style="background:#fff;border:1px solid rgba(14,36,64,.08);padding:24px 26px"><div style="font:500 30px 'Cormorant Garamond';color:#0e2440">정품 보증</div><div style="font:600 10.5px 'Manrope';letter-spacing:.14em;color:#a8763f;margin-top:6px">MANUFACTURER WARRANTY</div><div style="font:400 12px/1.7 'Manrope';color:#7a8494;margin-top:8px">제조사 보증이 그대로 적용됩니다</div></div>
+      <div style="background:#fff;border:1px solid rgba(14,36,64,.08);padding:24px 26px"><div style="font:500 30px 'Cormorant Garamond';color:#0e2440">공식 딜러</div><div style="font:600 10.5px 'Manrope';letter-spacing:.14em;color:#9a8f7d;margin-top:6px">LX HAUSYS AUTHORIZED</div><div style="font:400 12px/1.7 'Manrope';color:#7a8494;margin-top:8px">비아테라 · 하이막스 정품 인증 취급점</div></div>
+      <div style="background:#fff;border:1px solid rgba(14,36,64,.08);padding:24px 26px"><div style="font:500 30px 'Cormorant Garamond';color:#0e2440">자체 공장</div><div style="font:600 10.5px 'Manrope';letter-spacing:.14em;color:#9a8f7d;margin-top:6px">POCHEON FACTORY</div><div style="font:400 12px/1.7 'Manrope';color:#7a8494;margin-top:8px">CNC 재단·엣지·싱크홀 가공을 직접</div></div>
+      <div style="background:#fff;border:1px solid rgba(14,36,64,.08);padding:24px 26px"><div style="font:500 30px 'Cormorant Garamond';color:#0e2440">직시공</div><div style="font:600 10.5px 'Manrope';letter-spacing:.14em;color:#9a8f7d;margin-top:6px">NATIONWIDE INSTALL</div><div style="font:400 12px/1.7 'Manrope';color:#7a8494;margin-top:8px">숙련 시공팀이 실측부터 마무리까지</div></div>
+      <div style="background:#fff;border:1px solid rgba(14,36,64,.08);padding:24px 26px"><div style="font:500 30px 'Cormorant Garamond';color:#0e2440">정품 보증</div><div style="font:600 10.5px 'Manrope';letter-spacing:.14em;color:#9a8f7d;margin-top:6px">MANUFACTURER WARRANTY</div><div style="font:400 12px/1.7 'Manrope';color:#7a8494;margin-top:8px">제조사 보증이 그대로 적용됩니다</div></div>
     </div>
   </div>
 </div>
@@ -377,22 +384,22 @@ class Component extends DCLogic {
       specRows: [
         { k: 'MATERIAL', v: p.material },
         { k: 'FINISH', v: p.finish },
-        { k: 'SIZE', v: p.size + ' · ' + p.thick },
+        { k: 'SIZE', v: p.stdSize },
         { k: 'COLOR', v: toneLabel + ' · ' + p.en },
         { k: 'BRAND', v: p.brand },
-        { k: 'ORIGIN', v: p.origin },
       ],
       infoRows: [
         { k: '재질', v: p.material },
         { k: '마감', v: p.finish },
-        { k: '사이즈', v: p.size + ' · ' + p.thick },
+        { k: '표준 사이즈', v: p.stdSize },
         { k: '색상', v: toneLabel },
         { k: '컬러명', v: p.ko + ' (' + p.en + ')' },
         { k: '스타일', v: p.style },
-        { k: '제조국', v: p.origin },
         { k: '브랜드', v: p.brand },
         { k: '제품코드', v: p.code },
       ],
+      // BMC 는 자체 생산이라 LX 파트너 표기를 넣지 않는다
+      showLx: p.catKey !== 'BMC',
       refs: this.REFERENCES[p.tone] || [],
       qualities: (this.QUALITIES[p.catKey] || []).map((q, i) => ({ ...q, num: nums[i] })),
       moreOpen, moreOpen01: moreOpen ? '1' : '0',

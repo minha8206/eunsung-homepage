@@ -155,7 +155,7 @@ function refineColor(name, tone) {
   return tone; // white → white, gray → gray
 }
 
-function mapRealItems(raw, { classify, desc, style, styleDefault, specs, finish, brand, origin, material }) {
+function mapRealItems(raw, { classify, desc, style, styleDefault, specs, stdSize, finish, brand, origin, material }) {
   return raw.map((p, i) => {
     const tone = classify(p.name, p.collection);
     const spec = specs[i % specs.length];
@@ -165,6 +165,8 @@ function mapRealItems(raw, { classify, desc, style, styleDefault, specs, finish,
       color: refineColor(p.name, tone),
       desc: desc[tone],
       code: p.code, spec, size, thick,
+      // 제품별 개별 사이즈 대신 소재별 표준 사이즈 하나로 통일해 표기한다
+      stdSize,
       finish,
       style: style[p.collection] || styleDefault,
       brand, origin, material,
@@ -189,19 +191,19 @@ export function getCatalog() {
       .then(([himacsRaw, terracantoRaw, viateraRaw, bmcRaw]) => {
         CATALOG.HIMACS.items = mapRealItems(himacsRaw, {
           classify: classifyHimacsTone, desc: HM_DESC, style: HM_STYLE, styleDefault: '솔리드 · Solid',
-          specs: HM_SPECS, finish: 'Matte', brand: 'LX Hausys HIMACS', origin: '한국', material: '아크릴 솔리드 서페이스',
+          specs: HM_SPECS, stdSize: '12T × 760 × 3680', finish: 'Matte', brand: 'LX Hausys HIMACS', origin: '한국', material: '아크릴 솔리드 서페이스',
         });
         CATALOG.PORCELAIN.items = mapRealItems(terracantoRaw, {
           classify: classifyPorcelainTone, desc: PC_DESC, style: PC_STYLE, styleDefault: '스톤 · Stone',
-          specs: PC_SPECS, finish: 'Polished', brand: 'LX Hausys TERACANTO', origin: '이탈리아 (Made in Italy)', material: '포세린 슬랩 (TERACANTO)',
+          specs: PC_SPECS, stdSize: '12T × 1600 × 3200\n6T × 1200 × 2800', finish: 'Polished', brand: 'LX Hausys TERACANTO', origin: '이탈리아 (Made in Italy)', material: '포세린 슬랩 (TERACANTO)',
         });
         CATALOG.VIATERA.items = mapRealItems(viateraRaw, {
           classify: classifyViateraTone, desc: VT_DESC, style: VT_STYLE, styleDefault: '마블 · Marble',
-          specs: VT_SPECS, finish: 'Polished', brand: 'LX Hausys VIATERA', origin: '한국 · 미국', material: '엔지니어드 스톤 (쿼츠 최대 93%)',
+          specs: VT_SPECS, stdSize: '20T × 1400 × 3040', finish: 'Polished', brand: 'LX Hausys VIATERA', origin: '한국 · 미국', material: '엔지니어드 스톤 (쿼츠 최대 93%)',
         });
         CATALOG.BMC.items = mapRealItems(bmcRaw, {
           classify: classifyBmcTone, desc: BMC_DESC, style: BMC_STYLE, styleDefault: '솔리드 · Solid',
-          specs: BMC_SPECS, finish: 'Matte', brand: '(주)은성 BMC', origin: '한국 (포천 자체 공장)', material: 'BMC 인조대리석',
+          specs: BMC_SPECS, stdSize: '다양한 규격 — 용도에 따라 맞춤 생산', finish: 'Matte', brand: '(주)은성 BMC', origin: '한국 (포천 자체 공장)', material: 'BMC 인조대리석',
         });
         return CATALOG;
       })
