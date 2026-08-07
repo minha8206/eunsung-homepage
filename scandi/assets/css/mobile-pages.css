@@ -56,12 +56,45 @@
 /* ──────────── 3-3 showroom / 소재 4종 ────────────
    .pgrid 는 페이지 자체에 4→3(≤960)→2(≤640) 규칙이 이미 있다.
    768px 구간이 3열이라 카드가 좁아 2열로 당기고, 터치 타겟만 보완한다. */
+@media (max-width: 1279px) {
+  /* 정렬 셀렉트·페이지 버튼·컬러 스와치는 태블릿 가로에서도 터치 대상 */
+  .pgbtn { width: 44px !important; height: 44px !important; }
+  /* 컬러 스와치는 22px 원형이 디자인이다. 원은 그대로 두고 히트 영역만
+     투명 가상요소로 44px 까지 넓힌다. */
+  .swatch { position: relative !important; }
+  .swatch::after {
+    content: ''; position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%); width: 44px; height: 44px;
+  }
+  .swatch-wrap { min-height: 44px !important; display: inline-grid !important; place-items: center !important; }
+  .style-pill { min-height: 44px !important; }
+  /* 쇼룸 필터 바의 컨트롤은 종류가 많고 일부는 클래스가 없다.
+     스와치(원형 디자인 유지)만 빼고 일괄로 44px 을 보장한다. */
+  .filter-bar button:not(.swatch), .filter-bar select, .filter-bar input,
+  .filter-sheet button:not(.swatch), .filter-sheet select, .filter-sheet input,
+  select, .filter-search, .filter-open-btn, .filter-reset { min-height: 44px !important; }
+}
 @media (max-width: 769px) {
   .pgrid { grid-template-columns: repeat(2, 1fr) !important; gap: 28px 14px !important; }
-  .pgbtn, .ctab, .style-pill, .filter-open-btn, .filter-reset,
-  .filter-sheet-apply, .filter-sheet-close { min-height: 44px !important; }
+  /* 카테고리 탭이 360px 에서 가로로 넘친다. 페이지를 밀지 않고
+     탭 줄 안에서만 가로 스크롤되게 한다. */
+  .ctab { min-height: 44px !important; padding: 12px 4px !important; white-space: nowrap; }
+  /* 탭 줄 컨테이너에는 클래스가 없어 :has() 로 잡는다 */
+  div:has(> .ctab), .filter-bar-group {
+    overflow-x: auto !important; flex-wrap: nowrap !important;
+    -webkit-overflow-scrolling: touch; scrollbar-width: none;
+  }
+  div:has(> .ctab)::-webkit-scrollbar, .filter-bar-group::-webkit-scrollbar { display: none; }
+  .filter-open-btn, .filter-reset, .filter-sheet-apply, .filter-sheet-close { min-height: 44px !important; }
   .filter-search { font-size: 16px !important; min-height: 44px !important; }
-  .swatch-wrap { min-width: 44px !important; min-height: 44px !important; }
+  /* 페이지 버튼이 9개라 360px 에서 폭이 29px 로 눌린다.
+     줄을 가로 스크롤로 바꿔 각 버튼이 44px 을 지키게 한다. */
+  div:has(> .pgbtn) {
+    overflow-x: auto !important; flex-wrap: nowrap !important;
+    justify-content: flex-start !important; scrollbar-width: none;
+  }
+  div:has(> .pgbtn)::-webkit-scrollbar { display: none; }
+  .pgbtn { min-width: 44px !important; flex: 0 0 auto !important; }
 }
 
 /* ──────────── 3-4 제품 상세 ──────────── */
@@ -75,8 +108,16 @@
   .btn-gold, .btn-line { width: 100% !important; min-height: 52px !important; }
   .more-btn { min-height: 52px !important; }
 }
+/* 브레드크럼 링크는 글자만 있어 세로 14px 이다. 태블릿 가로까지 44px 확보 */
+@media (max-width: 1279px) {
+  [style*="106px 4vw 0"] a { min-height: 44px; display: inline-flex; align-items: center; }
+}
 
 /* ──────────── 3-5 portfolio ──────────── */
+/* 필터 탭·페이지네이션은 태블릿 가로에서도 터치라 ≤1279 부터 44px */
+@media (max-width: 1279px) {
+  .pf-tab { min-height: 44px !important; padding: 10px 16px !important; }
+}
 @media (max-width: 1025px) {
   .pf-grid { grid-template-columns: repeat(2, 1fr) !important; }
 }
@@ -104,6 +145,16 @@
 }
 
 /* ──────────── 3-7 contact ──────────── */
+/* 연락처·이메일 링크는 태블릿 가로에서도 터치 대상이다 */
+@media (max-width: 1279px) {
+  .ct-info-value a { min-height: 44px; display: inline-flex; align-items: center; }
+  /* 동의 체크박스는 18px 사각형이 디자인이다. 모양은 두고 히트 영역만 넓힌다 */
+  .ct-agree input { position: relative; }
+  .ct-agree input::after {
+    content: ''; position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%); width: 44px; height: 44px;
+  }
+}
 @media (max-width: 940px) {
   /* 폼이 먼저 오도록 순서를 바꾼다 (데스크톱은 좌 정보 / 우 폼) */
   .ct-body > div:nth-child(1) { order: 2 !important; }
