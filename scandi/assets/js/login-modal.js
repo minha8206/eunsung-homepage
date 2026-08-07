@@ -8,10 +8,12 @@
       to it directly — we delegate from document and match the icon by shape.
       A re-render therefore cannot break the trigger.
 
-   UI only: no auth backend is wired up. Submitting (and every social /
-   forgot-password button) validates and then shows an inline "준비 중" notice.
-   An inline notice is used instead of alert() so the page is never blocked by
-   a native modal dialog. */
+   인증은 Supabase 로 실제 동작한다 — 이메일 가입/로그인, 구글·카카오 간편
+   로그인, 로그아웃, 세션 유지까지 모두 하나의 세션 흐름을 공유한다.
+   아직 붙지 않은 것은 비밀번호 찾기뿐이라 그 버튼만 "준비 중" 안내를 낸다.
+
+   모든 안내는 alert() 대신 카드 안 인라인 문구로 띄운다. 네이티브 모달은
+   페이지를 블로킹하기 때문이다. */
 (function () {
   var ICON_LOGIN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="m10 17 5-5-5-5"/><path d="M15 12H3"/></svg>';
   var ICON_USER = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>';
@@ -394,33 +396,34 @@
     }
   }
 
-  /* ---------- 카카오 간편 로그인 ----------
-     signInWithOAuth 는 페이지를 카카오로 이동시킨다. 돌아올 때 붙는 code 는
-     supabase-js 의 detectSessionInUrl(기본 true)이 세션으로 교환하고,
+  /* ---------- 소셜 간편 로그인 (구글 / 카카오) ----------
+     signInWithOAuth 는 페이지를 해당 제공자로 이동시킨다. 돌아올 때 붙는
+     code 는 supabase-js 의 detectSessionInUrl(기본 true)이 세션으로 교환하고,
      bindAuthEvents 의 getSession/onAuthStateChange 가 그대로 받는다.
-     즉 이메일 로그인과 완전히 같은 세션 흐름을 탄다. */
-  function startKakao(mode, btn) {
+     즉 이메일 로그인과 완전히 같은 세션 흐름을 탄다. 제공자별 분기는 아래
+     provider 문자열 하나뿐이다. */
+  function startOAuth(provider, label, mode, btn) {
     function release() {
       btn.disabled = false;
       btn.style.opacity = '';
     }
     btn.disabled = true;
     btn.style.opacity = '.6';
-    notice(mode, '카카오 로그인 페이지로 이동합니다…', 'info');
+    notice(mode, label + ' 로그인 페이지로 이동합니다…', 'info');
 
     loadSupabase(function (client) {
       client.auth.signInWithOAuth({
-        provider: 'kakao',
+        provider: provider,
         options: { redirectTo: window.location.origin + window.location.pathname }
       }).then(function (res) {
         if (res && res.error) {
           release();
           notice(mode, authMessage(res.error), 'error');
         }
-        /* 성공하면 이 시점에 이미 카카오로 이동 중이라 후속 처리 없음 */
+        /* 성공하면 이 시점에 이미 제공자 페이지로 이동 중이라 후속 처리 없음 */
       })['catch'](function () {
         release();
-        notice(mode, '카카오 로그인을 시작하지 못했습니다. 잠시 후 다시 시도해 주세요.', 'error');
+        notice(mode, label + ' 로그인을 시작하지 못했습니다. 잠시 후 다시 시도해 주세요.', 'error');
       });
     }, function (reason) {
       release();
@@ -760,13 +763,15 @@
       });
     });
 
-    /* ---------- 소셜 ---------- */
+    /* ---------- 소셜 (구글 / 카카오톡) ---------- */
     Array.prototype.forEach.call(overlay.querySelectorAll('[data-social]'), function (btn) {
       btn.addEventListener('click', function () {
-        var mode = btn.getAttribute('data-mode');
-        if (btn.getAttribute('data-provider') === 'kakao') { startKakao(mode, btn); return; }
-        var verb = mode === 'signup' ? '간편 가입' : '간편 로그인';
-        notice(mode, btn.getAttribute('data-social') + ' ' + verb + '은 준비 중입니다.', 'info');
+        startOAuth(
+          btn.getAttribute('data-provider'),
+          btn.getAttribute('data-social'),
+          btn.getAttribute('data-mode'),
+          btn
+        );
       });
     });
 
