@@ -12,6 +12,8 @@
 <script src="assets/js/search-overlay.js" defer></script>
 <script src="js/i18n-en.js" defer></script>
 <script src="js/i18n.js" defer></script>
+<link rel="stylesheet" href="assets/css/mobile.css">
+<script src="assets/js/mobile-nav.js" defer></script>
 </head>
 <body>
 <x-dc>
@@ -446,7 +448,7 @@ class Component extends DCLogic {
     lb = document.createElement('div');
     lb.className = 'pflb';
     lb.innerHTML =
-      '<img class="pflb-img" alt="">' +
+      '<img class="pflb-img" alt="" loading="lazy">' +
       '<button class="pflb-close" aria-label="닫기">×</button>' +
       '<button class="pflb-arrow is-prev" aria-label="이전 사진">‹</button>' +
       '<button class="pflb-arrow is-next" aria-label="다음 사진">›</button>' +

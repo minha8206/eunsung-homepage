@@ -12,6 +12,8 @@
 <script src="assets/js/search-overlay.js" defer></script>
 <script src="js/i18n-en.js" defer></script>
 <script src="js/i18n.js" defer></script>
+<link rel="stylesheet" href="assets/css/mobile.css">
+<script src="assets/js/mobile-nav.js" defer></script>
 </head>
 <body>
 <x-dc>
@@ -193,7 +195,7 @@ a:hover{color:#c9a24b}
     <!-- LX 공식 파트너 — 배경/테두리 없이 로고 + 무채색 캡션만 -->
     <sc-if value="{{ showLx }}" hint-placeholder-val="{{ true }}">
       <div style="display:flex;align-items:center;gap:11px;margin-top:22px">
-        <img src="images/lx-hausys-logo.png" alt="LX Hausys" style="height:20px;width:auto;display:block;flex-shrink:0">
+        <img src="images/lx-hausys-logo.png" alt="LX Hausys" style="height:20px;width:auto;display:block;flex-shrink:0" loading="lazy">
         <span style="font:500 11.5px/1.5 'Manrope';color:#8a93a1">공식 파트너 · 정품 슬라브 취급</span>
       </div>
     </sc-if>
@@ -207,7 +209,7 @@ a:hover{color:#c9a24b}
       <div style="font:600 10px 'Manrope';letter-spacing:.34em;color:#a8763f">WHY EUNSUNG</div>
       <div style="font:500 36px/1.2 'Cormorant Garamond';color:#0e2440;margin-top:14px">정품 슬라브의 가치를 아는 곳,<br>재단부터 시공까지 은성이 완성합니다</div>
       <div style="font:400 13.5px/1.85 'Manrope';color:#5a6474;margin-top:18px">공식 파트너로서 정품 슬라브를 상시 보유하고, 자체 공장에서 재단부터 시공까지 중간 유통 없이 직접 책임집니다.</div>
-      <img src="images/lx-hausys-logo.png" alt="LX Hausys" style="height:24px;width:auto;display:block;margin-top:26px">
+      <img src="images/lx-hausys-logo.png" alt="LX Hausys" style="height:24px;width:auto;display:block;margin-top:26px" loading="lazy">
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
       <div style="background:#fff;border:1px solid rgba(14,36,64,.08);padding:24px 26px"><div style="font:500 30px 'Cormorant Garamond';color:#0e2440">공식 딜러</div><div style="font:600 10.5px 'Manrope';letter-spacing:.14em;color:#9a8f7d;margin-top:6px">LX HAUSYS AUTHORIZED</div><div style="font:400 12px/1.7 'Manrope';color:#7a8494;margin-top:8px">비아테라 · 하이막스 정품 인증 취급점</div></div>
