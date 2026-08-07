@@ -8,20 +8,23 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@200;300;400;500;600;700;800&family=Noto+Serif+KR:wght@400;500&display=swap" rel="stylesheet">
+<!-- 이 페이지 전용 산세리프. 한글·영문·숫자를 한 가족으로 통일하기 위해 Pretendard 사용 -->
+<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="assets/css/inquiry-widget.css">
 <script src="assets/js/inquiry-widget.js" defer></script>
 <link rel="stylesheet" href="assets/css/login-modal.css">
 <script src="assets/js/login-modal.js" defer></script>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#F5F1E8;font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased;color:#0e2440}
+:root{--ct-sans:'Pretendard Variable','Pretendard','Noto Sans KR',system-ui,-apple-system,'Segoe UI','Malgun Gothic',sans-serif}
+body{margin:0;background:#FFFFFF;font-family:var(--ct-sans);-webkit-font-smoothing:antialiased;color:#0e2440}
 html{scroll-behavior:smooth}
 a{color:#a8763f}
 a:hover{color:#c9a24b}
 
 /* ---------- 헤더 (전 페이지 공통) ---------- */
 .nav-mid{display:flex;align-items:center;gap:32px}
-.nav-mid a{color:inherit;font:500 15px/1 'Manrope';letter-spacing:.02em;text-decoration:none;position:relative;padding:4px 0;white-space:nowrap;transition:color .2s}
+.nav-mid a{color:inherit;font:500 15px/1 var(--ct-sans);letter-spacing:.02em;text-decoration:none;position:relative;padding:4px 0;white-space:nowrap;transition:color .2s}
 .nav-mid a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:1.5px;background:currentColor;transition:width .35s}
 .nav-mid a:hover{color:#bf8e5a}
 .nav-mid a:hover::after{width:100%}
@@ -30,18 +33,18 @@ a:hover{color:#c9a24b}
 .nav-ic{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;cursor:pointer;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.08);transition:.3s}
 .nav-ic:hover{background:rgba(255,255,255,.22)}
 .nav-ic svg{width:16px;height:16px}
-.lang{font:700 11px 'Manrope';letter-spacing:.08em;display:flex;gap:5px;align-items:center}
+.lang{font:700 11px var(--ct-sans);letter-spacing:.08em;display:flex;gap:5px;align-items:center}
 .lang b{cursor:pointer}
 .nav-drop-menu{position:absolute;top:24px;left:50%;transform:translate(-50%,6px);opacity:0;visibility:hidden;transition:.3s ease;background:rgba(251,250,250,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(14,36,64,.08);border-radius:10px;box-shadow:0 26px 54px -22px rgba(14,36,64,.4);padding:10px;min-width:190px;z-index:40}
 .nav-drop:hover .nav-drop-menu{opacity:1;visibility:visible;transform:translate(-50%,0)}
-.nav-drop-item{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:10px 14px;font:600 11px 'Manrope';letter-spacing:.08em;color:#0e2440;text-decoration:none;border-radius:7px;transition:.25s}
+.nav-drop-item{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:10px 14px;font:600 11px var(--ct-sans);letter-spacing:.08em;color:#0e2440;text-decoration:none;border-radius:7px;transition:.25s}
 .nav-drop-item:hover{background:rgba(201,162,75,.1);color:#a8763f}
 .nav-drop-item-sep{border-top:1px solid rgba(14,36,64,.08);margin-top:4px;padding-top:14px}
 .nav-toggle-input{display:none}
 .nav-burger{display:none;width:34px;height:34px;border-radius:50%;align-items:center;justify-content:center;border:1px solid rgba(14,36,64,.18);background:rgba(255,255,255,.08);cursor:pointer}
 .nav-burger svg{width:16px;height:16px}
-.nav-mobile-panel{display:none;position:fixed;top:64px;left:0;right:0;z-index:29;background:#F5F1E8;border-bottom:1px solid rgba(14,36,64,.1);box-shadow:0 24px 50px -28px rgba(14,36,64,.35);padding:8px 6vw 20px;flex-direction:column}
-.nav-mobile-panel a{padding:14px 2px;font:500 15px 'Manrope';color:#0e2440;text-decoration:none;border-bottom:1px solid rgba(14,36,64,.07)}
+.nav-mobile-panel{display:none;position:fixed;top:64px;left:0;right:0;z-index:29;background:#FFFFFF;border-bottom:1px solid rgba(14,36,64,.1);box-shadow:0 24px 50px -28px rgba(14,36,64,.35);padding:8px 6vw 20px;flex-direction:column}
+.nav-mobile-panel a{padding:14px 2px;font:500 15px var(--ct-sans);color:#0e2440;text-decoration:none;border-bottom:1px solid rgba(14,36,64,.07)}
 .nav-mobile-panel a.nav-mobile-sub{padding-left:18px;font-size:13px;color:rgba(14,36,64,.6)}
 .nav-toggle-input:checked ~ .nav-mobile-panel{display:flex}
 @media (max-width:1080px){
@@ -60,9 +63,9 @@ a:hover{color:#c9a24b}
 
 /* ---------- 히어로 ---------- */
 .ct-hero{max-width:1280px;margin:0 auto;padding:150px 5vw 0;text-align:center}
-.ct-eyebrow{font:600 10px 'Manrope';letter-spacing:.34em;color:#BF8E5A}
-.ct-title{font:500 44px/1.3 'Noto Serif KR',serif;color:#0e2440;margin-top:16px}
-.ct-lead{font:400 15px/1.9 'Manrope';color:rgba(14,36,64,.6);margin-top:20px}
+.ct-eyebrow{font:600 10px var(--ct-sans);letter-spacing:.34em;color:#BF8E5A}
+.ct-title{font:500 44px/1.3 var(--ct-sans);color:#0e2440;margin-top:16px}
+.ct-lead{font:400 15px/1.9 var(--ct-sans);color:rgba(14,36,64,.6);margin-top:20px}
 .ct-rule{width:52px;height:1px;background:#BF8E5A;margin:34px auto 0}
 @media (max-width:640px){
 .ct-hero{padding-top:118px}
@@ -77,36 +80,37 @@ a:hover{color:#c9a24b}
 }
 
 /* 좌측 — 연락 정보 */
-.ct-side-head{font:600 10px 'Manrope';letter-spacing:.28em;color:#BF8E5A}
-.ct-side-title{font:500 26px/1.5 'Noto Serif KR',serif;color:#0e2440;margin-top:14px}
-.ct-side-note{font:400 13.5px/1.9 'Manrope';color:rgba(14,36,64,.55);margin-top:14px}
+.ct-side-head{font:600 10px var(--ct-sans);letter-spacing:.28em;color:#BF8E5A}
+.ct-side-title{font:500 26px/1.5 var(--ct-sans);color:#0e2440;margin-top:14px}
+.ct-side-note{font:400 13.5px/1.9 var(--ct-sans);color:rgba(14,36,64,.55);margin-top:14px}
 .ct-info{margin-top:44px}
 .ct-info-item{padding:26px 0;border-top:1px solid rgba(191,142,90,.32)}
 .ct-info-item:last-child{border-bottom:1px solid rgba(191,142,90,.32)}
-.ct-info-label{font:600 10px 'Manrope';letter-spacing:.2em;color:#BF8E5A}
-.ct-info-value{font:500 19px/1.5 'Cormorant Garamond',serif;color:#0e2440;margin-top:10px;letter-spacing:.02em}
+.ct-info-label{font:600 10px var(--ct-sans);letter-spacing:.2em;color:#BF8E5A}
+.ct-info-value{font:500 19px/1.5 var(--ct-sans);color:#0e2440;margin-top:10px;letter-spacing:.02em}
 .ct-info-value a{color:inherit;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .25s,color .25s}
 .ct-info-value a:hover{color:#BF8E5A;border-bottom-color:#BF8E5A}
-.ct-info-sub{font:400 13px/1.8 'Manrope';color:rgba(14,36,64,.55);margin-top:8px}
-.ct-hours{display:flex;justify-content:space-between;gap:18px;font:400 13.5px/1.9 'Manrope';color:rgba(14,36,64,.72)}
+.ct-info-sub{font:400 13px/1.8 var(--ct-sans);color:rgba(14,36,64,.55);margin-top:8px}
+.ct-hours{display:flex;justify-content:space-between;gap:18px;font:400 13.5px/1.9 var(--ct-sans);color:rgba(14,36,64,.72)}
 .ct-hours span:last-child{color:rgba(14,36,64,.5);white-space:nowrap}
 
 /* 우측 — 폼 */
-.ct-form-wrap{background:#FFFFFF;border:1px solid #E8E4DC;border-radius:2px;box-shadow:0 18px 44px -32px rgba(14,36,64,.28);padding:52px 52px 46px}
+/* 배경이 흰색이 되면서 카드가 묻히므로 테두리를 또렷하게 하고 그림자를 두 겹으로 둔다 */
+.ct-form-wrap{background:#FFFFFF;border:1px solid rgba(14,36,64,.13);border-radius:2px;box-shadow:0 26px 60px -34px rgba(14,36,64,.38),0 1px 3px rgba(14,36,64,.06);padding:52px 52px 46px}
 @media (max-width:640px){.ct-form-wrap{padding:34px 22px 32px}}
-.ct-form-head{font:500 24px/1.5 'Noto Serif KR',serif;color:#0e2440}
-.ct-form-note{font:400 13.5px/1.8 'Manrope',system-ui,sans-serif;color:rgba(14,36,64,.55);margin-top:10px}
+.ct-form-head{font:500 24px/1.5 var(--ct-sans);color:#0e2440}
+.ct-form-note{font:400 13.5px/1.8 var(--ct-sans);color:rgba(14,36,64,.55);margin-top:10px}
 .ct-req{color:#BF8E5A}
 .ct-grid{display:grid;grid-template-columns:1fr;gap:34px;margin-top:38px}
 .ct-field{display:flex;flex-direction:column}
 @media (max-width:640px){.ct-grid{gap:28px}}
-.ct-label{font:600 14px/1.5 'Manrope',system-ui,sans-serif;letter-spacing:0;color:#0e2440}
+.ct-label{font:600 14px/1.5 var(--ct-sans);letter-spacing:0;color:#0e2440}
 .ct-input,.ct-select,.ct-textarea{
   width:100%;margin-top:12px;padding:10px 2px;background:transparent;border:none;
   border-bottom:1px solid rgba(14,36,64,.22);border-radius:0;
-  font:400 15.5px/1.6 'Manrope',system-ui,sans-serif;color:#0e2440;transition:border-color .25s;
+  font:400 15.5px/1.6 var(--ct-sans);color:#0e2440;transition:border-color .25s;
 }
-.ct-input::placeholder,.ct-textarea::placeholder{color:#A7ACB2;font-family:'Manrope',system-ui,sans-serif}
+.ct-input::placeholder,.ct-textarea::placeholder{color:#A7ACB2;font-family:var(--ct-sans)}
 .ct-input:focus,.ct-select:focus,.ct-textarea:focus{outline:none;border-bottom-color:#BF8E5A}
 .ct-select{
   appearance:none;-webkit-appearance:none;cursor:pointer;
@@ -120,14 +124,14 @@ a:hover{color:#c9a24b}
 .ct-agree input{appearance:none;-webkit-appearance:none;flex:none;width:18px;height:18px;margin:2px 0 0;border:1px solid rgba(14,36,64,.3);background:transparent;cursor:pointer;transition:.2s;position:relative}
 .ct-agree input:checked{background:#BF8E5A;border-color:#BF8E5A}
 .ct-agree input:checked::after{content:'';position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #fff;border-width:0 1.6px 1.6px 0;transform:rotate(45deg)}
-.ct-agree label{font:500 14px/1.6 'Manrope',system-ui,sans-serif;color:#0e2440;cursor:pointer}
-.ct-agree-sub{font:400 12.5px/1.6 'Manrope',system-ui,sans-serif;color:rgba(14,36,64,.5);margin-top:6px}
+.ct-agree label{font:500 14px/1.6 var(--ct-sans);color:#0e2440;cursor:pointer}
+.ct-agree-sub{font:400 12.5px/1.6 var(--ct-sans);color:rgba(14,36,64,.5);margin-top:6px}
 .ct-agree.has-error label{color:#BF8E5A}
 
-.ct-msg{min-height:20px;font:500 13.5px/1.7 'Manrope',system-ui,sans-serif;color:#BF8E5A}
+.ct-msg{min-height:20px;font:500 13.5px/1.7 var(--ct-sans);color:#BF8E5A}
 .ct-submit{
   margin-top:12px;padding:17px 28px;border:1px solid #BF8E5A;background:#BF8E5A;color:#fff;
-  font:600 12px 'Manrope';letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:background .3s,border-color .3s,color .3s;
+  font:600 12px var(--ct-sans);letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:background .3s,border-color .3s,color .3s;
 }
 .ct-submit:hover{background:#0e2440;border-color:#0e2440;color:#fff}
 .ct-submit:disabled{opacity:.55;cursor:default}
@@ -136,16 +140,16 @@ a:hover{color:#c9a24b}
 /* 감사 메시지 */
 .ct-thanks{display:none;text-align:center;padding:48px 12px 40px}
 .ct-thanks.is-on{display:block}
-.ct-thanks-mark{width:46px;height:46px;margin:0 auto;border:1px solid #BF8E5A;border-radius:50%;display:grid;place-items:center;color:#BF8E5A;font:400 20px/1 'Manrope'}
-.ct-thanks-title{font:500 24px/1.5 'Noto Serif KR',serif;color:#0e2440;margin-top:24px}
-.ct-thanks-text{font:400 14px/1.9 'Manrope';color:rgba(14,36,64,.6);margin-top:14px}
+.ct-thanks-mark{width:46px;height:46px;margin:0 auto;border:1px solid #BF8E5A;border-radius:50%;display:grid;place-items:center;color:#BF8E5A;font:400 20px/1 var(--ct-sans)}
+.ct-thanks-title{font:500 24px/1.5 var(--ct-sans);color:#0e2440;margin-top:24px}
+.ct-thanks-text{font:400 14px/1.9 var(--ct-sans);color:rgba(14,36,64,.6);margin-top:14px}
 .ct-form-inner.is-off{display:none}
 </style>
 </head>
 <body>
 
 <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
-<div style="position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:19px 5vw;background:rgba(245,241,232,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(14,36,64,.08);color:#0e2440">
+<div style="position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:19px 5vw;background:rgba(255,255,255,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(14,36,64,.08);color:#0e2440">
   <a href="index.html" class="brand-logo" style="text-decoration:none;color:inherit">
     <span class="brand-en">EUNSUNG</span><span class="brand-kr">은성</span>
   </a>
@@ -190,7 +194,7 @@ a:hover{color:#c9a24b}
   <!-- 좌측 · 연락 정보 -->
   <div>
     <div class="ct-side-head">GET IN TOUCH</div>
-    <div class="ct-side-title">바로 연결되는<br>상담 창구</div>
+    <div class="ct-side-title">상담 안내</div>
     <div class="ct-side-note">급하신 건은 전화나 카카오톡이 가장 빠릅니다. 도면·현장 사진이 있으시면 함께 보내주시면 상담이 훨씬 정확해집니다.</div>
 
     <div class="ct-info">
@@ -216,9 +220,9 @@ a:hover{color:#c9a24b}
       <div class="ct-info-item">
         <div class="ct-info-label">HOURS</div>
         <div style="margin-top:12px">
-          <div class="ct-hours"><span>평일</span><span>09:00 — 18:00</span></div>
-          <div class="ct-hours"><span>토요일</span><span>09:00 — 13:00</span></div>
-          <div class="ct-hours"><span>일요일 · 공휴일</span><span>휴무</span></div>
+          <div class="ct-hours"><span>평일</span><span>08:30 — 17:30</span></div>
+          <div class="ct-hours"><span>점심시간</span><span>12:00 — 13:00 (휴게)</span></div>
+          <div class="ct-hours"><span>토요일 · 일요일 · 공휴일</span><span>휴무</span></div>
         </div>
       </div>
     </div>
@@ -290,23 +294,23 @@ a:hover{color:#c9a24b}
   <div style="max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:48px">
     <div style="max-width:300px">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
-        <div style="font:700 15px 'Manrope';letter-spacing:.24em;color:#fff">EUNSUNG</div>
+        <div style="font:700 15px var(--ct-sans);letter-spacing:.24em;color:#fff">EUNSUNG</div>
       </div>
-      <div style="font:400 13px/1.8 'Manrope';color:rgba(255,255,255,.45)">세라믹, 엔지니어드 스톤, 솔리드 서페이스를 위한 피지털 플래그십 — 포천에서 가공해 어디든 배송합니다.</div>
+      <div style="font:400 13px/1.8 var(--ct-sans);color:rgba(255,255,255,.45)">세라믹, 엔지니어드 스톤, 솔리드 서페이스를 위한 피지털 플래그십 — 포천에서 가공해 어디든 배송합니다.</div>
     </div>
     <div style="display:flex;gap:64px;flex-wrap:wrap">
-      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">MATERIALS</div><div style="display:flex;flex-direction:column;gap:11px"><a href="index.html#materials" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">BMC</a><a href="index.html#materials" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">MMA</a><a href="index.html#materials" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">E-Stone</a><a href="index.html#materials" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Ceramic</a></div></div>
-      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">COMPANY</div><div style="display:flex;flex-direction:column;gap:11px"><a href="portfolio.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Portfolio</a><a href="facility.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Facility</a><a href="showroom.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Showroom</a></div></div>
-      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">SUPPORT</div><div style="display:flex;flex-direction:column;gap:11px"><a href="showroom.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Store</a><a href="contact.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Inquiry</a></div></div>
+      <div><div style="font:600 11px var(--ct-sans);letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">MATERIALS</div><div style="display:flex;flex-direction:column;gap:11px"><a href="index.html#materials" style="font:400 13px var(--ct-sans);color:rgba(255,255,255,.6);text-decoration:none">BMC</a><a href="index.html#materials" style="font:400 13px var(--ct-sans);color:rgba(255,255,255,.6);text-decoration:none">MMA</a><a href="index.html#materials" style="font:400 13px var(--ct-sans);color:rgba(255,255,255,.6);text-decoration:none">E-Stone</a><a href="index.html#materials" style="font:400 13px var(--ct-sans);color:rgba(255,255,255,.6);text-decoration:none">Ceramic</a></div></div>
+      <div><div style="font:600 11px var(--ct-sans);letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">COMPANY</div><div style="display:flex;flex-direction:column;gap:11px"><a href="portfolio.html" style="font:400 13px var(--ct-sans);color:rgba(255,255,255,.6);text-decoration:none">Portfolio</a><a href="facility.html" style="font:400 13px var(--ct-sans);color:rgba(255,255,255,.6);text-decoration:none">Facility</a><a href="showroom.html" style="font:400 13px var(--ct-sans);color:rgba(255,255,255,.6);text-decoration:none">Showroom</a></div></div>
+      <div><div style="font:600 11px var(--ct-sans);letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">SUPPORT</div><div style="display:flex;flex-direction:column;gap:11px"><a href="showroom.html" style="font:400 13px var(--ct-sans);color:rgba(255,255,255,.6);text-decoration:none">Store</a><a href="contact.html" style="font:400 13px var(--ct-sans);color:rgba(255,255,255,.6);text-decoration:none">Inquiry</a></div></div>
     </div>
   </div>
   <div style="max-width:1280px;margin:48px auto 0;padding-top:26px;border-top:1px solid rgba(255,255,255,.09)">
-    <div style="display:flex;flex-wrap:wrap;gap:8px 22px;margin-bottom:16px;font:400 12px/1.7 'Manrope';color:rgba(255,255,255,.45)">
+    <div style="display:flex;flex-wrap:wrap;gap:8px 22px;margin-bottom:16px;font:400 12px/1.7 var(--ct-sans);color:rgba(255,255,255,.45)">
       <span>상호 (주)은성</span><span>대표자 이언기</span><span>사업자등록번호 328-88-00420</span><span>주소 경기도 포천시 가산면 정금로 356-39</span><span>전화 031-544-7272</span><span>이메일 eunsung8585@naver.com</span>
     </div>
     <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px">
-      <div style="font:400 11.5px 'Manrope';color:rgba(244,248,246,.4)">© 2026 (주)은성 EUNSUNG Co., Ltd. · 경기도 포천</div>
-      <a href="index.html" style="font:400 11.5px 'Manrope';color:rgba(244,248,246,.6);text-decoration:none">홈으로 돌아가기</a>
+      <div style="font:400 11.5px var(--ct-sans);color:rgba(244,248,246,.4)">© 2026 (주)은성 EUNSUNG Co., Ltd. · 경기도 포천</div>
+      <a href="index.html" style="font:400 11.5px var(--ct-sans);color:rgba(244,248,246,.6);text-decoration:none">홈으로 돌아가기</a>
     </div>
   </div>
 </footer>
