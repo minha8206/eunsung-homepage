@@ -40,9 +40,9 @@
      7개 페이지 전체에서 로그인 상태가 유지된다. */
   var SUPABASE_URL = 'https://iqjnvsrvpbubwvrfobtg.supabase.co';
 
-  /* ▼▼▼ 여기에 sb_publishable_... 키를 붙여넣으세요 ▼▼▼ */
-  var SUPABASE_KEY = '';
-  /* ▲▲▲ 이 한 줄만 채우면 인증이 동작합니다 ▲▲▲ */
+  /* publishable 키는 브라우저에 노출되는 것을 전제로 발급된다.
+     실제 보호는 Supabase 테이블의 RLS 정책이 담당한다. */
+  var SUPABASE_KEY = 'sb_publishable_sddxCTNp974dCS2vxg6ejw_QV44vBg2';
 
   var SUPABASE_SRC = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
 
@@ -64,8 +64,8 @@
   function socialRow(mode) {
     var verb = mode === 'signup' ? '가입' : '로그인';
     return '<div class="lm-social">' +
-      '<button type="button" data-social="구글" data-mode="' + mode + '" aria-label="구글로 ' + verb + '">' + ICON_GOOGLE + '</button>' +
-      '<button type="button" class="lm-kakao" data-social="카카오톡" data-mode="' + mode + '" aria-label="카카오톡으로 ' + verb + '">' + ICON_KAKAO + '</button>' +
+      '<button type="button" data-social="구글" data-provider="google" data-mode="' + mode + '" aria-label="구글로 ' + verb + '">' + ICON_GOOGLE + '</button>' +
+      '<button type="button" class="lm-kakao" data-social="카카오톡" data-provider="kakao" data-mode="' + mode + '" aria-label="카카오톡으로 ' + verb + '">' + ICON_KAKAO + '</button>' +
     '</div>';
   }
 
@@ -278,8 +278,14 @@
     if (m.indexOf('email not confirmed') >= 0) {
       return '이메일 인증이 완료되지 않았습니다. 받은 메일함에서 인증 링크를 확인해 주세요.';
     }
+    if (code === 'email_address_invalid' || m.indexOf('is invalid') >= 0) {
+      return '사용할 수 없는 이메일 주소입니다. 실제 사용 중인 주소를 입력해 주세요.';
+    }
     if (m.indexOf('unable to validate email') >= 0 || m.indexOf('invalid email') >= 0) {
       return '올바른 이메일 주소를 입력해 주세요.';
+    }
+    if (m.indexOf('error sending') >= 0 || m.indexOf('smtp') >= 0) {
+      return '인증 메일 발송에 실패했습니다. 잠시 후 다시 시도해 주세요.';
     }
     if (m.indexOf('for security purposes') >= 0 || m.indexOf('rate limit') >= 0 || m.indexOf('too many') >= 0) {
       return '요청이 너무 잦습니다. 잠시 후 다시 시도해 주세요.';
@@ -353,17 +359,59 @@
         chip = buildAccountChip();
         icon.parentNode.insertBefore(chip, icon.nextSibling);
       }
+      /* 이메일 가입은 name, 카카오는 name/full_name/preferred_username 중
+         하나에 닉네임이 들어온다. 카카오 계정이 이메일 제공에 동의하지 않은
+         경우도 있어 마지막 폴백까지 둔다. */
       var meta = currentUser.user_metadata || {};
-      var label = meta.name || String(currentUser.email || '').split('@')[0];
+      var provider = (currentUser.app_metadata && currentUser.app_metadata.provider) || '';
+      var label = meta.name || meta.full_name || meta.preferred_username ||
+                  meta.user_name || meta.nickname ||
+                  String(currentUser.email || '').split('@')[0] || '회원';
+      var sub = currentUser.email || (provider === 'kakao' ? '카카오 계정' : '');
+
       var nameEl = chip.querySelector('.lm-account-name');
       var mailEl = chip.querySelector('.lm-account-email');
       if (nameEl.textContent !== label) nameEl.textContent = label;
-      if (mailEl.textContent !== (currentUser.email || '')) mailEl.textContent = currentUser.email || '';
+      if (mailEl.textContent !== sub) mailEl.textContent = sub;
       if (icon.style.display !== 'none') icon.style.display = 'none';
     } else {
       if (chip && chip.parentNode) chip.parentNode.removeChild(chip);
       if (icon.style.display === 'none') icon.style.display = '';
     }
+  }
+
+  /* ---------- 카카오 간편 로그인 ----------
+     signInWithOAuth 는 페이지를 카카오로 이동시킨다. 돌아올 때 붙는 code 는
+     supabase-js 의 detectSessionInUrl(기본 true)이 세션으로 교환하고,
+     bindAuthEvents 의 getSession/onAuthStateChange 가 그대로 받는다.
+     즉 이메일 로그인과 완전히 같은 세션 흐름을 탄다. */
+  function startKakao(mode, btn) {
+    function release() {
+      btn.disabled = false;
+      btn.style.opacity = '';
+    }
+    btn.disabled = true;
+    btn.style.opacity = '.6';
+    notice(mode, '카카오 로그인 페이지로 이동합니다…', 'info');
+
+    loadSupabase(function (client) {
+      client.auth.signInWithOAuth({
+        provider: 'kakao',
+        options: { redirectTo: window.location.origin + window.location.pathname }
+      }).then(function (res) {
+        if (res && res.error) {
+          release();
+          notice(mode, authMessage(res.error), 'error');
+        }
+        /* 성공하면 이 시점에 이미 카카오로 이동 중이라 후속 처리 없음 */
+      })['catch'](function () {
+        release();
+        notice(mode, '카카오 로그인을 시작하지 못했습니다. 잠시 후 다시 시도해 주세요.', 'error');
+      });
+    }, function (reason) {
+      release();
+      notice(mode, serviceMessage(reason), 'error');
+    });
   }
 
   function signOut() {
@@ -691,10 +739,11 @@
       });
     });
 
-    /* ---------- 소셜 (구글 / 카카오톡) — 아직 준비 중 ---------- */
+    /* ---------- 소셜 ---------- */
     Array.prototype.forEach.call(overlay.querySelectorAll('[data-social]'), function (btn) {
       btn.addEventListener('click', function () {
         var mode = btn.getAttribute('data-mode');
+        if (btn.getAttribute('data-provider') === 'kakao') { startKakao(mode, btn); return; }
         var verb = mode === 'signup' ? '간편 가입' : '간편 로그인';
         notice(mode, btn.getAttribute('data-social') + ' ' + verb + '은 준비 중입니다.', 'info');
       });
