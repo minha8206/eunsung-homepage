@@ -260,14 +260,31 @@
     })['catch'](function () { /* 세션 없음 — 로그아웃 상태 유지 */ });
   }
 
+  /* Confirm email 이 꺼져 있으면 중복 가입은 에러로 돌아오고, 켜져 있으면
+     보안상 에러 대신 identities 가 빈 사용자로 돌아온다. 두 경우 모두 잡는다. */
+  function isAlreadyRegistered(err) {
+    var m = String((err && (err.message || err.error_description)) || '').toLowerCase();
+    var code = (err && err.code) || '';
+    return code === 'user_already_exists' ||
+           m.indexOf('already registered') >= 0 ||
+           m.indexOf('already been registered') >= 0;
+  }
+
+  /* 중복 가입 -> 로그인 탭으로 넘겨 준다. */
+  function goLoginAlreadyRegistered() {
+    document.getElementById('lmFormSignup').reset();
+    setTab('login');
+    notice('login', '이미 가입된 이메일입니다. 로그인해 주세요.', 'error');
+  }
+
   /* Supabase 영문 에러를 한글 안내로 옮긴다. 매칭되지 않는 건 원문을 노출하지
      않고 일반 문구로 처리한다. */
   function authMessage(err) {
     var m = String((err && (err.message || err.error_description)) || '').toLowerCase();
     var code = (err && err.code) || '';
 
-    if (code === 'user_already_exists' || m.indexOf('already registered') >= 0 || m.indexOf('already been registered') >= 0) {
-      return '이미 가입된 이메일입니다. 로그인 탭에서 로그인해 주세요.';
+    if (isAlreadyRegistered(err)) {
+      return '이미 가입된 이메일입니다. 로그인해 주세요.';
     }
     if (code === 'weak_password' || m.indexOf('password should be at least') >= 0) {
       return '비밀번호는 6자 이상이어야 합니다.';
@@ -283,9 +300,6 @@
     }
     if (m.indexOf('unable to validate email') >= 0 || m.indexOf('invalid email') >= 0) {
       return '올바른 이메일 주소를 입력해 주세요.';
-    }
-    if (m.indexOf('error sending') >= 0 || m.indexOf('smtp') >= 0) {
-      return '인증 메일 발송에 실패했습니다. 잠시 후 다시 시도해 주세요.';
     }
     if (m.indexOf('for security purposes') >= 0 || m.indexOf('rate limit') >= 0 || m.indexOf('too many') >= 0) {
       return '요청이 너무 잦습니다. 잠시 후 다시 시도해 주세요.';
@@ -707,28 +721,35 @@
         client.auth.signUp({ email: email, password: password, options: { data: payload } })
           .then(function (res) {
             setBusy(btn, false, '회원가입');
-            if (res.error) { notice('signup', authMessage(res.error), 'error'); return; }
 
-            /* 이메일 확인이 켜진 프로젝트에서 이미 가입된 주소로 요청하면
-               Supabase 는 에러 대신 identities 가 빈 사용자를 돌려준다. */
-            var user = res.data && res.data.user;
-            if (user && user.identities && user.identities.length === 0) {
-              notice('signup', '이미 가입된 이메일입니다. 로그인 탭에서 로그인해 주세요.', 'error');
+            if (res.error) {
+              if (isAlreadyRegistered(res.error)) { goLoginAlreadyRegistered(); return; }
+              notice('signup', authMessage(res.error), 'error');
               return;
             }
 
-            /* 이메일 확인이 꺼져 있으면 곧바로 세션이 발급된다. */
+            var user = res.data && res.data.user;
+            if (user && user.identities && user.identities.length === 0) {
+              goLoginAlreadyRegistered();
+              return;
+            }
+
+            /* Confirm email 이 꺼져 있으므로 가입과 동시에 세션이 발급된다.
+               곧바로 로그인 상태로 바꾸고, 환영 문구를 잠깐 보여 준 뒤 닫는다. */
             if (res.data && res.data.session) {
+              var who = (user && user.user_metadata && user.user_metadata.name) || name || '회원';
               currentUser = user;
               document.getElementById('lmFormSignup').reset();
               renderAuthUI();
-              setOpen(false);
+              notice('signup', '회원가입이 완료되었습니다. ' + who + '님, 환영합니다!', 'info');
+              setTimeout(function () { setOpen(false); }, 1800);
               return;
             }
 
+            /* Confirm email 이 다시 켜진 경우의 안전망 — 세션 없이 계정만 생성된다. */
             document.getElementById('lmFormSignup').reset();
             setTab('login');
-            notice('login', '인증 메일을 보냈습니다. 이메일을 확인해 주세요.', 'info');
+            notice('login', '회원가입이 완료되었습니다. 로그인해 주세요.', 'info');
           })['catch'](function () {
             setBusy(btn, false, '회원가입');
             notice('signup', '처리 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.', 'error');
