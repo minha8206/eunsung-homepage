@@ -144,8 +144,10 @@ a:hover{color:#c9a24b}
 .mbanner-desc-en{font:400 11.5px/1.6 'Manrope';color:rgba(14,36,64,.4);margin-bottom:18px}
 .mbanner-chips{display:flex;flex-wrap:wrap;gap:7px}
 .mbanner-chip{font:600 10px 'Manrope';letter-spacing:.06em;color:#0e2440;background:rgba(14,36,64,.06);padding:6px 11px;border-radius:20px}
-.mbanner-badge{display:flex;align-items:center;gap:6px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(14,36,64,.08)}
-.mbanner-badge span{font:700 9.5px 'Manrope';letter-spacing:.1em;color:#a8763f}
+/* LX하우시스 공식 파트너 블록 — 삭제한 딜러 줄과 같은 자리(구분선+여백)를 쓴다 */
+.mbanner-partner{margin-top:16px;padding-top:14px;border-top:1px solid rgba(14,36,64,.08)}
+.mbanner-partner-cap{font:700 9.5px 'Manrope';letter-spacing:.18em;color:#a8763f;margin-bottom:8px}
+.mbanner-partner img{height:20px;width:auto;display:block}
 @media (max-width:768px){
   .mbanner{flex-direction:column;height:auto}
   .mbanner-image{height:220px;order:1}
@@ -249,18 +251,20 @@ a:hover{color:#c9a24b}
         <div class="mbanner-image" style="background-image:url('assets/porcelain.jpg')"></div>
         <div class="mbanner-panel">
           <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">포세린</div><div class="mbanner-eyebrow" style="margin-bottom:0">Ceramic · Porcelain</div></div>
-          <div class="mbanner-desc-ko">최대 3200×1600mm 대형 소결 슬랩 — UV에 강하고 열에 강해 파사드·바닥·벽면에 이상적입니다.</div>
-          <div class="mbanner-desc-en">Large-format sintered slabs up to 3200×1600mm — UV-stable and heatproof for facades, floors and walls.</div>
-          <div class="mbanner-chips"><span class="mbanner-chip">UV-stable</span><span class="mbanner-chip">Heatproof</span><span class="mbanner-chip">Large-format</span></div>
+          <div class="mbanner-desc-ko">1200°C 이상 고온 소성으로 완성되는 대형 세라믹 슬랩. 열·자외선·흡수에 강해 실내외 구분 없이 시공됩니다.</div>
+          <div class="mbanner-desc-en">Large-format ceramic slabs fired above 1200°C — resistant to heat, UV and water absorption, for interior and exterior alike.</div>
+          <div class="mbanner-chips"><span class="mbanner-chip">3200×1600 대형 규격</span><span class="mbanner-chip">열·긁힘·오염에 강함</span><span class="mbanner-chip">실내외 시공</span></div>
+          <div class="mbanner-partner"><div class="mbanner-partner-cap">OFFICIAL PARTNER</div><img src="images/lx-hausys-logo.png" alt="LX Hausys"></div>
         </div>
       </div>
       <!-- 비아테라 (panel left) -->
       <div class="mbanner">
         <div class="mbanner-panel">
-          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">비아테라</div></div>
-          <div class="mbanner-desc-ko">천연석의 깊이와 산업적 일관성을 겸비한 소재 — 스크래치와 오염에 강해 매일 쓰는 조리대에 적합합니다.</div>
-          <div class="mbanner-desc-en">The depth of natural stone with industrial consistency — scratch- and stain-resistant for daily worktops.</div>
-          <div class="mbanner-chips"><span class="mbanner-chip">Scratch-proof</span><span class="mbanner-chip">Stain-proof</span><span class="mbanner-chip">High-density</span></div>
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">비아테라</div><div class="mbanner-eyebrow" style="margin-bottom:0">엔지니어드 스톤 · E-Stone</div></div>
+          <div class="mbanner-desc-ko">천연 석영 기반의 엔지니어드 스톤. 천연석의 깊이감과 산업적 균일함을 동시에 갖춘 프리미엄 상판재입니다.</div>
+          <div class="mbanner-desc-en">Engineered stone built on natural quartz — the depth of real stone with industrial consistency, for premium worktops.</div>
+          <div class="mbanner-chips"><span class="mbanner-chip">석영 90% 이상</span><span class="mbanner-chip">스크래치·오염 강함</span><span class="mbanner-chip">주방 상판 최적</span></div>
+          <div class="mbanner-partner"><div class="mbanner-partner-cap">OFFICIAL PARTNER</div><img src="images/lx-hausys-logo.png" alt="LX Hausys"></div>
         </div>
         <div class="mbanner-image" style="background-image:url('assets/viatera.jpg')"></div>
       </div>
@@ -269,18 +273,19 @@ a:hover{color:#c9a24b}
         <div class="mbanner-image" style="background-image:url('assets/himacs.jpg')"></div>
         <div class="mbanner-panel">
           <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">하이막스</div><div class="mbanner-eyebrow" style="margin-bottom:0">MMA 인조대리석</div></div>
-          <div class="mbanner-desc-ko">이음새 없이 곡선을 성형할 수 있는 따뜻한 질감의 아크릴 소재로, 완전한 보수도 가능합니다.</div>
-          <div class="mbanner-desc-en">Warm, fully repairable acrylic surface that thermoforms into seamless curves with no visible joins.</div>
-          <div class="mbanner-chips"><span class="mbanner-chip">Seamless</span><span class="mbanner-chip">Thermoformable</span><span class="mbanner-chip">Repairable</span></div>
+          <div class="mbanner-desc-ko">100% 아크릴계(MMA) 솔리드 서페이스. 이음새 없는 접합과 곡면 성형이 가능해 디자인 제약이 없습니다.</div>
+          <div class="mbanner-desc-en">100% acrylic (MMA) solid surface — seamless joins and thermoformed curves leave no design constraints.</div>
+          <div class="mbanner-chips"><span class="mbanner-chip">이음새 없는 시공</span><span class="mbanner-chip">곡선 성형 가능</span><span class="mbanner-chip">샌딩 복원 가능</span></div>
+          <div class="mbanner-partner"><div class="mbanner-partner-cap">OFFICIAL PARTNER</div><img src="images/lx-hausys-logo.png" alt="LX Hausys"></div>
         </div>
       </div>
       <!-- BMC (panel left) -->
       <div class="mbanner" style="margin-bottom:0">
         <div class="mbanner-panel">
           <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">BMC</div><div class="mbanner-eyebrow" style="margin-bottom:0">성형 컴파운드</div></div>
-          <div class="mbanner-desc-ko">이음새 없는 위생 도기와 성형 건축 부재를 위한 내열성 열경화 컴파운드.</div>
-          <div class="mbanner-desc-en">Heat-resistant thermoset composite for seamless sanitary ware and molded architectural forms.</div>
-          <div class="mbanner-chips"><span class="mbanner-chip">Heat-resistant</span><span class="mbanner-chip">Hygienic</span><span class="mbanner-chip">Moldable</span></div>
+          <div class="mbanner-desc-ko">열과 충격에 강한 열경화성 성형 컴파운드. 일체 성형으로 이음새 없이 매끄럽게 마감됩니다.</div>
+          <div class="mbanner-desc-en">A heat- and impact-resistant thermoset molding compound, finished seamlessly in a single molded piece.</div>
+          <div class="mbanner-chips"><span class="mbanner-chip">일체 성형 마감</span><span class="mbanner-chip">내열·내충격</span><span class="mbanner-chip">위생적 표면</span></div>
         </div>
         <div class="mbanner-image" style="background-image:url('images/bmc-kitchen.jpg')"></div>
       </div>
