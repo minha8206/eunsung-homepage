@@ -118,7 +118,7 @@
         '<div class="lm-panel" id="lmPanelSignup" role="tabpanel" aria-labelledby="lmTabSignup">' +
           '<form class="lm-fields" id="lmFormSignup" novalidate>' +
             field(ICON_USER, 'id="lmSuName" type="text" name="name" placeholder="이름" autocomplete="name" aria-label="이름"') +
-            field(ICON_PHONE, 'id="lmSuPhone" type="tel" name="phone" placeholder="010-0000-0000" inputmode="numeric" autocomplete="tel" maxlength="13" aria-label="연락처"') +
+            field(ICON_PHONE, 'id="lmSuPhone" type="tel" name="phone" placeholder="010-0000-0000" inputmode="tel" autocomplete="tel" maxlength="13" aria-label="연락처"') +
             field(ICON_MAIL, 'id="lmSuEmail" type="email" name="email" placeholder="이메일" autocomplete="email" aria-label="이메일"') +
             field(ICON_LOCK, 'id="lmSuPassword" type="password" name="password" placeholder="비밀번호" autocomplete="new-password" aria-label="비밀번호"') +
             field(ICON_CHECK, 'id="lmSuConfirm" type="password" name="passwordConfirm" placeholder="비밀번호 확인" autocomplete="new-password" aria-label="비밀번호 확인"') +

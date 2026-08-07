@@ -1,0 +1,83 @@
+/* ===== 모바일 오버레이/모달 대응 =====
+   로그인·회원가입 모달과 검색 오버레이는 login-modal.css / search-overlay.css
+   에 클래스 기반으로 정의돼 있어 인라인 스타일 문제는 없다. 여기서는
+   모바일 특유의 문제만 다룬다 — iOS 자동 확대, 키보드 가림, 안전영역.
+
+   데스크톱(≥1280)에는 개입하지 않는다. */
+
+@media (max-width: 1279px) {
+
+  /* ── 2-1 / 2-2 iOS 입력 자동 확대 방지 ──
+     iOS Safari 는 폰트가 16px 미만인 입력에 포커스하면 화면을 확대한다.
+     확대되면 레이아웃이 어긋나고 되돌아오지 않아, 모든 입력을 16px 로 올린다. */
+  .lm-input, .so-input,
+  .ct-input, .ct-select, .ct-textarea {
+    font-size: 16px !important;
+  }
+}
+
+@media (max-width: 769px) {
+
+  /* ── 2-1 로그인 / 회원가입 모달 ── */
+  .lm-overlay {
+    padding: 0 !important;
+    align-items: flex-end !important;      /* 하단 시트 형태가 엄지에 가깝다 */
+  }
+  .lm-card {
+    max-width: 100% !important;
+    width: 100% !important;
+    /* 오버레이(inset:0) 기준 % 로 잡는다. dvh 는 iOS 주소창·iframe 환경에서
+       실제 컨테이너 높이와 어긋나 하단이 몇 px 잘리는 경우가 있었다. */
+    max-height: 92% !important;
+    margin-top: auto !important;
+    border-radius: 20px 20px 0 0 !important;
+    /* 홈 인디케이터 영역만큼 아래 여백 확보 */
+    padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px)) !important;
+    /* 데스크톱의 진입 연출(translateY(18px) scale(.97))을 그대로 두면
+       scale 때문에 카드가 뷰포트 아래로 몇 px 밀려난다. 모바일에서는
+       하단 시트 슬라이드로 바꿔 어긋남 없이 화면 안에 정확히 수납한다. */
+    transform: translateY(100%) !important;
+  }
+  .lm-overlay.is-open .lm-card { transform: translateY(0) !important; }
+  .lm-head { padding: 30px 20px 0 !important; }
+  .lm-body {
+    padding: 0 20px 12px !important;
+    /* 키보드가 올라와도 입력칸이 가려지지 않도록 스크롤 여유를 둔다 */
+    scroll-padding-bottom: 120px;
+    overscroll-behavior: contain;
+  }
+  .lm-title { font-size: 22px !important; }
+  .lm-close { top: 12px !important; right: 12px !important; width: 40px !important; height: 40px !important; }
+  .lm-input { padding: 14px 14px 14px 42px !important; }
+  .lm-submit { padding: 15px 16px !important; font-size: 15px !important; }
+  .lm-social button { height: 50px !important; }
+  .lm-tab { min-height: 44px; font-size: 14px !important; }
+  .lm-seg-opt span { min-height: 50px !important; }
+  .lm-addr-btn { min-height: 46px; padding: 0 14px !important; }
+  .lm-forgot { min-height: 44px; display: inline-flex; align-items: center; }
+  .lm-account-btn { min-height: 44px; }
+
+  /* 다음 우편번호 embed — 모바일에서 세로 공간을 충분히 준다 */
+  .lm-daum { border-radius: 20px 20px 0 0 !important; }
+  .lm-daum-box { min-height: 60dvh; }
+
+  /* ── 2-2 검색 오버레이 ── */
+  .so-overlay { padding: 0 !important; }
+  .so-panel {
+    max-width: 100% !important;
+    width: 100% !important;
+    max-height: 100% !important;
+    border-radius: 0 !important;
+    border-left: none !important; border-right: none !important;
+  }
+  .so-bar { padding: 14px 14px !important; }
+  .so-input { font-size: 16px !important; }
+  .so-close { width: 44px !important; height: 44px !important; }
+  .so-body {
+    padding: 4px 8px calc(16px + env(safe-area-inset-bottom, 0px)) !important;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+  .so-item { padding: 12px 10px !important; min-height: 56px; }
+  .so-empty-btn { min-height: 46px; display: inline-flex; align-items: center; }
+}
