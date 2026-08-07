@@ -340,6 +340,21 @@ a:hover{color:#c9a24b}
     try { ta.setSelectionRange(ta.value.length, ta.value.length); } catch (e) {}
   })();
 
+  /* 제품 상세의 "견적 요청"에서 넘어온 경우 해당 제품명을 미리 채운다.
+     ?case= 로 이미 채워졌으면 덮어쓰지 않는다. */
+  (function prefillFromProduct() {
+    var raw = new URLSearchParams(location.search).get('product');
+    if (!raw) return;
+    var name = raw.trim().slice(0, 120);
+    if (!name) return;
+    var ta = document.getElementById('ctMessage');
+    var type = document.getElementById('ctType');
+    if (!ta || ta.value) return;
+    ta.value = '[' + name + '] 견적 문의드립니다.\n\n';
+    if (type && !type.value) type.value = '견적 문의';
+    try { ta.setSelectionRange(ta.value.length, ta.value.length); } catch (e) {}
+  })();
+
   function fieldOf(key) { return form.querySelector('[data-field="' + key + '"]'); }
   function clearErrors() {
     Array.prototype.forEach.call(form.querySelectorAll('.has-error'), function (el) {
