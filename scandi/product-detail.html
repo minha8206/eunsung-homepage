@@ -26,6 +26,7 @@
 <script src="assets/js/search-overlay.js" defer></script>
 <script src="js/i18n-en.js" defer></script>
 <script src="js/i18n.js" defer></script>
+<script src="js/i18n-products.js" defer></script>
 <link rel="stylesheet" href="assets/css/footer.css">
 <link rel="stylesheet" href="assets/css/reveal.css">
 <script src="assets/js/reveal.js" defer></script>
@@ -391,7 +392,9 @@ class Component extends DCLogic {
       ],
       /* 접혀 있던 상세정보에만 있던 항목들. 스펙 표와 겹치는 행은 뺐다. */
       detailRows: [
-        { k: '컬러명', v: p.ko + ' (' + p.en + ')' },
+        /* 컬렉션은 제목 아래에 이미 나온다. 여기서는 컬러명만 — 한 값이어야
+           EN 사전이 통째로 치환할 수 있다(합쳐 놓으면 키가 안 맞는다). */
+        { k: '컬러명', v: p.en },
         { k: '스타일', v: p.style },
         { k: '제품코드', v: p.code },
       ],

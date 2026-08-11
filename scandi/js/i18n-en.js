@@ -51,15 +51,15 @@ window.I18N_EN = {
     'Official partner of LX Hausys — from raw material selection to cutting and installation, completed in our own facility.',
   'MATERIALS · 소재': 'MATERIALS',
   '2009년 BMC 인조대리석 가공 전문으로 출발해, 세라믹·E-Stone·MMA·BMC 전 라인업을 다루는 종합 표면재 기업으로 성장했습니다.':
-    'Founded in 2009 as a BMC solid-surface fabricator, EUNSUNG now covers the full surface line — Porcelain, Viatera, HIMACS and BMC.',
+    'Founded in 2009 as a BMC solid-surface fabricator, EUNSUNG now covers the full line — Porcelain, Engineered Stone, Solid Surface and BMC.',
   '네 가지 소재, 하나의 기준': 'Four surfaces. One standard.',
 
   '엔지니어드 스톤': 'Engineered Stone',
 
   '뜨거운 냄비를 그대로 올려도, 10년을 써도 처음 그대로입니다. 1200℃ 고온이 만든 가장 강한 표면입니다.':
-    'Large-format ceramic slabs fired at 1200°C. Set a hot pan straight down, or leave it in the sun for years — no discolouration, no warping, indoors or out.',
+    'Set a hot pan straight down from the stove. Ten years on it still looks like day one — the strongest surface 1,200°C can make.',
   '천연 석영 90%가 주는 깊이 있는 질감. 칼자국·흠집 걱정 없이, 매일 쓰는 주방이 오래 아름답습니다.':
-    'Premium stone with over 90% natural quartz. The hardest surface of the four — knife marks and scratches are far less of a worry — with the depth of real stone intact.',
+    'The depth that only 90% natural quartz gives. Knife marks and scratches stop being a worry, so a kitchen in daily use stays beautiful for years.',
   '100% 아크릴계 솔리드 서페이스로, 이음새 없이 매끄럽게 이어지고 열로 곡면을 만들 수 있습니다. 생활 흠집이 생겨도 샌딩 한 번이면 새것처럼 복원됩니다.':
     '100% acrylic solid surface — joins disappear seamlessly, and heat forms it into curves. Everyday scratches sand right out, back to new.',
   '은성이 직접 생산하는 열경화성 성형 컴파운드입니다. 싱크볼까지 하나로 성형돼 물샐 틈 없이 위생적이고, 자체 생산이라 가격과 납기 모두 합리적입니다.':
@@ -263,7 +263,7 @@ window.I18N_EN = {
   '슬랩 전용 거치대와 완충재로 고정해 운송 중 흔들림과 파손을 방지합니다. 현장에 도착하는 순간까지 검수된 상태 그대로 유지합니다.':
     'Secured on dedicated slab frames with cushioning against movement and damage — arriving exactly as inspected.',
   '현장 시공': 'Installation',
-  '처음 실측한 사람이, 마지막까지 함께합니다.': 'The person who measured it is there at the end.',
+  '처음 실측한 사람이, 마지막까지 함께합니다.': 'The person who measured your space is there at the finish.',
   '실측부터 시공까지 전 과정을 은성의 시공팀이 직접 책임집니다. 담당이 바뀌며 생기는 공백 없이, 처음 약속한 완성도를 한 팀이 끝까지 지킵니다.':
     'Our own team owns every stage from measurement to installation. No handovers, no gaps — one team holds the standard promised at the start.',
   '이 공정 그대로, 당신의 공간에': 'This same process, in your space',
@@ -312,7 +312,7 @@ window.I18N_EN = {
   '이전 페이지': 'Previous page',
   '다음 페이지': 'Next page',
   '총': 'Total',
-  '개의 상품': 'products',
+  '개의 상품': ' products',
   '조건에 맞는 상품이 없습니다': 'No products match your filters',
   '필터를 조정해 다시 시도해 보세요.': 'Try adjusting the filters.',
 
@@ -442,7 +442,7 @@ window.I18N_EN = {
   '문의 보내기': 'Send inquiry',
   '전송 중…': 'Sending…',
   '전송에 실패했습니다. 잠시 후 다시 시도하시거나 031-544-7272로 연락해 주세요.':
-    'Sending failed. Please try again shortly, or call 031-544-7272.',
+    'That didn’t go through. Please try again shortly, or call 031-544-7272.',
   '이름을 입력해 주세요.': 'Please enter your name.',
   '연락처를 입력해 주세요.': 'Please enter your phone number.',
   '연락처를 다시 확인해 주세요.': 'Please check your phone number.',
@@ -451,7 +451,7 @@ window.I18N_EN = {
   '개인정보 수집·이용에 동의해 주세요.': 'Please agree to the collection and use of your personal data.',
   '문의가 접수되었습니다': 'Your inquiry has been received',
   '영업일 기준 1일 내 연락드리겠습니다.': 'We will be in touch within one business day.',
-  '급하신 경우 031-544-7272로 전화 주세요.': 'If it is urgent, please call 031-544-7272.',
+  '급하신 경우 031-544-7272로 전화 주세요.': 'In a hurry? Call 031-544-7272.',
   '이 항목은 비워두세요': 'Leave this field empty',
 
   /* ───────── 로그인 / 회원가입 모달 ───────── */
@@ -535,6 +535,88 @@ window.I18N_EN = {
   '자체 생산하는 열경화성 성형 컴파운드': 'Thermoset molding compound, produced in-house',
   '주방·욕실·상업공간 시공 레퍼런스': 'Kitchen, bathroom and commercial references',
   '견적·시공·자재 문의와 쇼룸 방문 예약': 'Quotes, installation, materials and showroom visits',
+
+  /* ───────── 카탈로그 · 톤 라벨 ───────── */
+  "화이트": "White",
+  "베이지": "Beige",
+  "그레이": "Grey",
+  "다크": "Dark",
+
+  "다양한 규격 — 용도에 따라 맞춤 생산": "Made to order — sizes to suit the application",
+  "(주)은성 BMC": "EUNSUNG BMC",
+  /* ───────── 제품 상세 · 스펙 행 ───────── */
+  "컬러명": "Colour name",
+  "제품코드": "Product code",
+  "* 실제 슬라브의 결과 색감은 로트에 따라 차이가 있을 수 있습니다. 포천 쇼룸에서 실물 확인을 권장합니다.": "* Colour can shift slightly from lot to lot. We recommend seeing the material in person at our showroom.",
+
+  /* ───────── 소재별 톤 설명 (인조대리석) ───────── */
+  "인조대리석 화이트 계열 특유의 깨끗하고 안정된 인상 — 이음매 없는 시공으로 어떤 공간에도 무난하게 어울립니다.": "The clean, settled look that only a white solid surface gives — seamless to install, and at home in any space.",
+  "따뜻한 웜톤의 인조대리석 베이지 계열 — 우드 소재와 배색했을 때 특히 잘 어울리는 컬러입니다.": "A warm beige solid surface that sits especially well alongside wood.",
+  "차분한 뉴트럴 톤의 인조대리석 그레이 계열 — 모던하고 도시적인 공간 연출에 적합합니다.": "A calm, neutral grey solid surface — suited to modern, urban interiors.",
+  "깊이감 있는 인조대리석 다크 톤 — 공간에 무게감과 고급스러운 존재감을 더합니다.": "A deep, dark solid surface that lends a room weight and quiet presence.",
+
+  /* ───────── 소재별 톤 설명 (포세린) ───────── */
+  "포세린 화이트 계열 특유의 맑고 정제된 인상 — 대형 슬랩으로 이음매를 최소화한 웅장한 면 연출이 가능합니다.": "The clear, refined look of white porcelain — large formats keep joins to a minimum across a sweeping surface.",
+  "따뜻한 웜톤의 포세린 베이지 계열 — 내추럴한 우드 소재와 배색했을 때 특히 잘 어울립니다.": "A warm beige porcelain that pairs beautifully with natural wood.",
+  "차분한 뉴트럴 톤의 포세린 그레이 계열 — 모던하고 도시적인 공간 연출에 적합합니다.": "A calm, neutral grey porcelain — suited to modern, urban interiors.",
+  "깊이감 있는 포세린 다크 톤 — 공간에 무게감과 고급스러운 존재감을 더합니다.": "A deep, dark porcelain that lends a room weight and quiet presence.",
+
+  /* ───────── 소재별 톤 설명 (엔지니어드 스톤) ───────── */
+  "엔지니어드 스톤 화이트 계열 특유의 맑고 정제된 인상 — 쿼츠 함량 최대 93%의 뛰어난 내구성으로 어떤 공간에도 무난하게 어울립니다.": "The clear, refined look of white engineered stone — up to 93% quartz for durability that suits any space.",
+  "따뜻한 웜톤의 엔지니어드 스톤 베이지 계열 — 골드·카퍼 톤 베인이 우드 소재와 배색했을 때 특히 잘 어울립니다.": "A warm beige engineered stone, its gold and copper veining especially at home beside wood.",
+  "차분한 뉴트럴 톤의 엔지니어드 스톤 그레이 계열 — 모던하고 도시적인 공간 연출에 적합합니다.": "A calm, neutral grey engineered stone — suited to modern, urban interiors.",
+  "깊이감 있는 엔지니어드 스톤 다크 톤 — 공간에 무게감과 고급스러운 존재감을 더합니다.": "A deep, dark engineered stone that lends a room weight and quiet presence.",
+
+  /* ───────── 소재별 톤 설명 (BMC · 자체 생산) ───────── */
+  "포천 자체 공장에서 주문 치수로 성형하는 은성 BMC 화이트 톤 — 세면대·상판 일체형 제작이 가능합니다.": "A white EUNSUNG BMC, moulded to order in our own plant — basin and countertop can be formed as one.",
+  "포천 자체 공장에서 주문 치수로 성형하는 은성 BMC 베이지 톤 — 세면대·상판 일체형 제작이 가능합니다.": "A beige EUNSUNG BMC, moulded to order in our own plant — basin and countertop can be formed as one.",
+  "포천 자체 공장에서 주문 치수로 성형하는 은성 BMC 그레이 톤 — 세면대·상판 일체형 제작이 가능합니다.": "A grey EUNSUNG BMC, moulded to order in our own plant — basin and countertop can be formed as one.",
+  "포천 자체 공장에서 주문 치수로 성형하는 은성 BMC 다크 톤 — 세면대·상판 일체형 제작이 가능합니다.": "A dark EUNSUNG BMC, moulded to order in our own plant — basin and countertop can be formed as one.",
+
+  /* ───────── 플로팅 상담 버튼 ───────── */
+  "궁금한 점은 편하게 물어보세요": "Questions? We're happy to help.",
+  "전화 문의": "Call Us",
+  "견적 문의": "Request a Quote",
+  "카카오톡 상담": "Chat on KakaoTalk",
+  "안내 닫기": "Dismiss",
+  "문의하기": "Contact us",
+
+  /* ───────── 지도 · 이미지 대체 텍스트 ───────── */
+  "상세주소": "Address detail",
+  "EUNSUNG 위치 지도": "Map to EUNSUNG",
+  "LX Hausys 공식 파트너": "Official partner of LX Hausys",
+  "LX하우시스": "LX Hausys",
+  "포천 물류센터 자동화 설비": "Automated handling at our logistics centre",
+  "포천 가공 공장 내부 · 적재된 슬랩과 가공 라인": "Inside the fabrication plant — stocked material and the cutting line",
+
+  /* ───────── index · 문의 안내 (줄바꿈으로 나뉜 두 줄) ───────── */
+  "공간에 대해 알려주세요.": "Tell us about your space.",
+  "저희 팀이 영업일 기준 하루 안에 샘플과 견적으로 답변드립니다.": "We reply within one business day with samples and pricing.",
+
+  /* ───────── about · 줄바꿈으로 나뉜 문장들 ───────── */
+  "BMC 인조대리석 가공으로 시작해,": "We started out fabricating BMC solid surface,",
+  "싱크대와 상판 하나하나의 정밀도로 신뢰를 쌓아왔습니다.": "earning trust one sink and one countertop at a time.",
+  "포세린·비아테라·하이막스·BMC,": "Porcelain, VIATERA, HIMACS and BMC —",
+  "표면재의 전 과정을 다루는 회사로": "a company that covers the full surface line",
+  "자재 수급부터 정밀 가공, 현장 시공까지 은성이 직접 수행합니다.": "Sourcing, precision fabrication and on-site installation are all done in house.",
+  "중간 유통이 없어 품질과 일정을 끝까지 책임질 수 있습니다.": "With no middlemen in between, quality and schedule stay ours to answer for.",
+  "대형 가공 설비에서 재단부터 마감까지 직접 처리합니다.": "Cutting through finishing runs on our own large-format lines.",
+  "재고를 체계적으로 관리하고 공정을 자동화해,": "Disciplined stock control and automated processes mean",
+  "필요한 자재를 필요한 때에 공급합니다.": "the material you need arrives exactly when you need it.",
+  "모든 슬랩을 검수한 뒤 라인에 올립니다.": "Every slab is inspected before it reaches the line.",
+  "가정용 싱크대와 상판부터 인테리어 표면재까지,": "From kitchen sinks and countertops to interior surfaces,",
+  "쓰시는 공간 치수에 맞춰 하나씩 제작해 드립니다.": "each piece is made to the dimensions of your space.",
+  "인테리어 업체, 건설사, 호텔 등 다양한 프로젝트 현장에": "For interior firms, builders and hotels,",
+  "대량 공급과 시공을 지원합니다.": "we supply and install at project scale.",
+
+  /* ───────── facility · 줄바꿈·문구 변경분 ───────── */
+  "은성은 유통하지 않고 직접 가공합니다.": "EUNSUNG does not distribute — we fabricate.",
+  "실측부터 현장 시공까지, 한 팀이 관리하는 10단계 공정입니다.": "Ten stages from measurement to installation, managed by one team.",
+  "도면에 맞춰 자재를 배치하며 무늬결과 이음선의 위치를 재단 전에 확정합니다. 잘라내기 전에 완성된 모습을 먼저 확인하는 단계입니다.": "Material is laid out against the drawing so veining and seam positions are settled before any cut. The finished look is agreed first.",
+  "대형 가공 설비가 도면 데이터를 그대로 읽어 자재를 재단합니다. 직선과 곡선이 만나는 지점까지 동일한 정밀도로 처리합니다.": "Large-format machinery reads the drawing data directly and cuts to it — holding the same precision where straight lines meet curves.",
+  "치수와 표면, 컬러 매칭까지 처음 도면과 비교해 다시 확인합니다.": "Dimensions, surface and colour matching are checked once more against the original drawing.",
+  "이 기준을 통과한 제품만 다음 단계로 넘어갑니다.": "Only what clears that bar moves on.",
+  "전용 거치대와 완충재로 고정해 운송 중 흔들림과 파손을 방지합니다. 현장에 도착하는 순간까지 검수된 상태 그대로 유지합니다.": "Dedicated racks and padding hold everything still in transit, so it reaches site exactly as inspected.",
 
   /* ───────── portfolio · 시공사례 제목 ───────── */
   "한남 — 아이보리 라운지 카운터": "Hannam — Ivory Lounge Counter",
