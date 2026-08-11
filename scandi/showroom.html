@@ -26,6 +26,8 @@
 <script src="assets/js/search-overlay.js" defer></script>
 <script src="js/i18n-en.js" defer></script>
 <script src="js/i18n.js" defer></script>
+<link rel="stylesheet" href="assets/css/reveal.css">
+<script src="assets/js/reveal.js" defer></script>
 <link rel="stylesheet" href="assets/css/typography.css">
 <link rel="stylesheet" href="assets/css/mobile.css">
 <link rel="stylesheet" href="assets/css/mobile-overlays.css">
@@ -177,10 +179,10 @@ body.nav-open .nav-mobile-panel{display:flex}
 </div>
 
 <!-- ===================== PAGE HEAD ===================== -->
-<div style="max-width:1440px;margin:0 auto;padding:150px 4vw 0">
-  <div style="font:600 11px 'Manrope';letter-spacing:.44em;color:#a8763f;margin-bottom:14px">SHOWROOM · 쇼룸</div>
+<div style="max-width:1440px;margin:0 auto;padding:150px 4vw 0" data-reveal-group>
+  <div class="reveal" style="font:600 11px 'Manrope';letter-spacing:.44em;color:#a8763f;margin-bottom:14px">SHOWROOM · 쇼룸</div>
   <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
-    <h1 style="margin:0;font:500 clamp(30px,3.6vw,44px)/1.25 'Noto Serif KR',serif;color:#0e2440">소재 컬렉션</h1>
+    <h1 class="reveal" style="margin:0;font:500 clamp(30px,3.6vw,44px)/1.25 'Noto Serif KR',serif;color:#0e2440">소재 컬렉션</h1>
     <!-- BMC 는 은성 자체 생산이라 LX 소재가 아니다 — 그 탭에서만 로고를 감춘다 -->
     <sc-if value="{{ showLx }}" hint-placeholder-val="{{ true }}">
       <div style="display:flex;align-items:center;margin-bottom:8px">
@@ -188,7 +190,7 @@ body.nav-open .nav-mobile-panel{display:flex}
       </div>
     </sc-if>
   </div>
-  <p style="margin:16px 0 0;font:400 14.5px/1.75 'Manrope';color:#7a8494;max-width:560px">포세린부터 BMC까지, 은성이 직접 보유하고 가공하는 전 소재를 한자리에 모았습니다.</p>
+  <p class="reveal" style="margin:16px 0 0;font:400 14.5px/1.75 'Manrope';color:#7a8494;max-width:560px">포세린부터 BMC까지, 은성이 직접 보유하고 가공하는 전 소재를 한자리에 모았습니다.</p>
 </div>
 
 <!-- ===================== CATEGORY TABS ===================== -->

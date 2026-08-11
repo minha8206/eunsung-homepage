@@ -1,0 +1,35 @@
+/* ===== 스크롤 등장 애니메이션 (전 페이지 공통) =====
+
+   .reveal 이 붙은 요소는 뷰포트에 들어올 때 아래에서 위로 떠오른다.
+   한 그룹 안에서는 assets/js/reveal.js 가 --reveal-d 에 80ms 간격을 넣어
+   금색 라벨 → 제목 → 본문 → 카드 순으로 시차를 준다.
+
+   최초 1회만 실행한다 — 되감기지 않으므로 다시 올라갔다 내려와도 조용하다. */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity .7s cubic-bezier(.22, 1, .36, 1) var(--reveal-d, 0ms),
+    transform .7s cubic-bezier(.22, 1, .36, 1) var(--reveal-d, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal.is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* 애니메이션이 끝나면 will-change 를 놓아 준다 (합성 레이어를 계속 잡고 있지 않게) */
+.reveal.is-settled { will-change: auto; }
+
+/* JS 가 죽어 있어도 내용은 보여야 한다 — 관찰이 시작되면 js 훅이 붙는다 */
+html:not(.reveal-ready) .reveal { opacity: 1; transform: none; }
+
+/* 움직임을 줄이라고 설정한 사용자에게는 애니메이션 없이 즉시 표시 */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

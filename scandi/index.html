@@ -26,6 +26,8 @@
 <script src="assets/js/search-overlay.js" defer></script>
 <script src="js/i18n-en.js" defer></script>
 <script src="js/i18n.js" defer></script>
+<link rel="stylesheet" href="assets/css/reveal.css">
+<script src="assets/js/reveal.js" defer></script>
 <link rel="stylesheet" href="assets/css/typography.css">
 <link rel="stylesheet" href="assets/css/mobile.css">
 <link rel="stylesheet" href="assets/css/mobile-overlays.css">
@@ -35,6 +37,9 @@
 <body>
 <!-- ===================== SCROLL-EXPAND VIDEO HERO (outside x-dc: framework re-renders/hides x-dc's own subtree, which would orphan our JS-controlled nodes) ===================== -->
 <section class="vhero" id="videoHero">
+  <!-- 래퍼는 200vh, 안쪽은 sticky 100vh — 그 사이 100vh 만큼 굴린 양이 진행도(0~1)가 된다.
+       스크롤을 가로채지 않으므로 빨리 내리면 애니메이션도 그만큼 빨리 끝나고 그대로 다음 섹션으로 간다. -->
+  <div class="vhero-sticky">
   <div class="vhero-bg" id="vheroBg" style="background-image:url('assets/showroom-hero.jpg')"></div>
   <div class="vhero-stage">
     <div class="vhero-media" id="vheroMedia">
@@ -52,21 +57,25 @@
       </span>
     </div>
   </div>
-  <div class="vhero-content" id="vheroContent">
+  </div>
+</section>
+<section class="vhero-content" id="vheroContent">
     <div class="vhero-content-inner">
       <div class="vhero-eyebrow">EUNSUNG · CERAMIC STONE SURFACE</div>
       <div class="vhero-heading">표면은 공간의 인상을 결정합니다.<br>은성은 그 기준을 만듭니다.</div>
       <div class="vhero-desc">LX하우시스 공식 파트너 — 원자재 선별부터 재단·시공까지 직영 설비에서 완성합니다.</div>
       <div class="vhero-partner">OFFICIAL PARTNER — LX HAUSYS</div>
-    </div>
   </div>
 </section>
 <style>
 /* ===== VIDEO SCROLL-EXPAND HERO ===== */
-.vhero{position:relative;width:100%;overflow:hidden;background:#0e0a06}
+/* 래퍼 높이에서 100vh 를 뺀 만큼이 애니메이션 구간이다. 값을 키우면 더 천천히 펼쳐진다.
+   overflow 는 여기 두면 안 된다 — 조상에 overflow:hidden 이 있으면 sticky 가 죽는다. */
+.vhero{position:relative;width:100%;height:200vh;background:#0e0a06}
+.vhero-sticky{position:sticky;top:0;height:100vh;min-height:640px;overflow:hidden}
 .vhero-bg{position:absolute;inset:0;background-size:contain;background-position:center;background-repeat:no-repeat;z-index:0}
 .vhero-bg::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.25)}
-.vhero-stage{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100dvh;min-height:640px}
+.vhero-stage{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%}
 .vhero-media{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border-radius:18px;overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,.45);z-index:1}
 .vhero-media video{width:100%;height:100%;object-fit:cover;display:block}
 .vhero-media-shade{position:absolute;inset:0;background:rgba(0,0,0,.32)}
@@ -263,15 +272,15 @@ body.nav-open .nav-mobile-panel{display:flex}
 <!-- ===================== MATERIALS ===================== -->
 <section id="materials" style="background:#ede9e1;padding:120px 5vw;scroll-margin-top:64px">
   <div style="max-width:1280px;margin:0 auto">
-    <div style="margin-bottom:60px">
-      <div style="width:60px;height:1px;background:#bf8e5a;margin-bottom:16px"></div>
-      <div style="font:600 12px 'Manrope';letter-spacing:.42em;color:#b8924a;margin-bottom:18px">MATERIALS · 소재</div>
-      <h2 style="margin:0;font:500 clamp(30px,4.2vw,52px)/1.32 'Noto Serif KR',serif;color:#0e2440;max-width:18em">네 가지 소재, 하나의 기준</h2>
-      <div style="margin-top:20px;font:400 14.5px/1.85 'Manrope';color:rgba(14,36,64,.55);max-width:560px">2009년 BMC 인조대리석 가공 전문으로 출발해, 세라믹·E-Stone·MMA·BMC 전 라인업을 다루는 종합 표면재 기업으로 성장했습니다.</div>
+    <div style="margin-bottom:60px" data-reveal-group>
+      <div class="reveal" style="width:60px;height:1px;background:#bf8e5a;margin-bottom:16px"></div>
+      <div class="reveal" style="font:600 12px 'Manrope';letter-spacing:.42em;color:#b8924a;margin-bottom:18px">MATERIALS · 소재</div>
+      <h2 class="reveal" style="margin:0;font:500 clamp(30px,4.2vw,52px)/1.32 'Noto Serif KR',serif;color:#0e2440;max-width:18em">네 가지 소재, 하나의 기준</h2>
+      <div class="reveal" style="margin-top:20px;font:400 14.5px/1.85 'Manrope';color:rgba(14,36,64,.55);max-width:560px">2009년 BMC 인조대리석 가공 전문으로 출발해, 세라믹·E-Stone·MMA·BMC 전 라인업을 다루는 종합 표면재 기업으로 성장했습니다.</div>
     </div>
-    <div>
+    <div data-reveal-group>
       <!-- 포세린 (panel right) -->
-      <div class="mbanner">
+      <div class="mbanner reveal">
         <div class="mbanner-image" style="background-image:url('assets/porcelain.jpg')"></div>
         <div class="mbanner-panel">
           <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">포세린</div></div>
@@ -282,7 +291,7 @@ body.nav-open .nav-mobile-panel{display:flex}
         </div>
       </div>
       <!-- 비아테라 (panel left) -->
-      <div class="mbanner">
+      <div class="mbanner reveal">
         <div class="mbanner-panel">
           <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">엔지니어드 스톤</div><div class="mbanner-eyebrow" style="margin-bottom:0">비아테라</div></div>
           <div class="mbanner-desc-ko">천연 석영이 90% 이상 함유된 프리미엄 스톤입니다. 네 소재 중 표면 경도가 가장 높아 칼자국·흠집 걱정이 적고, 천연석 특유의 깊이 있는 질감을 그대로 담았습니다.</div>
@@ -293,7 +302,7 @@ body.nav-open .nav-mobile-panel{display:flex}
         <div class="mbanner-image" style="background-image:url('assets/viatera.jpg')"></div>
       </div>
       <!-- 하이막스 (panel right) -->
-      <div class="mbanner">
+      <div class="mbanner reveal">
         <div class="mbanner-image" style="background-image:url('assets/himacs.jpg')"></div>
         <div class="mbanner-panel">
           <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">인조대리석</div><div class="mbanner-eyebrow" style="margin-bottom:0">하이막스</div></div>
@@ -304,7 +313,7 @@ body.nav-open .nav-mobile-panel{display:flex}
         </div>
       </div>
       <!-- BMC (panel left) -->
-      <div class="mbanner" style="margin-bottom:0">
+      <div class="mbanner reveal" style="margin-bottom:0">
         <div class="mbanner-panel">
           <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">BMC</div></div>
           <div class="mbanner-desc-ko">은성이 직접 생산하는 열경화성 성형 컴파운드입니다. 싱크볼까지 하나로 성형돼 물샐 틈 없이 위생적이고, 자체 생산이라 가격과 납기 모두 합리적입니다.</div>
@@ -332,8 +341,8 @@ body.nav-open .nav-mobile-panel{display:flex}
 <section id="inquiry" style="background:#0b0f15;padding:120px 5vw;scroll-margin-top:64px">
   <div style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:72px">
     <div>
-      <div style="font:600 12px 'Manrope';letter-spacing:.42em;color:#c9a24b;margin-bottom:16px">INQUIRY · 문의</div>
-      <div style="font:500 clamp(36px,4.5vw,58px)/1.03 'Cormorant Garamond';color:#fff;margin-bottom:14px">Start a project.</div>
+      <div class="reveal" style="font:600 12px 'Manrope';letter-spacing:.42em;color:#c9a24b;margin-bottom:16px">INQUIRY · 문의</div>
+      <div class="reveal" style="font:500 clamp(36px,4.5vw,58px)/1.03 'Cormorant Garamond';color:#fff;margin-bottom:14px">Start a project.</div>
       <div style="font:400 15px/1.85 'Manrope';color:rgba(255,255,255,.55);max-width:460px;margin-bottom:4px">공간에 대해 알려주세요.<br>저희 팀이 영업일 기준 하루 안에 샘플과 견적으로 답변드립니다.</div>
       <div style="font:400 12.5px/1.7 'Manrope';color:rgba(255,255,255,.32);max-width:460px;margin-bottom:34px">Tell us about your space. Our team replies within one business day with samples and pricing.</div>
       <sc-if value="{{ formSent }}" hint-placeholder-val="{{ false }}">
@@ -481,89 +490,54 @@ class Component extends DCLogic {
 </script>
 
 <script>
+/* ===== 히어로 스크롤 확장 =====
+   예전 구현은 wheel/touchmove 를 preventDefault 로 잡고 window.scrollTo(0,0) 으로
+   페이지를 붙잡아 뒀다. 그래서 애니메이션이 끝나기 전에 빠르게 굴리면 입력이 먹히지
+   않고 페이지가 멈춘 것처럼 보였다.
+
+   지금은 스크롤을 전혀 막지 않는다. 래퍼(200vh) 안에서 sticky 로 붙어 있는 동안
+   굴러간 양을 0~1 진행도로 환산해 크기에 그대로 매핑할 뿐이다. 빨리 내리면
+   애니메이션도 그만큼 빨리 끝나고, 래퍼를 지나면 다음 섹션으로 그냥 넘어간다. */
 (function () {
   function init() {
+    var wrap = document.getElementById('videoHero');
     var mediaEl = document.getElementById('vheroMedia');
     var bgEl = document.getElementById('vheroBg');
     var word = document.getElementById('vheroWord');
     var hintEl = document.getElementById('vheroHint');
     var contentEl = document.getElementById('vheroContent');
     var videoEl = document.getElementById('vheroVideo');
-    if (!mediaEl) return;
+    if (!wrap || !mediaEl) return;
 
-    /* ── 모바일: 스크롤 확장 연출을 쓰지 않는다 ──
-       이 연출은 wheel/touchmove 를 preventDefault 로 가로채고 window.scrollTo(0,0)
-       으로 페이지를 붙잡는다. 모바일에서는 주소창 높이 변화·관성 스크롤과 충돌해
-       페이지가 잠긴 것처럼 느껴진다. 그래서 ≤769px 에서는 연출을 끄고
-       정적 풀스크린 영상 + 텍스트로 단순화한다. 레이아웃은 mobile-pages.css 가
-       맡고, 여기서는 이벤트를 아예 붙이지 않는다. 데스크톱 경로는 그대로다. */
-    if (window.matchMedia('(max-width: 769px)').matches) {
-      if (contentEl) contentEl.classList.add('on');
-      if (videoEl) {
-        videoEl.muted = true;
-        videoEl.playsInline = true;
-        var mp = videoEl.play();
-        if (mp && mp['catch']) {
-          mp['catch'](function () {
-            /* 자동재생이 막히면 첫 사용자 조작 때 한 번 더 시도한다 */
-            var once = function () {
-              ['pointerdown', 'touchstart', 'scroll'].forEach(function (t) { window.removeEventListener(t, once); });
-              videoEl.play()['catch'](function () {});
-            };
-            ['pointerdown', 'touchstart', 'scroll'].forEach(function (t) {
-              window.addEventListener(t, once, { once: true, passive: true });
-            });
-          });
-        }
-      }
-      return;
-    }
+    /* 모바일은 mobile-pages.css 가 영상을 전체화면으로 고정한다(인라인 크기를 쓰지 않는다).
+       여기서 인라인 width/height 를 쓰면 그 규칙과 싸우므로 크기 매핑을 건너뛴다. */
+    var mqMobile = window.matchMedia('(max-width: 769px)');
+    var isMobile = mqMobile.matches;
 
-    var scrollProgress = 0;
-    var fullyExpanded = false;
-    var showContent = false;
-    var touchStartY = 0;
-    var isMobile = window.innerWidth < 768;
-    var videoDuration = 0;
+    var ticking = false;
+    var lastP = -1;
 
-    if (videoEl) {
-      videoEl.addEventListener('loadedmetadata', function () {
-        videoDuration = videoEl.duration || 0;
-      });
-    }
-
-    function scrubVideo() {
-      if (!videoEl || !videoDuration) return;
-      if (!videoEl.paused) videoEl.pause();
-      videoEl.currentTime = scrollProgress * videoDuration;
-    }
-
-    /* ---- 자동재생 보험 ----
-       이 영상은 확장이 끝나기 전까지 스크롤로 스크럽되는(=의도적으로 일시정지된)
-       상태다. 그래서 "재생돼야 하는 구간"(fullyExpanded)에서만 재생을 보장한다.
-       무조건 재생을 걸면 위 scrubVideo 와 서로 싸운다. */
+    /* ── 자동재생 보험 ──
+       Chrome 은 play() 호출 시점에 muted 여야 자동재생을 허용한다. 막히면 첫 사용자
+       조작 때 한 번 더 시도한다. 스크럽을 하지 않으므로 영상은 그냥 계속 재생한다. */
     var retryBound = false;
-    var RETRY_EVENTS = ['pointerdown', 'touchstart', 'keydown', 'wheel'];
+    var RETRY_EVENTS = ['pointerdown', 'touchstart', 'keydown', 'wheel', 'scroll'];
 
     function tryPlay() {
       if (!videoEl) return;
-      // Chrome 은 play() 호출 시점에 muted 여야 자동재생을 허용한다
       videoEl.muted = true;
       videoEl.playsInline = true;
       var pr = videoEl.play();
-      if (pr && typeof pr['catch'] === 'function') {
-        pr['catch'](function () { bindRetryOnce(); });
-      }
+      if (pr && typeof pr['catch'] === 'function') pr['catch'](bindRetryOnce);
     }
 
-    /* 자동재생이 차단되면 첫 사용자 조작 때 한 번 더 시도한다 */
     function bindRetryOnce() {
       if (retryBound) return;
       retryBound = true;
       function retry() {
         RETRY_EVENTS.forEach(function (t) { window.removeEventListener(t, retry); });
         retryBound = false;
-        if (fullyExpanded) tryPlay();
+        tryPlay();
       }
       RETRY_EVENTS.forEach(function (t) {
         window.addEventListener(t, retry, { once: true, passive: true });
@@ -571,105 +545,69 @@ class Component extends DCLogic {
     }
 
     if (videoEl) {
-      // loop 가 걸려 있어도 끊기는 경우가 있어 보강한다.
-      // 스크럽 구간에서는 fullyExpanded 가 false 라 개입하지 않는다.
       ['ended', 'stalled', 'pause'].forEach(function (t) {
-        videoEl.addEventListener(t, function () {
-          if (fullyExpanded && videoEl.paused) tryPlay();
-        });
+        videoEl.addEventListener(t, function () { if (videoEl.paused) tryPlay(); });
       });
     }
 
-    function render() {
-      var mediaWidth = 300 + scrollProgress * (isMobile ? 650 : 1250);
-      var mediaHeight = 400 + scrollProgress * (isMobile ? 200 : 400);
-      /* 단어가 하나뿐이라 좌우로 벌릴 수 없다. 대신 자간을 열어
-         "펼쳐지는" 인상을 유지하면서 중앙 정렬은 그대로 둔다. */
-      var track = 0.16 + scrollProgress * (isMobile ? 0.08 : 0.16);
-      mediaEl.style.width = mediaWidth + 'px';
-      mediaEl.style.height = mediaHeight + 'px';
+    /* 래퍼가 화면 위로 밀려 올라간 양 / 애니메이션 구간(래퍼높이 - 뷰포트높이) */
+    function progress() {
+      var total = wrap.offsetHeight - window.innerHeight;
+      if (total <= 0) return 1;
+      var y = -wrap.getBoundingClientRect().top;
+      return Math.min(Math.max(y / total, 0), 1);
+    }
+
+    function render(p) {
+      /* 아래 텍스트 블록은 확장이 거의 끝났을 때 드러낸다 */
+      if (contentEl) contentEl.classList.toggle('on', p > 0.85);
+      if (isMobile) return;
+
+      mediaEl.style.width = (300 + p * 1250) + 'px';
+      mediaEl.style.height = (400 + p * 400) + 'px';
       mediaEl.style.maxWidth = '95vw';
       mediaEl.style.maxHeight = '85vh';
-      bgEl.style.opacity = String(1 - scrollProgress);
+      if (bgEl) bgEl.style.opacity = String(1 - p);
+      if (hintEl) hintEl.style.opacity = String(Math.max(0, 1 - p * 4));
+
+      /* 단어가 하나뿐이라 좌우로 벌릴 수 없다. 자간을 열어 펼쳐지는 인상을 유지하되
+         중앙 정렬이 흐트러지지 않게 같은 값의 음수 margin 으로 상쇄한다. */
       if (word) {
+        var track = 0.16 + p * 0.16;
         word.style.letterSpacing = track + 'em';
         word.style.marginRight = -track + 'em';
       }
-      hintEl.style.opacity = String(Math.max(0, 1 - scrollProgress * 4));
-      if (!fullyExpanded) scrubVideo();
-    }
-
-    function setShowContent(v) {
-      if (showContent === v) return;
-      showContent = v;
-      contentEl.classList.toggle('on', v);
-    }
-
-    function bumpProgress(delta) {
-      scrollProgress = Math.min(Math.max(scrollProgress + delta, 0), 1);
-      render();
-      if (scrollProgress >= 1) {
-        fullyExpanded = true;
-        setShowContent(true);
-        tryPlay();
-      } else if (scrollProgress < 0.75) {
-        setShowContent(false);
-      }
-    }
-
-    function onWheel(e) {
-      if (fullyExpanded && e.deltaY < 0 && window.scrollY <= 5) {
-        fullyExpanded = false;
-        e.preventDefault();
-        render();
-      } else if (!fullyExpanded) {
-        e.preventDefault();
-        bumpProgress(e.deltaY * 0.0009);
-      }
-    }
-
-    function onTouchStart(e) {
-      touchStartY = e.touches[0].clientY;
-    }
-
-    function onTouchMove(e) {
-      if (!touchStartY) return;
-      var touchY = e.touches[0].clientY;
-      var deltaY = touchStartY - touchY;
-
-      if (fullyExpanded && deltaY < -20 && window.scrollY <= 5) {
-        fullyExpanded = false;
-        e.preventDefault();
-        render();
-      } else if (!fullyExpanded) {
-        e.preventDefault();
-        var factor = deltaY < 0 ? 0.008 : 0.005;
-        bumpProgress(deltaY * factor);
-        touchStartY = touchY;
-      }
-    }
-
-    function onTouchEnd() {
-      touchStartY = 0;
     }
 
     function onScroll() {
-      if (!fullyExpanded) window.scrollTo(0, 0);
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        ticking = false;
+        var p = progress();
+        if (Math.abs(p - lastP) < 0.0015) return;   /* 미세한 떨림은 건너뛴다 */
+        lastP = p;
+        render(p);
+      });
     }
 
     function onResize() {
-      isMobile = window.innerWidth < 768;
-      render();
+      isMobile = mqMobile.matches;
+      if (isMobile) {
+        /* 데스크톱에서 걸어둔 인라인 크기를 지워 CSS 전체화면 규칙에 넘긴다 */
+        mediaEl.style.width = mediaEl.style.height = '';
+        mediaEl.style.maxWidth = mediaEl.style.maxHeight = '';
+      }
+      lastP = -1;
+      onScroll();
     }
 
-    window.addEventListener('wheel', onWheel, { passive: false });
-    window.addEventListener('touchstart', onTouchStart, { passive: false });
-    window.addEventListener('touchmove', onTouchMove, { passive: false });
-    window.addEventListener('touchend', onTouchEnd);
-    window.addEventListener('scroll', onScroll);
-    window.addEventListener('resize', onResize);
+    /* passive: true — 스크롤을 막지 않는다는 것을 브라우저에 명시한다 */
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onResize, { passive: true });
 
-    render();
+    tryPlay();
+    render(progress());
   }
 
   if (document.readyState === 'loading') {

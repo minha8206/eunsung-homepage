@@ -1,28 +1,101 @@
-/* ===== FLOATING INQUIRY WIDGET (common across all pages) ===== */
-.iw-root{position:fixed;right:24px;bottom:24px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:12px;font-family:'Manrope',system-ui,sans-serif}
+/* ===== 플로팅 상담 버튼 (전 페이지 공통) =====
+   body 끝에 직접 붙는다 — x-dc 가 다시 그리는 서브트리 밖이라 재렌더에 영향받지 않는다. */
 
-.iw-main{width:56px;height:56px;border-radius:50%;background:#0e2440;border:none;padding:0;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 30px -8px rgba(14,36,64,.5),0 2px 8px rgba(0,0,0,.18);transition:transform .25s ease,box-shadow .25s ease}
-.iw-main:hover{transform:translateY(-2px);box-shadow:0 14px 36px -8px rgba(14,36,64,.55),0 2px 8px rgba(0,0,0,.2)}
-.iw-main:active{transform:translateY(0)}
+.iw-root{
+  position:fixed;right:24px;bottom:24px;z-index:9999;
+  display:flex;flex-direction:column;align-items:flex-end;gap:12px;
+  font-family:'Manrope',system-ui,sans-serif;
+}
+
+/* ── 메인 버튼 ─────────────────────────────────────────── */
+.iw-main{
+  width:56px;height:56px;border-radius:50%;
+  background:#1B2A4A;border:none;padding:0;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  box-shadow:0 4px 20px rgba(0,0,0,.15);
+  transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s ease;
+}
+.iw-main:hover{transform:scale(1.05);box-shadow:0 6px 26px rgba(0,0,0,.2)}
+.iw-main:active{transform:scale(.98)}
+.iw-main:focus-visible{outline:2px solid #BF8E5A;outline-offset:3px}
 
 .iw-main-icon{position:relative;width:24px;height:24px}
-.iw-main-icon svg{position:absolute;inset:0;width:24px;height:24px;color:#fff;transition:opacity .2s ease,transform .2s ease}
-.iw-icon-close{opacity:0;transform:rotate(-45deg) scale(.6)}
+.iw-main-icon svg{position:absolute;inset:0;width:24px;height:24px;color:#fff;transition:opacity .2s ease,transform .25s ease}
 .iw-icon-chat{opacity:1;transform:rotate(0) scale(1)}
-.iw-root.is-open .iw-icon-chat{opacity:0;transform:rotate(45deg) scale(.6)}
+.iw-icon-close{opacity:0;transform:rotate(-90deg) scale(.6)}
+.iw-root.is-open .iw-icon-chat{opacity:0;transform:rotate(90deg) scale(.6)}
 .iw-root.is-open .iw-icon-close{opacity:1;transform:rotate(0) scale(1)}
 
-.iw-option{display:flex;align-items:center;gap:10px;height:48px;padding:0 20px 0 16px;border-radius:999px;border:none;cursor:pointer;box-shadow:0 8px 24px -6px rgba(0,0,0,.25);font:600 14px/1 'Manrope',system-ui,sans-serif;white-space:nowrap;opacity:0;transform:translateY(16px) scale(.92);pointer-events:none;transition:opacity .28s ease,transform .28s ease}
-.iw-option svg{width:20px;height:20px;flex-shrink:0}
+/* ── 펼쳐지는 항목 ─────────────────────────────────────── */
+.iw-item{
+  display:flex;align-items:center;gap:12px;
+  text-decoration:none;background:none;border:none;padding:0;cursor:pointer;
+  opacity:0;transform:translateY(12px) scale(.9);pointer-events:none;
+  transition:opacity .28s ease,transform .28s cubic-bezier(.22,1,.36,1);
+}
+.iw-root.is-open .iw-item{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+/* 아래(견적)에서 위(카카오) 순으로 떠오르게 — DOM 은 위에서부터라 역순으로 지연을 준다 */
+.iw-root.is-open .iw-item--kakao{transition-delay:.16s}
+.iw-root.is-open .iw-item--tel{transition-delay:.08s}
+.iw-root.is-open .iw-item--quote{transition-delay:0s}
 
-.iw-root.is-open .iw-option{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
-.iw-root.is-open .iw-option--tel{transition-delay:.05s}
-.iw-root.is-open .iw-option--kakao{transition-delay:.12s}
+/* 왼쪽 흰색 라벨 말풍선 */
+.iw-label{
+  background:#fff;color:#1B2A4A;
+  font:600 13px/1 'Manrope',system-ui,sans-serif;white-space:nowrap;
+  padding:9px 14px;border-radius:8px;
+  box-shadow:0 2px 12px rgba(0,0,0,.12);
+}
 
-.iw-option--kakao{background:#FEE500;color:#391B1B}
-.iw-option--tel{background:#BF8E5A;color:#fff}
+.iw-btn{
+  width:46px;height:46px;border-radius:50%;flex-shrink:0;
+  display:grid;place-items:center;
+  box-shadow:0 3px 14px rgba(0,0,0,.16);
+  transition:transform .2s ease;
+}
+.iw-item:hover .iw-btn{transform:scale(1.08)}
+.iw-btn svg{width:22px;height:22px;display:block}
+
+.iw-btn--kakao{background:#FEE500;color:#000}
+.iw-btn--tel{background:#fff;color:#1B2A4A}
+.iw-btn--quote{background:#BF8E5A;color:#fff}
+
+/* ── 안내 말풍선 (로드 3초 뒤 1회) ─────────────────────── */
+.iw-tip{
+  position:absolute;right:70px;bottom:8px;
+  display:flex;align-items:center;gap:10px;
+  background:#fff;color:#1B2A4A;
+  font:500 13px/1.4 'Manrope',system-ui,sans-serif;white-space:nowrap;
+  padding:11px 12px 11px 16px;border-radius:10px;
+  box-shadow:0 4px 20px rgba(0,0,0,.15);
+  opacity:0;transform:translateX(8px);pointer-events:none;
+  transition:opacity .35s ease,transform .35s cubic-bezier(.22,1,.36,1);
+}
+.iw-tip.is-on{opacity:1;transform:translateX(0);pointer-events:auto}
+/* 말풍선 꼬리 */
+.iw-tip::after{
+  content:'';position:absolute;right:-5px;bottom:18px;
+  width:10px;height:10px;background:#fff;transform:rotate(45deg);
+}
+.iw-tip-close{
+  background:none;border:none;padding:0;margin:0;cursor:pointer;
+  width:18px;height:18px;display:grid;place-items:center;
+  color:#8a93a1;flex-shrink:0;
+}
+.iw-tip-close:hover{color:#1B2A4A}
+.iw-tip-close svg{width:12px;height:12px}
 
 @media (max-width:768px){
-  .iw-root{right:16px;bottom:20px}
-  .iw-option{height:44px;padding:0 16px 0 14px;font-size:13px}
+  .iw-root{right:16px;bottom:20px;gap:10px}
+  .iw-main{width:52px;height:52px}
+  .iw-btn{width:42px;height:42px}
+  .iw-btn svg{width:20px;height:20px}
+  .iw-label{font-size:12px;padding:8px 12px}
+  /* 좁은 화면에서 말풍선이 화면 밖으로 나가지 않게 */
+  .iw-tip{right:64px;font-size:12px;padding:9px 10px 9px 13px;max-width:calc(100vw - 96px);white-space:normal}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .iw-main,.iw-item,.iw-tip,.iw-btn,.iw-main-icon svg{transition:none}
+  .iw-main:hover{transform:none}
 }
