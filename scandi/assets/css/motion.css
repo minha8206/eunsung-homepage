@@ -1,0 +1,311 @@
+/* ===== 모션 레이어 (index / about / facility / portfolio / contact) =====
+
+   21st.dev 에서 고른 컴포넌트들의 "움직임"만 바닐라로 옮겨 온 곳이다.
+   원본은 전부 React(framer-motion / motion) 라서 코드를 그대로 쓸 수 없다.
+   여기에는 정지 상태와 변형의 문법만 두고, 값을 매 프레임 넣는 일은
+   assets/js/motion.js 의 단일 rAF 루프가 한다.
+
+   지켜야 할 선 세 가지:
+
+   1. assets/css/reveal.css 의 .reveal 은 이미 전 페이지에서 돌고 있다.
+      여기서는 그 규칙을 덮어쓰지 않고 깊이(rotateX/blur)만 얹는다.
+   2. transform 을 매 프레임 인라인으로 쓰는 요소는 transition 이 붙어 있으면
+      한 박자씩 밀린다. 그런 요소에는 .m-live 로 transition 을 끊는다.
+   3. JS 가 죽거나 늦게 뜨면 아무것도 안 보이는 상태가 되면 안 된다.
+      최초 상태를 숨기는 규칙은 전부 html.motion-ready 아래에만 둔다.
+
+   움직임을 줄이라고 설정한 사용자에게는 파일 맨 아래에서 전부 해제한다. */
+
+
+/* ── 공통 ──────────────────────────────────────────────────────── */
+
+/* 매 프레임 transform 을 받는 요소 — 남의 transition 에 끌려다니지 않게 한다.
+   .reveal 과 겹칠 수 있어 두 클래스를 함께 쓴 선택자로 특이도를 올린다. */
+.m-live,
+.reveal.m-live { transition: none !important; }
+
+.m-gpu { will-change: transform; backface-visibility: hidden; }
+
+
+/* ── 1. 스크롤 3D 틸트 (21st: Container Scroll Animation / aceternity) ──
+   원본은 useScroll 진행도를 rotateX 20deg→0, scale 1.05→1 로 매핑한다.
+   여기서는 perspective 를 부모에 두지 않고 transform 함수로 직접 건다.
+   부모(.mbanner 의 래퍼, .ft-content)를 건드리지 않아도 되기 때문이다. */
+.m-tilt3d {
+  transform-origin: 50% 85%;
+  will-change: transform;
+}
+
+/* 카드가 세워져 있는 동안에는 그림자도 같이 눕혀야 입체감이 산다 */
+.m-tilt3d.is-lifting { box-shadow: 0 40px 80px -40px rgba(14, 36, 64, .55); }
+
+
+/* ── 2. 줌 패럴랙스 (21st: Zoom Parallax / sshahaider) ──
+   이미지는 부모가 잘라 준다는 전제로 기본 배율을 키워 두고, 스크롤 구간에서
+   위아래로 움직인다. 배율이 1 이면 움직이는 만큼 가장자리에 빈 칸이 생긴다. */
+.m-parallax {
+  will-change: transform;
+  transition: none;
+}
+
+/* .mbanner-image 는 flex 자식이라 확대하면 옆의 패널을 덮는다.
+   패널을 항상 위로 올려 두면 어느 방향 배치에서도 안전하다. */
+.mbanner-panel { position: relative; z-index: 1; }
+
+
+/* ── 3. 스크롤 속도 마퀴 (21st: Scroll Velocity Text / cnippet.dev) ──
+   빠르게 굴릴수록 빨라지고, 굴리는 방향으로 흐름이 뒤집힌다.
+   속도 계산은 motion.js 가 하고 여기서는 자리와 색만 잡는다. */
+.m-marquee-band {
+  position: relative;
+  overflow: hidden;
+  padding: 74px 0;
+  background: #0b0f15;
+  border-top: 1px solid rgba(201, 162, 75, .16);
+  border-bottom: 1px solid rgba(201, 162, 75, .16);
+}
+
+/* 양 끝을 배경색으로 녹여 잘린 글자가 튀지 않게 한다 */
+.m-marquee-band::before,
+.m-marquee-band::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 18vw;
+  max-width: 260px;
+  z-index: 2;
+  pointer-events: none;
+}
+.m-marquee-band::before { left: 0; background: linear-gradient(90deg, #0b0f15 0%, rgba(11, 15, 21, 0) 100%); }
+.m-marquee-band::after { right: 0; background: linear-gradient(270deg, #0b0f15 0%, rgba(11, 15, 21, 0) 100%); }
+
+.m-marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.m-marquee + .m-marquee { margin-top: 6px; }
+
+.m-marquee-track {
+  display: inline-flex;
+  align-items: center;
+  will-change: transform;
+}
+
+.m-marquee-unit {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.m-marquee-word {
+  font: 500 clamp(38px, 6.4vw, 92px)/1 'Cormorant Garamond', serif;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 0 .42em;
+  white-space: nowrap;
+}
+
+/* 위쪽 줄은 속을 비운 아웃라인, 아래쪽 줄은 채운 금색 — 두 줄이 반대로 흐른다 */
+.m-marquee-row--outline .m-marquee-word {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(201, 162, 75, .58);
+}
+.m-marquee-row--solid .m-marquee-word { color: rgba(243, 239, 230, .17); }
+.m-marquee-row--solid .m-marquee-word.is-accent { color: rgba(201, 162, 75, .7); }
+
+.m-marquee-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(201, 162, 75, .45);
+  flex-shrink: 0;
+}
+
+@media (max-width: 720px) {
+  .m-marquee-band { padding: 48px 0; }
+}
+
+
+/* ── 4. 3D 틸트 카드 + 스포트라이트 (21st: Tilt Card / tom_ui) ──
+   커서를 따라 카드가 기울고, 기운 쪽에 금색 빛이 얹힌다.
+   포인터가 정밀한 기기(마우스)에서만 켠다 — motion.js 가 판정한다. */
+.m-tilt {
+  transform-style: preserve-3d;
+  transition: box-shadow .35s ease;
+}
+
+.m-tilt.m-live { transition: box-shadow .35s ease; }
+
+/* 빛은 실제 요소로 얹는다. 배경이 있는 카드 위에 mix-blend 로 태우면
+   흰 카드에서는 거의 보이지 않고 어두운 카드에서만 과해진다. */
+.m-tilt-glare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .35s ease;
+  background: radial-gradient(
+    240px circle at var(--m-gx, 50%) var(--m-gy, 50%),
+    rgba(201, 162, 75, .22) 0%,
+    rgba(201, 162, 75, .07) 40%,
+    rgba(201, 162, 75, 0) 72%
+  );
+  z-index: 3;
+}
+.m-tilt.is-tilting .m-tilt-glare { opacity: 1; }
+
+/* 글레어를 절대 배치하려면 카드가 기준이 돼야 한다 */
+.m-tilt-host { position: relative; }
+
+
+/* ── 5. 마스크 슬라이드 / 깊이 등장 (21st: Masked Slide Reveal · Depth Parallax Words) ──
+
+   한국어 줄바꿈 때문에 두 갈래로 나뉜다.
+
+   - 사전(js/i18n-en.js)에 있는 문장 → 텍스트 노드를 쪼개면 EN 치환이 깨진다.
+     그래서 통째로 마스크에 넣고 한 덩어리로 올린다.
+   - 사전에 없는 장식 문구 → 어절 단위로 나눠 깊이 시차를 준다.
+     나누는 기준이 공백이므로 word-break:keep-all 의 줄바꿈 규칙과 어긋나지 않는다.
+
+   어느 쪽이든 판정은 motion.js 가 런타임에 한다. */
+
+.m-mask {
+  display: block;
+  overflow: hidden;
+  /* 마스크가 g·y 같은 내려쓰기와 이탤릭 꼬리를 자르지 않게 위아래를 조금 연다 */
+  padding-block: .12em;
+  margin-block: -.12em;
+}
+
+.m-mask-inner {
+  display: block;
+  will-change: transform, opacity;
+}
+
+html.motion-ready .m-mask-inner {
+  opacity: 0;
+  transform: translateY(105%) rotateX(-32deg);
+  transform-origin: 50% 0;
+}
+
+html.motion-ready .m-mask-inner.is-in {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity .82s cubic-bezier(.22, 1, .36, 1),
+    transform .95s cubic-bezier(.19, 1, .22, 1);
+}
+
+/* 어절 단위 — 깊이(translateZ)에서 앞으로 나온다 */
+.m-words { perspective: 620px; }
+
+.m-word {
+  display: inline-block;
+  will-change: transform, opacity, filter;
+}
+
+html.motion-ready .m-word {
+  opacity: 0;
+  transform: translate3d(0, .52em, -160px) rotateX(-38deg);
+  filter: blur(5px);
+}
+
+html.motion-ready .m-word.is-in {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+  transition:
+    opacity .74s cubic-bezier(.22, 1, .36, 1) var(--m-d, 0ms),
+    transform .92s cubic-bezier(.19, 1, .22, 1) var(--m-d, 0ms),
+    filter .74s ease-out var(--m-d, 0ms);
+}
+
+
+/* ── 6. 카운트업 (21st: Count Up / unlumen) ──
+   숫자가 바뀌는 동안 폭이 출렁이면 옆의 단위 글자가 밀린다. */
+.m-count { font-variant-numeric: tabular-nums; }
+
+
+/* ── 7. 마그네틱 (21st: Magnetic / ibelick) ──
+   커서가 가까이 오면 끌려가고, 벗어나면 제자리로 돌아온다. */
+.m-magnet { will-change: transform; }
+
+
+/* ── 8. 스포트라이트 (21st: Cursor Spotlight / pulkitxm) ──
+   어두운 섹션에서 커서 주변만 은은하게 들어 올린다. */
+.m-spot { position: relative; isolation: isolate; }
+
+.m-spot-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .5s ease;
+  z-index: 0;
+  background: radial-gradient(
+    460px circle at var(--m-sx, 50%) var(--m-sy, 50%),
+    rgba(201, 162, 75, .13) 0%,
+    rgba(201, 162, 75, .045) 42%,
+    rgba(201, 162, 75, 0) 70%
+  );
+}
+.m-spot.is-spotting .m-spot-layer { opacity: 1; }
+
+
+/* ── .reveal 에 깊이 얹기 ──
+   기존 규칙(28px 위로 + 페이드)은 그대로 두고, 살짝 눕혀서 세워지는 인상만
+   더한다. 시차는 reveal.js 가 넣어 주는 --reveal-d 를 그대로 쓴다.
+   .m-live(내가 매 프레임 transform 을 쓰는 요소)에는 걸지 않는다.
+
+   원근은 조상이 아니라 transform 함수로 준다. 조상에 perspective 를 두면
+   자기 transform 안에 이미 perspective() 를 가진 .m-tilt3d 가 두 번 투영된다. */
+html.motion-ready .reveal:not(.m-live):not(.is-revealed) {
+  transform: perspective(1200px) translateY(30px) translateZ(-70px) rotateX(-7deg);
+  filter: blur(3px);
+}
+
+html.motion-ready .reveal:not(.m-live) {
+  transform-origin: 50% 100%;
+  transition:
+    opacity .78s cubic-bezier(.22, 1, .36, 1) var(--reveal-d, 0ms),
+    transform .95s cubic-bezier(.19, 1, .22, 1) var(--reveal-d, 0ms),
+    filter .7s ease-out var(--reveal-d, 0ms);
+}
+
+html.motion-ready .reveal:not(.m-live).is-revealed { filter: blur(0); }
+
+
+/* ── 모바일 ──────────────────────────────────────────────────────
+   무거운 3D 는 motion.js 가 아예 안 붙이지만, 이미 마크업에 들어간
+   장식 요소는 여기서 눌러 둔다. */
+@media (max-width: 900px) {
+  html.motion-ready .reveal:not(.m-live):not(.is-revealed) {
+    transform: translateY(24px);
+    filter: none;
+  }
+  html.motion-ready .m-word {
+    transform: translate3d(0, .4em, 0);
+    filter: none;
+  }
+  .m-tilt-glare, .m-spot-layer { display: none; }
+}
+
+
+/* ── 움직임 줄이기 ────────────────────────────────────────────────
+   여기 있는 모든 장치를 해제한다. reveal.css 도 같은 조건에서 스스로 꺼진다. */
+@media (prefers-reduced-motion: reduce) {
+  html.motion-ready .m-mask-inner,
+  html.motion-ready .m-word,
+  html.motion-ready .reveal:not(.m-live):not(.is-revealed) {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+  .m-tilt-glare, .m-spot-layer { display: none; }
+  .m-marquee-track { transform: none !important; }
+}

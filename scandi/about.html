@@ -34,6 +34,9 @@
 <link rel="stylesheet" href="assets/css/mobile-overlays.css">
 <link rel="stylesheet" href="assets/css/mobile-pages.css">
 <script src="assets/js/mobile-nav.js" defer></script>
+<!-- 모션 레이어는 reveal / mobile 규칙 뒤에 와야 한다 (깊이를 얹어 덮어쓴다) -->
+<link rel="stylesheet" href="assets/css/motion.css">
+<script src="assets/js/motion.js" defer></script>
 </head>
 <body>
 <x-dc>
@@ -134,7 +137,7 @@ body.nav-open .nav-mobile-panel{display:flex}
 <section style="background:#f5f2ec;padding:120px 5vw">
   <div style="max-width:1100px;margin:0 auto">
     <div class="reveal" style="font:600 12px 'Manrope';letter-spacing:.42em;color:#b8924a;margin-bottom:16px">OUR STORY · 연혁</div>
-    <div class="reveal" style="font:500 clamp(27px,3.4vw,44px)/1.35 'Noto Serif KR',serif;color:#0e2440">하나의 소재에서, 모든 표면의 기준으로</div>
+    <div data-m-text style="font:500 clamp(27px,3.4vw,44px)/1.35 'Noto Serif KR',serif;color:#0e2440">하나의 소재에서, 모든 표면의 기준으로</div>
     <div class="reveal" style="margin-top:10px;margin-bottom:56px;font:italic 400 14px/1.6 'Cormorant Garamond';color:rgba(14,36,64,.45)">From one material, to every surface.</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;position:relative">
       <div style="position:absolute;left:0;right:0;top:26px;height:2px;background:linear-gradient(90deg,#c9a24b,rgba(201,162,75,.15))"></div>
@@ -164,19 +167,19 @@ body.nav-open .nav-mobile-panel{display:flex}
       <div style="font:400 15.5px/1.9 'Manrope';color:rgba(14,36,64,.65)">자재 수급부터 정밀 가공, 현장 시공까지 은성이 직접 수행합니다.<br>중간 유통이 없어 품질과 일정을 끝까지 책임질 수 있습니다.</div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px">
-      <div class="reveal" style="padding:36px 32px;border-radius:16px;background:#fff;border:1px solid rgba(14,36,64,.08);box-shadow:0 24px 54px -34px rgba(14,36,64,.3)">
+      <div class="reveal m-card" style="padding:36px 32px;border-radius:16px;background:#fff;border:1px solid rgba(14,36,64,.08);box-shadow:0 24px 54px -34px rgba(14,36,64,.3)">
         <div style="width:46px;height:46px;border-radius:50%;background:rgba(201,162,75,.1);display:grid;place-items:center;margin-bottom:22px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a8763f" stroke-width="1.8"><path d="M3 12h18M3 12l4-5M3 12l4 5M21 12l-4-5M21 12l-4 5"/></svg></div>
         <div style="font:600 11px 'Manrope';letter-spacing:.16em;color:#a8763f;margin-bottom:8px">01 · 유통 SOURCING</div>
         <div style="font:500 18px/1.5 'Noto Serif KR',serif;color:#0e2440;margin-bottom:10px">좋은 표면은 좋은 슬랩에서 시작됩니다</div>
         <div style="font:400 13.5px/1.75 'Manrope';color:rgba(14,36,64,.58)">국내 1위 소재기업 LX하우시스를 비롯한 신뢰도 높은 원자재를 직접 수급합니다.</div>
       </div>
-      <div class="reveal" style="padding:36px 32px;border-radius:16px;background:#fff;border:1px solid rgba(14,36,64,.08);box-shadow:0 24px 54px -34px rgba(14,36,64,.3)">
+      <div class="reveal m-card" style="padding:36px 32px;border-radius:16px;background:#fff;border:1px solid rgba(14,36,64,.08);box-shadow:0 24px 54px -34px rgba(14,36,64,.3)">
         <div style="width:46px;height:46px;border-radius:50%;background:rgba(201,162,75,.1);display:grid;place-items:center;margin-bottom:22px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a8763f" stroke-width="1.8"><path d="M6 3v18M6 8l13-4v16l-13-4"/></svg></div>
         <div style="font:600 11px 'Manrope';letter-spacing:.16em;color:#a8763f;margin-bottom:8px">02 · 가공 FABRICATION</div>
         <div style="font:500 18px/1.5 'Noto Serif KR',serif;color:#0e2440;margin-bottom:10px">밀리미터의 오차도 허용하지 않습니다</div>
         <div style="font:400 13.5px/1.75 'Manrope';color:rgba(14,36,64,.58)">대형 가공 설비에서 재단부터 마감까지 직접 처리합니다.</div>
       </div>
-      <div class="reveal" style="padding:36px 32px;border-radius:16px;background:#fff;border:1px solid rgba(14,36,64,.08);box-shadow:0 24px 54px -34px rgba(14,36,64,.3)">
+      <div class="reveal m-card" style="padding:36px 32px;border-radius:16px;background:#fff;border:1px solid rgba(14,36,64,.08);box-shadow:0 24px 54px -34px rgba(14,36,64,.3)">
         <div style="width:46px;height:46px;border-radius:50%;background:rgba(201,162,75,.1);display:grid;place-items:center;margin-bottom:22px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a8763f" stroke-width="1.8"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></div>
         <div style="font:600 11px 'Manrope';letter-spacing:.16em;color:#a8763f;margin-bottom:8px">03 · 시공 INSTALLATION</div>
         <div style="font:500 18px/1.5 'Noto Serif KR',serif;color:#0e2440;margin-bottom:10px">만든 사람이 끝까지 책임집니다</div>
@@ -229,19 +232,19 @@ body.nav-open .nav-mobile-panel{display:flex}
     <div class="reveal" style="font:600 12px 'Manrope';letter-spacing:.42em;color:#a89878;margin-bottom:16px">EUNSUNG IN NUMBERS · 숫자로 보는 은성</div>
     <!-- 카드 배경/테두리 없이, 얇은 상단 구분선만으로 구획한다 -->
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:40px;margin-top:44px">
-      <div class="reveal" style="border-top:1px solid rgba(14,36,64,.16);padding-top:26px">
+      <div class="reveal m-stat" style="border-top:1px solid rgba(14,36,64,.16);padding-top:26px">
         <div style="font:500 52px/1 'Cormorant Garamond';color:#0e2440;margin-bottom:12px">2009</div>
         <div style="font:600 11px 'Manrope';letter-spacing:.14em;color:rgba(14,36,64,.5)">설립연도 · FOUNDED</div>
       </div>
-      <div class="reveal" style="border-top:1px solid rgba(14,36,64,.16);padding-top:26px">
+      <div class="reveal m-stat" style="border-top:1px solid rgba(14,36,64,.16);padding-top:26px">
         <div style="font:500 52px/1 'Cormorant Garamond';color:#0e2440;margin-bottom:12px">17<span style="font-size:26px">년</span></div>
         <div style="font:600 11px 'Manrope';letter-spacing:.14em;color:rgba(14,36,64,.5)">업력 · YEARS OF EXPERTISE</div>
       </div>
-      <div class="reveal" style="border-top:1px solid rgba(14,36,64,.16);padding-top:26px">
+      <div class="reveal m-stat" style="border-top:1px solid rgba(14,36,64,.16);padding-top:26px">
         <div style="font:500 52px/1 'Cormorant Garamond';color:#0e2440;margin-bottom:12px">4<span style="font-size:26px">종</span></div>
         <div style="font:600 11px 'Manrope';letter-spacing:.14em;color:rgba(14,36,64,.5)">취급 소재 · MATERIAL LINES</div>
       </div>
-      <div class="reveal" style="border-top:1px solid rgba(14,36,64,.16);padding-top:26px">
+      <div class="reveal m-stat" style="border-top:1px solid rgba(14,36,64,.16);padding-top:26px">
         <!-- 숫자 칸(52px + margin 12px)과 같은 높이를 만들어 아래 라벨이 같은 기준선에 오게 한다 -->
         <div style="height:52px;display:flex;align-items:flex-end;margin-bottom:12px">
           <img src="images/lx-hausys-logo.png" alt="LX하우시스" style="height:30px;width:auto;display:block" loading="lazy">
@@ -310,6 +313,33 @@ body.nav-open .nav-mobile-panel{display:flex}
       </div>
       <div style="display:flex;align-items:center;gap:10px;padding:15px 26px;border:1px solid rgba(14,36,64,.14);border-radius:40px;background:#fff">
         <span style="font:700 12px 'Manrope';letter-spacing:.06em;color:#0e2440">하이막스 <span style="font-weight:500;color:rgba(14,36,64,.5)">· LX하우시스 파트너 소재</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 공정 마퀴 (21st: Scroll Velocity Text) =====================
+     밴드 배경이 아래 회사정보 섹션과 같은 #0b0f15 라 그대로 이어진다.
+     장식이므로 aria-hidden, 문구는 전부 영문(치환 대상 아님). -->
+<section class="m-marquee-band" aria-hidden="true" style="border-bottom:0">
+  <div class="m-marquee m-marquee-row--outline" data-m-marquee data-m-speed="2.6" data-m-dir="-1">
+    <div class="m-marquee-track">
+      <div class="m-marquee-unit">
+        <span class="m-marquee-word">Measure</span><span class="m-marquee-dot"></span>
+        <span class="m-marquee-word">Draft</span><span class="m-marquee-dot"></span>
+        <span class="m-marquee-word">Cut</span><span class="m-marquee-dot"></span>
+        <span class="m-marquee-word">Finish</span><span class="m-marquee-dot"></span>
+        <span class="m-marquee-word">Install</span><span class="m-marquee-dot"></span>
+      </div>
+    </div>
+  </div>
+  <div class="m-marquee m-marquee-row--solid" data-m-marquee data-m-speed="3.4" data-m-dir="1">
+    <div class="m-marquee-track">
+      <div class="m-marquee-unit">
+        <span class="m-marquee-word">Quality</span><span class="m-marquee-dot"></span>
+        <span class="m-marquee-word">Speed</span><span class="m-marquee-dot"></span>
+        <span class="m-marquee-word">Craftsmanship</span><span class="m-marquee-dot"></span>
+        <span class="m-marquee-word is-accent">Eunsung</span><span class="m-marquee-dot"></span>
       </div>
     </div>
   </div>
