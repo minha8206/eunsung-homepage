@@ -40,8 +40,9 @@ window.I18N_EN = {
   '© 2026 (주)은성 EUNSUNG Co., Ltd.': '© 2026 EUNSUNG Co., Ltd.',
   '© 2026 (주)은성 EUNSUNG Co., Ltd. · 인조대리석 및 상판 가공':
     '© 2026 EUNSUNG Co., Ltd. · Solid surface and countertop fabrication',
-  '포세린·비아테라·하이막스·BMC — 소재 선별부터 가공, 시공까지 은성이 직접 합니다.':
-    'Porcelain, VIATERA, HIMACS, BMC — sourced, fabricated and installed by EUNSUNG.',
+  '포세린·엔지니어드 스톤·인조대리석·BMC': 'Porcelain · Engineered Stone · Solid Surface · BMC',
+  '소재 선별부터 가공, 시공까지. 은성이 처음부터 끝까지 책임집니다.':
+    'Sourcing, fabrication, installation — EUNSUNG sees it through from first to last.',
 
   /* ───────── index · 히어로 / 소재 ───────── */
   '표면은 공간의 인상을 결정합니다.': 'Surface defines the space.',
@@ -55,9 +56,9 @@ window.I18N_EN = {
 
   '엔지니어드 스톤': 'Engineered Stone',
 
-  '1200°C 고온에서 구워낸 대형 세라믹 슬랩입니다. 뜨거운 냄비를 바로 올려도, 햇빛에 오래 노출돼도 변색과 변형이 없어 실내외 어디든 시공할 수 있습니다.':
+  '뜨거운 냄비를 그대로 올려도, 10년을 써도 처음 그대로입니다. 1200℃ 고온이 만든 가장 강한 표면입니다.':
     'Large-format ceramic slabs fired at 1200°C. Set a hot pan straight down, or leave it in the sun for years — no discolouration, no warping, indoors or out.',
-  '천연 석영이 90% 이상 함유된 프리미엄 스톤입니다. 네 소재 중 표면 경도가 가장 높아 칼자국·흠집 걱정이 적고, 천연석 특유의 깊이 있는 질감을 그대로 담았습니다.':
+  '천연 석영 90%가 주는 깊이 있는 질감. 칼자국·흠집 걱정 없이, 매일 쓰는 주방이 오래 아름답습니다.':
     'Premium stone with over 90% natural quartz. The hardest surface of the four — knife marks and scratches are far less of a worry — with the depth of real stone intact.',
   '100% 아크릴계 솔리드 서페이스로, 이음새 없이 매끄럽게 이어지고 열로 곡면을 만들 수 있습니다. 생활 흠집이 생겨도 샌딩 한 번이면 새것처럼 복원됩니다.':
     '100% acrylic solid surface — joins disappear seamlessly, and heat forms it into curves. Everyday scratches sand right out, back to new.',
@@ -87,9 +88,8 @@ window.I18N_EN = {
   '실속 있게 마감하고 싶은 주방 · 다용도실에 추천':
     'For kitchens and utility rooms finished on a sensible budget',
 
-  '한 장의 슬랩이': 'From a single slab,',
-  '공간이 되기까지': 'to a finished space',
-  '공간이 되기까지.': 'to a finished space.',
+  '돌이 공간이 되기까지': 'From stone to space',
+  '돌이 공간이 되기까지.': 'From stone to space.',
 
   /* ───────── index · 문의 폼 ───────── */
   'INQUIRY · 문의': 'INQUIRY',
@@ -228,7 +228,7 @@ window.I18N_EN = {
     'EUNSUNG does not distribute — we fabricate. Ten stages, from measurement to installation, managed by one team.',
   '자재 입고 및 검수': 'Material intake and inspection',
   '들여오는 자재부터 다시 확인합니다.': 'It starts with checking what comes in.',
-  '은성은 LX Hausys 정식 대리점으로서, 입고되는 모든 슬랩을 전수 검수합니다. 규격과 색상 로트, 표면 상태까지 하나씩 확인한 자재만 가공 라인에 투입됩니다.':
+  '은성은 LX Hausys 정식 대리점으로서, 입고되는 모든 자재를 전수 검수합니다. 규격과 색상 로트, 표면 상태까지 하나씩 확인한 자재만 가공 라인에 투입됩니다.':
     'As an authorised LX Hausys dealer, we inspect every incoming slab. Only material verified for dimension, colour lot and surface condition enters the line.',
   '실측': 'On-site measurement',
   '밀리미터의 오차도 남기지 않습니다.': 'Not a millimetre is left to chance.',
@@ -238,7 +238,7 @@ window.I18N_EN = {
   '도면은 곧 가공 데이터입니다.': 'The drawing is the machine data.',
   '실측 수치로 정리된 CAD 도면은 가공 장비와 직접 연동됩니다. 사람이 수치를 옮겨 적는 과정이 없기 때문에, 도면에서 가공으로 전달되는 과정에서 생기는 오차가 존재하지 않습니다.':
     'CAD drawings built from measured figures feed the machines directly. Nothing is transcribed by hand, so nothing is lost between drawing and cut.',
-  '슬랩 배치': 'Slab layout',
+  '자재 배치': 'Slab layout',
   '결의 방향까지 미리 정합니다.': 'Even the direction of the veining is decided first.',
   '도면에 맞춰 슬랩을 배치하며 무늬결과 이음선의 위치를 재단 전에 확정합니다. 잘라내기 전에 완성된 모습을 먼저 확인하는 단계입니다.':
     'Slabs are laid out against the drawing, fixing veining and seam positions before any cut. The finished look is confirmed first.',

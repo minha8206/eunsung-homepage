@@ -1,0 +1,12 @@
+/* ===== 다크 푸터 링크 (전 페이지 공통) =====
+   기존에는 각 <a> 가 인라인 style 로 색을 갖고 있어 hover 를 줄 수 없었고,
+   페이지마다 흰색/골드가 섞여 있었다. 한 클래스로 모아 평상시는 흰 계열,
+   hover 에서만 골드가 되게 통일한다. */
+.ft-link{
+  font:400 13px 'Manrope',system-ui,sans-serif;
+  color:rgba(255,255,255,.6);
+  text-decoration:none;
+  transition:color .25s ease;
+}
+.ft-link:hover,
+.ft-link:focus-visible{ color:#c9a24b; }

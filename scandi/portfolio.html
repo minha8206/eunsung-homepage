@@ -73,13 +73,16 @@ a:hover{color:#c9a24b}
 .pf-tab:hover{border-color:rgba(184,147,95,.5);color:#2f3b3a}
 .pf-tab.is-active{background:#2f3b3a;border-color:#2f3b3a;color:#fff}
 .pf-tab.is-active span{color:rgba(255,255,255,.6)}
+/* 행 높이를 고르게: 카드는 같은 높이로 늘어나고(stretch 기본), 이미지는 고정 비율,
+   제목은 두 줄 자리를 미리 확보한다. 제목이 한 줄인 카드가 섞여도 행이 어긋나지 않는다. */
 .pf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
-.pf-card{cursor:pointer}
-.pf-card-img{height:260px;border-radius:16px;background-size:cover;background-position:center;margin-bottom:16px;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s;box-shadow:0 20px 40px -26px rgba(47,59,58,.4)}
+.pf-card{cursor:pointer;display:flex;flex-direction:column}
+/* height 고정 대신 비율 고정 — 열 너비가 달라져도 모든 카드가 같은 모양을 유지한다 */
+.pf-card-img{aspect-ratio:4/3;width:100%;border-radius:16px;background-size:cover;background-position:center;background-repeat:no-repeat;margin-bottom:16px;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s;box-shadow:0 20px 40px -26px rgba(47,59,58,.4)}
 .pf-card:hover .pf-card-img{transform:translateY(-6px);box-shadow:0 30px 54px -26px rgba(47,59,58,.5)}
 .pf-card-cap{font:600 9.5px 'Manrope';letter-spacing:.16em;color:#b8935f;margin-bottom:8px}
 /* 제목이 한국어라 한글 글꼴을 뒤에 둔다 — 라틴(지역명 로마자 등)은 Cormorant 가 받는다 */
-.pf-card-title{font-family:'Cormorant Garamond','Noto Serif KR',serif;font-weight:500;font-size:20px;line-height:1.45;color:#2f3b3a}
+.pf-card-title{font-family:'Cormorant Garamond','Noto Serif KR',serif;font-weight:500;font-size:20px;line-height:1.45;color:#2f3b3a;min-height:calc(20px * 1.45 * 2)}
 @media (max-width:900px){.pf-grid{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:600px){.pf-grid{grid-template-columns:1fr}}
 
