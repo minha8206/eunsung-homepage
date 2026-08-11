@@ -26,6 +26,7 @@
 <script src="assets/js/search-overlay.js" defer></script>
 <script src="js/i18n-en.js" defer></script>
 <script src="js/i18n.js" defer></script>
+<link rel="stylesheet" href="assets/css/typography.css">
 <link rel="stylesheet" href="assets/css/mobile.css">
 <link rel="stylesheet" href="assets/css/mobile-overlays.css">
 <link rel="stylesheet" href="assets/css/mobile-pages.css">
@@ -150,10 +151,10 @@ body.nav-open .nav-mobile-panel{display:flex}
   </a>
   <nav class="nav-mid">
     <a href="about.html">회사소개</a>
-    <a href="facility.html">설비라인</a>
+    <a href="facility.html">시공 과정</a>
     <a href="showroom.html?cat=PORCELAIN">포세린</a>
-    <a href="showroom.html?cat=VIATERA">비아테라</a>
-    <a href="showroom.html?cat=HIMACS">하이막스</a>
+    <a href="showroom.html?cat=VIATERA">엔지니어드 스톤</a>
+    <a href="showroom.html?cat=HIMACS">인조대리석</a>
     <a href="showroom.html?cat=BMC">BMC</a>
     <a href="portfolio.html">시공사례</a><a href="contact.html">문의</a>
   </nav>
@@ -166,10 +167,10 @@ body.nav-open .nav-mobile-panel{display:flex}
 </div>
 <div class="nav-mobile-panel" id="navMobilePanel">
   <a href="about.html">회사소개</a>
-  <a href="facility.html">설비라인</a>
+  <a href="facility.html">시공 과정</a>
   <a href="showroom.html?cat=PORCELAIN">포세린</a>
-  <a href="showroom.html?cat=VIATERA">비아테라</a>
-  <a href="showroom.html?cat=HIMACS">하이막스</a>
+  <a href="showroom.html?cat=VIATERA">엔지니어드 스톤</a>
+  <a href="showroom.html?cat=HIMACS">인조대리석</a>
   <a href="showroom.html?cat=BMC">BMC</a>
   <a href="portfolio.html">시공사례</a>
   <a href="contact.html">문의</a>
@@ -179,13 +180,12 @@ body.nav-open .nav-mobile-panel{display:flex}
 <div style="max-width:1440px;margin:0 auto;padding:150px 4vw 0">
   <div style="font:600 11px 'Manrope';letter-spacing:.44em;color:#a8763f;margin-bottom:14px">SHOWROOM · 쇼룸</div>
   <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
-    <h1 style="margin:0;font:500 54px/1.02 'Cormorant Garamond';color:#0e2440">Surface Collection</h1>
-    <div style="display:flex;align-items:center;gap:7px;padding:8px 15px;border:1px solid rgba(201,162,75,.45);border-radius:20px;margin-bottom:6px">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#a8763f" stroke-width="2"><path d="M12 2l2.4 6.6L21 9l-5 4.6L17.4 21 12 17.3 6.6 21 8 13.6 3 9l6.6-.4z"></path></svg>
-      <span style="font:700 10px 'Manrope';letter-spacing:.12em;color:#a8763f">LX Hausys 공식 딜러 · AUTHORIZED DEALER</span>
+    <h1 style="margin:0;font:500 clamp(30px,3.6vw,44px)/1.25 'Noto Serif KR',serif;color:#0e2440">소재 컬렉션</h1>
+    <div style="display:flex;align-items:center;margin-bottom:8px">
+      <img src="images/lx-hausys-logo.png" alt="LX Hausys 공식 파트너" style="height:26px;width:auto;display:block" loading="lazy">
     </div>
   </div>
-  <p style="margin:16px 0 0;font:400 14.5px/1.75 'Manrope';color:#7a8494;max-width:560px">포세린 슬랩부터 비아테라, 하이막스, BMC 인조대리석까지 — 포천 자체 공장에서 가공하는 전 소재 컬렉션입니다.</p>
+  <p style="margin:16px 0 0;font:400 14.5px/1.75 'Manrope';color:#7a8494;max-width:560px">포세린부터 BMC까지, 은성이 직접 보유하고 가공하는 전 소재를 한자리에 모았습니다.</p>
 </div>
 
 <!-- ===================== CATEGORY TABS ===================== -->
@@ -330,11 +330,10 @@ body.nav-open .nav-mobile-panel{display:flex}
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
         <div style="font:700 15px 'Manrope';letter-spacing:.24em;color:#fff">EUNSUNG</div>
       </div>
-      <div style="font:400 13px/1.8 'Manrope';color:rgba(255,255,255,.45);margin-bottom:4px">포세린·비아테라·하이막스·BMC — 소재 선별부터 가공, 시공까지 은성이 직접 합니다.</div>
-      <div style="font:400 11.5px/1.65 'Manrope';color:rgba(255,255,255,.25)">A phygital flagship for ceramic, engineered stone and solid surface — fabricated in Pocheon, delivered everywhere.</div>
+      <div style="font:400 13px/1.8 'Manrope';color:rgba(255,255,255,.45)">포세린·비아테라·하이막스·BMC — 소재 선별부터 가공, 시공까지 은성이 직접 합니다.</div>
     </div>
     <div style="display:flex;gap:64px;flex-wrap:wrap">
-      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">MATERIALS</div><div style="display:flex;flex-direction:column;gap:11px"><a href="showroom.html?cat=PORCELAIN" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">포세린</a><a href="showroom.html?cat=VIATERA" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">비아테라</a><a href="showroom.html?cat=HIMACS" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">하이막스</a><a href="showroom.html?cat=BMC" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">BMC</a></div></div>
+      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">MATERIALS</div><div style="display:flex;flex-direction:column;gap:11px"><a href="showroom.html?cat=PORCELAIN" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">포세린</a><a href="showroom.html?cat=VIATERA" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">엔지니어드 스톤</a><a href="showroom.html?cat=HIMACS" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">인조대리석</a><a href="showroom.html?cat=BMC" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">BMC</a></div></div>
       <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">COMPANY</div><div style="display:flex;flex-direction:column;gap:11px"><a href="portfolio.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Portfolio</a><a href="process.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Process</a><a href="facility.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Facility</a><a href="showroom.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Showroom</a></div></div>
       <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">SUPPORT</div><div style="display:flex;flex-direction:column;gap:11px"><a href="showroom.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Store</a><a href="index.html#inquiry" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Inquiry</a><a href="index.html#inquiry" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">FAQ</a></div></div>
     </div>

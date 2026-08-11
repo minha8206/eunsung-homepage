@@ -24,10 +24,10 @@
 
   var PAGES = [
     { name: '회사소개', url: 'about.html',                     desc: '2009년 설립부터 지금까지, 은성이 걸어온 길' },
-    { name: '설비라인', url: 'facility.html',                  desc: '포천 자체 공장의 재단부터 시공까지 전 공정' },
-    { name: '포세린',   url: 'showroom.html?cat=PORCELAIN',    desc: '1200°C 고온 소성으로 완성되는 대형 세라믹 슬랩' },
-    { name: '비아테라', url: 'showroom.html?cat=VIATERA',      desc: '천연 석영 기반의 프리미엄 엔지니어드 스톤' },
-    { name: '하이막스', url: 'showroom.html?cat=HIMACS',       desc: '이음새 없는 100% 아크릴 솔리드 서페이스' },
+    { name: '시공 과정', url: 'facility.html',                 desc: '실측부터 현장 시공까지, 은성이 직접 관리하는 10단계' },
+    { name: '포세린',   url: 'showroom.html?cat=PORCELAIN',    desc: '1200°C 고온에서 구워낸 대형 세라믹 슬랩' },
+    { name: '엔지니어드 스톤', url: 'showroom.html?cat=VIATERA', desc: '비아테라 — 석영 90% 이상의 프리미엄 스톤' },
+    { name: '인조대리석', url: 'showroom.html?cat=HIMACS',      desc: '하이막스 — 이음새 없는 100% 아크릴 솔리드 서페이스' },
     { name: 'BMC',      url: 'showroom.html?cat=BMC',          desc: '자체 생산하는 열경화성 성형 컴파운드' },
     { name: '시공사례', url: 'portfolio.html',                 desc: '주방·욕실·상업공간 시공 레퍼런스' },
     { name: '문의',     url: 'contact.html',                   desc: '견적·시공·자재 문의와 쇼룸 방문 예약' }

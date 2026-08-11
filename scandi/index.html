@@ -26,6 +26,7 @@
 <script src="assets/js/search-overlay.js" defer></script>
 <script src="js/i18n-en.js" defer></script>
 <script src="js/i18n.js" defer></script>
+<link rel="stylesheet" href="assets/css/typography.css">
 <link rel="stylesheet" href="assets/css/mobile.css">
 <link rel="stylesheet" href="assets/css/mobile-overlays.css">
 <link rel="stylesheet" href="assets/css/mobile-pages.css">
@@ -41,8 +42,7 @@
       <div class="vhero-media-shade"></div>
     </div>
     <div class="vhero-title">
-      <h2 class="vhero-word" id="vheroWordL">EUNSUNG</h2>
-      <h2 class="vhero-word" id="vheroWordR">STUDIO</h2>
+      <h2 class="vhero-word" id="vheroWord">EUNSUNG</h2>
     </div>
     <div class="vhero-hint" id="vheroHint">
       <span class="vhero-hint-label">SCROLL TO EXPAND</span>
@@ -70,8 +70,12 @@
 .vhero-media{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border-radius:18px;overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,.45);z-index:1}
 .vhero-media video{width:100%;height:100%;object-fit:cover;display:block}
 .vhero-media-shade{position:absolute;inset:0;background:rgba(0,0,0,.32)}
-.vhero-title{position:relative;z-index:2;display:flex;gap:18px;align-items:baseline;justify-content:center;flex-wrap:wrap;pointer-events:none}
-.vhero-word{font:500 clamp(40px,7vw,110px) 'Cormorant Garamond';color:#f8f5ef;margin:0;text-shadow:0 16px 50px rgba(0,0,0,.5)}
+.vhero-title{position:relative;z-index:2;display:flex;align-items:baseline;justify-content:center;pointer-events:none}
+/* 단어 하나만 남았으므로 자간을 넓혀 화면 폭을 채운다.
+   letter-spacing 은 마지막 글자 뒤에도 붙어 상자가 자간만큼 넓어진다 —
+   같은 값의 음수 margin-right 로 상쇄해야 글자가 정확히 가운데 온다.
+   (JS 가 스크롤에 맞춰 두 값을 함께 갱신한다) */
+.vhero-word{font:500 clamp(52px,11vw,180px) 'Cormorant Garamond';color:#f8f5ef;margin:0 -.16em 0 0;letter-spacing:.16em;white-space:nowrap;text-shadow:0 16px 50px rgba(0,0,0,.5)}
 .vhero-hint{position:absolute;left:50%;bottom:40px;transform:translateX(-50%);z-index:2;font:600 11px 'Manrope';letter-spacing:.3em;color:rgba(243,239,230,.7);transition:opacity .4s ease;display:flex;flex-direction:column;align-items:center;pointer-events:none}
 .vhero-hint-label{display:block;animation:vheroHintPulse 3s ease-in-out infinite}
 .vhero-hint-chevrons{display:flex;flex-direction:column;align-items:center;margin-top:8px}
@@ -156,15 +160,17 @@ a:hover{color:#c9a24b}
 .hero-kb-bg{position:relative;flex:0 0 auto;width:1024px;max-width:92vw;aspect-ratio:1024/572;background-size:cover;background-position:center;background-repeat:no-repeat;border-radius:4px;box-shadow:0 30px 70px -20px rgba(14,36,64,.35);animation:heroKbZoom 20s ease-out forwards;overflow:hidden}
 
 /* ===== MATERIALS · HORIZONTAL BANNERS ===== */
-.mbanner{display:flex;height:380px;border-radius:14px;overflow:hidden;box-shadow:0 20px 50px -30px rgba(14,36,64,.5);margin-bottom:24px}
+.mbanner{display:flex;min-height:380px;border-radius:14px;overflow:hidden;box-shadow:0 20px 50px -30px rgba(14,36,64,.5);margin-bottom:24px}
 .mbanner-image{flex:1 1 auto;position:relative;background-size:cover;background-position:center}
 .mbanner-image::after{content:'';position:absolute;inset:0;background:rgba(14,20,30,.22)}
 .mbanner-panel{flex:0 0 min(42%,460px);display:flex;flex-direction:column;justify-content:center;padding:36px 44px;background:rgba(255,253,249,.94)}
 .mbanner-eyebrow{font:600 10px 'Manrope';letter-spacing:.14em;color:#b8924a}
-.mbanner-title{font:500 32px 'Cormorant Garamond';color:#0e2440}
-.mbanner-desc-ko{font:400 13.5px/1.72 'Manrope';color:rgba(14,36,64,.6);margin-bottom:4px}
-.mbanner-desc-en{font:400 11.5px/1.6 'Manrope';color:rgba(14,36,64,.4);margin-bottom:18px}
+/* 라틴은 Cormorant, 한글은 Noto Serif KR 로 떨어지게 순서를 잡는다 */
+.mbanner-title{font:500 32px 'Cormorant Garamond','Noto Serif KR',serif;color:#0e2440}
+.mbanner-desc-ko{font:400 13.5px/1.72 'Manrope';color:rgba(14,36,64,.6);margin-bottom:18px}
 .mbanner-chips{display:flex;flex-wrap:wrap;gap:7px}
+/* 용도 추천 한 줄 — 칩 아래에서 "그래서 어디에 쓰나"를 짚어준다 */
+.mbanner-rec{margin-top:14px;font:600 11.5px/1.65 'Manrope';color:#a8763f}
 .mbanner-chip{font:600 10px 'Manrope';letter-spacing:.06em;color:#0e2440;background:rgba(14,36,64,.06);padding:6px 11px;border-radius:20px}
 /* LX하우시스 공식 파트너 블록 — 삭제한 딜러 줄과 같은 자리(구분선+여백)를 쓴다 */
 .mbanner-partner{margin-top:16px;padding-top:14px;border-top:1px solid rgba(14,36,64,.08)}
@@ -229,10 +235,10 @@ body.nav-open .nav-mobile-panel{display:flex}
   </a>
   <nav class="nav-mid" style="color:#1a1a1a">
     <a href="about.html">회사소개</a>
-    <a href="facility.html">설비라인</a>
+    <a href="facility.html">시공 과정</a>
     <a href="showroom.html?cat=PORCELAIN">포세린</a>
-    <a href="showroom.html?cat=VIATERA">비아테라</a>
-    <a href="showroom.html?cat=HIMACS">하이막스</a>
+    <a href="showroom.html?cat=VIATERA">엔지니어드 스톤</a>
+    <a href="showroom.html?cat=HIMACS">인조대리석</a>
     <a href="showroom.html?cat=BMC">BMC</a>
     <a href="portfolio.html">시공사례</a><a href="contact.html">문의</a>
   </nav>
@@ -245,10 +251,10 @@ body.nav-open .nav-mobile-panel{display:flex}
 </div>
 <div class="nav-mobile-panel" id="navMobilePanel">
   <a href="about.html">회사소개</a>
-  <a href="facility.html">설비라인</a>
+  <a href="facility.html">시공 과정</a>
   <a href="showroom.html?cat=PORCELAIN">포세린</a>
-  <a href="showroom.html?cat=VIATERA">비아테라</a>
-  <a href="showroom.html?cat=HIMACS">하이막스</a>
+  <a href="showroom.html?cat=VIATERA">엔지니어드 스톤</a>
+  <a href="showroom.html?cat=HIMACS">인조대리석</a>
   <a href="showroom.html?cat=BMC">BMC</a>
   <a href="portfolio.html">시공사례</a>
   <a href="contact.html">문의</a>
@@ -257,34 +263,31 @@ body.nav-open .nav-mobile-panel{display:flex}
 <!-- ===================== MATERIALS ===================== -->
 <section id="materials" style="background:#ede9e1;padding:120px 5vw;scroll-margin-top:64px">
   <div style="max-width:1280px;margin:0 auto">
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:28px;margin-bottom:60px">
-      <div>
-        <div style="width:60px;height:1px;background:#bf8e5a;margin-bottom:16px"></div>
-        <div style="font:600 12px 'Manrope';letter-spacing:.42em;color:#b8924a;margin-bottom:16px">MATERIALS · 소재</div>
-        <div style="font:500 clamp(38px,5vw,64px)/1.02 'Cormorant Garamond';color:#0e2440">Four surfaces.<br>One standard.</div>
-        <div style="margin-top:18px;font:400 13.5px/1.8 'Manrope';color:rgba(14,36,64,.5);max-width:460px">2009년 BMC 인조대리석 가공 전문으로 출발해, 세라믹·E-Stone·MMA·BMC 전 라인업을 다루는 종합 표면재 기업으로 성장했습니다.</div>
-      </div>
-      <div style="max-width:420px"><div style="font:400 15px/1.85 'Manrope';color:rgba(14,36,64,.62)">성형 컴파운드부터 대형 세라믹까지, 은성의 모든 표면재는 포천 공장에서 하나의 정밀 기준으로 가공됩니다.</div><div style="margin-top:8px;font:400 12.5px/1.7 'Manrope';color:rgba(14,36,64,.4)">From molded composites to large-format ceramic, every EUNSUNG surface is fabricated in our Pocheon facility to a single benchmark of precision.</div></div>
+    <div style="margin-bottom:60px">
+      <div style="width:60px;height:1px;background:#bf8e5a;margin-bottom:16px"></div>
+      <div style="font:600 12px 'Manrope';letter-spacing:.42em;color:#b8924a;margin-bottom:18px">MATERIALS · 소재</div>
+      <h2 style="margin:0;font:500 clamp(30px,4.2vw,52px)/1.32 'Noto Serif KR',serif;color:#0e2440;max-width:18em">네 가지 소재, 하나의 기준</h2>
+      <div style="margin-top:20px;font:400 14.5px/1.85 'Manrope';color:rgba(14,36,64,.55);max-width:560px">2009년 BMC 인조대리석 가공 전문으로 출발해, 세라믹·E-Stone·MMA·BMC 전 라인업을 다루는 종합 표면재 기업으로 성장했습니다.</div>
     </div>
     <div>
       <!-- 포세린 (panel right) -->
       <div class="mbanner">
         <div class="mbanner-image" style="background-image:url('assets/porcelain.jpg')"></div>
         <div class="mbanner-panel">
-          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">포세린</div><div class="mbanner-eyebrow" style="margin-bottom:0">Ceramic · Porcelain</div></div>
-          <div class="mbanner-desc-ko">1200°C 이상 고온 소성으로 완성되는 대형 세라믹 슬랩. 열·자외선·흡수에 강해 실내외 구분 없이 시공됩니다.</div>
-          <div class="mbanner-desc-en">Large-format ceramic slabs fired above 1200°C — resistant to heat, UV and water absorption, for interior and exterior alike.</div>
-          <div class="mbanner-chips"><span class="mbanner-chip">3200×1600 대형 규격</span><span class="mbanner-chip">열·긁힘·오염에 강함</span><span class="mbanner-chip">실내외 시공</span></div>
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">포세린</div></div>
+          <div class="mbanner-desc-ko">1200°C 고온에서 구워낸 대형 세라믹 슬랩입니다. 뜨거운 냄비를 바로 올려도, 햇빛에 오래 노출돼도 변색과 변형이 없어 실내외 어디든 시공할 수 있습니다.</div>
+          <div class="mbanner-chips"><span class="mbanner-chip">실내외 모두 시공 가능</span><span class="mbanner-chip">열에 가장 강한 소재</span><span class="mbanner-chip">3200×1600 대형 슬랩</span></div>
+          <div class="mbanner-rec">아일랜드 상판 · 벽면 · 외장 등 열이 닿는 넓은 공간에 추천</div>
           <div class="mbanner-partner"><div class="mbanner-partner-cap">OFFICIAL PARTNER</div><img src="images/lx-hausys-logo.png" alt="LX Hausys" loading="lazy"></div>
         </div>
       </div>
       <!-- 비아테라 (panel left) -->
       <div class="mbanner">
         <div class="mbanner-panel">
-          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">비아테라</div><div class="mbanner-eyebrow" style="margin-bottom:0">엔지니어드 스톤</div></div>
-          <div class="mbanner-desc-ko">천연 석영 기반의 엔지니어드 스톤. 천연석의 깊이감과 산업적 균일함을 동시에 갖춘 프리미엄 상판재입니다.</div>
-          <div class="mbanner-desc-en">Engineered stone built on natural quartz — the depth of real stone with industrial consistency, for premium worktops.</div>
-          <div class="mbanner-chips"><span class="mbanner-chip">석영 90% 이상</span><span class="mbanner-chip">스크래치·오염 강함</span><span class="mbanner-chip">주방 상판 최적</span></div>
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">엔지니어드 스톤</div><div class="mbanner-eyebrow" style="margin-bottom:0">비아테라</div></div>
+          <div class="mbanner-desc-ko">천연 석영이 90% 이상 함유된 프리미엄 스톤입니다. 네 소재 중 표면 경도가 가장 높아 칼자국·흠집 걱정이 적고, 천연석 특유의 깊이 있는 질감을 그대로 담았습니다.</div>
+          <div class="mbanner-chips"><span class="mbanner-chip">석영 90% 이상</span><span class="mbanner-chip">흠집에 가장 강한 경도</span><span class="mbanner-chip">천연석의 깊이감</span></div>
+          <div class="mbanner-rec">매일 쓰는 주방 상판, 고급스러운 질감이 필요한 공간에 추천</div>
           <div class="mbanner-partner"><div class="mbanner-partner-cap">OFFICIAL PARTNER</div><img src="images/lx-hausys-logo.png" alt="LX Hausys" loading="lazy"></div>
         </div>
         <div class="mbanner-image" style="background-image:url('assets/viatera.jpg')"></div>
@@ -293,20 +296,20 @@ body.nav-open .nav-mobile-panel{display:flex}
       <div class="mbanner">
         <div class="mbanner-image" style="background-image:url('assets/himacs.jpg')"></div>
         <div class="mbanner-panel">
-          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">하이막스</div><div class="mbanner-eyebrow" style="margin-bottom:0">MMA 인조대리석</div></div>
-          <div class="mbanner-desc-ko">100% 아크릴계(MMA) 솔리드 서페이스. 이음새 없는 접합과 곡면 성형이 가능해 디자인 제약이 없습니다.</div>
-          <div class="mbanner-desc-en">100% acrylic (MMA) solid surface — seamless joins and thermoformed curves leave no design constraints.</div>
-          <div class="mbanner-chips"><span class="mbanner-chip">이음새 없는 시공</span><span class="mbanner-chip">곡선 성형 가능</span><span class="mbanner-chip">샌딩 복원 가능</span></div>
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">인조대리석</div><div class="mbanner-eyebrow" style="margin-bottom:0">하이막스</div></div>
+          <div class="mbanner-desc-ko">100% 아크릴계 솔리드 서페이스로, 이음새 없이 매끄럽게 이어지고 열로 곡면을 만들 수 있습니다. 생활 흠집이 생겨도 샌딩 한 번이면 새것처럼 복원됩니다.</div>
+          <div class="mbanner-chips"><span class="mbanner-chip">이음새 없는 일체형 마감</span><span class="mbanner-chip">곡선 디자인 자유</span><span class="mbanner-chip">샌딩으로 복원 가능</span></div>
+          <div class="mbanner-rec">곡선 카운터 · 세면대 등 디자인 자유도가 필요한 공간에 추천</div>
           <div class="mbanner-partner"><div class="mbanner-partner-cap">OFFICIAL PARTNER</div><img src="images/lx-hausys-logo.png" alt="LX Hausys" loading="lazy"></div>
         </div>
       </div>
       <!-- BMC (panel left) -->
       <div class="mbanner" style="margin-bottom:0">
         <div class="mbanner-panel">
-          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">BMC</div><div class="mbanner-eyebrow" style="margin-bottom:0">성형 컴파운드</div></div>
-          <div class="mbanner-desc-ko">열과 충격에 강한 열경화성 성형 컴파운드. 일체 성형으로 이음새 없이 매끄럽게 마감됩니다.</div>
-          <div class="mbanner-desc-en">A heat- and impact-resistant thermoset molding compound, finished seamlessly in a single molded piece.</div>
-          <div class="mbanner-chips"><span class="mbanner-chip">일체 성형 마감</span><span class="mbanner-chip">내열·내충격</span><span class="mbanner-chip">위생적 표면</span></div>
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">BMC</div></div>
+          <div class="mbanner-desc-ko">은성이 직접 생산하는 열경화성 성형 컴파운드입니다. 싱크볼까지 하나로 성형돼 물샐 틈 없이 위생적이고, 자체 생산이라 가격과 납기 모두 합리적입니다.</div>
+          <div class="mbanner-chips"><span class="mbanner-chip">싱크볼 일체 성형</span><span class="mbanner-chip">은성 자체 생산</span><span class="mbanner-chip">합리적인 가격</span></div>
+          <div class="mbanner-rec">실속 있게 마감하고 싶은 주방 · 다용도실에 추천</div>
         </div>
         <div class="mbanner-image" style="background-image:url('images/bmc-kitchen.jpg')"></div>
       </div>
@@ -381,11 +384,10 @@ body.nav-open .nav-mobile-panel{display:flex}
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
         <div style="font:700 15px 'Manrope';letter-spacing:.24em;color:#fff">EUNSUNG</div>
       </div>
-      <div style="font:400 13px/1.8 'Manrope';color:rgba(255,255,255,.45);margin-bottom:4px">포세린·비아테라·하이막스·BMC — 소재 선별부터 가공, 시공까지 은성이 직접 합니다.</div>
-      <div style="font:400 11.5px/1.65 'Manrope';color:rgba(255,255,255,.25)">A phygital flagship for ceramic, engineered stone and solid surface — fabricated in Pocheon, delivered everywhere.</div>
+      <div style="font:400 13px/1.8 'Manrope';color:rgba(255,255,255,.45)">포세린·비아테라·하이막스·BMC — 소재 선별부터 가공, 시공까지 은성이 직접 합니다.</div>
     </div>
     <div style="display:flex;gap:64px;flex-wrap:wrap">
-      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">MATERIALS</div><div style="display:flex;flex-direction:column;gap:11px"><a href="#materials" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">BMC</a><a href="#materials" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">하이막스</a><a href="#materials" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">비아테라</a><a href="#materials" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">포세린</a></div></div>
+      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">MATERIALS</div><div style="display:flex;flex-direction:column;gap:11px"><a href="#materials" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">BMC</a><a href="#materials" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">인조대리석</a><a href="#materials" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">엔지니어드 스톤</a><a href="#materials" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">포세린</a></div></div>
       <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">COMPANY</div><div style="display:flex;flex-direction:column;gap:11px"><a href="portfolio.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Portfolio</a><a href="process.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Process</a><a href="facility.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Facility</a><a href="#top" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Showroom</a></div></div>
       <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">SUPPORT</div><div style="display:flex;flex-direction:column;gap:11px"><a href="showroom.html" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Store</a><a href="#inquiry" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">Inquiry</a><a href="#inquiry" style="font:400 13px 'Manrope';color:rgba(255,255,255,.6);text-decoration:none">FAQ</a></div></div>
     </div>
@@ -483,8 +485,7 @@ class Component extends DCLogic {
   function init() {
     var mediaEl = document.getElementById('vheroMedia');
     var bgEl = document.getElementById('vheroBg');
-    var wordL = document.getElementById('vheroWordL');
-    var wordR = document.getElementById('vheroWordR');
+    var word = document.getElementById('vheroWord');
     var hintEl = document.getElementById('vheroHint');
     var contentEl = document.getElementById('vheroContent');
     var videoEl = document.getElementById('vheroVideo');
@@ -582,14 +583,18 @@ class Component extends DCLogic {
     function render() {
       var mediaWidth = 300 + scrollProgress * (isMobile ? 650 : 1250);
       var mediaHeight = 400 + scrollProgress * (isMobile ? 200 : 400);
-      var textTranslate = scrollProgress * (isMobile ? 18 : 15);
+      /* 단어가 하나뿐이라 좌우로 벌릴 수 없다. 대신 자간을 열어
+         "펼쳐지는" 인상을 유지하면서 중앙 정렬은 그대로 둔다. */
+      var track = 0.16 + scrollProgress * (isMobile ? 0.08 : 0.16);
       mediaEl.style.width = mediaWidth + 'px';
       mediaEl.style.height = mediaHeight + 'px';
       mediaEl.style.maxWidth = '95vw';
       mediaEl.style.maxHeight = '85vh';
       bgEl.style.opacity = String(1 - scrollProgress);
-      wordL.style.transform = 'translateX(-' + textTranslate + 'vw)';
-      wordR.style.transform = 'translateX(' + textTranslate + 'vw)';
+      if (word) {
+        word.style.letterSpacing = track + 'em';
+        word.style.marginRight = -track + 'em';
+      }
       hintEl.style.opacity = String(Math.max(0, 1 - scrollProgress * 4));
       if (!fullyExpanded) scrubVideo();
     }

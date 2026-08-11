@@ -1,0 +1,19 @@
+/* ===== 한국어 줄바꿈 (전 페이지 공통) =====
+
+   기본값(word-break: normal)은 한글을 글자 단위로 끊는다. 그래서
+   "정품 슬라브의 가치를 아는 곳" 같은 문장이 "가 / 치를" 처럼
+   어절 중간에서 갈라진다. keep-all 로 어절(공백) 단위로만 끊게 바꾼다.
+
+   대신 keep-all 은 띄어쓰기 없는 긴 문자열(URL·제품코드)을 끊지 못해
+   좁은 화면에서 가로로 넘친다. overflow-wrap: break-word 가 그때만
+   개입해서 넘치는 경우에 한해 강제로 끊어준다.
+
+   두 속성 모두 상속되므로 body 하나면 대부분 덮인다. 아래 목록은
+   폼 컨트롤처럼 상속이 끊기는 요소를 명시적으로 잡기 위한 것이다. */
+body,
+h1, h2, h3, h4, h5, h6,
+p, li, dt, dd, blockquote, figcaption,
+button, input, select, textarea {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}

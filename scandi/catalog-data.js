@@ -9,15 +9,15 @@ export const CATALOG = {
     items: [], // fetch로 채워짐 — getCatalog() 참고
   },
   VIATERA: {
-    ko: '비아테라', en: 'VIATERA',
+    ko: '엔지니어드 스톤', en: 'VIATERA',
     items: [], // fetch로 채워짐 — getCatalog() 참고
   },
   HIMACS: {
-    ko: '하이막스', en: 'HIMACS',
+    ko: '인조대리석', en: 'HIMACS',
     items: [], // fetch로 채워짐 — getCatalog() 참고
   },
   BMC: {
-    ko: 'BMC 인조대리석', en: 'BMC',
+    ko: 'BMC', en: 'BMC',
     items: [], // fetch로 채워짐 — getCatalog() 참고
   },
 };

@@ -10,11 +10,13 @@ window.I18N_EN = {
   /* 로고의 한글 첨자 — EN 에서는 옆의 EUNSUNG 과 겹치므로 숨긴다 */
   '은성': '__HIDE__',
   '회사소개': 'About',
-  '설비라인': 'Process',
+  '시공 과정': 'Process',
   '포세린': 'Porcelain',
   /* LX 공식 표기를 따른다 — VIATERA / HIMACS 는 대문자 */
   '비아테라': 'VIATERA',
   '하이막스': 'HIMACS',
+  /* 카테고리 라벨로 쓰이는 소재 일반명 */
+  '인조대리석': 'Solid Surface',
   '시공사례': 'Projects',
   '문의': 'Contact',
   '메뉴 열기': 'Open menu',
@@ -49,34 +51,41 @@ window.I18N_EN = {
   'MATERIALS · 소재': 'MATERIALS',
   '2009년 BMC 인조대리석 가공 전문으로 출발해, 세라믹·E-Stone·MMA·BMC 전 라인업을 다루는 종합 표면재 기업으로 성장했습니다.':
     'Founded in 2009 as a BMC solid-surface fabricator, EUNSUNG now covers the full surface line — Porcelain, Viatera, HIMACS and BMC.',
-  '성형 컴파운드부터 대형 세라믹까지, 은성의 모든 표면재는 포천 공장에서 하나의 정밀 기준으로 가공됩니다.':
-    'From molded compounds to large-format ceramic, every EUNSUNG surface is fabricated in our Pocheon facility to a single benchmark of precision.',
+  '네 가지 소재, 하나의 기준': 'Four surfaces. One standard.',
 
   '엔지니어드 스톤': 'Engineered Stone',
-  'MMA 인조대리석': 'MMA Solid Surface',
-  '성형 컴파운드': 'Molding Compound',
 
-  '1200°C 이상 고온 소성으로 완성되는 대형 세라믹 슬랩. 열·자외선·흡수에 강해 실내외 구분 없이 시공됩니다.':
-    'Large-format ceramic slabs fired above 1200°C — resistant to heat, UV and water absorption, for interior and exterior alike.',
-  '천연 석영 기반의 엔지니어드 스톤. 천연석의 깊이감과 산업적 균일함을 동시에 갖춘 프리미엄 상판재입니다.':
-    'Engineered stone built on natural quartz — the depth of real stone with industrial consistency, for premium worktops.',
-  '100% 아크릴계(MMA) 솔리드 서페이스. 이음새 없는 접합과 곡면 성형이 가능해 디자인 제약이 없습니다.':
-    '100% acrylic (MMA) solid surface — seamless joins and thermoformed curves leave no design constraints.',
-  '열과 충격에 강한 열경화성 성형 컴파운드. 일체 성형으로 이음새 없이 매끄럽게 마감됩니다.':
-    'A heat- and impact-resistant thermoset molding compound, finished seamlessly in a single molded piece.',
+  '1200°C 고온에서 구워낸 대형 세라믹 슬랩입니다. 뜨거운 냄비를 바로 올려도, 햇빛에 오래 노출돼도 변색과 변형이 없어 실내외 어디든 시공할 수 있습니다.':
+    'Large-format ceramic slabs fired at 1200°C. Set a hot pan straight down, or leave it in the sun for years — no discolouration, no warping, indoors or out.',
+  '천연 석영이 90% 이상 함유된 프리미엄 스톤입니다. 네 소재 중 표면 경도가 가장 높아 칼자국·흠집 걱정이 적고, 천연석 특유의 깊이 있는 질감을 그대로 담았습니다.':
+    'Premium stone with over 90% natural quartz. The hardest surface of the four — knife marks and scratches are far less of a worry — with the depth of real stone intact.',
+  '100% 아크릴계 솔리드 서페이스로, 이음새 없이 매끄럽게 이어지고 열로 곡면을 만들 수 있습니다. 생활 흠집이 생겨도 샌딩 한 번이면 새것처럼 복원됩니다.':
+    '100% acrylic solid surface — joins disappear seamlessly, and heat forms it into curves. Everyday scratches sand right out, back to new.',
+  '은성이 직접 생산하는 열경화성 성형 컴파운드입니다. 싱크볼까지 하나로 성형돼 물샐 틈 없이 위생적이고, 자체 생산이라 가격과 납기 모두 합리적입니다.':
+    'A thermoset molding compound we produce ourselves. The sink bowl is moulded in one piece — watertight and hygienic — and in-house production keeps both price and lead time reasonable.',
 
-  '3200×1600 대형 규격': '3200×1600 large format',
-  '열·긁힘·오염에 강함': 'Heat, scratch and stain resistant',
-  '실내외 시공': 'Interior and exterior',
+  '실내외 모두 시공 가능': 'Interior and exterior',
+  '열에 가장 강한 소재': 'Most heat-resistant of the four',
+  '3200×1600 대형 슬랩': '3200×1600 large slab',
   '석영 90% 이상': 'Over 90% quartz',
-  '스크래치·오염 강함': 'Scratch and stain resistant',
-  '주방 상판 최적': 'Ideal for kitchen worktops',
-  '이음새 없는 시공': 'Seamless installation',
-  '곡선 성형 가능': 'Thermoformable curves',
-  '샌딩 복원 가능': 'Restorable by sanding',
-  '일체 성형 마감': 'Single-piece molded finish',
-  '내열·내충격': 'Heat and impact resistant',
-  '위생적 표면': 'Hygienic surface',
+  '흠집에 가장 강한 경도': 'Hardest against scratches',
+  '천연석의 깊이감': 'The depth of real stone',
+  '이음새 없는 일체형 마감': 'Seamless single-piece finish',
+  '곡선 디자인 자유': 'Free-form curves',
+  '샌딩으로 복원 가능': 'Restorable by sanding',
+  '싱크볼 일체 성형': 'Sink bowl moulded in one piece',
+  '은성 자체 생산': 'Produced in-house by EUNSUNG',
+  '합리적인 가격': 'Sensible pricing',
+
+  /* 카드마다 붙는 용도 추천 한 줄 */
+  '아일랜드 상판 · 벽면 · 외장 등 열이 닿는 넓은 공간에 추천':
+    'For islands, walls and facades — wide surfaces that take heat',
+  '매일 쓰는 주방 상판, 고급스러운 질감이 필요한 공간에 추천':
+    'For everyday kitchen worktops, and spaces that need a refined texture',
+  '곡선 카운터 · 세면대 등 디자인 자유도가 필요한 공간에 추천':
+    'For curved counters, vanities — anywhere design freedom matters',
+  '실속 있게 마감하고 싶은 주방 · 다용도실에 추천':
+    'For kitchens and utility rooms finished on a sensible budget',
 
   '한 장의 슬랩이': 'From a single slab,',
   '공간이 되기까지': 'to a finished space',
@@ -145,7 +154,7 @@ window.I18N_EN = {
   'FACILITY · 생산 시설': 'FACILITY',
   '규모가 만드는 정밀함': 'Precision at scale.',
   'Precision at scale.': '__HIDE__',
-  '경기도 포천에 위치한 대형 가공 설비에서 정밀 가공을 통해 최상의 품질을 공급합니다. 체계적인 재고 관리와 자동화 설비로 신속한 자재 공급도 함께 실현합니다.':
+  '경기도 포천의 대형 가공 설비에서 직접 정밀 가공해 품질을 맞춥니다. 재고를 체계적으로 관리하고 설비를 자동화해 자재도 빠르게 공급합니다.':
     'Our large-scale facility in Pocheon delivers top-tier quality through precision fabrication, backed by systematic inventory management and automated supply.',
   'Our large-scale fabrication facility in Pocheon, Gyeonggi-do, delivers top-tier quality through precision processing — backed by systematic inventory management and automated supply.': '__HIDE__',
   'MATERIAL SCALE · 자재 규모': 'MATERIAL SCALE',
@@ -180,7 +189,7 @@ window.I18N_EN = {
   'B2B 파트너 · PROJECT': 'PROJECT',
   '1:1 맞춤 제작': 'Made to measure',
   '인테리어 · 건설사 · 호텔': 'Interiors · Developers · Hotels',
-  '가정용 싱크대, 상판부터 인테리어 표면재까지 개인 고객의 공간에 맞춘 1:1 맞춤 제작을 제공합니다.':
+  '가정용 싱크대와 상판부터 인테리어 표면재까지, 쓰시는 공간 치수에 맞춰 하나씩 제작해 드립니다.':
     'From kitchen sinks and worktops to interior surfaces — made to measure for your space.',
   '인테리어 업체, 건설사, 호텔 등 다양한 프로젝트 현장에 대량 공급과 시공을 지원합니다.':
     'Volume supply and installation for interior firms, developers, hotels and other project sites.',
@@ -213,13 +222,10 @@ window.I18N_EN = {
   '주소 · ADDRESS': 'ADDRESS',
   '이메일 · EMAIL': 'EMAIL',
 
-  /* ───────── facility (설비라인) ───────── */
-  'FACILITY · 설비라인': 'PROCESS',
+  /* ───────── facility (시공 과정) ───────── */
+  'PROCESS · 시공 과정': 'PROCESS',
   '은성은 유통하지 않고 직접 가공합니다. 실측부터 현장 시공까지, 한 팀이 관리하는 10단계 공정입니다.':
     'EUNSUNG does not distribute — we fabricate. Ten stages, from measurement to installation, managed by one team.',
-  'PREPARATION · 사전 준비': 'PREPARATION',
-  'PROCESSING · 가공': 'PROCESSING',
-  'COMPLETION · 완성': 'COMPLETION',
   '자재 입고 및 검수': 'Material intake and inspection',
   '들여오는 자재부터 다시 확인합니다.': 'It starts with checking what comes in.',
   '은성은 LX Hausys 정식 대리점으로서, 입고되는 모든 슬랩을 전수 검수합니다. 규격과 색상 로트, 표면 상태까지 하나씩 확인한 자재만 가공 라인에 투입됩니다.':
@@ -281,9 +287,9 @@ window.I18N_EN = {
 
   /* ───────── showroom ───────── */
   'SHOWROOM · 쇼룸': 'SHOWROOM',
-  'LX Hausys 공식 딜러 · AUTHORIZED DEALER': 'LX HAUSYS AUTHORIZED DEALER',
-  '포세린 슬랩부터 비아테라, 하이막스, BMC 인조대리석까지 — 포천 자체 공장에서 가공하는 전 소재 컬렉션입니다.':
-    'From porcelain slabs to Viatera, HIMACS and BMC solid surface — the full collection, fabricated in our own Pocheon facility.',
+  '소재 컬렉션': 'Surface Collection',
+  '포세린부터 BMC까지, 은성이 직접 보유하고 가공하는 전 소재를 한자리에 모았습니다.':
+    'From porcelain to BMC — every surface EUNSUNG stocks and fabricates, in one place.',
   /* 카테고리 · 스타일 분류 (개별 컬러명은 이번 범위 제외) */
   'BMC 인조대리석': 'BMC Solid Surface',
   '마블 · Marble': 'Marble',
@@ -384,8 +390,8 @@ window.I18N_EN = {
   '클릭하면 크게 볼 수 있습니다 ⊕': 'Click to enlarge ⊕',
   '제품을 찾을 수 없습니다': 'Product not found',
   '주소가 잘못되었거나 삭제된 제품입니다.': 'The address is incorrect, or this product has been removed.',
-  '정품 슬라브의 가치를 아는 곳,': 'Those who know what a genuine slab is worth —',
-  '재단부터 시공까지 은성이 완성합니다': 'EUNSUNG completes it, from cut to installation',
+  '정품 슬라브의 가치를 아는 곳': 'Those who know what a genuine slab is worth',
+  '재단부터 시공까지 직접 합니다': 'Cut and installed by us, start to finish',
   '공식 파트너로서 정품 슬라브를 상시 보유하고, 자체 공장에서 재단부터 시공까지 중간 유통 없이 직접 책임집니다.':
     'As an official partner we hold genuine slabs in stock, and take direct responsibility from cutting to installation in our own facility — with no intermediaries.',
   '공식 딜러': 'Authorised dealer',
@@ -522,10 +528,10 @@ window.I18N_EN = {
   '재고와 대체 컬러를 안내드립니다.': 'We will advise on stock and alternatives.',
   '페이지': 'Pages',
   '2009년 설립부터 지금까지, 은성이 걸어온 길': 'The road EUNSUNG has travelled since 2009',
-  '포천 자체 공장의 재단부터 시공까지 전 공정': 'Every stage, from cutting to installation, in our own Pocheon facility',
-  '1200°C 고온 소성으로 완성되는 대형 세라믹 슬랩': 'Large-format ceramic slabs fired above 1200°C',
-  '천연 석영 기반의 프리미엄 엔지니어드 스톤': 'Premium engineered stone built on natural quartz',
-  '이음새 없는 100% 아크릴 솔리드 서페이스': 'Seamless 100% acrylic solid surface',
+  '실측부터 현장 시공까지, 은성이 직접 관리하는 10단계': 'Ten stages from measurement to installation, all managed by EUNSUNG',
+  '1200°C 고온에서 구워낸 대형 세라믹 슬랩': 'Large-format ceramic slabs fired at 1200°C',
+  '비아테라 — 석영 90% 이상의 프리미엄 스톤': 'VIATERA — premium stone with over 90% quartz',
+  '하이막스 — 이음새 없는 100% 아크릴 솔리드 서페이스': 'HIMACS — seamless 100% acrylic solid surface',
   '자체 생산하는 열경화성 성형 컴파운드': 'Thermoset molding compound, produced in-house',
   '주방·욕실·상업공간 시공 레퍼런스': 'Kitchen, bathroom and commercial references',
   '견적·시공·자재 문의와 쇼룸 방문 예약': 'Quotes, installation, materials and showroom visits',
