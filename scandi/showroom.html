@@ -181,9 +181,12 @@ body.nav-open .nav-mobile-panel{display:flex}
   <div style="font:600 11px 'Manrope';letter-spacing:.44em;color:#a8763f;margin-bottom:14px">SHOWROOM · 쇼룸</div>
   <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
     <h1 style="margin:0;font:500 clamp(30px,3.6vw,44px)/1.25 'Noto Serif KR',serif;color:#0e2440">소재 컬렉션</h1>
-    <div style="display:flex;align-items:center;margin-bottom:8px">
-      <img src="images/lx-hausys-logo.png" alt="LX Hausys 공식 파트너" style="height:26px;width:auto;display:block" loading="lazy">
-    </div>
+    <!-- BMC 는 은성 자체 생산이라 LX 소재가 아니다 — 그 탭에서만 로고를 감춘다 -->
+    <sc-if value="{{ showLx }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;align-items:center;margin-bottom:8px">
+        <img src="images/lx-hausys-logo.png" alt="LX Hausys 공식 파트너" style="height:26px;width:auto;display:block" loading="lazy">
+      </div>
+    </sc-if>
   </div>
   <p style="margin:16px 0 0;font:400 14.5px/1.75 'Manrope';color:#7a8494;max-width:560px">포세린부터 BMC까지, 은성이 직접 보유하고 가공하는 전 소재를 한자리에 모았습니다.</p>
 </div>
@@ -428,6 +431,8 @@ class Component extends DCLogic {
       filterSheetOpen: false, openFilterSheet: this.openFilterSheet, closeFilterSheet: this.closeFilterSheet, stop: this.stop,
       pageItems: [], hasItems: false, noItems: false, pages: [], showPager: false,
       prevPage: () => {}, nextPage: () => {},
+      /* 데이터 로드 전에도 탭은 이미 정해져 있다 — 로고가 깜빡이지 않게 여기서도 계산한다 */
+      showLx: this.state.cat !== 'BMC',
     };
     if (!this.DATA) return empty;
 
@@ -485,6 +490,7 @@ class Component extends DCLogic {
       resetFilters: this.resetFilters,
       filterSheetOpen, openFilterSheet: this.openFilterSheet, closeFilterSheet: this.closeFilterSheet, stop: this.stop,
       pageItems, hasItems: total > 0, noItems: total === 0,
+      showLx: cat !== 'BMC',
       pages, showPager: maxPage > 1,
       prevPage: () => this.goPage(safePage - 1, maxPage),
       nextPage: () => this.goPage(safePage + 1, maxPage),
