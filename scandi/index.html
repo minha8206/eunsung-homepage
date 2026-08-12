@@ -44,7 +44,7 @@
   <div class="vhero-bg" id="vheroBg" style="background-image:url('assets/showroom-hero.jpg')"></div>
   <div class="vhero-stage">
     <div class="vhero-media" id="vheroMedia">
-      <video id="vheroVideo" src="assets/video/hero-scroll.mp4" poster="assets/showroom-hero.jpg" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture controlsList="nodownload noremoteplayback"></video>
+      <video id="vheroVideo" src="assets/video/hero-scroll.mp4" poster="assets/video/hero-poster.jpg" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture controlsList="nodownload noremoteplayback"></video>
       <div class="vhero-media-shade"></div>
     </div>
     <div class="vhero-title">
@@ -510,10 +510,15 @@ class Component extends DCLogic {
     var videoEl = document.getElementById('vheroVideo');
     if (!wrap || !mediaEl) return;
 
-    /* 모바일은 mobile-pages.css 가 영상을 전체화면으로 고정한다(인라인 크기를 쓰지 않는다).
-       여기서 인라인 width/height 를 쓰면 그 규칙과 싸우므로 크기 매핑을 건너뛴다. */
-    var mqMobile = window.matchMedia('(max-width: 769px)');
+    /* 1024px 미만은 모바일 — 확대 인터랙션을 아예 실행하지 않는다.
+       mobile-pages.css 가 같은 기준으로 영상을 처음부터 전체화면으로 고정하므로
+       여기서 인라인 width/height 를 쓰면 그 규칙과 싸운다. 크기 매핑 전체를 건너뛴다. */
+    var mqMobile = window.matchMedia('(max-width: 1023px)');
     var isMobile = mqMobile.matches;
+
+    /* 동작 줄이기 사용자에게는 영상 대신 poster 정지 이미지를 보여준다.
+       재생을 시작하지 않으면 브라우저가 poster 를 그대로 유지한다. */
+    var mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
 
     var ticking = false;
     var lastP = -1;
@@ -526,6 +531,8 @@ class Component extends DCLogic {
 
     function tryPlay() {
       if (!videoEl) return;
+      /* 동작 줄이기 — 재생하지 않고 poster 정지 이미지로 대체한다 */
+      if (mqReduce.matches) { videoEl.pause(); return; }
       videoEl.muted = true;
       videoEl.playsInline = true;
       var pr = videoEl.play();
@@ -538,6 +545,9 @@ class Component extends DCLogic {
       function retry() {
         RETRY_EVENTS.forEach(function (t) { window.removeEventListener(t, retry); });
         retryBound = false;
+        /* 데이터 절약 모드 등으로 로드 자체가 안 된 상태(HAVE_NOTHING)면
+           사용자 제스처가 생긴 지금 load 부터 다시 건다 */
+        if (videoEl.readyState === 0) { try { videoEl.load(); } catch (e) { /* 무시 */ } }
         tryPlay();
       }
       RETRY_EVENTS.forEach(function (t) {
@@ -548,6 +558,10 @@ class Component extends DCLogic {
     if (videoEl) {
       ['ended', 'stalled', 'pause'].forEach(function (t) {
         videoEl.addEventListener(t, function () { if (videoEl.paused) tryPlay(); });
+      });
+      /* 탭 전환·앱 복귀 후 브라우저가 영상을 멈춰둔 채 두는 경우 재개한다 */
+      document.addEventListener('visibilitychange', function () {
+        if (!document.hidden && videoEl.paused) tryPlay();
       });
     }
 
@@ -560,9 +574,14 @@ class Component extends DCLogic {
     }
 
     function render(p) {
+      /* 모바일: 확대 인터랙션 없음 — 텍스트 블록만 즉시 켜고 끝
+         (CSS 도 같은 구간에서 opacity:1 !important 안전망을 둔다) */
+      if (isMobile) {
+        if (contentEl) contentEl.classList.add('on');
+        return;
+      }
       /* 아래 텍스트 블록은 확장이 거의 끝났을 때 드러낸다 */
       if (contentEl) contentEl.classList.toggle('on', p > 0.85);
-      if (isMobile) return;
 
       mediaEl.style.width = (300 + p * 1250) + 'px';
       mediaEl.style.height = (400 + p * 400) + 'px';
@@ -595,9 +614,12 @@ class Component extends DCLogic {
     function onResize() {
       isMobile = mqMobile.matches;
       if (isMobile) {
-        /* 데스크톱에서 걸어둔 인라인 크기를 지워 CSS 전체화면 규칙에 넘긴다 */
+        /* 데스크톱에서 걸어둔 인라인 스타일을 전부 지워 CSS 전체화면 규칙에 넘긴다 */
         mediaEl.style.width = mediaEl.style.height = '';
         mediaEl.style.maxWidth = mediaEl.style.maxHeight = '';
+        if (word) { word.style.letterSpacing = ''; word.style.marginRight = ''; }
+        if (bgEl) bgEl.style.opacity = '';
+        if (hintEl) hintEl.style.opacity = '';
       }
       lastP = -1;
       onScroll();
@@ -606,6 +628,9 @@ class Component extends DCLogic {
     /* passive: true — 스크롤을 막지 않는다는 것을 브라우저에 명시한다 */
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onResize, { passive: true });
+    /* 회전·분할화면처럼 resize 이벤트가 불안정한 전환도 미디어쿼리 변화로 잡는다 */
+    if (mqMobile.addEventListener) mqMobile.addEventListener('change', onResize);
+    else if (mqMobile.addListener) mqMobile.addListener(onResize);
 
     tryPlay();
     render(progress());

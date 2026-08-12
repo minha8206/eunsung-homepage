@@ -2,9 +2,10 @@
    데스크톱(≥1280)에는 개입하지 않는다. */
 
 /* ──────────── 3-1 index: 히어로 ────────────
-   모바일에서는 스크롤 확장 연출을 끄고(index.html 의 init 가드) 정적
-   풀스크린으로 보여준다. 여기서는 그 정적 레이아웃을 만든다. */
-@media (max-width: 769px) {
+   1024px 미만(모바일·태블릿)은 스크롤 확장 연출을 끄고(index.html 의
+   init 가드와 같은 1023px 기준) 처음부터 정적 풀스크린으로 보여준다.
+   축소 프레임·SCROLL TO EXPAND 힌트도 이 구간에서는 아예 없다. */
+@media (max-width: 1023px) {
   /* 모바일은 확장 연출 없이 정적 풀스크린 — 래퍼를 200vh 로 둘 이유가 없다.
      한 화면 높이로 줄여 빈 스크롤 구간을 없앤다.
 
@@ -53,7 +54,10 @@
   .vhero-heading { font-size: clamp(24px, 6.4vw, 32px) !important; }
   .vhero-desc { font-size: 15px !important; line-height: 1.8 !important; }
   .vhero-partner { font-size: 9.5px !important; letter-spacing: .26em !important; }
+}
 
+/* ──────────── 3-1b index: 히어로 밖 섹션 (≤768 모바일만) ──────────── */
+@media (max-width: 769px) {
   /* 소재 4카드 — 이미지 위, 텍스트 아래 (페이지 자체 규칙 보강) */
   .mbanner { flex-direction: column !important; height: auto !important; }
   .mbanner-image { height: 210px !important; order: 1 !important; }
