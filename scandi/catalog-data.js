@@ -41,12 +41,12 @@ const HM_OVERRIDE = { '아이스버그': 'gray', '토라노': 'white', '제미�
 const HM_COLLECTION_DEFAULT = { '오로라&칼라카타': 'white', '그라빌라': 'beige', '그라나이트': 'gray', '솔리드': 'gray', '인텐스 울트라': 'gray', '루센트': 'dark', '콘크리트': 'gray', '볼케닉스': 'dark', '루시아': 'white', '에스터': 'gray', '테라조': 'beige' };
 const HM_STYLE = { '오로라&칼라카타': '마블 · Marble', '그라빌라': '스톤 · Stone', '그라나이트': '스톤 · Stone', '솔리드': '솔리드 · Solid', '인텐스 울트라': '솔리드 · Solid', '루센트': '솔리드 · Solid', '콘크리트': '콘크리트 · Concrete', '볼케닉스': '스톤 · Stone', '루시아': '마블 · Marble', '에스터': '솔리드 · Solid', '테라조': '테라조 · Terrazzo' };
 const HM_DESC = {
-  white: '인조대리석 화이트 계열 특유의 깨끗하고 안정된 인상 — 이음매 없는 시공으로 어떤 공간에도 무난하게 어울립니다.',
-  beige: '따뜻한 웜톤의 인조대리석 베이지 계열 — 우드 소재와 배색했을 때 특히 잘 어울리는 컬러입니다.',
-  gray: '차분한 뉴트럴 톤의 인조대리석 그레이 계열 — 모던하고 도시적인 공간 연출에 적합합니다.',
-  dark: '깊이감 있는 인조대리석 다크 톤 — 공간에 무게감과 고급스러운 존재감을 더합니다.',
+  white: '인조대리석 화이트 계열 특유의 깨끗하고 안정된 인상 —\n이음매 없는 시공으로 어떤 공간에도 무난하게 어울립니다.',
+  beige: '따뜻한 웜톤의 인조대리석 베이지 계열 —\n우드 소재와 배색했을 때 특히 잘 어울리는 컬러입니다.',
+  gray: '차분한 뉴트럴 톤의 인조대리석 그레이 계열 —\n모던하고 도시적인 공간 연출에 적합합니다.',
+  dark: '깊이감 있는 인조대리석 다크 톤 —\n공간에 무게감과 고급스러운 존재감을 더합니다.',
 };
-const HM_SPECS = ['760×3680 · 12T', '910×3680 · 12T'];
+const HM_SPECS = ['3680×760 · 12T', '3680×910 · 12T'];
 
 function classifyHimacsTone(name, collection) {
   if (HM_OVERRIDE[name]) return HM_OVERRIDE[name];
@@ -68,13 +68,15 @@ const PC_BEIGE_WEAK = ['트래버티노', '트레버티노', '크레모', '델�
 const PC_WHITE_WEAK = ['칼라카타', '스타투아리오', '앱솔루트', '히말라야'];
 const PC_COLLECTION_DEFAULT = { '라이트 마블 룩': 'white', '다크 마블 룩': 'dark', '콘크리트 룩': 'gray', '스톤 룩': 'beige' };
 const PC_STYLE = { '라이트 마블 룩': '마블 · Marble', '다크 마블 룩': '마블 · Marble', '콘크리트 룩': '콘크리트 · Concrete', '스톤 룩': '스톤 · Stone' };
+/* 설명의 \n 은 상세 페이지(white-space:pre-line)에서 대시 뒤 줄바꿈으로 살아난다.
+   pre-line 이 아닌 곳(쇼룸 등)에서는 공백으로 접히므로 어디서든 안전하다. */
 const PC_DESC = {
-  white: '포세린 화이트 계열 특유의 맑고 정제된 인상 — 대형 슬랩으로 이음매를 최소화한 웅장한 면 연출이 가능합니다.',
-  beige: '따뜻한 웜톤의 포세린 베이지 계열 — 내추럴한 우드 소재와 배색했을 때 특히 잘 어울립니다.',
-  gray: '차분한 뉴트럴 톤의 포세린 그레이 계열 — 모던하고 도시적인 공간 연출에 적합합니다.',
-  dark: '깊이감 있는 포세린 다크 톤 — 공간에 무게감과 고급스러운 존재감을 더합니다.',
+  white: '포세린 화이트 계열 특유의 맑고 정제된 인상 —\n대형 슬랩으로 이음매를 최소화한 웅장한 면 연출이 가능합니다.',
+  beige: '따뜻한 웜톤의 포세린 베이지 계열 —\n내추럴한 우드 소재와 배색했을 때 특히 잘 어울립니다.',
+  gray: '차분한 뉴트럴 톤의 포세린 그레이 계열 —\n모던하고 도시적인 공간 연출에 적합합니다.',
+  dark: '깊이감 있는 포세린 다크 톤 —\n공간에 무게감과 고급스러운 존재감을 더합니다.',
 };
-const PC_SPECS = ['1600×3200 · 12T', '1600×3200 · 20T'];
+const PC_SPECS = ['3200×1600 · 12T', '3200×1600 · 20T'];
 
 function classifyPorcelainTone(name, collection) {
   for (const k of PC_DARK_STRONG) if (name.includes(k)) return 'dark';
@@ -97,12 +99,12 @@ const VT_OVERRIDE = { '칼라카타 골드': 'white' };
 const VT_COLLECTION_DEFAULT = { '럭셔리': 'beige', '플로라': 'white', '로열': 'beige', '문명': 'dark', '노블': 'beige', '모노': 'gray', '미러': 'dark', '멀티': 'dark', '퓨어': 'white', 'LEV': 'beige' };
 const VT_STYLE = { '럭셔리': '마블 · Marble', '플로라': '마블 · Marble', '로열': '마블 · Marble', '문명': '스톤 · Stone', '노블': '마블 · Marble', '모노': '솔리드 · Solid', '미러': '스톤 · Stone', '멀티': '마블 · Marble', '퓨어': '솔리드 · Solid', 'LEV': '마블 · Marble' };
 const VT_DESC = {
-  white: '엔지니어드 스톤 화이트 계열 특유의 맑고 정제된 인상 — 쿼츠 함량 최대 93%의 뛰어난 내구성으로 어떤 공간에도 무난하게 어울립니다.',
-  beige: '따뜻한 웜톤의 엔지니어드 스톤 베이지 계열 — 골드·카퍼 톤 베인이 우드 소재와 배색했을 때 특히 잘 어울립니다.',
-  gray: '차분한 뉴트럴 톤의 엔지니어드 스톤 그레이 계열 — 모던하고 도시적인 공간 연출에 적합합니다.',
-  dark: '깊이감 있는 엔지니어드 스톤 다크 톤 — 공간에 무게감과 고급스러운 존재감을 더합니다.',
+  white: '엔지니어드 스톤 화이트 계열 특유의 맑고 정제된 인상 —\n쿼츠 함량 최대 93%의 뛰어난 내구성으로 어떤 공간에도 무난하게 어울립니다.',
+  beige: '따뜻한 웜톤의 엔지니어드 스톤 베이지 계열 —\n골드·카퍼 톤 베인이 우드 소재와 배색했을 때 특히 잘 어울립니다.',
+  gray: '차분한 뉴트럴 톤의 엔지니어드 스톤 그레이 계열 —\n모던하고 도시적인 공간 연출에 적합합니다.',
+  dark: '깊이감 있는 엔지니어드 스톤 다크 톤 —\n공간에 무게감과 고급스러운 존재감을 더합니다.',
 };
-const VT_SPECS = ['1630×3230 · 20T', '1630×3230 · 30T'];
+const VT_SPECS = ['3230×1630 · 20T', '3230×1630 · 30T'];
 
 function classifyViateraTone(name, collection) {
   if (VT_OVERRIDE[name]) return VT_OVERRIDE[name];
@@ -117,10 +119,10 @@ function classifyViateraTone(name, collection) {
 const BMC_TONE = { '바이컬 화이트': 'white', '바이컬 브라운': 'dark', '바이컬 그레이': 'gray', '바이컬 밀키': 'white' };
 const BMC_STYLE = { '바이컬': '솔리드 · Solid' };
 const BMC_DESC = {
-  white: '포천 자체 공장에서 주문 치수로 성형하는 은성 BMC 화이트 톤 — 세면대·상판 일체형 제작이 가능합니다.',
-  beige: '포천 자체 공장에서 주문 치수로 성형하는 은성 BMC 베이지 톤 — 세면대·상판 일체형 제작이 가능합니다.',
-  gray: '포천 자체 공장에서 주문 치수로 성형하는 은성 BMC 그레이 톤 — 세면대·상판 일체형 제작이 가능합니다.',
-  dark: '포천 자체 공장에서 주문 치수로 성형하는 은성 BMC 다크 톤 — 세면대·상판 일체형 제작이 가능합니다.',
+  white: '포천 자체 공장에서 주문 치수로 성형하는 은성 BMC 화이트 톤 —\n세면대·상판 일체형 제작이 가능합니다.',
+  beige: '포천 자체 공장에서 주문 치수로 성형하는 은성 BMC 베이지 톤 —\n세면대·상판 일체형 제작이 가능합니다.',
+  gray: '포천 자체 공장에서 주문 치수로 성형하는 은성 BMC 그레이 톤 —\n세면대·상판 일체형 제작이 가능합니다.',
+  dark: '포천 자체 공장에서 주문 치수로 성형하는 은성 BMC 다크 톤 —\n세면대·상판 일체형 제작이 가능합니다.',
 };
 const BMC_SPECS = ['주문 성형 · 10T', '주문 성형 · 15T'];
 
@@ -198,15 +200,15 @@ export function getCatalog() {
       .then(([himacsRaw, terracantoRaw, viateraRaw, bmcRaw]) => {
         CATALOG.HIMACS.items = mapRealItems(himacsRaw, {
           classify: classifyHimacsTone, desc: HM_DESC, style: HM_STYLE, styleDefault: '솔리드 · Solid',
-          specs: HM_SPECS, stdSize: '12T × 760 × 3680', finish: 'Matte', brand: 'LX Hausys', origin: '한국', material: '인조대리석',
+          specs: HM_SPECS, stdSize: '12T × 3680 × 760', finish: 'Matte', brand: 'LX Hausys', origin: '한국', material: '인조대리석',
         });
         CATALOG.PORCELAIN.items = mapRealItems(terracantoRaw, {
           classify: classifyPorcelainTone, desc: PC_DESC, style: PC_STYLE, styleDefault: '스톤 · Stone',
-          specs: PC_SPECS, stdSize: '12T × 1600 × 3200', finish: 'Polished', brand: 'LX Hausys', origin: '이탈리아 (Made in Italy)', material: '포세린',
+          specs: PC_SPECS, stdSize: '12T × 3200 × 1600', finish: 'Polished', brand: 'LX Hausys', origin: '이탈리아 (Made in Italy)', material: '포세린',
         });
         CATALOG.VIATERA.items = mapRealItems(viateraRaw, {
           classify: classifyViateraTone, desc: VT_DESC, style: VT_STYLE, styleDefault: '마블 · Marble',
-          specs: VT_SPECS, stdSize: '20T × 1400 × 3040', finish: 'Polished', brand: 'LX Hausys', origin: '한국 · 미국', material: '엔지니어드 스톤',
+          specs: VT_SPECS, stdSize: '20T × 3040 × 1400', finish: 'Polished', brand: 'LX Hausys', origin: '한국 · 미국', material: '엔지니어드 스톤',
         });
         CATALOG.BMC.items = mapRealItems(bmcRaw, {
           classify: classifyBmcTone, desc: BMC_DESC, style: BMC_STYLE, styleDefault: '솔리드 · Solid',

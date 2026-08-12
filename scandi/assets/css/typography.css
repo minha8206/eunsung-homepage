@@ -17,3 +17,10 @@ button, input, select, textarea {
   word-break: keep-all;
   overflow-wrap: break-word;
 }
+
+/* 모바일 전용 줄바꿈 — 데스크톱에서 한 줄로 흐르는 문장이 좁은 화면에서
+   의미 단위가 깨진 채 꺾일 때, 1024px 미만에서만 나타나는 <br> 로 쓴다. */
+.br-m { display: none; }
+@media (max-width: 1023px) {
+  .br-m { display: inline; }
+}

@@ -49,6 +49,10 @@ window.I18N_EN = {
   '은성은 그 기준을 만듭니다.': 'EUNSUNG defines the surface.',
   'LX하우시스 공식 파트너 — 원자재 선별부터 재단·시공까지 직영 설비에서 완성합니다.':
     'Official partner of LX Hausys — from raw material selection to cutting and installation, completed in our own facility.',
+  /* 모바일 전용 <br class="br-m"> 로 세 노드로 나뉜다 — 노드 단위 키 */
+  'LX하우시스 공식 파트너 —': 'Official partner of LX Hausys —',
+  '원자재 선별부터 재단·시공까지': 'from raw material selection to cutting and installation,',
+  '직영 설비에서 완성합니다.': 'completed in our own facility.',
   'MATERIALS · 소재': 'MATERIALS',
   'CONSULTATION · 상담': 'CONSULTATION',
   '2009년 BMC 인조대리석 가공 전문으로 출발해, 세라믹·E-Stone·MMA·BMC 전 라인업을 다루는 종합 표면재 기업으로 성장했습니다.':
@@ -89,8 +93,12 @@ window.I18N_EN = {
   '실속 있게 마감하고 싶은 주방 · 다용도실에 추천':
     'For kitchens and utility rooms finished on a sensible budget',
 
-  '돌이 공간이 되기까지': 'From stone to space',
-  '돌이 공간이 되기까지.': 'From stone to space.',
+  /* <br> 로 나뉘어 렌더되므로 노드(줄) 단위 키가 필요하다. 통짜 키도 안전망으로 유지. */
+  '기계의 정확함 위에, 사람의 손끝을 더합니다': 'Machine precision, finished by hand.',
+  '기계의 정확함 위에, 사람의 손끝을 더합니다.': 'Machine precision, finished by hand.',
+  '기계의 정확함 위에,': 'Machine precision,',
+  '사람의 손끝을 더합니다': 'finished by hand.',
+  '사람의 손끝을 더합니다.': 'finished by hand.',
 
   /* ───────── index · 문의 폼 ───────── */
   'INQUIRY · 문의': 'INQUIRY',
@@ -232,7 +240,7 @@ window.I18N_EN = {
   '은성은 LX Hausys 정식 대리점으로서, 입고되는 모든 자재를 전수 검수합니다. 규격과 색상 로트, 표면 상태까지 하나씩 확인한 자재만 가공 라인에 투입됩니다.':
     'As an authorised LX Hausys dealer, we inspect every incoming slab. Only material verified for dimension, colour lot and surface condition enters the line.',
   '실측': 'On-site measurement',
-  '밀리미터의 오차도 남기지 않습니다.': 'Not a millimetre is left to chance.',
+  '모든 완성은, 정확한 실측에서 시작됩니다.': 'Every finish begins with an exact measurement.',
   '레이저 실측 장비로 현장의 각도와 단차까지 빠짐없이 기록합니다. 기록된 수치는 그대로 다음 단계인 도면 작업으로 이어져, 현장과 도면 사이의 오차를 처음부터 차단합니다.':
     'Laser measurement records every angle and level change on site. Those figures carry straight into drafting, eliminating any gap between site and drawing.',
   '도면 작업': 'Drafting',
@@ -264,7 +272,7 @@ window.I18N_EN = {
   '슬랩 전용 거치대와 완충재로 고정해 운송 중 흔들림과 파손을 방지합니다. 현장에 도착하는 순간까지 검수된 상태 그대로 유지합니다.':
     'Secured on dedicated slab frames with cushioning against movement and damage — arriving exactly as inspected.',
   '현장 시공': 'Installation',
-  '처음 실측한 사람이, 마지막까지 함께합니다.': 'The person who measured your space is there at the finish.',
+  '각 공정의 전문가들이, 하나의 공간을 완성합니다.': 'Specialists at every step, one finished space.',
   '실측부터 시공까지 전 과정을 은성의 시공팀이 직접 책임집니다. 담당이 바뀌며 생기는 공백 없이, 처음 약속한 완성도를 한 팀이 끝까지 지킵니다.':
     'Our own team owns every stage from measurement to installation. No handovers, no gaps — one team holds the standard promised at the start.',
   '이 공정 그대로, 당신의 공간에': 'This same process, in your space',
@@ -339,38 +347,39 @@ window.I18N_EN = {
   '고온 내열': 'Heat resistant',
   '1200℃ 소성 세라믹 — 뜨거운 냄비가 직접 닿아도 변색과 변형이 없습니다.':
     'Ceramic fired at 1200℃ — no discolouration or deformation, even from a hot pan set directly on it.',
-  '내스크래치': 'Scratch resistant',
-  '유리보다 단단한 표면 경도로 칼자국·마모 걱정 없이 오래 사용합니다.':
-    'Harder than glass, so knife marks and wear are not a concern.',
+  '긁힘에 강한 표면': 'Scratch-resistant surface',
+  '유리보다 단단한 표면 — 칼자국이나 마모 없이 오래 사용합니다.':
+    'Harder than glass — no knife marks, no wear, year after year.',
   '자외선 안정': 'UV stable',
-  '직사광선에도 색이 바래지 않아 창가·외부 공간에도 안심입니다.':
+  '직사광선에도 색이 바래지 않아 창가와 외부 공간에도 안심입니다.':
     'Colour holds under direct sunlight — safe by windows and outdoors.',
   '대형 슬랩': 'Large format',
-  '1600×3200 대판 — 이음매를 최소화한 웅장한 면 연출이 가능합니다.':
-    '1600×3200 slabs — expansive surfaces with minimal seams.',
-  '쿼츠 93%의 표면 경도. 칼끝이 닿아도 흠집이 남지 않습니다.':
-    'Surface hardness from 93% quartz — a knife edge leaves no mark.',
-  '비다공성': 'Non-porous',
-  '커피·와인·김칫국물이 스며들지 않아 얼룩 걱정이 없습니다.':
-    'Coffee, wine and sauces cannot soak in, so staining is not an issue.',
-  '항균 표면': 'Antibacterial',
-  '박테리아·곰팡이 성장을 억제해 조리 공간에 안전합니다.':
-    'Inhibits bacteria and mould growth — safe for food preparation.',
-  '일관된 결': 'Consistent pattern',
-  '천연석과 달리 슬라브 간 편차 없이 균일한 패턴을 유지합니다.':
-    'Unlike natural stone, the pattern stays uniform from slab to slab.',
-  '이음매 없는 시공': 'Seamless installation',
-  '조인트가 보이지 않는 심리스 접합 — 곡면·일체형 싱크도 가능합니다.':
-    'Invisible joins — curved forms and integrated sinks included.',
-  '복원 가능': 'Restorable',
-  '생활 기스는 샌딩만으로 새것처럼 — 반영구적으로 사용합니다.':
-    'Everyday scratches sand out like new — effectively for life.',
-  '열성형 곡면': 'Thermoformed curves',
-  '열을 가해 자유로운 곡선 형태로 성형할 수 있는 유일한 소재군입니다.':
-    'The only material family that can be heat-formed into free curves.',
-  '위생 인증': 'Hygiene certified',
-  'NSF 위생 인증 — 병원·주방 등 위생이 중요한 공간의 표준입니다.':
-    'NSF certified — the standard for hospitals, kitchens and other hygiene-critical spaces.',
+  '3200×1600 대판 — 이음매를 최소화한 웅장한 면 연출이 가능합니다.':
+    '3200×1600 slabs — expansive surfaces with minimal seams.',
+  '석영의 단단함': 'Quartz hardness',
+  '천연 석영 90% 이상을 단단하게 압축한 표면 — 일상의 칼날과 마찰이 흔적을 남기지 못합니다.':
+    'Over 90% natural quartz, densely compacted — everyday knives and friction leave no trace.',
+  '오염에 강한 표면': 'Stain resistant',
+  '스며들지 않는 비다공성 표면 — 커피도 와인도 얼룩이 되기 전에 닦여 나갑니다.':
+    'A non-porous surface nothing soaks into — coffee and wine wipe away before they become stains.',
+  '주방 상판 최적': 'Made for kitchens',
+  '뜨거운 조리와 잦은 물 사용, 매일의 설거지까지 — 주방의 하루를 위해 설계된 소재입니다.':
+    'Hot cookware, constant water, the daily dishes — engineered for the life of a kitchen.',
+  '균일한 패턴': 'Consistent pattern',
+  '슬랩마다 결이 다른 천연석과 달리, 도면에서 본 그대로의 패턴이 공간에 옮겨집니다.':
+    'Unlike natural stone, the pattern you approve on the drawing is the pattern in your space.',
+  '이음새 없는 마감': 'Seamless finish',
+  '조인트 없이 하나의 면으로 이어지는 심리스 마감 — 싱크볼까지 한 몸처럼 연결됩니다.':
+    'One continuous surface with no joints — even the sink bowl joins as if it were a single piece.',
+  '곡면 성형의 자유': 'Freedom of curves',
+  '열을 가하면 곡선이 됩니다 — 소재가 디자인을 제한하지 않습니다.':
+    'Apply heat and it curves — the material never limits the design.',
+  '샌딩 복원': 'Sanding renewal',
+  '생활 흠집은 샌딩 한 번으로 처음 표면 그대로 — 오래 쓸수록 진가가 드러납니다.':
+    'Everyday scratches sand back to the original surface — its value shows over the years.',
+  '부드러운 촉감': 'Soft, warm touch',
+  '도자기처럼 매끄럽고 따뜻한 촉감 — 매일 손이 닿는 자리일수록 차이가 느껴집니다.':
+    'Smooth and warm to the touch, like porcelain — you feel the difference where hands rest every day.',
   '맞춤 성형': 'Made to order',
   '포천 공장에서 주문 치수 그대로 성형 — 현장 맞춤이 자유롭습니다.':
     'Moulded to your dimensions at our Pocheon facility — freely adapted on site.',
@@ -396,11 +405,11 @@ window.I18N_EN = {
   '재단부터 시공까지 직접 합니다': 'Cut and installed by us, start to finish',
   '공식 파트너로서 정품 슬라브를 상시 보유하고, 자체 공장에서 재단부터 시공까지 중간 유통 없이 직접 책임집니다.':
     'As an official partner we hold genuine slabs in stock, and take direct responsibility from cutting to installation in our own facility — with no intermediaries.',
-  '공식 딜러': 'Authorised dealer',
+  '공식 파트너': 'Official partner',
   '비아테라 · 하이막스 정품 인증 취급점': 'Certified for genuine Viatera and HIMACS',
   '자체 공장': 'Own facility',
   'CNC 재단·엣지·싱크홀 가공을 직접': 'CNC cutting, edging and sink cutouts in-house',
-  '직시공': 'Direct installation',
+  '책임 시공': 'Direct installation',
   '숙련 시공팀이 실측부터 마무리까지': 'A skilled team, from measurement to final finish',
   '정품 보증': 'Genuine warranty',
   '제조사 보증이 그대로 적용됩니다': 'The manufacturer’s warranty applies in full',
