@@ -85,14 +85,33 @@
 .iw-tip-close:hover{color:#1B2A4A}
 .iw-tip-close svg{width:12px;height:12px}
 
+/* ── 모바일 하단 고정 CTA 바 (inquiry-widget.js 가 body 에 주입) ──
+   ≤768 에서 플로팅 위젯을 대신한다. 층위: 메뉴 오버레이(9500) 아래,
+   본문·헤더(30) 위. 검색(10001)·로그인(10000)보다도 아래라 모달을
+   가리지 않는다. */
+.es-ctabar{
+  position:fixed;left:0;right:0;bottom:0;z-index:9000;
+  display:none;grid-template-columns:1fr 1fr;
+  font-family:'Manrope',system-ui,sans-serif;
+  box-shadow:0 -10px 34px rgba(10,15,25,.16);
+}
+.es-ctabar a{
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  min-height:58px;
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  font:600 14px 'Manrope',system-ui,sans-serif;letter-spacing:.06em;
+  text-decoration:none;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+}
+.es-ctabar svg{width:17px;height:17px;flex-shrink:0}
+.es-ctabar-tel{background:#0e2440;color:#f6f2ea}
+.es-ctabar-kakao{background:#c9a24b;color:#12233c}
+.es-ctabar a:active{filter:brightness(1.12)}
+
 @media (max-width:768px){
-  .iw-root{right:16px;bottom:20px;gap:10px}
-  .iw-main{width:52px;height:52px}
-  .iw-btn{width:42px;height:42px}
-  .iw-btn svg{width:20px;height:20px}
-  .iw-label{font-size:12px;padding:8px 12px}
-  /* 좁은 화면에서 말풍선이 화면 밖으로 나가지 않게 */
-  .iw-tip{right:64px;font-size:12px;padding:9px 10px 9px 13px;max-width:calc(100vw - 96px);white-space:normal}
+  /* 플로팅 위젯 → 하단 CTA 바로 교대 */
+  .iw-root{display:none}
+  .es-ctabar{display:grid}
 }
 
 @media (prefers-reduced-motion:reduce){

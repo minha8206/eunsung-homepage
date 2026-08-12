@@ -50,6 +50,7 @@ window.I18N_EN = {
   'LX하우시스 공식 파트너 — 원자재 선별부터 재단·시공까지 직영 설비에서 완성합니다.':
     'Official partner of LX Hausys — from raw material selection to cutting and installation, completed in our own facility.',
   'MATERIALS · 소재': 'MATERIALS',
+  'CONSULTATION · 상담': 'CONSULTATION',
   '2009년 BMC 인조대리석 가공 전문으로 출발해, 세라믹·E-Stone·MMA·BMC 전 라인업을 다루는 종합 표면재 기업으로 성장했습니다.':
     'Founded in 2009 as a BMC solid-surface fabricator, EUNSUNG now covers the full line — Porcelain, Engineered Stone, Solid Surface and BMC.',
   '네 가지 소재, 하나의 기준': 'Four surfaces. One standard.',
@@ -322,6 +323,7 @@ window.I18N_EN = {
     'We quote precisely, based on area and fabrication specification.',
   '견적 요청': 'Request a quote',
   '카카오톡 상담': 'KakaoTalk',
+  '전화하기': 'Call Us',
   '1:1 맞춤 제작 가능': 'Made to measure',
   '공식 파트너 · 정품 슬라브 취급': 'Official partner · genuine slabs only',
   '소재의 성질': 'Material qualities',

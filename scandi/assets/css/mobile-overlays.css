@@ -59,7 +59,7 @@
 
   /* 다음 우편번호 embed — 모바일에서 세로 공간을 충분히 준다 */
   .lm-daum { border-radius: 20px 20px 0 0 !important; }
-  .lm-daum-box { min-height: 60dvh; }
+  .lm-daum-box { min-height: 60vh; min-height: 60dvh; }
 
   /* ── 2-2 검색 오버레이 ── */
   .so-overlay { padding: 0 !important; }

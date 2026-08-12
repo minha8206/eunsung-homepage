@@ -20,6 +20,29 @@
    max-width:768px 가 정확히 768 기기에서 거짓이 된다. 1px 씩 올려
    경계값(360/390/430/768/1024)을 확실히 포함시킨다. */
 
+/* ════════ 전역 방어 (전 폭 공통) ════════ */
+
+/* 삼성 인터넷 "글자 크기 확대(가가)" · iOS 가로 회전 시 폰트 부스팅으로
+   레이아웃이 틀어지는 것을 막는다. 사용자의 브라우저 확대(핀치줌)는
+   막지 않는다 — 텍스트 자동 인플레이션만 끈다. */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* 시스템의 동작 줄이기 설정을 존중한다 — 장식성 애니메이션·전환을 즉시
+   완료 상태로 보낸다. reveal/메뉴 스태거는 상태 클래스 기반이라 기능은
+   그대로 동작하고 연출만 생략된다. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    transition-delay: 0ms !important;
+  }
+  html { scroll-behavior: auto !important; }
+}
+
 /* ════════ 태블릿 가로 (≤1279px) ════════
    1280 미만은 전부 터치 기기로 본다. 터치 타겟 44px 는 여기서부터 적용. */
 @media (max-width: 1279px) {
@@ -39,34 +62,155 @@
   .ft-content { max-width: none !important; }
 }
 
-/* ════════ 모바일 메뉴 패널 (≤1080px — 버거가 보이는 구간) ════════
-   열림 상태는 body.nav-open 하나로 표현한다. 예전에는 숨은 체크박스의
-   :checked 로 열었는데, iOS 카카오톡 인앱 브라우저에서 label 탭이
-   체크박스를 토글하지 못해 메뉴가 안 열렸다. 이제 mobile-nav.js 가
-   버튼 클릭으로 클래스를 토글하고 CSS 는 그것만 본다. */
+/* ════════ 모바일 풀스크린 메뉴 ════════
+   열림 상태는 body.nav-open 하나로 표현하고 mobile-nav.js 가 토글한다.
+   오버레이(#esMnav)는 JS 가 body 끝에 만든다 — x-dc 재렌더 영역 밖.
+   페이지 안에 남아 있는 구형 드롭다운 패널(.nav-mobile-panel)은 폐기:
+   각 페이지의 인라인 helmet CSS 가 body.nav-open 에서 display:flex 를
+   걸므로 모든 상태에서 !important 로 눌러둔다. */
+.nav-mobile-panel,
+body.nav-open .nav-mobile-panel { display: none !important; }
+
 @media (max-width: 1080px) {
-  .nav-mobile-panel {
-    display: flex !important;
-    opacity: 0; visibility: hidden; pointer-events: none;
-    transform: translateY(-10px);
-    transition: opacity .26s ease, transform .26s ease, visibility .26s ease;
-    max-height: calc(100dvh - 64px); overflow-y: auto;
-    padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px)) !important;
-  }
-  body.nav-open .nav-mobile-panel {
-    opacity: 1 !important; visibility: visible !important;
-    pointer-events: auto !important; transform: translateY(0) !important;
-  }
-  .nav-mobile-panel a {
-    padding: 15px 2px !important; font-size: 16px !important;
-    min-height: 44px; display: flex; align-items: center;
-  }
   /* 버튼으로 바뀌면서 기본 스타일이 붙는다. 기존 원형 아이콘 모양을 유지한다. */
   button.nav-burger {
     -webkit-appearance: none; appearance: none;
     padding: 0; color: inherit; font: inherit; line-height: 0;
     -webkit-tap-highlight-color: transparent; touch-action: manipulation;
   }
+}
+
+/* ── 오버레이 골격 ──
+   닫힌 상태에선 visibility:hidden 이라 어떤 폭에서도 화면에 영향이 없다.
+   버거가 없는 데스크톱(>1080)에서는 열릴 일 자체가 없고, 리사이즈로
+   1080을 넘으면 JS 가 자동으로 닫는다. */
+.mnav {
+  position: fixed; inset: 0; z-index: 9500;
+  display: flex; flex-direction: column; overflow: hidden;
+  background: #f6f2ea; color: #0e2440;
+  visibility: hidden; opacity: 0;
+  transition: opacity .45s cubic-bezier(.22,1,.36,1), visibility 0s linear .45s;
+}
+body.nav-open .mnav {
+  visibility: visible; opacity: 1;
+  transition: opacity .45s cubic-bezier(.22,1,.36,1);
+}
+
+.mnav-head {
+  flex: none; display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 20px 8px;
+  padding-top: calc(12px + env(safe-area-inset-top, 0px));
+  border-bottom: 1px solid rgba(14, 36, 64, .08);
+}
+.mnav-brand { display: flex; align-items: baseline; gap: .5em; text-decoration: none; color: #0e2440; min-height: 44px; align-items: center; }
+.mnav-brand-en { font: 600 1.15rem 'Cormorant Garamond', serif; letter-spacing: .14em; }
+.mnav-brand-kr { font: 400 .66rem 'Noto Serif KR', serif; opacity: .55; }
+.mnav-close {
+  width: 46px; height: 46px; border-radius: 50%;
+  border: 1px solid rgba(14, 36, 64, .16); background: transparent; color: #0e2440;
+  display: grid; place-items: center; cursor: pointer;
+  -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+}
+.mnav-close svg { width: 19px; height: 19px; }
+
+.mnav-body {
+  flex: 1 1 auto; overflow-y: auto; -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  padding: 28px 28px calc(44px + env(safe-area-inset-bottom, 0px));
+  display: flex; flex-direction: column;
+}
+
+/* ── 메뉴 항목 ── */
+.mnav-eyebrow {
+  font: 600 10px 'Manrope', sans-serif; letter-spacing: .34em;
+  color: #a8763f; margin: 0 0 10px;
+}
+.mnav-eyebrow--sub { margin-top: 34px; }
+.mnav-list { display: flex; flex-direction: column; }
+.mnav-link, .mnav-sublink {
+  display: flex; align-items: baseline; gap: 14px;
+  text-decoration: none; color: #0e2440; min-height: 44px;
+  -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+}
+.mnav-link { padding: 9px 0; }
+.mnav-idx {
+  font: italic 400 12px 'Cormorant Garamond', serif;
+  color: #c9a24b; letter-spacing: .08em; min-width: 22px;
+}
+.mnav-link .mnav-link-t {
+  font: 500 clamp(23px, 6.2vw, 30px)/1.35 'Noto Serif KR', serif;
+  transition: color .25s ease;
+}
+.mnav-sublink { padding: 7px 0 7px 36px; align-items: center; }
+.mnav-sublink .mnav-link-t {
+  font: 400 17px/1.5 'Noto Serif KR', serif;
+  color: rgba(14, 36, 64, .78);
+  transition: color .25s ease;
+}
+.mnav-link.is-current .mnav-link-t,
+.mnav-sublink.is-current .mnav-link-t { color: #a8763f; }
+.mnav-link:active .mnav-link-t,
+.mnav-sublink:active .mnav-link-t { color: #c9a24b; }
+
+/* ── 유틸(검색·로그인·언어) ── */
+.mnav-utils {
+  display: flex; align-items: center; gap: 10px;
+  margin-top: 38px; padding-top: 24px;
+  border-top: 1px solid rgba(14, 36, 64, .12);
+}
+.mnav-util {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 44px; padding: 0 16px;
+  border: 1px solid rgba(14, 36, 64, .16); border-radius: 23px;
+  background: transparent; color: #0e2440;
+  font: 600 13px 'Manrope', sans-serif; cursor: pointer;
+  -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+}
+.mnav-util svg { width: 15px; height: 15px; }
+.mnav-lang {
+  margin-left: auto;
+  font: 700 13px 'Manrope', sans-serif; letter-spacing: .08em;
+  display: flex; align-items: center; gap: 2px;
+}
+.mnav-lang b {
+  min-width: 40px; min-height: 44px;
+  display: inline-grid; place-items: center; cursor: pointer;
+}
+.mnav-lang-sep { opacity: .35; }
+
+/* ── 상담 블록 ── */
+.mnav-contact { margin-top: 28px; }
+.mnav-contact-cap {
+  font: 600 10px 'Manrope', sans-serif; letter-spacing: .3em;
+  color: #a8763f; margin-bottom: 6px;
+}
+.mnav-tel {
+  display: inline-flex; align-items: center; min-height: 44px;
+  font: 500 clamp(26px, 7vw, 34px) 'Cormorant Garamond', serif;
+  letter-spacing: .04em; color: #0e2440; text-decoration: none;
+}
+.mnav-kakao {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 12px; min-height: 46px; padding: 0 20px; border-radius: 24px;
+  background: #0e2440; color: #f6f2ea;
+  font: 600 13px 'Manrope', sans-serif; letter-spacing: .04em; text-decoration: none;
+}
+.mnav-kakao svg { width: 15px; height: 15px; }
+
+/* ── 열림 스태거 — 항목이 아래에서 순차로 떠오른다 ──
+   지연(--d)은 JS 가 인라인으로 심는다. 닫힐 때는 지연 없이 즉시 사라져
+   오버레이 페이드와 어긋나지 않는다. */
+.mnav-eyebrow, .mnav-link, .mnav-sublink, .mnav-utils, .mnav-contact {
+  opacity: 0; transform: translateY(16px);
+  transition: opacity .5s cubic-bezier(.22,1,.36,1), transform .5s cubic-bezier(.22,1,.36,1);
+}
+body.nav-open .mnav-eyebrow,
+body.nav-open .mnav-link,
+body.nav-open .mnav-sublink,
+body.nav-open .mnav-utils,
+body.nav-open .mnav-contact {
+  opacity: 1; transform: none;
+  transition-delay: var(--d, 0ms);
 }
 
 /* ════════ 태블릿 세로 (≤1024px) ════════ */
@@ -114,17 +258,34 @@
   img { max-width: 100% !important; height: auto; }
   img[style*="absolute"] { height: 100% !important; }
 
-  /* ── 1-3 헤더 (44px 규칙은 ≤1279 블록에 있다) ── */
-  .nav-right { gap: 2px !important; }
-  /* 헤더가 좌우로 꽉 차므로 상하 패딩을 줄여 높이를 유지한다 */
-  body > div[style*="z-index: 30"], body > div[style*="z-index:30"] { padding-top: 8px !important; padding-bottom: 8px !important; }
+  /* ── 1-3 헤더: 로고 + KO/EN + 버거만 ──
+     검색·로그인 아이콘은 풀스크린 메뉴 안으로 옮겼다(mobile-nav.js).
+     360px 에서 터치 타겟 5개가 몰려 로고("은성")와 겹치던 문제의 해법이다. */
+  .nav-right .nav-ic { display: none !important; }
+  .nav-right { gap: 4px !important; }
+  /* 헤더가 좌우로 꽉 차므로 상하 패딩을 줄여 높이를 유지한다.
+     backdrop blur 는 고정 헤더에서 스크롤 프레임마다 다시 계산되는
+     가장 무거운 효과라 모바일에선 끄고, 대신 배경 불투명도를 올려
+     가독성을 유지한다. */
+  body > div[style*="z-index: 30"], body > div[style*="z-index:30"] {
+    padding-top: 8px !important; padding-bottom: 8px !important;
+    backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+    background: rgba(251, 250, 250, .95) !important;
+  }
 
-  /* 패널 규칙은 버거가 보이는 ≤1080 블록에 있다 (아래 참고) */
-
-  /* ── 1-3 푸터: 세로 스택 ── */
+  /* ── 1-3 푸터: 세로 스택 ──
+     푸터는 grid 가 아니라 flex 라 전역 grid 규칙에 안 잡힌다.
+     바깥(브랜드 ↔ 링크 묶음)은 세로로, 링크 3그룹은 2열 그리드로. */
+  footer > div:first-of-type { flex-direction: column !important; gap: 40px !important; }
+  footer div[style*="64px"] {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 30px 20px !important;
+  }
   footer [style*="grid-template-columns"] { grid-template-columns: 1fr !important; gap: 30px !important; }
   footer a { min-height: 44px; display: inline-flex; align-items: center; }
-  footer { padding-bottom: calc(40px + env(safe-area-inset-bottom, 0px)) !important; }
+  /* 하단 고정 CTA 바(≤768 전용, inquiry-widget.js)에 가리지 않을 여유 */
+  footer { padding-bottom: calc(112px + env(safe-area-inset-bottom, 0px)) !important; }
   /* 사업자 정보 한 줄 나열 → 줄바꿈 */
   footer [style*="flex-wrap"] { gap: 6px 14px !important; }
 }
@@ -134,21 +295,12 @@
   [style*="120px 5vw"], [style*="130px 5vw"], [style*="110px 5vw"], [style*="100px 5vw"],
   [style*="76px 5vw 110px"] { padding-left: 20px !important; padding-right: 20px !important; }
   [style*="grid-template-columns"] { gap: 18px !important; }
-  /* 헤더 우측 아이콘 5개(검색·KO·EN·사람·버거)를 44px 로 유지하려면
-     로고를 한 단계 더 줄여야 360px 폭에 들어간다 */
-  .brand-logo { font-size: 1.1rem !important; }
-  .brand-en { font-size: 1.1rem !important; letter-spacing: .1em !important; }
-  .brand-kr { font-size: .64rem !important; }
-  /* 아이콘 5개를 44px 로 두면 KO|EN 까지 44 폭은 360px 에 안 들어간다.
-     세로 44 는 지키고 가로만 좁힌다 — 실제 탭 실패율에 영향이 작은 축이다. */
-  .lang b { min-width: 34px !important; }
+  /* 헤더가 로고+KO/EN+버거 3요소로 줄어 360px(폴드 커버 320px 포함)에도
+     여유가 생겼다 — 로고는 640px 블록의 1.35rem 을 그대로 쓰고,
+     KO/EN 도 가로 44px 터치 타겟을 온전히 지킨다. */
 }
 
-/* ════════ 플로팅 문의 위젯 — iOS 안전영역 ════════ */
-@media (max-width: 769px) {
-  .iw-root {
-    right: 14px !important;
-    bottom: calc(14px + env(safe-area-inset-bottom, 0px)) !important;
-  }
-  .iw-main { width: 52px !important; height: 52px !important; }
-}
+/* ════════ 플로팅 문의 위젯 ════════
+   ≤768 에서는 하단 고정 CTA 바(전화·카톡)가 역할을 대신하므로 위젯을
+   숨긴다 — 규칙은 위젯과 같은 파일(inquiry-widget.css)에 있다.
+   태블릿(769~1279)은 위젯을 그대로 쓴다. */

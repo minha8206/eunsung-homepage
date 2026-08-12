@@ -52,9 +52,25 @@
     return root;
   }
 
+  /* ── 모바일 하단 고정 CTA 바 ──
+     ≤768px 에서는 플로팅 위젯 대신 엄지 거리의 고정 바(전화·카톡)를 쓴다.
+     표시/숨김 전환은 전부 CSS 미디어쿼리가 한다(inquiry-widget.css).
+     위젯과 같은 이유로 body 끝에 직접 붙는다 — x-dc 재렌더 영역 밖. */
+  function buildCtaBar() {
+    if (document.getElementById('esCtabar')) return;
+    var bar = document.createElement('div');
+    bar.className = 'es-ctabar';
+    bar.id = 'esCtabar';
+    bar.innerHTML =
+      '<a class="es-ctabar-tel" href="' + TEL_URL + '">' + ICON_TEL + '<span>전화하기</span></a>' +
+      '<a class="es-ctabar-kakao" href="' + KAKAO_URL + '" target="_blank" rel="noopener noreferrer">' + ICON_KAKAO + '<span>카카오톡 상담</span></a>';
+    document.body.appendChild(bar);
+  }
+
   function init() {
     if (document.getElementById('iwRoot')) return;
 
+    buildCtaBar();
     var root = build();
     var mainBtn = document.getElementById('iwMain');
     var tip = document.getElementById('iwTip');
