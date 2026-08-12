@@ -184,10 +184,16 @@ body.nav-open .mnav {
   font: 600 10px 'Manrope', sans-serif; letter-spacing: .3em;
   color: #a8763f; margin-bottom: 6px;
 }
+/* 대표번호(위) + 휴대폰(아래) 두 줄 — 각각 개별 tel: 링크 */
+.mnav-tels { display: flex; flex-direction: column; align-items: flex-start; }
 .mnav-tel {
   display: inline-flex; align-items: center; min-height: 44px;
   font: 500 clamp(26px, 7vw, 34px) 'Cormorant Garamond', serif;
   letter-spacing: .04em; color: #0e2440; text-decoration: none;
+}
+.mnav-tel--sub {
+  font-size: clamp(20px, 5.4vw, 26px);
+  color: rgba(14, 36, 64, .68);
 }
 .mnav-kakao {
   display: inline-flex; align-items: center; gap: 8px;

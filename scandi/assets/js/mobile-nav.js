@@ -20,6 +20,7 @@
   var OPEN = 'nav-open';
   var KAKAO_URL = 'https://open.kakao.com/o/sS7BnYyc';
   var TEL_NUM = '031-544-7272';
+  var MOBILE_NUM = '010-5430-2580';
 
   var ICON_CLOSE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>';
   var ICON_SEARCH = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>';
@@ -101,7 +102,10 @@
     d += step;
     html += '<div class="mnav-contact" style="--d:' + d + 'ms">' +
       '<div class="mnav-contact-cap">CONSULTATION · 상담</div>' +
-      '<a class="mnav-tel" href="tel:' + TEL_NUM + '">' + TEL_NUM + '</a>' +
+      '<div class="mnav-tels">' +
+        '<a class="mnav-tel" href="tel:' + TEL_NUM + '">' + TEL_NUM + '</a>' +
+        '<a class="mnav-tel mnav-tel--sub" href="tel:' + MOBILE_NUM + '">' + MOBILE_NUM + '</a>' +
+      '</div>' +
       '<div><a class="mnav-kakao" href="' + KAKAO_URL + '" target="_blank" rel="noopener noreferrer">카카오톡 상담 ' + ICON_ARROW + '</a></div>' +
       '</div>';
 

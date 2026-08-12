@@ -4,7 +4,9 @@
    바깥에 있는 것과 같은 이유). */
 (function () {
   var KAKAO_URL = 'https://open.kakao.com/o/sS7BnYyc';
-  var TEL_URL = 'tel:031-544-7272';
+  /* 발신은 휴대폰으로 받는다 — 대표번호(031-544-7272)는 표기용으로 푸터·문의
+     페이지에 그대로 남아 있고, 위젯/하단 CTA 바의 통화 버튼만 이 번호를 쓴다. */
+  var TEL_URL = 'tel:01054302580';
   var TIP_KEY = 'eunsung-iw-tip';      /* 세션당 1회만 보여주기 위한 표식 */
   var TIP_DELAY = 3000;                /* 로드 후 3초 */
   var TIP_LIFE = 5000;                 /* 5초 뒤 자동으로 사라짐 */

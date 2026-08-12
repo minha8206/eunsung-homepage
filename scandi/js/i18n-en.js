@@ -34,7 +34,8 @@ window.I18N_EN = {
     'Address 356-39 Jeonggeum-ro, Gasan-myeon, Pocheon-si, Gyeonggi-do, Korea',
   '경기도 포천시 가산면 정금로 356-39':
     '356-39 Jeonggeum-ro, Gasan-myeon, Pocheon-si, Gyeonggi-do, Korea',
-  '전화 031-544-7272': 'Tel 031-544-7272',
+  '전화 031-544-7272 · 010-5430-2580': 'Tel 031-544-7272 · 010-5430-2580',
+  '팩스 031-544-6868': 'Fax 031-544-6868',
   '이메일 eunsung8585@naver.com': 'Email eunsung8585@naver.com',
   '인조대리석 및 상판 가공 전문': 'Solid surface and countertop fabrication',
   '© 2026 (주)은성 EUNSUNG Co., Ltd.': '© 2026 EUNSUNG Co., Ltd.',
@@ -228,6 +229,7 @@ window.I18N_EN = {
   '이언기': 'Lee Eon-gi',
   '사업자등록번호 · BIZ. NO': 'BIZ. NO',
   '전화 · TEL': 'TEL',
+  '팩스 · FAX': 'FAX',
   '주소 · ADDRESS': 'ADDRESS',
   '이메일 · EMAIL': 'EMAIL',
 
@@ -656,5 +658,5 @@ window.I18N_EN = {
   /* ───────── 플로팅 문의 위젯 ─────────
      (버튼 aria-label '문의하기' 는 위 contact 항목을 그대로 쓴다) */
   '카카오톡 문의': 'Ask on KakaoTalk',
-  '전화 문의 031-544-7272': 'Call 031-544-7272'
+  '전화 문의 010-5430-2580': 'Call 010-5430-2580'
 };
