@@ -212,7 +212,7 @@ export function getCatalog() {
         });
         CATALOG.BMC.items = mapRealItems(bmcRaw, {
           classify: classifyBmcTone, desc: BMC_DESC, style: BMC_STYLE, styleDefault: '솔리드 · Solid',
-          specs: BMC_SPECS, stdSize: '다양한 규격 — 용도에 따라 맞춤 생산', finish: 'Matte', brand: '(주)은성 BMC', origin: '한국 (포천 자체 공장)', material: 'BMC 인조대리석',
+          specs: BMC_SPECS, stdSize: '다양한 규격 — 용도에 따라 맞춤 생산', finish: 'Matte', brand: '(주)코반 산업', origin: '한국 (포천 자체 공장)', material: 'BMC 인조대리석',
         });
         return CATALOG;
       })

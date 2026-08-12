@@ -556,7 +556,7 @@ window.I18N_EN = {
   "다크": "Dark",
 
   "다양한 규격 — 용도에 따라 맞춤 생산": "Made to order — sizes to suit the application",
-  "(주)은성 BMC": "EUNSUNG BMC",
+  "(주)코반 산업": "KOBAN Industrial",
   /* ───────── 제품 상세 · 스펙 행 ───────── */
   "컬러명": "Colour name",
   "제품코드": "Product code",
