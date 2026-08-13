@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://rainbow-florentine-97f972.netlify.app/sitemap.xml
+Sitemap: https://esstone.co.kr/sitemap.xml
