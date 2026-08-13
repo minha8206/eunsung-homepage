@@ -25,7 +25,7 @@
   var PAGES = [
     { name: '회사소개', url: 'about.html',                     desc: '2009년 설립부터 지금까지, 은성이 걸어온 길' },
     { name: '시공 과정', url: 'facility.html',                 desc: '실측부터 현장 시공까지, 은성이 직접 관리하는 10단계' },
-    { name: '포세린',   url: 'showroom.html?cat=PORCELAIN',    desc: '1200°C 고온에서 구워낸 대형 세라믹 슬랩' },
+    { name: '포세린',   url: 'showroom.html?cat=PORCELAIN',    desc: '1200°C 고온에서 구워낸 대형 포세린 슬랩' },
     { name: '엔지니어드 스톤', url: 'showroom.html?cat=VIATERA', desc: '비아테라 — 석영 90% 이상의 프리미엄 스톤' },
     { name: '인조대리석', url: 'showroom.html?cat=HIMACS',      desc: '하이막스 — 이음새 없는 100% 아크릴 솔리드 서페이스' },
     { name: 'BMC',      url: 'showroom.html?cat=BMC',          desc: '자체 생산하는 열경화성 성형 컴파운드' },

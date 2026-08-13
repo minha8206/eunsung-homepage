@@ -2,11 +2,11 @@
   'use strict';
 
   const PORTFOLIO = [
-    { loc: '한남동', name: '프리미엄 라운지 카운터', desc: '아이보리 포세린 세라믹으로 바 카운터와 바닥재를 통일 시공한 프리미엄 라운지', cap: '카페·상업시설 · 2026.06', sub: '포세린 · 아이보리 화이트', img: 'https://minha8206.github.io/eunsung-homepage/images/cases/hannamdong/01.png' },
+    { loc: '한남동', name: '프리미엄 라운지 카운터', desc: '아이보리 포세린으로 바 카운터와 바닥재를 통일 시공한 프리미엄 라운지', cap: '카페·상업시설 · 2026.06', sub: '포세린 · 아이보리 화이트', img: 'https://minha8206.github.io/eunsung-homepage/images/cases/hannamdong/01.png' },
     { loc: '동대문구', name: '라이트 마블 포세린', desc: '크리미 마블 포세린으로 화이트 캐비닛·그레이 백스플래시 레이어드, 싱크 통합', cap: '주방아일랜드 · 2026.06', sub: '포세린 · 라이트 마블', img: 'https://minha8206.github.io/eunsung-homepage/images/cases/dongdaemun/01.jpg' },
     { loc: '양평', name: '내추럴 모던 포세린 아일랜드', desc: '원목 루버 패널과 어우러지는 라이트 그레이 포세린 아일랜드', cap: '주방아일랜드 · 2026.06', sub: '포세린 · 라이트 그레이', img: 'https://minha8206.github.io/eunsung-homepage/images/cases/yangpyeong/01.png' },
     { loc: '성수동', name: '대형 아일랜드 시공', desc: '오크 캐비닛 + 크림 베이지 포세린 아일랜드, 싱크·인덕션 통합 가공', cap: '주방아일랜드 · 2026.06', sub: '포세린 · 크림 베이지', img: 'https://minha8206.github.io/eunsung-homepage/images/cases/seongsu/01.jpg' },
-    { loc: '선릉', name: '대기업 임원회의실', desc: '5m 칼라카타 화이트 포세린 세라믹, 케이블 트레이 통합 맞춤 제작', cap: '오피스·호텔 · 2026.06', sub: '포세린 · 칼라카타', img: 'https://minha8206.github.io/eunsung-homepage/images/cases/seolleung/01.jpg' },
+    { loc: '선릉', name: '대기업 임원회의실', desc: '5m 칼라카타 화이트 포세린, 케이블 트레이 통합 맞춤 제작', cap: '오피스·호텔 · 2026.06', sub: '포세린 · 칼라카타', img: 'https://minha8206.github.io/eunsung-homepage/images/cases/seolleung/01.jpg' },
     { loc: '여주', name: '단독주택 오픈 키친 전체 시공', desc: '높은 층고·전면 통창, 다크 그레이 포세린으로 아일랜드·카운터 통일 시공', cap: '주방아일랜드 · 2026.05', sub: '포세린 · 다크 그레이', img: 'https://minha8206.github.io/eunsung-homepage/images/cases/yeoju/01.jpg' },
     { loc: '여의도', name: '라이트 그레이 아일랜드', desc: '라이트 그레이 포세린 + 월넛 캐비닛 조합, 싱크·쿡탑 통합 가공', cap: '주방아일랜드 · 2026.06', sub: '포세린 · 라이트 그레이', img: 'https://minha8206.github.io/eunsung-homepage/images/cases/yeouido/02.jpg' },
     { loc: '도곡동', name: '화이트 마블 포세린', desc: '녹음 뷰 창가와 어우러지는 크리미 마블 포세린, 인덕션·싱크 통합 가공', cap: '주방아일랜드 · 2026.06', sub: '포세린 · 화이트 마블', img: 'https://minha8206.github.io/eunsung-homepage/images/cases/dokgok/01.jpg' },

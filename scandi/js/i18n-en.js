@@ -42,6 +42,8 @@ window.I18N_EN = {
   '© 2026 (주)은성 EUNSUNG Co., Ltd. · 인조대리석 및 상판 가공':
     '© 2026 EUNSUNG Co., Ltd. · Solid surface and countertop fabrication',
   '포세린·엔지니어드 스톤·인조대리석·BMC': 'Porcelain · Engineered Stone · Solid Surface · BMC',
+  '(주)은성 — 경기도 포천 포세린·엔지니어드 스톤 전문 기업 | LX하우시스 공식 파트너':
+    'EUNSUNG Co., Ltd. — Porcelain and engineered stone specialist in Pocheon, Gyeonggi-do | Official LX Hausys partner',
   '소재 선별부터 가공, 시공까지. 은성이 처음부터 끝까지 책임집니다.':
     'Sourcing, fabrication, installation — EUNSUNG sees it through from first to last.',
 
@@ -56,7 +58,7 @@ window.I18N_EN = {
   '직영 설비에서 완성합니다.': 'completed in our own facility.',
   'MATERIALS · 소재': 'MATERIALS',
   'CONSULTATION · 상담': 'CONSULTATION',
-  '2009년 BMC 인조대리석 가공 전문으로 출발해, 세라믹·E-Stone·MMA·BMC 전 라인업을 다루는 종합 표면재 기업으로 성장했습니다.':
+  '2009년 BMC 인조대리석 가공 전문으로 출발해, 포세린·E-Stone·MMA·BMC 전 라인업을 다루는 종합 표면재 기업으로 성장했습니다.':
     'Founded in 2009 as a BMC solid-surface fabricator, EUNSUNG now covers the full line — Porcelain, Engineered Stone, Solid Surface and BMC.',
   '네 가지 소재, 하나의 기준': 'Four surfaces. One standard.',
 
@@ -125,7 +127,7 @@ window.I18N_EN = {
   'ABOUT EUNSUNG · 회사소개': 'ABOUT EUNSUNG',
   '대한민국 표면재의 기준을 다시 씁니다': 'Redefining the standard of surface in Korea.',
   'Redefining the standard of surface in Korea.': '__HIDE__',
-  '2009년 설립 이래 BMC부터 포세린까지, 은성은 표면재의 모든 것을 다룹니다.':
+  '2009년 설립 이래 BMC부터 은성 포세린까지, 표면재의 모든 것을 다룹니다.':
     'Since 2009, from BMC to porcelain — EUNSUNG covers every surface.',
   'Since our founding in 2009, EUNSUNG has covered every surface — from BMC to porcelain.': '__HIDE__',
 
@@ -347,7 +349,7 @@ window.I18N_EN = {
 
   /* 소재의 성질 카드 — 4개 소재 공통 UI */
   '고온 내열': 'Heat resistant',
-  '1200℃ 소성 세라믹 — 뜨거운 냄비가 직접 닿아도 변색과 변형이 없습니다.':
+  '1200℃ 소성 포세린 — 뜨거운 냄비가 직접 닿아도 변색과 변형이 없습니다.':
     'Ceramic fired at 1200℃ — no discolouration or deformation, even from a hot pan set directly on it.',
   '긁힘에 강한 표면': 'Scratch-resistant surface',
   '유리보다 단단한 표면 — 칼자국이나 마모 없이 오래 사용합니다.':
@@ -542,7 +544,7 @@ window.I18N_EN = {
   '페이지': 'Pages',
   '2009년 설립부터 지금까지, 은성이 걸어온 길': 'The road EUNSUNG has travelled since 2009',
   '실측부터 현장 시공까지, 은성이 직접 관리하는 10단계': 'Ten stages from measurement to installation, all managed by EUNSUNG',
-  '1200°C 고온에서 구워낸 대형 세라믹 슬랩': 'Large-format ceramic slabs fired at 1200°C',
+  '1200°C 고온에서 구워낸 대형 포세린 슬랩': 'Large-format ceramic slabs fired at 1200°C',
   '비아테라 — 석영 90% 이상의 프리미엄 스톤': 'VIATERA — premium stone with over 90% quartz',
   '하이막스 — 이음새 없는 100% 아크릴 솔리드 서페이스': 'HIMACS — seamless 100% acrylic solid surface',
   '자체 생산하는 열경화성 성형 컴파운드': 'Thermoset molding compound, produced in-house',
@@ -611,7 +613,7 @@ window.I18N_EN = {
   "싱크대와 상판 하나하나의 정밀도로 신뢰를 쌓아왔습니다.": "earning trust one sink and one countertop at a time.",
   "포세린·비아테라·하이막스·BMC,": "Porcelain, VIATERA, HIMACS and BMC —",
   "표면재의 전 과정을 다루는 회사로": "a company that covers the full surface line",
-  "자재 수급부터 정밀 가공, 현장 시공까지 은성이 직접 수행합니다.": "Sourcing, precision fabrication and on-site installation are all done in house.",
+  "자재 수급부터 정밀 가공, 현장 시공까지 은성 포세린은 모든 공정을 직접 거칩니다.": "Sourcing, precision fabrication and on-site installation are all done in house.",
   "중간 유통이 없어 품질과 일정을 끝까지 책임질 수 있습니다.": "With no middlemen in between, quality and schedule stay ours to answer for.",
   "대형 가공 설비에서 재단부터 마감까지 직접 처리합니다.": "Cutting through finishing runs on our own large-format lines.",
   "재고를 체계적으로 관리하고 공정을 자동화해,": "Disciplined stock control and automated processes mean",
