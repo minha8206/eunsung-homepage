@@ -35,6 +35,17 @@
 <link rel="stylesheet" href="assets/css/mobile-overlays.css">
 <link rel="stylesheet" href="assets/css/mobile-pages.css">
 <script src="assets/js/mobile-nav.js" defer></script>
+<script>
+/* 제품 이미지 로드 실패 처리.
+   프레임워크가 DOM을 다시 그리므로 인라인 onerror 대신 캡처 단계에서 위임 처리한다.
+   실패한 <img>만 감추면 아래 깔린 .imgph 플레이스홀더가 그대로 드러난다. */
+(function () {
+  document.addEventListener('error', function (e) {
+    var t = e.target;
+    if (t && t.tagName === 'IMG' && t.classList.contains('pimgx')) t.classList.add('is-broken');
+  }, true);
+})();
+</script>
 </head>
 <body>
 <x-dc>
@@ -63,6 +74,9 @@ a:hover{color:#c9a24b}
 .nav-drop-item{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:10px 14px;font:600 11px 'Manrope';letter-spacing:.08em;color:#0e2440;text-decoration:none;border-radius:7px;transition:.25s}
 .nav-drop-item:hover{background:rgba(201,162,75,.1);color:#a8763f}
 .nav-drop-item span{font:500 10px 'Manrope';letter-spacing:.02em;opacity:.5}
+/* 제품 이미지 로드 실패 시 드러나는 플레이스홀더 — 깨진 아이콘 대신 브랜드 톤 + 제품 코드 */
+.imgph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#F5F1E8;font:600 12px 'Manrope';letter-spacing:.18em;color:rgba(28,39,51,.42);text-align:center;padding:8px}
+.is-broken{display:none!important}
 .hero-img{cursor:zoom-in;transition:transform .6s cubic-bezier(.22,1,.36,1)}
 .hero-img:hover{transform:scale(1.02)}
 .btn-gold{display:grid;place-items:center;padding:16px 20px;background:#0e2440;color:#fff;font:700 12.5px 'Manrope';letter-spacing:.12em;text-decoration:none;transition:.3s;border:1px solid #0e2440;cursor:pointer}
@@ -150,7 +164,8 @@ body.nav-open .nav-mobile-panel{display:flex}
   <!-- 좌: 시편 이미지 (온전하게, 주석 없이) -->
   <div style="padding:52px 52px 52px 0;border-right:1px solid rgba(14,36,64,.14)">
     <div style="position:relative;aspect-ratio:4/3;overflow:hidden;background:#f2f0ec;outline:1px solid rgba(14,36,64,.22);outline-offset:9px;cursor:zoom-in" onClick="{{ openZoom }}">
-      <div class="hero-img" style="position:absolute;inset:0;background:url('{{ img }}') center/cover;filter:{{ tint }}"></div>
+      <span class="imgph">{{ code }}</span>
+      <img class="hero-img pimgx" src="{{ img }}" alt="{{ en }} {{ code }} — {{ ko }} 제품 이미지" loading="eager" fetchpriority="high" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:{{ tint }}">
       <div style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.92);padding:7px 13px;font:700 10px 'Manrope';letter-spacing:.2em;color:#0e2440">{{ code }} · {{ finishUpper }}</div>
       <div style="position:absolute;right:14px;bottom:14px;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.9);display:grid;place-items:center;pointer-events:none;box-shadow:0 6px 16px -6px rgba(14,36,64,.3)">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0e2440" stroke-width="1.8"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3M11 8v6M8 11h6"></path></svg>
@@ -244,7 +259,8 @@ body.nav-open .nav-mobile-panel{display:flex}
     <sc-for list="{{ qualities }}" as="q" hint-placeholder-count="4">
       <div class="qcard">
         <div style="position:relative;aspect-ratio:4/3;overflow:hidden;background:#f2f0ec">
-          <div class="qimg" style="position:absolute;inset:0;background:url('{{ q.img }}') center/cover"></div>
+          <span class="imgph">{{ q.title }}</span>
+          <img class="qimg pimgx" src="{{ q.img }}" alt="{{ q.title }} — {{ q.desc }}" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
         </div>
         <div style="font:italic 500 22px 'Cormorant Garamond';color:#c9a24b;margin-top:18px">{{ q.num }}</div>
         <div style="font:700 14.5px 'Manrope';color:#1c2733;margin-top:8px">{{ q.title }}</div>
@@ -263,8 +279,9 @@ body.nav-open .nav-mobile-panel{display:flex}
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:30px">
     <sc-for list="{{ refs }}" as="r" hint-placeholder-count="3">
       <div class="refcard">
-        <div style="position:relative;aspect-ratio:4/3;overflow:hidden;background:#f2f0ec">
-          <div class="rimg" style="position:absolute;inset:0;background:url('{{ r.img }}') center/cover"></div>
+        <div style="position:relative;aspect-ratio:4/3;overflow:hidden;background:#F5F1E8">
+          <span class="imgph">{{ r.label }}</span>
+          <img class="rimg pimgx" src="{{ r.img }}" alt="{{ r.label }} — 은성 시공 사례" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
         </div>
         <div style="font:500 12.5px 'Manrope';color:#5a6474;margin-top:12px">{{ r.label }}</div>
       </div>
@@ -277,7 +294,7 @@ body.nav-open .nav-mobile-panel{display:flex}
 <!-- ===================== ZOOM LIGHTBOX ===================== -->
 <sc-if value="{{ zoomed }}" hint-placeholder-val="{{ false }}">
   <div style="position:fixed;inset:0;z-index:60;background:rgba(8,11,16,.92);display:grid;place-items:center;cursor:zoom-out" onClick="{{ closeZoom }}">
-    <div style="width:min(88vw,1100px);height:88vh;background:url('{{ img }}') center/contain no-repeat;filter:{{ tint }}"></div>
+    <img src="{{ img }}" alt="{{ en }} {{ code }} 제품 이미지 확대 보기" decoding="async" style="width:min(88vw,1100px);height:88vh;object-fit:contain;filter:{{ tint }}">
     <div style="position:absolute;top:22px;right:26px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.4);display:grid;place-items:center">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"></path></svg>
     </div>

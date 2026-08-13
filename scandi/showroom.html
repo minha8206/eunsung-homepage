@@ -35,6 +35,17 @@
 <link rel="stylesheet" href="assets/css/mobile-overlays.css">
 <link rel="stylesheet" href="assets/css/mobile-pages.css">
 <script src="assets/js/mobile-nav.js" defer></script>
+<script>
+/* 제품 이미지 로드 실패 처리.
+   프레임워크가 DOM을 다시 그리므로 인라인 onerror 대신 캡처 단계에서 위임 처리한다.
+   실패한 <img>만 감추면 아래 깔린 .imgph 플레이스홀더가 그대로 드러난다. */
+(function () {
+  document.addEventListener('error', function (e) {
+    var t = e.target;
+    if (t && t.tagName === 'IMG' && t.classList.contains('pimgx')) t.classList.add('is-broken');
+  }, true);
+})();
+</script>
 </head>
 <body>
 <x-dc>
@@ -64,6 +75,9 @@ a:hover{color:#c9a24b}
 .nav-drop-item{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:10px 14px;font:600 11px 'Manrope';letter-spacing:.08em;color:#0e2440;text-decoration:none;border-radius:7px;transition:.25s}
 .nav-drop-item:hover{background:rgba(201,162,75,.1);color:#a8763f}
 .nav-drop-item span{font:500 10px 'Manrope';letter-spacing:.02em;opacity:.5}
+/* 제품 이미지 로드 실패 시 드러나는 플레이스홀더 — 깨진 아이콘 대신 브랜드 톤 + 제품 코드 */
+.imgph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#F5F1E8;font:600 12px 'Manrope';letter-spacing:.18em;color:rgba(28,39,51,.42);text-align:center;padding:8px}
+.is-broken{display:none!important}
 .pcard{cursor:pointer}
 .pcard .pimg{transition:transform .6s cubic-bezier(.22,1,.36,1)}
 .pcard:hover .pimg{transform:scale(1.05)}
@@ -257,8 +271,9 @@ body.nav-open .nav-mobile-panel{display:flex}
     <div class="pgrid">
       <sc-for list="{{ pageItems }}" as="p" hint-placeholder-count="8">
         <div class="pcard" onClick="{{ p.open }}">
-          <div style="position:relative;aspect-ratio:2/3;overflow:hidden;background:#f2f0ec">
-            <div class="pimg" style="position:absolute;inset:0;background:url('{{ p.img }}') center/cover;filter:{{ p.tint }}"></div>
+          <div style="position:relative;aspect-ratio:2/3;overflow:hidden;background:#F5F1E8">
+            <span class="imgph">{{ p.code }}</span>
+            <img class="pimg pimgx" src="{{ p.img }}" alt="{{ p.en }} {{ p.code }} — {{ p.ko }} 제품 이미지" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:{{ p.tint }}">
             <div class="pveil" style="position:absolute;inset:0;display:flex;align-items:flex-end;background:linear-gradient(180deg,rgba(14,36,64,0) 55%,rgba(14,36,64,.55))">
               <span style="font:600 11px 'Manrope';letter-spacing:.2em;color:#fff;padding:0 0 18px 18px;display:flex;align-items:center;gap:8px">자세히 보기 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
             </div>
