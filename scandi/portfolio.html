@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- SEO / 링크 미리보기 (카카오톡·페이스북 등) -->
-<title>시공사례 — EUNSUNG 은성</title>
-<meta name="description" content="말보다 결과로 — 은성이 시공한 실제 현장입니다.">
+<title>시공사례 | 포세린 아일랜드·아트월 시공 갤러리 — 은성 EUNSUNG</title>
+<meta name="description" content="주방 아일랜드, 욕실, 아트월, 카페 카운터까지 은성이 직접 포세린 시공한 실제 현장 사례입니다. 비아테라·하이막스 적용 사례도 사진으로 확인하세요.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="EUNSUNG 은성">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:title" content="시공사례 — EUNSUNG 은성">
-<meta property="og:description" content="말보다 결과로 — 은성이 시공한 실제 현장입니다.">
+<meta property="og:title" content="시공사례 | 포세린 아일랜드·아트월 시공 갤러리 — 은성 EUNSUNG">
+<meta property="og:description" content="말보다 결과로 — 주방 아일랜드부터 아트월까지 은성이 포세린·비아테라로 시공한 실제 현장입니다.">
 <meta property="og:url" content="https://rainbow-florentine-97f972.netlify.app/portfolio.html">
 <meta property="og:image" content="https://rainbow-florentine-97f972.netlify.app/images/og-cover.jpg">
 <meta property="og:image:width" content="1200">
@@ -215,7 +215,7 @@ body.nav-open .nav-mobile-panel{display:flex}
       <div class="pf-grid" data-reveal-group>
         <sc-for list="{{ casesVisible }}" as="item" hint-placeholder-count="9">
           <a class="pf-card reveal" href="{{ item.href }}" style="text-decoration:none">
-            <div class="pf-card-img" style="background-image:url('{{ item.img }}')"></div>
+            <div class="pf-card-img" role="img" aria-label="{{ item.title }} — 은성 시공 사례 사진" style="background-image:url('{{ item.img }}')"></div>
             <div class="pf-card-cap">{{ item.capUpper }}</div>
             <div class="pf-card-title">{{ item.title }}</div>
           </a>
@@ -228,7 +228,7 @@ body.nav-open .nav-mobile-panel{display:flex}
 <!-- ===================== PORTFOLIO · CASE DETAIL ===================== -->
 <sc-if value="{{ showDetail }}" hint-placeholder-val="{{ false }}">
   <section style="background:#faf8f3;padding-bottom:0">
-    <div class="pdetail-hero" style="background-image:url('{{ caseSel.heroPhoto }}')">
+    <div class="pdetail-hero" role="img" aria-label="{{ caseSel.title }} — 시공 완료 현장 대표 사진" style="background-image:url('{{ caseSel.heroPhoto }}')">
       <div class="pdetail-hero-content">
         <div class="pdetail-cat">{{ caseSel.capUpper }}</div>
         <div class="pdetail-title">{{ caseSel.title }}</div>
@@ -239,7 +239,7 @@ body.nav-open .nav-mobile-panel{display:flex}
 
     <div class="pdetail-viewer">
       <div class="pdetail-stage">
-        <div class="pdetail-main-img" style="background-image:url('{{ caseSel.activePhotoUrl }}')"></div>
+        <div class="pdetail-main-img" role="img" aria-label="{{ caseSel.title }} — 시공 사진" style="background-image:url('{{ caseSel.activePhotoUrl }}')"></div>
         <button class="{{ caseSel.arrowClass }} is-prev" aria-label="이전 사진" onClick="{{ caseSel.prevPhoto }}">‹</button>
         <button class="{{ caseSel.arrowClass }} is-next" aria-label="다음 사진" onClick="{{ caseSel.nextPhoto }}">›</button>
       </div>
@@ -252,7 +252,7 @@ body.nav-open .nav-mobile-panel{display:flex}
         </div>
         <div class="pdetail-thumbs">
           <sc-for list="{{ caseSel.photoThumbs }}" as="t" hint-placeholder-count="3">
-            <div class="{{ t.thumbClass }}" style="background-image:url('{{ t.url }}')" onClick="{{ t.select }}"></div>
+            <div class="{{ t.thumbClass }}" role="img" aria-label="{{ caseSel.title }} 사진 미리보기" style="background-image:url('{{ t.url }}')" onClick="{{ t.select }}"></div>
           </sc-for>
         </div>
       </sc-if>
@@ -478,6 +478,9 @@ class Component extends DCLogic {
   function paint() {
     if (!lb) return;
     lbImg.src = photos[idx] || '';
+    var tEl = document.querySelector('.pdetail-title');
+    var tTxt = tEl ? tEl.textContent.trim() : '';
+    lbImg.alt = (tTxt ? tTxt + ' — ' : '') + '은성 시공 사진 ' + (idx + 1);
     lbCount.textContent = (idx + 1) + ' / ' + photos.length;
     var show = photos.length > 1 ? '' : 'none';
     lb.querySelector('.pflb-arrow.is-prev').style.display = show;

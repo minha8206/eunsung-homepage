@@ -1,22 +1,90 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- SEO / 링크 미리보기 (카카오톡·페이스북 등) -->
-<title>EUNSUNG 은성 — 포세린·비아테라·하이막스·BMC 표면재</title>
-<meta name="description" content="소재 선별부터 가공, 시공까지 은성이 직접 합니다. LX하우시스 공식 파트너, 포천 자체 공장.">
+<title>은성 EUNSUNG | 포세린·비아테라·하이막스 전문 — LX하우시스 공식 파트너</title>
+<meta name="description" content="포세린 시공 전문 은성 세라믹(주식회사 은성). LX하우시스 공식 파트너로 비아테라·하이막스까지, 경기도 포천 자체 공장에서 소재 선별·재단·가공·시공을 직접 합니다. 상담 031-544-7272">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="EUNSUNG 은성">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:title" content="EUNSUNG 은성 — 포세린·비아테라·하이막스·BMC 표면재">
-<meta property="og:description" content="소재 선별부터 가공, 시공까지 은성이 직접 합니다. LX하우시스 공식 파트너, 포천 자체 공장.">
+<meta property="og:title" content="은성 EUNSUNG | 포세린·비아테라·하이막스 전문 — LX하우시스 공식 파트너">
+<meta property="og:description" content="포세린 시공 전문 은성 세라믹. LX하우시스 공식 파트너로 비아테라·하이막스까지, 포천 자체 공장에서 소재 선별부터 시공까지 직접 합니다.">
 <meta property="og:url" content="https://rainbow-florentine-97f972.netlify.app/">
 <meta property="og:image" content="https://rainbow-florentine-97f972.netlify.app/images/og-cover.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://rainbow-florentine-97f972.netlify.app/">
+
+<!-- 구조화 데이터: 검색결과 지식패널·지도 노출용 (Organization + LocalBusiness) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://rainbow-florentine-97f972.netlify.app/#organization",
+      "name": "(주)은성",
+      "alternateName": ["EUNSUNG", "은성", "은성 세라믹"],
+      "url": "https://rainbow-florentine-97f972.netlify.app/",
+      "logo": "https://rainbow-florentine-97f972.netlify.app/images/og-cover.jpg",
+      "image": "https://rainbow-florentine-97f972.netlify.app/images/og-cover.jpg",
+      "description": "포세린·비아테라·하이막스 등 표면재의 선별·가공·시공을 직접 수행하는 전문 기업. LX하우시스 공식 파트너.",
+      "foundingDate": "2009",
+      "founder": {
+        "@type": "Person",
+        "name": "이언기"
+      },
+      "employee": {
+        "@type": "Person",
+        "name": "이언기",
+        "jobTitle": "대표이사"
+      },
+      "telephone": "+82-31-544-7272",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "가산면 정금로 356-39",
+        "addressLocality": "포천시",
+        "addressRegion": "경기도",
+        "addressCountry": "KR"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+82-31-544-7272",
+        "contactType": "customer service",
+        "areaServed": "KR",
+        "availableLanguage": ["ko", "en"]
+      }
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://rainbow-florentine-97f972.netlify.app/#localbusiness",
+      "name": "(주)은성 EUNSUNG",
+      "parentOrganization": {
+        "@id": "https://rainbow-florentine-97f972.netlify.app/#organization"
+      },
+      "url": "https://rainbow-florentine-97f972.netlify.app/",
+      "image": "https://rainbow-florentine-97f972.netlify.app/images/og-cover.jpg",
+      "description": "경기도 포천 자체 공장에서 포세린·비아테라·하이막스 슬랩을 재단·가공하고 현장 시공까지 진행합니다. 쇼룸 방문 상담 가능.",
+      "telephone": "+82-31-544-7272",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "가산면 정금로 356-39",
+        "addressLocality": "포천시",
+        "addressRegion": "경기도",
+        "addressCountry": "KR"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "대한민국"
+      },
+      "knowsAbout": ["포세린 시공", "비아테라", "하이막스", "BMC", "주방 상판", "아트월"]
+    }
+  ]
+}
+</script>
 <script src="./support.js"></script>
 <link rel="stylesheet" href="assets/css/inquiry-widget.css">
 <script src="assets/js/inquiry-widget.js" defer></script>
@@ -41,7 +109,7 @@
   <!-- 래퍼는 200vh, 안쪽은 sticky 100vh — 그 사이 100vh 만큼 굴린 양이 진행도(0~1)가 된다.
        스크롤을 가로채지 않으므로 빨리 내리면 애니메이션도 그만큼 빨리 끝나고 그대로 다음 섹션으로 간다. -->
   <div class="vhero-sticky">
-  <div class="vhero-bg" id="vheroBg" style="background-image:url('assets/showroom-hero.jpg')"></div>
+  <div class="vhero-bg" id="vheroBg" role="img" aria-label="포세린·비아테라 슬랩이 전시된 은성 포천 쇼룸 전경" style="background-image:url('assets/showroom-hero.jpg')"></div>
   <div class="vhero-stage">
     <div class="vhero-media" id="vheroMedia">
       <video id="vheroVideo" src="assets/video/hero-scroll.mp4" poster="assets/video/hero-poster.jpg" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture controlsList="nodownload noremoteplayback"></video>
@@ -283,7 +351,7 @@ body.nav-open .nav-mobile-panel{display:flex}
     <div data-reveal-group>
       <!-- 포세린 (panel right) -->
       <div class="mbanner reveal">
-        <div class="mbanner-image" style="background-image:url('assets/porcelain.jpg')"></div>
+        <div class="mbanner-image" role="img" aria-label="포세린 슬랩으로 마감한 주방 아일랜드 시공 사례" style="background-image:url('assets/porcelain.jpg')"></div>
         <div class="mbanner-panel">
           <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">포세린</div></div>
           <div class="mbanner-desc-ko">뜨거운 냄비를 그대로 올려도, 10년을 써도 처음 그대로입니다. 1200℃ 고온이 만든 가장 강한 표면입니다.</div>
@@ -301,11 +369,11 @@ body.nav-open .nav-mobile-panel{display:flex}
           <div class="mbanner-rec">매일 쓰는 주방 상판, 고급스러운 질감이 필요한 공간에 추천</div>
           <div class="mbanner-partner"><div class="mbanner-partner-cap">OFFICIAL PARTNER</div><img src="images/lx-hausys-logo.png" alt="LX Hausys" loading="lazy"></div>
         </div>
-        <div class="mbanner-image" style="background-image:url('assets/viatera.jpg')"></div>
+        <div class="mbanner-image" role="img" aria-label="비아테라 엔지니어드 스톤 상판을 적용한 주방" style="background-image:url('assets/viatera.jpg')"></div>
       </div>
       <!-- 하이막스 (panel right) -->
       <div class="mbanner reveal">
-        <div class="mbanner-image" style="background-image:url('assets/himacs.jpg')"></div>
+        <div class="mbanner-image" role="img" aria-label="하이막스 인조대리석으로 이음새 없이 마감한 카운터" style="background-image:url('assets/himacs.jpg')"></div>
         <div class="mbanner-panel">
           <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">인조대리석</div><div class="mbanner-eyebrow" style="margin-bottom:0">하이막스</div></div>
           <div class="mbanner-desc-ko">100% 아크릴계 솔리드 서페이스로, 이음새 없이 매끄럽게 이어지고 열로 곡면을 만들 수 있습니다. 생활 흠집이 생겨도 샌딩 한 번이면 새것처럼 복원됩니다.</div>
@@ -322,7 +390,7 @@ body.nav-open .nav-mobile-panel{display:flex}
           <div class="mbanner-chips"><span class="mbanner-chip">싱크볼 일체 성형</span><span class="mbanner-chip">은성 자체 생산</span><span class="mbanner-chip">합리적인 가격</span></div>
           <div class="mbanner-rec">실속 있게 마감하고 싶은 주방 · 다용도실에 추천</div>
         </div>
-        <div class="mbanner-image" style="background-image:url('images/bmc-kitchen.jpg')"></div>
+        <div class="mbanner-image" role="img" aria-label="은성이 자체 생산한 BMC 싱크볼 일체형 주방 상판" style="background-image:url('images/bmc-kitchen.jpg')"></div>
       </div>
     </div>
   </div>
