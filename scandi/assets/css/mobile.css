@@ -87,7 +87,7 @@ body.nav-open .nav-mobile-panel { display: none !important; }
 .mnav {
   position: fixed; inset: 0; z-index: 9500;
   display: flex; flex-direction: column; overflow: hidden;
-  background: #f6f2ea; color: #0e2440;
+  background: #ffffff; color: #0e2440;
   visibility: hidden; opacity: 0;
   transition: opacity .45s cubic-bezier(.22,1,.36,1), visibility 0s linear .45s;
 }
@@ -100,14 +100,14 @@ body.nav-open .mnav {
   flex: none; display: flex; align-items: center; justify-content: space-between;
   padding: 12px 20px 8px;
   padding-top: calc(12px + env(safe-area-inset-top, 0px));
-  border-bottom: 1px solid rgba(14, 36, 64, .08);
+  border-bottom: 1px solid #eee;
 }
 .mnav-brand { display: flex; align-items: baseline; gap: .5em; text-decoration: none; color: #0e2440; min-height: 44px; align-items: center; }
 .mnav-brand-en { font: 600 1.15rem 'Cormorant Garamond', serif; letter-spacing: .14em; }
 .mnav-brand-kr { font: 400 .66rem 'Noto Serif KR', serif; opacity: .55; }
 .mnav-close {
   width: 46px; height: 46px; border-radius: 50%;
-  border: 1px solid rgba(14, 36, 64, .16); background: transparent; color: #0e2440;
+  border: 1px solid #e2e2e2; background: transparent; color: #0e2440;
   display: grid; place-items: center; cursor: pointer;
   -webkit-tap-highlight-color: transparent; touch-action: manipulation;
 }
@@ -126,6 +126,12 @@ body.nav-open .mnav {
   color: #a8763f; margin: 0 0 10px;
 }
 .mnav-eyebrow--sub { margin-top: 34px; }
+/* 영문 소제목은 Manrope 를 유지하되, 뒤에 붙는 한글은 Noto Serif KR 로 —
+   Manrope 에는 한글 글리프가 없어 그대로 두면 기기별 시스템 폰트로 떨어진다. */
+.mnav-ko {
+  font-family: 'Noto Serif KR', serif; font-weight: 400;
+  letter-spacing: .04em;
+}
 .mnav-list { display: flex; flex-direction: column; }
 .mnav-link, .mnav-sublink {
   display: flex; align-items: baseline; gap: 14px;
@@ -156,14 +162,15 @@ body.nav-open .mnav {
 .mnav-utils {
   display: flex; align-items: center; gap: 10px;
   margin-top: 38px; padding-top: 24px;
-  border-top: 1px solid rgba(14, 36, 64, .12);
+  border-top: 1px solid #eee;
 }
 .mnav-util {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   min-height: 44px; padding: 0 16px;
-  border: 1px solid rgba(14, 36, 64, .16); border-radius: 23px;
+  border: 1px solid #e2e2e2; border-radius: 23px;
   background: transparent; color: #0e2440;
-  font: 600 13px 'Manrope', sans-serif; cursor: pointer;
+  /* 한글 라벨(검색·로그인) — 오버레이 안의 한글은 예외 없이 Noto Serif KR */
+  font: 500 14px 'Noto Serif KR', serif; cursor: pointer;
   -webkit-tap-highlight-color: transparent; touch-action: manipulation;
 }
 .mnav-util svg { width: 15px; height: 15px; }
@@ -198,8 +205,8 @@ body.nav-open .mnav {
 .mnav-kakao {
   display: inline-flex; align-items: center; gap: 8px;
   margin-top: 12px; min-height: 46px; padding: 0 20px; border-radius: 24px;
-  background: #0e2440; color: #f6f2ea;
-  font: 600 13px 'Manrope', sans-serif; letter-spacing: .04em; text-decoration: none;
+  background: #0e2440; color: #ffffff;
+  font: 500 14px 'Noto Serif KR', serif; letter-spacing: .02em; text-decoration: none;
 }
 .mnav-kakao svg { width: 15px; height: 15px; }
 

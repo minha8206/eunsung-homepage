@@ -39,11 +39,31 @@
 <script>
 /* 제품 이미지 로드 실패 처리.
    프레임워크가 DOM을 다시 그리므로 인라인 onerror 대신 캡처 단계에서 위임 처리한다.
-   실패한 <img>만 감추면 아래 깔린 .imgph 플레이스홀더가 그대로 드러난다. */
+   실패한 <img>만 감추면 아래 깔린 .imgph 플레이스홀더가 그대로 드러난다.
+
+   주의 — 데이터(fetch)가 도착하기 전 첫 렌더에서는 src 가 빈 문자열이다.
+   빈 src 는 브라우저가 문서 URL 로 해석해 error 를 던지므로, 이때 is-broken 을
+   붙이면 이후 진짜 이미지 경로가 들어와도 계속 숨겨진 채로 남는다(= 모바일에서
+   배경색+제품코드만 보이던 증상). 그래서 (1) 빈 src 는 무시하고, (2) 실제 실패는
+   캐시버스터로 한 번만 재시도하며, (3) load 성공 시 is-broken 을 반드시 해제한다. */
 (function () {
+  function isProductImg(t) {
+    return t && t.tagName === 'IMG' && t.classList.contains('pimgx');
+  }
   document.addEventListener('error', function (e) {
     var t = e.target;
-    if (t && t.tagName === 'IMG' && t.classList.contains('pimgx')) t.classList.add('is-broken');
+    if (!isProductImg(t)) return;
+    var s = t.getAttribute('src') || '';
+    if (!s) return;                      // 아직 데이터가 안 붙은 빈 src — 실패가 아니다
+    if (s.indexOf('_r=1') === -1) {      // 일시적 실패(타임아웃 등) 1회 재시도
+      var retry = s + (s.indexOf('?') === -1 ? '?' : '&') + '_r=1';
+      setTimeout(function () { if ((t.getAttribute('src') || '') === s) t.src = retry; }, 400);
+      return;
+    }
+    t.classList.add('is-broken');        // 재시도까지 실패 — 플레이스홀더 노출
+  }, true);
+  document.addEventListener('load', function (e) {
+    if (isProductImg(e.target)) e.target.classList.remove('is-broken');
   }, true);
 })();
 </script>

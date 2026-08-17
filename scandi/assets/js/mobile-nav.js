@@ -1,8 +1,9 @@
 /* ===== 모바일 풀스크린 메뉴 (전 페이지 공통) =====
 
    v1 은 헤더 아래로 떨어지는 드롭다운 패널(.nav-mobile-panel)이었다.
-   v2(현재)는 크림 배경의 풀스크린 오버레이로 바꿨다 — 럭셔리 브랜드
-   모바일 관례(미니멀 헤더 + 전체 화면 메뉴)를 따른다.
+   v2(현재)는 순백 배경의 풀스크린 오버레이로 바꿨다 — 럭셔리 브랜드
+   모바일 관례(미니멀 헤더 + 전체 화면 메뉴)를 따른다. 오버레이 안의
+   한글은 예외 없이 Noto Serif KR 로 통일한다(영문 소제목·KO/EN 은 Manrope).
 
    구조 원칙:
    - 오버레이는 JS 가 body 끝에 직접 만든다. <x-dc> 가 관리하는 서브트리
@@ -84,7 +85,7 @@
     html += '</nav>';
 
     d += step;
-    html += '<div class="mnav-eyebrow mnav-eyebrow--sub" style="--d:' + d + 'ms">MATERIALS · 소재</div>';
+    html += '<div class="mnav-eyebrow mnav-eyebrow--sub" style="--d:' + d + 'ms">MATERIALS <span class="mnav-ko">· 소재</span></div>';
     html += '<nav class="mnav-list">';
     for (var j = 0; j < MATERIALS.length; j++) {
       d += step;
@@ -101,7 +102,7 @@
 
     d += step;
     html += '<div class="mnav-contact" style="--d:' + d + 'ms">' +
-      '<div class="mnav-contact-cap">CONSULTATION · 상담</div>' +
+      '<div class="mnav-contact-cap">CONSULTATION <span class="mnav-ko">· 상담</span></div>' +
       '<div class="mnav-tels">' +
         '<a class="mnav-tel" href="tel:' + TEL_NUM + '">' + TEL_NUM + '</a>' +
         '<a class="mnav-tel mnav-tel--sub" href="tel:' + MOBILE_NUM + '">' + MOBILE_NUM + '</a>' +
