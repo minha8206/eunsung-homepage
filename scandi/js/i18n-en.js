@@ -89,12 +89,12 @@ window.I18N_EN = {
     'Everyday scratches lift away with a light pass over the surface, back to new.',
   '은성이 직접 생산하는 열경화성 성형 컴파운드입니다. 싱크볼까지 하나로 성형돼 물샐 틈 없이 위생적이고, 자체 생산이라 가격과 납기 모두 합리적입니다.':
     'A thermoset molding compound we produce ourselves. The sink bowl is moulded in one piece — watertight and hygienic — and in-house production keeps both price and lead time reasonable.',
-  '고온·고압으로 한 번에 찍어내는 은성의 자체 생산 상판입니다.':
-    'A worktop pressed in one shot under high heat and pressure, in our own plant.',
+  '고온·고압으로 한 번에 찍어낸 BMC를 은성이 직접 가공한 상판입니다.':
+    'BMC pressed in one shot under high heat and pressure, fabricated into worktops by EUNSUNG.',
   '싱크볼까지 한 몸으로 성형돼 물이 스밀 이음새가 없고, 열과 습기에 강해 오래 써도 휘거나 들뜨지 않습니다.':
     'The sink bowl is moulded as a single body, so there is no seam for water to reach, and it holds against heat and moisture without warping or lifting over the years.',
-  '2009년부터 은성 공장에서 직접 만들어온 만큼 가격과 납기, A/S까지 은성이 책임집니다.':
-    'Made at the EUNSUNG factory since 2009 — price, lead time and after-service all stay with us.',
+  '2009년부터 은성이 직접 가공해온 만큼 가격과 납기, A/S까지 은성이 책임집니다.':
+    'Fabricated by EUNSUNG since 2009 — price, lead time and after-service all stay with us.',
 
   '실내외 모두 시공 가능': 'Interior and exterior',
   '열에 가장 강한 소재': 'Most heat-resistant of the four',
@@ -113,7 +113,7 @@ window.I18N_EN = {
   '은성 자체 생산': 'Produced in-house by EUNSUNG',
   '합리적인 가격': 'Sensible pricing',
   '열·습기에 강한 소재': 'Heat- and moisture-resistant',
-  '은성 직접 생산 · 책임 시공': 'Made and installed by EUNSUNG',
+  '은성 직접 가공 · 책임 시공': 'Fabricated and installed by EUNSUNG',
   '천연 석영 93%': '93% natural quartz',
   '얼룩이 배지 않는 표면': 'Stains never settle in',
   '코팅 · 관리 불필요': 'No sealing, no upkeep',
@@ -698,5 +698,151 @@ window.I18N_EN = {
   /* ───────── 플로팅 문의 위젯 ─────────
      (버튼 aria-label '문의하기' 는 위 contact 항목을 그대로 쓴다) */
   '카카오톡 문의': 'Ask on KakaoTalk',
+
+  /* ───────── BMC 소재 소개 · 제품 카탈로그 (bmc.html, bmc/products.html) ─────────
+     본문은 구 사이트 원문의 직역. 규격·코드 문자열은 사전에 없어 원문 그대로 남는다. */
+  'WHAT IS BMC · 소개':
+    'WHAT IS BMC',
+  'FEATURES · 특징':
+    'FEATURES',
+  'COLORS · 컬러':
+    'COLORS',
+  'RAW MATERIALS · 원자재':
+    'RAW MATERIALS',
+  'LINEUP · 제품 라인업':
+    'LINEUP',
+  'BMC CATALOG · 제품 카탈로그':
+    'BMC CATALOG',
+  'BMC 인조대리석이란?':
+    'What is BMC solid surface?',
+  'BMC 인조대리석 특징':
+    'Features of BMC solid surface',
+  '컬러':
+    'Colors',
+  '원자재':
+    'Raw Materials',
+  '제품 라인업':
+    'Product Lineup',
+  'BMC 제품 카탈로그':
+    'BMC Product Catalog',
+  '전체 컬러 보기 →':
+    'View all colors →',
+  '제품 카탈로그 전체 보기 →':
+    'View the full catalog →',
+  '제품 카테고리':
+    'Product categories',
+  'BMC 인조대리석은 친환경소재인 BMC (BULK MOLDING COMPOUND)를 원료로 2,000톤 이상의 프레스로 고온, 가압 성형된 인조 대리석으로 ※ FDA 기준에 적합한 인체에 무해한 제품입니다.':
+    'BMC solid surface is an artificial marble molded at high temperature and pressure on a press of over 2,000 tons from BMC (BULK MOLDING COMPOUND), an eco-friendly material — ※ a product that meets FDA standards and is harmless to the human body.',
+  '※ FDA 기준 적합 (미국식품안전위생국 21 CFR 176.170 : 식품 접촉 제품의 무해성 검증 기준) 소재':
+    '※ A material that meets FDA standards (U.S. FDA 21 CFR 176.170 : criteria for verifying the safety of food-contact products)',
+  '가공성과 시공성':
+    'Workability and installability',
+  '표준화가 가능하여 대량 시공이 용이하고 일체형 성형으로 하자 발생이 적고, 비산 먼지의 발생이 거의 없습니다.':
+    'Standardization makes large-scale installation easy, one-piece molding means fewer defects, and almost no airborne dust is produced.',
+  '강도':
+    'Strength',
+  '보강재의 구성이 균일하여 내구성, 내충격성이 강합니다.':
+    'A uniform composition of reinforcement gives strong durability and impact resistance.',
+  '내열 : 내오염성':
+    'Heat : stain resistance',
+  '열경화성 재료로 150℃ 이상 고열 성형하여 내열성이 우수하고 오염에 강합니다.':
+    'A thermoset material molded at over 150℃, with excellent heat resistance and strong resistance to stains.',
+  '향균성':
+    'Antibacterial',
+  '고온 고압의 프레스 성형으로 항곰팡이성 및 항균성 우수합니다.':
+    'High-temperature, high-pressure press molding gives excellent anti-mold and antibacterial performance.',
+  '질감':
+    'Texture',
+  '천연 대리석과 유사하게 다양한 질감의 표현이 가능합니다.':
+    'A wide range of textures can be expressed, similar to natural marble.',
+  '유동성':
+    'Flowability',
+  '원료 유동성이 우수하기 때문에 복잡한 형상도 일체형 성형이 가능합니다.':
+    'Excellent raw-material flow makes one-piece molding possible even for complex shapes.',
+  '다양한 사이즈로 제작 가능합니다.':
+    'Available in various sizes.',
+  '바이컬 화이트':
+    'Bical White',
+  '바이컬 그레이':
+    'Bical Grey',
+  '바이컬 브라운':
+    'Bical Brown',
+  '바이컬 밀키':
+    'Bical Milky',
+  '싱크대 일자 상판':
+    'Straight Sink Countertop',
+  '싱크대 ㄱ자 상판':
+    'L-shaped Sink Countertop',
+  '싱크대 선반':
+    'Sink Shelf',
+  '판재':
+    'Board',
+  '가스프레임':
+    'Gas Frame',
+  '가스대':
+    'Gas Stand',
+  '일자 상판':
+    'Straight countertop',
+  'ㄱ자 상판':
+    'L-shaped countertop',
+  '선반':
+    'Shelf',
+  '가스프레임 (외경사이즈 : 640 x 600)':
+    'Gas frame (outer size : 640 x 600)',
+  '품명':
+    'Item',
+  '규격 (단위 : mm)':
+    'Size (unit : mm)',
+  '따내기 사이즈 (단위 : mm)':
+    'Cut-out size (unit : mm)',
+  '원형 테이블':
+    'Round Table',
+  '식탁':
+    'Dining Table',
+  '식탁 다리':
+    'Table Legs',
+  '싱크대 상판':
+    'Sink Countertop',
+  '홈바':
+    'Home Bar',
+  '일체형 세면대':
+    'Integrated Washbasin',
+  'BMC 싱크볼':
+    'BMC Sink Bowl',
+  '원탁 600∅':
+    'Round Table 600∅',
+  '크로바 640 x 510':
+    'Clover 640 x 510',
+  '원탁 850∅':
+    'Round Table 850∅',
+  '원탁 1050∅':
+    'Round Table 1050∅',
+  '식탁 1200 x 600':
+    'Dining Table 1200 x 600',
+  '식탁 1200 x 750':
+    'Dining Table 1200 x 750',
+  '식탁 1400 x 750':
+    'Dining Table 1400 x 750',
+  '식탁 1600 x 750':
+    'Dining Table 1600 x 750',
+  '식탁 1800 x 750':
+    'Dining Table 1800 x 750',
+  'BMC 싱크볼 (바이컬 그레이)':
+    'BMC Sink Bowl (Bical Grey)',
+  'BMC 싱크볼 (바이컬 브라운)':
+    'BMC Sink Bowl (Bical Brown)',
+  '상판 규격':
+    'Top size',
+  '적용 가능 다리':
+    'Compatible legs',
+  '블랙':
+    'Black',
+  '실버':
+    'Silver',
+  '골드':
+    'Gold',
+  '제품 데이터를 불러오지 못했습니다.':
+    'Could not load product data.',
+
   '전화 문의 010-5430-2580': 'Call 010-5430-2580'
 };

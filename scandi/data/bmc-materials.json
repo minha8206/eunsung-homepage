@@ -1,0 +1,116 @@
+{
+ "title": "원자재",
+ "en": "Raw Materials",
+ "items": [
+  {
+   "name": "싱크대 일자 상판",
+   "en": "Straight Sink Countertop",
+   "specLabel": "규격 (단위 : mm)",
+   "rows": [
+    {
+     "name": "일자 상판",
+     "spec": "3000(W) x 600(D) x 38(T)"
+    }
+   ],
+   "image": {
+    "file": "images/bmc/materials/01_d6b26572e45a6.webp",
+    "w": 1290,
+    "h": 860,
+    "srcOriginal": "bmc-materials/01_d6b26572e45a6.jpg"
+   }
+  },
+  {
+   "name": "싱크대 ㄱ자 상판",
+   "en": "L-shaped Sink Countertop",
+   "specLabel": "규격 (단위 : mm)",
+   "rows": [
+    {
+     "name": "ㄱ자 상판",
+     "spec": "3000(W) x 2000(W) x600(D) x 38(T)"
+    }
+   ],
+   "image": {
+    "file": "images/bmc/materials/02_20979f1769fd6.webp",
+    "w": 1290,
+    "h": 860,
+    "srcOriginal": "bmc-materials/02_20979f1769fd6.jpg"
+   }
+  },
+  {
+   "name": "싱크대 선반",
+   "en": "Sink Shelf",
+   "specLabel": "규격 (단위 : mm)",
+   "rows": [
+    {
+     "name": "선반",
+     "spec": "3000(W) x 120(D) x 25(T)"
+    }
+   ],
+   "image": {
+    "file": "images/bmc/materials/03_e0a86b9e7b31c.webp",
+    "w": 1280,
+    "h": 967,
+    "srcOriginal": "bmc-materials/03_e0a86b9e7b31c.jpg"
+   }
+  },
+  {
+   "name": "판재",
+   "en": "Board",
+   "specLabel": "규격 (단위 : mm)",
+   "rows": [
+    {
+     "name": "판재",
+     "spec": "3050(W) x 810(D) x 6(T)"
+    },
+    {
+     "name": "",
+     "spec": "1000(W) x 2000(D) x 6(T)"
+    }
+   ],
+   "image": {
+    "file": "images/bmc/materials/04_70acd02a8fa2a.webp",
+    "w": 1296,
+    "h": 860,
+    "srcOriginal": "bmc-materials/04_70acd02a8fa2a.jpg"
+   }
+  },
+  {
+   "name": "가스프레임",
+   "en": "Gas Frame",
+   "specLabel": "따내기 사이즈 (단위 : mm)",
+   "rows": [
+    {
+     "name": "가스프레임 (외경사이즈 : 640 x 600)",
+     "spec": "560(W) x 430(D)"
+    },
+    {
+     "name": "",
+     "spec": "560(W) x 480(D)"
+    }
+   ],
+   "image": {
+    "file": "images/bmc/materials/05_95fc18d8fe72c.webp",
+    "w": 1380,
+    "h": 860,
+    "srcOriginal": "bmc-materials/05_95fc18d8fe72c.jpg"
+   }
+  },
+  {
+   "name": "가스대",
+   "en": "Gas Stand",
+   "specLabel": "규격 (단위 : mm)",
+   "rows": [
+    {
+     "name": "가스대",
+     "spec": "600~620(W) x 600(D) x 233(H)"
+    }
+   ],
+   "image": {
+    "file": "images/bmc/materials/06_7963f19f39877.webp",
+    "w": 1302,
+    "h": 860,
+    "srcOriginal": "bmc-materials/06_7963f19f39877.jpg"
+   }
+  }
+ ]
+}

@@ -170,6 +170,14 @@ const PAGES = {
   'facility.html': { trail: [{ name: '홈', path: '/' }, { name: '시공 과정', path: '/facility.html' }] },
   'portfolio.html': { trail: [{ name: '홈', path: '/' }, { name: '시공사례', path: '/portfolio.html' }] },
   'contact.html': { trail: [{ name: '홈', path: '/' }, { name: '문의', path: '/contact.html' }] },
+  'bmc.html': { trail: [{ name: '홈', path: '/' }, { name: 'BMC 인조대리석', path: '/bmc' }] },
+  'bmc/products.html': {
+    trail: [
+      { name: '홈', path: '/' },
+      { name: 'BMC 인조대리석', path: '/bmc' },
+      { name: 'BMC 제품 카탈로그', path: '/bmc/products' },
+    ],
+  },
   'showroom.html': {
     trail: [{ name: '홈', path: '/' }, { name: '쇼룸', path: '/showroom.html' }],
     extra: productItemList,

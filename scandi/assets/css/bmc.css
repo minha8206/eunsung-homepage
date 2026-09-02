@@ -1,0 +1,114 @@
+/* ===== BMC 소개 · 제품 카탈로그 (bmc.html, bmc/products.html) =====
+   디자인 시스템: 크림(#f5f2ec/#fbfaf8) · 네이비(#0e2440) · 골드(#bf8e5a/#b8924a/#a8763f)
+   서체: Cormorant Garamond(라틴 제목) · Noto Serif KR(한글 제목) · Manrope(본문) */
+
+/* ---------- 공통 섹션 헤더 ---------- */
+.bmc-eyebrow{font:600 12px 'Manrope';letter-spacing:.42em;color:#b8924a;margin-bottom:16px}
+.bmc-title{font:500 clamp(27px,3.4vw,42px)/1.35 'Noto Serif KR',serif;color:#0e2440;text-wrap:balance}
+
+/* ---------- 특징 카드 ---------- */
+.bmc-feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.bmc-feat{padding:34px 30px;border-radius:16px;background:#fff;border:1px solid rgba(14,36,64,.08);box-shadow:0 24px 54px -34px rgba(14,36,64,.3)}
+.bmc-feat-num{font:600 11px 'Manrope';letter-spacing:.16em;color:#a8763f;margin-bottom:8px}
+.bmc-feat-title{font:500 18px/1.5 'Noto Serif KR',serif;color:#0e2440;margin-bottom:10px}
+.bmc-feat-desc{font:400 13.5px/1.78 'Manrope';letter-spacing:-.01em;color:rgba(14,36,64,.58)}
+@media (max-width:1023px){.bmc-feat-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.bmc-feat-grid{grid-template-columns:1fr}}
+
+/* ---------- 컬러 카드 ---------- */
+.bmc-color-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.bmc-color-card{display:block;text-decoration:none;border-radius:14px;overflow:hidden;background:#fff;border:1px solid rgba(14,36,64,.08);box-shadow:0 20px 44px -30px rgba(14,36,64,.35);transition:transform .35s ease,box-shadow .35s ease}
+.bmc-color-card:hover{transform:translateY(-4px);box-shadow:0 30px 54px -30px rgba(14,36,64,.45)}
+.bmc-color-card img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+.bmc-color-name{padding:14px 18px;font:600 13px 'Manrope';letter-spacing:.04em;color:#0e2440;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.bmc-color-name svg{width:13px;height:13px;color:#a8763f;flex-shrink:0}
+@media (max-width:1023px){.bmc-color-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:480px){.bmc-color-grid{grid-template-columns:repeat(2,1fr);gap:14px}}
+
+/* ---------- 원자재 ---------- */
+.bmc-mat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.bmc-mat{border-radius:14px;overflow:hidden;background:#fff;border:1px solid rgba(14,36,64,.08);box-shadow:0 20px 44px -32px rgba(14,36,64,.3)}
+.bmc-mat img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;background:#f4f4f2}
+.bmc-mat-body{padding:20px 22px 22px}
+.bmc-mat-name{font:500 17px/1.4 'Noto Serif KR',serif;color:#0e2440;margin-bottom:12px}
+.bmc-spec{width:100%;border-collapse:collapse}
+.bmc-spec th{font:600 10px 'Manrope';letter-spacing:.14em;color:#a8763f;text-align:left;padding:7px 10px;border-bottom:1px solid rgba(14,36,64,.12);white-space:nowrap}
+.bmc-spec td{font:400 13px/1.6 'Manrope';color:rgba(14,36,64,.72);padding:8px 10px;border-bottom:1px solid rgba(14,36,64,.07);vertical-align:top}
+.bmc-spec td.bmc-spec-size{white-space:nowrap;font-variant-numeric:tabular-nums}
+.bmc-spec tr:last-child td{border-bottom:none}
+@media (max-width:1023px){.bmc-mat-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.bmc-mat-grid{grid-template-columns:1fr}}
+/* 좁은 화면에서 표가 넘치면 카드 안에서만 가로 스크롤 (페이지는 흔들리지 않게) */
+.bmc-spec-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+/* ---------- 제품 라인업 카드 ---------- */
+.bmc-lineup-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.bmc-lineup-card{position:relative;display:block;text-decoration:none;border-radius:14px;overflow:hidden;box-shadow:0 20px 44px -30px rgba(14,36,64,.4)}
+.bmc-lineup-card img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;transition:transform .5s ease}
+.bmc-lineup-card:hover img{transform:scale(1.04)}
+.bmc-lineup-card::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,14,22,0) 45%,rgba(10,14,22,.62))}
+.bmc-lineup-name{position:absolute;left:16px;right:16px;bottom:14px;z-index:1;font:600 14px 'Manrope';letter-spacing:.04em;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.bmc-lineup-name svg{width:13px;height:13px;flex-shrink:0}
+@media (max-width:1023px){.bmc-lineup-grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:680px){.bmc-lineup-grid{grid-template-columns:repeat(2,1fr);gap:14px}}
+
+/* ---------- 카탈로그 탭 ---------- */
+.bmc-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:44px}
+.bmc-tab{font:600 12.5px 'Manrope';letter-spacing:.05em;color:#0e2440;text-decoration:none;padding:11px 18px;border-radius:24px;border:1px solid rgba(14,36,64,.16);background:#fff;transition:.25s;white-space:nowrap}
+.bmc-tab:hover{border-color:#bf8e5a;color:#a8763f}
+.bmc-tab.is-active{background:#0e2440;border-color:#0e2440;color:#fff}
+@media (max-width:680px){
+  .bmc-tabs{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:6px;margin-left:-6vw;margin-right:-6vw;padding-left:6vw;padding-right:6vw}
+}
+
+/* ---------- 카탈로그 아이템(규격) ---------- */
+.bmc-cat-section{display:none}
+.bmc-cat-section.is-active{display:block}
+.bmc-item-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-bottom:52px}
+.bmc-item{padding:26px 28px;border-radius:14px;background:#fff;border:1px solid rgba(14,36,64,.08);box-shadow:0 18px 40px -30px rgba(14,36,64,.3)}
+.bmc-item-name{font:500 19px/1.4 'Noto Serif KR',serif;color:#0e2440;margin-bottom:14px;white-space:nowrap}
+.bmc-item-row{display:flex;gap:12px;align-items:baseline;margin-bottom:9px}
+.bmc-item-label{flex:0 0 84px;font:600 10px 'Manrope';letter-spacing:.14em;color:#a8763f}
+.bmc-item-val{font:400 13.5px/1.7 'Manrope';color:rgba(14,36,64,.72)}
+.bmc-item-val .nowrap{font-variant-numeric:tabular-nums}
+.bmc-leg-chips{display:flex;flex-wrap:wrap;gap:7px}
+.bmc-leg-chip{font:600 10.5px 'Manrope';letter-spacing:.05em;color:#0e2440;background:rgba(14,36,64,.06);padding:6px 11px;border-radius:20px;text-decoration:none;white-space:nowrap;transition:.25s}
+.bmc-leg-chip:hover{background:rgba(191,142,90,.18);color:#a8763f}
+@media (max-width:860px){.bmc-item-grid{grid-template-columns:1fr}}
+
+.bmc-body-line{font:400 15.5px/1.9 'Manrope';color:rgba(14,36,64,.65);margin-bottom:44px}
+
+/* ---------- 식탁 다리 카드 ---------- */
+.bmc-leg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.bmc-leg-card{border-radius:14px;overflow:hidden;background:#fff;border:1px solid rgba(14,36,64,.08);box-shadow:0 18px 40px -30px rgba(14,36,64,.3);scroll-margin-top:96px}
+.bmc-leg-card.is-flash{outline:2px solid #bf8e5a;outline-offset:2px}
+.bmc-leg-card img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;background:#f4f4f2;cursor:zoom-in}
+.bmc-leg-info{padding:16px 18px 18px}
+.bmc-leg-code{font:600 13px 'Manrope';letter-spacing:.08em;color:#0e2440;margin-bottom:5px}
+.bmc-leg-meta{font:400 12.5px/1.6 'Manrope';color:rgba(14,36,64,.6);white-space:nowrap}
+@media (max-width:1023px){.bmc-leg-grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:680px){.bmc-leg-grid{grid-template-columns:repeat(2,1fr);gap:14px}}
+
+/* ---------- 갤러리 ---------- */
+.bmc-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.bmc-gallery button{display:block;padding:0;border:none;border-radius:10px;overflow:hidden;cursor:zoom-in;background:#e9e5dc}
+.bmc-gallery img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;transition:transform .45s ease}
+.bmc-gallery button:hover img{transform:scale(1.05)}
+@media (max-width:1023px){.bmc-gallery{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:680px){.bmc-gallery{grid-template-columns:repeat(2,1fr);gap:10px}}
+
+/* ---------- 라이트박스 ---------- */
+.bmc-lb{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;background:rgba(8,11,16,.92)}
+.bmc-lb.is-open{display:flex}
+.bmc-lb img{max-width:88vw;max-height:84vh;border-radius:8px;box-shadow:0 30px 80px rgba(0,0,0,.5);user-select:none;-webkit-user-drag:none}
+.bmc-lb-btn{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);color:#fff;display:grid;place-items:center;cursor:pointer;transition:.25s}
+.bmc-lb-btn:hover{background:rgba(255,255,255,.22)}
+.bmc-lb-btn svg{width:18px;height:18px}
+.bmc-lb-prev{left:max(18px,3vw)}
+.bmc-lb-next{right:max(18px,3vw)}
+.bmc-lb-close{position:absolute;top:20px;right:max(18px,3vw);transform:none}
+.bmc-lb-count{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font:600 12px 'Manrope';letter-spacing:.12em;color:rgba(255,255,255,.75)}
+@media (max-width:680px){
+  .bmc-lb-btn{width:38px;height:38px}
+  .bmc-lb img{max-width:94vw}
+}

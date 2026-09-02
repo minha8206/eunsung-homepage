@@ -1,0 +1,868 @@
+{
+ "categories": [
+  {
+   "id": "round-table",
+   "name": "원형 테이블",
+   "en": "Round Table",
+   "items": [
+    {
+     "name": "원탁 600∅",
+     "en": "Round Table 600∅",
+     "colors": [
+      "바이컬 화이트",
+      "바이컬 그레이"
+     ],
+     "size": "600∅ x 40T",
+     "legs": [
+      "ESTL-05",
+      "ESTL-06",
+      "ESTL-07",
+      "ESTL-08",
+      "ESTL-09",
+      "ESTL-12",
+      "ESTL-13"
+     ]
+    },
+    {
+     "name": "크로바 640 x 510",
+     "en": "Clover 640 x 510",
+     "colors": [
+      "바이컬 화이트",
+      "바이컬 그레이"
+     ],
+     "size": "640 x 510 x 40T",
+     "legs": [
+      "ESTL-05",
+      "ESTL-06",
+      "ESTL-07",
+      "ESTL-08",
+      "ESTL-09",
+      "ESTL-12",
+      "ESTL-13"
+     ]
+    },
+    {
+     "name": "원탁 850∅",
+     "en": "Round Table 850∅",
+     "colors": [
+      "바이컬 화이트",
+      "바이컬 그레이"
+     ],
+     "size": "850∅ x 40T",
+     "legs": [
+      "ESTL-03",
+      "ESTL-04",
+      "ESTL-10",
+      "ESTL-11"
+     ]
+    },
+    {
+     "name": "원탁 1050∅",
+     "en": "Round Table 1050∅",
+     "colors": [
+      "바이컬 화이트",
+      "바이컬 그레이"
+     ],
+     "size": "1050∅ x 40T",
+     "legs": [
+      "ESTL-01",
+      "ESTL-02",
+      "ESTL-10",
+      "ESTL-11"
+     ]
+    }
+   ],
+   "images": [
+    {
+     "src": "images/bmc/round-table/01_eaeed248ba881.webp",
+     "w": 1280,
+     "h": 685
+    },
+    {
+     "src": "images/bmc/round-table/02_9b921a33484c0.webp",
+     "w": 1280,
+     "h": 719
+    },
+    {
+     "src": "images/bmc/round-table/03_f43dd264e7d6a.webp",
+     "w": 1201,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/04_7f16e56204d92.webp",
+     "w": 1184,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/05_1b9c6a6862d8d.webp",
+     "w": 1247,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/06_32ec1ccbb9b51.webp",
+     "w": 1261,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/07_4d5ba743cf2d8.webp",
+     "w": 1256,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/08_85dc0cae8cec5.webp",
+     "w": 1391,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/09_8402f6c40efa8.webp",
+     "w": 1336,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/10_50fb51cee31d0.webp",
+     "w": 1316,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/11_66a0e39acfe4a.webp",
+     "w": 1241,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/12_511444fa86504.webp",
+     "w": 1280,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/13_bdda4e47de664.webp",
+     "w": 1280,
+     "h": 744
+    },
+    {
+     "src": "images/bmc/round-table/14_7679ad22f52ec.webp",
+     "w": 1280,
+     "h": 755
+    },
+    {
+     "src": "images/bmc/round-table/15_3bf42cf8bd7ff.webp",
+     "w": 1280,
+     "h": 753
+    },
+    {
+     "src": "images/bmc/round-table/16_5b76772ee09f2.webp",
+     "w": 1280,
+     "h": 760
+    },
+    {
+     "src": "images/bmc/round-table/17_08f25478a63b6.webp",
+     "w": 1190,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/18_6b6f3f5b99104.webp",
+     "w": 1182,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/19_d9883e01ade3e.webp",
+     "w": 1221,
+     "h": 914
+    },
+    {
+     "src": "images/bmc/round-table/20_1d901ba3d58b9.webp",
+     "w": 1213,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/21_490307dc64a1a.webp",
+     "w": 1221,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/22_c21457d811396.webp",
+     "w": 1221,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/23_bd81bda615aa3.webp",
+     "w": 1202,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/24_9226ce46639e6.webp",
+     "w": 1246,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/25_b3c49ac3408de.webp",
+     "w": 1221,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/26_a61f75e66f988.webp",
+     "w": 1195,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/27_f12360303cb87.webp",
+     "w": 1280,
+     "h": 725
+    },
+    {
+     "src": "images/bmc/round-table/28_a588129befcae.webp",
+     "w": 1280,
+     "h": 715
+    },
+    {
+     "src": "images/bmc/round-table/29_887691c87ac72.webp",
+     "w": 1178,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/30_d32f57f26538c.webp",
+     "w": 1178,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/31_f03b43ab0f52f.webp",
+     "w": 1178,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/32_4ae0c03051caf.webp",
+     "w": 1178,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/33_70b8c780b38cf.webp",
+     "w": 1178,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/34_f8560baef846d.webp",
+     "w": 1178,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/35_dc424a713f0d7.webp",
+     "w": 1244,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/36_4e462362a7794.webp",
+     "w": 1178,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/37_8e63e01a26464.webp",
+     "w": 1309,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/38_fba708bb91453.webp",
+     "w": 1313,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/39_1dec312057aea.webp",
+     "w": 1236,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/40_590c7575d7917.webp",
+     "w": 1307,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/41_a5b6698107201.webp",
+     "w": 1240,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/42_ee1551a7e477a.webp",
+     "w": 1261,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/43_c3428fd40fe1a.webp",
+     "w": 1258,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/round-table/44_ebf981a9d02b6.webp",
+     "w": 1214,
+     "h": 880
+    }
+   ]
+  },
+  {
+   "id": "dining-table",
+   "name": "식탁",
+   "en": "Dining Table",
+   "items": [
+    {
+     "name": "식탁 1200 x 600",
+     "en": "Dining Table 1200 x 600",
+     "colors": [
+      "바이컬 화이트",
+      "바이컬 그레이",
+      "바이컬 브라운"
+     ],
+     "size": "1200mm x 600mm x 40T",
+     "legs": [
+      "ESTL-14"
+     ]
+    },
+    {
+     "name": "식탁 1200 x 750",
+     "en": "Dining Table 1200 x 750",
+     "colors": [
+      "바이컬 화이트",
+      "바이컬 그레이",
+      "바이컬 브라운"
+     ],
+     "size": "1200mm x 750mm x 40T",
+     "legs": [
+      "ESTL-15"
+     ]
+    },
+    {
+     "name": "식탁 1400 x 750",
+     "en": "Dining Table 1400 x 750",
+     "colors": [
+      "바이컬 화이트",
+      "바이컬 그레이",
+      "바이컬 브라운"
+     ],
+     "size": "1400mm x 750mm x 40T",
+     "legs": [
+      "ESTL-16"
+     ]
+    },
+    {
+     "name": "식탁 1600 x 750",
+     "en": "Dining Table 1600 x 750",
+     "colors": [
+      "바이컬 화이트",
+      "바이컬 그레이",
+      "바이컬 브라운"
+     ],
+     "size": "1600mm x 750mm x 40T",
+     "legs": [
+      "ESTL-17"
+     ]
+    },
+    {
+     "name": "식탁 1800 x 750",
+     "en": "Dining Table 1800 x 750",
+     "colors": [
+      "바이컬 화이트",
+      "바이컬 그레이",
+      "바이컬 브라운"
+     ],
+     "size": "1800mm x 750mm x 40T",
+     "legs": [
+      "ESTL-18"
+     ]
+    }
+   ],
+   "images": [
+    {
+     "src": "images/bmc/dining-table/01_08b4cfcc74949.webp",
+     "w": 1309,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/dining-table/02_ea5b14110a0e1.webp",
+     "w": 1290,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/dining-table/03_d55d2a6d3ab77.webp",
+     "w": 1371,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/dining-table/04_f2e810f5fc1df.webp",
+     "w": 1298,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/dining-table/05_0cb00e065fd84.webp",
+     "w": 1338,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/dining-table/06_dbcdfe7009247.webp",
+     "w": 1281,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/dining-table/07_05f4c7f977cef.webp",
+     "w": 1355,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/dining-table/08_c9be6ac3e6fb2.webp",
+     "w": 1309,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/dining-table/09_1d31eb68eed54.webp",
+     "w": 1290,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/dining-table/10_1d171fb67585b.webp",
+     "w": 1371,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/dining-table/11_7bce8b3742f06.webp",
+     "w": 1298,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/dining-table/12_5dd30959f8fba.webp",
+     "w": 1338,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/dining-table/13_6a7d871208677.webp",
+     "w": 1281,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/dining-table/14_5f83c4a3f4325.webp",
+     "w": 1355,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/dining-table/15_459cb463cfc97.webp",
+     "w": 1280,
+     "h": 884
+    },
+    {
+     "src": "images/bmc/dining-table/16_072d0e3e35fa9.webp",
+     "w": 1280,
+     "h": 812
+    },
+    {
+     "src": "images/bmc/dining-table/17_bc3394b004ce5.webp",
+     "w": 1279,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/dining-table/18_07787963a2234.webp",
+     "w": 1315,
+     "h": 860
+    },
+    {
+     "src": "images/bmc/dining-table/19_f01790e6d25a4.webp",
+     "w": 1280,
+     "h": 876
+    },
+    {
+     "src": "images/bmc/dining-table/20_c68a06138b6b4.webp",
+     "w": 1326,
+     "h": 860
+    },
+    {
+     "src": "images/bmc/dining-table/21_e6a3993d2031b.webp",
+     "w": 1280,
+     "h": 869
+    },
+    {
+     "src": "images/bmc/dining-table/22_54a74f7488b9e.webp",
+     "w": 1427,
+     "h": 860
+    },
+    {
+     "src": "images/bmc/dining-table/23_8f721aa2693ff.webp",
+     "w": 1280,
+     "h": 964
+    },
+    {
+     "src": "images/bmc/dining-table/24_34289a3697016.webp",
+     "w": 1280,
+     "h": 940
+    },
+    {
+     "src": "images/bmc/dining-table/25_14013cf0c1c8a.webp",
+     "w": 1280,
+     "h": 908
+    },
+    {
+     "src": "images/bmc/dining-table/26_4ec325e7c4632.webp",
+     "w": 1280,
+     "h": 836
+    },
+    {
+     "src": "images/bmc/dining-table/27_a683bec7d8556.webp",
+     "w": 1293,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/dining-table/28_77ea128fcf6c2.webp",
+     "w": 1280,
+     "h": 931
+    },
+    {
+     "src": "images/bmc/dining-table/29_ca04ff0a38dec.webp",
+     "w": 1280,
+     "h": 895
+    },
+    {
+     "src": "images/bmc/dining-table/30_2220789640bd5.webp",
+     "w": 1280,
+     "h": 1001
+    },
+    {
+     "src": "images/bmc/dining-table/31_d158080b3029e.webp",
+     "w": 1304,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/dining-table/32_4616356abb562.webp",
+     "w": 1295,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/dining-table/33_11cf52b9831ea.webp",
+     "w": 1332,
+     "h": 860
+    },
+    {
+     "src": "images/bmc/dining-table/34_a48c483d14791.webp",
+     "w": 1330,
+     "h": 860
+    },
+    {
+     "src": "images/bmc/dining-table/35_82e0a036b24c6.webp",
+     "w": 1277,
+     "h": 880
+    },
+    {
+     "src": "images/bmc/dining-table/36_4e62ccb6e883a.webp",
+     "w": 1280,
+     "h": 907
+    },
+    {
+     "src": "images/bmc/dining-table/37_e0b1fd1830854.webp",
+     "w": 1280,
+     "h": 863
+    }
+   ]
+  },
+  {
+   "id": "table-legs",
+   "name": "식탁 다리",
+   "en": "Table Legs",
+   "sizeLabel": "규격(아래 x 위 x 높이)",
+   "sizeLabelWide": "규격(w x d x h)",
+   "legs": [
+    {
+     "code": "ESTL-01",
+     "color": "화이트",
+     "colorEn": "White",
+     "size": "580∅ x 390∅ x 690mm"
+    },
+    {
+     "code": "ESTL-02",
+     "color": "블랙",
+     "colorEn": "Black",
+     "size": "580∅ x 390∅ x 690mm"
+    },
+    {
+     "code": "ESTL-03",
+     "color": "화이트",
+     "colorEn": "White",
+     "size": "580∅ x 390∅ x 690mm"
+    },
+    {
+     "code": "ESTL-04",
+     "color": "블랙",
+     "colorEn": "Black",
+     "size": "580∅ x 390∅ x 690mm"
+    },
+    {
+     "code": "ESTL-05",
+     "color": "화이트",
+     "colorEn": "White",
+     "size": "450∅ x 360∅ x 690mm"
+    },
+    {
+     "code": "ESTL-06",
+     "color": "블랙",
+     "colorEn": "Black",
+     "size": "450∅ x 360∅ x 690mm"
+    },
+    {
+     "code": "ESTL-07",
+     "color": "화이트",
+     "colorEn": "White",
+     "size": "445∅ x 240mm x 705mm"
+    },
+    {
+     "code": "ESTL-08",
+     "color": "실버",
+     "colorEn": "Silver",
+     "size": "490∅ x 290mm x 710mm"
+    },
+    {
+     "code": "ESTL-09",
+     "color": "골드",
+     "colorEn": "Gold",
+     "size": "490∅ x 290mm x 710mm"
+    },
+    {
+     "code": "ESTL-10",
+     "color": "화이트",
+     "colorEn": "White",
+     "size": "610mm x 660mm x 690mm"
+    },
+    {
+     "code": "ESTL-11",
+     "color": "블랙",
+     "colorEn": "Black",
+     "size": "610mm x 660mm x 690mm"
+    },
+    {
+     "code": "ESTL-12",
+     "color": "화이트",
+     "colorEn": "White",
+     "size": "510mm x 455mm x 690mm"
+    },
+    {
+     "code": "ESTL-13",
+     "color": "블랙",
+     "colorEn": "Black",
+     "size": "510mm x 455mm x 690mm"
+    },
+    {
+     "code": "ESTL-14",
+     "color": "화이트",
+     "colorEn": "White",
+     "size": "1155mm x 575mm x 670mm",
+     "wide": true
+    },
+    {
+     "code": "ESTL-15",
+     "color": "화이트",
+     "colorEn": "White",
+     "size": "1155mm x 725mm x 670mm",
+     "wide": true
+    },
+    {
+     "code": "ESTL-16",
+     "color": "화이트",
+     "colorEn": "White",
+     "size": "1355mm x 725mm x 670mm",
+     "wide": true
+    },
+    {
+     "code": "ESTL-17",
+     "color": "화이트",
+     "colorEn": "White",
+     "size": "1555mm x 725mm x 670mm",
+     "wide": true
+    },
+    {
+     "code": "ESTL-18",
+     "color": "화이트",
+     "colorEn": "White",
+     "size": "1755mm x 725mm x 670mm",
+     "wide": true
+    }
+   ],
+   "images": [
+    {
+     "src": "images/bmc/table-legs/01_7f892ad16b212.webp",
+     "w": 1280,
+     "h": 909
+    },
+    {
+     "src": "images/bmc/table-legs/02_daac25fe00c63.webp",
+     "w": 1280,
+     "h": 926
+    },
+    {
+     "src": "images/bmc/table-legs/03_8edab682596d3.webp",
+     "w": 1280,
+     "h": 963
+    },
+    {
+     "src": "images/bmc/table-legs/04_28bc45d1dfba1.webp",
+     "w": 1280,
+     "h": 967
+    },
+    {
+     "src": "images/bmc/table-legs/05_56cd94e7e022a.webp",
+     "w": 1280,
+     "h": 980
+    },
+    {
+     "src": "images/bmc/table-legs/06_eaa87e860b738.webp",
+     "w": 1280,
+     "h": 897
+    },
+    {
+     "src": "images/bmc/table-legs/07_d30b5fd877570.webp",
+     "w": 1280,
+     "h": 963
+    },
+    {
+     "src": "images/bmc/table-legs/08_df4caa1104138.webp",
+     "w": 1280,
+     "h": 941
+    },
+    {
+     "src": "images/bmc/table-legs/09_65682f3726f53.webp",
+     "w": 1280,
+     "h": 979
+    },
+    {
+     "src": "images/bmc/table-legs/10_a431ed14a9c1c.webp",
+     "w": 1280,
+     "h": 936
+    },
+    {
+     "src": "images/bmc/table-legs/11_b397e77af7b26.webp",
+     "w": 1280,
+     "h": 949
+    },
+    {
+     "src": "images/bmc/table-legs/12_9970d9fc71e5b.webp",
+     "w": 1269,
+     "h": 930
+    },
+    {
+     "src": "images/bmc/table-legs/13_16e4b10321126.webp",
+     "w": 1238,
+     "h": 898
+    },
+    {
+     "src": "images/bmc/table-legs/14_18daa56634480.webp",
+     "w": 1280,
+     "h": 931
+    },
+    {
+     "src": "images/bmc/table-legs/15_3978c82b0d065.webp",
+     "w": 1280,
+     "h": 931
+    },
+    {
+     "src": "images/bmc/table-legs/16_bd84800a9d2e4.webp",
+     "w": 1280,
+     "h": 894
+    },
+    {
+     "src": "images/bmc/table-legs/17_325ca42be7da8.webp",
+     "w": 1280,
+     "h": 933
+    },
+    {
+     "src": "images/bmc/table-legs/18_4bcabb4546a1b.webp",
+     "w": 1280,
+     "h": 859
+    }
+   ]
+  },
+  {
+   "id": "sink-top",
+   "name": "싱크대 상판",
+   "en": "Sink Countertop",
+   "body": "다양한 사이즈로 제작 가능합니다.",
+   "bodyEn": "Available in various sizes.",
+   "images": [
+    {
+     "src": "images/bmc/sink-top/01_8b5a5a6936a44.webp",
+     "w": 1280,
+     "h": 998
+    },
+    {
+     "src": "images/bmc/sink-top/02_4fc25668cccd8.webp",
+     "w": 1280,
+     "h": 1060
+    }
+   ]
+  },
+  {
+   "id": "homebar",
+   "name": "홈바",
+   "en": "Home Bar",
+   "body": "다양한 사이즈로 제작 가능합니다.",
+   "bodyEn": "Available in various sizes.",
+   "images": [
+    {
+     "src": "images/bmc/homebar/01_7bd5f07a80cf0.webp",
+     "w": 1280,
+     "h": 979
+    },
+    {
+     "src": "images/bmc/homebar/02_0c6f8edfaa385.webp",
+     "w": 1280,
+     "h": 921
+    },
+    {
+     "src": "images/bmc/homebar/03_60a5fa33af626.webp",
+     "w": 1280,
+     "h": 967
+    }
+   ]
+  },
+  {
+   "id": "washbasin",
+   "name": "일체형 세면대",
+   "en": "Integrated Washbasin",
+   "body": "다양한 사이즈로 제작 가능합니다.",
+   "bodyEn": "Available in various sizes.",
+   "images": [
+    {
+     "src": "images/bmc/washbasin/01_18038673719b1.webp",
+     "w": 1280,
+     "h": 1006
+    },
+    {
+     "src": "images/bmc/washbasin/02_0bd93a2bb5ca5.webp",
+     "w": 1280,
+     "h": 953
+    },
+    {
+     "src": "images/bmc/washbasin/03_ce367207f85e3.webp",
+     "w": 1280,
+     "h": 920
+    }
+   ]
+  },
+  {
+   "id": "sinkbowl",
+   "name": "BMC 싱크볼",
+   "en": "BMC Sink Bowl",
+   "items": [
+    {
+     "name": "BMC 싱크볼 (바이컬 그레이)",
+     "en": "BMC Sink Bowl (Bical Grey)",
+     "size": "850(w) x 515(d)"
+    },
+    {
+     "name": "BMC 싱크볼 (바이컬 브라운)",
+     "en": "BMC Sink Bowl (Bical Brown)",
+     "size": "850(w) x 515(d)"
+    }
+   ],
+   "images": [
+    {
+     "src": "images/bmc/sinkbowl/01_47f7b30da30c3.webp",
+     "w": 1264,
+     "h": 860
+    },
+    {
+     "src": "images/bmc/sinkbowl/02_85a1a04939a6d.webp",
+     "w": 1323,
+     "h": 860
+    }
+   ]
+  }
+ ]
+}
