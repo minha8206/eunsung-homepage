@@ -6,7 +6,7 @@
 <meta name="naver-site-verification" content="3f77031df39ae82017cfd209f31be7ff0f23892e" />
 <!-- SEO / 링크 미리보기 (카카오톡·페이스북 등) -->
 <title>시공 과정 | 포세린 시공 10단계 — 은성 포천 가공 공장</title>
-<meta name="description" content="레이저 실측, CAD 도면, 재단, 타공, 엣지 연마, 최종 검수, 시공까지 10단계 공정. 경기도 포천 자체 설비에서 포천 포세린 재단과 비아테라·하이막스 가공을 한 팀이 끝까지&nbsp;책임집니다.">
+<meta name="description" content="레이저 실측, CAD 도면, 재단, 타공, 엣지 연마, 최종 검수, 시공까지 10단계 공정. 경기도 포천 자체 설비에서 포천 포세린 재단과 비아테라·하이막스 가공을 한 팀이 끝까지 책임집니다.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="EUNSUNG 은성">
 <meta property="og:locale" content="ko_KR">
@@ -62,7 +62,7 @@
       "url": "https://esstone.co.kr/",
       "logo": "https://esstone.co.kr/images/og-cover.jpg",
       "image": "https://esstone.co.kr/images/og-cover.jpg",
-      "description": "포세린·비아테라·하이막스 등 표면재의 선별·가공·시공을 직접 수행하는 전문 기업. LX하우시스 공식&nbsp;파트너.",
+      "description": "포세린·비아테라·하이막스 등 표면재의 선별·가공·시공을 직접 수행하는 전문 기업. LX하우시스 공식 파트너.",
       "foundingDate": "2009",
       "founder": {
         "@type": "Person",
@@ -248,6 +248,18 @@ body.nav-open .nav-mobile-panel{display:flex}
 .ft-num{font:600 12px 'Manrope';letter-spacing:.1em;color:#bf8e5a;margin-bottom:6px}
 .ft-title{font:500 26px/1.25 'Cormorant Garamond';color:#0e2440;margin-bottom:22px}
 
+/* 사진 스트립은 78vw/90vw 로 텍스트 칼럼보다 넓게 잡아 오른쪽으로 흘려보내는
+   블리드 연출이다. 여기에 왼쪽 들여쓰기(.ft-wrap 패딩 5vw + .ft-row 100px)가
+   더해져 오른쪽 끝이 뷰포트를 넘고, 그만큼 페이지에 가로 스크롤이 생겼다
+   (1440px 에서 .ft-photo-wrap 오른쪽 끝 1488px, 클라이언트 폭 1425px).
+   연출은 그대로 두고 뷰포트 경계에서 잘리게만 한다.
+
+   hidden 이 아니라 clip 을 쓴다. overflow-x:hidden 은 overflow-y 를 auto 로
+   계산되게 만들어 스크롤 컨테이너를 만들고, 그러면 안쪽 absolute 레일과
+   스크롤 연동 애니메이션이 흔들린다. clip 은 y 축을 visible 로 남긴다.
+   body 에 거는 이유는 뷰포트로 전파돼 화면 끝에서 잘리기 때문이다 —
+   .ft-wrap(max-width:1400px)에 걸면 넓은 화면에서 사진이 더 많이 잘린다. */
+body{overflow-x:clip}
 .ft-photo-wrap{position:relative;overflow:hidden;border:1px solid rgba(14,36,64,.08);width:78vw;max-width:1100px}
 .ft-row-lg .ft-photo-wrap{width:90vw;max-width:1300px}
 .ft-photo{width:100%;aspect-ratio:3/2;background-size:cover;background-position:center;background-color:#f4f4f2;transition:transform .6s ease}
