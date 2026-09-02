@@ -17,6 +17,7 @@ window.I18N_EN = {
   '하이막스': 'HIMACS',
   /* 카테고리 라벨로 쓰이는 소재 일반명 */
   '인조대리석': 'Solid Surface',
+  '세라믹': 'Ceramic',
   '시공사례': 'Projects',
   '문의': 'Contact',
   '메뉴 열기': 'Open menu',
@@ -66,6 +67,8 @@ window.I18N_EN = {
 
   '뜨거운 냄비를 그대로 올려도, 10년을 써도 처음 그대로입니다. 1200℃ 고온이 만든 가장 강한 표면입니다.':
     'Set a hot pan straight down from the stove. Ten years on it still looks like day one — the strongest surface 1,200°C can make.',
+  '뜨거운 냄비를 그대로 올리고, 도마 없이 칼질을 해도 자국 하나 남지 않습니다. 1200°C에서 구워낸 표면은 얼룩이 배지 않고 햇빛에도 바래지 않아, 10년을 써도 처음 그대로입니다. 대리석의 얼굴에 돌보다 강한 몸. 은성이 가장 먼저 권하는 소재입니다.':
+    'Set a hot pan straight down, cut without a board — not a mark left. Fired at 1,200°C, the surface takes no stain and never fades in sunlight, so ten years on it still looks like day one. The face of marble, a body harder than stone. The first surface EUNSUNG recommends.',
   '천연 석영 90%가 주는 깊이 있는 질감. 칼자국·흠집 걱정 없이, 매일 쓰는 주방이 오래 아름답습니다.':
     'The depth that only 90% natural quartz gives. Knife marks and scratches stop being a worry, so a kitchen in daily use stays beautiful for years.',
   '천연 석영을 93% 담아 돌의 깊이와 광택을 그대로 살린 소재입니다. 물이 스미지 않아 김치 국물이나 와인을 흘려도 배지 않고, 긁힘에 강해 매일 쓰는 조리대에서도 표면이 거칠어지지 않습니다. 코팅이나 별도 관리 없이 물걸레 한 번이면 충분합니다.':
@@ -80,6 +83,9 @@ window.I18N_EN = {
   '실내외 모두 시공 가능': 'Interior and exterior',
   '열에 가장 강한 소재': 'Most heat-resistant of the four',
   '3200×1600 대형 슬랩': '3200×1600 large slab',
+  '열 · 칼 · 얼룩에 모두 강함': 'Resists heat, knives and stains',
+  '햇빛에도 변색 없음': 'No fading in sunlight',
+  '3240×1620 대형 슬랩': '3240×1620 large slab',
   '석영 90% 이상': 'Over 90% quartz',
   '흠집에 가장 강한 경도': 'Hardest against scratches',
   '천연석의 깊이감': 'The depth of real stone',
@@ -97,8 +103,8 @@ window.I18N_EN = {
   '코팅 · 관리 불필요': 'No sealing, no upkeep',
 
   /* 카드마다 붙는 용도 추천 한 줄 */
-  '싱크대 상판 · 아일랜드 상판 · 벽면 · 외장 등 열이 닿는 넓은 공간에 추천':
-    'For sink tops, islands, walls and facades — wide surfaces that take heat',
+  '싱크대 상판 · 아일랜드 상판 · 벽면 · 외장 등 매일 쓰고 오래 봐야 하는 공간에 추천':
+    'For sink tops, islands, walls and facades — surfaces used daily and lived with for years',
   '아일랜드 상판 · 벽면 · 외장 등 열이 닿는 넓은 공간에 추천':
     'For islands, walls and facades — wide surfaces that take heat',
   '매일 쓰는 주방 상판, 고급스러운 질감이 필요한 공간에 추천':
