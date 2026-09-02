@@ -68,10 +68,14 @@ window.I18N_EN = {
     'Set a hot pan straight down from the stove. Ten years on it still looks like day one — the strongest surface 1,200°C can make.',
   '천연 석영 90%가 주는 깊이 있는 질감. 칼자국·흠집 걱정 없이, 매일 쓰는 주방이 오래 아름답습니다.':
     'The depth that only 90% natural quartz gives. Knife marks and scratches stop being a worry, so a kitchen in daily use stays beautiful for years.',
-  '100% 아크릴계 솔리드 서페이스로, 이음새 없이 매끄럽게 이어지고 열로 곡면을 만들 수 있습니다. 생활 흠집이 생겨도 샌딩 한 번이면 새것처럼 복원됩니다.':
-    '100% acrylic solid surface — joins disappear seamlessly, and heat forms it into curves. Everyday scratches sand right out, back to new.',
+  '천연 석영을 93% 담아 돌의 깊이와 광택을 그대로 살린 소재입니다. 물이 스미지 않아 김치 국물이나 와인을 흘려도 배지 않고, 긁힘에 강해 매일 쓰는 조리대에서도 표면이 거칠어지지 않습니다. 코팅이나 별도 관리 없이 물걸레 한 번이면 충분합니다.':
+    '93% natural quartz, carrying the depth and lustre of real stone. Nothing soaks in — kimchi broth or red wine leaves no mark — and it resists scratching, so a worktop in daily use never turns rough. No sealing, no upkeep: a damp cloth is enough.',
+  '100% 아크릴계 솔리드 서페이스로, 이음새 없이 매끄럽게 이어지고 열로 곡면을 만들 수 있습니다. 생활 흠집이 생겨도 표면을 살짝 갈아내면 새것처럼 돌아옵니다.':
+    '100% acrylic solid surface — joins disappear seamlessly, and heat forms it into curves. Everyday scratches lift away with a light pass over the surface, back to new.',
   '은성이 직접 생산하는 열경화성 성형 컴파운드입니다. 싱크볼까지 하나로 성형돼 물샐 틈 없이 위생적이고, 자체 생산이라 가격과 납기 모두 합리적입니다.':
     'A thermoset molding compound we produce ourselves. The sink bowl is moulded in one piece — watertight and hygienic — and in-house production keeps both price and lead time reasonable.',
+  '고온·고압으로 한 번에 찍어내는 은성의 자체 생산 상판입니다. 싱크볼까지 한 몸으로 성형돼 물이 스밀 이음새가 없고, 열과 습기에 강해 오래 써도 휘거나 들뜨지 않습니다. 2009년부터 은성 공장에서 직접 만들어온 만큼 가격과 납기, A/S까지 은성이 책임집니다.':
+    'A worktop pressed in one shot under high heat and pressure, in our own plant. The sink bowl is moulded as a single body, so there is no seam for water to reach, and it holds against heat and moisture without warping or lifting over the years. Made at the EUNSUNG factory since 2009 — price, lead time and after-service all stay with us.',
 
   '실내외 모두 시공 가능': 'Interior and exterior',
   '열에 가장 강한 소재': 'Most heat-resistant of the four',
@@ -82,11 +86,19 @@ window.I18N_EN = {
   '이음새 없는 일체형 마감': 'Seamless single-piece finish',
   '곡선 디자인 자유': 'Free-form curves',
   '샌딩으로 복원 가능': 'Restorable by sanding',
+  '긁혀도 다시 새것처럼': 'Back to new after a scratch',
   '싱크볼 일체 성형': 'Sink bowl moulded in one piece',
   '은성 자체 생산': 'Produced in-house by EUNSUNG',
   '합리적인 가격': 'Sensible pricing',
+  '열·습기에 강한 소재': 'Heat- and moisture-resistant',
+  '은성 직접 생산 · 책임 시공': 'Made and installed by EUNSUNG',
+  '천연 석영 93%': '93% natural quartz',
+  '얼룩이 배지 않는 표면': 'Stains never settle in',
+  '코팅 · 관리 불필요': 'No sealing, no upkeep',
 
   /* 카드마다 붙는 용도 추천 한 줄 */
+  '싱크대 상판 · 아일랜드 상판 · 벽면 · 외장 등 열이 닿는 넓은 공간에 추천':
+    'For sink tops, islands, walls and facades — wide surfaces that take heat',
   '아일랜드 상판 · 벽면 · 외장 등 열이 닿는 넓은 공간에 추천':
     'For islands, walls and facades — wide surfaces that take heat',
   '매일 쓰는 주방 상판, 고급스러운 질감이 필요한 공간에 추천':
@@ -95,6 +107,10 @@ window.I18N_EN = {
     'For curved counters, vanities — anywhere design freedom matters',
   '실속 있게 마감하고 싶은 주방 · 다용도실에 추천':
     'For kitchens and utility rooms finished on a sensible budget',
+  '빠른 납기와 안정적인 품질이 중요한 주방 · 다용도실에 추천':
+    'For kitchens and utility rooms where lead time and steady quality matter',
+  '아일랜드 · 싱크대 상판 등 얼룩과 흠집에 예민한 주방에 추천':
+    'For islands and sink tops — kitchens unforgiving of stains and scratches',
 
   /* <br> 로 나뉘어 렌더되므로 노드(줄) 단위 키가 필요하다. 통짜 키도 안전망으로 유지. */
   '기계의 정확함 위에, 사람의 손끝을 더합니다': 'Machine precision, finished by hand.',
