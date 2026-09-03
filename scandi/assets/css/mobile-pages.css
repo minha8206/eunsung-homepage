@@ -2,59 +2,9 @@
    데스크톱(≥1280)에는 개입하지 않는다. */
 
 /* ──────────── 3-1 index: 히어로 ────────────
-   1024px 미만(모바일·태블릿)은 스크롤 확장 연출을 끄고(index.html 의
-   init 가드와 같은 1023px 기준) 처음부터 정적 풀스크린으로 보여준다.
-   축소 프레임·SCROLL TO EXPAND 힌트도 이 구간에서는 아예 없다. */
-@media (max-width: 1023px) {
-  /* 모바일은 확장 연출 없이 정적 풀스크린 — 래퍼를 200vh 로 둘 이유가 없다.
-     한 화면 높이로 줄여 빈 스크롤 구간을 없앤다.
-
-     ⚠ vh → svh → dvh 순서의 3단 폴백이어야 한다.
-     dvh 만 쓰면 미지원 브라우저(구형 삼성 인터넷 등)에서 이 선언이 통째로
-     버려져 .vhero 가 데스크톱용 200vh 로 남는다 — 히어로 아래에 한 화면
-     분량의 검은 여백(레터박스)이 생겼던 원인이다. 같은 속성을 세 번 쓰면
-     파싱 단계에서 지원되는 마지막 값이 이기므로 안전하다. */
-  .vhero {
-    height: 100vh !important;
-    height: 100svh !important;
-    height: 100dvh !important;
-  }
-  .vhero-sticky {
-    position: static !important;
-    height: 100vh !important;
-    height: 100svh !important;
-    height: 100dvh !important;
-    min-height: 480px !important;
-  }
-  .vhero-stage {
-    height: 100vh !important;
-    height: 100svh !important;
-    height: 100dvh !important;
-    min-height: 480px !important;
-  }
-  /* JS 가 인라인 width/height 를 쓰지 않으므로 CSS 로 화면을 채운다 */
-  .vhero-media {
-    position: absolute !important;
-    inset: 0 !important;
-    top: 0 !important; left: 0 !important;
-    transform: none !important;
-    width: 100% !important; height: 100% !important;
-    max-width: none !important; max-height: none !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-  }
-  .vhero-media-shade { background: rgba(0, 0, 0, .45) !important; }
-  .vhero-bg { display: none !important; }
-  .vhero-word { font-size: clamp(34px, 12vw, 56px) !important; text-shadow: 0 10px 40px rgba(0,0,0,.7) !important; }
-  .vhero-title { gap: 10px !important; padding: 0 18px; }
-  .vhero-hint { display: none !important; }   /* 스크롤 연출이 없으므로 힌트도 뺀다 */
-
-  /* 아래 텍스트 블록은 항상 보이게 (JS 가 on 클래스를 붙이지만 안전망) */
-  .vhero-content { opacity: 1 !important; padding: 56px 22px 64px !important; }
-  .vhero-heading { font-size: clamp(24px, 6.4vw, 32px) !important; }
-  .vhero-desc { font-size: 15px !important; line-height: 1.8 !important; }
-  .vhero-partner { font-size: 9.5px !important; letter-spacing: .26em !important; }
-}
+   (2026-09) index.html 의 <style> 로 옮겼다 — 데스크톱(≥1024, 스크롤 확장)과
+   모바일(≤1023, 100svh 단순 재생) 구조가 거기서 미디어쿼리로 완전히 나뉜다.
+   예전의 !important 덮어쓰기 블록은 더 이상 필요 없다. */
 
 /* ──────────── 3-1b index: 히어로 밖 섹션 (≤768 모바일만) ──────────── */
 @media (max-width: 769px) {

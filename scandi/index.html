@@ -30,24 +30,45 @@
      주의 — support.js 는 원문을 정규식으로 다시 훑는다. 이 주석에 템플릿 루트
      태그를 각괄호까지 그대로 적으면 그게 먼저 잡혀서 파싱이 어긋난다. -->
 <style>x-dc{display:none!important}</style>
-<script src="./support.js"></script>
-<link rel="stylesheet" href="assets/css/inquiry-widget.css">
+<!-- 웹폰트
+     · 라틴 2종(Cormorant Garamond·Manrope)은 Google Fonts 의 latin 가변 woff2 를 assets/fonts/ 에 자체 호스팅한다.
+       Google 은 UA 마다 다른 파일 URL 을 주기 때문에 외부 URL 을 preload 하면 빗나간다 — 우리 파일이면 preload 가 확실히 맞는다.
+       (같은 파일·같은 unicode-range 라 글꼴 모양은 동일. 한글은 이 두 폰트에 없어 원래부터 다음 폰트로 넘어간다.)
+     · 한글(Noto Serif KR)은 100여 개 유니코드 조각으로 나뉘어 있어 Google CSS 를 그대로 쓰되, 아래 스크립트가
+       첫 페인트 뒤에 붙인다(display=swap 유지). -->
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/cormorant-garamond-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/manrope-latin.woff2">
+<style>
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300 700;font-display:swap;src:url(assets/fonts/cormorant-garamond-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:300 700;font-display:swap;src:url(assets/fonts/cormorant-garamond-italic-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:200 800;font-display:swap;src:url(assets/fonts/manrope-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script>
+/* Noto Serif KR CSS 는 첫 콘텐츠 페인트 뒤에 붙인다 — 그 전에 붙이면 한글 조각 폰트 10여 개(≈450KB)가
+   첫 화면 이미지·CSS 와 대역폭을 나눈다. display=swap 이라 그 전에도 글자는 대체 폰트로 바로 보인다. */
+(function(){var done=false;function add(){if(done)return;done=true;var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500&display=swap';document.head.appendChild(l);}
+try{var po=new PerformanceObserver(function(list){if(list.getEntries().some(function(e){return e.name==='first-contentful-paint';})){po.disconnect();add();}});po.observe({type:'paint',buffered:true});}catch(e){}
+setTimeout(add,1000);})();
+</script>
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500&display=swap"></noscript>
+<!-- React 는 unpkg 대신 같은 오리진(vendor/)에서 defer 로 받는다. support.js 는 window.React 가
+     이미 있으면 CDN 로드를 건너뛴다(loadReactUmd). defer 스크립트는 문서 순서대로 실행되므로
+     support.js 가 돌 때는 React/ReactDOM 이 준비돼 있다. support.js 자체도 defer — 파서를 막지 않는다. -->
+<script src="vendor/react.production.min.js" defer></script>
+<script src="vendor/react-dom.production.min.js" defer></script>
+<script src="support.js" defer></script>
+<!-- 공통 CSS 10개를 한 파일로 — scripts/build-css.js 가 assets/css/*.css 에서 만든다. 개별 파일을 고치면 다시 빌드할 것. -->
+<link rel="stylesheet" href="assets/css/site.css">
 <script src="assets/js/inquiry-widget.js" defer></script>
-<link rel="stylesheet" href="assets/css/login-modal.css">
 <script src="assets/js/login-modal.js" defer></script>
-<link rel="stylesheet" href="assets/css/search-overlay.css">
 <script src="assets/js/search-overlay.js" defer></script>
-<script src="js/i18n-en.js" defer></script>
 <script src="js/i18n.js" defer></script>
-<link rel="stylesheet" href="assets/css/map-links.css">
-<link rel="stylesheet" href="assets/css/footer.css">
-<link rel="stylesheet" href="assets/css/reveal.css">
 <script src="assets/js/reveal.js" defer></script>
-<link rel="stylesheet" href="assets/css/typography.css">
-<link rel="stylesheet" href="assets/css/mobile.css">
-<link rel="stylesheet" href="assets/css/mobile-overlays.css">
-<link rel="stylesheet" href="assets/css/mobile-pages.css">
 <script src="assets/js/mobile-nav.js" defer></script>
+<script src="assets/js/lazy-bg.js" defer></script>
+<script src="assets/js/home.js" defer></script>
 <!-- SEO-JSONLD:START -->
 <!-- 이 구간은 scripts/build-seo.js 가 생성합니다. 직접 고치지 마세요 —
      제품 데이터나 사업자 정보가 바뀌면 `node scripts/build-seo.js` 를 다시 실행하세요. -->
@@ -180,13 +201,15 @@
   <div class="vhero-bg" id="vheroBg" role="img" aria-label="포세린·비아테라 슬랩이 전시된 은성 포천 쇼룸 전경" style="background-image:url('assets/showroom-hero.webp')"></div>
   <div class="vhero-stage">
     <div class="vhero-media" id="vheroMedia">
-      <!-- 원본 hero-scroll.mp4(22.7MB) 대신 뷰포트별 재인코딩본을 쓴다. <source media> 를 모르는 구형 브라우저는
-           첫 번째(데스크톱) 소스를 고른다. poster 는 아래 인라인 스크립트가 뷰포트에 맞는 한 장만 지정한다
-           (속성으로 박아두면 모바일에서 가로 포스터까지 두 번 받는다). head 의 preload 가 같은 파일을 먼저 당겨온다. -->
+      <!-- 원본 hero-scroll.mp4(22.7MB) 대신 뷰포트별 재인코딩본을 쓴다. poster 는 아래 인라인 스크립트가 뷰포트에
+           맞는 한 장만 지정한다(속성으로 박아두면 모바일에서 가로 포스터까지 두 번 받는다). head 의 preload 가
+           같은 파일을 먼저 당겨온다. 히어로 동작 로직은 assets/js/home.js — 데스크톱(스크롤 확장)과 모바일(단순 재생)이 분리돼 있다. -->
       <video id="vheroVideo" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablepictureinpicture controlsList="nodownload noremoteplayback">
-        <source src="assets/video/hero-scroll-desktop.mp4" type="video/mp4" media="(min-width:1024px)">
-        <source src="assets/video/hero-scroll-mobile.mp4" type="video/mp4" media="(max-width:1023px)">
-        <source src="assets/video/hero-scroll-desktop.mp4" type="video/mp4">
+        <!-- src 는 data-src 로 두고 assets/js/home.js 가 DOM 파싱 뒤에 붙인다(load 순서: poster·CSS 먼저, 영상은 그 다음).
+             media 로 뷰포트를 가르고, media 를 모르는 브라우저는 첫 번째(데스크톱) 소스를 쓴다. -->
+        <source data-src="assets/video/hero-scroll-desktop.mp4" type="video/mp4" media="(min-width:1024px)">
+        <source data-src="assets/video/hero-scroll-mobile.mp4" type="video/mp4" media="(max-width:1023px)">
+        <source data-src="assets/video/hero-scroll-desktop.mp4" type="video/mp4">
       </video>
       <script>(function(v){if(!v)return;v.poster=window.matchMedia('(max-width:1023px)').matches?'assets/video/hero-poster-mobile.jpg':'assets/video/hero-poster.jpg';})(document.getElementById('vheroVideo'));</script>
       <div class="vhero-media-shade"></div>
@@ -195,7 +218,8 @@
       <h2 class="vhero-word" id="vheroWord">EUNSUNG</h2>
     </div>
     <div class="vhero-hint" id="vheroHint">
-      <span class="vhero-hint-label">SCROLL TO EXPAND</span>
+      <span class="vhero-hint-label vhero-hint-label--d">SCROLL TO EXPAND</span>
+      <span class="vhero-hint-label vhero-hint-label--m">SCROLL</span>
       <span class="vhero-hint-chevrons" aria-hidden="true">
         <svg class="vhero-chevron vhero-chevron--1" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="rgba(255,255,255,.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <svg class="vhero-chevron vhero-chevron--2" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="rgba(255,255,255,.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -213,32 +237,64 @@
   </div>
 </section>
 <style>
-/* ===== VIDEO SCROLL-EXPAND HERO ===== */
-/* 래퍼 높이에서 100vh 를 뺀 만큼이 애니메이션 구간이다. 값을 키우면 더 천천히 펼쳐진다.
-   overflow 는 여기 두면 안 된다 — 조상에 overflow:hidden 이 있으면 sticky 가 죽는다. */
-.vhero{position:relative;width:100%;height:200vh;background:#0A0A0A}
-.vhero-sticky{position:sticky;top:0;height:100vh;min-height:640px;overflow:hidden}
-.vhero-bg{position:absolute;inset:0;background-size:contain;background-position:center;background-repeat:no-repeat;z-index:0}
-.vhero-bg::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.25)}
+/* ===== VIDEO HERO =====
+   데스크톱(≥1024)과 모바일(≤1023)은 같은 마크업을 쓰되 구조 규칙을 완전히 나눈다.
+   데스크톱: 래퍼 200vh + sticky 100vh — 래퍼 높이에서 100vh 를 뺀 만큼이 스크롤 확장 구간이다.
+             (overflow 는 래퍼에 두면 안 된다 — 조상에 overflow:hidden 이 있으면 sticky 가 죽는다.)
+   모바일:   100svh 풀스크린 한 장. 영상은 그냥 무한 재생, 스크롤 연동 없음(assets/js/home.js 참고). */
+
+/* ── 공통 ── */
+.vhero{position:relative;width:100%;background:#0A0A0A}
 .vhero-stage{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%}
-.vhero-media{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border-radius:18px;overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,.45);z-index:1}
 .vhero-media video{width:100%;height:100%;object-fit:cover;display:block}
 .vhero-media-shade{position:absolute;inset:0;background:rgba(0,0,0,.32)}
 .vhero-title{position:relative;z-index:2;display:flex;align-items:baseline;justify-content:center;pointer-events:none}
 /* 단어 하나만 남았으므로 자간을 넓혀 화면 폭을 채운다.
    letter-spacing 은 마지막 글자 뒤에도 붙어 상자가 자간만큼 넓어진다 —
    같은 값의 음수 margin-right 로 상쇄해야 글자가 정확히 가운데 온다.
-   (JS 가 스크롤에 맞춰 두 값을 함께 갱신한다) */
+   (데스크톱에선 JS 가 스크롤에 맞춰 두 값을 함께 갱신한다) */
 .vhero-word{font:500 clamp(52px,11vw,180px) 'Cormorant Garamond';color:#f8f5ef;margin:0 -.16em 0 0;letter-spacing:.16em;white-space:nowrap;text-shadow:0 16px 50px rgba(0,0,0,.5)}
 .vhero-hint{position:absolute;left:50%;bottom:40px;transform:translateX(-50%);z-index:2;font:600 11px 'Manrope';letter-spacing:.3em;color:rgba(243,239,230,.7);transition:opacity .4s ease;display:flex;flex-direction:column;align-items:center;pointer-events:none}
 .vhero-hint-label{display:block;animation:vheroHintPulse 3s ease-in-out infinite}
+.vhero-hint-label--m{display:none}
 .vhero-hint-chevrons{display:flex;flex-direction:column;align-items:center;margin-top:8px}
 .vhero-chevron{width:24px;height:24px;display:block;opacity:0;animation:vheroChevronFlow 1.6s ease-in-out infinite}
 .vhero-chevron--1{animation-delay:0s;margin-bottom:-8px}
 .vhero-chevron--2{animation-delay:.2s}
 @keyframes vheroHintPulse{0%,100%{opacity:.6}50%{opacity:1}}
 @keyframes vheroChevronFlow{0%{opacity:0;transform:translateY(0)}50%{opacity:1;transform:translateY(6px)}100%{opacity:0;transform:translateY(12px)}}
-/* 히어로 래퍼 밖으로 나온 블록이라 배경을 직접 갖는다 — 없으면 body 의 연청색이 비친다 */
+
+/* ── 데스크톱: 스크롤 확장 구조 ── */
+@media (min-width:1024px){
+  .vhero{height:200vh}
+  .vhero-sticky{position:sticky;top:0;height:100vh;min-height:640px;overflow:hidden}
+  .vhero-bg{position:absolute;inset:0;background-size:contain;background-position:center;background-repeat:no-repeat;z-index:0}
+  .vhero-bg::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.25)}
+  .vhero-media{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border-radius:18px;overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,.45);z-index:1}
+}
+
+/* ── 모바일: 100svh 풀스크린, 단순 재생 ──
+   svh 를 모르는 구형 브라우저는 앞의 vh 값을 쓴다. */
+@media (max-width:1023px){
+  .vhero{height:100vh;height:100svh;min-height:480px;overflow:hidden}
+  .vhero-sticky{position:relative;height:100%}
+  .vhero-bg{display:none}
+  /* 영상 상자 뒤에 같은 poster 를 깔아 둔다 — 재생이 거부되거나 첫 프레임이 늦어도 빈 화면이 아니다 */
+  .vhero-media{position:absolute;inset:0;z-index:0;background:#0A0A0A url('assets/video/hero-poster-mobile.jpg') center/cover no-repeat}
+  .vhero-media video{position:absolute;inset:0}
+  .vhero-media-shade{background:rgba(0,0,0,.45)}
+  .vhero-word{font-size:clamp(34px,12vw,56px);text-shadow:0 10px 40px rgba(0,0,0,.7)}
+  .vhero-title{gap:10px;padding:0 18px}
+  /* 스크롤 유도 — 라벨 하나 + 화살표 하나 */
+  /* 하단 고정 CTA 바(.es-ctabar, 58px) 위로 올린다 */
+  .vhero-hint{bottom:calc(76px + env(safe-area-inset-bottom,0px));font-size:10px;color:rgba(243,239,230,.6)}
+  .vhero-hint-label--d{display:none}
+  .vhero-hint-label--m{display:block}
+  .vhero-chevron--1{margin-bottom:0}
+  .vhero-chevron--2{display:none}
+  .vhero-chevron{width:22px;height:22px}
+}
+
 .vhero-content{opacity:0;transition:opacity .7s ease;padding:100px 8vw 120px;position:relative;z-index:1;background:#0A0A0A}
 .vhero-content.on{opacity:1}
 .vhero-content-inner{max-width:720px;margin:0 auto;text-align:center}
@@ -246,14 +302,18 @@
 .vhero-heading{font:500 clamp(28px,4vw,46px)/1.25 'Cormorant Garamond';color:#f8f5ef;margin-bottom:20px}
 .vhero-desc{font:400 15px/1.9 'Manrope';color:rgba(243,239,230,.72)}
 /* 파트너 라인 — 위 오버라인(.vhero-eyebrow)과 같은 계열이되 한 단계 작고 은은하게 */
-.vhero-partner{font:600 10px 'Manrope';letter-spacing:.34em;text-transform:uppercase;color:rgba(201,162,75,.78);margin-top:20px}
+.vhero-partner{font:600 10px 'Manrope';letter-spacing:.34em;text-transform:uppercase;color:rgba(201,162,75,.78);margin-top:22px}
+@media (max-width:1023px){
+  /* 모바일은 확장 연출이 없으므로 카피 블록을 항상 보인다 */
+  .vhero-content{opacity:1;padding:56px 22px 64px}
+  .vhero-heading{font-size:clamp(24px,6.4vw,32px)}
+  .vhero-desc{font-size:15px;line-height:1.8}
+  .vhero-partner{font-size:9.5px;letter-spacing:.26em}
+}
 </style>
 
 <x-dc>
 <helmet data-dc-atomics>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&family=Noto+Serif+KR:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#e9eef2;font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
@@ -427,7 +487,7 @@ body.nav-open .nav-mobile-panel{display:flex}
     <div data-reveal-group>
       <!-- 포세린 (panel right) -->
       <div class="mbanner reveal">
-        <div class="mbanner-image" role="img" aria-label="포세린 슬랩으로 마감한 주방 아일랜드 시공 사례" style="background-image:url('assets/porcelain.webp')"></div>
+        <div class="mbanner-image" role="img" aria-label="포세린 슬랩으로 마감한 주방 아일랜드 시공 사례" data-bg="assets/porcelain.webp"></div>
         <div class="mbanner-panel">
           <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">포세린</div><div class="mbanner-eyebrow" style="margin-bottom:0">세라믹</div></div>
           <div class="mbanner-desc-ko"><span class="sentence">뜨거운 냄비를 그대로 올리고, 도마 없이 칼질을 해도 자국 하나 남지&nbsp;않습니다.</span><span class="sentence">1200°C에서 구워낸 표면은 얼룩이 배지 않고 햇빛에도 바래지 않아, 10년을 써도 처음&nbsp;그대로입니다.</span><span class="sentence">대리석의 얼굴에 돌보다 강한&nbsp;몸.</span><span class="sentence">은성이 가장 먼저 권하는&nbsp;소재입니다.</span></div>
@@ -445,11 +505,11 @@ body.nav-open .nav-mobile-panel{display:flex}
           <div class="mbanner-rec">아일랜드&nbsp;· 싱크대&nbsp;상판 등 얼룩과 흠집에 예민한 주방에&nbsp;추천</div>
           <div class="mbanner-partner"><div class="mbanner-partner-cap">OFFICIAL PARTNER</div><img src="images/lx-hausys-logo.png" alt="LX Hausys" width="888" height="144" loading="lazy" decoding="async"></div>
         </div>
-        <div class="mbanner-image" role="img" aria-label="비아테라 엔지니어드 스톤 상판을 적용한 주방" style="background-image:url('assets/viatera.webp')"></div>
+        <div class="mbanner-image" role="img" aria-label="비아테라 엔지니어드 스톤 상판을 적용한 주방" data-bg="assets/viatera.webp"></div>
       </div>
       <!-- 하이막스 (panel right) -->
       <div class="mbanner reveal">
-        <div class="mbanner-image" role="img" aria-label="하이막스 인조대리석으로 이음새 없이 마감한 카운터" style="background-image:url('assets/himacs.webp')"></div>
+        <div class="mbanner-image" role="img" aria-label="하이막스 인조대리석으로 이음새 없이 마감한 카운터" data-bg="assets/himacs.webp"></div>
         <div class="mbanner-panel">
           <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">하이막스</div><div class="mbanner-eyebrow" style="margin-bottom:0">인조대리석</div></div>
           <div class="mbanner-desc-ko"><span class="sentence">100% 아크릴계 솔리드 서페이스로, 이음새 없이 매끄럽게 이어지고 열로 곡면을 만들 수&nbsp;있습니다.</span><span class="sentence">생활 흠집이 생겨도 표면을 살짝 갈아내면 새것처럼&nbsp;돌아옵니다.</span></div>
@@ -466,7 +526,7 @@ body.nav-open .nav-mobile-panel{display:flex}
           <div class="mbanner-chips"><span class="mbanner-chip">싱크볼 일체 성형</span><span class="mbanner-chip">열·습기에 강한 소재</span><span class="mbanner-chip">은성 직접 가공 · 책임 시공</span></div>
           <div class="mbanner-rec">빠른 납기와 안정적인 품질이 중요한 주방&nbsp;· 다용도실에&nbsp;추천</div>
         </div>
-        <div class="mbanner-image" role="img" aria-label="은성이 자체 생산한 BMC 싱크볼 일체형 주방 상판" style="background-image:url('images/bmc-kitchen.jpg')"></div>
+        <div class="mbanner-image" role="img" aria-label="은성이 자체 생산한 BMC 싱크볼 일체형 주방 상판" data-bg="images/bmc-kitchen.jpg"></div>
       </div>
     </div>
   </div>
@@ -474,9 +534,9 @@ body.nav-open .nav-mobile-panel{display:flex}
 
 <!-- ===================== OUR STORY · MONTAGE VIDEO ===================== -->
 <section id="top" class="story-montage-section">
-  <!-- autoplay 를 빼고 preload="none" — 아래 스크립트가 뷰포트 한 화면 앞에서 load(), 보일 때 play() 한다.
+  <!-- autoplay 를 빼고 preload="none" — assets/js/home.js 가 뷰포트 한 화면 앞에서 load(), 보일 때 play() 한다.
        (autoplay 속성이 있으면 preload 값과 무관하게 페이지 진입 즉시 받기 시작한다) -->
-  <video id="storyVideo" class="story-montage-video" muted loop playsinline preload="none" poster="assets/video/story-poster.jpg" disablepictureinpicture controlsList="nodownload noremoteplayback">
+  <video id="storyVideo" class="story-montage-video" muted loop playsinline preload="none" data-poster="assets/video/story-poster.jpg" disablepictureinpicture controlsList="nodownload noremoteplayback">
     <source src="assets/video/story-montage-desktop.mp4" type="video/mp4" media="(min-width:1024px)">
     <source src="assets/video/story-montage-mobile.mp4" type="video/mp4" media="(max-width:1023px)">
     <source src="assets/video/story-montage-desktop.mp4" type="video/mp4">
@@ -643,298 +703,5 @@ class Component extends DCLogic {
 }
 </script>
 
-<script>
-/* ===== 히어로 스크롤 확장 =====
-   예전 구현은 wheel/touchmove 를 preventDefault 로 잡고 window.scrollTo(0,0) 으로
-   페이지를 붙잡아 뒀다. 그래서 애니메이션이 끝나기 전에 빠르게 굴리면 입력이 먹히지
-   않고 페이지가 멈춘 것처럼 보였다.
-
-   지금은 스크롤을 전혀 막지 않는다. 래퍼(200vh) 안에서 sticky 로 붙어 있는 동안
-   굴러간 양을 0~1 진행도로 환산해 크기에 그대로 매핑할 뿐이다. 빨리 내리면
-   애니메이션도 그만큼 빨리 끝나고, 래퍼를 지나면 다음 섹션으로 그냥 넘어간다. */
-(function () {
-  function init() {
-    var wrap = document.getElementById('videoHero');
-    var mediaEl = document.getElementById('vheroMedia');
-    var bgEl = document.getElementById('vheroBg');
-    var word = document.getElementById('vheroWord');
-    var hintEl = document.getElementById('vheroHint');
-    var contentEl = document.getElementById('vheroContent');
-    var videoEl = document.getElementById('vheroVideo');
-    if (!wrap || !mediaEl) return;
-
-    /* 1024px 미만은 모바일 — 확대 인터랙션을 아예 실행하지 않는다.
-       mobile-pages.css 가 같은 기준으로 영상을 처음부터 전체화면으로 고정하므로
-       여기서 인라인 width/height 를 쓰면 그 규칙과 싸운다. 크기 매핑 전체를 건너뛴다. */
-    var mqMobile = window.matchMedia('(max-width: 1023px)');
-    var isMobile = mqMobile.matches;
-
-    /* 동작 줄이기 사용자에게는 영상 대신 poster 정지 이미지를 보여준다.
-       재생을 시작하지 않으면 브라우저가 poster 를 그대로 유지한다. */
-    var mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-    var ticking = false;
-    var lastP = -1;
-
-    /* ── 자동재생 보험 ──
-       Chrome 은 play() 호출 시점에 muted 여야 자동재생을 허용한다. 막히면 첫 사용자
-       조작 때 한 번 더 시도한다. 스크럽을 하지 않으므로 영상은 그냥 계속 재생한다. */
-    var retryBound = false;
-    var RETRY_EVENTS = ['pointerdown', 'touchstart', 'keydown', 'wheel', 'scroll'];
-
-    function tryPlay() {
-      if (!videoEl) return;
-      /* 동작 줄이기 — 재생하지 않고 poster 정지 이미지로 대체한다 */
-      if (mqReduce.matches) { videoEl.pause(); return; }
-      videoEl.muted = true;
-      videoEl.playsInline = true;
-      var pr = videoEl.play();
-      if (pr && typeof pr['catch'] === 'function') pr['catch'](bindRetryOnce);
-    }
-
-    function bindRetryOnce() {
-      if (retryBound) return;
-      retryBound = true;
-      function retry() {
-        RETRY_EVENTS.forEach(function (t) { window.removeEventListener(t, retry); });
-        retryBound = false;
-        /* 데이터 절약 모드 등으로 로드 자체가 안 된 상태(HAVE_NOTHING)면
-           사용자 제스처가 생긴 지금 load 부터 다시 건다 */
-        if (videoEl.readyState === 0) { try { videoEl.load(); } catch (e) { /* 무시 */ } }
-        tryPlay();
-      }
-      RETRY_EVENTS.forEach(function (t) {
-        window.addEventListener(t, retry, { once: true, passive: true });
-      });
-    }
-
-    if (videoEl) {
-      ['ended', 'stalled', 'pause'].forEach(function (t) {
-        videoEl.addEventListener(t, function () { if (videoEl.paused) tryPlay(); });
-      });
-      /* 탭 전환·앱 복귀 후 브라우저가 영상을 멈춰둔 채 두는 경우 재개한다 */
-      document.addEventListener('visibilitychange', function () {
-        if (!document.hidden && videoEl.paused) tryPlay();
-      });
-    }
-
-    /* 래퍼가 화면 위로 밀려 올라간 양 / 애니메이션 구간(래퍼높이 - 뷰포트높이) */
-    function progress() {
-      var total = wrap.offsetHeight - window.innerHeight;
-      if (total <= 0) return 1;
-      var y = -wrap.getBoundingClientRect().top;
-      return Math.min(Math.max(y / total, 0), 1);
-    }
-
-    function render(p) {
-      /* 모바일: 확대 인터랙션 없음 — 텍스트 블록만 즉시 켜고 끝
-         (CSS 도 같은 구간에서 opacity:1 !important 안전망을 둔다) */
-      if (isMobile) {
-        if (contentEl) contentEl.classList.add('on');
-        return;
-      }
-      /* 아래 텍스트 블록은 확장이 거의 끝났을 때 드러낸다 */
-      if (contentEl) contentEl.classList.toggle('on', p > 0.85);
-
-      mediaEl.style.width = (300 + p * 1250) + 'px';
-      mediaEl.style.height = (400 + p * 400) + 'px';
-      mediaEl.style.maxWidth = '95vw';
-      mediaEl.style.maxHeight = '85vh';
-      if (bgEl) bgEl.style.opacity = String(1 - p);
-      if (hintEl) hintEl.style.opacity = String(Math.max(0, 1 - p * 4));
-
-      /* 단어가 하나뿐이라 좌우로 벌릴 수 없다. 자간을 열어 펼쳐지는 인상을 유지하되
-         중앙 정렬이 흐트러지지 않게 같은 값의 음수 margin 으로 상쇄한다. */
-      if (word) {
-        var track = 0.16 + p * 0.16;
-        word.style.letterSpacing = track + 'em';
-        word.style.marginRight = -track + 'em';
-      }
-    }
-
-    function onScroll() {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(function () {
-        ticking = false;
-        var p = progress();
-        if (Math.abs(p - lastP) < 0.0015) return;   /* 미세한 떨림은 건너뛴다 */
-        lastP = p;
-        render(p);
-      });
-    }
-
-    function onResize() {
-      isMobile = mqMobile.matches;
-      if (isMobile) {
-        /* 데스크톱에서 걸어둔 인라인 스타일을 전부 지워 CSS 전체화면 규칙에 넘긴다 */
-        mediaEl.style.width = mediaEl.style.height = '';
-        mediaEl.style.maxWidth = mediaEl.style.maxHeight = '';
-        if (word) { word.style.letterSpacing = ''; word.style.marginRight = ''; }
-        if (bgEl) bgEl.style.opacity = '';
-        if (hintEl) hintEl.style.opacity = '';
-      }
-      lastP = -1;
-      onScroll();
-    }
-
-    /* passive: true — 스크롤을 막지 않는다는 것을 브라우저에 명시한다 */
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onResize, { passive: true });
-    /* 회전·분할화면처럼 resize 이벤트가 불안정한 전환도 미디어쿼리 변화로 잡는다 */
-    if (mqMobile.addEventListener) mqMobile.addEventListener('change', onResize);
-    else if (mqMobile.addListener) mqMobile.addListener(onResize);
-
-    tryPlay();
-    render(progress());
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-})();
-
-(function () {
-  function init() {
-    // The template renderer strips the bare `muted`/`loop` attributes whenever it re-renders this
-    // (x-dc-managed) node, which also blocks autoplay (Chrome requires muted=true at play() time).
-    // Enforce both as live DOM properties and keep re-enforcing, since the stripping can happen
-    // repeatedly. The section/video nodes also don't exist yet at DOMContentLoaded time — the
-    // runtime mounts this subtree asynchronously and can replace the node on re-render — so poll
-    // and rebind whenever the live node changes instead of grabbing the elements once.
-    //
-    // Loading policy (preload="none", no autoplay attribute in the markup):
-    //   - one viewport before the section enters (rootMargin 100%) → load() once
-    //   - ≥20% visible → play(); left the viewport → pause()
-    var boundVideo = null;
-    var boundSection = null;
-    var mo = null;
-    var ioNear = null;
-    var ioPlay = null;
-    var armed = false;      /* load() 를 이미 걸었는가 */
-    var wantPlay = false;   /* 현재 뷰포트 안에 있는가 */
-
-    function enforcePlaybackAttrs(video) {
-      if (!video.muted) video.muted = true;
-      if (!video.loop) video.loop = true;
-      if (!video.playsInline) video.playsInline = true;
-      if (armed && wantPlay && video.paused) video.play().catch(function () {});
-    }
-
-    function arm(video) {
-      if (armed) return;
-      armed = true;
-      try { video.preload = 'auto'; video.load(); } catch (e) { /* 무시 */ }
-      if (wantPlay) video.play().catch(function () {});
-    }
-
-    function bindVideo(video) {
-      if (video === boundVideo) return;
-      if (mo) mo.disconnect();
-      boundVideo = video;
-      enforcePlaybackAttrs(video);
-      if (armed) { try { video.preload = 'auto'; } catch (e) { /* 무시 */ } }
-      if ('MutationObserver' in window) {
-        mo = new MutationObserver(function () { enforcePlaybackAttrs(video); });
-        mo.observe(video, { attributes: true, attributeFilter: ['muted', 'loop', 'playsinline'] });
-      }
-    }
-
-    function bindSection(section) {
-      if (section === boundSection) return;
-      if (ioNear) ioNear.disconnect();
-      if (ioPlay) ioPlay.disconnect();
-      boundSection = section;
-      if (!('IntersectionObserver' in window)) {
-        /* 구형 브라우저 — 그냥 바로 로드하고 재생한다 */
-        var v0 = document.getElementById('storyVideo');
-        if (v0) { wantPlay = true; arm(v0); v0.play().catch(function () {}); }
-        return;
-      }
-      ioNear = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          var video = document.getElementById('storyVideo');
-          if (video) arm(video);
-          ioNear.disconnect();
-        });
-      }, { rootMargin: '100% 0px' });
-      ioNear.observe(section);
-      ioPlay = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          var video = document.getElementById('storyVideo');
-          wantPlay = entry.isIntersecting;
-          if (!video) return;
-          if (wantPlay) { arm(video); video.play().catch(function () {}); }
-          else video.pause();
-        });
-      }, { threshold: 0.2 });
-      ioPlay.observe(section);
-    }
-
-    function poll() {
-      var video = document.getElementById('storyVideo');
-      var section = document.getElementById('top');
-      if (video) {
-        bindVideo(video);
-        enforcePlaybackAttrs(video);
-      }
-      if (section) bindSection(section);
-    }
-
-    poll();
-    setInterval(poll, 1000);
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-})();
-</script>
-<script>
-(function () {
-  function init() {
-    // same rationale as the video-enforcement script above: this node lives inside
-    // the x-dc-managed subtree and can be replaced wholesale on re-render, which
-    // would orphan an observer attached once at load. Poll and rebind instead of
-    // grabbing the element a single time.
-    var boundEl = null;
-    var observer = null;
-
-    function bindText(el) {
-      if (el === boundEl) return;
-      boundEl = el;
-      if (observer) observer.disconnect();
-      if (el.classList.contains('is-visible')) return;
-      observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.disconnect();
-          }
-        });
-      }, { threshold: 0.3 });
-      observer.observe(el);
-    }
-
-    function poll() {
-      var el = document.getElementById('storyMontageText');
-      if (el) bindText(el);
-    }
-
-    poll();
-    setInterval(poll, 1000);
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-})();
-</script>
 </body>
 </html>
