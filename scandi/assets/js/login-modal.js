@@ -786,9 +786,19 @@
     });
 
     /* ---------- 세션 복구 (전 페이지 공통) ----------
-       키가 없거나 CDN 이 막히면 조용히 로그아웃 상태로 남는다. */
-    loadSupabase(function () { /* bindAuthEvents 가 세션을 반영한다 */ },
-                 function () { /* 서비스 미설정 — 헤더는 기본 아이콘 유지 */ });
+       키가 없거나 CDN 이 막히면 조용히 로그아웃 상태로 남는다.
+       supabase-js(54KB) 를 첫 화면과 같이 받지 않도록 load 이벤트 뒤 한 박자 쉬고 건다 —
+       로그인 버튼을 먼저 누르면 그쪽 loadSupabase 가 즉시 받는다. */
+    function restoreSession() {
+      loadSupabase(function () { /* bindAuthEvents 가 세션을 반영한다 */ },
+                   function () { /* 서비스 미설정 — 헤더는 기본 아이콘 유지 */ });
+    }
+    function afterLoad(fn) {
+      var run = function () { setTimeout(fn, 800); };
+      if (document.readyState === 'complete') run();
+      else window.addEventListener('load', run, { once: true });
+    }
+    afterLoad(restoreSession);
 
     /* x-dc 가 헤더를 다시 그려도 로그인 칩이 복구되도록 감시한다. */
     if (window.MutationObserver) {

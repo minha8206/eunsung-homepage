@@ -112,3 +112,7 @@
   .bmc-lb-btn{width:38px;height:38px}
   .bmc-lb img{max-width:94vw}
 }
+
+/* 인라인 "전체 보기 →" 링크 — 글자 높이가 26px 뿐이라 터치 영역만 44px 로 넓힌다(보이는 모습 그대로) */
+.bmc-more{position:relative}
+.bmc-more::after{content:'';position:absolute;left:-8px;right:-8px;top:-10px;bottom:-10px}

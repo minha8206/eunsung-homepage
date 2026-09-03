@@ -18,6 +18,8 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://esstone.co.kr/facility.html">
+<!-- 첫 공정 사진(LCP) — 템플릿 안 background-image 라 파서가 미리 못 찾는다 -->
+<link rel="preload" as="image" href="images/facility/실측.jpg" fetchpriority="high">
 <!-- v-cloak — 템플릿 원문 가리기.
      x-dc(React) 가 마운트되기 전까지 {{ }} 템플릿 문법이 그대로 보이면 안 된다.
      support.js 도 같은 규칙을 넣지만 그건 JS 가 떠야 동작한다. 스크립트가 늦게
@@ -26,23 +28,44 @@
      주의 — support.js 는 원문을 정규식으로 다시 훑는다. 이 주석에 템플릿 루트
      태그를 각괄호까지 그대로 적으면 그게 먼저 잡혀서 파싱이 어긋난다. -->
 <style>x-dc{display:none!important}</style>
-<script src="./support.js"></script>
-<link rel="stylesheet" href="assets/css/inquiry-widget.css">
+<!-- 웹폰트
+     · 라틴 2종(Cormorant Garamond·Manrope)은 Google Fonts 의 latin 가변 woff2 를 assets/fonts/ 에 자체 호스팅한다.
+       Google 은 UA 마다 다른 파일 URL 을 주기 때문에 외부 URL 을 preload 하면 빗나간다 — 우리 파일이면 preload 가 확실히 맞는다.
+       (같은 파일·같은 unicode-range 라 글꼴 모양은 동일. 한글은 이 두 폰트에 없어 원래부터 다음 폰트로 넘어간다.)
+     · 한글(Noto Serif KR)은 100여 개 유니코드 조각으로 나뉘어 있어 Google CSS 를 그대로 쓰되, 아래 스크립트가
+       첫 페인트 뒤에 붙인다(display=swap 유지). -->
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/cormorant-garamond-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/manrope-latin.woff2">
+<style>
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300 700;font-display:swap;src:url(assets/fonts/cormorant-garamond-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:300 700;font-display:swap;src:url(assets/fonts/cormorant-garamond-italic-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:200 800;font-display:swap;src:url(assets/fonts/manrope-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script>
+/* Noto Serif KR CSS 는 첫 콘텐츠 페인트 뒤에 붙인다 — 그 전에 붙이면 한글 조각 폰트 10여 개(≈450KB)가
+   첫 화면 이미지·CSS 와 대역폭을 나눈다. display=swap 이라 그 전에도 글자는 대체 폰트로 바로 보인다. */
+(function(){var done=false;function add(){if(done)return;done=true;var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500&display=swap';document.head.appendChild(l);}
+try{var po=new PerformanceObserver(function(list){if(list.getEntries().some(function(e){return e.name==='first-contentful-paint';})){po.disconnect();add();}});po.observe({type:'paint',buffered:true});}catch(e){}
+setTimeout(add,1000);})();
+</script>
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500&display=swap"></noscript>
+<!-- React 는 unpkg 대신 같은 오리진(vendor/)에서 defer 로 받는다. support.js 는 window.React 가
+     이미 있으면 CDN 로드를 건너뛴다(loadReactUmd). defer 스크립트는 문서 순서대로 실행되므로
+     support.js 가 돌 때는 React/ReactDOM 이 준비돼 있다. support.js 자체도 defer — 파서를 막지 않는다. -->
+<script src="vendor/react.production.min.js" defer></script>
+<script src="vendor/react-dom.production.min.js" defer></script>
+<script src="support.js" defer></script>
+<!-- 공통 CSS 10개를 한 파일로 — scripts/build-css.js 가 assets/css/*.css 에서 만든다. 개별 파일을 고치면 다시 빌드할 것. -->
+<link rel="stylesheet" href="assets/css/site.css">
 <script src="assets/js/inquiry-widget.js" defer></script>
-<link rel="stylesheet" href="assets/css/login-modal.css">
 <script src="assets/js/login-modal.js" defer></script>
-<link rel="stylesheet" href="assets/css/search-overlay.css">
 <script src="assets/js/search-overlay.js" defer></script>
-<script src="js/i18n-en.js" defer></script>
 <script src="js/i18n.js" defer></script>
-<link rel="stylesheet" href="assets/css/footer.css">
-<link rel="stylesheet" href="assets/css/reveal.css">
 <script src="assets/js/reveal.js" defer></script>
-<link rel="stylesheet" href="assets/css/typography.css">
-<link rel="stylesheet" href="assets/css/mobile.css">
-<link rel="stylesheet" href="assets/css/mobile-overlays.css">
-<link rel="stylesheet" href="assets/css/mobile-pages.css">
 <script src="assets/js/mobile-nav.js" defer></script>
+<script src="assets/js/lazy-bg.js" defer></script>
 <!-- SEO-JSONLD:START -->
 <!-- 이 구간은 scripts/build-seo.js 가 생성합니다. 직접 고치지 마세요 —
      제품 데이터나 사업자 정보가 바뀌면 `node scripts/build-seo.js` 를 다시 실행하세요. -->
@@ -175,9 +198,6 @@
 <body>
 <x-dc>
 <helmet data-dc-atomics>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&family=Noto+Serif+KR:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#ffffff;font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
@@ -350,7 +370,7 @@ body{overflow-x:clip}
         <div class="ft-num">02</div>
         <div class="ft-title">도면 작업</div>
         <div class="ft-photo-wrap">
-          <div class="ft-photo" role="img" aria-label="실측 수치를 CAD 도면으로 옮기는 도면 작업 화면" style="background-image:url('images/facility/도면작업.png')"></div>
+          <div class="ft-photo" role="img" aria-label="실측 수치를 CAD 도면으로 옮기는 도면 작업 화면" data-bg="images/facility/도면작업.png"></div>
         </div>
         <div class="ft-headline">도면은 곧 가공 데이터입니다.</div>
         <div class="ft-body">실측 수치로 정리된 CAD 도면은 가공 장비와 직접 연동됩니다. 사람이 수치를 옮겨 적는 과정이 없기&nbsp;때문에, 도면에서 가공으로 전달되는 과정에서 생기는 오차가 존재하지&nbsp;않습니다.</div>
@@ -363,7 +383,7 @@ body{overflow-x:clip}
         <div class="ft-num">03</div>
         <div class="ft-title">자재 입고 및 검수</div>
         <div class="ft-photo-wrap">
-          <div class="ft-photo" role="img" aria-label="입고된 LX하우시스 포세린 슬랩을 전수 검수하는 모습" style="background-image:url('images/facility/자재입고및검수.webp')"></div>
+          <div class="ft-photo" role="img" aria-label="입고된 LX하우시스 포세린 슬랩을 전수 검수하는 모습" data-bg="images/facility/자재입고및검수.webp"></div>
         </div>
         <div class="ft-headline">들여오는 자재부터 다시&nbsp;확인합니다.</div>
         <div class="ft-body">은성은 LX Hausys 정식 대리점으로서, 입고되는 모든 자재를 전수 검수합니다. 규격과 색상 로트, 표면&nbsp;상태까지 하나씩 확인한 자재만 가공 라인에&nbsp;투입됩니다.</div>
@@ -376,7 +396,7 @@ body{overflow-x:clip}
         <div class="ft-num">04</div>
         <div class="ft-title">자재 배치</div>
         <div class="ft-photo-wrap">
-          <div class="ft-photo" role="img" aria-label="도면을 보며 흰 대리석 슬랩의 결과 이음선 위치를 확인하는 은성 작업자들" style="background-image:url('images/process-slab-layout.jpg')"></div>
+          <div class="ft-photo" role="img" aria-label="도면을 보며 흰 대리석 슬랩의 결과 이음선 위치를 확인하는 은성 작업자들" data-bg="images/process-slab-layout.jpg"></div>
         </div>
         <div class="ft-headline">결의 방향까지 미리 정합니다.</div>
         <div class="ft-body">도면에 맞춰 자재를 배치하며 무늬결과 이음선의 위치를 재단 전에 확정합니다. 잘라내기 전에 완성된&nbsp;모습을 먼저 확인하는&nbsp;단계입니다.</div>
@@ -390,7 +410,7 @@ body{overflow-x:clip}
         <div class="ft-num">05</div>
         <div class="ft-title">재단</div>
         <div class="ft-photo-wrap">
-          <div class="ft-photo" role="img" aria-label="대형 가공 설비로 포세린 슬랩을 도면대로 재단하는 공정" style="background-image:url('images/facility/재단.jpg')"></div>
+          <div class="ft-photo" role="img" aria-label="대형 가공 설비로 포세린 슬랩을 도면대로 재단하는 공정" data-bg="images/facility/재단.jpg"></div>
         </div>
         <div class="ft-spec-tag">MAX 3200 × 1600 mm</div>
         <div class="ft-headline">도면 그대로, 오차 없이&nbsp;잘라냅니다.</div>
@@ -404,7 +424,7 @@ body{overflow-x:clip}
         <div class="ft-num">06</div>
         <div class="ft-title">타공 및 씽크볼 가공</div>
         <div class="ft-photo-wrap">
-          <div class="ft-photo" role="img" aria-label="주방 상판에 씽크볼 자리를 크랙 없이 타공하는 가공 공정" style="background-image:url('images/facility/타공및씽크볼가공.webp')"></div>
+          <div class="ft-photo" role="img" aria-label="주방 상판에 씽크볼 자리를 크랙 없이 타공하는 가공 공정" data-bg="images/facility/타공및씽크볼가공.webp"></div>
         </div>
         <div class="ft-spec-tag">CRACK-FREE CUTTING</div>
         <div class="ft-headline">취성이 강한 소재일수록, 장비는 더 정밀해야 합니다.</div>
@@ -418,7 +438,7 @@ body{overflow-x:clip}
         <div class="ft-num">07</div>
         <div class="ft-title">엣지 가공 및 연마 폴리싱</div>
         <div class="ft-photo-wrap">
-          <div class="ft-photo" role="img" aria-label="포세린 상판 엣지를 연마·폴리싱해 마감하는 공정" style="background-image:url('images/facility/엣지가공및연마폴리싱.webp')"></div>
+          <div class="ft-photo" role="img" aria-label="포세린 상판 엣지를 연마·폴리싱해 마감하는 공정" data-bg="images/facility/엣지가공및연마폴리싱.webp"></div>
         </div>
         <div class="ft-headline">만졌을 때 느껴지는 마감이&nbsp;다릅니다.</div>
         <div class="ft-body">형태에 맞춰 엣지의 각을 잡고, 표면은 단계별 연마로 광택을 끌어올립니다. 눈으로 보는 것을 넘어 손으로 확인해도 이음이 느껴지지 않도록 마무리합니다.</div>
@@ -432,7 +452,7 @@ body{overflow-x:clip}
         <div class="ft-num">08</div>
         <div class="ft-title">최종 검수</div>
         <div class="ft-photo-wrap">
-          <div class="ft-photo" role="img" aria-label="출고 전 가공된 슬랩의 치수와 표면을 최종 검수하는 모습" style="background-image:url('images/facility/최종검수.webp')"></div>
+          <div class="ft-photo" role="img" aria-label="출고 전 가공된 슬랩의 치수와 표면을 최종 검수하는 모습" data-bg="images/facility/최종검수.webp"></div>
         </div>
         <div class="ft-headline">출고 전, 마지막으로 한 번 더&nbsp;봅니다.</div>
         <div class="ft-body">치수와 표면, 컬러 매칭까지 처음 도면과 비교해 다시 확인합니다.<br>이 기준을 통과한 제품만 다음 단계로&nbsp;넘어갑니다.</div>
@@ -445,7 +465,7 @@ body{overflow-x:clip}
         <div class="ft-num">09</div>
         <div class="ft-title">운반</div>
         <div class="ft-photo-wrap">
-          <div class="ft-photo" role="img" aria-label="가공을 마친 슬랩을 포천 공장에서 현장으로 운반하는 모습" style="background-image:url('images/facility/운반.webp')"></div>
+          <div class="ft-photo" role="img" aria-label="가공을 마친 슬랩을 포천 공장에서 현장으로 운반하는 모습" data-bg="images/facility/운반.webp"></div>
         </div>
         <div class="ft-headline">여기서부터는 파손 방지가 곧&nbsp;품질입니다.</div>
         <div class="ft-body">전용 거치대와 완충재로 고정해 운송 중 흔들림과 파손을 방지합니다. 현장에 도착하는 순간까지 검수된&nbsp;상태 그대로 유지합니다.</div>
@@ -458,7 +478,7 @@ body{overflow-x:clip}
         <div class="ft-num">10</div>
         <div class="ft-title">현장 시공</div>
         <div class="ft-photo-wrap">
-          <div class="ft-photo" role="img" aria-label="현장에서 포세린 상판을 설치하는 은성 시공 팀" style="background-image:url('images/facility/시공.jpg')"></div>
+          <div class="ft-photo" role="img" aria-label="현장에서 포세린 상판을 설치하는 은성 시공 팀" data-bg="images/facility/시공.jpg"></div>
         </div>
         <div class="ft-headline">각 공정의 전문가들이, 하나의&nbsp;공간을 완성합니다.</div>
         <div class="ft-body">실측부터 시공까지 전 과정을 은성의 시공팀이 직접 책임집니다. 담당이 바뀌며 생기는 공백 없이, 처음&nbsp;약속한 완성도를 한 팀이 끝까지&nbsp;지킵니다.</div>

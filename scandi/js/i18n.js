@@ -138,18 +138,44 @@
     }
   }
 
+  /* ---------- 사전 지연 로드 ----------
+     js/i18n-en.js(60KB) 는 EN 이 실제로 필요할 때만 받는다 — 저장된 언어가 en 이거나
+     토글로 en 을 고른 순간. KO 만 보는 대부분의 방문자는 이 파일을 아예 받지 않는다.
+     (예전엔 모든 페이지 <head> 에서 defer 로 무조건 받았다.) */
+  var DICT_SRC = (function () {
+    var me = document.currentScript && document.currentScript.src;
+    return me ? me.replace(/i18n\.js(\?.*)?$/, 'i18n-en.js') : 'js/i18n-en.js';
+  })();
+  var dictLoading = null;
+  function ensureDict(cb) {
+    if (window.I18N_EN) { dict = window.I18N_EN; cb(); return; }
+    if (!dictLoading) {
+      dictLoading = new Promise(function (resolve) {
+        var s = document.createElement('script');
+        s.src = DICT_SRC;
+        s.async = true;
+        s.onload = function () { dict = window.I18N_EN || {}; resolve(); };
+        s.onerror = function () { resolve(); };   /* 실패해도 페이지는 KO 로 계속 */
+        document.head.appendChild(s);
+      });
+    }
+    dictLoading.then(cb);
+  }
+
   function setLang(next) {
     if (next !== 'en' && next !== 'ko') next = 'ko';
     if (next === lang) return;
     lang = next;
     writeLang(lang);
-    apply();
+    if (lang === 'en') ensureDict(apply);
+    else apply();
   }
 
   /* ---------- 초기화 ---------- */
   function init() {
     dict = window.I18N_EN || {};
     lang = readLang();
+    if (lang === 'en') ensureDict(apply);
 
     /* 헤더 토글 — 헤더가 x-dc 안이라 위임으로 잡는다 */
     document.addEventListener('click', function (e) {

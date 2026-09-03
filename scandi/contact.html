@@ -18,28 +18,40 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://esstone.co.kr/contact.html">
+<!-- 웹폰트
+     · 라틴 2종(Cormorant Garamond·Manrope)은 Google Fonts 의 latin 가변 woff2 를 assets/fonts/ 에 자체 호스팅한다.
+       Google 은 UA 마다 다른 파일 URL 을 주기 때문에 외부 URL 을 preload 하면 빗나간다 — 우리 파일이면 preload 가 확실히 맞는다.
+       (같은 파일·같은 unicode-range 라 글꼴 모양은 동일. 한글은 이 두 폰트에 없어 원래부터 다음 폰트로 넘어간다.)
+     · 한글(Noto Serif KR)은 100여 개 유니코드 조각으로 나뉘어 있어 Google CSS 를 그대로 쓰되, 아래 스크립트가
+       첫 페인트 뒤에 붙인다(display=swap 유지). -->
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/cormorant-garamond-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/manrope-latin.woff2">
+<style>
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300 700;font-display:swap;src:url(assets/fonts/cormorant-garamond-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:300 700;font-display:swap;src:url(assets/fonts/cormorant-garamond-italic-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:200 800;font-display:swap;src:url(assets/fonts/manrope-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&family=Noto+Serif+KR:wght@400;500&display=swap" rel="stylesheet">
+<script>
+/* Noto Serif KR CSS 는 첫 콘텐츠 페인트 뒤에 붙인다 — 그 전에 붙이면 한글 조각 폰트 10여 개(≈450KB)가
+   첫 화면 이미지·CSS 와 대역폭을 나눈다. display=swap 이라 그 전에도 글자는 대체 폰트로 바로 보인다. */
+(function(){var done=false;function add(){if(done)return;done=true;var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500&display=swap';document.head.appendChild(l);}
+try{var po=new PerformanceObserver(function(list){if(list.getEntries().some(function(e){return e.name==='first-contentful-paint';})){po.disconnect();add();}});po.observe({type:'paint',buffered:true});}catch(e){}
+setTimeout(add,1000);})();
+</script>
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500&display=swap"></noscript>
 <!-- 이 페이지 전용 산세리프. 한글·영문·숫자를 한 가족으로 통일하기 위해 Pretendard 사용 -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="assets/css/inquiry-widget.css">
+<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"></noscript>
+<!-- 공통 CSS 10개를 한 파일로 — scripts/build-css.js 가 assets/css/*.css 에서 만든다. 개별 파일을 고치면 다시 빌드할 것. -->
+<link rel="stylesheet" href="assets/css/site.css">
 <script src="assets/js/inquiry-widget.js" defer></script>
-<link rel="stylesheet" href="assets/css/login-modal.css">
 <script src="assets/js/login-modal.js" defer></script>
-<link rel="stylesheet" href="assets/css/search-overlay.css">
 <script src="assets/js/search-overlay.js" defer></script>
-<script src="js/i18n-en.js" defer></script>
 <script src="js/i18n.js" defer></script>
-<link rel="stylesheet" href="assets/css/map-links.css">
-<link rel="stylesheet" href="assets/css/footer.css">
-<link rel="stylesheet" href="assets/css/reveal.css">
 <script src="assets/js/reveal.js" defer></script>
-<link rel="stylesheet" href="assets/css/typography.css">
-<link rel="stylesheet" href="assets/css/mobile.css">
-<link rel="stylesheet" href="assets/css/mobile-overlays.css">
-<link rel="stylesheet" href="assets/css/mobile-pages.css">
 <script src="assets/js/mobile-nav.js" defer></script>
 <style>
 *{box-sizing:border-box}
