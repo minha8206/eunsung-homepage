@@ -18,6 +18,9 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://esstone.co.kr/">
+<!-- 히어로 LCP — 뷰포트에 맞는 poster 한 장만 최우선으로 당겨온다 -->
+<link rel="preload" as="image" href="assets/video/hero-poster.jpg" media="(min-width:1024px)" fetchpriority="high">
+<link rel="preload" as="image" href="assets/video/hero-poster-mobile.jpg" media="(max-width:1023px)" fetchpriority="high">
 
 <!-- v-cloak — 템플릿 원문 가리기.
      x-dc(React) 가 마운트되기 전까지 {{ }} 템플릿 문법이 그대로 보이면 안 된다.
@@ -174,10 +177,18 @@
   <!-- 래퍼는 200vh, 안쪽은 sticky 100vh — 그 사이 100vh 만큼 굴린 양이 진행도(0~1)가 된다.
        스크롤을 가로채지 않으므로 빨리 내리면 애니메이션도 그만큼 빨리 끝나고 그대로 다음 섹션으로 간다. -->
   <div class="vhero-sticky">
-  <div class="vhero-bg" id="vheroBg" role="img" aria-label="포세린·비아테라 슬랩이 전시된 은성 포천 쇼룸 전경" style="background-image:url('assets/showroom-hero.jpg')"></div>
+  <div class="vhero-bg" id="vheroBg" role="img" aria-label="포세린·비아테라 슬랩이 전시된 은성 포천 쇼룸 전경" style="background-image:url('assets/showroom-hero.webp')"></div>
   <div class="vhero-stage">
     <div class="vhero-media" id="vheroMedia">
-      <video id="vheroVideo" src="assets/video/hero-scroll.mp4" poster="assets/video/hero-poster.jpg" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture controlsList="nodownload noremoteplayback"></video>
+      <!-- 원본 hero-scroll.mp4(22.7MB) 대신 뷰포트별 재인코딩본을 쓴다. <source media> 를 모르는 구형 브라우저는
+           첫 번째(데스크톱) 소스를 고른다. poster 는 아래 인라인 스크립트가 뷰포트에 맞는 한 장만 지정한다
+           (속성으로 박아두면 모바일에서 가로 포스터까지 두 번 받는다). head 의 preload 가 같은 파일을 먼저 당겨온다. -->
+      <video id="vheroVideo" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablepictureinpicture controlsList="nodownload noremoteplayback">
+        <source src="assets/video/hero-scroll-desktop.mp4" type="video/mp4" media="(min-width:1024px)">
+        <source src="assets/video/hero-scroll-mobile.mp4" type="video/mp4" media="(max-width:1023px)">
+        <source src="assets/video/hero-scroll-desktop.mp4" type="video/mp4">
+      </video>
+      <script>(function(v){if(!v)return;v.poster=window.matchMedia('(max-width:1023px)').matches?'assets/video/hero-poster-mobile.jpg':'assets/video/hero-poster.jpg';})(document.getElementById('vheroVideo'));</script>
       <div class="vhero-media-shade"></div>
     </div>
     <div class="vhero-title">
@@ -416,13 +427,13 @@ body.nav-open .nav-mobile-panel{display:flex}
     <div data-reveal-group>
       <!-- 포세린 (panel right) -->
       <div class="mbanner reveal">
-        <div class="mbanner-image" role="img" aria-label="포세린 슬랩으로 마감한 주방 아일랜드 시공 사례" style="background-image:url('assets/porcelain.jpg')"></div>
+        <div class="mbanner-image" role="img" aria-label="포세린 슬랩으로 마감한 주방 아일랜드 시공 사례" style="background-image:url('assets/porcelain.webp')"></div>
         <div class="mbanner-panel">
           <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">포세린</div><div class="mbanner-eyebrow" style="margin-bottom:0">세라믹</div></div>
           <div class="mbanner-desc-ko"><span class="sentence">뜨거운 냄비를 그대로 올리고, 도마 없이 칼질을 해도 자국 하나 남지&nbsp;않습니다.</span><span class="sentence">1200°C에서 구워낸 표면은 얼룩이 배지 않고 햇빛에도 바래지 않아, 10년을 써도 처음&nbsp;그대로입니다.</span><span class="sentence">대리석의 얼굴에 돌보다 강한&nbsp;몸.</span><span class="sentence">은성이 가장 먼저 권하는&nbsp;소재입니다.</span></div>
           <div class="mbanner-chips"><span class="mbanner-chip">열 · 칼 · 얼룩에 모두 강함</span><span class="mbanner-chip">햇빛에도 변색 없음</span><span class="mbanner-chip">3240×1620 대형 슬랩</span></div>
           <div class="mbanner-rec">싱크대&nbsp;상판&nbsp;· 아일랜드&nbsp;상판&nbsp;· 벽면&nbsp;· 외장 등 매일 쓰고 오래 봐야 하는 공간에&nbsp;추천</div>
-          <div class="mbanner-partner"><div class="mbanner-partner-cap">OFFICIAL PARTNER</div><img src="images/lx-hausys-logo.png" alt="LX Hausys" loading="lazy"></div>
+          <div class="mbanner-partner"><div class="mbanner-partner-cap">OFFICIAL PARTNER</div><img src="images/lx-hausys-logo.png" alt="LX Hausys" width="888" height="144" loading="lazy" decoding="async"></div>
         </div>
       </div>
       <!-- 비아테라 (panel left) -->
@@ -432,19 +443,19 @@ body.nav-open .nav-mobile-panel{display:flex}
           <div class="mbanner-desc-ko"><span class="sentence">천연 석영을 93% 담아 돌의 깊이와 광택을 그대로 살린&nbsp;소재입니다.</span><span class="sentence">물이 스미지 않아 김치 국물이나 와인을 흘려도 배지 않고, 긁힘에 강해 매일 쓰는 조리대에서도 표면이 거칠어지지&nbsp;않습니다.</span><span class="sentence">코팅이나 별도 관리 없이 물걸레 한 번이면&nbsp;충분합니다.</span></div>
           <div class="mbanner-chips"><span class="mbanner-chip">천연 석영 93%</span><span class="mbanner-chip">얼룩이 배지 않는 표면</span><span class="mbanner-chip">코팅 · 관리 불필요</span></div>
           <div class="mbanner-rec">아일랜드&nbsp;· 싱크대&nbsp;상판 등 얼룩과 흠집에 예민한 주방에&nbsp;추천</div>
-          <div class="mbanner-partner"><div class="mbanner-partner-cap">OFFICIAL PARTNER</div><img src="images/lx-hausys-logo.png" alt="LX Hausys" loading="lazy"></div>
+          <div class="mbanner-partner"><div class="mbanner-partner-cap">OFFICIAL PARTNER</div><img src="images/lx-hausys-logo.png" alt="LX Hausys" width="888" height="144" loading="lazy" decoding="async"></div>
         </div>
-        <div class="mbanner-image" role="img" aria-label="비아테라 엔지니어드 스톤 상판을 적용한 주방" style="background-image:url('assets/viatera.jpg')"></div>
+        <div class="mbanner-image" role="img" aria-label="비아테라 엔지니어드 스톤 상판을 적용한 주방" style="background-image:url('assets/viatera.webp')"></div>
       </div>
       <!-- 하이막스 (panel right) -->
       <div class="mbanner reveal">
-        <div class="mbanner-image" role="img" aria-label="하이막스 인조대리석으로 이음새 없이 마감한 카운터" style="background-image:url('assets/himacs.jpg')"></div>
+        <div class="mbanner-image" role="img" aria-label="하이막스 인조대리석으로 이음새 없이 마감한 카운터" style="background-image:url('assets/himacs.webp')"></div>
         <div class="mbanner-panel">
           <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">하이막스</div><div class="mbanner-eyebrow" style="margin-bottom:0">인조대리석</div></div>
           <div class="mbanner-desc-ko"><span class="sentence">100% 아크릴계 솔리드 서페이스로, 이음새 없이 매끄럽게 이어지고 열로 곡면을 만들 수&nbsp;있습니다.</span><span class="sentence">생활 흠집이 생겨도 표면을 살짝 갈아내면 새것처럼&nbsp;돌아옵니다.</span></div>
           <div class="mbanner-chips"><span class="mbanner-chip">이음새 없는 일체형 마감</span><span class="mbanner-chip">곡선 디자인 자유</span><span class="mbanner-chip">긁혀도 다시 새것처럼</span></div>
           <div class="mbanner-rec">곡선&nbsp;카운터&nbsp;· 세면대 등 디자인 자유도가 필요한 공간에&nbsp;추천</div>
-          <div class="mbanner-partner"><div class="mbanner-partner-cap">OFFICIAL PARTNER</div><img src="images/lx-hausys-logo.png" alt="LX Hausys" loading="lazy"></div>
+          <div class="mbanner-partner"><div class="mbanner-partner-cap">OFFICIAL PARTNER</div><img src="images/lx-hausys-logo.png" alt="LX Hausys" width="888" height="144" loading="lazy" decoding="async"></div>
         </div>
       </div>
       <!-- BMC (panel left) -->
@@ -463,8 +474,12 @@ body.nav-open .nav-mobile-panel{display:flex}
 
 <!-- ===================== OUR STORY · MONTAGE VIDEO ===================== -->
 <section id="top" class="story-montage-section">
-  <video id="storyVideo" class="story-montage-video" autoplay muted loop playsinline preload="auto" disablepictureinpicture controlsList="nodownload noremoteplayback">
-    <source src="assets/story-montage.mp4" type="video/mp4">
+  <!-- autoplay 를 빼고 preload="none" — 아래 스크립트가 뷰포트 한 화면 앞에서 load(), 보일 때 play() 한다.
+       (autoplay 속성이 있으면 preload 값과 무관하게 페이지 진입 즉시 받기 시작한다) -->
+  <video id="storyVideo" class="story-montage-video" muted loop playsinline preload="none" poster="assets/video/story-poster.jpg" disablepictureinpicture controlsList="nodownload noremoteplayback">
+    <source src="assets/video/story-montage-desktop.mp4" type="video/mp4" media="(min-width:1024px)">
+    <source src="assets/video/story-montage-mobile.mp4" type="video/mp4" media="(max-width:1023px)">
+    <source src="assets/video/story-montage-desktop.mp4" type="video/mp4">
   </video>
   <div class="story-montage-text" id="storyMontageText">
     <div class="story-montage-label">CRAFTED BY EUNSUNG</div>
@@ -517,7 +532,7 @@ body.nav-open .nav-mobile-panel{display:flex}
     </div>
   </div>
   <div style="max-width:1240px;margin:44px auto 0">
-    <iframe title="EUNSUNG 위치 지도" src="https://www.google.com/maps?q=%EA%B2%BD%EA%B8%B0%EB%8F%84+%ED%8F%AC%EC%B2%9C%EC%8B%9C+%EA%B0%80%EC%82%B0%EB%A9%B4+%EC%A0%95%EA%B8%88%EB%A1%9C+356-39&output=embed" style="width:100%;height:340px;border:0;border-radius:16px;filter:grayscale(.3) contrast(1.05)"></iframe>
+    <iframe title="EUNSUNG 위치 지도" loading="lazy" src="https://www.google.com/maps?q=%EA%B2%BD%EA%B8%B0%EB%8F%84+%ED%8F%AC%EC%B2%9C%EC%8B%9C+%EA%B0%80%EC%82%B0%EB%A9%B4+%EC%A0%95%EA%B8%88%EB%A1%9C+356-39&output=embed" style="width:100%;height:340px;border:0;border-radius:16px;filter:grayscale(.3) contrast(1.05)"></iframe>
     <div class="maplinks maplinks--on-dark">
       <a class="maplink" href="https://map.naver.com/p/search/%EA%B2%BD%EA%B8%B0%EB%8F%84%20%ED%8F%AC%EC%B2%9C%EC%8B%9C%20%EA%B0%80%EC%82%B0%EB%A9%B4%20%EC%A0%95%EA%B8%88%EB%A1%9C%20356-39" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>네이버지도로 길찾기</a>
       <a class="maplink" href="https://map.kakao.com/link/search/%EA%B2%BD%EA%B8%B0%EB%8F%84%20%ED%8F%AC%EC%B2%9C%EC%8B%9C%20%EA%B0%80%EC%82%B0%EB%A9%B4%20%EC%A0%95%EA%B8%88%EB%A1%9C%20356-39" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>카카오맵으로 길찾기</a>
@@ -563,11 +578,11 @@ class Component extends DCLogic {
       { loc: '양평', name: '내추럴 모던 포세린 아일랜드', desc: '원목 루버 패널과 어우러지는 라이트 그레이 포세린 아일랜드', cap: '주방아일랜드 · 2026.06', sub: '포세린 · 라이트 그레이', span: 5, img: 'images/cases/yangpyeong/01.jpg' },
       { loc: '성수동', name: '대형 아일랜드 시공', desc: '오크 캐비닛 + 크림 베이지 포세린 아일랜드, 싱크·인덕션 통합 가공', cap: '주방아일랜드 · 2026.06', sub: '포세린 · 크림 베이지', span: 7, img: 'images/cases/seongsu/01.jpg' },
       { loc: '선릉', name: '대기업 임원회의실', desc: '5m 칼라카타 화이트 포세린, 케이블 트레이 통합 맞춤 제작', cap: '오피스·호텔 · 2026.06', sub: '포세린 · 칼라카타', span: 7, img: 'images/cases/seolleung/01.jpg' },
-      { loc: '여주', name: '단독주택 오픈 키친 전체 시공', desc: '높은 층고·전면 통창, 다크 그레이 포세린으로 아일랜드·카운터 통일 시공', cap: '주방아일랜드 · 2026.05', sub: '포세린 · 다크 그레이', span: 5, img: 'images/cases/yeoju/01.jpg' },
+      { loc: '여주', name: '단독주택 오픈 키친 전체 시공', desc: '높은 층고·전면 통창, 다크 그레이 포세린으로 아일랜드·카운터 통일 시공', cap: '주방아일랜드 · 2026.05', sub: '포세린 · 다크 그레이', span: 5, img: 'images/cases/yeoju/01.webp' },
       { loc: '여의도', name: '라이트 그레이 아일랜드', desc: '라이트 그레이 포세린 + 월넛 캐비닛 조합, 싱크·쿡탑 통합 가공', cap: '주방아일랜드 · 2026.06', sub: '포세린 · 라이트 그레이', span: 5, img: 'images/cases/yeouido/02.jpg' },
       { loc: '도곡동', name: '화이트 마블 포세린', desc: '녹음 뷰 창가와 어우러지는 크리미 마블 포세린, 인덕션·싱크 통합 가공', cap: '주방아일랜드 · 2026.06', sub: '포세린 · 화이트 마블', span: 7, img: 'images/cases/dokgok/01.jpg' },
       { loc: '마포', name: '화이트 마블 포세린 시공', desc: '포세린 아일랜드 + 화이트 마블 포세린 카운터, 기존 캐비닛 활용 교체 시공', cap: '주방아일랜드 · 2026.06', sub: '포세린 · 화이트 마블', span: 7, img: 'images/cases/mapo/02.jpg' },
-      { loc: '남양주', name: '신축 아파트 포세린 주방 시공', desc: '크림 화이트 포세린, 카운터·상부 선반 통일 시공, 빌트인 컷아웃 포함', cap: '주방아일랜드 · 2026.06', sub: '포세린 · 크림 화이트', span: 5, img: 'images/cases/namyangju/01.jpg' },
+      { loc: '남양주', name: '신축 아파트 포세린 주방 시공', desc: '크림 화이트 포세린, 카운터·상부 선반 통일 시공, 빌트인 컷아웃 포함', cap: '주방아일랜드 · 2026.06', sub: '포세린 · 크림 화이트', span: 5, img: 'images/cases/namyangju/01.webp' },
       { loc: '홍대', name: '화이트 마블 포세린 주방 시공', desc: '화이트 마블 포세린으로 상부장·하부 카운터 통일, 밝고 세련된 주방', cap: '주방아일랜드 · 2026.06', sub: '포세린 · 화이트 마블', span: 5, img: 'images/cases/hongdae/02.jpg' },
     ];
   }
@@ -783,25 +798,36 @@ class Component extends DCLogic {
 
 (function () {
   function init() {
-    // the page's template renderer strips the bare `muted`/`loop` attributes whenever it
-    // re-renders this (x-dc-managed) node, which also blocks autoplay (Chrome requires
-    // muted=true at play() time). Enforce both as live DOM properties, and keep re-enforcing
-    // since the stripping can happen repeatedly, not just once at load.
+    // The template renderer strips the bare `muted`/`loop` attributes whenever it re-renders this
+    // (x-dc-managed) node, which also blocks autoplay (Chrome requires muted=true at play() time).
+    // Enforce both as live DOM properties and keep re-enforcing, since the stripping can happen
+    // repeatedly. The section/video nodes also don't exist yet at DOMContentLoaded time — the
+    // runtime mounts this subtree asynchronously and can replace the node on re-render — so poll
+    // and rebind whenever the live node changes instead of grabbing the elements once.
     //
-    // The section/video nodes also don't exist yet at DOMContentLoaded time — the runtime
-    // loads React from a CDN and mounts this subtree asynchronously, and can later replace
-    // the node entirely on re-render. So this can't grab the elements once and bail if
-    // they're missing; it has to keep polling and rebind whenever the live node changes.
+    // Loading policy (preload="none", no autoplay attribute in the markup):
+    //   - one viewport before the section enters (rootMargin 100%) → load() once
+    //   - ≥20% visible → play(); left the viewport → pause()
     var boundVideo = null;
     var boundSection = null;
     var mo = null;
-    var io = null;
+    var ioNear = null;
+    var ioPlay = null;
+    var armed = false;      /* load() 를 이미 걸었는가 */
+    var wantPlay = false;   /* 현재 뷰포트 안에 있는가 */
 
     function enforcePlaybackAttrs(video) {
-      var changed = false;
-      if (!video.muted) { video.muted = true; changed = true; }
-      if (!video.loop) { video.loop = true; changed = true; }
-      if (changed) video.play().catch(function () {});
+      if (!video.muted) video.muted = true;
+      if (!video.loop) video.loop = true;
+      if (!video.playsInline) video.playsInline = true;
+      if (armed && wantPlay && video.paused) video.play().catch(function () {});
+    }
+
+    function arm(video) {
+      if (armed) return;
+      armed = true;
+      try { video.preload = 'auto'; video.load(); } catch (e) { /* 무시 */ }
+      if (wantPlay) video.play().catch(function () {});
     }
 
     function bindVideo(video) {
@@ -809,26 +835,43 @@ class Component extends DCLogic {
       if (mo) mo.disconnect();
       boundVideo = video;
       enforcePlaybackAttrs(video);
-      video.play().catch(function () {});
+      if (armed) { try { video.preload = 'auto'; } catch (e) { /* 무시 */ } }
       if ('MutationObserver' in window) {
         mo = new MutationObserver(function () { enforcePlaybackAttrs(video); });
-        mo.observe(video, { attributes: true, attributeFilter: ['muted', 'loop'] });
+        mo.observe(video, { attributes: true, attributeFilter: ['muted', 'loop', 'playsinline'] });
       }
     }
 
     function bindSection(section) {
-      if (section === boundSection || !('IntersectionObserver' in window)) return;
-      if (io) io.disconnect();
+      if (section === boundSection) return;
+      if (ioNear) ioNear.disconnect();
+      if (ioPlay) ioPlay.disconnect();
       boundSection = section;
-      io = new IntersectionObserver(function (entries) {
+      if (!('IntersectionObserver' in window)) {
+        /* 구형 브라우저 — 그냥 바로 로드하고 재생한다 */
+        var v0 = document.getElementById('storyVideo');
+        if (v0) { wantPlay = true; arm(v0); v0.play().catch(function () {}); }
+        return;
+      }
+      ioNear = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          var video = document.getElementById('storyVideo');
+          if (video) arm(video);
+          ioNear.disconnect();
+        });
+      }, { rootMargin: '100% 0px' });
+      ioNear.observe(section);
+      ioPlay = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           var video = document.getElementById('storyVideo');
+          wantPlay = entry.isIntersecting;
           if (!video) return;
-          if (entry.isIntersecting) video.play().catch(function () {});
+          if (wantPlay) { arm(video); video.play().catch(function () {}); }
           else video.pause();
         });
       }, { threshold: 0.2 });
-      io.observe(section);
+      ioPlay.observe(section);
     }
 
     function poll() {

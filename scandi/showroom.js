@@ -12,15 +12,15 @@
   let raf = null;
 
   const STORIES = [
-    { tag: 'APPLIED · THE KITCHEN', title: 'The island, reimagined in stone.', img: 'assets/marble-gold.png', paras: [
+    { tag: 'APPLIED · THE KITCHEN', title: 'The island, reimagined in stone.', img: 'assets/marble-gold.webp', paras: [
       'At the heart of the atrium stands a full-height kitchen island — a single book-matched slab folded into a waterfall edge with no visible seam.',
       'Our E-Stone engineered quartz carries the depth of natural stone with the consistency of industry: non-porous, scratch- and stain-resistant, and warm to the touch.',
       'Every island is profiled on a 5-axis CNC in our Pocheon facility, then hand-finished — the same craft we have delivered to contract clients for decades, now open to your home.' ] },
-    { tag: 'SURFACE · THE FEATURE WALL', title: 'Book-matched, floor to ceiling.', img: 'assets/marble-white.png', paras: [
+    { tag: 'SURFACE · THE FEATURE WALL', title: 'Book-matched, floor to ceiling.', img: 'assets/marble-white.webp', paras: [
       'Two mirrored ceramic slabs open like the pages of a book, their veins meeting at the centre line in perfect symmetry.',
       'Large-format sintered ceramic reaches 3200×1600mm at just 12mm thick — UV-stable, heatproof, and equally at home on façades, floors and walls.',
       'The result is a continuous field of marble movement across an entire wall, with none of the upkeep of the natural stone it reproduces.' ] },
-    { tag: 'TECHNOLOGY · PHYGITAL', title: 'Where the slab meets the screen.', img: 'assets/marble-dark.png', paras: [
+    { tag: 'TECHNOLOGY · PHYGITAL', title: 'Where the slab meets the screen.', img: 'assets/marble-dark.webp', paras: [
       'Configure, visualise and reserve any finish online, then receive fabricated pieces cut to the millimetre.',
       'Our Phygital platform bridges decades of B2B craft with B2C convenience — a virtual showroom you can walk through, and a quote you can request without leaving the room.',
       'Explore each surface here, add it to your project, and our team follows up with physical samples and pricing.' ] },
@@ -44,28 +44,28 @@
       CERAMIC: { tag: 'CERAMIC · 포세린 슬랩', title: 'The Grand Hall', ink: '#eef3f8', hint: 'rgba(255,255,255,.5)', acc: '#e3c789',
         bg: 0x0b0e13, fog: [6, 26], amb: 0.3, key: 0.55, warm: 1.05, cool: 0.35, rad: 8.2, camY: 0.45, floorC: 0x1c2129, wall: true, island: false,
         items: withLayout([
-          { name: 'Calacatta Bianco', nameKo: '칼라카타 비앙코', code: 'CERAMIC', pcode: 'WM101', origin: 'Pocheon, KR', sizes: '3200×1600mm', finish: 'Natural', img: 'https://minha8206.github.io/eunsung-homepage/images/WM101_%EC%B9%BC%EB%9D%BC%EC%B9%B4%ED%83%80%20%EB%B9%84%EC%95%99%EC%BD%94.jpg', tint: 0xf2f1ee, swatch: '#f2f1ee', blurb: '대형 포세린 슬랩 — 벽면, 바닥, 파사드에 이상적인 초정밀 소재.' },
-          { name: 'Tramonto', nameKo: '트라몬토', code: 'CERAMIC', pcode: 'ST107', origin: 'Pocheon, KR', sizes: '3200×1600mm', finish: 'Natural', img: 'https://minha8206.github.io/eunsung-homepage/images/ST107_%ED%8A%B8%EB%9D%BC%EB%AA%AC%ED%86%A0.jpg', tint: 0xc9a074, swatch: '#c9a074', blurb: '대형 포세린 슬랩 — 벽면, 바닥, 파사드에 이상적인 초정밀 소재.' },
-          { name: 'Ivory Concrete', nameKo: '아이보리 콘크리트', code: 'CERAMIC', pcode: 'CC101', origin: 'Pocheon, KR', sizes: '3200×1600mm', finish: 'Natural', img: 'https://minha8206.github.io/eunsung-homepage/images/CC101_%EC%95%84%EC%9D%B4%EB%B3%B4%EB%A6%AC%EC%BD%98%ED%81%AC%EB%A6%AC%ED%8A%B8.jpg', tint: 0xe4ded2, swatch: '#e4ded2', blurb: '대형 포세린 슬랩 — 벽면, 바닥, 파사드에 이상적인 초정밀 소재.' },
-          { name: 'Beige Basalt', nameKo: '베이지 바살트', code: 'CERAMIC', pcode: 'ST104', origin: 'Pocheon, KR', sizes: '3200×1600mm', finish: 'Natural', img: 'https://minha8206.github.io/eunsung-homepage/images/ST104_%EB%B2%A0%EC%9D%B4%EC%A7%80%20%EB%B0%94%EC%82%B4%ED%8A%B8.jpg', tint: 0xb7ab97, swatch: '#b7ab97', blurb: '대형 포세린 슬랩 — 벽면, 바닥, 파사드에 이상적인 초정밀 소재.' },
-          { name: 'Travertino Setoso', nameKo: '트레버티노 세토소', code: 'CERAMIC', pcode: 'ST105', origin: 'Pocheon, KR', sizes: '3200×1600mm', finish: 'Natural', img: 'https://minha8206.github.io/eunsung-homepage/images/ST105_%ED%8A%B8%EB%A0%88%EB%B2%84%ED%8B%B0%EB%85%B8%20%EC%84%B8%ED%86%A0%EC%86%8C.jpg', tint: 0xd8c6a4, swatch: '#d8c6a4', blurb: '대형 포세린 슬랩 — 벽면, 바닥, 파사드에 이상적인 초정밀 소재.' },
+          { name: 'Calacatta Bianco', nameKo: '칼라카타 비앙코', code: 'CERAMIC', pcode: 'WM101', origin: 'Pocheon, KR', sizes: '3200×1600mm', finish: 'Natural', img: 'images/showroom/WM101.webp', tint: 0xf2f1ee, swatch: '#f2f1ee', blurb: '대형 포세린 슬랩 — 벽면, 바닥, 파사드에 이상적인 초정밀 소재.' },
+          { name: 'Tramonto', nameKo: '트라몬토', code: 'CERAMIC', pcode: 'ST107', origin: 'Pocheon, KR', sizes: '3200×1600mm', finish: 'Natural', img: 'images/showroom/ST107.webp', tint: 0xc9a074, swatch: '#c9a074', blurb: '대형 포세린 슬랩 — 벽면, 바닥, 파사드에 이상적인 초정밀 소재.' },
+          { name: 'Ivory Concrete', nameKo: '아이보리 콘크리트', code: 'CERAMIC', pcode: 'CC101', origin: 'Pocheon, KR', sizes: '3200×1600mm', finish: 'Natural', img: 'images/showroom/CC101.webp', tint: 0xe4ded2, swatch: '#e4ded2', blurb: '대형 포세린 슬랩 — 벽면, 바닥, 파사드에 이상적인 초정밀 소재.' },
+          { name: 'Beige Basalt', nameKo: '베이지 바살트', code: 'CERAMIC', pcode: 'ST104', origin: 'Pocheon, KR', sizes: '3200×1600mm', finish: 'Natural', img: 'images/showroom/ST104.webp', tint: 0xb7ab97, swatch: '#b7ab97', blurb: '대형 포세린 슬랩 — 벽면, 바닥, 파사드에 이상적인 초정밀 소재.' },
+          { name: 'Travertino Setoso', nameKo: '트레버티노 세토소', code: 'CERAMIC', pcode: 'ST105', origin: 'Pocheon, KR', sizes: '3200×1600mm', finish: 'Natural', img: 'images/showroom/ST105.webp', tint: 0xd8c6a4, swatch: '#d8c6a4', blurb: '대형 포세린 슬랩 — 벽면, 바닥, 파사드에 이상적인 초정밀 소재.' },
         ]) },
       ESTONE: { tag: 'E-STONE · 엔지니어드 스톤', title: 'The Bright Gallery', ink: '#16222e', hint: 'rgba(20,32,44,.55)', acc: '#a8763f',
         bg: 0xdde4ea, fog: [10, 32], amb: 0.95, key: 1.35, warm: 0.35, cool: 0.6, rad: 10.2, camY: 0.5, floorC: 0x9aa6b0, wall: false, island: true,
         items: withLayout([
-          { name: 'Concrete Cream', nameKo: '콘크리트 크림', code: 'E-STONE', pcode: 'CC102', origin: 'Pocheon, KR', sizes: '3200×1600×20T', finish: 'Polished', img: 'https://minha8206.github.io/eunsung-homepage/images/CC102_Concrete%20Cream.png', tint: 0xe0d7c4, swatch: '#e0d7c4', blurb: '천연석의 깊이와 산업적 일관성을 겸비한 엔지니어드 스톤.' },
-          { name: 'Diamond Black', nameKo: '다이아몬드 블랙', code: 'E-STONE', pcode: 'CM104', origin: 'Pocheon, KR', sizes: '3200×1600×20T', finish: 'Polished', img: 'https://minha8206.github.io/eunsung-homepage/images/CM104_Diamond%20Black.png', tint: 0x232323, swatch: '#232323', blurb: '천연석의 깊이와 산업적 일관성을 겸비한 엔지니어드 스톤.' },
-          { name: 'Himalaya White', nameKo: '히말라야 화이트', code: 'E-STONE', pcode: 'ST108', origin: 'Pocheon, KR', sizes: '3200×1600×20T', finish: 'Polished', img: 'https://minha8206.github.io/eunsung-homepage/images/ST108%20Himalaya%20White.jpg', tint: 0xf1f1ee, swatch: '#f1f1ee', blurb: '천연석의 깊이와 산업적 일관성을 겸비한 엔지니어드 스톤.' },
-          { name: 'Element Cream', nameKo: '엘리먼트 크림', code: 'E-STONE', pcode: 'ST109', origin: 'Pocheon, KR', sizes: '3200×1600×20T', finish: 'Polished', img: 'https://minha8206.github.io/eunsung-homepage/images/ST109_Element%20Cream.png', tint: 0xe6dcc7, swatch: '#e6dcc7', blurb: '천연석의 깊이와 산업적 일관성을 겸비한 엔지니어드 스톤.' },
-          { name: 'Limestone White', nameKo: '라임스톤 화이트', code: 'E-STONE', pcode: 'ST110', origin: 'Pocheon, KR', sizes: '3200×1600×20T', finish: 'Polished', img: 'https://minha8206.github.io/eunsung-homepage/images/ST110_Limestone%20White.png', tint: 0xefeee9, swatch: '#efeee9', blurb: '천연석의 깊이와 산업적 일관성을 겸비한 엔지니어드 스톤.' },
-          { name: 'Limestone Grigio', nameKo: '라임스톤 그리지오', code: 'E-STONE', pcode: 'ST111', origin: 'Pocheon, KR', sizes: '3200×1600×20T', finish: 'Polished', img: 'https://minha8206.github.io/eunsung-homepage/images/ST111_Limestone%20Grigio.png', tint: 0xaaa9a3, swatch: '#aaa9a3', blurb: '천연석의 깊이와 산업적 일관성을 겸비한 엔지니어드 스톤.' },
-          { name: 'Premium Travertino', nameKo: '프리미엄 트래버티노', code: 'E-STONE', pcode: 'ST112', origin: 'Pocheon, KR', sizes: '3200×1600×20T', finish: 'Polished', img: 'https://minha8206.github.io/eunsung-homepage/images/ST112_Premium%20Travertino.png', tint: 0xd3bd97, swatch: '#d3bd97', blurb: '천연석의 깊이와 산업적 일관성을 겸비한 엔지니어드 스톤.' },
-          { name: 'Camouflage', nameKo: '카무플라지', code: 'E-STONE', pcode: 'WM105', origin: 'Pocheon, KR', sizes: '3200×1600×20T', finish: 'Polished', img: 'https://minha8206.github.io/eunsung-homepage/images/WM105_%20Camouflage_Revised_0511%20-.jpg', tint: 0x8b9077, swatch: '#8b9077', blurb: '천연석의 깊이와 산업적 일관성을 겸비한 엔지니어드 스톤.' },
-          { name: 'Calacatta Bianco', nameKo: '칼라카타 비앙코', code: 'E-STONE', pcode: 'WM101', origin: 'Pocheon, KR', sizes: '3200×1600×20T', finish: 'Polished', img: 'https://minha8206.github.io/eunsung-homepage/images/WM101_%EC%B9%BC%EB%9D%BC%EC%B9%B4%ED%83%80%20%EB%B9%84%EC%95%99%EC%BD%94.jpg', tint: 0xf2f1ee, swatch: '#f2f1ee', blurb: '천연석의 깊이와 산업적 일관성을 겸비한 엔지니어드 스톤.' },
-          { name: 'Tramonto', nameKo: '트라몬토', code: 'E-STONE', pcode: 'ST107', origin: 'Pocheon, KR', sizes: '3200×1600×20T', finish: 'Polished', img: 'https://minha8206.github.io/eunsung-homepage/images/ST107_%ED%8A%B8%EB%9D%BC%EB%AA%AC%ED%86%A0.jpg', tint: 0xc9a074, swatch: '#c9a074', blurb: '천연석의 깊이와 산업적 일관성을 겸비한 엔지니어드 스톤.' },
-          { name: 'Ivory Concrete', nameKo: '아이보리 콘크리트', code: 'E-STONE', pcode: 'CC101', origin: 'Pocheon, KR', sizes: '3200×1600×20T', finish: 'Polished', img: 'https://minha8206.github.io/eunsung-homepage/images/CC101_%EC%95%84%EC%9D%B4%EB%B3%B4%EB%A6%AC%EC%BD%98%ED%81%AC%EB%A6%AC%ED%8A%B8.jpg', tint: 0xe4ded2, swatch: '#e4ded2', blurb: '천연석의 깊이와 산업적 일관성을 겸비한 엔지니어드 스톤.' },
-          { name: 'Beige Basalt', nameKo: '베이지 바살트', code: 'E-STONE', pcode: 'ST104', origin: 'Pocheon, KR', sizes: '3200×1600×20T', finish: 'Polished', img: 'https://minha8206.github.io/eunsung-homepage/images/ST104_%EB%B2%A0%EC%9D%B4%EC%A7%80%20%EB%B0%94%EC%82%B4%ED%8A%B8.jpg', tint: 0xb7ab97, swatch: '#b7ab97', blurb: '천연석의 깊이와 산업적 일관성을 겸비한 엔지니어드 스톤.' },
-          { name: 'Travertino Setoso', nameKo: '트레버티노 세토소', code: 'E-STONE', pcode: 'ST105', origin: 'Pocheon, KR', sizes: '3200×1600×20T', finish: 'Polished', img: 'https://minha8206.github.io/eunsung-homepage/images/ST105_%ED%8A%B8%EB%A0%88%EB%B2%84%ED%8B%B0%EB%85%B8%20%EC%84%B8%ED%86%A0%EC%86%8C.jpg', tint: 0xd8c6a4, swatch: '#d8c6a4', blurb: '천연석의 깊이와 산업적 일관성을 겸비한 엔지니어드 스톤.' },
+          { name: 'Concrete Cream', nameKo: '콘크리트 크림', code: 'E-STONE', pcode: 'CC102', origin: 'Pocheon, KR', sizes: '3200×1600×20T', finish: 'Polished', img: 'images/showroom/CC102.webp', tint: 0xe0d7c4, swatch: '#e0d7c4', blurb: '천연석의 깊이와 산업적 일관성을 겸비한 엔지니어드 스톤.' },
+          { name: 'Diamond Black', nameKo: '다이아몬드 블랙', code: 'E-STONE', pcode: 'CM104', origin: 'Pocheon, KR', sizes: '3200×1600×20T', finish: 'Polished', img: 'images/showroom/CM104.webp', tint: 0x232323, swatch: '#232323', blurb: '천연석의 깊이와 산업적 일관성을 겸비한 엔지니어드 스톤.' },
+          { name: 'Himalaya White', nameKo: '히말라야 화이트', code: 'E-STONE', pcode: 'ST108', origin: 'Pocheon, KR', sizes: '3200×1600×20T', finish: 'Polished', img: 'images/showroom/ST108.webp', tint: 0xf1f1ee, swatch: '#f1f1ee', blurb: '천연석의 깊이와 산업적 일관성을 겸비한 엔지니어드 스톤.' },
+          { name: 'Element Cream', nameKo: '엘리먼트 크림', code: 'E-STONE', pcode: 'ST109', origin: 'Pocheon, KR', sizes: '3200×1600×20T', finish: 'Polished', img: 'images/showroom/ST109.webp', tint: 0xe6dcc7, swatch: '#e6dcc7', blurb: '천연석의 깊이와 산업적 일관성을 겸비한 엔지니어드 스톤.' },
+          { name: 'Limestone White', nameKo: '라임스톤 화이트', code: 'E-STONE', pcode: 'ST110', origin: 'Pocheon, KR', sizes: '3200×1600×20T', finish: 'Polished', img: 'images/showroom/ST110.webp', tint: 0xefeee9, swatch: '#efeee9', blurb: '천연석의 깊이와 산업적 일관성을 겸비한 엔지니어드 스톤.' },
+          { name: 'Limestone Grigio', nameKo: '라임스톤 그리지오', code: 'E-STONE', pcode: 'ST111', origin: 'Pocheon, KR', sizes: '3200×1600×20T', finish: 'Polished', img: 'images/showroom/ST111.webp', tint: 0xaaa9a3, swatch: '#aaa9a3', blurb: '천연석의 깊이와 산업적 일관성을 겸비한 엔지니어드 스톤.' },
+          { name: 'Premium Travertino', nameKo: '프리미엄 트래버티노', code: 'E-STONE', pcode: 'ST112', origin: 'Pocheon, KR', sizes: '3200×1600×20T', finish: 'Polished', img: 'images/showroom/ST112.webp', tint: 0xd3bd97, swatch: '#d3bd97', blurb: '천연석의 깊이와 산업적 일관성을 겸비한 엔지니어드 스톤.' },
+          { name: 'Camouflage', nameKo: '카무플라지', code: 'E-STONE', pcode: 'WM105', origin: 'Pocheon, KR', sizes: '3200×1600×20T', finish: 'Polished', img: 'images/showroom/WM105.webp', tint: 0x8b9077, swatch: '#8b9077', blurb: '천연석의 깊이와 산업적 일관성을 겸비한 엔지니어드 스톤.' },
+          { name: 'Calacatta Bianco', nameKo: '칼라카타 비앙코', code: 'E-STONE', pcode: 'WM101', origin: 'Pocheon, KR', sizes: '3200×1600×20T', finish: 'Polished', img: 'images/showroom/WM101.webp', tint: 0xf2f1ee, swatch: '#f2f1ee', blurb: '천연석의 깊이와 산업적 일관성을 겸비한 엔지니어드 스톤.' },
+          { name: 'Tramonto', nameKo: '트라몬토', code: 'E-STONE', pcode: 'ST107', origin: 'Pocheon, KR', sizes: '3200×1600×20T', finish: 'Polished', img: 'images/showroom/ST107.webp', tint: 0xc9a074, swatch: '#c9a074', blurb: '천연석의 깊이와 산업적 일관성을 겸비한 엔지니어드 스톤.' },
+          { name: 'Ivory Concrete', nameKo: '아이보리 콘크리트', code: 'E-STONE', pcode: 'CC101', origin: 'Pocheon, KR', sizes: '3200×1600×20T', finish: 'Polished', img: 'images/showroom/CC101.webp', tint: 0xe4ded2, swatch: '#e4ded2', blurb: '천연석의 깊이와 산업적 일관성을 겸비한 엔지니어드 스톤.' },
+          { name: 'Beige Basalt', nameKo: '베이지 바살트', code: 'E-STONE', pcode: 'ST104', origin: 'Pocheon, KR', sizes: '3200×1600×20T', finish: 'Polished', img: 'images/showroom/ST104.webp', tint: 0xb7ab97, swatch: '#b7ab97', blurb: '천연석의 깊이와 산업적 일관성을 겸비한 엔지니어드 스톤.' },
+          { name: 'Travertino Setoso', nameKo: '트레버티노 세토소', code: 'E-STONE', pcode: 'ST105', origin: 'Pocheon, KR', sizes: '3200×1600×20T', finish: 'Polished', img: 'images/showroom/ST105.webp', tint: 0xd8c6a4, swatch: '#d8c6a4', blurb: '천연석의 깊이와 산업적 일관성을 겸비한 엔지니어드 스톤.' },
         ]) },
       MMA: { tag: 'MMA · 아크릴 솔리드', title: 'The Living Room', ink: '#f3ead9', hint: 'rgba(255,255,255,.5)', acc: '#e3c789',
         bg: 0x241b12, fog: [5.5, 18], amb: 0.34, key: 0.5, warm: 1.5, cool: 0.12, rad: 9.4, camY: 0.3, floorC: 0x2e261c, wall: false, island: true,
@@ -87,10 +87,10 @@
       BMC: { tag: 'BMC · 몰딩 컴파운드', title: 'The Showcase', ink: '#e8edf2', hint: 'rgba(255,255,255,.5)', acc: '#e3c789',
         bg: 0x161a20, fog: [8, 24], amb: 0.7, key: 1.0, warm: 0.35, cool: 0.85, rad: 6.0, camY: 0.35, floorC: 0x232932, wall: false, island: false,
         items: withLayout([
-          { name: 'Baikal White', nameKo: '바이컬 화이트', code: 'BMC', pcode: 'ES-001', origin: 'Pocheon, KR', sizes: 'Molded to spec', finish: 'Gel-coat', img: 'https://minha8206.github.io/eunsung-homepage/images/bmc/bmc-es001.jpg', tint: 0xf2f2f0, swatch: '#f2f2f0', blurb: '위생적이고 성형이 자유로운 몰딩 컴파운드.' },
-          { name: 'Baikal Brown', nameKo: '바이컬 브라운', code: 'BMC', pcode: 'ES-003', origin: 'Pocheon, KR', sizes: 'Molded to spec', finish: 'Gel-coat', img: 'https://minha8206.github.io/eunsung-homepage/images/bmc/bmc-es003.jpg', tint: 0x6b4a34, swatch: '#6b4a34', blurb: '위생적이고 성형이 자유로운 몰딩 컴파운드.' },
-          { name: 'Baikal Gray', nameKo: '바이컬 그레이', code: 'BMC', pcode: 'ES-002', origin: 'Pocheon, KR', sizes: 'Molded to spec', finish: 'Gel-coat', img: 'https://minha8206.github.io/eunsung-homepage/images/bmc/bmc-es008.jpg', tint: 0x8b9096, swatch: '#8b9096', blurb: '위생적이고 성형이 자유로운 몰딩 컴파운드.' },
-          { name: 'Baikal Milky', nameKo: '바이컬 밀키', code: 'BMC', pcode: 'ES-004', origin: 'Pocheon, KR', sizes: 'Molded to spec', finish: 'Gel-coat', img: 'https://minha8206.github.io/eunsung-homepage/images/bmc/bmc-es007.jpg', tint: 0xede6da, swatch: '#ede6da', blurb: '위생적이고 성형이 자유로운 몰딩 컴파운드.' },
+          { name: 'Baikal White', nameKo: '바이컬 화이트', code: 'BMC', pcode: 'ES-001', origin: 'Pocheon, KR', sizes: 'Molded to spec', finish: 'Gel-coat', img: 'images/showroom/ES-001.webp', tint: 0xf2f2f0, swatch: '#f2f2f0', blurb: '위생적이고 성형이 자유로운 몰딩 컴파운드.' },
+          { name: 'Baikal Brown', nameKo: '바이컬 브라운', code: 'BMC', pcode: 'ES-003', origin: 'Pocheon, KR', sizes: 'Molded to spec', finish: 'Gel-coat', img: 'images/showroom/ES-003.webp', tint: 0x6b4a34, swatch: '#6b4a34', blurb: '위생적이고 성형이 자유로운 몰딩 컴파운드.' },
+          { name: 'Baikal Gray', nameKo: '바이컬 그레이', code: 'BMC', pcode: 'ES-002', origin: 'Pocheon, KR', sizes: 'Molded to spec', finish: 'Gel-coat', img: 'images/showroom/ES-008.webp', tint: 0x8b9096, swatch: '#8b9096', blurb: '위생적이고 성형이 자유로운 몰딩 컴파운드.' },
+          { name: 'Baikal Milky', nameKo: '바이컬 밀키', code: 'BMC', pcode: 'ES-004', origin: 'Pocheon, KR', sizes: 'Molded to spec', finish: 'Gel-coat', img: 'images/showroom/ES-007.webp', tint: 0xede6da, swatch: '#ede6da', blurb: '위생적이고 성형이 자유로운 몰딩 컴파운드.' },
         ]) },
     };
   }
@@ -260,7 +260,7 @@
       coolLight = new THREE.PointLight(0x9fd0ff, 0.7, 40); coolLight.position.set(5, 3.5, -2); scene.add(coolLight);
 
       const tl = new THREE.TextureLoader();
-      const texW = tl.load('assets/marble-white.png'), texG = tl.load('assets/marble-gold.png'), texD = tl.load('assets/marble-dark.png');
+      const texW = tl.load('assets/marble-white.webp'), texG = tl.load('assets/marble-gold.webp'), texD = tl.load('assets/marble-dark.webp');
       [texW, texG, texD].forEach((t) => { if (THREE.sRGBEncoding) t.encoding = THREE.sRGBEncoding; t.anisotropy = 8; });
 
       floor = new THREE.Mesh(new THREE.PlaneGeometry(80, 80), new THREE.MeshStandardMaterial({ color: 0x252b33, roughness: 0.16, metalness: 0.62 }));
@@ -275,7 +275,7 @@
         grp.add(mesh); slabs.push(mesh);
       }
 
-      const texWm = tl.load('assets/marble-white.png', (t) => { if (THREE.sRGBEncoding) t.encoding = THREE.sRGBEncoding; t.anisotropy = 8; t.wrapS = THREE.RepeatWrapping; t.repeat.x = -1; t.needsUpdate = true; });
+      const texWm = tl.load('assets/marble-white.webp', (t) => { if (THREE.sRGBEncoding) t.encoding = THREE.sRGBEncoding; t.anisotropy = 8; t.wrapS = THREE.RepeatWrapping; t.repeat.x = -1; t.needsUpdate = true; });
       const wallGeo = new THREE.PlaneGeometry(3.4, 5.2);
       wallL = new THREE.Mesh(wallGeo, new THREE.MeshStandardMaterial({ map: texW, roughness: 0.34, metalness: 0.05 }));
       wallL.position.set(-1.72, 0, -5.2); scene.add(wallL);
