@@ -28,7 +28,7 @@
     { name: '포세린',   url: 'showroom.html?cat=PORCELAIN',    desc: '1200°C 고온에서 구워낸 대형 포세린 슬랩' },
     { name: '엔지니어드 스톤', url: 'showroom.html?cat=VIATERA', desc: '비아테라 — 석영 90% 이상의 프리미엄 스톤' },
     { name: '인조대리석', url: 'showroom.html?cat=HIMACS',      desc: '하이막스 — 이음새 없는 100% 아크릴 솔리드 서페이스' },
-    { name: 'BMC',      url: 'showroom.html?cat=BMC',          desc: '자체 생산하는 열경화성 성형 컴파운드' },
+    { name: 'BMC',      url: 'bmc.html',                     desc: '자체 생산하는 열경화성 성형 컴파운드' },
     { name: '시공사례', url: 'portfolio.html',                 desc: '주방·욕실·상업공간 시공 레퍼런스' },
     { name: '문의',     url: 'contact.html',                   desc: '견적·시공·자재 문의와 쇼룸 방문 예약' }
   ];

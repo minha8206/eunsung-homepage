@@ -38,7 +38,7 @@
     { href: 'showroom.html?cat=PORCELAIN', label: '포세린' },
     { href: 'showroom.html?cat=VIATERA', label: '엔지니어드 스톤' },
     { href: 'showroom.html?cat=HIMACS', label: '인조대리석' },
-    { href: 'showroom.html?cat=BMC', label: 'BMC' }
+    { href: 'bmc.html', label: 'BMC' }
   ];
 
   function isOpen() { return document.body.classList.contains(OPEN); }
