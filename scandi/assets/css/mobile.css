@@ -116,16 +116,18 @@ body.nav-open .mnav {
 .mnav-body {
   flex: 1 1 auto; overflow-y: auto; -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
-  padding: 28px 28px calc(44px + env(safe-area-inset-bottom, 0px));
+  padding: 28px 28px calc(36px + env(safe-area-inset-bottom, 0px));
   display: flex; flex-direction: column;
 }
 
-/* ── 메뉴 항목 ── */
+/* ── 메뉴 항목 ──
+   리듬(2026-09 정돈): 섹션 간격 36px · 섹션 머리(아이브로우/캡션) 아래 12px · 구분선 아래 24px.
+   한글은 예외 없이 Noto Serif KR 400 — 상단 메뉴와 소재 하위 메뉴는 크기로만 위계를 준다. */
 .mnav-eyebrow {
-  font: 600 10px 'Manrope', sans-serif; letter-spacing: .34em;
-  color: #a8763f; margin: 0 0 10px;
+  font: 600 10px 'Manrope', sans-serif; letter-spacing: .3em;
+  color: #a8763f; margin: 0 0 12px;
 }
-.mnav-eyebrow--sub { margin-top: 34px; }
+.mnav-eyebrow--sub { margin-top: 36px; }
 /* 영문 소제목은 Manrope 를 유지하되, 뒤에 붙는 한글은 Noto Serif KR 로 —
    Manrope 에는 한글 글리프가 없어 그대로 두면 기기별 시스템 폰트로 떨어진다. */
 .mnav-ko {
@@ -138,16 +140,16 @@ body.nav-open .mnav {
   text-decoration: none; color: #0e2440; min-height: 44px;
   -webkit-tap-highlight-color: transparent; touch-action: manipulation;
 }
-.mnav-link { padding: 9px 0; }
+.mnav-link { padding: 7px 0; }
 .mnav-idx {
   font: italic 400 12px 'Cormorant Garamond', serif;
   color: #c9a24b; letter-spacing: .08em; min-width: 22px;
 }
 .mnav-link .mnav-link-t {
-  font: 500 clamp(23px, 6.2vw, 30px)/1.35 'Noto Serif KR', serif;
+  font: 400 clamp(23px, 6.2vw, 30px)/1.35 'Noto Serif KR', serif;
   transition: color .25s ease;
 }
-.mnav-sublink { padding: 7px 0 7px 36px; align-items: center; }
+.mnav-sublink { padding: 6px 0 6px 36px; align-items: center; }
 .mnav-sublink .mnav-link-t {
   font: 400 17px/1.5 'Noto Serif KR', serif;
   color: rgba(14, 36, 64, .78);
@@ -161,7 +163,7 @@ body.nav-open .mnav {
 /* ── 유틸(검색·로그인·언어) ── */
 .mnav-utils {
   display: flex; align-items: center; gap: 10px;
-  margin-top: 38px; padding-top: 24px;
+  margin-top: 36px; padding-top: 24px;
   border-top: 1px solid #eee;
 }
 .mnav-util {
@@ -169,8 +171,8 @@ body.nav-open .mnav {
   min-height: 44px; padding: 0 16px;
   border: 1px solid #e2e2e2; border-radius: 23px;
   background: transparent; color: #0e2440;
-  /* 한글 라벨(검색·로그인) — 오버레이 안의 한글은 예외 없이 Noto Serif KR */
-  font: 500 14px 'Noto Serif KR', serif; cursor: pointer;
+  /* 한글 라벨(검색·로그인) — 오버레이 안의 한글은 예외 없이 Noto Serif KR 400 */
+  font: 400 14px 'Noto Serif KR', serif; cursor: pointer;
   -webkit-tap-highlight-color: transparent; touch-action: manipulation;
 }
 .mnav-util svg { width: 15px; height: 15px; }
@@ -180,16 +182,16 @@ body.nav-open .mnav {
   display: flex; align-items: center; gap: 2px;
 }
 .mnav-lang b {
-  min-width: 40px; min-height: 44px;
+  min-width: 44px; min-height: 44px;
   display: inline-grid; place-items: center; cursor: pointer;
 }
 .mnav-lang-sep { opacity: .35; }
 
-/* ── 상담 블록 ── */
-.mnav-contact { margin-top: 28px; }
+/* ── 상담 블록 — 유틸 줄과 같은 하이라인·같은 여백으로 한 리듬 ── */
+.mnav-contact { margin-top: 36px; padding-top: 24px; border-top: 1px solid #eee; }
 .mnav-contact-cap {
   font: 600 10px 'Manrope', sans-serif; letter-spacing: .3em;
-  color: #a8763f; margin-bottom: 6px;
+  color: #a8763f; margin-bottom: 12px;
 }
 /* 대표번호(위) + 휴대폰(아래) 두 줄 — 각각 개별 tel: 링크 */
 .mnav-tels { display: flex; flex-direction: column; align-items: flex-start; }
@@ -206,7 +208,7 @@ body.nav-open .mnav {
   display: inline-flex; align-items: center; gap: 8px;
   margin-top: 12px; min-height: 46px; padding: 0 20px; border-radius: 24px;
   background: #0e2440; color: #ffffff;
-  font: 500 14px 'Noto Serif KR', serif; letter-spacing: .02em; text-decoration: none;
+  font: 400 14px 'Noto Serif KR', serif; letter-spacing: .02em; text-decoration: none;
 }
 .mnav-kakao svg { width: 15px; height: 15px; }
 
