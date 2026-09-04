@@ -105,13 +105,16 @@ body.nav-open .mnav {
 .mnav-brand { display: flex; align-items: baseline; gap: .5em; text-decoration: none; color: #0e2440; min-height: 44px; align-items: center; }
 .mnav-brand-en { font: 600 1.15rem 'Cormorant Garamond', serif; letter-spacing: .14em; }
 .mnav-brand-kr { font: 400 .66rem 'Noto Serif KR', serif; opacity: .55; }
+/* 닫기 — 헤더 유틸과 같은 베어 글리프(원형 보더 제거, 2026-09) */
 .mnav-close {
-  width: 46px; height: 46px; border-radius: 50%;
-  border: 1px solid #e2e2e2; background: transparent; color: #0e2440;
+  width: 46px; height: 46px; margin-right: -12px; border-radius: 2px;
+  border: 0; background: transparent; color: #0e2440;
   display: grid; place-items: center; cursor: pointer;
+  -webkit-appearance: none; appearance: none; padding: 0;
   -webkit-tap-highlight-color: transparent; touch-action: manipulation;
 }
-.mnav-close svg { width: 19px; height: 19px; }
+.mnav-close svg { width: 22px; height: 22px; stroke-width: 1.5; stroke-linecap: round; }
+.mnav-close:focus-visible { outline: 1.5px solid #bf8e5a; outline-offset: -4px; }
 
 .mnav-body {
   flex: 1 1 auto; overflow-y: auto; -webkit-overflow-scrolling: touch;
@@ -161,31 +164,37 @@ body.nav-open .mnav {
 .mnav-sublink:active .mnav-link-t { color: #c9a24b; }
 
 /* ── 유틸(검색·로그인·언어) ── */
+/* ── 유틸 줄(검색 · 로그인 · KO/EN) — 헤더 유틸과 같은 어휘(2026-09):
+   알약 보더 없이 아이콘+텍스트, 언어는 대문자 코드 + 활성 골드 헤어라인 ── */
 .mnav-utils {
-  display: flex; align-items: center; gap: 10px;
-  margin-top: 36px; padding-top: 24px;
+  display: flex; align-items: center; gap: 22px;
+  margin-top: 36px; padding-top: 20px;
   border-top: 1px solid #eee;
 }
 .mnav-util {
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  min-height: 44px; padding: 0 16px;
-  border: 1px solid #e2e2e2; border-radius: 23px;
+  display: inline-flex; align-items: center; gap: 9px;
+  min-height: 44px; padding: 0; margin: 0;
+  border: 0; border-radius: 2px;
   background: transparent; color: #0e2440;
   /* 한글 라벨(검색·로그인) — 오버레이 안의 한글은 예외 없이 Noto Serif KR 400 */
-  font: 400 14px 'Noto Serif KR', serif; cursor: pointer;
+  font: 400 15px 'Noto Serif KR', serif; cursor: pointer;
+  -webkit-appearance: none; appearance: none;
   -webkit-tap-highlight-color: transparent; touch-action: manipulation;
 }
-.mnav-util svg { width: 15px; height: 15px; }
+.mnav-util svg { width: 18px; height: 18px; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; opacity: .8; }
+.mnav-util:focus-visible { outline: 1.5px solid #bf8e5a; outline-offset: 4px; }
 .mnav-lang {
-  margin-left: auto;
-  font: 700 13px 'Manrope', sans-serif; letter-spacing: .08em;
-  display: flex; align-items: center; gap: 2px;
+  margin-left: auto; margin-right: -8px;
+  font: 500 12px/1 'Manrope', sans-serif; letter-spacing: .18em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 0; color: #0e2440;
 }
 .mnav-lang b {
-  min-width: 44px; min-height: 44px;
+  min-width: 44px; min-height: 44px; font-weight: inherit; opacity: .45;
   display: inline-grid; place-items: center; cursor: pointer;
+  transition: opacity .25s ease;
 }
-.mnav-lang-sep { opacity: .35; }
+.mnav-lang .lang-btn { min-width: 44px; height: 44px; margin: 0; padding: 0 6px 0 8px; }
+.mnav-lang .lang-btn::after { left: 8px; right: calc(6px + .18em); bottom: 12px; }
 
 /* ── 상담 블록 — 유틸 줄과 같은 하이라인·같은 여백으로 한 리듬 ── */
 .mnav-contact { margin-top: 36px; padding-top: 24px; border-top: 1px solid #eee; }

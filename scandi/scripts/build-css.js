@@ -23,6 +23,7 @@ const FILES = [
   'mobile.css',
   'mobile-overlays.css',
   'mobile-pages.css',
+  'header-utils.css',
 ];
 
 const out = FILES.map((f) => {

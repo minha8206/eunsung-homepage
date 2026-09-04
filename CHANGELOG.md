@@ -1,5 +1,20 @@
 # CHANGELOG — esstone.co.kr (scandi/)
 
+## 2026-09-04 · 헤더 유틸리티 내비 리디자인 (검색 · KO/EN · 계정 · 버거)
+
+**왜**: 원형 보더 아이콘 + 세로 구분선 조합이 템플릿처럼 보였다. 소재/석재(Cosentino · Caesarstone · Neolith · Laminam · LX Hausys), 럭셔리 가구(Minotti · Poliform · B&B Italia · Cassina), 미니멀(Aesop · Vitra) 11개 사이트의 실제 HTML/CSS 를 조사한 공통 패턴 — 보더 없는 베어 글리프(12~24px, 얇은 스트로크) · 구분선 없이 간격(20~32px)만으로 분리 · 두 글자 대문자 언어 코드(파이프/슬래시/깃발 없음) · 유틸 텍스트는 GNB 보다 작고 가볍게 · hover 는 색/불투명도 변화 — 를 은성 시스템으로 옮겼다.
+
+**무엇**
+- 신규 `assets/css/header-utils.css` (site.css 번들 마지막에 추가, `scripts/build-css.js`). 각 페이지 helmet `<style>` 의 단일 클래스 규칙을 `.nav-right …` 특이성으로 덮는다 — 9개 페이지 helmet CSS 는 건드리지 않았다.
+- 아이콘: 44×44 투명 버튼(상하 -5px 마진으로 헤더 높이 유지) 안에 19px · stroke 1.5 글리프, 불투명도 .78 → hover 1. 버거는 21px, 원형 보더 제거.
+- 언어: `KO  EN` Manrope 500 · 11px · 자간 .18em · 대문자, 파이프 제거. 활성 언어 아래 1px 골드 헤어라인(#bf8e5a, `<html lang>` 값으로 CSS 만으로 그림 — i18n.js 가 쓰는 속성), 비활성은 .45(i18n 의 inline .5 유지).
+- 마크업(9개 페이지 `.nav-right` 블록만): `<span class="nav-ic">` → `<button type="button" class="nav-ic" aria-label="검색|로그인">`, `<b>KO</b>` 안에 `<button class="lang-btn" lang aria-label>` — Enter 로 생긴 click 의 target 이 button 이라 i18n 의 `closest('.lang b')` 위임이 그대로 잡힌다. SVG 는 `aria-hidden focusable="false"`. 검색/로그인/언어 로직(search-overlay.js · login-modal.js · i18n.js)은 무변경.
+- 포커스: `:focus-visible` 에 1.5px 골드 아웃라인(안쪽 -4px). 터치 타겟은 ≤1279 에서 전부 44×44 (mobile.css 기존 규칙 + 버튼이 상자를 꽉 채움).
+- 로그인 상태 칩(`.lm-account-btn`): 알약 보더 → 아이콘 + 이름 + 캐럿의 베어 텍스트(대문자 11px).
+- 모바일 드로어(`mobile.css` · `mobile-nav.js` 마크업 문자열): 닫기 버튼 원형 보더 제거, 검색/로그인 알약 → 아이콘+텍스트, KO/EN 은 헤더와 같은 대문자 코드 + 골드 헤어라인(구분선 제거).
+
+**검증**(puppeteer, 1440 / 390): 검색 오버레이 · 로그인 모달 · KO/EN 클릭 · Enter 키 전환 · 드로어 안 검색/언어 모두 동작, 콘솔 에러 0. 헤더 높이 73px 동일. showroom.html · product-detail.html 은 `.nav-right` 4개 요소 외 무변경(hero-scroll.mp4 무관).
+
 ## 2026-09-03 · 성능 · 버그 · 모바일 정비
 
 ### 1. BMC 메뉴 링크

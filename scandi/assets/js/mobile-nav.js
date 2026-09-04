@@ -16,16 +16,19 @@
      항목으로 넣었다. 두 기능 모두 document 위임으로 열리므로, 숨겨진
      아이콘에 합성 click 을 보내면 그대로 동작한다.
    - KO/EN 토글은 기존 .lang 마크업을 재사용한다 — i18n.js 의 위임 클릭과
-     paintToggle(.lang b) 이 오버레이 안의 복제본에도 자동 적용된다. */
+     paintToggle(.lang b) 이 오버레이 안의 복제본에도 자동 적용된다.
+     (2026-09) b 안에 <button class="lang-btn"> 을 두어 키보드로도 누를 수 있게
+     했다 — Enter 로 생긴 click 의 target 이 button 이라 closest('.lang b') 가 잡힌다.
+     스타일은 header-utils.css 의 .lang 규칙을 그대로 공유한다. */
 (function () {
   var OPEN = 'nav-open';
   var KAKAO_URL = 'https://open.kakao.com/o/sS7BnYyc';
   var TEL_NUM = '031-544-7272';
   var MOBILE_NUM = '010-5430-2580';
 
-  var ICON_CLOSE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>';
-  var ICON_SEARCH = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>';
-  var ICON_USER = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>';
+  var ICON_CLOSE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18M6 6l12 12"/></svg>';
+  var ICON_SEARCH = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>';
+  var ICON_USER = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>';
   var ICON_ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 
   var PRIMARY = [
@@ -97,7 +100,10 @@
     html += '<div class="mnav-utils" style="--d:' + d + 'ms">' +
       '<button type="button" class="mnav-util" data-mnav="search">' + ICON_SEARCH + '<span>검색</span></button>' +
       '<button type="button" class="mnav-util" data-mnav="login">' + ICON_USER + '<span>로그인</span></button>' +
-      '<span class="lang mnav-lang"><b>KO</b><span class="mnav-lang-sep">|</span><b>EN</b></span>' +
+      '<span class="lang mnav-lang" role="group" aria-label="언어 선택">' +
+        '<b><button type="button" class="lang-btn" lang="ko" aria-label="한국어">KO</button></b>' +
+        '<b><button type="button" class="lang-btn" lang="en" aria-label="English">EN</button></b>' +
+      '</span>' +
       '</div>';
 
     d += step;
