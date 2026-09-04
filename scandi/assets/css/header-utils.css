@@ -1,115 +1,129 @@
-/* ===== 헤더 유틸리티 내비 (검색 · KO/EN · 계정 · 버거) — 2026-09 리디자인 =====
-   레퍼런스(Cosentino·Caesarstone·Neolith·Laminam·LX Hausys / Minotti·Poliform·
-   B&B Italia·Cassina / Aesop·Vitra) 공통 패턴:
-     - 원형·보더 컨테이너 없는 베어 글리프(12~24px, 얇은 스트로크)
-     - 세로 구분선 없음, 간격만으로 분리(20~32px)
-     - 언어는 두 글자 대문자 코드, 활성=진하게 / 비활성=흐리게, 슬래시·파이프 없음
-     - 유틸 텍스트는 GNB 보다 1~3px 작고 가벼움, hover 는 색/불투명도 변화
-   여기서는 은성 시스템(네이비 #0e2440 · 골드 #bf8e5a · Manrope)으로 옮긴다:
-   활성 언어 아래 1px 골드 헤어라인(섹션 아이브로우의 60px 골드 선과 같은 어휘).
+/* ===== 헤더 유틸리티 내비 (검색 · KO/EN · 계정 · 버거) — 2026-09 v2 "fresh" =====
+   v1(골드 헤어라인 · 넓은 자간 대문자 · 78% 아이콘)은 구식이라는 피드백 →
+   밝고 선명한 방향으로 재설계:
+     - 아이콘 20px · 1.75 스트로크 · 둥근 캡 · 네이비 100% (흐리게 두지 않는다)
+     - 정지 상태엔 컨테이너 없음, hover/active 에만 12px 라운드 틴트
+     - KO/EN 은 흰색 필이 미끄러지는 세그먼트 토글(iOS/모던 SaaS 관용구).
+       활성 상태는 i18n.js 가 쓰는 <html lang> 값으로 CSS 만으로 그린다.
+     - 골드는 쓰지 않는다. 밝기는 흰색 + 아주 옅은 네이비 틴트로 낸다.
 
    각 페이지 helmet <style> 의 .nav-ic / .lang / .nav-burger 규칙(단일 클래스)이
-   <body> 안에 있어 site.css 보다 늦게 적용된다 → 여기선 .nav-right 하위
-   선택자(0,2,0)로 특이성을 올려 덮는다. 터치 타겟은 44px 상자 + 상하 -5px
-   마진으로, 레이아웃 높이(34px)와 헤더 높이는 이전과 동일하게 유지한다. */
+   <body> 안에 있어 site.css 보다 늦게 적용된다 → .nav-right 하위 선택자로
+   특이성을 올려 덮는다. 터치 타겟은 44px 상자 + 상하 -5px 마진으로, 레이아웃
+   높이(34px)와 헤더 높이는 이전과 동일하게 유지한다. */
+
+:root{
+  --hu-ink:#0e2440;
+  --hu-tint:rgba(14,36,64,.06);
+  --hu-tint-strong:rgba(14,36,64,.10);
+  --hu-pill:#fff;
+  --hu-pill-shadow:0 1px 2px rgba(14,36,64,.14),0 0 0 .5px rgba(14,36,64,.05);
+  --hu-focus:#2f6fed;
+}
 
 div.nav-right{
-  display:flex;align-items:center;gap:2px;flex-shrink:0;color:#0e2440;
+  display:flex;align-items:center;gap:2px;flex-shrink:0;color:var(--hu-ink);
 }
 
 /* ── 아이콘 버튼(검색 · 계정) ── */
 .nav-right .nav-ic{
   -webkit-appearance:none;appearance:none;
   width:44px;height:44px;margin:-5px 0;padding:0;
-  border:0;border-radius:2px;background:transparent;
+  border:0;border-radius:12px;background:transparent;
   display:inline-grid;place-items:center;
-  color:inherit;cursor:pointer;opacity:.78;
-  transition:opacity .25s ease,color .25s ease;
+  color:inherit;cursor:pointer;
+  transition:background-color .2s ease,transform .2s ease;
   -webkit-tap-highlight-color:transparent;touch-action:manipulation;
 }
 .nav-right .nav-ic svg{
-  width:19px;height:19px;display:block;
-  stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;
+  width:20px;height:20px;display:block;
+  stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;
 }
-.nav-right .nav-ic:hover{opacity:1}
+.nav-right .nav-ic:hover{background:var(--hu-tint)}
+.nav-right .nav-ic:active{background:var(--hu-tint-strong);transform:scale(.96)}
 
 /* ── 버거(모바일) — display 는 helmet 규칙(≤1080 inline-flex)에 맡긴다 ── */
 .nav-right .nav-burger{
   -webkit-appearance:none;appearance:none;
   width:44px;height:44px;margin:-5px -8px -5px 0;padding:0;
-  border:0;border-radius:2px;background:transparent;
+  border:0;border-radius:12px;background:transparent;
   align-items:center;justify-content:center;
-  color:inherit;cursor:pointer;opacity:.85;
+  color:inherit;cursor:pointer;
+  transition:background-color .2s ease;
   -webkit-tap-highlight-color:transparent;touch-action:manipulation;
 }
 .nav-right .nav-burger svg{
-  width:21px;height:21px;display:block;
-  stroke-width:1.5;stroke-linecap:round;
+  width:22px;height:22px;display:block;
+  stroke-width:1.75;stroke-linecap:round;
 }
+.nav-right .nav-burger:hover{background:var(--hu-tint)}
 
-/* ── 언어 토글 KO / EN ──
+/* ── 언어 세그먼트 토글 KO / EN ──
    i18n.js 는 .lang b 클릭을 위임으로 받고 paintToggle 이 b 의 inline opacity 를
    1 / .5 로 칠한다(활성/비활성). 키보드 접근을 위해 b 안에 <button> 을 두었다:
    Enter 로 발생한 click 의 target 이 button 이므로 closest('.lang b') 가 잡힌다.
-   활성 표시(골드 헤어라인)는 i18n.js 가 <html lang> 에 쓰는 값으로 CSS 만으로 그린다. */
+   흰색 필(::before)은 <html lang> 값에 따라 왼쪽/오른쪽으로 미끄러진다. */
 .nav-right .lang{
-  display:flex;align-items:center;gap:0;margin:0 8px 0 6px;
-  font:500 11px/1 'Manrope',system-ui,sans-serif;
-  letter-spacing:.18em;text-transform:uppercase;color:inherit;
+  position:relative;display:inline-flex;align-items:stretch;gap:0;
+  height:30px;padding:3px;margin:0 8px;box-sizing:border-box;
+  border-radius:999px;background:var(--hu-tint);
+  font:600 11.5px/1 'Manrope',system-ui,sans-serif;letter-spacing:.02em;
+  text-transform:uppercase;color:inherit;
 }
+.nav-right .lang::before{
+  content:'';position:absolute;top:3px;left:3px;
+  width:calc(50% - 3px);height:calc(100% - 6px);border-radius:999px;
+  background:var(--hu-pill);box-shadow:var(--hu-pill-shadow);
+  transition:transform .35s cubic-bezier(.22,1,.36,1);
+}
+:root[lang="en"] .nav-right .lang::before{transform:translateX(100%)}
 .nav-right .lang b{
-  font-weight:inherit;display:inline-grid;place-items:center;
-  min-width:0;min-height:0;opacity:.45;cursor:pointer;
+  position:relative;z-index:1;flex:1 0 0;
+  display:inline-grid;place-items:center;
+  min-width:0;min-height:0;font-weight:inherit;opacity:.5;cursor:pointer;
   transition:opacity .25s ease;
 }
-.nav-right .lang b:hover,
-.mnav .mnav-lang b:hover{opacity:1 !important}
+.nav-right .lang b:hover{opacity:.8 !important}
+:root:not([lang="en"]) .nav-right .lang b:nth-of-type(1),
+:root[lang="en"] .nav-right .lang b:nth-of-type(2){opacity:1 !important}
 .lang .lang-btn{
   -webkit-appearance:none;appearance:none;
   position:relative;display:inline-grid;place-items:center;
-  width:100%;min-width:32px;height:44px;margin:-5px 0;padding:0 5px 0 6px;
-  border:0;background:transparent;color:inherit;cursor:pointer;
+  width:100%;min-width:40px;height:100%;margin:0;padding:0 10px;
+  border:0;border-radius:999px;background:transparent;color:inherit;cursor:pointer;
   font:inherit;letter-spacing:inherit;text-transform:inherit;line-height:1;
   -webkit-tap-highlight-color:transparent;touch-action:manipulation;
 }
-/* 활성 언어 아래 골드 헤어라인 — letter-spacing 의 뒤 여백(.18em)만큼 오른쪽을 뺀다 */
-.lang .lang-btn::after{
-  content:'';position:absolute;left:6px;right:calc(5px + .18em);bottom:11px;height:1px;
-  background:#bf8e5a;transform:scaleX(0);transform-origin:left;
-  transition:transform .3s cubic-bezier(.22,1,.36,1);
-}
-:root:not([lang="en"]) .lang b:nth-of-type(1) .lang-btn::after,
-:root[lang="en"] .lang b:nth-of-type(2) .lang-btn::after{transform:scaleX(1)}
+/* 터치 타겟: 트랙(30~36px)보다 큰 44px 히트 영역을 보이지 않게 확장 */
+.lang .lang-btn::after{content:'';position:absolute;left:0;right:0;top:-7px;bottom:-7px}
 
-/* ── 키보드 포커스 ── */
+/* ── 키보드 포커스 — 선명한 블루 링 ── */
 .nav-right .nav-ic:focus-visible,
 .nav-right .nav-burger:focus-visible,
-.lang .lang-btn:focus-visible,
-.lm-account-btn:focus-visible{
-  outline:1.5px solid #bf8e5a;outline-offset:-4px;opacity:1;
+.nav-right .lm-account-btn:focus-visible{
+  outline:2px solid var(--hu-focus);outline-offset:-3px;
 }
+.lang .lang-btn:focus-visible{outline:2px solid var(--hu-focus);outline-offset:-2px}
 
 /* ── 로그인 상태 칩(.lm-account, login-modal.js 가 계정 아이콘 자리에 끼움) ──
-   알약형 보더 → 아이콘 + 이름 + 캐럿의 베어 텍스트로 통일 */
+   보더 없는 옅은 틴트 필 + 이름 + 캐럿 */
 .nav-right .lm-account-btn{
-  height:44px;margin:-5px 0;padding:0 6px;gap:8px;
-  border:0;border-radius:2px;background:transparent;
-  font:500 11px/1 'Manrope',system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;
-  color:#0e2440;opacity:.85;transition:opacity .25s ease;
+  height:30px;margin:0 0 0 2px;padding:0 10px 0 8px;gap:7px;
+  border:0;border-radius:999px;background:var(--hu-tint);
+  font:600 12px/1 'Manrope',system-ui,sans-serif;letter-spacing:.01em;text-transform:none;
+  color:var(--hu-ink);transition:background-color .2s ease;
 }
-.nav-right .lm-account-btn:hover{background:transparent;opacity:1}
-.nav-right .lm-account-btn > svg{width:19px;height:19px;opacity:1;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-.nav-right .lm-account-caret{width:10px;height:10px;opacity:.55}
+.nav-right .lm-account-btn:hover{background:var(--hu-tint-strong)}
+.nav-right .lm-account-btn > svg{width:18px;height:18px;opacity:1;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.nav-right .lm-account-caret{width:11px;height:11px;opacity:.6}
 
 /* ── 터치 기기(≤1279): mobile.css 가 .nav-ic/.nav-burger 를 44px !important,
-   .lang b 를 44px 그리드로 키운다. 언어 버튼이 그 상자를 꽉 채우게 한다. ── */
+   .lang b 를 44px 그리드로 키운다 → 트랙은 36px 로 두고 b 의 44px 강제는 푼다. ── */
 @media (max-width:1279px){
-  .nav-right .lang b{min-width:44px;min-height:44px}
-  .lang .lang-btn{min-width:44px;height:44px;margin:0}
-  /* 44px 상자에서는 헤어라인이 상자가 아닌 글자 폭(약 1.7em)만큼만 — 가운데 정렬 */
-  .lang .lang-btn::after{left:50%;right:auto;width:1.7em;margin-left:calc(-.85em - .09em);bottom:10px;transform-origin:center}
   .nav-right .nav-ic,.nav-right .nav-burger{margin:0}
   .nav-right .nav-burger{margin-right:-10px}
-  .nav-right .lang{margin:0 4px 0 0}
-  .nav-right .lm-account-btn{margin:0}
+  .nav-right .lang{height:32px;margin:0 6px 0 0;font-size:11.5px}
+  .nav-right .lang b{min-width:0;min-height:0}
+  .lang .lang-btn{min-width:44px;padding:0 10px}
+  .lang .lang-btn::after{top:-6px;bottom:-6px}
 }

@@ -105,16 +105,18 @@ body.nav-open .mnav {
 .mnav-brand { display: flex; align-items: baseline; gap: .5em; text-decoration: none; color: #0e2440; min-height: 44px; align-items: center; }
 .mnav-brand-en { font: 600 1.15rem 'Cormorant Garamond', serif; letter-spacing: .14em; }
 .mnav-brand-kr { font: 400 .66rem 'Noto Serif KR', serif; opacity: .55; }
-/* 닫기 — 헤더 유틸과 같은 베어 글리프(원형 보더 제거, 2026-09) */
+/* 닫기 — 헤더 아이콘과 같은 어휘(2026-09 v2): 정지 땐 베어, hover 에 12px 틴트 */
 .mnav-close {
-  width: 46px; height: 46px; margin-right: -12px; border-radius: 2px;
+  width: 44px; height: 44px; margin-right: -10px; border-radius: 12px;
   border: 0; background: transparent; color: #0e2440;
   display: grid; place-items: center; cursor: pointer;
   -webkit-appearance: none; appearance: none; padding: 0;
+  transition: background-color .2s ease;
   -webkit-tap-highlight-color: transparent; touch-action: manipulation;
 }
-.mnav-close svg { width: 22px; height: 22px; stroke-width: 1.5; stroke-linecap: round; }
-.mnav-close:focus-visible { outline: 1.5px solid #bf8e5a; outline-offset: -4px; }
+.mnav-close:hover { background: rgba(14, 36, 64, .06); }
+.mnav-close svg { width: 22px; height: 22px; stroke-width: 1.75; stroke-linecap: round; }
+.mnav-close:focus-visible { outline: 2px solid #2f6fed; outline-offset: -3px; }
 
 .mnav-body {
   flex: 1 1 auto; overflow-y: auto; -webkit-overflow-scrolling: touch;
@@ -164,37 +166,51 @@ body.nav-open .mnav {
 .mnav-sublink:active .mnav-link-t { color: #c9a24b; }
 
 /* ── 유틸(검색·로그인·언어) ── */
-/* ── 유틸 줄(검색 · 로그인 · KO/EN) — 헤더 유틸과 같은 어휘(2026-09):
-   알약 보더 없이 아이콘+텍스트, 언어는 대문자 코드 + 활성 골드 헤어라인 ── */
+/* ── 유틸 줄(검색 · 로그인 · KO/EN) — 헤더와 같은 어휘(2026-09 v2):
+   보더 없는 옅은 틴트 필 버튼, 언어는 흰색 필이 미끄러지는 세그먼트 토글 ── */
 .mnav-utils {
-  display: flex; align-items: center; gap: 22px;
+  display: flex; align-items: center; gap: 8px;
   margin-top: 36px; padding-top: 20px;
   border-top: 1px solid #eee;
 }
 .mnav-util {
-  display: inline-flex; align-items: center; gap: 9px;
-  min-height: 44px; padding: 0; margin: 0;
-  border: 0; border-radius: 2px;
-  background: transparent; color: #0e2440;
+  display: inline-flex; align-items: center; gap: 8px;
+  height: 40px; padding: 0 16px 0 14px; margin: 0;
+  border: 0; border-radius: 999px;
+  background: rgba(14, 36, 64, .06); color: #0e2440;
   /* 한글 라벨(검색·로그인) — 오버레이 안의 한글은 예외 없이 Noto Serif KR 400 */
-  font: 400 15px 'Noto Serif KR', serif; cursor: pointer;
+  font: 400 14px 'Noto Serif KR', serif; cursor: pointer;
   -webkit-appearance: none; appearance: none;
+  transition: background-color .2s ease;
   -webkit-tap-highlight-color: transparent; touch-action: manipulation;
 }
-.mnav-util svg { width: 18px; height: 18px; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; opacity: .8; }
-.mnav-util:focus-visible { outline: 1.5px solid #bf8e5a; outline-offset: 4px; }
+.mnav-util:hover { background: rgba(14, 36, 64, .10); }
+.mnav-util svg { width: 17px; height: 17px; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+.mnav-util:focus-visible { outline: 2px solid #2f6fed; outline-offset: 2px; }
 .mnav-lang {
-  margin-left: auto; margin-right: -8px;
-  font: 500 12px/1 'Manrope', sans-serif; letter-spacing: .18em; text-transform: uppercase;
-  display: flex; align-items: center; gap: 0; color: #0e2440;
+  position: relative; margin-left: auto; margin-right: 0;
+  display: inline-flex; align-items: stretch; gap: 0;
+  height: 36px; padding: 3px; box-sizing: border-box;
+  border-radius: 999px; background: rgba(14, 36, 64, .06);
+  font: 600 12px/1 'Manrope', sans-serif; letter-spacing: .02em; text-transform: uppercase; color: #0e2440;
 }
+.mnav-lang::before {
+  content: ''; position: absolute; top: 3px; left: 3px;
+  width: calc(50% - 3px); height: calc(100% - 6px); border-radius: 999px;
+  background: #fff; box-shadow: 0 1px 2px rgba(14, 36, 64, .14), 0 0 0 .5px rgba(14, 36, 64, .05);
+  transition: transform .35s cubic-bezier(.22, 1, .36, 1);
+}
+:root[lang="en"] .mnav-lang::before { transform: translateX(100%); }
 .mnav-lang b {
-  min-width: 44px; min-height: 44px; font-weight: inherit; opacity: .45;
+  position: relative; z-index: 1; flex: 1 0 0;
+  min-width: 0; min-height: 0; font-weight: inherit; opacity: .5;
   display: inline-grid; place-items: center; cursor: pointer;
   transition: opacity .25s ease;
 }
-.mnav-lang .lang-btn { min-width: 44px; height: 44px; margin: 0; padding: 0 6px 0 8px; }
-.mnav-lang .lang-btn::after { left: 8px; right: calc(6px + .18em); bottom: 12px; }
+:root:not([lang="en"]) .mnav-lang b:nth-of-type(1),
+:root[lang="en"] .mnav-lang b:nth-of-type(2) { opacity: 1 !important; }
+.mnav-lang .lang-btn { min-width: 50px; height: 100%; margin: 0; padding: 0 12px; }
+.mnav-lang .lang-btn::after { top: -4px; bottom: -4px; }
 
 /* ── 상담 블록 — 유틸 줄과 같은 하이라인·같은 여백으로 한 리듬 ── */
 .mnav-contact { margin-top: 36px; padding-top: 24px; border-top: 1px solid #eee; }
