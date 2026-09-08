@@ -1,5 +1,14 @@
 # CHANGELOG — esstone.co.kr (scandi/)
 
+## 2026-09-08 · 개인정보처리방침 페이지(/privacy) 신설 + 문의 폼 "더 보기" 링크
+
+- **`privacy.html` 신규**: contact.html 의 head(메타·폰트·site.css·공통 스크립트)·헤더·푸터를 그대로 가져오고, 히어로(골드 eyebrow "PRIVACY POLICY" · 제목 · 한 줄 설명 · 시행일 2026-09-08)와 본문(최대 780px 단일 컬럼, `h2` 조항 제목은 Noto Serif KR, 표는 헤어라인 보더 · 모바일 가로 스크롤). 배경은 크림 #F5F1E8. `/privacy` 는 Netlify Pretty URL 로 동작(_redirects 불필요).
+- **본문 [분기] 반영**: 폼 데이터가 Netlify Function → Supabase 저장 + Resend 이메일 + 카카오톡 알림으로 흐르므로 제4조 위탁 표를 Supabase, Inc. · Resend, Inc. · 카카오(주)(국내) · Netlify, Inc. 로 구성(Web3Forms 제외). 일반 회원가입·구글/카카오 소셜 로그인이 있어 제1조 목적 · 제2조 표에 회원 행 추가, "회원가입을 받지 않으며" 문구 대신 14세 미만 문구만. 트래킹 스크립트 없음 → 제8조 쿠키 미사용 + 로그인 유지용 localStorage 안내 한 문장. 보호책임자 이언기(대표), 연락처 010-5430-2580 / ceramices@naver.com.
+- **contact.html**: 동의 라벨 오른쪽에 "더 보기"(`/privacy`, 새 탭, `<label>` 밖이라 체크 토글 안 됨). 골드 밑줄 12.5px.
+- **공통 푸터**: 카피라이트 옆에 "개인정보처리방침" 링크 — about · bmc · bmc/products · contact · facility · index · portfolio · privacy. 카피라이트 텍스트 노드는 그대로 두어 i18n 키 유지. 보호 파일(showroom · product-detail)은 제외.
+- `sitemap.xml` 에 privacy.html 추가, `js/i18n-en.js` 에 '더 보기' · '개인정보처리방침' 키.
+
+
 ## 2026-09-08 · 문의 페이지 안내 정보 · 동의 문구 · 플로팅 위젯 상시 노출
 
 - **contact.html 상담 안내**: TEL 은 010-5430-2580 하나만(tel: 링크 포함), E-MAIL ceramices@naver.com, HOURS 구분자 `~` 로 통일하고 "(휴게)" 삭제. 제목·메타·하단 감사 문구·푸터의 031-544-7272 는 요청 범위 밖이라 그대로.

@@ -164,6 +164,8 @@ body.nav-open .nav-mobile-panel{display:flex}
 .ct-agree input:checked{background:#BF8E5A;border-color:#BF8E5A}
 .ct-agree input:checked::after{content:'';position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #fff;border-width:0 1.6px 1.6px 0;transform:rotate(45deg)}
 .ct-agree label{font:500 14px/1.6 var(--ct-sans);color:#0e2440;cursor:pointer}
+.ct-agree-more{font:500 12.5px/1.6 var(--ct-sans);color:#BF8E5A;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;white-space:nowrap;transition:color .25s}
+.ct-agree-more:hover{color:#0e2440}
 .ct-agree.has-error label{color:#BF8E5A}
 
 .ct-msg{min-height:20px;font:500 13.5px/1.7 var(--ct-sans);color:#BF8E5A}
@@ -441,6 +443,8 @@ body.nav-open .nav-mobile-panel{display:flex}
           <div class="ct-agree" data-field="agree">
             <input type="checkbox" id="ctAgree" name="개인정보동의" value="동의">
             <label for="ctAgree">개인정보 수집 및 이용에 동의합니다&nbsp;<span class="ct-req">*</span></label>
+            <!-- label 밖에 두어 클릭해도 체크박스가 토글되지 않는다. 작성 중인 폼이 날아가지 않게 새 탭. -->
+            <a class="ct-agree-more" href="/privacy" target="_blank" rel="noopener">더 보기</a>
           </div>
 
           <div class="ct-msg" id="ctMsg" role="status" aria-live="polite"></div>
@@ -479,7 +483,7 @@ body.nav-open .nav-mobile-panel{display:flex}
       <span>상호 (주)은성</span><span>대표자 이언기</span><span>사업자등록번호 328-88-00420</span><span class="ft-info-addr">주소&nbsp;경기도 포천시 가산면 정금로&nbsp;356-39</span><span>전화 031-544-7272 · 010-5430-2580</span><span>팩스 031-544-6868</span><span>이메일 ceramices@naver.com</span>
     </div>
     <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px">
-      <div style="font:400 12px 'Manrope';color:rgba(255,255,255,.4)">© 2026 (주)은성 EUNSUNG Co., Ltd. · 인조대리석 및 상판 가공</div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px"><div style="font:400 12px 'Manrope';color:rgba(255,255,255,.4)">© 2026 (주)은성 EUNSUNG Co., Ltd. · 인조대리석 및 상판 가공</div><a class="ft-link" href="privacy.html" style="font-size:12px;color:rgba(255,255,255,.62);text-decoration:underline;text-underline-offset:3px">개인정보처리방침</a></div>
       <div style="font:400 12px 'Manrope';color:rgba(255,255,255,.4)">Instagram · KakaoTalk · Naver</div>
     </div>
   </div>

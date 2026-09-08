@@ -490,6 +490,8 @@ window.I18N_EN = {
   '공간 종류(주방·욕실·상업공간 등), 대략적인 규모, 희망 일정을 적어주세요. 관심 소재나 시공 지역이 있으시면 함께 적어주세요.':
     'Tell us the type of space (kitchen, bathroom, commercial), approximate size and your preferred timeline. Do mention any material or location in mind.',
   '개인정보 수집 및 이용에 동의합니다': 'I agree to the collection and use of my personal data',
+  '더 보기': 'Learn more',
+  '개인정보처리방침': 'Privacy Policy',
   '문의 보내기': 'Send inquiry',
   '전송 중…': 'Sending…',
   '전송에 실패했습니다. 031-544-7272 또는 카카오톡 채널로 연락 주세요.':
