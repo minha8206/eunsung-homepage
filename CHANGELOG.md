@@ -1,5 +1,19 @@
 # CHANGELOG — esstone.co.kr (scandi/)
 
+## 2026-09-08 · 문의 폼 자체 처리 + /admin 문의 관리
+
+**무엇**: `contact.html` 의 Web3Forms 전송을 자체 Netlify Function 으로 교체. 폼 제출 → `/.netlify/functions/contact` → ① Supabase `inquiries` 저장 → ② Resend 이메일(NOTIFY_EMAILS) → ③ 카카오톡 "나에게 보내기". 세 단계는 독립적으로 try/catch — 하나라도 성공하면 접수 완료, DB 실패 시 알림 상단에 "⚠️ DB 저장 실패" 표기. `/admin`(admin.html) 에서 Google 로그인 후 목록·상태(신규/진행중/완료)·메모·삭제. RLS 로 `admin_users` 에 등록된 이메일만 접근.
+
+**파일**
+- 저장소 루트: `netlify.toml`(publish=scandi, functions=netlify/functions, esbuild, `/admin → /admin.html`), `package.json`(@supabase/supabase-js, @netlify/functions), `netlify/functions/{contact,kakao-auth,kakao-refresh,keepalive,cleanup}.mjs` + `lib/{supabase,kakao}.mjs`, `supabase/migrations/001_inquiries.sql`, `docs/INQUIRY_SETUP.md`(배포 후 순서·환경변수 표·트러블슈팅).
+- scandi/: `contact.html`(Web3Forms 제거, JSON fetch, `website` 허니팟, 실패 문구 변경), `admin.html` 신규(noindex, 크림/네이비/골드, 모바일은 카드 + 하단 시트), `robots.txt`·`_headers` 에 /admin 차단, `js/i18n-en.js` 실패 문구 EN.
+- 스케줄: `kakao-refresh` 매주 월 00:00 UTC(refresh_token 60일 만료 방지), `keepalive` 매일(Supabase Free 7일 정지 방지), `cleanup` 매월 1일(3년 지난 문의 삭제).
+
+**배포 후 할 일**: `docs/INQUIRY_SETUP.md` 1~5단계 (SQL 실행 → kakao-auth 1회 → /admin 로그인 → 테스트 문의). Supabase Auth Redirect URLs 에 `https://esstone.co.kr/admin` 필요.
+
+**검증**(netlify dev, 더미 env): contact 405/400(형식·연락처·동의)/허니팟 200/전부 실패 500 + detail, kakao-auth 403·302·state 403, `/admin` rewrite 200, contact.html 에 web3forms/botcheck 잔재 0. admin.html 은 Supabase 목 데이터로 목록·상세·상태 세그먼트 렌더 확인, 콘솔 에러 0. hero-scroll.mp4 · showroom.html · product-detail.html 무변경.
+
+
 ## 2026-09-04 · 헤더 유틸리티 내비 리디자인 (검색 · KO/EN · 계정 · 버거)
 
 **v2 (같은 날)**: v1 의 골드 헤어라인 · 넓은 자간 대문자 · 78% 아이콘이 구식이라는 피드백 → 밝고 선명한 방향으로 재설계. 아이콘 20px · 1.75 스트로크 · 네이비 100%, hover 에만 12px 라운드 틴트. KO/EN 은 흰색 필이 미끄러지는 세그먼트 토글(트랙 rgba(14,36,64,.06), 데스크톱 30px / 모바일 32px, `<html lang>` 으로 위치). 버거는 2줄. 드로어의 검색/로그인은 틴트 필, 닫기는 베어 + hover 틴트. 포커스 링은 블루 #2f6fed. 골드는 유틸에서 쓰지 않는다. 마크업 구조·로직은 v1 과 동일.

@@ -494,8 +494,8 @@ window.I18N_EN = {
     'Collected: name, contact, message · used only for this inquiry and deleted after three years.',
   '문의 보내기': 'Send inquiry',
   '전송 중…': 'Sending…',
-  '전송에 실패했습니다. 잠시 후 다시 시도하시거나 031-544-7272로 연락해 주세요.':
-    'That didn’t go through. Please try again shortly, or call 031-544-7272.',
+  '전송에 실패했습니다. 031-544-7272 또는 카카오톡 채널로 연락 주세요.':
+    'That didn’t go through. Please call 031-544-7272 or reach us on our KakaoTalk channel.',
   '이름을 입력해 주세요.': 'Please enter your name.',
   '연락처를 입력해 주세요.': 'Please enter your phone number.',
   '연락처를 다시 확인해 주세요.': 'Please check your phone number.',

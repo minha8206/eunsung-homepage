@@ -1,0 +1,14 @@
+{
+  "name": "eunsung-homepage",
+  "private": true,
+  "version": "1.0.0",
+  "description": "esstone.co.kr — 정적 사이트(scandi/) + Netlify Functions(문의 접수·알림)",
+  "type": "module",
+  "scripts": {
+    "dev": "netlify dev"
+  },
+  "dependencies": {
+    "@netlify/functions": "^3.1.10",
+    "@supabase/supabase-js": "^2.49.4"
+  }
+}

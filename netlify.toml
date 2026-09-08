@@ -1,0 +1,15 @@
+# esstone.co.kr — Netlify 빌드 설정
+# 정적 파일은 scandi/ 에서 그대로 배포하고, 서버 로직은 netlify/functions 의 Functions 가 담당한다.
+
+[build]
+  publish = "scandi"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# /admin → admin.html (문의 관리 페이지). 200 rewrite 라 주소창은 /admin 으로 남는다.
+[[redirects]]
+  from = "/admin"
+  to = "/admin.html"
+  status = 200

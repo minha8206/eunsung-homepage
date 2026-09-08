@@ -1,3 +1,7 @@
 scandi/assets/story-src/
 scandi/.netlify/
 .netlify/
+node_modules/
+.env
+.env.*
+deno.lock
