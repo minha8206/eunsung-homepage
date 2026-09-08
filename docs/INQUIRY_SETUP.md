@@ -74,6 +74,7 @@ https://esstone.co.kr/.netlify/functions/kakao-auth?secret=SETUP_SECRET값
 | 폼에서 "전송에 실패했습니다" | 셋 다 실패한 경우. Functions 로그의 `detail` 확인. 대부분 환경변수 오타 |
 | DB 는 저장되는데 메일이 안 옴 | `RESEND_API_KEY`, `MAIL_FROM` 도메인이 Resend 에서 **Verified** 인지, `NOTIFY_EMAILS` 쉼표 구분 |
 | 메일은 오는데 카톡이 안 옴 | 2단계(kakao-auth)를 안 했거나, Kakao 앱에서 `talk_message` 동의항목이 꺼져 있음 |
+| kakao-auth 에서 `permission denied for table kakao_tokens` | 실패 화면 하단 진단 JSON 확인: `key.keyKind` 가 `legacy JWT`/`new secret key` 이고 `jwtRole` 이 `service_role` 이어야 한다. `PUBLISHABLE (anon) KEY` 면 Netlify 환경변수가 잘못된 키. `probe.status` 가 401 이면 키 자체가 무효, 403/42501 이면 GRANT 누락 → SQL 의 4-1 절(grant) 다시 실행 |
 | `/admin` 로그인 후 홈으로 튕김 | Supabase Redirect URLs 에 `https://esstone.co.kr/admin` 없음 |
 | `/admin` "접근 권한이 없습니다" | `admin_users` 에 로그인한 이메일이 없음 |
 | `/admin` 목록이 비어 있는데 DB엔 데이터 있음 | RLS 정책 미적용 — 1단계 SQL 다시 실행 |

@@ -57,11 +57,16 @@ export async function refreshAccessToken() {
 
 export async function saveTokens(accessToken, refreshToken) {
   const sb = getSupabase();
-  const { error } = await sb.from('kakao_tokens').upsert(
+  const { error, status, statusText } = await sb.from('kakao_tokens').upsert(
     { id: 1, access_token: accessToken, refresh_token: refreshToken, updated_at: new Date().toISOString() },
     { onConflict: 'id' }
   );
-  if (error) throw new Error(`kakao_tokens 저장 실패: ${error.message}`);
+  if (error) {
+    const err = new Error(`kakao_tokens 저장 실패: ${error.message}`);
+    /* 진단용: PostgREST 응답 status 와 error 객체 전체(message/details/hint/code) */
+    err.supabase = { status, statusText, error };
+    throw err;
+  }
 }
 
 /* 텍스트 템플릿으로 나에게 보내기. text 는 200자 제한. */

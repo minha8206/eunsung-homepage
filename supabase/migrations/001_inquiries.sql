@@ -74,5 +74,16 @@ create policy "inquiries: admin delete"
 
 -- kakao_tokens: 정책 없음 = anon/authenticated 모두 접근 불가. service role 만 읽고 쓴다.
 
+-- ---------- 4-1. 테이블 권한(GRANT) ----------
+-- Supabase 는 보통 기본 권한(default privileges)으로 처리하지만, 프로젝트 설정에 따라 빠질 수 있어 명시한다.
+-- service_role 은 RLS 를 우회하고 세 테이블 전부 읽고 쓴다.
+grant usage on schema public to service_role, authenticated, anon;
+grant all on table public.inquiries, public.kakao_tokens, public.admin_users to service_role;
+-- 관리 페이지(브라우저, authenticated)는 RLS 정책 범위 안에서만 동작. insert 권한은 주지 않는다.
+grant select, update, delete on table public.inquiries to authenticated;
+grant select on table public.admin_users to authenticated;
+-- 이후 SQL Editor 에서 만드는 테이블에도 service_role 권한이 자동으로 붙도록
+alter default privileges in schema public grant all on tables to service_role;
+
 -- ---------- 5. 관리자 등록 ----------
 insert into admin_users(email) values ('minha8206@gmail.com') on conflict (email) do nothing;
