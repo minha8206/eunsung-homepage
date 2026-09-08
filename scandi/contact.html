@@ -159,12 +159,11 @@ body.nav-open .nav-mobile-panel{display:flex}
 .ct-textarea{min-height:148px;resize:vertical;line-height:1.85}
 .ct-field.has-error .ct-input,.ct-field.has-error .ct-select,.ct-field.has-error .ct-textarea{border-bottom-color:#BF8E5A}
 
-.ct-agree{margin-top:2px;display:flex;align-items:flex-start;gap:12px}
-.ct-agree input{appearance:none;-webkit-appearance:none;flex:none;width:18px;height:18px;margin:2px 0 0;border:1px solid rgba(14,36,64,.3);background:transparent;cursor:pointer;transition:.2s;position:relative}
+.ct-agree{margin-top:2px;display:flex;align-items:center;gap:12px}
+.ct-agree input{appearance:none;-webkit-appearance:none;flex:none;width:18px;height:18px;margin:0;border:1px solid rgba(14,36,64,.3);background:transparent;cursor:pointer;transition:.2s;position:relative}
 .ct-agree input:checked{background:#BF8E5A;border-color:#BF8E5A}
 .ct-agree input:checked::after{content:'';position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #fff;border-width:0 1.6px 1.6px 0;transform:rotate(45deg)}
 .ct-agree label{font:500 14px/1.6 var(--ct-sans);color:#0e2440;cursor:pointer}
-.ct-agree-sub{font:400 12.5px/1.6 var(--ct-sans);color:rgba(14,36,64,.5);margin-top:6px}
 .ct-agree.has-error label{color:#BF8E5A}
 
 .ct-msg{min-height:20px;font:500 13.5px/1.7 var(--ct-sans);color:#BF8E5A}
@@ -216,7 +215,7 @@ body.nav-open .nav-mobile-panel{display:flex}
       },
       "telephone": "+82-31-544-7272",
       "faxNumber": "+82-31-544-6868",
-      "email": "eunsung8585@naver.com",
+      "email": "ceramices@naver.com",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "가산면 정금로 356-39",
@@ -248,7 +247,7 @@ body.nav-open .nav-mobile-panel{display:flex}
       "description": "경기도 포천 자체 공장에서 포세린·비아테라·하이막스 슬랩을 재단·가공하고 현장 시공까지 진행합니다. 쇼룸 방문 상담 가능.",
       "telephone": "+82-31-544-7272",
       "faxNumber": "+82-31-544-6868",
-      "email": "eunsung8585@naver.com",
+      "email": "ceramices@naver.com",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "가산면 정금로 356-39",
@@ -365,7 +364,7 @@ body.nav-open .nav-mobile-panel{display:flex}
     <div class="ct-info">
       <div class="ct-info-item">
         <div class="ct-info-label">TEL</div>
-        <div class="ct-info-value"><a class="nowrap" href="tel:0315447272">031-544-7272</a>&nbsp;· <a class="nowrap" href="tel:01054302580">010-5430-2580</a></div>
+        <div class="ct-info-value"><a class="nowrap" href="tel:01054302580">010-5430-2580</a></div>
         <div class="ct-info-sub">상담·견적 문의</div>
       </div>
       <div class="ct-info-item">
@@ -379,7 +378,7 @@ body.nav-open .nav-mobile-panel{display:flex}
       </div>
       <div class="ct-info-item">
         <div class="ct-info-label">E-MAIL</div>
-        <div class="ct-info-value"><a href="mailto:eunsung8585@naver.com">eunsung8585@naver.com</a></div>
+        <div class="ct-info-value"><a href="mailto:ceramices@naver.com">ceramices@naver.com</a></div>
       </div>
       <div class="ct-info-item">
         <div class="ct-info-label">SHOWROOM &amp; FACTORY</div>
@@ -393,8 +392,8 @@ body.nav-open .nav-mobile-panel{display:flex}
       <div class="ct-info-item">
         <div class="ct-info-label">HOURS</div>
         <div style="margin-top:12px">
-          <div class="ct-hours"><span>평일</span><span>08:30 — 17:30</span></div>
-          <div class="ct-hours"><span>점심시간</span><span>12:00 — 13:00 (휴게)</span></div>
+          <div class="ct-hours"><span>평일</span><span>08:30 ~ 17:30</span></div>
+          <div class="ct-hours"><span>점심시간</span><span>12:00 ~ 13:00</span></div>
           <div class="ct-hours"><span>토요일 · 일요일 · 공휴일</span><span>휴무</span></div>
         </div>
       </div>
@@ -441,10 +440,7 @@ body.nav-open .nav-mobile-panel{display:flex}
 
           <div class="ct-agree" data-field="agree">
             <input type="checkbox" id="ctAgree" name="개인정보동의" value="동의">
-            <div>
-              <label for="ctAgree">상담 회신을 위한 개인정보 수집·이용에 동의합니다&nbsp;<span class="ct-req">*</span></label>
-              <div class="ct-agree-sub">수집 항목 이름·연락처·문의 내용 · 상담 목적에만 사용하고 3년 후&nbsp;파기합니다.</div>
-            </div>
+            <label for="ctAgree">개인정보 수집 및 이용에 동의합니다&nbsp;<span class="ct-req">*</span></label>
           </div>
 
           <div class="ct-msg" id="ctMsg" role="status" aria-live="polite"></div>
@@ -480,7 +476,7 @@ body.nav-open .nav-mobile-panel{display:flex}
   <div style="max-width:1280px;margin:48px auto 0;padding-top:26px;border-top:1px solid rgba(255,255,255,.09)">
     <div style="margin-bottom:14px;font:400 12px/1.7 'Manrope';color:rgba(255,255,255,.5);word-break:keep-all">(주)은성 — 경기도 포천 포세린·엔지니어드 스톤 전문 기업 | LX하우시스 공식&nbsp;파트너</div>
     <div class="ft-info" style="display:flex;flex-wrap:wrap;gap:8px 22px;margin-bottom:16px;font:400 12px/1.7 'Manrope';color:rgba(255,255,255,.45)">
-      <span>상호 (주)은성</span><span>대표자 이언기</span><span>사업자등록번호 328-88-00420</span><span class="ft-info-addr">주소&nbsp;경기도 포천시 가산면 정금로&nbsp;356-39</span><span>전화 031-544-7272 · 010-5430-2580</span><span>팩스 031-544-6868</span><span>이메일 eunsung8585@naver.com</span>
+      <span>상호 (주)은성</span><span>대표자 이언기</span><span>사업자등록번호 328-88-00420</span><span class="ft-info-addr">주소&nbsp;경기도 포천시 가산면 정금로&nbsp;356-39</span><span>전화 031-544-7272 · 010-5430-2580</span><span>팩스 031-544-6868</span><span>이메일 ceramices@naver.com</span>
     </div>
     <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px">
       <div style="font:400 12px 'Manrope';color:rgba(255,255,255,.4)">© 2026 (주)은성 EUNSUNG Co., Ltd. · 인조대리석 및 상판 가공</div>

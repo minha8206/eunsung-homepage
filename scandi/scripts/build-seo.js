@@ -33,7 +33,7 @@ const BIZ = {
   foundingDate: '2009',
   tel: '+82-31-544-7272',
   fax: '+82-31-544-6868',
-  email: 'eunsung8585@naver.com',
+  email: 'ceramices@naver.com',
   street: '가산면 정금로 356-39',
   locality: '포천시',
   region: '경기도',

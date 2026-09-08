@@ -37,7 +37,7 @@ window.I18N_EN = {
     '356-39 Jeonggeum-ro, Gasan-myeon, Pocheon-si, Gyeonggi-do, Korea',
   '전화 031-544-7272 · 010-5430-2580': 'Tel 031-544-7272 · 010-5430-2580',
   '팩스 031-544-6868': 'Fax 031-544-6868',
-  '이메일 eunsung8585@naver.com': 'Email eunsung8585@naver.com',
+  '이메일 ceramices@naver.com': 'Email ceramices@naver.com',
   '인조대리석 및 상판 가공 전문': 'Solid surface and countertop fabrication',
   '© 2026 (주)은성 EUNSUNG Co., Ltd.': '© 2026 EUNSUNG Co., Ltd.',
   '© 2026 (주)은성 EUNSUNG Co., Ltd. · 인조대리석 및 상판 가공':
@@ -471,7 +471,7 @@ window.I18N_EN = {
     'Showroom and fabrication facility share one site, so you can see real slabs and machinery together. Appointments are recommended.',
   '평일': 'Weekdays',
   '점심시간': 'Lunch break',
-  '12:00 — 13:00 (휴게)': '12:00 — 13:00 (closed)',
+  '12:00 ~ 13:00': '12:00 ~ 13:00',
   '토요일 · 일요일 · 공휴일': 'Sat · Sun · Public holidays',
   '휴무': 'Closed',
   '문의 남기기': 'Send an inquiry',
@@ -489,9 +489,7 @@ window.I18N_EN = {
   '문의 내용': 'Message',
   '공간 종류(주방·욕실·상업공간 등), 대략적인 규모, 희망 일정을 적어주세요. 관심 소재나 시공 지역이 있으시면 함께 적어주세요.':
     'Tell us the type of space (kitchen, bathroom, commercial), approximate size and your preferred timeline. Do mention any material or location in mind.',
-  '상담 회신을 위한 개인정보 수집·이용에 동의합니다': 'I agree to the collection and use of my personal data for this inquiry',
-  '수집 항목 이름·연락처·문의 내용 · 상담 목적에만 사용하고 3년 후 파기합니다.':
-    'Collected: name, contact, message · used only for this inquiry and deleted after three years.',
+  '개인정보 수집 및 이용에 동의합니다': 'I agree to the collection and use of my personal data',
   '문의 보내기': 'Send inquiry',
   '전송 중…': 'Sending…',
   '전송에 실패했습니다. 031-544-7272 또는 카카오톡 채널로 연락 주세요.':

@@ -1,5 +1,14 @@
 # CHANGELOG — esstone.co.kr (scandi/)
 
+## 2026-09-08 · 문의 페이지 안내 정보 · 동의 문구 · 플로팅 위젯 상시 노출
+
+- **contact.html 상담 안내**: TEL 은 010-5430-2580 하나만(tel: 링크 포함), E-MAIL ceramices@naver.com, HOURS 구분자 `~` 로 통일하고 "(휴게)" 삭제. 제목·메타·하단 감사 문구·푸터의 031-544-7272 는 요청 범위 밖이라 그대로.
+- **이메일 교체**: eunsung8585@naver.com → ceramices@naver.com — about · bmc · bmc/products · facility · index · portfolio · contact 의 JSON-LD·푸터, `js/i18n-en.js`, `scripts/build-seo.js`(BIZ.email). 보호 파일 showroom.html · product-detail.html 은 그대로 남아 있음(수정 금지).
+- **동의 체크박스**: 라벨 "개인정보 수집 및 이용에 동의합니다"(필수 * 유지), 설명 문구와 `.ct-agree-sub` 규칙 삭제, 체크박스를 라벨과 세로 중앙 정렬.
+- **플로팅 위젯**(`assets/js/inquiry-widget.js` · `assets/css/inquiry-widget.css` → `site.css` 재빌드): 채팅 아이콘 메인 버튼 · X 닫기 · is-open 토글 · 바깥 클릭/Esc 닫기 · 세션 1회 안내 말풍선을 제거. 카카오톡 상담 · 전화 문의 · 견적 문의 3개는 기존 펼친 상태의 디자인·순서·위치·링크 그대로 항상 표시. ≤768 은 기존처럼 하단 CTA 바가 대신하므로 모바일 간격 변경 없음.
+- **package.json**: 루트의 `"type": "module"` 제거 — scandi/scripts 의 CommonJS 빌드 스크립트(build-css · build-seo)가 깨졌었다. Functions 는 .mjs 라 영향 없음.
+
+
 ## 2026-09-08 · 문의 폼 자체 처리 + /admin 문의 관리
 
 **무엇**: `contact.html` 의 Web3Forms 전송을 자체 Netlify Function 으로 교체. 폼 제출 → `/.netlify/functions/contact` → ① Supabase `inquiries` 저장 → ② Resend 이메일(NOTIFY_EMAILS) → ③ 카카오톡 "나에게 보내기". 세 단계는 독립적으로 try/catch — 하나라도 성공하면 접수 완료, DB 실패 시 알림 상단에 "⚠️ DB 저장 실패" 표기. `/admin`(admin.html) 에서 Google 로그인 후 목록·상태(신규/진행중/완료)·메모·삭제. RLS 로 `admin_users` 에 등록된 이메일만 접근.
