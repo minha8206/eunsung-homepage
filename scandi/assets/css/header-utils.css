@@ -42,7 +42,7 @@ div.nav-right{
 .nav-right .nav-ic:hover{background:var(--hu-tint)}
 .nav-right .nav-ic:active{background:var(--hu-tint-strong);transform:scale(.96)}
 
-/* ── 버거(모바일) — display 는 helmet 규칙(≤1080 inline-flex)에 맡긴다 ── */
+/* ── 버거(모바일) — display 는 helmet 규칙(≤1279 inline-flex)에 맡긴다 ── */
 .nav-right .nav-burger{
   -webkit-appearance:none;appearance:none;
   width:44px;height:44px;margin:-5px -8px -5px 0;padding:0;

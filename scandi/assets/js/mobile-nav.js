@@ -35,6 +35,7 @@
     { href: 'about.html', label: '회사소개' },
     { href: 'facility.html', label: '시공 과정' },
     { href: 'portfolio.html', label: '시공사례' },
+    { href: 'store.html', label: '스토어' },
     { href: 'contact.html', label: '문의' }
   ];
   var MATERIALS = [
@@ -210,7 +211,7 @@
 
     /* 데스크톱 폭으로 넓어지면 상태를 정리한다 */
     window.addEventListener('resize', function () {
-      if (window.innerWidth > 1080 && isOpen()) close();
+      if (window.innerWidth > 1279 && isOpen()) close();
     });
 
     /* x-dc 가 헤더를 다시 그려도 버거의 aria 속성이 유지되도록 재적용한다.

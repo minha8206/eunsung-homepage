@@ -19,6 +19,7 @@ window.I18N_EN = {
   '인조대리석': 'Solid Surface',
   '세라믹': 'Ceramic',
   '시공사례': 'Projects',
+  '스토어': 'Store',
   '문의': 'Contact',
   '메뉴 열기': 'Open menu',
   '홈': 'Home',

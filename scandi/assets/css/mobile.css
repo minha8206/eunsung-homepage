@@ -71,7 +71,7 @@ html {
 .nav-mobile-panel,
 body.nav-open .nav-mobile-panel { display: none !important; }
 
-@media (max-width: 1080px) {
+@media (max-width: 1279px) {
   /* 버튼으로 바뀌면서 기본 스타일이 붙는다. 기존 원형 아이콘 모양을 유지한다. */
   button.nav-burger {
     -webkit-appearance: none; appearance: none;
@@ -82,8 +82,8 @@ body.nav-open .nav-mobile-panel { display: none !important; }
 
 /* ── 오버레이 골격 ──
    닫힌 상태에선 visibility:hidden 이라 어떤 폭에서도 화면에 영향이 없다.
-   버거가 없는 데스크톱(>1080)에서는 열릴 일 자체가 없고, 리사이즈로
-   1080을 넘으면 JS 가 자동으로 닫는다. */
+   버거가 없는 데스크톱(>1279)에서는 열릴 일 자체가 없고, 리사이즈로
+   1279를 넘으면 JS 가 자동으로 닫는다. */
 .mnav {
   position: fixed; inset: 0; z-index: 9500;
   display: flex; flex-direction: column; overflow: hidden;

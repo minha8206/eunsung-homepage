@@ -1,5 +1,13 @@
 # CHANGELOG — esstone.co.kr (scandi/)
 
+## 2026-10-26 · 스토어 신설 (/store) + Gorilla Grip 2.1 상품 페이지 + 헤더 "스토어" 메뉴
+
+- **`store.html` 신규** — 스토어 인트로(네이비 #0b1626 히어로, 골드 eyebrow) · "판매 중" 대표 상품 블록(이미지 + 정보, 가격 3,500,000원 부가세 포함, 재고 3대) · 구매 절차 4단계 · 카카오톡 입고 알림 띠 · 쇼룸 방문 CTA. contact.html 과 같은 일반 HTML(x-dc/React 없음).
+- **`store-gorilla-grip.html` 신규** — Monument Toolworks Parallign Gorilla Grip 2.1 Camless(GG2-20000-13) 상품 상세. 갤러리(썸네일 5 · 라이트박스 · 키보드/스와이프) + sticky 구매 박스(110V 변압기 안내) · 선택 이유 3 · 사양표/구성품 · 사용 전 확인(케이스 라벨 5항목 번역)/적용 현장 · 구매 문의 폼 · FAQ 6. 폼은 `/.netlify/functions/contact` 로 보내며 `inquiry_type` = "구매 문의 · Gorilla Grip 2.1 진공 심세터", 본문에 수량·수령 방법을 앞세운다(서버 50자 제한 안). 플로팅 위젯 "견적 문의" 가 잡는 `#inquiry` 앵커를 폼 섹션에 둠. Product JSON-LD(가격·재고 포함)는 build-seo.js 대상이 아니라 수기 관리.
+- **`assets/css/store.css`**, **`images/store/`**(쇼룸 촬영 원본을 크롭·WebP 변환 6장 + OG 1200×630) 신규.
+- **공통 헤더**: 데스크톱 nav 와 구형 모바일 패널에 "스토어"(시공사례 뒤) — about · bmc · bmc/products · contact · facility · index · portfolio · privacy. `assets/js/mobile-nav.js` PRIMARY 에도 추가. 메뉴가 9개가 되어 **버거 브레이크포인트를 1080 → 1279** 로 올렸다(사이트의 터치 기준 ≤1279 와 통일; 기존에도 1081~1200 구간에서 nav 가 로고·아이콘과 겹치고 있었음). gap 32 → 28px(≤1400 은 22px). `mobile.css`(→ site.css 재빌드) · `mobile-nav.js` 의 1080 도 1279 로. **보호 파일 showroom.html · product-detail.html 은 손대지 않음** → 이 두 페이지 헤더에는 아직 "스토어" 가 없다.
+- 푸터 COMPANY 에 Store 링크, `search-overlay.js` 페이지 색인에 스토어/상품, `i18n-en.js` '스토어': 'Store', `sitemap.xml` 에 /store · /store-gorilla-grip.
+
 ## 2026-09-08 · 개인정보처리방침 페이지(/privacy) 신설 + 문의 폼 "더 보기" 링크
 
 - **`privacy.html` 신규**: contact.html 의 head(메타·폰트·site.css·공통 스크립트)·헤더·푸터를 그대로 가져오고, 히어로(골드 eyebrow "PRIVACY POLICY" · 제목 · 한 줄 설명 · 시행일 2026-09-08)와 본문(최대 780px 단일 컬럼, `h2` 조항 제목은 Noto Serif KR, 표는 헤어라인 보더 · 모바일 가로 스크롤). 배경은 크림 #F5F1E8. `/privacy` 는 Netlify Pretty URL 로 동작(_redirects 불필요).

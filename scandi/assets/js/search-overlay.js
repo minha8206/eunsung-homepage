@@ -30,6 +30,8 @@
     { name: '인조대리석', url: 'showroom.html?cat=HIMACS',      desc: '하이막스 — 이음새 없는 100% 아크릴 솔리드 서페이스' },
     { name: 'BMC',      url: 'bmc.html',                     desc: '자체 생산하는 열경화성 성형 컴파운드' },
     { name: '시공사례', url: 'portfolio.html',                 desc: '주방·욕실·상업공간 시공 레퍼런스' },
+    { name: '스토어',   url: 'store.html',                     desc: '미국 직수입 Gorilla Grip 심세터 등 현장 장비 판매' },
+    { name: 'Gorilla Grip 2.1 진공 심세터', url: 'store-gorilla-grip.html', desc: '포드당 1,200lbs 전동 진공 심세터 · 3,500,000원' },
     { name: '문의',     url: 'contact.html',                   desc: '견적·시공·자재 문의와 쇼룸 방문 예약' }
   ];
 

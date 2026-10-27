@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="naver-site-verification" content="3f77031df39ae82017cfd209f31be7ff0f23892e" />
+<!-- SEO / 링크 미리보기 (카카오톡·페이스북 등) -->
+<title>스토어 | 은성 EUNSUNG — 현장에서 직접 쓰는 장비·자재 판매</title>
+<meta name="description" content="은성이 가공 현장에서 직접 쓰고 검증한 장비와 자재를 소량 판매합니다. 미국 직수입 Gorilla Grip 진공 심세터 등, 포천 쇼룸에서 실물 확인 후 구매하세요.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EUNSUNG 은성">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="스토어 | 은성 EUNSUNG — 현장에서 직접 쓰는 장비·자재 판매">
+<meta property="og:description" content="은성이 가공 현장에서 직접 쓰고 검증한 장비와 자재를 소량 판매합니다. 미국 직수입 Gorilla Grip 진공 심세터 등, 포천 쇼룸에서 실물 확인 후 구매하세요.">
+<meta property="og:url" content="https://esstone.co.kr/store">
+<meta property="og:image" content="https://esstone.co.kr/images/store/gorilla-grip-og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://esstone.co.kr/store">
+<link rel="preload" as="image" href="images/store/gorilla-grip-card.webp" fetchpriority="high">
+<!-- 웹폰트
+     · 라틴 2종(Cormorant Garamond·Manrope)은 Google Fonts 의 latin 가변 woff2 를 assets/fonts/ 에 자체 호스팅한다.
+       Google 은 UA 마다 다른 파일 URL 을 주기 때문에 외부 URL 을 preload 하면 빗나간다 — 우리 파일이면 preload 가 확실히 맞는다.
+       (같은 파일·같은 unicode-range 라 글꼴 모양은 동일. 한글은 이 두 폰트에 없어 원래부터 다음 폰트로 넘어간다.)
+     · 한글(Noto Serif KR)은 100여 개 유니코드 조각으로 나뉘어 있어 Google CSS 를 그대로 쓰되, 아래 스크립트가
+       첫 페인트 뒤에 붙인다(display=swap 유지). -->
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/cormorant-garamond-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/manrope-latin.woff2">
+<style>
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300 700;font-display:swap;src:url(assets/fonts/cormorant-garamond-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:300 700;font-display:swap;src:url(assets/fonts/cormorant-garamond-italic-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:200 800;font-display:swap;src:url(assets/fonts/manrope-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script>
+/* Noto Serif KR CSS 는 첫 콘텐츠 페인트 뒤에 붙인다 — 그 전에 붙이면 한글 조각 폰트 10여 개(≈450KB)가
+   첫 화면 이미지·CSS 와 대역폭을 나눈다. display=swap 이라 그 전에도 글자는 대체 폰트로 바로 보인다. */
+(function(){var done=false;function add(){if(done)return;done=true;var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500&display=swap';document.head.appendChild(l);}
+try{var po=new PerformanceObserver(function(list){if(list.getEntries().some(function(e){return e.name==='first-contentful-paint';})){po.disconnect();add();}});po.observe({type:'paint',buffered:true});}catch(e){}
+setTimeout(add,1000);})();
+</script>
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500&display=swap"></noscript>
+<!-- 공통 CSS 10개를 한 파일로 — scripts/build-css.js 가 assets/css/*.css 에서 만든다. 개별 파일을 고치면 다시 빌드할 것. -->
+<link rel="stylesheet" href="assets/css/site.css">
+<script src="assets/js/inquiry-widget.js" defer></script>
+<script src="assets/js/login-modal.js" defer></script>
+<script src="assets/js/search-overlay.js" defer></script>
+<script src="js/i18n.js" defer></script>
+<script src="assets/js/reveal.js" defer></script>
+<script src="assets/js/mobile-nav.js" defer></script>
+<link rel="stylesheet" href="assets/css/store.css">
+<!-- SEO-JSONLD:START -->
+<!-- 스토어 페이지는 scripts/build-seo.js 의 PAGES 목록에 넣지 않았다 — Product 스키마가 들어 있어 수기로 관리한다.
+     가격·재고가 바뀌면 이 구간과 본문을 함께 고칠 것. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://esstone.co.kr/#organization",
+      "name": "(주)은성",
+      "alternateName": [
+        "EUNSUNG",
+        "은성",
+        "은성 세라믹"
+      ],
+      "url": "https://esstone.co.kr/",
+      "logo": "https://esstone.co.kr/images/og-cover.jpg",
+      "image": "https://esstone.co.kr/images/og-cover.jpg",
+      "description": "포세린·비아테라·하이막스 등 표면재의 선별·가공·시공을 직접 수행하는 전문 기업. LX하우시스 공식 파트너.",
+      "foundingDate": "2009",
+      "founder": {
+        "@type": "Person",
+        "name": "이언기"
+      },
+      "employee": {
+        "@type": "Person",
+        "name": "이언기",
+        "jobTitle": "대표이사"
+      },
+      "telephone": "+82-31-544-7272",
+      "faxNumber": "+82-31-544-6868",
+      "email": "ceramices@naver.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "가산면 정금로 356-39",
+        "addressLocality": "포천시",
+        "addressRegion": "경기도",
+        "postalCode": "11164",
+        "addressCountry": "KR"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+82-31-544-7272",
+        "contactType": "customer service",
+        "areaServed": "KR",
+        "availableLanguage": [
+          "ko",
+          "en"
+        ]
+      }
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://esstone.co.kr/#localbusiness",
+      "name": "(주)은성 EUNSUNG",
+      "parentOrganization": {
+        "@id": "https://esstone.co.kr/#organization"
+      },
+      "url": "https://esstone.co.kr/",
+      "image": "https://esstone.co.kr/images/og-cover.jpg",
+      "description": "경기도 포천 자체 공장에서 포세린·비아테라·하이막스 슬랩을 재단·가공하고 현장 시공까지 진행합니다. 쇼룸 방문 상담 가능.",
+      "telephone": "+82-31-544-7272",
+      "faxNumber": "+82-31-544-6868",
+      "email": "ceramices@naver.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "가산면 정금로 356-39",
+        "addressLocality": "포천시",
+        "addressRegion": "경기도",
+        "postalCode": "11164",
+        "addressCountry": "KR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 37.8179451,
+        "longitude": 127.1969716
+      },
+      "hasMap": "https://map.naver.com/p/search/%EA%B2%BD%EA%B8%B0%EB%8F%84%20%ED%8F%AC%EC%B2%9C%EC%8B%9C%20%EA%B0%80%EC%82%B0%EB%A9%B4%20%EC%A0%95%EA%B8%88%EB%A1%9C%20356-39",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "08:30",
+          "closes": "17:30"
+        }
+      ],
+      "areaServed": {
+        "@type": "Country",
+        "name": "대한민국"
+      },
+      "knowsAbout": [
+        "포세린 시공",
+        "비아테라",
+        "하이막스",
+        "BMC",
+        "주방 상판",
+        "아트월"
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://esstone.co.kr/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "홈",
+          "item": "https://esstone.co.kr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "스토어",
+          "item": "https://esstone.co.kr/store"
+        }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://esstone.co.kr/store#products",
+      "name": "은성 스토어 판매 품목",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "Product",
+            "@id": "https://esstone.co.kr/store-gorilla-grip#product",
+            "name": "Parallign Gorilla Grip 2.1 진공 심세터 (캠리스)",
+            "alternateName": [
+              "Gorilla Grip Seam Setter 2.1 Camless",
+              "고릴라 그립 심세터"
+            ],
+            "brand": {
+              "@type": "Brand",
+              "name": "Monument Toolworks"
+            },
+            "mpn": "GG2-20000-13",
+            "image": [
+              "https://esstone.co.kr/images/store/gorilla-grip-01-kit.webp",
+              "https://esstone.co.kr/images/store/gorilla-grip-02-front.webp",
+              "https://esstone.co.kr/images/store/gorilla-grip-03-detail.webp"
+            ],
+            "description": "미국 Monument Toolworks 정품 전동 진공 심세터. 포드당 1,200lbs 흡착력, 캠리스 설계. 포세린·엔지니어드 스톤·천연석 상판 접합용. 은성 직수입, 포천 쇼룸 시연 가능.",
+            "category": "석재 가공 장비 > 심세터",
+            "offers": {
+              "@type": "Offer",
+              "url": "https://esstone.co.kr/store-gorilla-grip",
+              "priceCurrency": "KRW",
+              "price": "3500000",
+              "itemCondition": "https://schema.org/NewCondition",
+              "availability": "https://schema.org/InStock",
+              "inventoryLevel": {
+                "@type": "QuantitativeValue",
+                "value": 3
+              },
+              "seller": {
+                "@id": "https://esstone.co.kr/#organization"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<!-- SEO-JSONLD:END -->
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#fbfaf8;font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth}
+a{color:#a8763f}
+a:hover{color:#c9a24b}
+.nav-mid{display:flex;align-items:center;gap:28px}
+@media (max-width:1400px){.nav-mid{gap:22px}}
+.nav-mid a{color:inherit;font:500 15px/1 'Manrope';letter-spacing:.02em;text-decoration:none;position:relative;padding:4px 0;white-space:nowrap;transition:color .2s}
+.nav-mid a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:1.5px;background:currentColor;transition:width .35s}
+.nav-mid a:hover{color:#bf8e5a}
+.nav-mid a:hover::after{width:100%}
+.nav-drop{display:inline-flex;align-items:center}
+.nav-right{display:flex;align-items:center;gap:11px;flex-shrink:0}
+.nav-ic{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;cursor:pointer;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.08);transition:.3s}
+.nav-ic:hover{background:rgba(255,255,255,.22)}
+.nav-ic svg{width:16px;height:16px}
+.lang{font:700 11px 'Manrope';letter-spacing:.08em;display:flex;gap:5px;align-items:center}
+.lang b{cursor:pointer}
+.nav-drop-menu{position:absolute;top:24px;left:50%;transform:translate(-50%,6px);opacity:0;visibility:hidden;transition:.3s ease;background:rgba(251,250,250,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(14,36,64,.08);border-radius:10px;box-shadow:0 26px 54px -22px rgba(14,36,64,.4);padding:10px;min-width:190px;z-index:40}
+.nav-drop:hover .nav-drop-menu{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.nav-drop-item{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:10px 14px;font:600 11px 'Manrope';letter-spacing:.08em;color:#0e2440;text-decoration:none;border-radius:7px;transition:.25s}
+.nav-drop-item:hover{background:rgba(201,162,75,.1);color:#a8763f}
+.nav-drop-item span{font:500 10px 'Manrope';letter-spacing:.02em;opacity:.5}
+.nav-drop-item-sep{border-top:1px solid rgba(14,36,64,.08);margin-top:4px;padding-top:14px}
+.nav-toggle-input{display:none}
+.nav-burger{display:none;width:34px;height:34px;border-radius:50%;align-items:center;justify-content:center;border:1px solid rgba(14,36,64,.18);background:rgba(255,255,255,.08);cursor:pointer}
+.nav-burger svg{width:16px;height:16px}
+.nav-mobile-panel{display:none;position:fixed;top:64px;left:0;right:0;z-index:29;background:#fbfaf8;border-bottom:1px solid rgba(14,36,64,.1);box-shadow:0 24px 50px -28px rgba(14,36,64,.35);padding:8px 6vw 20px;flex-direction:column}
+.nav-mobile-panel a{padding:14px 2px;font:500 15px 'Manrope';color:#0e2440;text-decoration:none;border-bottom:1px solid rgba(14,36,64,.07)}
+.nav-mobile-panel a.nav-mobile-sub{padding-left:18px;font-size:13px;color:rgba(14,36,64,.6)}
+body.nav-open .nav-mobile-panel{display:flex}
+@media (max-width:1279px){
+.nav-mid{display:none}
+.nav-burger{display:inline-flex}
+}
+.brand-logo{display:flex;align-items:baseline;gap:.6em;font-size:1.75rem;transition:opacity .3s ease}
+.brand-logo:hover{opacity:.7}
+.brand-en{font:600 1.75rem 'Cormorant Garamond',serif;letter-spacing:.15em;text-transform:uppercase;color:#111;line-height:1}
+.brand-kr{font:400 .85rem 'Noto Serif KR',serif;opacity:.5;color:#111;line-height:1;white-space:nowrap}
+@media (max-width:640px){
+.brand-logo{font-size:1.35rem}
+.brand-en{font-size:1.35rem;letter-spacing:.12em}
+.brand-kr{font-size:.72rem}
+}
+</style>
+</head>
+<body>
+<div style="position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:19px 5vw;background:rgba(255,255,255,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(14,36,64,.08);color:#0e2440">
+  <a href="index.html" class="brand-logo" style="text-decoration:none;color:inherit">
+    <span class="brand-en">EUNSUNG</span><span class="brand-kr">은성</span>
+  </a>
+  <nav class="nav-mid" style="color:#1a1a1a">
+    <a href="about.html">회사소개</a>
+    <a href="facility.html">시공 과정</a>
+    <a href="showroom.html?cat=PORCELAIN">포세린</a>
+    <a href="showroom.html?cat=VIATERA">엔지니어드 스톤</a>
+    <a href="showroom.html?cat=HIMACS">인조대리석</a>
+    <a href="bmc.html">BMC</a>
+    <a href="portfolio.html">시공사례</a>
+    <a href="store.html" style="color:#a8763f">스토어</a>
+    <a href="contact.html">문의</a>
+  </nav>
+  <div class="nav-right">
+    <button type="button" class="nav-ic" aria-label="검색"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></button>
+    <span class="lang" role="group" aria-label="언어 선택"><b><button type="button" class="lang-btn" lang="ko" aria-label="한국어">KO</button></b><b><button type="button" class="lang-btn" lang="en" aria-label="English">EN</button></b></span>
+    <button type="button" class="nav-ic" aria-label="로그인"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></button>
+    <button type="button" class="nav-burger" aria-label="메뉴 열기" aria-expanded="false" aria-controls="navMobilePanel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M4 9h16M4 15h16"/></svg></button>
+  </div>
+</div>
+<!-- ===================== 1. 인트로 ===================== -->
+<section class="st-hero">
+  <div class="st-wrap">
+    <div class="st-hero-eyebrow reveal">STORE · 스토어</div>
+    <h1 class="st-hero-title reveal">현장에서 직접 쓰는 장비를<br class="br-m"> 그대로 판매합니다.</h1>
+    <p class="st-hero-lead reveal">은성 가공장에서 매일 쓰는 공구와 자재 가운데, 쓸수록 믿음이 가는 것만 소량으로 들여옵니다. 해외 제조사에서 직접 수입하고, 포천 쇼룸에 실물을 세팅해 두었습니다. 보고, 만져보고, 작동까지 확인한 뒤 결정하셔도 됩니다.</p>
+    <div class="st-hero-meta reveal">
+      <span>제조사 직수입 정품</span>
+      <span>포천 쇼룸 실물 시연</span>
+      <span>세금계산서 · 현금영수증 발행</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 2. 판매 중 ===================== -->
+<section class="st-section st-cream" id="products">
+  <div class="st-wrap">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:44px">
+      <div>
+        <div class="st-eyebrow reveal">AVAILABLE NOW · 판매 중</div>
+        <h2 class="st-title reveal" style="margin:0">지금 구매하실 수 있는 품목</h2>
+      </div>
+      <div class="reveal" style="font:400 13px/1.7 'Manrope';color:rgba(14,36,64,.5)">소량 한정 · 품절 시 재입고 문의 가능</div>
+    </div>
+
+    <article class="st-feature reveal">
+      <a class="st-feature-media" href="store-gorilla-grip.html" aria-label="Gorilla Grip 2.1 진공 심세터 상세 보기">
+        <span class="st-badge st-badge--gold">미국 직수입</span>
+        <img src="images/store/gorilla-grip-card.webp" width="960" height="1200" alt="Parallign Gorilla Grip 2.1 진공 심세터 — 포천 쇼룸 시연 세팅" fetchpriority="high">
+      </a>
+      <div class="st-feature-body">
+        <div class="st-feature-brand">MONUMENT TOOLWORKS · USA</div>
+        <h3 class="st-feature-name">Parallign Gorilla Grip 2.1</h3>
+        <div class="st-feature-sub">고릴라 그립 진공 심세터 · 캠리스</div>
+        <p class="st-feature-desc">상판 두 장을 잇는 자리에서 단차와 틈을 잡아주는 전동 진공 클램프입니다. 포드 하나가 약 540kg을 붙잡고 있는 동안 롤러 너트를 손바닥으로 굴려 이음새를 열고 닫습니다. 포세린·엔지니어드 스톤·천연석 상판 접합에 은성이 실제로 쓰는 장비입니다.</p>
+        <dl class="st-feature-specs">
+          <div><dt>흡착력</dt><dd>1,200 lbs / 포드</dd></div>
+          <div><dt>적용 두께</dt><dd>1cm – 3cm</dd></div>
+          <div><dt>구성</dt><dd>펌프 + 포드 2세트 + 케이스</dd></div>
+        </dl>
+        <div class="st-price-row">
+          <div>
+            <div class="st-price">3,500,000<small>원 · 부가세 포함</small></div>
+            <div class="st-price-note">계좌이체 · 세금계산서 / 현금영수증 발행</div>
+          </div>
+          <div class="st-stock">재고 3대</div>
+        </div>
+        <div class="st-feature-actions">
+          <a class="st-btn st-btn--navy" href="store-gorilla-grip.html">자세히 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="st-btn st-btn--line" href="store-gorilla-grip.html#order">구매 문의</a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ===================== 3. 구매 절차 ===================== -->
+<section class="st-section st-paper">
+  <div class="st-wrap">
+    <div style="max-width:720px;margin-bottom:52px">
+      <div class="st-eyebrow reveal">HOW TO ORDER · 구매 절차</div>
+      <h2 class="st-title reveal" style="margin:0 0 18px">문의부터 수령까지, 네 단계</h2>
+      <p class="st-lead reveal" style="margin:0">온라인 결제창은 두지 않았습니다. 장비는 쓰는 현장과 전압, 운반 방법까지 한 번은 이야기를 나누고 보내드리는 게 맞다고 생각해서입니다.</p>
+    </div>
+    <div class="st-steps">
+      <div class="st-step reveal"><div class="st-step-num">01</div><div class="st-step-title">문의</div><div class="st-step-desc">상품 페이지의 구매 문의 폼, 카카오톡 채널, 전화 중 편한 방법으로 수량과 수령 방식을 알려주세요.</div></div>
+      <div class="st-step reveal"><div class="st-step-num">02</div><div class="st-step-title">확인 · 견적</div><div class="st-step-desc">영업일 기준 하루 안에 재고와 배송비를 확인해 견적서를 보내드립니다. 쇼룸 방문 시연을 원하시면 일정을 잡아드립니다.</div></div>
+      <div class="st-step reveal"><div class="st-step-num">03</div><div class="st-step-title">결제</div><div class="st-step-desc">계좌이체로 결제하시면 세금계산서 또는 현금영수증을 발행해 드립니다.</div></div>
+      <div class="st-step reveal"><div class="st-step-num">04</div><div class="st-step-title">수령</div><div class="st-step-desc">포천 쇼룸에서 직접 받아 가시거나 화물 배송으로 보내드립니다. 수령 시 작동법을 함께 안내해 드립니다.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 4. 입고 알림 ===================== -->
+<section class="st-section--tight st-cream" style="padding-top:0">
+  <div class="st-wrap">
+    <div class="st-notify reveal">
+      <div>
+        <h2 class="st-notify-title">다음 입고 품목은 카카오톡 채널에서 먼저 알려드립니다.</h2>
+        <div class="st-notify-desc">관심 있는 장비나 자재가 있으면 미리 말씀해 주세요. 수입 일정에 반영하겠습니다.</div>
+      </div>
+      <a class="st-btn st-btn--kakao" href="https://open.kakao.com/o/sS7BnYyc" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3.5C6.75 3.5 2.5 6.86 2.5 11c0 2.64 1.75 4.96 4.39 6.29-.19.7-.7 2.57-.8 2.97-.13.5.18.49.38.36.16-.1 2.53-1.72 3.56-2.42.63.09 1.28.14 1.97.14 5.25 0 9.5-3.36 9.5-7.5s-4.25-7.5-9.5-7.5z"/></svg>카카오톡 채널 추가</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section style="background:#FFFFFF;padding:130px 5vw;text-align:center">
+  <div style="max-width:640px;margin:0 auto">
+    <div style="font:500 clamp(30px,3.6vw,44px)/1.1 'Cormorant Garamond';color:#0e2440;margin-bottom:16px">Visit the showroom.</div>
+    <div class="text-pretty" style="font:400 15px/1.8 'Manrope';color:rgba(14,36,64,.6);margin-bottom:40px">경기도 포천 가산면 쇼룸에 판매 장비가 세팅되어 있습니다.<br>방문 전 연락 주시면 작동 시연을 준비해 두겠습니다.</div>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+      <a href="contact.html" style="font:600 13px 'Manrope';letter-spacing:.04em;padding:16px 30px;border-radius:8px;text-decoration:none;display:inline-block;background:#0e2440;color:#fff;transition:.3s">쇼룸 방문 예약</a>
+      <a href="tel:0315447272" class="nowrap" style="font:600 13px 'Manrope';letter-spacing:.04em;padding:16px 30px;border-radius:8px;text-decoration:none;display:inline-block;background:#fff;border:1.5px solid rgba(14,36,64,.4);color:#0e2440;transition:.3s">031-544-7272</a>
+    </div>
+  </div>
+</section>
+<!-- ===================== FOOTER ===================== -->
+<footer style="background:#080b10;padding:72px 5vw 40px">
+  <div style="max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:44px">
+    <div style="max-width:300px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
+        <div style="font:700 15px 'Manrope';letter-spacing:.24em;color:#fff">EUNSUNG</div>
+      </div>
+      <div style="font:400 13px/1.8 'Manrope';color:rgba(255,255,255,.45)">포세린·엔지니어드 스톤·인조대리석·BMC<br>소재 선별부터 가공, 시공까지. 은성이 처음부터 끝까지&nbsp;책임집니다.</div>
+    </div>
+    <div style="display:flex;gap:64px;flex-wrap:wrap">
+      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">MATERIALS</div><div style="display:flex;flex-direction:column;gap:11px"><a class="ft-link" href="showroom.html?cat=PORCELAIN">포세린</a><a class="ft-link" href="showroom.html?cat=VIATERA">엔지니어드 스톤</a><a class="ft-link" href="showroom.html?cat=HIMACS">인조대리석</a><a class="ft-link" href="bmc.html">BMC</a></div></div>
+      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">COMPANY</div><div style="display:flex;flex-direction:column;gap:11px"><a class="ft-link" href="portfolio.html">Portfolio</a><a class="ft-link" href="facility.html">Process</a><a class="ft-link" href="about.html">About</a><a class="ft-link" href="showroom.html?cat=PORCELAIN">Showroom</a><a class="ft-link" href="store.html">Store</a></div></div>
+      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">SUPPORT</div><div style="display:flex;flex-direction:column;gap:11px"><a class="ft-link" href="contact.html">Inquiry</a></div></div>
+    </div>
+  </div>
+  <div style="max-width:1280px;margin:48px auto 0;padding-top:26px;border-top:1px solid rgba(255,255,255,.09)">
+    <div style="margin-bottom:14px;font:400 12px/1.7 'Manrope';color:rgba(255,255,255,.5);word-break:keep-all">(주)은성 — 경기도 포천 포세린·엔지니어드 스톤 전문 기업 | LX하우시스 공식&nbsp;파트너</div>
+    <div class="ft-info" style="display:flex;flex-wrap:wrap;gap:8px 22px;margin-bottom:16px;font:400 12px/1.7 'Manrope';color:rgba(255,255,255,.45)">
+      <span>상호 (주)은성</span><span>대표자 이언기</span><span>사업자등록번호 328-88-00420</span><span class="ft-info-addr">주소&nbsp;경기도 포천시 가산면 정금로&nbsp;356-39</span><span>전화 031-544-7272 · 010-5430-2580</span><span>팩스 031-544-6868</span><span>이메일 ceramices@naver.com</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px"><div style="font:400 12px 'Manrope';color:rgba(255,255,255,.4)">© 2026 (주)은성 EUNSUNG Co., Ltd. · 인조대리석 및 상판 가공</div><a class="ft-link" href="privacy.html" style="font-size:12px;color:rgba(255,255,255,.62);text-decoration:underline;text-underline-offset:3px">개인정보처리방침</a></div>
+      <div style="font:400 12px 'Manrope';color:rgba(255,255,255,.4)">Instagram · KakaoTalk · Naver</div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

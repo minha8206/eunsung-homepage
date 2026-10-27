@@ -1,0 +1,272 @@
+/* ===== 스토어 · 장비 판매 (store.html, store-gorilla-grip.html) =====
+   디자인 시스템: 크림(#f5f2ec/#fbfaf8) · 네이비(#0e2440) · 골드(#bf8e5a/#b8924a/#a8763f)
+   서체: Cormorant Garamond(라틴 제목) · Noto Serif KR(한글 제목) · Manrope(본문)
+   bmc.css 의 카드·표 규칙과 같은 결을 유지한다. */
+
+/* ---------- 공통 ---------- */
+.st-eyebrow{font:600 12px 'Manrope';letter-spacing:.42em;color:#b8924a;margin-bottom:16px}
+.st-title{font:500 clamp(27px,3.4vw,42px)/1.35 'Noto Serif KR',serif;color:#0e2440;text-wrap:balance}
+.st-lead{font:400 15.5px/1.9 'Manrope';color:rgba(14,36,64,.65)}
+.st-wrap{max-width:1280px;margin:0 auto}
+.st-section{padding:110px 5vw}
+.st-section--tight{padding:84px 5vw}
+.st-cream{background:#f5f2ec}
+.st-paper{background:#fbfaf8}
+
+/* 버튼 */
+.st-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font:600 13px 'Manrope';letter-spacing:.04em;padding:16px 28px;border-radius:8px;text-decoration:none;transition:.3s;cursor:pointer;border:1.5px solid transparent;white-space:nowrap}
+.st-btn svg{width:14px;height:14px;flex-shrink:0}
+.st-btn--navy{background:#0e2440;color:#fff;border-color:#0e2440}
+.st-btn--navy:hover{background:#19365c;border-color:#19365c;color:#fff}
+.st-btn--line{background:transparent;color:#0e2440;border-color:rgba(14,36,64,.38)}
+.st-btn--line:hover{border-color:#0e2440;color:#0e2440}
+.st-btn--gold{background:#bf8e5a;color:#fff;border-color:#bf8e5a}
+.st-btn--gold:hover{background:#a8763f;border-color:#a8763f;color:#fff}
+.st-btn--kakao{background:#fae100;color:#1d1d1b;border-color:#fae100}
+.st-btn--kakao:hover{background:#f2d900;border-color:#f2d900;color:#1d1d1b}
+.st-btn--block{width:100%}
+
+/* 뱃지 · 칩 */
+.st-badge{display:inline-flex;align-items:center;gap:6px;font:600 10.5px 'Manrope';letter-spacing:.14em;text-transform:uppercase;padding:7px 11px;border-radius:4px;background:#0e2440;color:#f3efe6}
+.st-badge--gold{background:#bf8e5a;color:#fff}
+.st-badge--line{background:transparent;border:1px solid rgba(14,36,64,.25);color:#0e2440}
+.st-chips{display:flex;flex-wrap:wrap;gap:8px}
+.st-chip{font:500 12px 'Manrope';letter-spacing:.02em;color:rgba(14,36,64,.78);background:rgba(14,36,64,.06);padding:7px 12px;border-radius:20px;white-space:nowrap}
+.st-chip b{font-weight:700;color:#0e2440}
+
+/* ---------- 스토어 인트로 (store.html) ---------- */
+.st-hero{background:#0b1626;color:#f3efe6;padding:164px 5vw 96px;position:relative;overflow:hidden}
+.st-hero::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(900px 420px at 85% 0%,rgba(191,142,90,.16),transparent 70%),
+  radial-gradient(600px 300px at 10% 100%,rgba(255,255,255,.05),transparent 70%)}
+.st-hero .st-wrap{position:relative}
+.st-hero-eyebrow{font:600 12px 'Manrope';letter-spacing:.42em;color:#c9a24b;margin-bottom:22px}
+.st-hero-title{margin:0 0 22px;font:500 clamp(34px,4.6vw,60px)/1.22 'Noto Serif KR',serif;color:#f3efe6;text-wrap:balance;max-width:14em}
+.st-hero-lead{max-width:560px;font:400 15.5px/1.9 'Manrope';color:rgba(243,239,230,.68)}
+.st-hero-meta{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:44px;padding-top:28px;border-top:1px solid rgba(255,255,255,.12)}
+.st-hero-meta span{display:inline-flex;align-items:center;gap:9px;font:500 12.5px 'Manrope';letter-spacing:.04em;color:rgba(243,239,230,.72)}
+.st-hero-meta span::before{content:'';width:5px;height:5px;border-radius:50%;background:#c9a24b}
+
+/* ---------- 판매 중 · 대표 상품 블록 ---------- */
+.st-feature{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:0;border-radius:18px;overflow:hidden;background:#fff;border:1px solid rgba(14,36,64,.08);box-shadow:0 34px 70px -40px rgba(14,36,64,.35)}
+.st-feature-media{position:relative;background:#ece9e2;min-height:420px}
+.st-feature-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.22,1,.36,1)}
+.st-feature:hover .st-feature-media img{transform:scale(1.03)}
+.st-feature-media .st-badge{position:absolute;top:22px;left:22px;z-index:1}
+.st-feature-body{padding:54px 56px 50px;display:flex;flex-direction:column}
+.st-feature-brand{font:600 11px 'Manrope';letter-spacing:.32em;color:#b8924a;margin-bottom:14px}
+.st-feature-name{margin:0;font:500 clamp(28px,2.8vw,38px)/1.1 'Cormorant Garamond',serif;color:#0e2440;letter-spacing:.01em}
+.st-feature-sub{margin:9px 0 22px;font:500 16px/1.5 'Noto Serif KR',serif;color:rgba(14,36,64,.78)}
+.st-feature-desc{font:400 14.5px/1.85 'Manrope';color:rgba(14,36,64,.62);margin-bottom:26px}
+.st-feature-specs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:20px 0;border-top:1px solid rgba(14,36,64,.1);border-bottom:1px solid rgba(14,36,64,.1);margin-bottom:26px}
+.st-feature-specs div{min-width:0}
+.st-feature-specs dt{font:600 10px 'Manrope';letter-spacing:.16em;color:#a8763f;margin-bottom:5px}
+.st-feature-specs dd{margin:0;font:500 13.5px/1.45 'Manrope';color:#0e2440;font-variant-numeric:tabular-nums}
+.st-price-row{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:auto}
+.st-price{font:600 30px/1 'Manrope';letter-spacing:-.02em;color:#0e2440;font-variant-numeric:tabular-nums}
+.st-price small{font:500 13px 'Manrope';letter-spacing:0;color:rgba(14,36,64,.5);margin-left:8px}
+.st-price-note{font:400 12px/1.6 'Manrope';color:rgba(14,36,64,.5);margin-top:8px}
+.st-stock{font:600 12px 'Manrope';letter-spacing:.06em;color:#a8763f;display:inline-flex;align-items:center;gap:8px}
+.st-stock::before{content:'';width:7px;height:7px;border-radius:50%;background:#3f9a5b;box-shadow:0 0 0 3px rgba(63,154,91,.18)}
+.st-feature-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+@media (max-width:1023px){
+  .st-feature{grid-template-columns:1fr}
+  .st-feature-media{min-height:0;aspect-ratio:4/3}
+  .st-feature-body{padding:36px 30px 34px}
+}
+@media (max-width:640px){
+  .st-feature-media{aspect-ratio:4/5}
+  .st-feature-body{padding:28px 22px 26px}
+  .st-feature-specs{grid-template-columns:repeat(2,1fr)}
+  .st-feature-actions .st-btn{flex:1 1 100%}
+  .st-price{font-size:26px}
+}
+
+/* ---------- 구매 절차 ---------- */
+.st-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.st-step{padding:32px 28px 30px;border-radius:16px;background:#fff;border:1px solid rgba(14,36,64,.08);box-shadow:0 24px 54px -34px rgba(14,36,64,.3);position:relative}
+.st-step-num{font:500 34px/1 'Cormorant Garamond',serif;color:#bf8e5a;margin-bottom:18px}
+.st-step-title{font:500 17px/1.5 'Noto Serif KR',serif;color:#0e2440;margin-bottom:10px}
+.st-step-desc{font:400 13.5px/1.78 'Manrope';letter-spacing:-.01em;color:rgba(14,36,64,.58)}
+@media (max-width:1023px){.st-steps{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.st-steps{grid-template-columns:1fr;gap:14px}}
+
+/* ---------- 입고 알림 띠 ---------- */
+.st-notify{display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;padding:38px 44px;border-radius:16px;background:#0e2440;color:#f3efe6}
+.st-notify-title{margin:0 0 6px;font:500 21px/1.4 'Noto Serif KR',serif;color:#f3efe6}
+.st-notify-desc{font:400 13.5px/1.75 'Manrope';color:rgba(243,239,230,.62)}
+@media (max-width:640px){.st-notify{padding:28px 24px}.st-notify .st-btn{width:100%}}
+
+/* ---------- 상품 상세 · 상단 ---------- */
+.st-crumb{display:flex;align-items:center;gap:10px;font:500 12px 'Manrope';letter-spacing:.04em;color:rgba(14,36,64,.5);margin-bottom:34px;flex-wrap:wrap}
+.st-crumb a{color:rgba(14,36,64,.5);text-decoration:none;transition:.2s}
+.st-crumb a:hover{color:#a8763f}
+.st-crumb svg{width:11px;height:11px;opacity:.5}
+.st-crumb b{font-weight:600;color:#0e2440}
+.st-pd{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:64px;align-items:start}
+.st-gallery{position:sticky;top:96px}
+.st-gallery-main{position:relative;border-radius:16px;overflow:hidden;background:#ece9e2;aspect-ratio:4/5;box-shadow:0 30px 60px -40px rgba(14,36,64,.4)}
+.st-gallery-main img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:1;transition:opacity .35s ease}
+.st-gallery-main img.is-fading{opacity:0}
+.st-gallery-main .st-badge{position:absolute;top:20px;left:20px;z-index:1}
+.st-gallery-zoom{position:absolute;right:16px;bottom:16px;z-index:1;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:rgba(10,14,22,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;display:grid;place-items:center;cursor:zoom-in;transition:.25s}
+.st-gallery-zoom:hover{background:rgba(10,14,22,.7)}
+.st-gallery-zoom svg{width:16px;height:16px}
+.st-thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:12px}
+.st-thumb{position:relative;display:block;padding:0;border:1.5px solid transparent;border-radius:10px;overflow:hidden;background:#ece9e2;cursor:pointer;aspect-ratio:1/1;transition:border-color .25s}
+.st-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:opacity .25s}
+.st-thumb:hover img{opacity:.85}
+.st-thumb.is-active{border-color:#bf8e5a}
+.st-thumb.is-active img{opacity:1}
+
+.st-info{padding-top:6px}
+.st-info-brand{font:600 11px 'Manrope';letter-spacing:.32em;color:#b8924a;margin-bottom:16px}
+.st-info-name{margin:0;font:500 clamp(34px,3.6vw,48px)/1.05 'Cormorant Garamond',serif;color:#0e2440;letter-spacing:.01em}
+.st-info-sub{margin:10px 0 0;font:500 clamp(17px,1.6vw,20px)/1.5 'Noto Serif KR',serif;color:rgba(14,36,64,.8)}
+.st-info-lead{margin:22px 0 0;font:400 15px/1.9 'Manrope';color:rgba(14,36,64,.64)}
+.st-info .st-chips{margin-top:22px}
+.st-buybox{margin-top:30px;padding:28px 30px;border-radius:16px;background:#fff;border:1px solid rgba(14,36,64,.09);box-shadow:0 24px 54px -36px rgba(14,36,64,.32)}
+.st-buybox .st-price{font-size:34px}
+.st-buybox .st-price small{font-size:13px}
+.st-buybox-rows{margin:22px 0 0;display:grid;gap:10px}
+.st-buybox-row{display:grid;grid-template-columns:86px 1fr;gap:14px;align-items:baseline;font:400 13px/1.65 'Manrope';color:rgba(14,36,64,.72)}
+.st-buybox-row dt{font:600 10px 'Manrope';letter-spacing:.16em;color:#a8763f;padding-top:2px}
+.st-buybox-row dd{margin:0}
+.st-buybox-row dd b{font-weight:600;color:#0e2440}
+.st-buybox-actions{display:grid;gap:9px;margin-top:24px}
+.st-buybox-actions .st-row2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.st-notice{display:flex;gap:12px;align-items:flex-start;margin-top:18px;padding:14px 16px;border-radius:10px;background:rgba(191,142,90,.1);border:1px solid rgba(191,142,90,.3);font:400 12.5px/1.7 'Manrope';color:rgba(14,36,64,.75)}
+.st-notice svg{width:16px;height:16px;flex-shrink:0;color:#a8763f;margin-top:2px}
+.st-notice b{font-weight:600;color:#0e2440}
+@media (max-width:1023px){
+  .st-pd{grid-template-columns:1fr;gap:36px}
+  .st-gallery{position:static}
+}
+@media (max-width:640px){
+  .st-thumbs{gap:7px}
+  .st-buybox{padding:22px 20px}
+  .st-buybox .st-price{font-size:28px}
+  .st-buybox-row{grid-template-columns:74px 1fr;gap:10px}
+}
+
+/* ---------- 강점 3 ---------- */
+.st-why{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.st-why-card{padding:36px 32px 34px;border-radius:16px;background:#fff;border:1px solid rgba(14,36,64,.08);box-shadow:0 24px 54px -34px rgba(14,36,64,.3)}
+.st-why-stat{font:500 44px/1 'Cormorant Garamond',serif;color:#0e2440;margin-bottom:6px;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.st-why-stat small{font:500 15px 'Cormorant Garamond',serif;color:#a8763f;margin-left:6px}
+.st-why-title{font:500 18px/1.5 'Noto Serif KR',serif;color:#0e2440;margin:14px 0 10px}
+.st-why-desc{font:400 13.5px/1.8 'Manrope';letter-spacing:-.01em;color:rgba(14,36,64,.58)}
+@media (max-width:1023px){.st-why{grid-template-columns:1fr;gap:16px}}
+
+/* ---------- 사양표 + 구성품 ---------- */
+.st-spec-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:56px;align-items:start}
+.st-spec{width:100%;border-collapse:collapse}
+.st-spec th,.st-spec td{text-align:left;padding:15px 4px;border-bottom:1px solid rgba(14,36,64,.1);vertical-align:top}
+.st-spec th{width:34%;font:600 10.5px 'Manrope';letter-spacing:.16em;color:#a8763f;padding-top:18px}
+.st-spec td{font:400 14px/1.7 'Manrope';color:rgba(14,36,64,.78);font-variant-numeric:tabular-nums}
+.st-spec td small{display:block;font-size:12px;color:rgba(14,36,64,.5);margin-top:2px}
+.st-spec tr:first-child th,.st-spec tr:first-child td{border-top:1px solid rgba(14,36,64,.18)}
+.st-kit{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.st-kit li{display:flex;gap:16px;align-items:baseline;padding:15px 0;border-bottom:1px solid rgba(14,36,64,.1);font:400 14px/1.6 'Manrope';color:rgba(14,36,64,.78)}
+.st-kit li:first-child{border-top:1px solid rgba(14,36,64,.18)}
+.st-kit li i{font:500 15px 'Cormorant Garamond',serif;color:#bf8e5a;min-width:22px}
+.st-kit li b{font-weight:600;color:#0e2440}
+.st-kit li span{color:rgba(14,36,64,.5);font-size:12.5px;margin-left:auto;white-space:nowrap}
+.st-subhead{font:500 20px/1.5 'Noto Serif KR',serif;color:#0e2440;margin:0 0 18px}
+@media (max-width:1023px){.st-spec-grid{grid-template-columns:1fr;gap:44px}}
+
+/* ---------- 사진 띠 (2열) ---------- */
+.st-shots{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.st-shot{position:relative;border-radius:16px;overflow:hidden;background:#ece9e2;aspect-ratio:4/3}
+.st-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.st-shot figcaption{position:absolute;left:18px;bottom:16px;right:18px;font:500 12px 'Manrope';letter-spacing:.06em;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.6)}
+.st-shot::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,14,22,0) 60%,rgba(10,14,22,.5))}
+.st-shot figcaption{z-index:1}
+@media (max-width:640px){.st-shots{grid-template-columns:1fr;gap:14px}}
+
+/* ---------- 사용 전 확인 · 적용 현장 ---------- */
+.st-two{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.st-panel{padding:40px 40px 38px;border-radius:16px;background:#fff;border:1px solid rgba(14,36,64,.08);box-shadow:0 24px 54px -34px rgba(14,36,64,.3)}
+.st-panel--navy{background:#0e2440;border-color:#0e2440;color:#f3efe6}
+.st-panel--navy .st-subhead{color:#f3efe6}
+.st-check{list-style:none;margin:0;padding:0;counter-reset:chk}
+.st-check li{position:relative;padding:13px 0 13px 40px;border-bottom:1px solid rgba(14,36,64,.08);font:400 14px/1.7 'Manrope';color:rgba(14,36,64,.78)}
+.st-check li:last-child{border-bottom:none}
+.st-check li::before{counter-increment:chk;content:counter(chk,decimal-leading-zero);position:absolute;left:0;top:14px;font:600 11px 'Manrope';letter-spacing:.08em;color:#a8763f}
+.st-use{list-style:none;margin:0;padding:0}
+.st-use li{display:flex;gap:14px;align-items:flex-start;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.1);font:400 14px/1.7 'Manrope';color:rgba(243,239,230,.82)}
+.st-use li:last-child{border-bottom:none}
+.st-use li svg{width:16px;height:16px;flex-shrink:0;color:#c9a24b;margin-top:4px}
+.st-use li b{display:block;font-weight:600;color:#f3efe6;margin-bottom:2px}
+@media (max-width:1023px){.st-two{grid-template-columns:1fr}}
+@media (max-width:640px){.st-panel{padding:28px 22px 26px}}
+
+/* ---------- 구매 문의 폼 ---------- */
+.st-order{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:64px;align-items:start}
+.st-order-side{position:sticky;top:110px}
+.st-order-side .st-title{margin:0 0 18px}
+.st-order-contact{margin-top:34px;padding-top:26px;border-top:1px solid rgba(14,36,64,.12);display:grid;gap:14px}
+.st-order-contact a{display:flex;align-items:center;gap:12px;font:500 14px 'Manrope';color:#0e2440;text-decoration:none;transition:.2s}
+.st-order-contact a:hover{color:#a8763f}
+.st-order-contact a svg{width:17px;height:17px;color:#a8763f;flex-shrink:0}
+.st-order-contact a span{font-size:12px;color:rgba(14,36,64,.5);margin-left:auto;white-space:nowrap}
+.st-form{padding:40px 40px 38px;border-radius:16px;background:#fff;border:1px solid rgba(14,36,64,.09);box-shadow:0 30px 60px -40px rgba(14,36,64,.35)}
+.st-form-head{font:500 20px/1.4 'Noto Serif KR',serif;color:#0e2440;margin-bottom:6px}
+.st-form-note{font:400 12.5px/1.6 'Manrope';color:rgba(14,36,64,.5);margin-bottom:26px}
+.st-form-product{display:flex;gap:14px;align-items:center;padding:14px 16px;border-radius:10px;background:#f5f2ec;margin-bottom:26px}
+.st-form-product img{width:52px;height:52px;border-radius:8px;object-fit:cover;flex-shrink:0}
+.st-form-product b{display:block;font:600 13.5px/1.4 'Manrope';color:#0e2440}
+.st-form-product span{font:400 12px/1.5 'Manrope';color:rgba(14,36,64,.55)}
+.st-form-product em{margin-left:auto;font:600 14px 'Manrope';font-style:normal;color:#0e2440;white-space:nowrap;font-variant-numeric:tabular-nums}
+.st-grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px 22px}
+.st-field{display:flex;flex-direction:column;gap:7px}
+.st-field--full{grid-column:1/-1}
+.st-label{font:600 10.5px 'Manrope';letter-spacing:.16em;color:#a8763f}
+.st-req{color:#bf8e5a}
+.st-input,.st-select,.st-textarea{width:100%;padding:13px 0;border:0;border-bottom:1px solid rgba(14,36,64,.22);background:transparent;font:400 15px/1.5 'Manrope';color:#0e2440;border-radius:0;transition:border-color .25s;-webkit-appearance:none;appearance:none}
+.st-input::placeholder,.st-textarea::placeholder{color:rgba(14,36,64,.32)}
+.st-input:focus,.st-select:focus,.st-textarea:focus{outline:none;border-bottom-color:#bf8e5a}
+.st-select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230e2440' stroke-width='1.6'><path d='m6 9 6 6 6-6'/></svg>");background-repeat:no-repeat;background-position:right 2px center;background-size:16px;padding-right:26px;cursor:pointer}
+.st-textarea{min-height:120px;resize:vertical}
+.st-field.has-error .st-input,.st-field.has-error .st-select,.st-field.has-error .st-textarea{border-bottom-color:#c0392b}
+.st-agree{display:flex;align-items:center;gap:10px;font:400 13px 'Manrope';color:rgba(14,36,64,.72);margin-top:4px;flex-wrap:wrap}
+.st-agree input{width:16px;height:16px;accent-color:#0e2440;margin:0}
+.st-agree a{font-size:12px;color:#a8763f;text-decoration:underline;text-underline-offset:3px}
+.st-agree.has-error label{color:#c0392b}
+.st-msg{min-height:20px;font:500 13px/1.5 'Manrope';color:#c0392b;margin-top:14px}
+.st-submit{margin-top:8px}
+.st-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.st-thanks{display:none;text-align:center;padding:36px 10px}
+.st-thanks.is-on{display:block}
+.st-form-inner.is-off{display:none}
+.st-thanks-mark{width:56px;height:56px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;background:#0e2440;color:#fff;font:500 24px 'Cormorant Garamond',serif}
+.st-thanks-title{font:500 21px/1.4 'Noto Serif KR',serif;color:#0e2440;margin-bottom:10px}
+.st-thanks-text{font:400 14px/1.8 'Manrope';color:rgba(14,36,64,.62)}
+@media (max-width:1023px){.st-order{grid-template-columns:1fr;gap:36px}.st-order-side{position:static}}
+@media (max-width:640px){.st-form{padding:28px 22px 26px}.st-grid2{grid-template-columns:1fr;gap:16px}.st-form-product em{display:none}}
+
+/* ---------- FAQ ---------- */
+.st-faq{max-width:860px;margin:0 auto}
+.st-faq details{border-bottom:1px solid rgba(14,36,64,.12)}
+.st-faq details:first-of-type{border-top:1px solid rgba(14,36,64,.18)}
+.st-faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 4px;font:500 16.5px/1.5 'Noto Serif KR',serif;color:#0e2440;transition:color .2s}
+.st-faq summary::-webkit-details-marker{display:none}
+.st-faq summary:hover{color:#a8763f}
+.st-faq summary svg{width:16px;height:16px;flex-shrink:0;color:#a8763f;transition:transform .3s}
+.st-faq details[open] summary svg{transform:rotate(45deg)}
+.st-faq-body{padding:0 4px 24px;font:400 14px/1.85 'Manrope';color:rgba(14,36,64,.66);max-width:720px}
+
+/* ---------- 라이트박스 ---------- */
+.st-lb{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;background:rgba(8,11,16,.92)}
+.st-lb.is-open{display:flex}
+.st-lb img{max-width:88vw;max-height:84vh;border-radius:8px;box-shadow:0 30px 80px rgba(0,0,0,.5);user-select:none;-webkit-user-drag:none}
+.st-lb-btn{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);color:#fff;display:grid;place-items:center;cursor:pointer;transition:.25s}
+.st-lb-btn:hover{background:rgba(255,255,255,.22)}
+.st-lb-btn svg{width:18px;height:18px}
+.st-lb-prev{left:max(18px,3vw)}
+.st-lb-next{right:max(18px,3vw)}
+.st-lb-close{position:absolute;top:20px;right:max(18px,3vw);transform:none}
+.st-lb-count{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font:600 12px 'Manrope';letter-spacing:.12em;color:rgba(255,255,255,.75)}
+@media (max-width:680px){.st-lb-btn{width:38px;height:38px}.st-lb img{max-width:94vw}}
+
+/* 모바일 하단 고정 CTA 바(inquiry-widget)와 겹치지 않게 푸터 여백은 site.css 가 처리한다 */
