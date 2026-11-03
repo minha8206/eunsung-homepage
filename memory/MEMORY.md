@@ -32,3 +32,6 @@
 <!-- 실수에서 배운 것, 예상과 달랐던 것 -->
 
 - AskUserQuestion에 60초간 응답 없으면 타임아웃됨 — 이미지 소스 등 진짜 막힌 결정은 최선의 판단(placeholder 등)으로 진행하고 나중에 되돌리기 쉽게 만들어둘 것
+- support.js 가 `#dc-root` 를 height:100% 로 고정한다 — x-dc 밖(뒤)에 섹션을 두면 겹치므로 그 페이지에서 `#dc-root{height:auto!important}` 로 풀 것 (2026-11 index.html)
+- x-dc 템플릿 안 버튼의 `onClick="{{ fn }}"` 은 로직 클래스에 fn 이 없어도 조용히 아무 일도 안 한다 — 예전 메인 문의 폼이 이렇게 몇 달간 접수가 안 됐음. 폼은 x-dc 밖 일반 HTML + home.js 로 처리
+- 원격 세션의 VM(device_bash)은 이 repo 에 커밋까지는 되지만(삭제 권한 필요: git lock 파일) push 는 GitHub 자격증명이 없어 안 된다 → kevin 이 GitHub Desktop 등에서 Push
