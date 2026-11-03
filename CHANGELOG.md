@@ -1,5 +1,15 @@
 # CHANGELOG — esstone.co.kr (scandi/)
 
+## 2026-11-03 · 메인 페이지 밝은 톤 리디자인 (시안 C-1) + 메인 문의 폼 실제 접수 연결
+
+- **히어로**: 스크롤 확장 연출(200vh 래퍼 + sticky, 스크롤 진행도 → 영상 크기)을 걷어내고, 첫 화면을 꽉 채운 영상이 autoplay muted loop 로 그냥 재생되게 바꿨다. 영상 위에 바로 카피(eyebrow · Noto Serif KR 300 헤드라인 · 흰 테두리 "견적 문의하기" + 밑줄 "시공사례 보기"), 아래 반투명 유리 띠에 소재 4종 링크, 띠 오른쪽에 일시정지 버튼(aria-pressed). 동작 줄이기 설정이면 정지 화면으로 시작. 화면 밖에서는 영상이 쉰다.
+- **영상 재인코딩** `assets/video/hero-bright-{desktop,mobile}.mp4` + `hero-bright-poster{,-mobile}.jpg` 신규 — 원본 `hero-scroll.mp4`(무변경)에서 위아래 검은 띠를 잘라내고(1920×860, 모바일은 가운데 608×860 → 720×1018) 감마·채도·색균형으로 밝게. 데스크톱 3.9MB · 모바일 1.8MB. 예전 `hero-scroll-{desktop,mobile}.mp4` · `hero-poster*.jpg` 는 메인에서 더 이상 쓰지 않는다(파일은 남겨둠).
+- **헤더(메인 전용)**: 히어로 위에서는 투명 + 흰 글씨, 내려가면 흰 반투명. `home.js` 가 `<html>` 에 `hd-over` 를 켜고 끈다. 데스크톱 nav 의 "문의" 대신 오른쪽 끝에 "견적 문의" 필 버튼(#inquiry, ≤640 숨김). nav hover 골드 제거.
+- **톤**: 흰 배경 + 잉크 #16202A · 레이크 블루 #2C6E96 · 미스트 #F0F5F8(샘플북 v2 토큰). 메인 본문 산세리프는 contact.html 과 같은 Pretendard(jsDelivr), Noto Serif KR 은 300 웨이트 추가. 소재 배너는 사진을 어둡게 덮지 않고 그림자·골드 제거, 소재별 "컬러 보기" 링크 추가. 스토리 영상 라벨/헤드라인 정리 + "시공 과정 보기" 링크. 플로팅 견적 버튼 · 모바일 하단 CTA 바 색을 메인에서만 잉크/카카오 옐로로.
+- **문의 섹션 · 푸터를 x-dc 밖으로** 옮기고 밝은 톤으로 다시 그림. support.js 가 `#dc-root` 를 height:100% 로 고정하므로 메인에서는 `height:auto` 로 풀었다.
+- **버그 수정 — 메인 문의 폼이 실제로 접수되지 않던 문제**: 예전 폼 버튼은 x-dc 로직에 없는 `sendInquiry` 를 가리켜 아무 일도 하지 않았다. 이제 contact.html 과 같은 `/.netlify/functions/contact` 로 같은 형식(name·phone·inquiry_type·message·consent·website 허니팟)을 보낸다. 개인정보 동의 체크 + "더 보기" 추가, 문의 유형은 contact.html 과 같은 5종, 공백·점으로 적은 전화번호는 하이픈으로 맞춰 보낸다.
+- `js/i18n-en.js` 에 새 카피 EN 키. JSON-LD · 공통 CSS(site.css) · 다른 페이지는 무변경.
+
 ## 2026-10-26 · 스토어 신설 (/store) + Gorilla Grip 2.1 상품 페이지 + 헤더 "스토어" 메뉴
 
 - **`store.html` 신규** — 스토어 인트로(네이비 #0b1626 히어로, 골드 eyebrow) · "판매 중" 대표 상품 블록(이미지 + 정보, 가격 3,500,000원 부가세 포함, 재고 3대) · 구매 절차 4단계 · 카카오톡 입고 알림 띠 · 쇼룸 방문 CTA. contact.html 과 같은 일반 HTML(x-dc/React 없음).

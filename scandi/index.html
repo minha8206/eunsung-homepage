@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="hd-over">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,9 +18,9 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://esstone.co.kr/">
-<!-- 히어로 LCP — 뷰포트에 맞는 poster 한 장만 최우선으로 당겨온다 -->
-<link rel="preload" as="image" href="assets/video/hero-poster.jpg" media="(min-width:1024px)" fetchpriority="high">
-<link rel="preload" as="image" href="assets/video/hero-poster-mobile.jpg" media="(max-width:1023px)" fetchpriority="high">
+<!-- 히어로 LCP — 뷰포트에 맞는 poster 한 장만 최우선으로 당겨온다 (2026-11 밝은 톤 재인코딩본) -->
+<link rel="preload" as="image" href="assets/video/hero-bright-poster.jpg" media="(min-width:1024px)" fetchpriority="high">
+<link rel="preload" as="image" href="assets/video/hero-bright-poster-mobile.jpg" media="(max-width:1023px)" fetchpriority="high">
 
 <!-- v-cloak — 템플릿 원문 가리기.
      x-dc(React) 가 마운트되기 전까지 {{ }} 템플릿 문법이 그대로 보이면 안 된다.
@@ -48,14 +48,18 @@
 <script>
 /* Noto Serif KR CSS 는 첫 콘텐츠 페인트 뒤에 붙인다 — 그 전에 붙이면 한글 조각 폰트 10여 개(≈450KB)가
    첫 화면 이미지·CSS 와 대역폭을 나눈다. display=swap 이라 그 전에도 글자는 대체 폰트로 바로 보인다. */
-(function(){var done=false;function add(){if(done)return;done=true;var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500&display=swap';document.head.appendChild(l);}
+(function(){var done=false;function add(){if(done)return;done=true;var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500&display=swap';document.head.appendChild(l);}
 try{var po=new PerformanceObserver(function(list){if(list.getEntries().some(function(e){return e.name==='first-contentful-paint';})){po.disconnect();add();}});po.observe({type:'paint',buffered:true});}catch(e){}
 setTimeout(add,1000);})();
 </script>
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500&display=swap"></noscript>
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500&display=swap"></noscript>
 <!-- React 는 unpkg 대신 같은 오리진(vendor/)에서 defer 로 받는다. support.js 는 window.React 가
      이미 있으면 CDN 로드를 건너뛴다(loadReactUmd). defer 스크립트는 문서 순서대로 실행되므로
      support.js 가 돌 때는 React/ReactDOM 이 준비돼 있다. support.js 자체도 defer — 파서를 막지 않는다. -->
+<!-- 한글 산세리프 — 밝은 톤 리디자인(2026-11)부터 메인도 contact.html 과 같은 Pretendard 를 쓴다 -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"></noscript>
 <script src="vendor/react.production.min.js" defer></script>
 <script src="vendor/react-dom.production.min.js" defer></script>
 <script src="support.js" defer></script>
@@ -192,123 +196,234 @@ setTimeout(add,1000);})();
 </script>
 <!-- SEO-JSONLD:END -->
 </head>
-<body>
-<!-- ===================== SCROLL-EXPAND VIDEO HERO (outside x-dc: framework re-renders/hides x-dc's own subtree, which would orphan our JS-controlled nodes) ===================== -->
-<section class="vhero" id="videoHero">
-  <!-- 래퍼는 200vh, 안쪽은 sticky 100vh — 그 사이 100vh 만큼 굴린 양이 진행도(0~1)가 된다.
-       스크롤을 가로채지 않으므로 빨리 내리면 애니메이션도 그만큼 빨리 끝나고 그대로 다음 섹션으로 간다. -->
-  <div class="vhero-sticky">
-  <div class="vhero-bg" id="vheroBg" role="img" aria-label="포세린·비아테라 슬랩이 전시된 은성 포천 쇼룸 전경" style="background-image:url('assets/showroom-hero.webp')"></div>
-  <div class="vhero-stage">
-    <div class="vhero-media" id="vheroMedia">
-      <!-- 원본 hero-scroll.mp4(22.7MB) 대신 뷰포트별 재인코딩본을 쓴다. poster 는 아래 인라인 스크립트가 뷰포트에
-           맞는 한 장만 지정한다(속성으로 박아두면 모바일에서 가로 포스터까지 두 번 받는다). head 의 preload 가
-           같은 파일을 먼저 당겨온다. 히어로 동작 로직은 assets/js/home.js — 데스크톱(스크롤 확장)과 모바일(단순 재생)이 분리돼 있다. -->
-      <video id="vheroVideo" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablepictureinpicture controlsList="nodownload noremoteplayback">
-        <!-- src 는 data-src 로 두고 assets/js/home.js 가 DOM 파싱 뒤에 붙인다(load 순서: poster·CSS 먼저, 영상은 그 다음).
-             media 로 뷰포트를 가르고, media 를 모르는 브라우저는 첫 번째(데스크톱) 소스를 쓴다. -->
-        <source data-src="assets/video/hero-scroll-desktop.mp4" type="video/mp4" media="(min-width:1024px)">
-        <source data-src="assets/video/hero-scroll-mobile.mp4" type="video/mp4" media="(max-width:1023px)">
-        <source data-src="assets/video/hero-scroll-desktop.mp4" type="video/mp4">
-      </video>
-      <script>(function(v){if(!v)return;v.poster=window.matchMedia('(max-width:1023px)').matches?'assets/video/hero-poster-mobile.jpg':'assets/video/hero-poster.jpg';})(document.getElementById('vheroVideo'));</script>
-      <div class="vhero-media-shade"></div>
-    </div>
-    <div class="vhero-title">
-      <h2 class="vhero-word" id="vheroWord">EUNSUNG</h2>
-    </div>
-    <div class="vhero-hint" id="vheroHint">
-      <span class="vhero-hint-label vhero-hint-label--d">SCROLL TO EXPAND</span>
-      <span class="vhero-hint-label vhero-hint-label--m">SCROLL</span>
-      <span class="vhero-hint-chevrons" aria-hidden="true">
-        <svg class="vhero-chevron vhero-chevron--1" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="rgba(255,255,255,.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <svg class="vhero-chevron vhero-chevron--2" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="rgba(255,255,255,.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </span>
+<body class="home">
+<!-- ===================== HERO · 밝은 풀스크린 영상 (2026-11 리디자인, 시안 C-1) =====================
+     x-dc 밖에 둔다 — 프레임워크가 다시 그리는 서브트리 안에 있으면 JS 가 잡은 video 노드가 고아가 된다.
+     예전 스크롤 확장 연출(래퍼 200vh + sticky)은 없앴다. 영상은 첫 화면을 꽉 채운 채 소리 없이 반복 재생되고,
+     띠 오른쪽 버튼으로 멈출 수 있다. 재생 로직은 assets/js/home.js(initHero).
+     영상은 hero-scroll.mp4 원본에서 위아래 검은 띠를 잘라내고 밝기를 올려 다시 뽑은 hero-bright-*.mp4 다. -->
+<section class="hh" id="videoHero" aria-label="은성 소개">
+  <div class="hh-media">
+    <video id="vheroVideo" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablepictureinpicture controlsList="nodownload noremoteplayback" aria-hidden="true" tabindex="-1">
+      <!-- src 는 data-src 로 두고 home.js 가 첫 페인트 뒤에 붙인다(poster·CSS 먼저, 영상은 그 다음).
+           media 로 뷰포트를 가르고, media 를 모르는 브라우저는 첫 번째(데스크톱) 소스를 쓴다. -->
+      <source data-src="assets/video/hero-bright-desktop.mp4" type="video/mp4" media="(min-width:1024px)">
+      <source data-src="assets/video/hero-bright-mobile.mp4" type="video/mp4" media="(max-width:1023px)">
+      <source data-src="assets/video/hero-bright-desktop.mp4" type="video/mp4">
+    </video>
+    <script>(function(v){if(!v)return;v.poster=window.matchMedia('(max-width:1023px)').matches?'assets/video/hero-bright-poster-mobile.jpg':'assets/video/hero-bright-poster.jpg';})(document.getElementById('vheroVideo'));</script>
+  </div>
+  <div class="hh-scrim" aria-hidden="true"></div>
+  <div class="hh-copy">
+    <p class="hh-eyebrow">LX하우시스 공식 파트너 &nbsp;·&nbsp; 포천 직영공장</p>
+    <h1 class="hh-title">표면은 공간의 인상을 결정합니다.<br>은성은 그 기준을 만듭니다.</h1>
+    <div class="hh-actions">
+      <a class="hh-btn" href="#inquiry">견적 문의하기<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12h15M13.5 6.5 19 12l-5.5 5.5"/></svg></a>
+      <a class="hh-link" href="portfolio.html">시공사례 보기</a>
     </div>
   </div>
-  </div>
-</section>
-<section class="vhero-content" id="vheroContent">
-    <div class="vhero-content-inner">
-      <div class="vhero-eyebrow">EUNSUNG · CERAMIC STONE SURFACE</div>
-      <div class="vhero-heading">표면은 공간의 인상을 결정합니다.<br>은성은 그 기준을 만듭니다.</div>
-      <div class="vhero-desc">LX하우시스 공식&nbsp;파트너 —<br class="br-m"> 원자재 선별부터 재단·시공까지<br class="br-m"> 직영 설비에서 완성합니다.</div>
-      <div class="vhero-partner">OFFICIAL PARTNER — LX HAUSYS</div>
+  <div class="hh-band">
+    <ul class="hh-band-list">
+      <li><a href="showroom.html?cat=PORCELAIN"><b>포세린</b><span>열·칼·얼룩에 강한 대형 슬랩</span></a></li>
+      <li><a href="showroom.html?cat=VIATERA"><b>비아테라</b><span>천연 석영 93% 엔지니어드 스톤</span></a></li>
+      <li><a href="showroom.html?cat=HIMACS"><b>하이막스</b><span>이음새 없는 인조대리석</span></a></li>
+      <li><a href="bmc.html"><b>BMC</b><span>은성이 직접 가공</span></a></li>
+    </ul>
+    <button type="button" class="hh-pause" id="heroPause" aria-label="배경 영상 일시정지" aria-pressed="false">
+      <svg class="hh-ic-pause" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="6.5" y="5" width="3.6" height="14" rx=".6"/><rect x="13.9" y="5" width="3.6" height="14" rx=".6"/></svg>
+      <svg class="hh-ic-play" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.6v12.8a.7.7 0 0 0 1.06.6l10.2-6.4a.7.7 0 0 0 0-1.2L9.06 5a.7.7 0 0 0-1.06.6z"/></svg>
+    </button>
   </div>
 </section>
 <style>
-/* ===== VIDEO HERO =====
-   데스크톱(≥1024)과 모바일(≤1023)은 같은 마크업을 쓰되 구조 규칙을 완전히 나눈다.
-   데스크톱: 래퍼 200vh + sticky 100vh — 래퍼 높이에서 100vh 를 뺀 만큼이 스크롤 확장 구간이다.
-             (overflow 는 래퍼에 두면 안 된다 — 조상에 overflow:hidden 이 있으면 sticky 가 죽는다.)
-   모바일:   100svh 풀스크린 한 장. 영상은 그냥 무한 재생, 스크롤 연동 없음(assets/js/home.js 참고). */
+/* ===== HOME · 밝고 청량한 톤 (2026-11) =====
+   샘플북 v2 와 같은 토큰을 쓴다. x-dc 밖 요소(히어로·문의·푸터)와 헤더 투명 상태를 여기서 그린다.
+   x-dc 안 요소(소재·스토리)는 helmet 스타일에서 같은 토큰으로 다시 칠했다. */
+:root{
+  --ink:#16202A;--body:#3A4552;--mute:#6B7785;--line:#E2E8EC;--mist:#F0F5F8;--sky:#D6E8F1;
+  --lake:#2C6E96;--lake-d:#225A7C;
+  --sans:'Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,system-ui,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  --serif:'Noto Serif KR','Noto Serif CJK KR',serif;
+  --gut:clamp(22px,6.67vw,96px);
+}
+body.home{margin:0;background:#fff;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+/* support.js 는 마운트 지점(#dc-root)을 height:100% 로 고정한다. 문의·푸터가 그 뒤(x-dc 밖)에 오므로
+   높이를 내용만큼으로 풀어야 겹치지 않는다. */
+body.home #dc-root,body.home #dc-root>.sc-host{height:auto!important}
+.hh,.hh *,.hq,.hq *,.hf,.hf *{box-sizing:border-box}
 
-/* ── 공통 ── */
-.vhero{position:relative;width:100%;background:#0A0A0A}
-.vhero-stage{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%}
-.vhero-media video{width:100%;height:100%;object-fit:cover;display:block}
-.vhero-media-shade{position:absolute;inset:0;background:rgba(0,0,0,.32)}
-.vhero-title{position:relative;z-index:2;display:flex;align-items:baseline;justify-content:center;pointer-events:none}
-/* 단어 하나만 남았으므로 자간을 넓혀 화면 폭을 채운다.
-   letter-spacing 은 마지막 글자 뒤에도 붙어 상자가 자간만큼 넓어진다 —
-   같은 값의 음수 margin-right 로 상쇄해야 글자가 정확히 가운데 온다.
-   (데스크톱에선 JS 가 스크롤에 맞춰 두 값을 함께 갱신한다) */
-.vhero-word{font:500 clamp(52px,11vw,180px) 'Cormorant Garamond';color:#f8f5ef;margin:0 -.16em 0 0;letter-spacing:.16em;white-space:nowrap;text-shadow:0 16px 50px rgba(0,0,0,.5)}
-.vhero-hint{position:absolute;left:50%;bottom:40px;transform:translateX(-50%);z-index:2;font:600 11px 'Manrope';letter-spacing:.3em;color:rgba(243,239,230,.7);transition:opacity .4s ease;display:flex;flex-direction:column;align-items:center;pointer-events:none}
-.vhero-hint-label{display:block;animation:vheroHintPulse 3s ease-in-out infinite}
-.vhero-hint-label--m{display:none}
-.vhero-hint-chevrons{display:flex;flex-direction:column;align-items:center;margin-top:8px}
-.vhero-chevron{width:24px;height:24px;display:block;opacity:0;animation:vheroChevronFlow 1.6s ease-in-out infinite}
-.vhero-chevron--1{animation-delay:0s;margin-bottom:-8px}
-.vhero-chevron--2{animation-delay:.2s}
-@keyframes vheroHintPulse{0%,100%{opacity:.6}50%{opacity:1}}
-@keyframes vheroChevronFlow{0%{opacity:0;transform:translateY(0)}50%{opacity:1;transform:translateY(6px)}100%{opacity:0;transform:translateY(12px)}}
+/* ── 히어로 ── */
+.hh{--band:96px;position:relative;width:100%;height:100vh;height:100svh;min-height:620px;overflow:hidden;color:#fff;background:#C9D3DA}
+.hh-media{position:absolute;inset:0;background:#C9D3DA url('assets/video/hero-bright-poster.jpg') 42% center/cover no-repeat}
+.hh-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:42% center;display:block}
+/* 글씨가 놓이는 왼쪽 아래와 헤더가 놓이는 위쪽만 살짝 가라앉힌다 — 화면 전체를 어둡게 덮지 않는다 */
+.hh-scrim{position:absolute;inset:0;pointer-events:none;background:
+  linear-gradient(180deg,rgba(10,16,22,.34) 0%,rgba(10,16,22,0) 18%),
+  linear-gradient(20deg,rgba(10,16,22,.48) 0%,rgba(10,16,22,.2) 38%,rgba(10,16,22,0) 62%)}
+.hh-copy{position:absolute;left:var(--gut);bottom:calc(var(--band) + 84px);width:min(800px,calc(100% - var(--gut)*2));z-index:2}
+.hh-eyebrow{margin:0 0 22px;font:500 14px/1.4 var(--sans);letter-spacing:.06em;opacity:.92}
+.hh-title{margin:0;font:300 clamp(34px,3.95vw,58px)/1.3 var(--serif);letter-spacing:-.03em;text-wrap:wrap;text-shadow:0 1px 28px rgba(10,16,22,.2)}
+.hh-actions{display:flex;flex-wrap:wrap;align-items:center;gap:16px 30px;margin-top:38px}
+.hh-btn{display:inline-flex;align-items:center;gap:14px;min-height:52px;padding:0 26px;border:1px solid rgba(255,255,255,.92);border-radius:2px;color:#fff;font:600 15px/1 var(--sans);text-decoration:none;transition:background-color .25s ease,color .25s ease}
+.hh-btn svg{width:18px;height:18px;flex-shrink:0;transition:transform .25s ease}
+.hh-btn:hover,.hh-btn:focus-visible{background:#fff;color:var(--ink)}
+.hh-btn:hover svg{transform:translateX(3px)}
+.hh-link{color:#fff;font:500 15px/1 var(--sans);text-decoration:none;padding:6px 0 5px;border-bottom:1px solid rgba(255,255,255,.8);transition:border-color .25s ease,opacity .25s ease}
+.hh-link:hover{opacity:.8;border-bottom-color:transparent}
+.hh a:focus-visible,.hh-pause:focus-visible{outline:2px solid #fff;outline-offset:4px}
 
-/* ── 데스크톱: 스크롤 확장 구조 ── */
-@media (min-width:1024px){
-  .vhero{height:200vh}
-  .vhero-sticky{position:sticky;top:0;height:100vh;min-height:640px;overflow:hidden}
-  .vhero-bg{position:absolute;inset:0;background-size:contain;background-position:center;background-repeat:no-repeat;z-index:0}
-  .vhero-bg::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.25)}
-  .vhero-media{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border-radius:18px;overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,.45);z-index:1}
+/* 아래 띠 — 반투명 유리. 오른쪽 230px 은 플로팅 상담 버튼(.iw-root) 자리로 비워 둔다 */
+.hh-band{position:absolute;left:0;right:0;bottom:0;height:var(--band);z-index:2;display:flex;align-items:center;padding:0 230px 0 var(--gut);
+  background:rgba(255,255,255,.14);-webkit-backdrop-filter:blur(14px) saturate(120%);backdrop-filter:blur(14px) saturate(120%);box-shadow:inset 0 1px 0 rgba(255,255,255,.34)}
+.hh-band-list{flex:1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 24px;margin:0;padding:0;list-style:none}
+.hh-band-list a{display:flex;flex-direction:column;gap:5px;color:#fff;text-decoration:none;transition:opacity .25s ease}
+.hh-band-list a:hover{opacity:.78}
+.hh-band-list b{font:600 15px/1.35 var(--sans)}
+.hh-band-list span{font:400 13px/1.4 var(--sans);opacity:.84;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hh-pause{flex-shrink:0;width:36px;height:36px;margin-left:24px;padding:0;border:0;border-radius:50%;cursor:pointer;display:grid;place-items:center;color:#fff;
+  background:rgba(255,255,255,.18);box-shadow:inset 0 0 0 1px rgba(255,255,255,.55);transition:background-color .2s ease}
+.hh-pause:hover{background:rgba(255,255,255,.3)}
+.hh-pause svg{width:13px;height:13px;fill:currentColor;display:block}
+.hh-pause .hh-ic-play{display:none;margin-left:2px}
+.hh-pause[aria-pressed="true"] .hh-ic-pause{display:none}
+.hh-pause[aria-pressed="true"] .hh-ic-play{display:block}
+
+@media (max-width:1279px){
+  .hh-band-list span{font-size:12.5px}
+}
+/* 1200 아래에서는 설명이 잘리므로 소재 이름만 남긴다 */
+@media (max-width:1199px){
+  .hh-band-list span{display:none}
+}
+/* 태블릿·모바일 — 세로 영상, 띠는 소재 이름만 */
+@media (max-width:1023px){
+  .hh{--band:64px;min-height:560px}
+  .hh-media{background-image:url('assets/video/hero-bright-poster-mobile.jpg');background-position:center}
+  .hh-media video{object-position:center}
+  .hh-scrim{background:
+    linear-gradient(180deg,rgba(10,16,22,.38) 0%,rgba(10,16,22,0) 20%),
+    linear-gradient(0deg,rgba(10,16,22,.62) 0%,rgba(10,16,22,.3) 38%,rgba(10,16,22,0) 64%)}
+  .hh-copy{bottom:calc(var(--band) + 44px)}
+  .hh-title{font-size:clamp(28px,5.2vw,44px);text-wrap:balance}
+  .hh-eyebrow{font-size:13px;margin-bottom:16px}
+  .hh-actions{margin-top:28px}
+  .hh-band{padding-right:210px}
+  .hh-band-list span{display:none}
+  .hh-band-list b{font-size:14px}
+}
+/* ≤768 — 플로팅 위젯 대신 하단 고정 CTA 바(.es-ctabar, 58px)가 뜬다. 히어로 띠를 그 위로 올린다 */
+@media (max-width:769px){
+  .hh{--cta:calc(58px + env(safe-area-inset-bottom,0px))}
+  .hh-band{bottom:var(--cta);padding:0 14px 0 var(--gut);height:var(--band)}
+  .hh-copy{bottom:calc(var(--cta) + var(--band) + 34px)}
+  .hh-band-list{gap:0 10px}
+  .hh-band-list a{min-height:44px;justify-content:center}
+  .hh-pause{margin-left:10px;width:40px;height:40px}
+  .hh-btn{min-height:48px;padding:0 20px;font-size:14.5px}
+  .hh-link{font-size:14.5px}
+}
+@media (max-width:431px){
+  .hh-title{font-size:clamp(26px,7.6vw,31px);line-height:1.34}
+  .hh-eyebrow{font-size:12.5px;letter-spacing:.03em}
+  .hh-band-list b{font-size:13px}
 }
 
-/* ── 모바일: 100svh 풀스크린, 단순 재생 ──
-   svh 를 모르는 구형 브라우저는 앞의 vh 값을 쓴다. */
+/* ── 헤더: 히어로 위에서는 투명 + 흰 글씨, 내려가면 흰 반투명 ──
+   home.js 가 <html> 의 hd-over 클래스를 켜고 끈다(x-dc 가 헤더를 다시 그려도 클래스가 날아가지 않게
+   헤더가 아니라 html 에 단다). 헤더 인라인 스타일을 덮어야 해서 !important 를 쓴다. */
+.site-hd{transition:background-color .35s ease,border-color .35s ease,color .35s ease,-webkit-backdrop-filter .35s ease,backdrop-filter .35s ease}
+html.hd-over body:not(.nav-open) .site-hd{background:transparent!important;border-bottom-color:transparent!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;color:#fff!important}
+html.hd-over body:not(.nav-open) .site-hd .nav-mid{color:#fff!important}
+html.hd-over body:not(.nav-open) .site-hd .brand-en,
+html.hd-over body:not(.nav-open) .site-hd .brand-kr{color:#fff}
+html.hd-over body:not(.nav-open) .site-hd .nav-right{--hu-ink:#fff;--hu-tint:rgba(255,255,255,.14);--hu-tint-strong:rgba(255,255,255,.24);--hu-pill:rgba(255,255,255,.26);--hu-pill-shadow:none;--hu-focus:#fff}
+.hd-quote{display:inline-flex;align-items:center;height:38px;margin-left:12px;padding:0 18px;border-radius:999px;background:var(--ink);color:#fff;font:600 14px/1 var(--sans);text-decoration:none;white-space:nowrap;transition:background-color .3s ease,color .3s ease,opacity .2s ease}
+.hd-quote:hover{opacity:.86;color:#fff}
+html.hd-over body:not(.nav-open) .hd-quote{background:#fff;color:var(--ink)}
+.hd-quote:focus-visible{outline:2px solid var(--hu-focus,#2f6fed);outline-offset:2px}
+@media (max-width:640px){.hd-quote{display:none}}
+
+/* ── 문의 ── */
+.hq{background:var(--mist);padding:128px 5vw 112px;scroll-margin-top:64px;color:var(--ink)}
+.hq-in{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:72px;align-items:start}
+.hq-title{margin:0;font:300 clamp(30px,3.3vw,46px)/1.3 var(--serif);letter-spacing:-.03em}
+.hq-lead{margin:16px 0 40px;font:400 16px/1.75 var(--sans);color:var(--body)}
+.hq-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.hq-field{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.hq-label{font:500 13.5px/1.4 var(--sans);color:var(--body)}
+.hq-req{color:var(--lake)}
+.hq-input,.hq-select,.hq-textarea{width:100%;min-height:52px;padding:14px 16px;border:1px solid #D5DEE5;border-radius:4px;background:#fff;color:var(--ink);font:400 15px/1.5 var(--sans);outline:none;transition:border-color .2s ease,box-shadow .2s ease;-webkit-appearance:none;appearance:none}
+.hq-select{padding-right:44px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233A4552' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") right 14px center/16px no-repeat}
+.hq-textarea{min-height:140px;resize:vertical}
+.hq-input::placeholder,.hq-textarea::placeholder{color:#97A2AD}
+.hq-input:focus,.hq-select:focus,.hq-textarea:focus{border-color:var(--lake);box-shadow:0 0 0 3px rgba(44,110,150,.14)}
+.hq-field.has-error .hq-input,.hq-field.has-error .hq-select,.hq-field.has-error .hq-textarea{border-color:#C2413B}
+.hq-agree{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin:4px 0 0;font:400 14px/1.5 var(--sans);color:var(--body)}
+.hq-agree input{width:18px;height:18px;margin:0;accent-color:var(--ink);flex-shrink:0}
+.hq-agree.has-error label{color:#C2413B}
+.hq-more{color:var(--mute);font-size:13px;text-decoration:underline;text-underline-offset:3px}
+.hq-more:hover{color:var(--ink)}
+.hq-msg{min-height:22px;margin:14px 0 6px;font:500 13.5px/1.5 var(--sans);color:#C2413B}
+.hq-submit{display:inline-flex;align-items:center;justify-content:center;gap:12px;width:100%;min-height:56px;border:0;border-radius:2px;background:var(--ink);color:#fff;font:600 15.5px/1 var(--sans);cursor:pointer;transition:background-color .25s ease}
+.hq-submit:hover{background:#26323E}
+.hq-submit:disabled{opacity:.6;cursor:default}
+.hq-submit:focus-visible{outline:2px solid var(--lake);outline-offset:3px}
+.hq-hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
+.hq-thanks{padding:40px 36px;border:1px solid var(--line);border-radius:4px;background:#fff}
+.hq-thanks-title{font:400 26px/1.35 var(--serif);letter-spacing:-.02em;margin-bottom:10px}
+.hq-thanks-text{font:400 15px/1.8 var(--sans);color:var(--body)}
+.hq-wrap.is-sent .hq-form{display:none}
+.hq-card{background:#fff;border:1px solid var(--line);border-radius:4px;padding:40px 40px 36px}
+.hq-card-name{font:600 18px/1.3 var(--sans);letter-spacing:.02em}
+.hq-card-en{margin-top:4px;font:500 12px/1.3 var(--sans);letter-spacing:.14em;color:var(--mute)}
+.hq-dl{margin:28px 0 0;padding:24px 0 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:20px}
+.hq-dl div{display:grid;grid-template-columns:76px 1fr;gap:16px}
+.hq-dl dt{font:500 13.5px/1.6 var(--sans);color:var(--mute)}
+.hq-dl dd{margin:0;font:400 15px/1.6 var(--sans);color:var(--ink)}
+.hq-dl a{color:inherit;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s ease}
+.hq-dl a:hover{border-bottom-color:currentColor}
+.hq-kakao{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:32px;min-height:52px;border-radius:2px;background:#FEE500;color:#191919;font:600 15px/1 var(--sans);text-decoration:none;transition:filter .2s ease}
+.hq-kakao:hover{filter:brightness(.97);color:#191919}
+.hq-kakao svg{width:19px;height:19px}
+.hq-map{max-width:1240px;margin:56px auto 0}
+.hq-map iframe{display:block;width:100%;height:360px;border:0;border-radius:4px;background:#E3EAEF;filter:grayscale(.35) contrast(1.02)}
+.home .maplink{font-family:var(--sans);border-color:#CBD6DE;color:var(--ink);background:#fff}
+.home .maplink:hover,.home .maplink:focus-visible{border-color:var(--ink);color:var(--ink)}
 @media (max-width:1023px){
-  .vhero{height:100vh;height:100svh;min-height:480px;overflow:hidden}
-  .vhero-sticky{position:relative;height:100%}
-  .vhero-bg{display:none}
-  /* 영상 상자 뒤에 같은 poster 를 깔아 둔다 — 재생이 거부되거나 첫 프레임이 늦어도 빈 화면이 아니다 */
-  .vhero-media{position:absolute;inset:0;z-index:0;background:#0A0A0A url('assets/video/hero-poster-mobile.jpg') center/cover no-repeat}
-  .vhero-media video{position:absolute;inset:0}
-  .vhero-media-shade{background:rgba(0,0,0,.45)}
-  .vhero-word{font-size:clamp(34px,12vw,56px);text-shadow:0 10px 40px rgba(0,0,0,.7)}
-  .vhero-title{gap:10px;padding:0 18px}
-  /* 스크롤 유도 — 라벨 하나 + 화살표 하나 */
-  /* 하단 고정 CTA 바(.es-ctabar, 58px) 위로 올린다 */
-  .vhero-hint{bottom:calc(76px + env(safe-area-inset-bottom,0px));font-size:10px;color:rgba(243,239,230,.6)}
-  .vhero-hint-label--d{display:none}
-  .vhero-hint-label--m{display:block}
-  .vhero-chevron--1{margin-bottom:0}
-  .vhero-chevron--2{display:none}
-  .vhero-chevron{width:22px;height:22px}
+  .hq{padding:88px 22px 80px}
+  .hq-in{grid-template-columns:1fr;gap:44px}
+  .hq-card{padding:32px 26px 28px}
+}
+@media (max-width:560px){
+  .hq-row{grid-template-columns:1fr;gap:0}
+  .hq-lead{font-size:15px;margin-bottom:30px}
+  .hq-map iframe{height:280px}
 }
 
-.vhero-content{opacity:0;transition:opacity .7s ease;padding:100px 8vw 120px;position:relative;z-index:1;background:#0A0A0A}
-.vhero-content.on{opacity:1}
-.vhero-content-inner{max-width:720px;margin:0 auto;text-align:center}
-.vhero-eyebrow{font:600 11px 'Manrope';letter-spacing:.3em;color:#c9a24b;margin-bottom:18px}
-.vhero-heading{font:500 clamp(28px,4vw,46px)/1.25 'Cormorant Garamond';color:#f8f5ef;margin-bottom:20px}
-.vhero-desc{font:400 15px/1.9 'Manrope';color:rgba(243,239,230,.72)}
-/* 파트너 라인 — 위 오버라인(.vhero-eyebrow)과 같은 계열이되 한 단계 작고 은은하게 */
-.vhero-partner{font:600 10px 'Manrope';letter-spacing:.34em;text-transform:uppercase;color:rgba(201,162,75,.78);margin-top:22px}
-@media (max-width:1023px){
-  /* 모바일은 확장 연출이 없으므로 카피 블록을 항상 보인다 */
-  .vhero-content{opacity:1;padding:56px 22px 64px}
-  .vhero-heading{font-size:clamp(24px,6.4vw,32px)}
-  .vhero-desc{font-size:15px;line-height:1.8}
-  .vhero-partner{font-size:9.5px;letter-spacing:.26em}
+/* ── 푸터 (밝은 톤) ── */
+.hf{background:#fff;border-top:1px solid var(--line);color:var(--body)}
+.hf-brand{display:inline-flex;align-items:baseline;gap:.55em;margin-bottom:18px;text-decoration:none;color:var(--ink)}
+.hf-en{font:600 1.45rem/1 'Cormorant Garamond',serif;letter-spacing:.15em}
+.hf-kr{font:400 .8rem/1 var(--serif);opacity:.55}
+.hf-desc{margin:0;font:400 13.5px/1.85 var(--sans);color:var(--mute)}
+.hf-h{margin-bottom:16px;font:600 13.5px/1.3 var(--sans);color:var(--ink)}
+.hf-col{display:flex;flex-direction:column;gap:11px}
+.home .hf .ft-link{font:400 14px/1.5 var(--sans);color:var(--body)}
+.home .hf .ft-link:hover,.home .hf .ft-link:focus-visible{color:var(--lake)}
+.hf-bottom{max-width:1280px;margin:48px auto 0;padding-top:26px;border-top:1px solid var(--line)}
+.hf-small{font:400 12.5px/1.75 var(--sans);color:var(--mute)}
+.hf-small a{color:var(--body)}
+@media (max-width:769px){.hf-col{gap:0}}
+
+/* 플로팅·하단 CTA 를 밝은 톤에 맞춘다 (메인 전용) */
+.home .iw-btn--quote{background:var(--ink)}
+.home .iw-label{color:var(--ink);font-family:var(--sans)}
+.home .es-ctabar a{font-family:var(--sans);letter-spacing:.01em}
+.home .es-ctabar-tel{background:var(--ink);color:#fff}
+.home .es-ctabar-kakao{background:#FEE500;color:#191919}
+
+@media (prefers-reduced-motion:reduce){
+  .hh-btn svg,.site-hd{transition:none}
 }
 </style>
 
@@ -316,7 +431,7 @@ setTimeout(add,1000);})();
 <helmet data-dc-atomics>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#e9eef2;font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body{margin:0;background:#fff;font-family:var(--sans);-webkit-font-smoothing:antialiased}
 @keyframes eyePulse{0%{transform:scale(1);opacity:.55}70%{transform:scale(2.4);opacity:0}100%{opacity:0}}
 @keyframes sheen{0%{transform:translateX(-120%) skewX(-18deg)}100%{transform:translateX(320%) skewX(-18deg)}}
 @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
@@ -345,13 +460,13 @@ html{scroll-behavior:smooth}
 .eye::before{content:'';position:absolute;inset:-3px;border-radius:50%;border:1px solid rgba(255,255,255,.7);animation:eyePulse 2.6s ease-out infinite}
 .eye svg{width:19px;height:19px;display:block}
 .glass-nav{position:absolute;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:18px 30px;background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,0));backdrop-filter:blur(2px)}
-a{color:#a8763f}
-a:hover{color:#c9a24b}
+a{color:var(--lake)}
+a:hover{color:var(--lake-d)}
 .nav-mid{display:flex;align-items:center;gap:28px}
 @media (max-width:1400px){.nav-mid{gap:22px}}
-.nav-mid a{color:inherit;font:500 15px/1 'Manrope';letter-spacing:.02em;text-decoration:none;position:relative;padding:4px 0;white-space:nowrap;transition:color .2s}
+.nav-mid a{color:inherit;font:500 15px/1 var(--sans);letter-spacing:-.005em;text-decoration:none;position:relative;padding:4px 0;white-space:nowrap;transition:color .2s}
 .nav-mid a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:1.5px;background:currentColor;transition:width .35s}
-.nav-mid a:hover{color:#bf8e5a}
+.nav-mid a:hover{color:inherit}
 .nav-mid a:hover::after{width:100%}
 .nav-drop{display:inline-flex;align-items:center}
 .nav-right{display:flex;align-items:center;gap:11px;flex-shrink:0}
@@ -375,40 +490,56 @@ a:hover{color:#c9a24b}
 @keyframes heroKbZoom{0%{transform:scale(1)}100%{transform:scale(1.08)}}
 .hero-kb-bg{position:relative;flex:0 0 auto;width:1024px;max-width:92vw;aspect-ratio:1024/572;background-size:cover;background-position:center;background-repeat:no-repeat;border-radius:4px;box-shadow:0 30px 70px -20px rgba(14,36,64,.35);animation:heroKbZoom 20s ease-out forwards;overflow:hidden}
 
-/* ===== MATERIALS · HORIZONTAL BANNERS ===== */
-.mbanner{display:flex;min-height:380px;border-radius:14px;overflow:hidden;box-shadow:0 20px 50px -30px rgba(14,36,64,.5);margin-bottom:24px}
-.mbanner-image{flex:1 1 auto;position:relative;background-size:cover;background-position:center}
-.mbanner-image::after{content:'';position:absolute;inset:0;background:rgba(14,20,30,.22)}
-.mbanner-panel{flex:0 0 min(42%,540px);display:flex;flex-direction:column;justify-content:center;padding:36px 44px;background:rgba(255,253,249,.94)}
-.mbanner-eyebrow{font:600 10px 'Manrope';letter-spacing:.14em;color:#b8924a}
+/* ===== MATERIALS · HORIZONTAL BANNERS (2026-11 밝은 톤) =====
+   사진은 어둡게 덮지 않고 그대로, 패널은 옅은 미스트 면. 그림자·골드 없음. */
+.hm-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,520px);gap:24px 64px;align-items:end;margin-bottom:56px}
+.hm-h2{margin:0;font:300 clamp(30px,3.6vw,50px)/1.28 var(--serif);letter-spacing:-.03em;color:var(--ink)}
+.hm-lead{margin:0;font:400 16px/1.8 var(--sans);color:var(--body)}
+.mbanner{display:flex;min-height:420px;border-radius:4px;overflow:hidden;margin-bottom:24px;background:var(--mist)}
+.mbanner-image{flex:1 1 auto;position:relative;background-size:cover;background-position:center;background-color:#E4EBF0}
+.mbanner-panel{flex:0 0 min(42%,540px);display:flex;flex-direction:column;justify-content:center;padding:44px 52px;background:var(--mist)}
+.mbanner-eyebrow{font:500 13.5px/1.3 var(--sans);color:var(--lake)}
 /* 라틴은 Cormorant, 한글은 Noto Serif KR 로 떨어지게 순서를 잡는다 */
-.mbanner-title{font:500 32px 'Cormorant Garamond','Noto Serif KR',serif;color:#0e2440}
-.mbanner-desc-ko{font:400 13.5px/1.78 'Manrope';letter-spacing:-.01em;color:rgba(14,36,64,.6);margin-bottom:18px}
-.mbanner-chips{display:flex;flex-wrap:wrap;gap:7px}
+.mbanner-title{font:400 32px/1.25 'Cormorant Garamond','Noto Serif KR',serif;letter-spacing:-.01em;color:var(--ink)}
+.mbanner-desc-ko{margin:12px 0 22px;font:400 15px/1.85 var(--sans);letter-spacing:-.005em;color:var(--body)}
+.mbanner-chips{display:flex;flex-wrap:wrap;gap:8px}
 /* 용도 추천 한 줄 — 칩 아래에서 "그래서 어디에 쓰나"를 짚어준다 */
-.mbanner-rec{margin-top:14px;font:600 11.5px/1.65 'Manrope';color:#a8763f}
-.mbanner-chip{font:600 10px 'Manrope';letter-spacing:.06em;color:#0e2440;background:rgba(14,36,64,.06);padding:6px 11px;border-radius:20px}
-/* LX하우시스 공식&nbsp;파트너 블록 — 삭제한 딜러 줄과 같은 자리(구분선+여백)를 쓴다 */
-.mbanner-partner{margin-top:16px;padding-top:14px;border-top:1px solid rgba(14,36,64,.08)}
-.mbanner-partner-cap{font:700 9.5px 'Manrope';letter-spacing:.18em;color:#a8763f;margin-bottom:8px}
-.mbanner-partner img{height:20px;width:auto;display:block}
+.mbanner-rec{margin-top:16px;font:500 14px/1.7 var(--sans);color:var(--lake)}
+.mbanner-chip{font:500 12.5px/1 var(--sans);color:var(--ink);background:#fff;border:1px solid #D8E1E8;padding:8px 12px;border-radius:999px}
+/* 패널 맨 아래 한 줄 — 왼쪽 출처(LX하우시스 로고 / 은성 직접 가공), 오른쪽 해당 소재 페이지 링크 */
+.mbanner-foot{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:24px;padding-top:18px;border-top:1px solid #DCE4EA}
+.mbanner-partner{display:flex;align-items:center;gap:10px;font:500 12.5px/1.3 var(--sans);color:var(--mute)}
+.mbanner-partner img{height:17px;width:auto;display:block}
+.mbanner-more{flex-shrink:0;display:inline-flex;align-items:center;gap:8px;color:var(--ink);font:600 14px/1 var(--sans);text-decoration:none;padding:6px 0 5px;border-bottom:1px solid var(--ink);transition:color .2s ease,border-color .2s ease}
+.mbanner-more:hover{color:var(--lake);border-bottom-color:var(--lake)}
+@media (max-width:1023px){
+  .hm-head{grid-template-columns:1fr;margin-bottom:40px}
+}
 @media (max-width:768px){
   .mbanner{flex-direction:column;height:auto}
   .mbanner-image{height:220px;order:1}
   .mbanner-panel{order:2;flex:none;width:100%}
+  .mbanner-chip{font-size:12px!important;padding:7px 11px}
+  .mbanner-desc-ko{font-size:14.5px}
+  .hm-lead{font-size:15px}
 }
 
-/* ===== OUR STORY · MONTAGE VIDEO ===== */
-.story-montage-section{position:relative;width:100%;min-height:100vh;margin:0;padding:0;background:#0B0D12;overflow:hidden}
-.story-montage-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#0B0D12}
-.story-montage-text{position:absolute;z-index:2;left:8%;right:8%;bottom:12%;max-width:560px;pointer-events:none;opacity:0;transform:translateY(30px);transition:opacity 1.2s ease,transform 1.2s ease}
+/* ===== OUR STORY · MONTAGE VIDEO (2026-11) =====
+   실제 공장·시공 영상이라 원본 밝기 그대로 두고, 글씨 아래만 그라데이션으로 받친다. */
+.story-montage-section{position:relative;width:100%;min-height:100vh;margin:0;padding:0;background:#DDE5EA;overflow:hidden}
+.story-montage-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#DDE5EA}
+.story-montage-section::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(20deg,rgba(10,16,22,.52) 0%,rgba(10,16,22,.2) 36%,rgba(10,16,22,0) 60%)}
+.story-montage-text{position:absolute;z-index:2;left:var(--gut);right:var(--gut);bottom:12%;max-width:640px;pointer-events:none;opacity:0;transform:translateY(30px);transition:opacity 1.2s ease,transform 1.2s ease}
 .story-montage-text.is-visible{opacity:1;transform:translateY(0)}
-.story-montage-label{font:600 13px 'Manrope';letter-spacing:.3em;text-transform:uppercase;color:#C9A24B;margin-bottom:18px;text-shadow:0 2px 24px rgba(0,0,0,.55)}
-.story-montage-headline{font:500 clamp(30px,3.4vw,46px)/1.35 'Noto Serif KR';color:#F5F1E8;text-shadow:0 2px 24px rgba(0,0,0,.55)}
+.story-montage-label{font:500 14px/1.4 var(--sans);letter-spacing:.06em;color:rgba(255,255,255,.92);margin-bottom:18px}
+.story-montage-headline{font:300 clamp(30px,3.4vw,48px)/1.32 var(--serif);letter-spacing:-.03em;color:#fff;text-shadow:0 1px 28px rgba(10,16,22,.2)}
+.story-montage-link{pointer-events:auto;display:inline-block;margin-top:30px;color:#fff;font:500 15px/1 var(--sans);text-decoration:none;padding:6px 0 5px;border-bottom:1px solid rgba(255,255,255,.8);transition:opacity .25s ease}
+.story-montage-link:hover{color:#fff;opacity:.8}
 @media (max-width:768px){
   .story-montage-text{max-width:none}
-  .story-montage-label{font-size:11px;letter-spacing:.25em;margin-bottom:12px}
-  .story-montage-headline{font-size:clamp(24px,6vw,32px);line-height:1.3}
+  .story-montage-section::after{background:linear-gradient(0deg,rgba(10,16,22,.6) 0%,rgba(10,16,22,.24) 40%,rgba(10,16,22,0) 66%)}
+  .story-montage-label{font-size:13px;letter-spacing:.03em;margin-bottom:12px}
+  .story-montage-headline{font-size:clamp(24px,6.6vw,32px);line-height:1.34}
 }
 .nav-drop-menu{position:absolute;top:24px;left:50%;transform:translate(-50%,6px);opacity:0;visibility:hidden;transition:.3s ease;background:rgba(251,250,250,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(14,36,64,.08);border-radius:10px;box-shadow:0 26px 54px -22px rgba(14,36,64,.4);padding:10px;min-width:190px;z-index:40}
 .nav-drop:hover .nav-drop-menu{opacity:1;visibility:visible;transform:translate(-50%,0)}
@@ -420,7 +551,7 @@ a:hover{color:#c9a24b}
 .nav-burger{display:none;width:34px;height:34px;border-radius:50%;align-items:center;justify-content:center;border:1px solid rgba(14,36,64,.18);background:rgba(255,255,255,.08);cursor:pointer}
 .nav-burger svg{width:16px;height:16px}
 .nav-mobile-panel{display:none;position:fixed;top:64px;left:0;right:0;z-index:29;background:#fbfaf8;border-bottom:1px solid rgba(14,36,64,.1);box-shadow:0 24px 50px -28px rgba(14,36,64,.35);padding:8px 6vw 20px;flex-direction:column}
-.nav-mobile-panel a{padding:14px 2px;font:500 15px 'Manrope';color:#0e2440;text-decoration:none;border-bottom:1px solid rgba(14,36,64,.07)}
+.nav-mobile-panel a{padding:14px 2px;font:500 15px var(--sans);color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(14,36,64,.07)}
 .nav-mobile-panel a.nav-mobile-sub{padding-left:18px;font-size:13px;color:rgba(14,36,64,.6)}
 body.nav-open .nav-mobile-panel{display:flex}
 @media (max-width:1279px){
@@ -429,8 +560,8 @@ body.nav-open .nav-mobile-panel{display:flex}
 }
 .brand-logo{display:flex;align-items:baseline;gap:.6em;font-size:1.75rem;transition:opacity .3s ease}
 .brand-logo:hover{opacity:.7}
-.brand-en{font:600 1.75rem 'Cormorant Garamond',serif;letter-spacing:.15em;text-transform:uppercase;color:#111;line-height:1}
-.brand-kr{font:400 .85rem 'Noto Serif KR',serif;opacity:.5;color:#111;line-height:1;white-space:nowrap}
+.brand-en{font:600 1.75rem 'Cormorant Garamond',serif;letter-spacing:.15em;text-transform:uppercase;color:var(--ink);line-height:1;transition:color .35s ease}
+.brand-kr{font:400 .85rem 'Noto Serif KR',serif;opacity:.55;color:var(--ink);line-height:1;white-space:nowrap;transition:color .35s ease}
 @media (max-width:640px){
 .brand-logo{font-size:1.35rem}
 .brand-en{font-size:1.35rem;letter-spacing:.12em}
@@ -445,23 +576,24 @@ body.nav-open .nav-mobile-panel{display:flex}
 <filter id="mbCream" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.005 0.017" numOctaves="5" seed="13" result="n1"/><feColorMatrix in="n1" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  .34 .34 .34 0 0" result="l1"/><feComponentTransfer in="l1" result="b1"><feFuncA type="table" tableValues="0 0 0 0.18 1 0.18 0 0 0"/></feComponentTransfer><feGaussianBlur in="b1" stdDeviation="0.55" result="b1b"/><feFlood flood-color="#a8763f" result="cg"/><feComposite in="cg" in2="b1b" operator="in" result="gold"/><feTurbulence type="fractalNoise" baseFrequency="0.013 0.034" numOctaves="3" seed="5" result="n2"/><feColorMatrix in="n2" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  .34 .34 .34 0 0" result="l2"/><feComponentTransfer in="l2" result="b2"><feFuncA type="table" tableValues="0 0 0 0 0.6 0 0 0 0"/></feComponentTransfer><feFlood flood-color="#c7a268" result="cc"/><feComposite in="cc" in2="b2" operator="in" result="car"/><feMerge><feMergeNode in="gold"/><feMergeNode in="car"/></feMerge></filter>
 <filter id="mbDark" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.006 0.02" numOctaves="5" seed="9" result="n1"/><feColorMatrix in="n1" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  .34 .34 .34 0 0" result="l1"/><feComponentTransfer in="l1" result="b1"><feFuncA type="table" tableValues="0 0 0 0.2 1 0.2 0 0 0"/></feComponentTransfer><feGaussianBlur in="b1" stdDeviation="0.5" result="b1b"/><feFlood flood-color="#e3e9f0" result="cw"/><feComposite in="cw" in2="b1b" operator="in" result="white"/><feTurbulence type="fractalNoise" baseFrequency="0.013 0.035" numOctaves="3" seed="31" result="n2"/><feColorMatrix in="n2" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  .34 .34 .34 0 0" result="l2"/><feComponentTransfer in="l2" result="b2"><feFuncA type="table" tableValues="0 0 0 0 0.7 0 0 0 0"/></feComponentTransfer><feFlood flood-color="#c9a24b" result="cg2"/><feComposite in="cg2" in2="b2" operator="in" result="gold"/><feMerge><feMergeNode in="white"/><feMergeNode in="gold"/></feMerge></filter>
 </defs></svg>
-<div style="position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:19px 5vw;background:rgba(251,250,250,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(14,36,64,.08);color:#0e2440">
+<div class="site-hd" style="position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:19px 5vw;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(22,32,42,.08);color:#16202A">
   <a href="index.html" class="brand-logo" style="text-decoration:none;color:inherit">
     <span class="brand-en">EUNSUNG</span><span class="brand-kr">은성</span>
   </a>
-  <nav class="nav-mid" style="color:#1a1a1a">
+  <nav class="nav-mid" style="color:#16202A">
     <a href="about.html">회사소개</a>
     <a href="facility.html">시공 과정</a>
     <a href="showroom.html?cat=PORCELAIN">포세린</a>
     <a href="showroom.html?cat=VIATERA">엔지니어드 스톤</a>
     <a href="showroom.html?cat=HIMACS">인조대리석</a>
     <a href="bmc.html">BMC</a>
-    <a href="portfolio.html">시공사례</a><a href="store.html">스토어</a><a href="contact.html">문의</a>
+    <a href="portfolio.html">시공사례</a><a href="store.html">스토어</a>
   </nav>
   <div class="nav-right">
     <button type="button" class="nav-ic" aria-label="검색"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></button>
     <span class="lang" role="group" aria-label="언어 선택"><b><button type="button" class="lang-btn" lang="ko" aria-label="한국어">KO</button></b><b><button type="button" class="lang-btn" lang="en" aria-label="English">EN</button></b></span>
     <button type="button" class="nav-ic" aria-label="로그인"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></button>
+    <a class="hd-quote" href="#inquiry">견적 문의</a>
     <button type="button" class="nav-burger" aria-label="메뉴 열기" aria-expanded="false" aria-controls="navMobilePanel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M4 9h16M4 15h16"/></svg></button>
   </div>
 </div>
@@ -478,34 +610,32 @@ body.nav-open .nav-mobile-panel{display:flex}
 </div>
 
 <!-- ===================== MATERIALS ===================== -->
-<section id="materials" style="background:#ede9e1;padding:120px 5vw;scroll-margin-top:64px">
+<section id="materials" style="background:#fff;padding:120px 5vw;scroll-margin-top:64px">
   <div style="max-width:1280px;margin:0 auto">
-    <div style="margin-bottom:60px" data-reveal-group>
-      <div class="reveal" style="width:60px;height:1px;background:#bf8e5a;margin-bottom:16px"></div>
-      <div class="reveal" style="font:600 12px 'Manrope';letter-spacing:.42em;color:#b8924a;margin-bottom:18px">MATERIALS · 소재</div>
-      <h2 class="reveal" style="margin:0;font:500 clamp(30px,4.2vw,52px)/1.32 'Noto Serif KR',serif;color:#0e2440;max-width:18em">네 가지 소재, 하나의 기준</h2>
-      <div class="reveal" style="margin-top:20px;font:400 14.5px/1.85 'Manrope';color:rgba(14,36,64,.55);max-width:560px">2009년 BMC 인조대리석 가공 전문으로 출발해, 포세린·비아테라·하이막스·BMC 전 라인업을 다루는 종합 표면재 기업으로 성장했습니다.</div>
+    <div class="hm-head" data-reveal-group>
+      <h2 class="hm-h2 reveal">네 가지 소재, 하나의 기준</h2>
+      <p class="hm-lead reveal">2009년 BMC 인조대리석 가공 전문으로 출발해, 포세린·비아테라·하이막스·BMC 전 라인업을 다루는 종합 표면재 기업으로 성장했습니다.</p>
     </div>
     <div data-reveal-group>
       <!-- 포세린 (panel right) -->
       <div class="mbanner reveal">
         <div class="mbanner-image" role="img" aria-label="포세린 슬랩으로 마감한 주방 아일랜드 시공 사례" data-bg="assets/porcelain.webp"></div>
         <div class="mbanner-panel">
-          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">포세린</div><div class="mbanner-eyebrow" style="margin-bottom:0">세라믹</div></div>
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px"><div class="mbanner-title">포세린</div><div class="mbanner-eyebrow">세라믹</div></div>
           <div class="mbanner-desc-ko"><span class="sentence">뜨거운 냄비를 그대로 올리고, 도마 없이 칼질을 해도 자국 하나 남지&nbsp;않습니다.</span><span class="sentence">1200°C에서 구워낸 표면은 얼룩이 배지 않고 햇빛에도 바래지 않아, 10년을 써도 처음&nbsp;그대로입니다.</span><span class="sentence">대리석의 얼굴에 돌보다 강한&nbsp;몸.</span><span class="sentence">은성이 가장 먼저 권하는&nbsp;소재입니다.</span></div>
           <div class="mbanner-chips"><span class="mbanner-chip">열 · 칼 · 얼룩에 모두 강함</span><span class="mbanner-chip">햇빛에도 변색 없음</span><span class="mbanner-chip">3240×1620 대형 슬랩</span></div>
           <div class="mbanner-rec">싱크대&nbsp;상판&nbsp;· 아일랜드&nbsp;상판&nbsp;· 벽면&nbsp;· 외장 등 매일 쓰고 오래 봐야 하는 공간에&nbsp;추천</div>
-          <div class="mbanner-partner"><div class="mbanner-partner-cap">OFFICIAL PARTNER</div><img src="images/lx-hausys-logo.png" alt="LX Hausys" width="888" height="144" loading="lazy" decoding="async"></div>
+          <div class="mbanner-foot"><div class="mbanner-partner"><img src="images/lx-hausys-logo.png" alt="LX Hausys" width="888" height="144" loading="lazy" decoding="async"><span>공식 파트너</span></div><a class="mbanner-more" href="showroom.html?cat=PORCELAIN">포세린 컬러 보기</a></div>
         </div>
       </div>
       <!-- 비아테라 (panel left) -->
       <div class="mbanner reveal">
         <div class="mbanner-panel">
-          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">비아테라</div><div class="mbanner-eyebrow" style="margin-bottom:0">엔지니어드 스톤</div></div>
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px"><div class="mbanner-title">비아테라</div><div class="mbanner-eyebrow">엔지니어드 스톤</div></div>
           <div class="mbanner-desc-ko"><span class="sentence">천연 석영을 93% 담아 돌의 깊이와 광택을 그대로 살린&nbsp;소재입니다.</span><span class="sentence">물이 스미지 않아 김치 국물이나 와인을 흘려도 배지 않고, 긁힘에 강해 매일 쓰는 조리대에서도 표면이 거칠어지지&nbsp;않습니다.</span><span class="sentence">코팅이나 별도 관리 없이 물걸레 한 번이면&nbsp;충분합니다.</span></div>
           <div class="mbanner-chips"><span class="mbanner-chip">천연 석영 93%</span><span class="mbanner-chip">얼룩이 배지 않는 표면</span><span class="mbanner-chip">코팅 · 관리 불필요</span></div>
           <div class="mbanner-rec">아일랜드&nbsp;· 싱크대&nbsp;상판 등 얼룩과 흠집에 예민한 주방에&nbsp;추천</div>
-          <div class="mbanner-partner"><div class="mbanner-partner-cap">OFFICIAL PARTNER</div><img src="images/lx-hausys-logo.png" alt="LX Hausys" width="888" height="144" loading="lazy" decoding="async"></div>
+          <div class="mbanner-foot"><div class="mbanner-partner"><img src="images/lx-hausys-logo.png" alt="LX Hausys" width="888" height="144" loading="lazy" decoding="async"><span>공식 파트너</span></div><a class="mbanner-more" href="showroom.html?cat=VIATERA">비아테라 컬러 보기</a></div>
         </div>
         <div class="mbanner-image" role="img" aria-label="비아테라 엔지니어드 스톤 상판을 적용한 주방" data-bg="assets/viatera.webp"></div>
       </div>
@@ -513,20 +643,21 @@ body.nav-open .nav-mobile-panel{display:flex}
       <div class="mbanner reveal">
         <div class="mbanner-image" role="img" aria-label="하이막스 인조대리석으로 이음새 없이 마감한 카운터" data-bg="assets/himacs.webp"></div>
         <div class="mbanner-panel">
-          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">하이막스</div><div class="mbanner-eyebrow" style="margin-bottom:0">인조대리석</div></div>
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px"><div class="mbanner-title">하이막스</div><div class="mbanner-eyebrow">인조대리석</div></div>
           <div class="mbanner-desc-ko"><span class="sentence">100% 아크릴계 솔리드 서페이스로, 이음새 없이 매끄럽게 이어지고 열로 곡면을 만들 수&nbsp;있습니다.</span><span class="sentence">생활 흠집이 생겨도 표면을 살짝 갈아내면 새것처럼&nbsp;돌아옵니다.</span></div>
           <div class="mbanner-chips"><span class="mbanner-chip">이음새 없는 일체형 마감</span><span class="mbanner-chip">곡선 디자인 자유</span><span class="mbanner-chip">긁혀도 다시 새것처럼</span></div>
           <div class="mbanner-rec">곡선&nbsp;카운터&nbsp;· 세면대 등 디자인 자유도가 필요한 공간에&nbsp;추천</div>
-          <div class="mbanner-partner"><div class="mbanner-partner-cap">OFFICIAL PARTNER</div><img src="images/lx-hausys-logo.png" alt="LX Hausys" width="888" height="144" loading="lazy" decoding="async"></div>
+          <div class="mbanner-foot"><div class="mbanner-partner"><img src="images/lx-hausys-logo.png" alt="LX Hausys" width="888" height="144" loading="lazy" decoding="async"><span>공식 파트너</span></div><a class="mbanner-more" href="showroom.html?cat=HIMACS">하이막스 컬러 보기</a></div>
         </div>
       </div>
       <!-- BMC (panel left) -->
       <div class="mbanner reveal" style="margin-bottom:0">
         <div class="mbanner-panel">
-          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px"><div class="mbanner-title">BMC</div></div>
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px"><div class="mbanner-title">BMC</div><div class="mbanner-eyebrow">싱크볼 일체형 상판</div></div>
           <div class="mbanner-desc-ko"><span class="sentence">고온·고압으로 한 번에 찍어낸 BMC를 은성이 직접 가공한&nbsp;상판입니다.</span><span class="sentence">싱크볼까지 한 몸으로 성형돼 물이 스밀 이음새가 없고, 열과 습기에 강해 오래 써도 휘거나 들뜨지&nbsp;않습니다.</span><span class="sentence">2009년부터 은성이 직접 가공해온 만큼 가격과 납기, A/S까지 은성이&nbsp;책임집니다.</span></div>
           <div class="mbanner-chips"><span class="mbanner-chip">싱크볼 일체 성형</span><span class="mbanner-chip">열·습기에 강한 소재</span><span class="mbanner-chip">은성 직접 가공 · 책임 시공</span></div>
           <div class="mbanner-rec">빠른 납기와 안정적인 품질이 중요한 주방&nbsp;· 다용도실에&nbsp;추천</div>
+          <div class="mbanner-foot"><div class="mbanner-partner"><span>2009년부터 포천 공장에서 직접 가공</span></div><a class="mbanner-more" href="bmc.html">BMC 제품 보기</a></div>
         </div>
         <div class="mbanner-image" role="img" aria-label="은성이 자체 생산한 BMC 싱크볼 일체형 주방 상판" data-bg="images/bmc-kitchen.jpg"></div>
       </div>
@@ -544,91 +675,110 @@ body.nav-open .nav-mobile-panel{display:flex}
     <source src="assets/video/story-montage-desktop.mp4" type="video/mp4">
   </video>
   <div class="story-montage-text" id="storyMontageText">
-    <div class="story-montage-label">CRAFTED BY EUNSUNG</div>
-    <div class="story-montage-headline">기계의 정확함 위에,<br>사람의 손끝을 더합니다</div>
+    <div class="story-montage-label">포천 직영공장</div>
+    <h2 class="story-montage-headline" style="margin:0">기계의 정확함 위에,<br>사람의 손끝을 더합니다</h2>
+    <a class="story-montage-link" href="facility.html">시공 과정 보기</a>
   </div>
 </section>
 
-<!-- ===================== INQUIRY ===================== -->
-<section id="inquiry" style="background:#0b0f15;padding:120px 5vw;scroll-margin-top:64px">
-  <div style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:72px">
-    <div>
-      <div class="reveal" style="font:600 12px 'Manrope';letter-spacing:.42em;color:#c9a24b;margin-bottom:16px">INQUIRY · 문의</div>
-      <div class="reveal" style="font:500 clamp(36px,4.5vw,58px)/1.03 'Cormorant Garamond';color:#fff;margin-bottom:14px">Start a project.</div>
-      <div style="font:400 15px/1.85 'Manrope';color:rgba(255,255,255,.55);max-width:460px;margin-bottom:34px">공간에 대해 알려주세요.<br>저희 팀이 영업일 기준 하루 안에 샘플과 견적으로 답변드립니다.</div>
-      <sc-if value="{{ formSent }}" hint-placeholder-val="{{ false }}">
-        <div style="padding:40px;border:1px solid rgba(227,199,137,.4);border-radius:14px;background:rgba(227,199,137,.08)">
-          <div style="font:500 30px 'Cormorant Garamond';color:#e3c789;margin-bottom:10px">Thank you.</div>
-          <div style="font:400 14px/1.8 'Manrope';color:rgba(255,255,255,.65);margin-bottom:4px">문의가 정상적으로 접수되었습니다. 저희 팀이 영업일 기준 하루 안에 연락드립니다.</div>
-          <div style="font:400 12px/1.6 'Manrope';color:rgba(255,255,255,.35)">Your inquiry has been received. Our team will be in touch within one business day.</div>
-        </div>
-      </sc-if>
-      <sc-if value="{{ formOpen }}" hint-placeholder-val="{{ true }}">
-        <div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-            <input placeholder="Name · 성함" style="width:100%;padding:15px 16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:9px;color:#eef3f8;font:400 14px 'Manrope';outline:none">
-            <input placeholder="Phone / Email · 연락처" style="width:100%;padding:15px 16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:9px;color:#eef3f8;font:400 14px 'Manrope';outline:none">
+
+</x-dc>
+<!-- ===================== INQUIRY · 견적 문의 (2026-11, x-dc 밖) =====================
+     예전 폼은 x-dc 템플릿 안에 있었고 버튼에 연결된 처리기가 없어 실제로는 접수가 되지 않았다.
+     contact.html 과 같은 Netlify Function(/.netlify/functions/contact)으로 같은 형식을 보낸다
+     (필수: 이름·연락처·문의 유형·내용·개인정보 동의, website 허니팟). 전송 로직은 assets/js/home.js(initInquiry). -->
+<section id="inquiry" class="hq">
+  <div class="hq-in">
+    <div class="hq-main">
+      <h2 class="hq-title reveal">공간에 대해 알려주세요.</h2>
+      <p class="hq-lead">저희 팀이 영업일 기준 하루 안에 샘플과 견적으로 답변드립니다.</p>
+      <div class="hq-wrap" id="hqWrap">
+        <form class="hq-form" id="hqForm" action="#inquiry" novalidate>
+          <p class="hq-hp" aria-hidden="true"><label>이 항목은 비워두세요 <input id="hqWebsite" name="website" type="text" tabindex="-1" autocomplete="off"></label></p>
+          <div class="hq-row">
+            <div class="hq-field" data-field="name">
+              <label class="hq-label" for="hqName">이름 <span class="hq-req">*</span></label>
+              <input class="hq-input" id="hqName" name="name" type="text" autocomplete="name" placeholder="홍길동">
+            </div>
+            <div class="hq-field" data-field="phone">
+              <label class="hq-label" for="hqPhone">연락처 <span class="hq-req">*</span></label>
+              <input class="hq-input" id="hqPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="010-0000-0000">
+            </div>
           </div>
-          <select style="width:100%;margin-top:12px;padding:15px 16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:9px;color:#aeb8c4;font:400 14px 'Manrope';outline:none">
-            <option style="color:#111">Project type · 프로젝트 유형</option>
-            <option style="color:#111">Residential kitchen · 주거 주방</option>
-            <option style="color:#111">Bathroom / vanity · 욕실</option>
-            <option style="color:#111">Commercial / hospitality · 상업공간</option>
-            <option style="color:#111">Facade / feature wall · 외장·벽면</option>
-          </select>
-          <textarea placeholder="Tell us about your space · 내용" rows="4" style="width:100%;margin-top:12px;padding:15px 16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:9px;color:#eef3f8;font:400 14px 'Manrope';outline:none;resize:vertical"></textarea>
-          <button class="cta" onClick="{{ sendInquiry }}" style="background:#c9a24b;color:#0b0f15;border-radius:9px;margin-top:16px">문의 보내기 · SEND INQUIRY <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <div class="hq-field" data-field="type">
+            <label class="hq-label" for="hqType">문의 유형 <span class="hq-req">*</span></label>
+            <select class="hq-select" id="hqType" name="inquiry_type">
+              <option value="">선택해 주세요</option>
+              <option>견적 문의</option>
+              <option>시공 문의</option>
+              <option>자재 문의</option>
+              <option>쇼룸 방문 예약</option>
+              <option>기타</option>
+            </select>
+          </div>
+          <div class="hq-field" data-field="message">
+            <label class="hq-label" for="hqMessage">문의 내용 <span class="hq-req">*</span></label>
+            <textarea class="hq-textarea" id="hqMessage" name="message" rows="5" placeholder="공간 종류(주방·욕실·상업공간 등), 대략적인 규모, 희망 일정을 적어주세요. 관심 소재나 시공 지역이 있으시면 함께 적어주세요."></textarea>
+          </div>
+          <div class="hq-agree" data-field="agree">
+            <input type="checkbox" id="hqAgree" name="consent" value="동의">
+            <label for="hqAgree">개인정보 수집 및 이용에 동의합니다&nbsp;<span class="hq-req">*</span></label>
+            <a class="hq-more" href="privacy.html" target="_blank" rel="noopener">더 보기</a>
+          </div>
+          <div class="hq-msg" id="hqMsg" role="status" aria-live="polite"></div>
+          <button class="hq-submit" id="hqSubmit" type="submit">문의 보내기</button>
+        </form>
+        <div class="hq-thanks" id="hqThanks" hidden>
+          <div class="hq-thanks-title">문의가 접수되었습니다</div>
+          <div class="hq-thanks-text">영업일 기준 1일 내 연락드리겠습니다.<br>급하신 경우 031-544-7272로 전화 주세요.</div>
         </div>
-      </sc-if>
-    </div>
-    <div style="border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:44px 40px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,0))">
-      <div style="display:flex;align-items:center;gap:11px;margin-bottom:28px">
-        <div style="line-height:1.3"><div style="font:700 15px 'Manrope';letter-spacing:.16em;color:#fff">(주)은성</div><div style="font:500 10px 'Manrope';letter-spacing:.2em;color:rgba(255,255,255,.5);margin-top:3px">EUNSUNG CO., LTD.</div></div>
-      </div>
-      <div style="height:1px;background:rgba(255,255,255,.1);margin-bottom:26px"></div>
-      <div style="display:flex;flex-direction:column;gap:20px">
-        <div><div style="font:600 10px 'Manrope';letter-spacing:.2em;color:#c9a24b;margin-bottom:6px">SPECIALTY · 전문 분야</div><div style="font:400 14px/1.6 'Manrope';color:rgba(255,255,255,.78)">인조대리석 및 상판 가공 전문</div></div>
-        <div><div style="font:600 10px 'Manrope';letter-spacing:.2em;color:#c9a24b;margin-bottom:6px">LOCATION · 위치</div><div class="nowrap" style="font:400 14px/1.6 'Manrope';color:rgba(255,255,255,.78)">경기도 포천시 가산면 정금로 356-39</div></div>
-        <div><div style="font:600 10px 'Manrope';letter-spacing:.2em;color:#c9a24b;margin-bottom:6px">CONTACT · 문의</div><div style="font:400 14px/1.6 'Manrope';color:rgba(255,255,255,.78)"><span class="nowrap">031-544-7272</span>&nbsp;· <span class="nowrap">010-5430-2580</span><br>ceramices@naver.com</div></div>
       </div>
     </div>
+    <aside class="hq-card" aria-label="회사 정보">
+      <div class="hq-card-name">(주)은성</div>
+      <div class="hq-card-en">EUNSUNG CO., LTD.</div>
+      <dl class="hq-dl">
+        <div><dt>전문 분야</dt><dd>인조대리석 및 상판 가공 전문</dd></div>
+        <div><dt>위치</dt><dd>경기도 포천시 가산면 정금로&nbsp;356-39</dd></div>
+        <div><dt>전화</dt><dd><a class="nowrap" href="tel:0315447272">031-544-7272</a> &nbsp;·&nbsp; <a class="nowrap" href="tel:01054302580">010-5430-2580</a></dd></div>
+        <div><dt>이메일</dt><dd><a href="mailto:ceramices@naver.com">ceramices@naver.com</a></dd></div>
+      </dl>
+      <a class="hq-kakao" href="https://open.kakao.com/o/sS7BnYyc" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 3.5C6.75 3.5 2.5 6.86 2.5 11c0 2.64 1.75 4.96 4.39 6.29-.19.7-.7 2.57-.8 2.97-.13.5.18.49.38.36.16-.1 2.53-1.72 3.56-2.42.63.09 1.28.14 1.97.14 5.25 0 9.5-3.36 9.5-7.5s-4.25-7.5-9.5-7.5z"/></svg>카카오톡으로 상담하기</a>
+    </aside>
   </div>
-  <div style="max-width:1240px;margin:44px auto 0">
-    <iframe title="EUNSUNG 위치 지도" loading="lazy" src="https://www.google.com/maps?q=%EA%B2%BD%EA%B8%B0%EB%8F%84+%ED%8F%AC%EC%B2%9C%EC%8B%9C+%EA%B0%80%EC%82%B0%EB%A9%B4+%EC%A0%95%EA%B8%88%EB%A1%9C+356-39&output=embed" style="width:100%;height:340px;border:0;border-radius:16px;filter:grayscale(.3) contrast(1.05)"></iframe>
-    <div class="maplinks maplinks--on-dark">
+  <div class="hq-map">
+    <iframe title="EUNSUNG 위치 지도" loading="lazy" src="https://www.google.com/maps?q=%EA%B2%BD%EA%B8%B0%EB%8F%84+%ED%8F%AC%EC%B2%9C%EC%8B%9C+%EA%B0%80%EC%82%B0%EB%A9%B4+%EC%A0%95%EA%B8%88%EB%A1%9C+356-39&output=embed"></iframe>
+    <div class="maplinks">
       <a class="maplink" href="https://map.naver.com/p/search/%EA%B2%BD%EA%B8%B0%EB%8F%84%20%ED%8F%AC%EC%B2%9C%EC%8B%9C%20%EA%B0%80%EC%82%B0%EB%A9%B4%20%EC%A0%95%EA%B8%88%EB%A1%9C%20356-39" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>네이버지도로 길찾기</a>
       <a class="maplink" href="https://map.kakao.com/link/search/%EA%B2%BD%EA%B8%B0%EB%8F%84%20%ED%8F%AC%EC%B2%9C%EC%8B%9C%20%EA%B0%80%EC%82%B0%EB%A9%B4%20%EC%A0%95%EA%B8%88%EB%A1%9C%20356-39" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>카카오맵으로 길찾기</a>
     </div>
   </div>
 </section>
 
-<!-- ===================== FOOTER ===================== --><footer style="background:#080b10;padding:72px 5vw 40px">
+<!-- ===================== FOOTER · 밝은 톤 (2026-11, x-dc 밖) =====================
+     구조(바깥 flex · 링크 묶음 gap:64px · 사업자 정보 flex-wrap)는 그대로 둔다 — mobile.css 의 푸터 규칙이 이 인라인 값을 잡는다. -->
+<footer class="hf" style="padding:72px 5vw 40px">
   <div style="max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:44px">
-    <div style="max-width:300px">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
-        <div style="font:700 15px 'Manrope';letter-spacing:.24em;color:#fff">EUNSUNG</div>
-      </div>
-      <div style="font:400 13px/1.8 'Manrope';color:rgba(255,255,255,.45)">포세린·엔지니어드 스톤·인조대리석·BMC<br>소재 선별부터 가공, 시공까지. 은성이 처음부터 끝까지&nbsp;책임집니다.</div>
+    <div style="max-width:320px">
+      <a href="index.html" class="hf-brand" aria-label="EUNSUNG 은성 홈"><span class="hf-en">EUNSUNG</span><span class="hf-kr">은성</span></a>
+      <p class="hf-desc">포세린·엔지니어드 스톤·인조대리석·BMC<br>소재 선별부터 가공, 시공까지. 은성이 처음부터 끝까지&nbsp;책임집니다.</p>
     </div>
     <div style="display:flex;gap:64px;flex-wrap:wrap">
-      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">MATERIALS</div><div style="display:flex;flex-direction:column;gap:11px"><a class="ft-link" href="showroom.html?cat=PORCELAIN">포세린</a><a class="ft-link" href="showroom.html?cat=VIATERA">엔지니어드 스톤</a><a class="ft-link" href="showroom.html?cat=HIMACS">인조대리석</a><a class="ft-link" href="bmc.html">BMC</a></div></div>
-      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">COMPANY</div><div style="display:flex;flex-direction:column;gap:11px"><a class="ft-link" href="portfolio.html">Portfolio</a><a class="ft-link" href="facility.html">Process</a><a class="ft-link" href="about.html">About</a><a class="ft-link" href="showroom.html?cat=PORCELAIN">Showroom</a><a class="ft-link" href="store.html">Store</a></div></div>
-      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">SUPPORT</div><div style="display:flex;flex-direction:column;gap:11px"><a class="ft-link" href="contact.html">Inquiry</a></div></div>
+      <div><div class="hf-h">소재</div><div class="hf-col"><a class="ft-link" href="showroom.html?cat=PORCELAIN">포세린</a><a class="ft-link" href="showroom.html?cat=VIATERA">엔지니어드 스톤</a><a class="ft-link" href="showroom.html?cat=HIMACS">인조대리석</a><a class="ft-link" href="bmc.html">BMC</a></div></div>
+      <div><div class="hf-h">회사</div><div class="hf-col"><a class="ft-link" href="about.html">회사소개</a><a class="ft-link" href="facility.html">시공 과정</a><a class="ft-link" href="portfolio.html">시공사례</a><a class="ft-link" href="showroom.html?cat=PORCELAIN">쇼룸</a><a class="ft-link" href="store.html">스토어</a></div></div>
+      <div><div class="hf-h">고객지원</div><div class="hf-col"><a class="ft-link" href="contact.html">문의하기</a><a class="ft-link" href="https://open.kakao.com/o/sS7BnYyc" target="_blank" rel="noopener noreferrer">카카오톡 상담</a></div></div>
     </div>
   </div>
-  <div style="max-width:1280px;margin:48px auto 0;padding-top:26px;border-top:1px solid rgba(255,255,255,.09)">
-    <div style="margin-bottom:14px;font:400 12px/1.7 'Manrope';color:rgba(255,255,255,.5);word-break:keep-all">(주)은성 — 경기도 포천 포세린·엔지니어드 스톤 전문 기업 | LX하우시스 공식&nbsp;파트너</div>
-    <div class="ft-info" style="display:flex;flex-wrap:wrap;gap:8px 22px;margin-bottom:16px;font:400 12px/1.7 'Manrope';color:rgba(255,255,255,.45)">
+  <div class="hf-bottom">
+    <div class="hf-small" style="margin-bottom:12px;word-break:keep-all">(주)은성 — 경기도 포천 포세린·엔지니어드 스톤 전문 기업 | LX하우시스 공식&nbsp;파트너</div>
+    <div class="ft-info hf-small" style="display:flex;flex-wrap:wrap;gap:6px 22px;margin-bottom:16px">
       <span>상호 (주)은성</span><span>대표자 이언기</span><span>사업자등록번호 328-88-00420</span><span class="ft-info-addr">주소&nbsp;경기도 포천시 가산면 정금로&nbsp;356-39</span><span>전화 031-544-7272 · 010-5430-2580</span><span>팩스 031-544-6868</span><span>이메일 ceramices@naver.com</span>
     </div>
-    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px">
-      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px"><div style="font:400 12px 'Manrope';color:rgba(255,255,255,.4)">© 2026 (주)은성 EUNSUNG Co., Ltd. · 인조대리석 및 상판 가공</div><a class="ft-link" href="privacy.html" style="font-size:12px;color:rgba(255,255,255,.62);text-decoration:underline;text-underline-offset:3px">개인정보처리방침</a></div>
-      <div style="font:400 12px 'Manrope';color:rgba(255,255,255,.4)">Instagram · KakaoTalk · Naver</div>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px">
+      <div class="hf-small">© 2026 (주)은성 EUNSUNG Co., Ltd. · 인조대리석 및 상판 가공</div><a class="ft-link" href="privacy.html" style="font-size:12.5px;text-decoration:underline;text-underline-offset:3px">개인정보처리방침</a><div class="hf-small">Instagram · KakaoTalk · Naver</div>
     </div>
   </div>
 </footer>
-
-</x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   state = { cart: 0, formSent: false, portfolioExpanded: false, caseSel: null };

@@ -1,195 +1,15 @@
-/* ===== index.html 전용 스크립트 — 히어로 영상 · 스토리 몽타주 =====
+/* ===== index.html 전용 스크립트 — 히어로 영상 · 헤더 · 스토리 몽타주 · 견적 문의 =====
 
-   index.html 의 인라인 <script> 세 덩어리를 이 파일로 옮겼다(캐시 가능, HTML 가벼워짐).
-   히어로는 1023px 을 경계로 데스크톱/모바일 로직을 완전히 나눈다:
-
-   ┌ 데스크톱(≥1024) ─ 스크롤 확장 연출. 래퍼(200vh) 안에서 sticky 로 붙어 있는 동안
-   │                   굴러간 양을 0~1 진행도로 환산해 영상 프레임 크기에 매핑한다.
-   │                   자동재생 보험(RETRY_EVENTS)·pause 시 재개도 그대로다. (예전 코드 그대로)
-   └ 모바일(≤1023)   ─ 100svh 풀스크린 + autoplay muted loop playsinline 무한 재생.
-                       스크롤 진행도·rAF·currentTime 조작 없음. 재생이 거부되면(iOS 저전력 등)
-                       poster 를 그대로 두고 첫 터치 때 딱 한 번만 다시 시도한다.
-   두 로직은 뷰포트가 경계를 넘을 때(태블릿 회전 등)만 서로 넘겨받는다. */
+   2026-11 밝은 톤 리디자인:
+   · 히어로 — 예전 스크롤 확장 연출(200vh 래퍼 + sticky, 스크롤 진행도 → 영상 크기)을 없앴다.
+     첫 화면을 꽉 채운 영상이 autoplay muted loop playsinline 으로 그냥 반복 재생된다.
+     데스크톱·모바일 로직 구분 없이 하나이고, 파일만 <source media> 로 갈린다.
+     띠 오른쪽 버튼(#heroPause)으로 멈추고 다시 틀 수 있다. 사용자가 멈춘 상태는 존중한다
+     (탭 복귀·자동재생 재시도가 다시 틀지 않는다). 화면 밖으로 나가면 쉬고, 돌아오면 이어 재생한다.
+   · 헤더 — 히어로 위에 있는 동안 <html> 에 hd-over 를 켜서 투명 + 흰 글씨로 그린다(CSS 는 index.html).
+   · 견적 문의 — #hqForm 을 contact.html 과 같은 Netlify Function 으로 보낸다. */
 (function () {
   var MQ_MOBILE = '(max-width: 1023px)';
-
-  /* ─────────────────────────── 모바일 히어로 ─────────────────────────── */
-  function initMobileHero(videoEl) {
-    if (!videoEl) return;
-    var mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-    /* 동작 줄이기 — 재생하지 않고 poster 정지 이미지로 대체한다 */
-    if (mqReduce.matches) {
-      videoEl.removeAttribute('autoplay');
-      try { videoEl.pause(); } catch (e) { /* 무시 */ }
-      return;
-    }
-    /* Chrome 은 play() 시점에 muted 여야 자동재생을 허용한다 */
-    videoEl.muted = true;
-    videoEl.playsInline = true;
-    videoEl.loop = true;
-
-    var retried = false;
-    function play() {
-      var pr = videoEl.play();
-      if (pr && typeof pr['catch'] === 'function') {
-        pr['catch'](function () {
-          /* 거부됨(저전력 모드·데이터 절약 등). poster 가 그대로 보인다.
-             사용자 제스처가 생기면 한 번만 더 시도하고, 그래도 안 되면 poster 로 둔다. */
-          if (retried) return;
-          retried = true;
-          window.addEventListener('touchend', function () {
-            if (videoEl.readyState === 0) { try { videoEl.load(); } catch (e) { /* 무시 */ } }
-            videoEl.play()['catch'](function () { /* poster 유지 */ });
-          }, { once: true, passive: true });
-        });
-      }
-    }
-    play();
-    /* 탭 전환·앱 복귀 후 멈춰 있으면 재개 */
-    document.addEventListener('visibilitychange', function () {
-      if (!document.hidden && videoEl.paused && !retried) play();
-    });
-  }
-
-  /* ─────────────────────────── 데스크톱 히어로 ───────────────────────── */
-  /* 예전 구현은 wheel/touchmove 를 preventDefault 로 잡고 window.scrollTo(0,0) 으로
-     페이지를 붙잡아 뒀다. 그래서 애니메이션이 끝나기 전에 빠르게 굴리면 입력이 먹히지
-     않고 페이지가 멈춘 것처럼 보였다.
-
-     지금은 스크롤을 전혀 막지 않는다. 래퍼(200vh) 안에서 sticky 로 붙어 있는 동안
-     굴러간 양을 0~1 진행도로 환산해 크기에 그대로 매핑할 뿐이다. 빨리 내리면
-     애니메이션도 그만큼 빨리 끝나고, 래퍼를 지나면 다음 섹션으로 그냥 넘어간다. */
-  function initDesktopHero(els) {
-    var wrap = els.wrap;
-    var mediaEl = els.mediaEl;
-    var bgEl = els.bgEl;
-    var word = els.word;
-    var hintEl = els.hintEl;
-    var contentEl = els.contentEl;
-    var videoEl = els.videoEl;
-
-    /* 1024px 미만은 모바일 — 확대 인터랙션을 아예 실행하지 않는다.
-       CSS 가 같은 기준으로 영상을 처음부터 전체화면으로 고정하므로
-       여기서 인라인 width/height 를 쓰면 그 규칙과 싸운다. 크기 매핑 전체를 건너뛴다. */
-    var mqMobile = window.matchMedia(MQ_MOBILE);
-    var isMobile = mqMobile.matches;
-
-    /* 동작 줄이기 사용자에게는 영상 대신 poster 정지 이미지를 보여준다.
-       재생을 시작하지 않으면 브라우저가 poster 를 그대로 유지한다. */
-    var mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-    var ticking = false;
-    var lastP = -1;
-
-    /* ── 자동재생 보험 ──
-       Chrome 은 play() 호출 시점에 muted 여야 자동재생을 허용한다. 막히면 첫 사용자
-       조작 때 한 번 더 시도한다. 스크럽을 하지 않으므로 영상은 그냥 계속 재생한다. */
-    var retryBound = false;
-    var RETRY_EVENTS = ['pointerdown', 'touchstart', 'keydown', 'wheel', 'scroll'];
-
-    function tryPlay() {
-      if (!videoEl) return;
-      /* 동작 줄이기 — 재생하지 않고 poster 정지 이미지로 대체한다 */
-      if (mqReduce.matches) { videoEl.pause(); return; }
-      videoEl.muted = true;
-      videoEl.playsInline = true;
-      var pr = videoEl.play();
-      if (pr && typeof pr['catch'] === 'function') pr['catch'](bindRetryOnce);
-    }
-
-    function bindRetryOnce() {
-      if (retryBound) return;
-      retryBound = true;
-      function retry() {
-        RETRY_EVENTS.forEach(function (t) { window.removeEventListener(t, retry); });
-        retryBound = false;
-        /* 데이터 절약 모드 등으로 로드 자체가 안 된 상태(HAVE_NOTHING)면
-           사용자 제스처가 생긴 지금 load 부터 다시 건다 */
-        if (videoEl.readyState === 0) { try { videoEl.load(); } catch (e) { /* 무시 */ } }
-        tryPlay();
-      }
-      RETRY_EVENTS.forEach(function (t) {
-        window.addEventListener(t, retry, { once: true, passive: true });
-      });
-    }
-
-    if (videoEl) {
-      ['ended', 'stalled', 'pause'].forEach(function (t) {
-        videoEl.addEventListener(t, function () { if (videoEl.paused) tryPlay(); });
-      });
-      /* 탭 전환·앱 복귀 후 브라우저가 영상을 멈춰둔 채 두는 경우 재개한다 */
-      document.addEventListener('visibilitychange', function () {
-        if (!document.hidden && videoEl.paused) tryPlay();
-      });
-    }
-
-    /* 래퍼가 화면 위로 밀려 올라간 양 / 애니메이션 구간(래퍼높이 - 뷰포트높이) */
-    function progress() {
-      var total = wrap.offsetHeight - window.innerHeight;
-      if (total <= 0) return 1;
-      var y = -wrap.getBoundingClientRect().top;
-      return Math.min(Math.max(y / total, 0), 1);
-    }
-
-    function render(p) {
-      /* 모바일로 넘어간 상태면 아무것도 건드리지 않는다(CSS 가 전부 처리) */
-      if (isMobile) return;
-      /* 아래 텍스트 블록은 확장이 거의 끝났을 때 드러낸다 */
-      if (contentEl) contentEl.classList.toggle('on', p > 0.85);
-
-      mediaEl.style.width = (300 + p * 1250) + 'px';
-      mediaEl.style.height = (400 + p * 400) + 'px';
-      mediaEl.style.maxWidth = '95vw';
-      mediaEl.style.maxHeight = '85vh';
-      if (bgEl) bgEl.style.opacity = String(1 - p);
-      if (hintEl) hintEl.style.opacity = String(Math.max(0, 1 - p * 4));
-
-      /* 단어가 하나뿐이라 좌우로 벌릴 수 없다. 자간을 열어 펼쳐지는 인상을 유지하되
-         중앙 정렬이 흐트러지지 않게 같은 값의 음수 margin 으로 상쇄한다. */
-      if (word) {
-        var track = 0.16 + p * 0.16;
-        word.style.letterSpacing = track + 'em';
-        word.style.marginRight = -track + 'em';
-      }
-    }
-
-    function onScroll() {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(function () {
-        ticking = false;
-        var p = progress();
-        if (Math.abs(p - lastP) < 0.0015) return;   /* 미세한 떨림은 건너뛴다 */
-        lastP = p;
-        render(p);
-      });
-    }
-
-    function onResize() {
-      isMobile = mqMobile.matches;
-      if (isMobile) {
-        /* 데스크톱에서 걸어둔 인라인 스타일을 전부 지워 CSS 전체화면 규칙에 넘긴다 */
-        mediaEl.style.width = mediaEl.style.height = '';
-        mediaEl.style.maxWidth = mediaEl.style.maxHeight = '';
-        if (word) { word.style.letterSpacing = ''; word.style.marginRight = ''; }
-        if (bgEl) bgEl.style.opacity = '';
-        if (hintEl) hintEl.style.opacity = '';
-        if (contentEl) contentEl.classList.remove('on');
-      }
-      lastP = -1;
-      onScroll();
-    }
-
-    /* passive: true — 스크롤을 막지 않는다는 것을 브라우저에 명시한다 */
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onResize, { passive: true });
-    /* 회전·분할화면처럼 resize 이벤트가 불안정한 전환도 미디어쿼리 변화로 잡는다 */
-    if (mqMobile.addEventListener) mqMobile.addEventListener('change', onResize);
-    else if (mqMobile.addListener) mqMobile.addListener(onResize);
-
-    tryPlay();
-    render(progress());
-  }
 
   function activateSources(videoEl) {
     if (!videoEl) return;
@@ -202,34 +22,112 @@
     try { videoEl.load(); } catch (e) { /* 무시 */ }
   }
 
+  /* ─────────────────────────── 히어로 영상 ─────────────────────────── */
+  function initHeroVideo(videoEl, hero, btn) {
+    var mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var userPaused = false;     /* 버튼으로 멈췄는가 — 그러면 어떤 자동 재개도 하지 않는다 */
+    var inView = true;          /* 히어로가 화면에 보이는가 */
+    var retryBound = false;
+    var RETRY_EVENTS = ['pointerdown', 'touchstart', 'keydown', 'scroll'];
+
+    function paint() {
+      if (!btn) return;
+      var paused = userPaused || videoEl.paused;
+      btn.setAttribute('aria-pressed', paused ? 'true' : 'false');
+    }
+
+    function tryPlay() {
+      if (userPaused || !inView || document.hidden) return;
+      /* Chrome 은 play() 시점에 muted 여야 자동재생을 허용한다 */
+      videoEl.muted = true;
+      videoEl.playsInline = true;
+      videoEl.loop = true;
+      var pr = videoEl.play();
+      if (pr && typeof pr['catch'] === 'function') pr['catch'](function () { bindRetryOnce(); paint(); });
+    }
+
+    /* 저전력 모드·데이터 절약 등으로 거부되면 poster 가 그대로 보인다. 첫 사용자 조작 때 한 번 더 시도한다 */
+    function bindRetryOnce() {
+      if (retryBound) return;
+      retryBound = true;
+      function retry() {
+        RETRY_EVENTS.forEach(function (t) { window.removeEventListener(t, retry); });
+        retryBound = false;
+        if (videoEl.readyState === 0) { try { videoEl.load(); } catch (e) { /* 무시 */ } }
+        tryPlay();
+      }
+      RETRY_EVENTS.forEach(function (t) { window.addEventListener(t, retry, { once: true, passive: true }); });
+    }
+
+    videoEl.addEventListener('play', paint);
+    videoEl.addEventListener('pause', paint);
+    videoEl.addEventListener('stalled', function () { if (videoEl.paused) tryPlay(); });
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden && videoEl.paused) tryPlay();
+    });
+
+    if (btn) {
+      btn.addEventListener('click', function () {
+        if (userPaused || videoEl.paused) {
+          userPaused = false;
+          if (videoEl.readyState === 0) activateSources(videoEl);
+          tryPlay();
+        } else {
+          userPaused = true;
+          videoEl.pause();
+        }
+        paint();
+      });
+    }
+
+    /* 화면 밖에서는 디코딩을 쉰다 — 스크롤해 내려가면 멈추고, 올라오면 이어 재생 */
+    if ('IntersectionObserver' in window && hero) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          inView = en.isIntersecting;
+          if (inView) tryPlay(); else if (!videoEl.paused) videoEl.pause();
+        });
+      }, { threshold: 0.05 }).observe(hero);
+    }
+
+    /* 태블릿 회전 등으로 1023px 경계를 넘으면 그 폭에 맞는 파일로 다시 고른다 */
+    var mq = window.matchMedia(MQ_MOBILE);
+    function onMq() {
+      videoEl.poster = mq.matches ? 'assets/video/hero-bright-poster-mobile.jpg' : 'assets/video/hero-bright-poster.jpg';
+      try { videoEl.load(); } catch (e) { /* 무시 */ }
+      tryPlay();
+    }
+    if (mq.addEventListener) mq.addEventListener('change', onMq);
+    else if (mq.addListener) mq.addListener(onMq);
+
+    /* 동작 줄이기 — 처음부터 멈춘 상태(poster 정지 화면)로 두고, 버튼으로만 재생한다 */
+    if (mqReduce.matches) {
+      userPaused = true;
+      videoEl.removeAttribute('autoplay');
+      try { videoEl.pause(); } catch (e) { /* 무시 */ }
+    }
+    paint();
+    tryPlay();
+  }
+
   /* ─────────────────────────── 진입점 ─────────────────────────── */
   function initHero() {
-    var els = {
-      wrap: document.getElementById('videoHero'),
-      mediaEl: document.getElementById('vheroMedia'),
-      bgEl: document.getElementById('vheroBg'),
-      word: document.getElementById('vheroWord'),
-      hintEl: document.getElementById('vheroHint'),
-      contentEl: document.getElementById('vheroContent'),
-      videoEl: document.getElementById('vheroVideo')
-    };
-    if (!els.wrap || !els.mediaEl) return;
+    var hero = document.getElementById('videoHero');
+    var videoEl = document.getElementById('vheroVideo');
+    var btn = document.getElementById('heroPause');
+    if (!hero || !videoEl) return;
 
-    /* 영상 소스는 마크업에 data-src 로만 있다. 첫 프레임이 그려진 직후(rAF 두 번) src 로 올려
-       로드를 시작한다 — poster·CSS·폰트가 먼저 화면에 오르고, 1MB 안팎의 스트림은 그 뒤에 붙는다.
-       <source media> 는 브라우저가 load() 시점에 평가하므로 뷰포트별 파일 선택은 그대로 동작한다.
-       (poster 가 먼저 칠해져야 LCP 후보로도 잡힌다.) */
-    var mqMobile = window.matchMedia(MQ_MOBILE);
-    var desktopReady = false;
-    function start() {
-      activateSources(els.videoEl);
-      if (mqMobile.matches) initMobileHero(els.videoEl);
-      else ensureDesktop();
-    }
-    /* 첫 콘텐츠 페인트(FCP) 뒤에 시작한다. rAF 는 첫 페인트보다 먼저 돌 수 있어서(빈 프레임)
-       PerformanceObserver 로 실제 paint 를 기다리고, 못 잡는 브라우저는 짧은 타임아웃으로 넘어간다. */
+    /* 영상 소스는 마크업에 data-src 로만 있다. 첫 콘텐츠 페인트(FCP) 뒤에 src 로 올려 로드를 시작한다 —
+       poster·CSS·폰트가 먼저 화면에 오르고 영상 스트림은 그 뒤에 붙는다(poster 가 LCP 후보로 잡힌다).
+       rAF 는 첫 페인트보다 먼저 돌 수 있어서 PerformanceObserver 로 실제 paint 를 기다리고,
+       못 잡는 브라우저는 짧은 타임아웃으로 넘어간다. */
     var started = false;
-    function startOnce() { if (started) return; started = true; start(); }
+    function startOnce() {
+      if (started) return;
+      started = true;
+      activateSources(videoEl);
+      initHeroVideo(videoEl, hero, btn);
+    }
     try {
       var po = new PerformanceObserver(function (list) {
         if (list.getEntries().some(function (e) { return e.name === 'first-contentful-paint'; })) { po.disconnect(); startOnce(); }
@@ -237,17 +135,115 @@
       po.observe({ type: 'paint', buffered: true });
     } catch (e) { /* 미지원 — 아래 타임아웃이 처리 */ }
     setTimeout(startOnce, 1200);
-    function ensureDesktop() {
-      if (desktopReady) return;
-      desktopReady = true;
-      initDesktopHero(els);
+  }
+
+  /* ─────────────────────────── 헤더 투명 ↔ 흰색 ─────────────────────── */
+  function initHeaderOver() {
+    var hero = document.getElementById('videoHero');
+    var root = document.documentElement;
+    if (!hero) { root.classList.remove('hd-over'); return; }
+    var ticking = false;
+    function update() {
+      ticking = false;
+      /* 헤더(약 72px) 아래에 히어로가 아직 남아 있으면 투명 */
+      root.classList.toggle('hd-over', hero.getBoundingClientRect().bottom > 76);
+    }
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    update();
+  }
+
+  /* ─────────────────────────── 견적 문의 폼 ─────────────────────────── */
+  function initInquiry() {
+    var form = document.getElementById('hqForm');
+    if (!form) return;
+    var wrap = document.getElementById('hqWrap');
+    var msg = document.getElementById('hqMsg');
+    var submit = document.getElementById('hqSubmit');
+    var thanks = document.getElementById('hqThanks');
+    var CONTACT_URL = '/.netlify/functions/contact';
+    var LABEL = submit ? submit.textContent : '문의 보내기';
+
+    function $(id) { return document.getElementById(id); }
+    function fieldOf(key) { return form.querySelector('[data-field="' + key + '"]'); }
+    function clearErrors() {
+      var els = form.querySelectorAll('.has-error');
+      for (var i = 0; i < els.length; i++) els[i].classList.remove('has-error');
+      msg.textContent = '';
+    }
+    function fail(key, text, el) {
+      var f = fieldOf(key);
+      if (f) f.classList.add('has-error');
+      msg.textContent = text;
+      if (el && el.focus) el.focus();
+      return false;
+    }
+    function validate() {
+      clearErrors();
+      var name = $('hqName'), phone = $('hqPhone'), type = $('hqType'), message = $('hqMessage'), agree = $('hqAgree');
+      if (!name.value.trim()) return fail('name', '이름을 입력해 주세요.', name);
+      if (!phone.value.trim()) return fail('phone', '연락처를 입력해 주세요.', phone);
+      if (phone.value.replace(/\D/g, '').length < 9) return fail('phone', '연락처를 다시 확인해 주세요.', phone);
+      if (!type.value) return fail('type', '문의 유형을 선택해 주세요.', type);
+      if (!message.value.trim()) return fail('message', '문의 내용을 입력해 주세요.', message);
+      if (!agree.checked) return fail('agree', '개인정보 수집·이용에 동의해 주세요.', agree);
+      return true;
     }
 
-    /* 모바일로 열었다가 데스크톱 폭이 되면(태블릿 가로 회전) 그때 데스크톱 로직을 붙인다.
-       반대 방향은 데스크톱 로직의 onResize 가 인라인 스타일을 지우고 CSS 에 넘긴다. */
-    function onChange() { if (!mqMobile.matches) ensureDesktop(); }
-    if (mqMobile.addEventListener) mqMobile.addEventListener('change', onChange);
-    else if (mqMobile.addListener) mqMobile.addListener(onChange);
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!validate()) return;
+      /* 서버는 숫자와 하이픈만 받는다 — 공백·점으로 적은 번호도 하이픈으로 맞춰 보낸다 */
+      var phone = $('hqPhone').value.trim().replace(/[\s.]+/g, '-').replace(/[^0-9-]/g, '');
+      var payload = {
+        name: $('hqName').value.trim(),
+        phone: phone,
+        inquiry_type: $('hqType').value,
+        message: $('hqMessage').value.trim(),
+        consent: !!$('hqAgree').checked,
+        website: $('hqWebsite') ? $('hqWebsite').value : ''
+      };
+      submit.disabled = true;
+      submit.textContent = '전송 중…';
+      msg.textContent = '';
+      fetch(CONTACT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload)
+      })
+        .then(function (res) {
+          return res.json().catch(function () { return {}; }).then(function (data) {
+            if (!res.ok || !data || data.ok !== true) {
+              var err = new Error('failed');
+              err.serverMessage = data && data.error;
+              throw err;
+            }
+            return data;
+          });
+        })
+        .then(function () {
+          form.reset();
+          submit.disabled = false;
+          submit.textContent = LABEL;
+          wrap.classList.add('is-sent');
+          thanks.hidden = false;
+          thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        })
+        .catch(function (err) {
+          submit.disabled = false;
+          submit.textContent = LABEL;
+          msg.textContent = (err && err.serverMessage) || '전송에 실패했습니다. 031-544-7272 또는 카카오톡 채널로 연락 주세요.';
+        });
+    });
+
+    /* 입력을 고치기 시작하면 해당 항목의 경고 표시를 바로 지운다 */
+    function onEdit(e) {
+      var f = e.target.closest ? e.target.closest('.hq-field, .hq-agree') : null;
+      if (f && f.classList.contains('has-error')) { f.classList.remove('has-error'); msg.textContent = ''; }
+    }
+    form.addEventListener('input', onEdit);
+    form.addEventListener('change', onEdit);
   }
 
   /* ─────────────────────────── 스토리 몽타주 영상 ───────────────────── */
@@ -379,7 +375,9 @@
   }
 
   function init() {
+    initHeaderOver();
     initHero();
+    initInquiry();
     initStoryVideo();
     initStoryText();
   }
