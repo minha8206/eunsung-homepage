@@ -9,6 +9,7 @@
 - **문의 섹션 · 푸터를 x-dc 밖으로** 옮기고 밝은 톤으로 다시 그림. support.js 가 `#dc-root` 를 height:100% 로 고정하므로 메인에서는 `height:auto` 로 풀었다.
 - **버그 수정 — 메인 문의 폼이 실제로 접수되지 않던 문제**: 예전 폼 버튼은 x-dc 로직에 없는 `sendInquiry` 를 가리켜 아무 일도 하지 않았다. 이제 contact.html 과 같은 `/.netlify/functions/contact` 로 같은 형식(name·phone·inquiry_type·message·consent·website 허니팟)을 보낸다. 개인정보 동의 체크 + "더 보기" 추가, 문의 유형은 contact.html 과 같은 5종, 공백·점으로 적은 전화번호는 하이픈으로 맞춰 보낸다.
 - `js/i18n-en.js` 에 새 카피 EN 키. JSON-LD · 공통 CSS(site.css) · 다른 페이지는 무변경.
+- **캐시 핫픽스**: `/assets/*` 가 `_headers` 에서 1년 immutable 이라, 예전에 방문한 브라우저가 옛 `home.js` 를 계속 써서 새 히어로 영상이 시작되지 않았다(data-src 를 src 로 올리는 코드가 옛 파일엔 없음). index.html 에서 `assets/js/home.js?v=20261103` 으로 참조해 캐시 키를 바꿨다. **앞으로 /assets/ 아래 JS·CSS 를 고치면 참조하는 쪽의 ?v= 를 올릴 것.**
 
 ## 2026-10-26 · 스토어 신설 (/store) + Gorilla Grip 2.1 상품 페이지 + 헤더 "스토어" 메뉴
 
