@@ -7,6 +7,7 @@
 - "무료 실측 신청하기"는 inquiry-widget.js 와 같은 규칙 — 페이지에 `#inquiry` 가 있으면 그리로 스크롤, 없으면 contact.html. 카카오톡은 같은 오픈채팅 주소.
 - 층위: 플로팅 상담 버튼(.iw-root)과 같은 z-index 9999 에 DOM 뒤라 위에 그려지고, 검색(10001)·로그인(10000) 모달보다는 아래. 작은 탭은 데스크톱에선 상담 버튼 묶음 위, 모바일에선 하단 CTA 바 위에 놓인다. 창 높이가 카드보다 낮으면 카드를 비율대로 축소.
 - 삽입 페이지: index · about · bmc · bmc/products · contact · facility · portfolio · store · store-gorilla-grip (inquiry-widget.js 바로 뒤, `?v=20261110`). privacy · admin 제외, **보호 파일 showroom.html · product-detail.html 은 손대지 않음**.
+- 같은 날 수정: 데스크톱·모바일 모두 접속 즉시 표시(DESKTOP_DELAY·MOBILE_DELAY 0), 캐시 키 `?v=20261110b`.
 - 12월 이후 정리: 스크립트는 날짜가 지나면 스스로 멈추므로 급하지 않음. 지울 땐 위 9개 페이지의 script 태그와 파일 2개만 빼면 된다.
 
 ## 2026-11-03 · 메인 페이지 밝은 톤 리디자인 (시안 C-1) + 메인 문의 폼 실제 접수 연결

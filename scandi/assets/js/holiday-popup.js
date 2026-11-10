@@ -13,8 +13,8 @@
     IMAGE: '/images/promo/holiday-kitchen-2026.jpg', // 은성 시공 사진 (images/* 는 1년 캐시 → 바꿀 땐 새 파일명으로)
     FORM_URL: '/contact.html',                  // 문의 섹션(#inquiry)이 없는 페이지에서 "무료 실측 신청하기" 이동 주소
     KAKAO_URL: 'https://open.kakao.com/o/sS7BnYyc', // 카카오톡 오픈채팅 (inquiry-widget.js 와 같은 주소)
-    DESKTOP_DELAY: 3000,                        // 데스크톱: 접속 후 표시까지 (ms)
-    MOBILE_DELAY: 6000,                         // 모바일: 이 시간 또는 스크롤 30% 중 먼저
+    DESKTOP_DELAY: 0,                           // 데스크톱: 접속 후 표시까지 (ms) — 0 = 바로
+    MOBILE_DELAY: 0,                            // 모바일: 접속 후 표시까지 (ms) — 0 = 바로
     MOBILE_SCROLL: 0.3
   };
   var KEY_HIDE = 'esh_hide_until';   // localStorage: 오늘 하루 보지 않기
