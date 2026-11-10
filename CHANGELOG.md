@@ -1,5 +1,14 @@
 # CHANGELOG — esstone.co.kr (scandi/)
 
+## 2026-11-10 · 연말 프로모션 팝업 (실측 방문 무료 · 11/30 자동 종료)
+
+- **`assets/js/holiday-popup.js` 신규** — 마크업·CSS·가랜드 SVG를 스스로 주입하는 단일 스크립트(x-dc 밖, body 끝). 데스크톱은 오른쪽 아래 380px 카드(접속 3초 후), 모바일(≤768)은 하단 시트 + 어두운 배경(스크롤 30% 또는 6초 후). 닫기/X/ESC/배경 → 작은 알약 탭으로 줄어듦(sessionStorage `esh_minimized`, 같은 방문 동안 유지), "오늘 하루 보지 않기" → 24시간 숨김(localStorage `esh_hide_until`). `CONFIG.END_AT` = 2026-12-01 00:00 KST 부터 아무것도 띄우지 않는다. 동작 줄이기 설정이면 눈·전구 애니메이션 없음.
+- 디자인: Cloud Dancer #F0EEE9 바탕 + 체리 레드 #A11A2E, Pretendard(jsDelivr) · Instrument Serif · Geist Mono(Google Fonts, 스크립트가 직접 로드). 사진은 은성 시공 현장 `images/promo/holiday-kitchen-2026.jpg`(1140×600, 86KB).
+- "무료 실측 신청하기"는 inquiry-widget.js 와 같은 규칙 — 페이지에 `#inquiry` 가 있으면 그리로 스크롤, 없으면 contact.html. 카카오톡은 같은 오픈채팅 주소.
+- 층위: 플로팅 상담 버튼(.iw-root)과 같은 z-index 9999 에 DOM 뒤라 위에 그려지고, 검색(10001)·로그인(10000) 모달보다는 아래. 작은 탭은 데스크톱에선 상담 버튼 묶음 위, 모바일에선 하단 CTA 바 위에 놓인다. 창 높이가 카드보다 낮으면 카드를 비율대로 축소.
+- 삽입 페이지: index · about · bmc · bmc/products · contact · facility · portfolio · store · store-gorilla-grip (inquiry-widget.js 바로 뒤, `?v=20261110`). privacy · admin 제외, **보호 파일 showroom.html · product-detail.html 은 손대지 않음**.
+- 12월 이후 정리: 스크립트는 날짜가 지나면 스스로 멈추므로 급하지 않음. 지울 땐 위 9개 페이지의 script 태그와 파일 2개만 빼면 된다.
+
 ## 2026-11-03 · 메인 페이지 밝은 톤 리디자인 (시안 C-1) + 메인 문의 폼 실제 접수 연결
 
 - **히어로**: 스크롤 확장 연출(200vh 래퍼 + sticky, 스크롤 진행도 → 영상 크기)을 걷어내고, 첫 화면을 꽉 채운 영상이 autoplay muted loop 로 그냥 재생되게 바꿨다. 영상 위에 바로 카피(eyebrow · Noto Serif KR 300 헤드라인 · 흰 테두리 "견적 문의하기" + 밑줄 "시공사례 보기"), 아래 반투명 유리 띠에 소재 4종 링크, 띠 오른쪽에 일시정지 버튼(aria-pressed). 동작 줄이기 설정이면 정지 화면으로 시작. 화면 밖에서는 영상이 쉰다.
