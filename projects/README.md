@@ -31,3 +31,4 @@
 |---------|------|----------------|
 | [esstone.co.kr 문의 접수 · /admin](eunsung-inquiry.md) | 코드 배포 완료, 배포 후 설정 대기 | 2026-09-08 |
 | [esstone.co.kr 스토어 (/store)](eunsung-store.md) | 1호 상품 배포 완료 | 2026-10-26 |
+| [esstone.co.kr 시공사례 (/portfolio)](eunsung-portfolio.md) | 전면 개편 배포, 실제 컬러·지역 반영 대기 | 2026-11-17 |

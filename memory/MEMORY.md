@@ -21,6 +21,9 @@
 
 <!-- 프로젝트별 규칙, 네이밍, 스타일 -->
 
+- 시공사례는 생성물이다(2026-11 개편) — `scandi/data/cases.json` 만 고치고 `node scandi/scripts/build-portfolio.js`. `portfolio.html` · `portfolio/*.html` · `js/i18n-portfolio.js` · sitemap 의 PORTFOLIO-CASES 구간은 직접 고치지 말 것 (자세한 건 [skills/web-dev/portfolio-cases.md](../skills/web-dev/portfolio-cases.md))
+- 하위 폴더 페이지(`portfolio/<id>.html`)는 `<base href="/">` 를 둔다 — 공통 스크립트가 `contact.html` 같은 상대 주소를 쓴다. 그 안에서는 `#..` 만 적은 링크 금지
+
 - `eunsung-homepage`: 실사진(라이프스타일/쇼룸 등 마케팅용 컷)이 부족함 — 현재 `images/`엔 시공 중(보양필름·박스 그대로) 사진뿐. 새 사진 필요한 요청 오면 kevin에게 확보 방법부터 확인할 것
 
 ## 도구 & 워크플로우
@@ -32,6 +35,10 @@
 <!-- 도구 quirk, 유용한 패턴, 발견된 단축경로 -->
 
 ## 교훈 (Lessons Learned)
+
+- `node scripts/build-seo.js` 는 **보호 파일 showroom.html · product-detail.html 의 JSON-LD 도 다시 쓴다** — 다른 페이지 때문에 돌렸으면 두 파일은 `git checkout -- ` 로 되돌릴 것 (2026-11 시공사례 개편)
+- 원격(클라우드) 세션은 이 repo 를 GitHub 에서 직접 받아 push 까지 된다(2026-11-17) — device_bash 의 "push 불가"와 다른 경로
+- 원격 세션에서는 jsDelivr · Google Fonts 가 막혀 있다 — 화면 확인은 Pretendard 를 npm 으로 받아 로컬 글꼴로 깔고 본다. 연말 팝업(holiday-popup.js)은 오른쪽 아래를 크게 덮으니 새 페이지 첫 화면과 겹치는지 꼭 볼 것
 
 <!-- 실수에서 배운 것, 예상과 달랐던 것 -->
 

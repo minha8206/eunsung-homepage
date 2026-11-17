@@ -4,66 +4,43 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="naver-site-verification" content="3f77031df39ae82017cfd209f31be7ff0f23892e" />
-<!-- SEO / 링크 미리보기 (카카오톡·페이스북 등) -->
-<title>시공사례 | 포세린 아일랜드·아트월 시공 갤러리 — 은성 EUNSUNG</title>
-<meta name="description" content="주방 아일랜드, 욕실, 아트월, 카페 카운터까지 은성 포세린으로 직접 시공한 실제 현장 사례입니다. 비아테라·하이막스 적용 사례도 사진으로 확인하세요.">
+<!-- 이 파일은 scripts/build-portfolio.js 가 data/cases.json 에서 만든다. 직접 고치지 말고 JSON 을 고친 뒤 다시 빌드할 것. -->
+<title>시공사례 | 포세린 주방 상판·아일랜드·아트월 시공 — 은성 EUNSUNG</title>
+<meta name="description" content="주방 상판과 아일랜드, 욕실, 아트월, 상업 공간까지 은성이 직접 가공하고 시공한 포세린 현장 사례입니다. 공간과 컬러로 찾아보고 같은 컬러로 견적을 받아보세요.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="EUNSUNG 은성">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:title" content="시공사례 | 포세린 아일랜드·아트월 시공 갤러리 — 은성 EUNSUNG">
-<meta property="og:description" content="말보다 결과로 — 주방 아일랜드부터 아트월까지 은성이 포세린·비아테라로 시공한 실제 현장입니다.">
+<meta property="og:title" content="시공사례 | 포세린 주방 상판·아일랜드·아트월 시공 — 은성 EUNSUNG">
+<meta property="og:description" content="은성이 직접 가공하고 시공한 포세린 현장. 공간과 컬러로 찾아보고 같은 컬러로 견적을 받아보세요.">
 <meta property="og:url" content="https://esstone.co.kr/portfolio.html">
-<meta property="og:image" content="https://esstone.co.kr/images/og-cover.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+<meta property="og:image" content="https://esstone.co.kr/images/cases/hannamdong/01.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://esstone.co.kr/portfolio.html">
-<!-- v-cloak — 템플릿 원문 가리기.
-     x-dc(React) 가 마운트되기 전까지 {{ }} 템플릿 문법이 그대로 보이면 안 된다.
-     support.js 도 같은 규칙을 넣지만 그건 JS 가 떠야 동작한다. 스크립트가 늦게
-     오거나 아예 차단돼도 원문이 새지 않도록, 파서가 템플릿 루트 태그를 만나기
-     전에 인라인 style 로 먼저 막는다(요청 추가 없음).
-     주의 — support.js 는 원문을 정규식으로 다시 훑는다. 이 주석에 템플릿 루트
-     태그를 각괄호까지 그대로 적으면 그게 먼저 잡혀서 파싱이 어긋난다. -->
-<style>x-dc{display:none!important}</style>
-<!-- 웹폰트
-     · 라틴 2종(Cormorant Garamond·Manrope)은 Google Fonts 의 latin 가변 woff2 를 assets/fonts/ 에 자체 호스팅한다.
-       Google 은 UA 마다 다른 파일 URL 을 주기 때문에 외부 URL 을 preload 하면 빗나간다 — 우리 파일이면 preload 가 확실히 맞는다.
-       (같은 파일·같은 unicode-range 라 글꼴 모양은 동일. 한글은 이 두 폰트에 없어 원래부터 다음 폰트로 넘어간다.)
-     · 한글(Noto Serif KR)은 100여 개 유니코드 조각으로 나뉘어 있어 Google CSS 를 그대로 쓰되, 아래 스크립트가
-       첫 페인트 뒤에 붙인다(display=swap 유지). -->
 <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/cormorant-garamond-latin.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/manrope-latin.woff2">
 <style>
 @font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300 700;font-display:swap;src:url(assets/fonts/cormorant-garamond-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
-@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:300 700;font-display:swap;src:url(assets/fonts/cormorant-garamond-italic-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
 @font-face{font-family:'Manrope';font-style:normal;font-weight:200 800;font-display:swap;src:url(assets/fonts/manrope-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
 </style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"></noscript>
 <script>
-/* Noto Serif KR CSS 는 첫 콘텐츠 페인트 뒤에 붙인다 — 그 전에 붙이면 한글 조각 폰트 10여 개(≈450KB)가
-   첫 화면 이미지·CSS 와 대역폭을 나눈다. display=swap 이라 그 전에도 글자는 대체 폰트로 바로 보인다. */
+/* 로고 옆 "은성" 한 글자용 Noto Serif KR 은 첫 페인트 뒤에 붙인다(다른 페이지와 같은 방식). */
 (function(){var done=false;function add(){if(done)return;done=true;var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500&display=swap';document.head.appendChild(l);}
 try{var po=new PerformanceObserver(function(list){if(list.getEntries().some(function(e){return e.name==='first-contentful-paint';})){po.disconnect();add();}});po.observe({type:'paint',buffered:true});}catch(e){}
 setTimeout(add,1000);})();
 </script>
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500&display=swap"></noscript>
-<!-- React 는 unpkg 대신 같은 오리진(vendor/)에서 defer 로 받는다. support.js 는 window.React 가
-     이미 있으면 CDN 로드를 건너뛴다(loadReactUmd). defer 스크립트는 문서 순서대로 실행되므로
-     support.js 가 돌 때는 React/ReactDOM 이 준비돼 있다. support.js 자체도 defer — 파서를 막지 않는다. -->
-<script src="vendor/react.production.min.js" defer></script>
-<script src="vendor/react-dom.production.min.js" defer></script>
-<script src="support.js" defer></script>
-<!-- 공통 CSS 10개를 한 파일로 — scripts/build-css.js 가 assets/css/*.css 에서 만든다. 개별 파일을 고치면 다시 빌드할 것. -->
 <link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/portfolio.css?v=20261117">
+
 <script src="assets/js/inquiry-widget.js" defer></script>
 <script src="assets/js/holiday-popup.js?v=20261110b" defer></script>
 <script src="assets/js/login-modal.js" defer></script>
 <script src="assets/js/search-overlay.js" defer></script>
+<script src="js/i18n-portfolio.js" defer></script>
 <script src="js/i18n.js" defer></script>
-<script src="assets/js/reveal.js" defer></script>
 <script src="assets/js/mobile-nav.js?v=20261117" defer></script>
+<script src="assets/js/portfolio.js?v=20261117" defer></script>
 <!-- SEO-JSONLD:START -->
 <!-- 이 구간은 scripts/build-seo.js 가 생성합니다. 직접 고치지 마세요 —
      제품 데이터나 사업자 정보가 바뀌면 `node scripts/build-seo.js` 를 다시 실행하세요. -->
@@ -193,547 +170,203 @@ setTimeout(add,1000);})();
 </script>
 <!-- SEO-JSONLD:END -->
 </head>
-<body>
-<x-dc>
-<helmet data-dc-atomics>
-<style>
-*{box-sizing:border-box}
-body{margin:0;font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased;background:#faf8f3}
-.pf-nav a{text-decoration:none;transition:opacity .3s}
-.pf-nav a:hover{opacity:.6}
-a{color:#a8763f}
-a:hover{color:#c9a24b}
-.nav-mid{display:flex;align-items:center;gap:28px}
-@media (max-width:1400px){.nav-mid{gap:22px}}
-.nav-mid a{color:inherit;font:500 15px/1 'Manrope';letter-spacing:.02em;text-decoration:none;position:relative;padding:4px 0;white-space:nowrap;transition:color .2s}
-.nav-mid a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:1.5px;background:currentColor;transition:width .35s}
-.nav-mid a:hover{color:#bf8e5a}
-.nav-mid a:hover::after{width:100%}
-.nav-drop{display:inline-flex;align-items:center}
-.nav-right{display:flex;align-items:center;gap:11px;flex-shrink:0}
-.nav-ic{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;cursor:pointer;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.08);transition:.3s}
-.nav-ic:hover{background:rgba(255,255,255,.22)}
-.nav-ic svg{width:16px;height:16px}
-.lang{font:700 11px 'Manrope';letter-spacing:.08em;display:flex;gap:5px;align-items:center}
-.lang b{cursor:pointer}
-.nav-drop-menu{position:absolute;top:24px;left:50%;transform:translate(-50%,6px);opacity:0;visibility:hidden;transition:.3s ease;background:rgba(251,250,250,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(14,36,64,.08);border-radius:10px;box-shadow:0 26px 54px -22px rgba(14,36,64,.4);padding:10px;min-width:190px;z-index:40}
-.nav-drop:hover .nav-drop-menu{opacity:1;visibility:visible;transform:translate(-50%,0)}
-.nav-drop-item{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:10px 14px;font:600 11px 'Manrope';letter-spacing:.08em;color:#0e2440;text-decoration:none;border-radius:7px;transition:.25s}
-.nav-drop-item:hover{background:rgba(201,162,75,.1);color:#a8763f}
-.nav-drop-item span{font:500 10px 'Manrope';letter-spacing:.02em;opacity:.5}
-.specrow3{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid rgba(47,59,58,.1)}
-.specrow3 span:first-child{font:600 10px 'Manrope';letter-spacing:.16em;color:rgba(47,59,58,.42)}
-.specrow3 span:last-child{font:500 13px 'Manrope';color:#2f3b3a;text-align:right}
-.pf-tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:44px}
-.pf-tab{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:20px;border:1.5px solid rgba(47,59,58,.16);background:transparent;color:#5c6f69;font:600 12px 'Manrope';cursor:pointer;transition:.25s}
-.pf-tab span{font:600 10px 'Manrope';color:rgba(92,111,105,.55)}
-.pf-tab:hover{border-color:rgba(184,147,95,.5);color:#2f3b3a}
-.pf-tab.is-active{background:#2f3b3a;border-color:#2f3b3a;color:#fff}
-.pf-tab.is-active span{color:rgba(255,255,255,.6)}
-/* 행 높이를 고르게: 카드는 같은 높이로 늘어나고(stretch 기본), 이미지는 고정 비율,
-   제목은 두 줄 자리를 미리 확보한다. 제목이 한 줄인 카드가 섞여도 행이 어긋나지 않는다. */
-.pf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
-.pf-card{cursor:pointer;display:flex;flex-direction:column}
-/* height 고정 대신 비율 고정 — 열 너비가 달라져도 모든 카드가 같은 모양을 유지한다 */
-.pf-card-img{aspect-ratio:4/3;width:100%;border-radius:16px;background-size:cover;background-position:center;background-repeat:no-repeat;margin-bottom:16px;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s;box-shadow:0 20px 40px -26px rgba(47,59,58,.4)}
-.pf-card:hover .pf-card-img{transform:translateY(-6px);box-shadow:0 30px 54px -26px rgba(47,59,58,.5)}
-.pf-card-cap{font:600 9.5px 'Manrope';letter-spacing:.16em;color:#b8935f;margin-bottom:8px}
-/* 제목이 한국어라 한글 글꼴을 뒤에 둔다 — 라틴(지역명 로마자 등)은 Cormorant 가 받는다 */
-.pf-card-title{font-family:'Cormorant Garamond','Noto Serif KR',serif;font-weight:500;font-size:20px;line-height:1.45;color:#2f3b3a;min-height:calc(20px * 1.45 * 2)}
-@media (max-width:900px){.pf-grid{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:600px){.pf-grid{grid-template-columns:1fr}}
-
-/* ===== CASE DETAIL PAGE ===== */
-.pdetail-hero{position:relative;width:100%;height:380px;overflow:hidden;background-size:cover;background-position:center}
-.pdetail-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,25,24,.4),rgba(20,25,24,.78))}
-.pdetail-hero-content{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 24px}
-.pdetail-cat{font:600 12px 'Manrope';letter-spacing:.32em;color:#d9b98a;margin-bottom:16px}
-.pdetail-title{font-family:'Cormorant Garamond','Noto Serif KR',serif;font-weight:500;font-size:clamp(28px,4vw,44px);line-height:1.3;color:#fff}
-.pdetail-meta{max-width:900px;margin:0 auto;padding:22px 24px;border-top:1px solid rgba(47,59,58,.12);border-bottom:1px solid rgba(47,59,58,.12);text-align:center;font:500 12px 'Manrope';letter-spacing:.06em;color:#5c6f69}
-.pdetail-viewer{max-width:1560px;margin:56px auto 0;padding:0 32px}
-.pdetail-stage{position:relative}
-.pdetail-main-img{width:100%;height:min(78vh,880px);border-radius:16px;background-size:cover;background-position:center;box-shadow:0 30px 60px -30px rgba(47,59,58,.4);cursor:zoom-in;touch-action:pan-y;user-select:none}
-.pdetail-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:48px;height:48px;border-radius:50%;border:none;padding:0;background:rgba(255,255,255,.88);color:#2f3b3a;font:400 26px/1 'Manrope';cursor:pointer;box-shadow:0 8px 24px -8px rgba(47,59,58,.55);transition:background .2s,transform .2s}
-.pdetail-arrow:hover{background:#fff;transform:translateY(-50%) scale(1.06)}
-.pdetail-arrow.is-prev{left:20px}
-.pdetail-arrow.is-next{right:20px}
-.pdetail-arrow.is-hidden{display:none}
-.pdetail-zoom-hint{text-align:center;margin-top:12px;font:400 11px 'Manrope';letter-spacing:.06em;color:rgba(47,59,58,.42)}
-.pflb{position:fixed;inset:0;z-index:120;background:rgba(18,22,21,.95);display:none;align-items:center;justify-content:center;opacity:0;transition:opacity .2s}
-.pflb.is-open{opacity:1}
-.pflb-img{max-width:94vw;max-height:88vh;object-fit:contain;user-select:none;-webkit-user-drag:none;touch-action:pan-y}
-.pflb-close{position:absolute;top:18px;right:22px;width:44px;height:44px;border-radius:50%;border:none;background:rgba(255,255,255,.14);color:#fff;font:300 26px/1 'Manrope';cursor:pointer;transition:background .2s}
-.pflb-close:hover{background:rgba(255,255,255,.26)}
-.pflb-arrow{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;border:none;padding:0;background:rgba(255,255,255,.14);color:#fff;font:400 28px/1 'Manrope';cursor:pointer;transition:background .2s}
-.pflb-arrow:hover{background:rgba(255,255,255,.26)}
-.pflb-arrow.is-prev{left:24px}
-.pflb-arrow.is-next{right:24px}
-.pflb-count{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font:400 12px 'Manrope';letter-spacing:.12em;color:rgba(255,255,255,.62)}
-@media (max-width:640px){
-.pdetail-viewer{padding:0 16px}
-.pdetail-main-img{height:min(58vh,460px)}
-.pdetail-arrow{width:38px;height:38px;font-size:20px}
-.pdetail-arrow.is-prev{left:10px}
-.pdetail-arrow.is-next{right:10px}
-.pflb-arrow{width:40px;height:40px;font-size:22px}
-.pflb-arrow.is-prev{left:8px}
-.pflb-arrow.is-next{right:8px}
-}
-.pdetail-dots{display:flex;justify-content:center;gap:8px;margin-top:18px}
-.pdetail-dot{width:7px;height:7px;border-radius:50%;background:rgba(47,59,58,.22);border:none;padding:0;cursor:pointer;transition:.25s}
-.pdetail-dot.is-active{background:#b8935f;width:22px;border-radius:5px}
-.pdetail-thumbs{display:flex;gap:12px;margin-top:20px;overflow-x:auto;padding-bottom:4px}
-.pdetail-thumb{width:88px;height:64px;flex:none;border-radius:8px;background-size:cover;background-position:center;cursor:pointer;border:2px solid transparent;opacity:.6;transition:.25s}
-.pdetail-thumb.is-active{border-color:#b8935f;opacity:1}
-.pdetail-desc{max-width:900px;margin:40px auto 0;padding:0 24px;text-align:center}
-.pdetail-desc-text{font:400 15px/1.8 'Manrope';color:#2f3b3a;margin-bottom:16px}
-.pdetail-material{font:600 12px 'Manrope';letter-spacing:.06em;color:#5c6f69}
-.pdetail-material b{color:#b8935f;font-weight:600}
-.pdetail-actions{max-width:900px;margin:48px auto 0;padding:0 24px 110px;display:flex;flex-direction:column;align-items:center;gap:22px}
-.pdetail-cta{display:inline-flex;align-items:center;gap:10px;background:#b8935f;color:#fff;padding:15px 34px;border-radius:16px;font:600 12px 'Manrope';text-decoration:none}
-.pdetail-back{font:500 13px 'Manrope';color:#5c6f69;text-decoration:none}
-.pdetail-back:hover{color:#b8935f}
-.pdetail-nav{display:flex;justify-content:space-between;width:100%;font:600 12px 'Manrope';letter-spacing:.02em}
-.pdetail-nav a{color:#2f3b3a;text-decoration:none}
-.pdetail-nav a:hover{color:#b8935f}
-.nav-drop-item-sep{border-top:1px solid rgba(14,36,64,.08);margin-top:4px;padding-top:14px}
-.nav-toggle-input{display:none}
-.nav-burger{display:none;width:34px;height:34px;border-radius:50%;align-items:center;justify-content:center;border:1px solid rgba(14,36,64,.18);background:rgba(255,255,255,.08);cursor:pointer}
-.nav-burger svg{width:16px;height:16px}
-.nav-mobile-panel{display:none;position:fixed;top:64px;left:0;right:0;z-index:29;background:#fbfaf8;border-bottom:1px solid rgba(14,36,64,.1);box-shadow:0 24px 50px -28px rgba(14,36,64,.35);padding:8px 6vw 20px;flex-direction:column}
-.nav-mobile-panel a{padding:14px 2px;font:500 15px 'Manrope';color:#0e2440;text-decoration:none;border-bottom:1px solid rgba(14,36,64,.07)}
-.nav-mobile-panel a.nav-mobile-sub{padding-left:18px;font-size:13px;color:rgba(14,36,64,.6)}
-body.nav-open .nav-mobile-panel{display:flex}
-@media (max-width:1279px){
-.nav-mid{display:none}
-.nav-burger{display:inline-flex}
-}
-.brand-logo{display:flex;align-items:baseline;gap:.6em;font-size:1.75rem;transition:opacity .3s ease}
-.brand-logo:hover{opacity:.7}
-.brand-en{font:600 1.75rem 'Cormorant Garamond',serif;letter-spacing:.15em;text-transform:uppercase;color:#111;line-height:1}
-.brand-kr{font:400 .85rem 'Noto Serif KR',serif;opacity:.5;color:#111;line-height:1;white-space:nowrap}
-@media (max-width:640px){
-.brand-logo{font-size:1.35rem}
-.brand-en{font-size:1.35rem;letter-spacing:.12em}
-.brand-kr{font-size:.72rem}
-}
-</style>
-</helmet>
-
-<!-- NAV -->
-<div style="position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:19px 5vw;background:rgba(251,250,250,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(14,36,64,.08);color:#0e2440">
+<body class="pfx-page">
+<div class="site-hd" style="position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:19px 5vw;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(22,32,42,.08);color:#16202A">
   <a href="index.html" class="brand-logo" style="text-decoration:none;color:inherit">
     <span class="brand-en">EUNSUNG</span><span class="brand-kr">은성</span>
   </a>
-  <nav class="nav-mid" style="color:#1a1a1a">
+  <nav class="nav-mid" style="color:#16202A">
     <a href="about.html">회사소개</a>
     <a href="facility.html">시공 과정</a>
     <a href="showroom.html?cat=PORCELAIN">포세린</a>
     <a href="showroom.html?cat=VIATERA">엔지니어드 스톤</a>
     <a href="showroom.html?cat=HIMACS">인조대리석</a>
     <a href="bmc.html">BMC</a>
-    <a href="portfolio.html">시공사례</a><a href="store.html">스토어</a><a href="contact.html">문의</a>
+    <a href="portfolio.html" aria-current="page">시공사례</a>
+    <a href="store.html">스토어</a>
   </nav>
   <div class="nav-right">
     <button type="button" class="nav-ic" aria-label="검색"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></button>
     <span class="lang" role="group" aria-label="언어 선택"><b><button type="button" class="lang-btn" lang="ko" aria-label="한국어">KO</button></b><b><button type="button" class="lang-btn" lang="en" aria-label="English">EN</button></b></span>
     <button type="button" class="nav-ic" aria-label="로그인"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></button>
-    <button type="button" class="nav-burger" aria-label="메뉴 열기" aria-expanded="false" aria-controls="navMobilePanel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M4 9h16M4 15h16"/></svg></button>
+    <a class="hd-quote" href="contact.html">견적 문의</a>
+    <button type="button" class="nav-burger" aria-label="메뉴 열기" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M4 9h16M4 15h16"/></svg></button>
   </div>
 </div>
-<div class="nav-mobile-panel" id="navMobilePanel">
-  <a href="about.html">회사소개</a>
-  <a href="facility.html">시공 과정</a>
-  <a href="showroom.html?cat=PORCELAIN">포세린</a>
-  <a href="showroom.html?cat=VIATERA">엔지니어드 스톤</a>
-  <a href="showroom.html?cat=HIMACS">인조대리석</a>
-  <a href="bmc.html">BMC</a>
-  <a href="portfolio.html">시공사례</a>
-  <a href="store.html">스토어</a>
-  <a href="contact.html">문의</a>
+<main class="pfx">
+<div class="pfx-wrap">
+  <div class="pfx-head">
+    <h1>시공사례</h1>
+    <p><span>은성 직영 공장에서 가공하고 직접 시공한 현장입니다.</span> <span>사례를 누르면 사용한 컬러와 시공 범위를 볼 수 있습니다.</span></p>
+  </div>
+  <div class="pfx-filter">
+    <div class="pfx-frow"><span class="pfx-flab" id="pfxSpaceLab">공간</span><div class="pfx-opts" role="group" aria-labelledby="pfxSpaceLab"><button type="button" class="pfx-tab" data-space="all" aria-pressed="true">전체<i>23</i></button><button type="button" class="pfx-tab" data-space="kitchen" aria-pressed="false">주방<i>14</i></button><button type="button" class="pfx-tab" data-space="bath" aria-pressed="false">욕실<i>4</i></button><button type="button" class="pfx-tab" data-space="wall" aria-pressed="false">아트월<i>2</i></button><button type="button" class="pfx-tab" data-space="commercial" aria-pressed="false">상업 공간<i>3</i></button></div></div>
+    <div class="pfx-frow"><span class="pfx-flab" id="pfxToneLab">컬러</span><div class="pfx-opts" role="group" aria-labelledby="pfxToneLab"><button type="button" class="pfx-tone" data-tone="white" aria-pressed="false"><span class="pfx-dot" style="background-image:url(images/cases/_sw/WM101.webp)"></span>화이트</button><button type="button" class="pfx-tone" data-tone="beige" aria-pressed="false"><span class="pfx-dot" style="background-image:url(images/cases/_sw/CC072.webp)"></span>베이지·크림</button><button type="button" class="pfx-tone" data-tone="gray" aria-pressed="false"><span class="pfx-dot" style="background-image:url(images/cases/_sw/ST111.webp)"></span>그레이</button><button type="button" class="pfx-tone" data-tone="dark" aria-pressed="false"><span class="pfx-dot" style="background-image:url(images/cases/_sw/CM104.webp)"></span>다크</button></div><span class="pfx-count" aria-live="polite"><span>사례</span> <b>23</b><span>건</span></span></div>
+  </div>
+  <ul class="pfx-grid" data-filter>
+<li class="pfx-card" data-id="hannamdong" data-space="commercial" data-tone="beige">
+  <a href="portfolio/hannamdong.html">
+    <div class="pfx-pic"><img src="images/cases/hannamdong/01-card.webp" alt="아이보리 화이트 라운지 카운터 — 서울 한남동 시공 사진" style="object-position:50% 55%" loading="eager" fetchpriority="high"><span class="pfx-n" aria-label="사진 2장"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>2</span></div>
+    <div class="pfx-cap"><img class="pfx-sw" src="images/cases/_sw/WM085.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><div><h3 class="pfx-name">아이보리 화이트 라운지 카운터</h3><div class="pfx-meta"><span>서울 한남동</span><span>포세린 12T</span></div></div></div>
+  </a>
+</li>
+<li class="pfx-card" data-id="gwanggyo" data-space="kitchen" data-tone="white">
+  <a href="portfolio/gwanggyo.html">
+    <div class="pfx-pic"><img src="images/cases/gwanggyo/01-card.webp" alt="칼라카타 비올라 주방 상판 — 경기 광교 시공 사진" loading="eager"><span class="pfx-n" aria-label="사진 2장"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>2</span></div>
+    <div class="pfx-cap"><img class="pfx-sw" src="images/cases/_sw/WM105.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><div><h3 class="pfx-name">칼라카타 비올라 주방 상판</h3><div class="pfx-meta"><span>경기 광교</span><span>포세린 12T</span></div></div></div>
+  </a>
+</li>
+<li class="pfx-card" data-id="bundang" data-space="kitchen" data-tone="beige">
+  <a href="portfolio/bundang.html">
+    <div class="pfx-pic"><img src="images/cases/bundang/01-card.webp" alt="크림 마블 주방 상판 — 경기 분당 시공 사진" style="object-position:50% 70%" loading="eager"><span class="pfx-n" aria-label="사진 1장"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>1</span></div>
+    <div class="pfx-cap"><img class="pfx-sw" src="images/cases/_sw/WM083.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><div><h3 class="pfx-name">크림 마블 주방 상판</h3><div class="pfx-meta"><span>경기 분당</span><span>포세린 12T</span></div></div></div>
+  </a>
+</li>
+<li class="pfx-card" data-id="hanam" data-space="kitchen" data-tone="white">
+  <a href="portfolio/hanam.html">
+    <div class="pfx-pic"><img src="images/cases/hanam/02-card.webp" alt="화이트 마블 아일랜드 — 경기 하남 시공 사진" loading="lazy" decoding="async"><span class="pfx-n" aria-label="사진 2장"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>2</span></div>
+    <div class="pfx-cap"><img class="pfx-sw" src="images/cases/_sw/WM084.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><div><h3 class="pfx-name">화이트 마블 아일랜드</h3><div class="pfx-meta"><span>경기 하남</span><span>포세린 12T</span></div></div></div>
+  </a>
+</li>
+<li class="pfx-card" data-id="samsong" data-space="bath" data-tone="white">
+  <a href="portfolio/samsong.html">
+    <div class="pfx-pic"><img src="images/cases/samsong/01-card.webp" alt="칼라카타 비올라 욕실 카운터 — 경기 삼송 시공 사진" loading="lazy" decoding="async"><span class="pfx-n" aria-label="사진 1장"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>1</span></div>
+    <div class="pfx-cap"><img class="pfx-sw" src="images/cases/_sw/WM105.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><div><h3 class="pfx-name">칼라카타 비올라 욕실 카운터</h3><div class="pfx-meta"><span>경기 삼송</span><span>포세린 12T</span></div></div></div>
+  </a>
+</li>
+<li class="pfx-card" data-id="unjeong" data-space="wall" data-tone="white">
+  <a href="portfolio/unjeong.html">
+    <div class="pfx-pic"><img src="images/cases/unjeong/01-card.webp" alt="화이트 마블 거실 아트월 — 경기 운정 시공 사진" loading="lazy" decoding="async"><span class="pfx-n" aria-label="사진 2장"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>2</span></div>
+    <div class="pfx-cap"><img class="pfx-sw" src="images/cases/_sw/WM101.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><div><h3 class="pfx-name">화이트 마블 거실 아트월</h3><div class="pfx-meta"><span>경기 운정</span><span>포세린 12T</span></div></div></div>
+  </a>
+</li>
+<li class="pfx-card" data-id="gimpo" data-space="kitchen" data-tone="white">
+  <a href="portfolio/gimpo.html">
+    <div class="pfx-pic"><img src="images/cases/gimpo/01-card.webp" alt="퓨어 화이트 ㄷ자 주방 상판 — 경기 김포 시공 사진" loading="lazy" decoding="async"><span class="pfx-n" aria-label="사진 1장"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>1</span></div>
+    <div class="pfx-cap"><img class="pfx-sw" src="images/cases/_sw/ST086.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><div><h3 class="pfx-name">퓨어 화이트 ㄷ자 주방 상판</h3><div class="pfx-meta"><span>경기 김포</span><span>포세린 12T</span></div></div></div>
+  </a>
+</li>
+<li class="pfx-card" data-id="ilsan" data-space="bath" data-tone="dark">
+  <a href="portfolio/ilsan.html">
+    <div class="pfx-pic"><img src="images/cases/ilsan/01-card.webp" alt="블랙 마블 세면대 상판 — 경기 일산 시공 사진" loading="lazy" decoding="async"><span class="pfx-n" aria-label="사진 1장"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>1</span></div>
+    <div class="pfx-cap"><img class="pfx-sw" src="images/cases/_sw/CM104.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><div><h3 class="pfx-name">블랙 마블 세면대 상판</h3><div class="pfx-meta"><span>경기 일산</span><span>포세린 12T</span></div></div></div>
+  </a>
+</li>
+<li class="pfx-card" data-id="dongtan" data-space="commercial" data-tone="white">
+  <a href="portfolio/dongtan.html">
+    <div class="pfx-pic"><img src="images/cases/dongtan/01-card.webp" alt="칼라카타 화이트 회의 테이블 — 경기 동탄 시공 사진" style="object-position:30% 50%" loading="lazy" decoding="async"><span class="pfx-n" aria-label="사진 1장"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>1</span></div>
+    <div class="pfx-cap"><img class="pfx-sw" src="images/cases/_sw/WM101.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><div><h3 class="pfx-name">칼라카타 화이트 회의 테이블</h3><div class="pfx-meta"><span>경기 동탄</span><span>포세린 12T</span></div></div></div>
+  </a>
+</li>
+<li class="pfx-card" data-id="pangyo" data-space="kitchen" data-tone="gray">
+  <a href="portfolio/pangyo.html">
+    <div class="pfx-pic"><img src="images/cases/pangyo/01-card.webp" alt="라이트 그레이 아일랜드 — 경기 판교 시공 사진" style="object-position:50% 45%" loading="lazy" decoding="async"><span class="pfx-n" aria-label="사진 2장"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>2</span></div>
+    <div class="pfx-cap"><img class="pfx-sw" src="images/cases/_sw/ST111.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><div><h3 class="pfx-name">라이트 그레이 아일랜드</h3><div class="pfx-meta"><span>경기 판교</span><span>포세린 12T</span></div></div></div>
+  </a>
+</li>
+<li class="pfx-card" data-id="chuncheon" data-space="kitchen" data-tone="white">
+  <a href="portfolio/chuncheon.html">
+    <div class="pfx-pic"><img src="images/cases/chuncheon/01-card.webp" alt="칼라카타 화이트 주방 상판 — 강원 춘천 시공 사진" style="object-position:50% 62%" loading="lazy" decoding="async"><span class="pfx-n" aria-label="사진 1장"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>1</span></div>
+    <div class="pfx-cap"><img class="pfx-sw" src="images/cases/_sw/WM101.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><div><h3 class="pfx-name">칼라카타 화이트 주방 상판</h3><div class="pfx-meta"><span>강원 춘천</span><span>포세린 12T</span></div></div></div>
+  </a>
+</li>
+<li class="pfx-card" data-id="gwacheon" data-space="bath" data-tone="gray">
+  <a href="portfolio/gwacheon.html">
+    <div class="pfx-pic"><img src="images/cases/gwacheon/01-card.webp" alt="그레이 콘크리트 세면대 — 경기 과천 시공 사진" loading="lazy" decoding="async"><span class="pfx-n" aria-label="사진 1장"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>1</span></div>
+    <div class="pfx-cap"><img class="pfx-sw" src="images/cases/_sw/ST111.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><div><h3 class="pfx-name">그레이 콘크리트 세면대</h3><div class="pfx-meta"><span>경기 과천</span><span>포세린 12T</span></div></div></div>
+  </a>
+</li>
+<li class="pfx-card" data-id="dasan" data-space="bath" data-tone="gray">
+  <a href="portfolio/dasan.html">
+    <div class="pfx-pic"><img src="images/cases/dasan/01-card.webp" alt="소프트 그레이 2구 세면대 — 경기 다산 시공 사진" loading="lazy" decoding="async"><span class="pfx-n" aria-label="사진 1장"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>1</span></div>
+    <div class="pfx-cap"><img class="pfx-sw" src="images/cases/_sw/CC101.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><div><h3 class="pfx-name">소프트 그레이 2구 세면대</h3><div class="pfx-meta"><span>경기 다산</span><span>포세린 12T</span></div></div></div>
+  </a>
+</li>
+<li class="pfx-card" data-id="wirye" data-space="wall" data-tone="gray">
+  <a href="portfolio/wirye.html">
+    <div class="pfx-pic"><img src="images/cases/wirye/02-card.webp" alt="라이트 콘크리트 아트월 — 경기 위례 시공 사진" loading="lazy" decoding="async"><span class="pfx-n" aria-label="사진 2장"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>2</span></div>
+    <div class="pfx-cap"><img class="pfx-sw" src="images/cases/_sw/CC101.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><div><h3 class="pfx-name">라이트 콘크리트 아트월</h3><div class="pfx-meta"><span>경기 위례</span><span>포세린 12T</span></div></div></div>
+  </a>
+</li>
+<li class="pfx-card" data-id="byeollae" data-space="kitchen" data-tone="beige">
+  <a href="portfolio/byeollae.html">
+    <div class="pfx-pic"><img src="images/cases/byeollae/01-card.webp" alt="라이트 베이지 주방 상판 — 경기 별내 시공 사진" style="object-position:50% 58%" loading="lazy" decoding="async"><span class="pfx-n" aria-label="사진 1장"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>1</span></div>
+    <div class="pfx-cap"><img class="pfx-sw" src="images/cases/_sw/ST107.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><div><h3 class="pfx-name">라이트 베이지 주방 상판</h3><div class="pfx-meta"><span>경기 별내</span><span>포세린 12T</span></div></div></div>
+  </a>
+</li>
+<li class="pfx-card" data-id="dokgok" data-space="kitchen" data-tone="beige">
+  <a href="portfolio/dokgok.html">
+    <div class="pfx-pic"><img src="images/cases/dokgok/01-card.webp" alt="크림 마블 아일랜드 — 서울 도곡동 시공 사진" style="object-position:55% 50%" loading="lazy" decoding="async"><span class="pfx-n" aria-label="사진 2장"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>2</span></div>
+    <div class="pfx-cap"><img class="pfx-sw" src="images/cases/_sw/WM083.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><div><h3 class="pfx-name">크림 마블 아일랜드</h3><div class="pfx-meta"><span>서울 도곡동</span><span>포세린 12T</span></div></div></div>
+  </a>
+</li>
+<li class="pfx-card" data-id="namyangju" data-space="kitchen" data-tone="beige">
+  <a href="portfolio/namyangju.html">
+    <div class="pfx-pic"><img src="images/cases/namyangju/01-card.webp" alt="크림 화이트 주방 상판 — 경기 남양주 시공 사진" style="object-position:50% 60%" loading="lazy" decoding="async"><span class="pfx-n" aria-label="사진 1장"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>1</span></div>
+    <div class="pfx-cap"><img class="pfx-sw" src="images/cases/_sw/ST109.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><div><h3 class="pfx-name">크림 화이트 주방 상판</h3><div class="pfx-meta"><span>경기 남양주</span><span>포세린 12T</span></div></div></div>
+  </a>
+</li>
+<li class="pfx-card" data-id="seongsu" data-space="kitchen" data-tone="beige">
+  <a href="portfolio/seongsu.html">
+    <div class="pfx-pic"><img src="images/cases/seongsu/01-card.webp" alt="크림 베이지 아일랜드 — 서울 성수동 시공 사진" style="object-position:50% 58%" loading="lazy" decoding="async"><span class="pfx-n" aria-label="사진 3장"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>3</span></div>
+    <div class="pfx-cap"><img class="pfx-sw" src="images/cases/_sw/CC072.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><div><h3 class="pfx-name">크림 베이지 아일랜드</h3><div class="pfx-meta"><span>서울 성수동</span><span>포세린 12T</span></div></div></div>
+  </a>
+</li>
+<li class="pfx-card" data-id="dongdaemun" data-space="kitchen" data-tone="beige">
+  <a href="portfolio/dongdaemun.html">
+    <div class="pfx-pic"><img src="images/cases/dongdaemun/01-card.webp" alt="라이트 마블 주방 상판 — 서울 동대문 시공 사진" style="object-position:50% 60%" loading="lazy" decoding="async"><span class="pfx-n" aria-label="사진 2장"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>2</span></div>
+    <div class="pfx-cap"><img class="pfx-sw" src="images/cases/_sw/ST107.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><div><h3 class="pfx-name">라이트 마블 주방 상판</h3><div class="pfx-meta"><span>서울 동대문</span><span>포세린 12T</span></div></div></div>
+  </a>
+</li>
+<li class="pfx-card" data-id="cheongna" data-space="commercial" data-tone="beige">
+  <a href="portfolio/cheongna.html">
+    <div class="pfx-pic"><img src="images/cases/cheongna/01-card.webp" alt="라이트 베이지 매장 카운터 — 인천 청라 시공 사진" loading="lazy" decoding="async"><span class="pfx-n" aria-label="사진 1장"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>1</span></div>
+    <div class="pfx-cap"><img class="pfx-sw" src="images/cases/_sw/ST107.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><div><h3 class="pfx-name">라이트 베이지 매장 카운터</h3><div class="pfx-meta"><span>인천 청라</span><span>포세린 12T</span></div></div></div>
+  </a>
+</li>
+<li class="pfx-card" data-id="hongdae" data-space="kitchen" data-tone="white">
+  <a href="portfolio/hongdae.html">
+    <div class="pfx-pic"><img src="images/cases/hongdae/02-card.webp" alt="화이트 마블 주방 상판 — 서울 홍대 시공 사진" style="object-position:50% 68%" loading="lazy" decoding="async"><span class="pfx-n" aria-label="사진 2장"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>2</span></div>
+    <div class="pfx-cap"><img class="pfx-sw" src="images/cases/_sw/WM084.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><div><h3 class="pfx-name">화이트 마블 주방 상판</h3><div class="pfx-meta"><span>서울 홍대</span><span>포세린 12T</span></div></div></div>
+  </a>
+</li>
+<li class="pfx-card" data-id="mapo" data-space="kitchen" data-tone="white">
+  <a href="portfolio/mapo.html">
+    <div class="pfx-pic"><img src="images/cases/mapo/02-card.webp" alt="화이트 마블 상판 교체 — 서울 마포 시공 사진" style="object-position:60% 50%" loading="lazy" decoding="async"><span class="pfx-n" aria-label="사진 2장"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>2</span></div>
+    <div class="pfx-cap"><img class="pfx-sw" src="images/cases/_sw/WM086.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><div><h3 class="pfx-name">화이트 마블 상판 교체</h3><div class="pfx-meta"><span>서울 마포</span><span>포세린 12T</span></div></div></div>
+  </a>
+</li>
+<li class="pfx-card" data-id="yeoju" data-space="kitchen" data-tone="dark">
+  <a href="portfolio/yeoju.html">
+    <div class="pfx-pic"><img src="images/cases/yeoju/02-card.webp" alt="다크 그레이 아일랜드 — 경기 여주 시공 사진" loading="lazy" decoding="async"><span class="pfx-n" aria-label="사진 3장"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>3</span></div>
+    <div class="pfx-cap"><img class="pfx-sw" src="images/cases/_sw/CM072.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><div><h3 class="pfx-name">다크 그레이 아일랜드</h3><div class="pfx-meta"><span>경기 여주</span><span>포세린 12T</span></div></div></div>
+  </a>
+</li>
+  </ul>
+  <p class="pfx-empty" hidden><span>조건에 맞는 사례가 아직 없습니다.</span><button type="button">필터 초기화</button></p>
 </div>
-
-<!-- ===================== PORTFOLIO · LIST ===================== -->
-<sc-if value="{{ showList }}" hint-placeholder-val="{{ true }}">
-  <section style="background:#faf8f3;padding:160px 5vw 130px">
-    <div style="max-width:1280px;margin:0 auto">
-      <div style="margin-bottom:40px">
-        <div style="font:600 11px 'Manrope';letter-spacing:.3em;color:#b8935f;margin-bottom:16px">PORTFOLIO · 시공 사례</div>
-        <div class="reveal" style="font-family:'Noto Serif KR',serif;font-weight:500;font-size:clamp(28px,3.8vw,46px);line-height:1.3;color:#2f3b3a;margin-bottom:14px">공간이 증명합니다</div>
-        <div style="font:400 14px 'Manrope';color:#5c6f69">말보다 결과로 — 은성이 시공한 실제 현장입니다.</div>
-      </div>
-
-      <div class="pf-tabs">
-        <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
-          <button class="{{ f.tabClass }}" onClick="{{ f.select }}">{{ f.name }} <span>{{ f.count }}</span></button>
-        </sc-for>
-      </div>
-
-      <div class="pf-grid" data-reveal-group>
-        <sc-for list="{{ casesVisible }}" as="item" hint-placeholder-count="9">
-          <a class="pf-card reveal" href="{{ item.href }}" style="text-decoration:none">
-            <div class="pf-card-img" role="img" aria-label="{{ item.title }} — 은성 시공 사례 사진" style="background-image:url('{{ item.img }}')"></div>
-            <div class="pf-card-cap">{{ item.capUpper }}</div>
-            <div class="pf-card-title">{{ item.title }}</div>
-          </a>
-        </sc-for>
-      </div>
-    </div>
-  </section>
-</sc-if>
-
-<!-- ===================== PORTFOLIO · CASE DETAIL ===================== -->
-<sc-if value="{{ showDetail }}" hint-placeholder-val="{{ false }}">
-  <section style="background:#faf8f3;padding-bottom:0">
-    <div class="pdetail-hero" role="img" aria-label="{{ caseSel.title }} — 시공 완료 현장 대표 사진" style="background-image:url('{{ caseSel.heroPhoto }}')">
-      <div class="pdetail-hero-content">
-        <div class="pdetail-cat">{{ caseSel.capUpper }}</div>
-        <div class="pdetail-title">{{ caseSel.title }}</div>
-      </div>
-    </div>
-
-    <div class="pdetail-meta">카테고리 {{ caseSel.cat }} · 사진 {{ caseSel.photoCount }}장</div>
-
-    <div class="pdetail-viewer">
-      <div class="pdetail-stage">
-        <div class="pdetail-main-img" role="img" aria-label="{{ caseSel.title }} — 시공 사진" style="background-image:url('{{ caseSel.activePhotoUrl }}')"></div>
-        <button class="{{ caseSel.arrowClass }} is-prev" aria-label="이전 사진" onClick="{{ caseSel.prevPhoto }}">‹</button>
-        <button class="{{ caseSel.arrowClass }} is-next" aria-label="다음 사진" onClick="{{ caseSel.nextPhoto }}">›</button>
-      </div>
-      <div class="pdetail-zoom-hint">{{ caseSel.viewerHint }}</div>
-      <sc-if value="{{ caseSel.hasMultiplePhotos }}" hint-placeholder-val="{{ true }}">
-        <div class="pdetail-dots">
-          <sc-for list="{{ caseSel.photoDots }}" as="d" hint-placeholder-count="3">
-            <button class="{{ d.dotClass }}" onClick="{{ d.select }}"></button>
-          </sc-for>
-        </div>
-        <div class="pdetail-thumbs">
-          <sc-for list="{{ caseSel.photoThumbs }}" as="t" hint-placeholder-count="3">
-            <div class="{{ t.thumbClass }}" role="img" aria-label="{{ caseSel.title }} 사진 미리보기" style="background-image:url('{{ t.url }}')" onClick="{{ t.select }}"></div>
-          </sc-for>
-        </div>
-      </sc-if>
-    </div>
-
-    <div class="pdetail-desc">
-      <div class="pdetail-desc-text">{{ caseSel.desc }}</div>
-      <div class="pdetail-material">MATERIAL — <b>{{ caseSel.material }}</b></div>
-    </div>
-
-    <div class="pdetail-actions">
-      <a href="{{ caseSel.contactHref }}" class="pdetail-cta">비슷한 시공 문의하기</a>
-      <a href="{{ listHref }}" class="pdetail-back">← 목록으로</a>
-      <div class="pdetail-nav">
-        <a href="{{ caseSel.prevHref }}">← 이전 사례</a>
-        <a href="{{ caseSel.nextHref }}">다음 사례 →</a>
-      </div>
-    </div>
-  </section>
-</sc-if>
-
-<!-- ===================== FOOTER (shared) ===================== -->
-<footer style="background:#080b10;padding:72px 5vw 40px">
+</main>
+<footer class="hf" style="padding:72px 5vw 40px">
   <div style="max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:44px">
-    <div style="max-width:300px">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
-        <div style="font:700 15px 'Manrope';letter-spacing:.24em;color:#fff">EUNSUNG</div>
-      </div>
-      <div style="font:400 13px/1.8 'Manrope';color:rgba(255,255,255,.45)">포세린·엔지니어드 스톤·인조대리석·BMC<br>소재 선별부터 가공, 시공까지. 은성이 처음부터 끝까지&nbsp;책임집니다.</div>
+    <div style="max-width:320px">
+      <a href="index.html" class="hf-brand" aria-label="EUNSUNG 은성 홈"><span class="hf-en">EUNSUNG</span><span class="hf-kr">은성</span></a>
+      <p class="hf-desc">포세린·엔지니어드 스톤·인조대리석·BMC<br>소재 선별부터 가공, 시공까지. 은성이 처음부터 끝까지&nbsp;책임집니다.</p>
     </div>
     <div style="display:flex;gap:64px;flex-wrap:wrap">
-      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">MATERIALS</div><div style="display:flex;flex-direction:column;gap:11px"><a class="ft-link" href="showroom.html?cat=PORCELAIN">포세린</a><a class="ft-link" href="showroom.html?cat=VIATERA">엔지니어드 스톤</a><a class="ft-link" href="showroom.html?cat=HIMACS">인조대리석</a><a class="ft-link" href="bmc.html">BMC</a></div></div>
-      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">COMPANY</div><div style="display:flex;flex-direction:column;gap:11px"><a class="ft-link" href="portfolio.html">Portfolio</a><a class="ft-link" href="facility.html">Process</a><a class="ft-link" href="about.html">About</a><a class="ft-link" href="showroom.html?cat=PORCELAIN">Showroom</a><a class="ft-link" href="store.html">Store</a></div></div>
-      <div><div style="font:600 11px 'Manrope';letter-spacing:.18em;color:#c9a24b;margin-bottom:16px">SUPPORT</div><div style="display:flex;flex-direction:column;gap:11px"><a class="ft-link" href="contact.html">Inquiry</a></div></div>
+      <div><div class="hf-h">소재</div><div class="hf-col"><a class="ft-link" href="showroom.html?cat=PORCELAIN">포세린</a><a class="ft-link" href="showroom.html?cat=VIATERA">엔지니어드 스톤</a><a class="ft-link" href="showroom.html?cat=HIMACS">인조대리석</a><a class="ft-link" href="bmc.html">BMC</a></div></div>
+      <div><div class="hf-h">회사</div><div class="hf-col"><a class="ft-link" href="about.html">회사소개</a><a class="ft-link" href="facility.html">시공 과정</a><a class="ft-link" href="portfolio.html">시공사례</a><a class="ft-link" href="showroom.html?cat=PORCELAIN">쇼룸</a><a class="ft-link" href="store.html">스토어</a></div></div>
+      <div><div class="hf-h">고객지원</div><div class="hf-col"><a class="ft-link" href="contact.html">문의하기</a><a class="ft-link" href="https://open.kakao.com/o/sS7BnYyc" target="_blank" rel="noopener noreferrer">카카오톡 상담</a></div></div>
     </div>
   </div>
-  <div style="max-width:1280px;margin:48px auto 0;padding-top:26px;border-top:1px solid rgba(255,255,255,.09)">
-    <div style="margin-bottom:14px;font:400 12px/1.7 'Manrope';color:rgba(255,255,255,.5);word-break:keep-all">(주)은성 — 경기도 포천 포세린·엔지니어드 스톤 전문 기업 | LX하우시스 공식&nbsp;파트너</div>
-    <div class="ft-info" style="display:flex;flex-wrap:wrap;gap:8px 22px;margin-bottom:16px;font:400 12px/1.7 'Manrope';color:rgba(255,255,255,.45)">
+  <div class="hf-bottom">
+    <div class="hf-small" style="margin-bottom:12px;word-break:keep-all">(주)은성 — 경기도 포천 포세린·엔지니어드 스톤 전문 기업 | LX하우시스 공식&nbsp;파트너</div>
+    <div class="ft-info hf-small" style="display:flex;flex-wrap:wrap;gap:6px 22px;margin-bottom:16px">
       <span>상호 (주)은성</span><span>대표자 이언기</span><span>사업자등록번호 328-88-00420</span><span class="ft-info-addr">주소&nbsp;경기도 포천시 가산면 정금로&nbsp;356-39</span><span>전화 031-544-7272 · 010-5430-2580</span><span>팩스 031-544-6868</span><span>이메일 ceramices@naver.com</span>
     </div>
-    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px">
-      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px"><div style="font:400 12px 'Manrope';color:rgba(255,255,255,.4)">© 2026 (주)은성 EUNSUNG Co., Ltd. · 인조대리석 및 상판 가공</div><a class="ft-link" href="privacy.html" style="font-size:12px;color:rgba(255,255,255,.62);text-decoration:underline;text-underline-offset:3px">개인정보처리방침</a></div>
-      <div style="font:400 12px 'Manrope';color:rgba(255,255,255,.4)">Instagram · KakaoTalk · Naver</div>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px">
+      <div class="hf-small">© 2026 (주)은성 EUNSUNG Co., Ltd. · 인조대리석 및 상판 가공</div><a class="ft-link" href="privacy.html" style="font-size:12.5px;text-decoration:underline;text-underline-offset:3px">개인정보처리방침</a><div class="hf-small">Instagram · KakaoTalk · Naver</div>
     </div>
   </div>
 </footer>
-
-</x-dc>
-<script type="text/x-dc" data-dc-script>
-class Component extends DCLogic {
-  state = { activeFilter: 'All', routeCaseId: null, activePhotoIndex: 0 };
-
-  get CASES() {
-    return [
-      { id: 'hannamdong', title: '한남 — 아이보리 라운지 카운터', cat: 'Café & Commercial', material: 'Porcelain · Ivory White', desc: '바 카운터와 바닥을 하나의 아이보리 결로 통일.', photos: ['images/cases/hannamdong/01.jpg', 'images/cases/hannamdong/02.jpg'] },
-      { id: 'dongdaemun', title: '동대문 — 라이트 마블 주방', cat: 'Kitchen & Island', material: 'Porcelain · Light Marble', desc: '크리미 마블 포세린, 싱크 통합 가공.', photos: ['images/cases/dongdaemun/01.jpg', 'images/cases/dongdaemun/02.jpg'] },
-      { id: 'seongsu', title: '성수 — 크림 베이지 아일랜드', cat: 'Kitchen & Island', material: 'Porcelain · Cream Beige', desc: '싱크와 인덕션을 한 장의 슬랩에 통합 가공.', photos: ['images/cases/seongsu/01.jpg', 'images/cases/seongsu/02.webp', 'images/cases/seongsu/03.webp'] },
-      { id: 'yeoju', title: '여주 — 다크 그레이 아일랜드', cat: 'Kitchen & Island', material: 'Porcelain · Dark Grey', desc: '아일랜드와 카운터를 다크 그레이로 통일한 오픈 키친.', photos: ['images/cases/yeoju/01.webp', 'images/cases/yeoju/02.webp', 'images/cases/yeoju/03.webp'] },
-      { id: 'dokgok', title: '도곡 — 화이트 마블 카운터', cat: 'Kitchen & Island', material: 'Porcelain · White Marble', desc: '자연광에 맞춰 마블 결을 배치한 주방.', photos: ['images/cases/dokgok/01.jpg', 'images/cases/dokgok/02.jpg'] },
-      { id: 'mapo', title: '마포 — 화이트 마블 상판', cat: 'Kitchen & Island', material: 'Porcelain · White Marble', desc: '기존 캐비닛은 그대로, 상판만 화이트 마블로 새로 마감.', photos: ['images/cases/mapo/02.jpg', 'images/cases/mapo/01.jpg'] },
-      { id: 'namyangju', title: '남양주 — 크림 화이트 주방', cat: 'Kitchen & Island', material: 'Porcelain · Cream White', desc: '빌트인 컷아웃까지 도면 단계에서 반영한 신축 주방.', photos: ['images/cases/namyangju/01.webp'] },
-      { id: 'hongdae', title: '홍대 — 화이트 마블 주방', cat: 'Kitchen & Island', material: 'Porcelain · White Marble', desc: '상부장부터 카운터까지 같은 마블로 통일.', photos: ['images/cases/hongdae/02.jpg', 'images/cases/hongdae/01.jpg'] },
-      { id: 'bundang', title: '분당 — 크림 마블 주방', cat: 'Kitchen & Island', material: 'Porcelain · Cream Marble', desc: '상판과 백스플래시를 같은 결로 이어 마감.', photos: ['images/cases/bundang/01.jpg'] },
-      { id: 'chuncheon', title: '춘천 — 월넛과 칼라카타', cat: 'Kitchen & Island', material: 'Porcelain · Calacatta White', desc: '월넛 도어와 대비되는 화이트 마블 상판.', photos: ['images/cases/chuncheon/01.jpg'] },
-      { id: 'pangyo', title: '판교 — 그라파이트 아일랜드', cat: 'Kitchen & Island', material: 'Porcelain · Graphite Grey', desc: '싱크와 인덕션 컷아웃을 한 장의 슬랩에 통합 가공.', photos: ['images/cases/pangyo/01.jpg', 'images/cases/pangyo/02.jpg'] },
-      { id: 'gwanggyo', title: '광교 — 북매칭 마블 주방', cat: 'Kitchen & Island', material: 'Porcelain · Calacatta Viola', desc: '아일랜드와 벽면을 같은 결로 이어 붙인 주방.', photos: ['images/cases/gwanggyo/01.jpg', 'images/cases/gwanggyo/02.jpg'] },
-      { id: 'hanam', title: '하남 — 골드 베인 마블 주방', cat: 'Kitchen & Island', material: 'Porcelain · White Marble', desc: '반도형 아일랜드까지 같은 마블로 이어진 주방.', photos: ['images/cases/hanam/01.jpg', 'images/cases/hanam/02.jpg'] },
-      { id: 'gimpo', title: '김포 — 퓨어 화이트 주방', cat: 'Kitchen & Island', material: 'Porcelain · Pure White', desc: '세 면의 상판을 이음 없이 한 바퀴 연결.', photos: ['images/cases/gimpo/01.jpg'] },
-      { id: 'byeollae', title: '별내 — 세이지 그린 주방', cat: 'Kitchen & Island', material: 'Porcelain · Light Beige', desc: '세이지 그린 도어에 맞춘 밝은 스톤 상판.', photos: ['images/cases/byeollae/01.jpg'] },
-      { id: 'ilsan', title: '일산 — 블랙 마블 세면대', cat: 'Bathroom', material: 'Porcelain · Nero Marquina', desc: '세면대 상판을 블랙 마블 한 장으로 마감.', photos: ['images/cases/ilsan/01.jpg'] },
-      { id: 'gwacheon', title: '과천 — 그레이 콘크리트 세면대', cat: 'Bathroom', material: 'Porcelain · Grey Concrete', desc: '세면볼과 상판을 이음매 없이 일체 가공.', photos: ['images/cases/gwacheon/01.jpg'] },
-      { id: 'dasan', title: '다산 — 화이트 트윈 세면대', cat: 'Bathroom', material: 'Porcelain · Soft White', desc: '2구 세면대를 한 장의 상판으로 통합.', photos: ['images/cases/dasan/01.jpg'] },
-      { id: 'samsong', title: '삼송 — 칼라카타 비올라 욕실', cat: 'Bathroom', material: 'Porcelain · Calacatta Viola', desc: '욕조와 카운터를 같은 마블 결로 감싼 욕실.', photos: ['images/cases/samsong/01.jpg'] },
-      { id: 'unjeong', title: '운정 — 화이트 마블 아트월', cat: 'Wall & Counter', material: 'Porcelain · White Marble', desc: '거실 양면을 바닥부터 천장까지 슬랩으로 마감. 벽면은 대판 슬랩으로 이음을 최소화했습니다.', photos: ['images/cases/unjeong/01.jpg', 'images/cases/misa/01.jpg'] },
-      { id: 'wirye', title: '위례 — 라이트 콘크리트 아트월', cat: 'Wall & Counter', material: 'Porcelain · Light Concrete', desc: '벽과 기둥을 같은 무광 슬랩으로 감싼 마감.', photos: ['images/cases/wirye/02.jpg', 'images/cases/wirye/01.jpg'] },
-      { id: 'cheongna', title: '청라 — 트래버틴 카운터', cat: 'Café & Commercial', material: 'Porcelain · Travertine Beige', desc: '매장 카운터 전면을 한 결로 감싼 마감.', photos: ['images/cases/cheongna/01.jpg'] },
-      { id: 'dongtan', title: '동탄 — 칼라카타 테이블', cat: 'Office & Hotel', material: 'Porcelain · Calacatta White', desc: '회의실 원장 테이블, 배선 홀까지 통합 가공.', photos: ['images/cases/dongtan/01.jpg'] },
-    ];
-  }
-
-  get FILTER_NAMES() {
-    return ['All', 'Kitchen & Island', 'Bathroom', 'Wall & Counter', 'Café & Commercial', 'Office & Hotel'];
-  }
-
-  setFilter = (name) => this.setState({ activeFilter: name });
-  selectPhoto = (i) => this.setState({ activePhotoIndex: i });
-
-  parseHash() {
-    const m = location.hash.match(/^#case\/(.+)$/);
-    return m ? decodeURIComponent(m[1]) : null;
-  }
-
-  applyRoute = () => {
-    const id = this.parseHash();
-    this.setState({ routeCaseId: id, activePhotoIndex: 0 });
-    if (id) window.scrollTo(0, 0);
-  };
-
-  componentDidMount() {
-    this._hashHandler = () => this.applyRoute();
-    window.addEventListener('hashchange', this._hashHandler);
-    this.applyRoute();
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('hashchange', this._hashHandler);
-  }
-
-  renderVals() {
-    const cases = this.CASES;
-    const activeFilter = this.state.activeFilter;
-    const filtered = activeFilter === 'All' ? cases : cases.filter((c) => c.cat === activeFilter);
-    const found = this.state.routeCaseId ? cases.find((c) => c.id === this.state.routeCaseId) : null;
-
-    let caseSel = {
-      title: '', desc: '', cat: '', capUpper: '', material: '',
-      heroPhoto: '', activePhotoUrl: '', photoCount: 0, hasMultiplePhotos: false,
-      photoDots: [], photoThumbs: [], prevHref: '#', nextHref: '#',
-      arrowClass: 'pdetail-arrow is-hidden',
-      viewerHint: '', prevPhoto: () => {}, nextPhoto: () => {},
-      contactHref: 'contact.html',
-    };
-
-    if (found) {
-      const idx = cases.findIndex((c) => c.id === found.id);
-      const prev = cases[(idx - 1 + cases.length) % cases.length];
-      const next = cases[(idx + 1) % cases.length];
-      const activeIdx = Math.min(this.state.activePhotoIndex, found.photos.length - 1);
-      const total = found.photos.length;
-      caseSel = {
-        ...found,
-        capUpper: found.cat.toUpperCase(),
-        heroPhoto: found.photos[0],
-        activePhotoUrl: found.photos[activeIdx],
-        photoCount: total,
-        hasMultiplePhotos: total > 1,
-        arrowClass: 'pdetail-arrow' + (total > 1 ? '' : ' is-hidden'),
-        viewerHint: total > 1 ? '사진을 클릭하면 크게 볼 수 있습니다 · 좌우로 드래그해 넘기세요' : '사진을 클릭하면 크게 볼 수 있습니다',
-        prevPhoto: () => this.selectPhoto((activeIdx - 1 + total) % total),
-        nextPhoto: () => this.selectPhoto((activeIdx + 1) % total),
-        photoDots: found.photos.map((p, i) => ({
-          dotClass: 'pdetail-dot' + (i === activeIdx ? ' is-active' : ''),
-          select: () => this.selectPhoto(i),
-        })),
-        photoThumbs: found.photos.map((p, i) => ({
-          url: p,
-          thumbClass: 'pdetail-thumb' + (i === activeIdx ? ' is-active' : ''),
-          select: () => this.selectPhoto(i),
-        })),
-        prevHref: '#case/' + prev.id,
-        nextHref: '#case/' + next.id,
-        contactHref: 'contact.html?case=' + encodeURIComponent(found.title),
-      };
-    }
-
-    return {
-      filters: this.FILTER_NAMES.map((name) => ({
-        name,
-        count: name === 'All' ? cases.length : cases.filter((c) => c.cat === name).length,
-        tabClass: 'pf-tab' + (name === activeFilter ? ' is-active' : ''),
-        select: () => this.setFilter(name),
-      })),
-      casesVisible: filtered.map((c) => ({ ...c, capUpper: c.cat.toUpperCase(), img: c.photos[0], href: '#case/' + c.id })),
-      showList: !found,
-      showDetail: !!found,
-      caseSel,
-      listHref: '#',
-    };
-  }
-}
-
-</script>
-
-<script>
-/* 시공사례 디테일 뷰어 — 전체화면 라이트박스 + 드래그/스와이프 넘김.
-   사진 전환은 컴포넌트가 렌더한 좌우 화살표 버튼을 클릭해 상태를 한 곳에서 관리한다. */
-(function () {
-  var lb = null, lbImg = null, lbCount = null, photos = [], idx = 0;
-
-  function closestSel(node, sel) {
-    while (node && node.nodeType === 1) {
-      if (node.matches && node.matches(sel)) return node;
-      node = node.parentNode;
-    }
-    return null;
-  }
-
-  function bgUrl(el) {
-    var s = (el && el.style && el.style.backgroundImage) || '';
-    var m = s.match(/url\(["']?(.*?)["']?\)/);
-    return m ? m[1] : '';
-  }
-
-  /* 사진 목록은 이미 렌더된 썸네일에서 읽는다 — 별도 데이터 속성 없이 항상 화면과 일치한다. */
-  function readState() {
-    var main = document.querySelector('.pdetail-main-img');
-    if (!main) return false;
-    var thumbs = Array.prototype.slice.call(document.querySelectorAll('.pdetail-thumb'));
-    if (thumbs.length) {
-      photos = thumbs.map(bgUrl);
-      var active = 0;
-      thumbs.forEach(function (t, i) { if (t.classList.contains('is-active')) active = i; });
-      idx = active;
-    } else {
-      photos = [bgUrl(main)];
-      idx = 0;
-    }
-    return photos.length > 0 && !!photos[0];
-  }
-
-  function clickArrow(dir) {
-    var b = document.querySelector('.pdetail-arrow.is-' + (dir < 0 ? 'prev' : 'next'));
-    if (b) b.click();
-  }
-
-  function step(dir) {
-    if (photos.length < 2) return;
-    clickArrow(dir);
-    idx = (idx + dir + photos.length) % photos.length;
-    paint();
-  }
-
-  function paint() {
-    if (!lb) return;
-    lbImg.src = photos[idx] || '';
-    var tEl = document.querySelector('.pdetail-title');
-    var tTxt = tEl ? tEl.textContent.trim() : '';
-    lbImg.alt = (tTxt ? tTxt + ' — ' : '') + '은성 시공 사진 ' + (idx + 1);
-    lbCount.textContent = (idx + 1) + ' / ' + photos.length;
-    var show = photos.length > 1 ? '' : 'none';
-    lb.querySelector('.pflb-arrow.is-prev').style.display = show;
-    lb.querySelector('.pflb-arrow.is-next').style.display = show;
-    lbCount.style.display = show;
-  }
-
-  function build() {
-    lb = document.createElement('div');
-    lb.className = 'pflb';
-    lb.innerHTML =
-      '<img class="pflb-img" alt="" loading="lazy">' +
-      '<button class="pflb-close" aria-label="닫기">×</button>' +
-      '<button class="pflb-arrow is-prev" aria-label="이전 사진">‹</button>' +
-      '<button class="pflb-arrow is-next" aria-label="다음 사진">›</button>' +
-      '<div class="pflb-count"></div>';
-    document.body.appendChild(lb);
-    lbImg = lb.querySelector('.pflb-img');
-    lbCount = lb.querySelector('.pflb-count');
-    lb.querySelector('.pflb-close').addEventListener('click', close);
-    lb.querySelector('.pflb-arrow.is-prev').addEventListener('click', function (e) { e.stopPropagation(); step(-1); });
-    lb.querySelector('.pflb-arrow.is-next').addEventListener('click', function (e) { e.stopPropagation(); step(1); });
-    attachDrag(lb, step, function () { close(); });
-  }
-
-  function open() {
-    if (!readState()) return;
-    if (!lb) build();
-    paint();
-    document.body.style.overflow = 'hidden';
-    lb.style.display = 'flex';
-    requestAnimationFrame(function () { lb.classList.add('is-open'); });
-  }
-
-  function close() {
-    if (!lb) return;
-    lb.classList.remove('is-open');
-    document.body.style.overflow = '';
-    setTimeout(function () {
-      if (lb && !lb.classList.contains('is-open')) lb.style.display = 'none';
-    }, 200);
-  }
-
-  /* 좌우 드래그(마우스)와 스와이프(터치)를 한 경로로 처리. 세로 이동이 더 크면 스크롤로 넘긴다. */
-  function attachDrag(el, onSwipe, onTap) {
-    var x0 = null, y0 = null;
-    el.addEventListener('pointerdown', function (e) {
-      if (e.pointerType === 'mouse' && e.button !== 0) return;
-      x0 = e.clientX; y0 = e.clientY;
-    });
-    el.addEventListener('pointerup', function (e) {
-      if (x0 === null) return;
-      var dx = e.clientX - x0, dy = e.clientY - y0;
-      x0 = null;
-      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) { onSwipe(dx < 0 ? 1 : -1); return; }
-      /* 화살표·닫기 버튼 위의 탭은 각 버튼이 처리하므로 배경 탭으로 보지 않는다. */
-      if (onTap && Math.abs(dx) < 8 && Math.abs(dy) < 8 && !closestSel(e.target, 'button')) onTap(e);
-    });
-    el.addEventListener('pointercancel', function () { x0 = null; });
-    el.addEventListener('dragstart', function (e) { e.preventDefault(); });
-  }
-
-  /* 메인 사진: 드래그면 넘김, 탭이면 라이트박스. 컴포넌트가 다시 렌더해도 살아있도록 document에 위임. */
-  var mx = null, my = null, swiped = false;
-  document.addEventListener('pointerdown', function (e) {
-    if (!closestSel(e.target, '.pdetail-main-img')) return;
-    if (e.pointerType === 'mouse' && e.button !== 0) return;
-    mx = e.clientX; my = e.clientY; swiped = false;
-  });
-  document.addEventListener('pointerup', function (e) {
-    if (mx === null) return;
-    var dx = e.clientX - mx, dy = e.clientY - my;
-    mx = null;
-    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) {
-      swiped = true;
-      readState();
-      clickArrow(dx < 0 ? 1 : -1);
-    }
-  });
-  document.addEventListener('pointercancel', function () { mx = null; });
-  document.addEventListener('click', function (e) {
-    if (!closestSel(e.target, '.pdetail-main-img')) return;
-    if (swiped) { swiped = false; return; }
-    open();
-  });
-
-  document.addEventListener('keydown', function (e) {
-    if (!lb || !lb.classList.contains('is-open')) return;
-    if (e.key === 'Escape') close();
-    else if (e.key === 'ArrowLeft') step(-1);
-    else if (e.key === 'ArrowRight') step(1);
-  });
-
-  window.addEventListener('hashchange', close);
-})();
-</script>
 </body>
 </html>

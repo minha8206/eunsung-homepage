@@ -1,0 +1,807 @@
+{
+  "_안내": [
+    "시공사례 데이터 — 사례 한 건이 { } 한 묶음. 위에서부터 목록에 나오는 순서다.",
+    "고친 뒤에는 `node scandi/scripts/build-portfolio.js` 를 실행해야 목록·상세 페이지에 반영된다.",
+    "tone + use = 제목(예: 아이보리 화이트 + 라운지 카운터). region = 지역. scope = 시공 범위. desc = 한두 문장 설명.",
+    "space: kitchen(주방) | bath(욕실) | wall(아트월) | commercial(상업 공간).  toneGroup: white | beige | gray | dark (컬러 필터).",
+    "color.code = LX 제품 코드(data/products-*.json 의 code). exact:false 면 '비슷한 컬러', 실제 사용한 컬러로 확인되면 true 로 바꾼다 → '사용 컬러'로 표시.",
+    "similar = 함께 보여줄 비슷한 컬러 코드(최대 3개).",
+    "photos 의 첫 장이 대표사진. pos 는 4:3 틀에서 보일 위치(가로% 세로%, 생략하면 가운데).",
+    "en = 영문(EN) 표기."
+  ],
+  "cases": [
+    {
+      "id": "hannamdong",
+      "tone": "아이보리 화이트",
+      "use": "라운지 카운터",
+      "space": "commercial",
+      "toneGroup": "beige",
+      "region": "서울 한남동",
+      "material": "포세린 12T",
+      "scope": "바 카운터 상판, 바닥",
+      "desc": "바 카운터와 바닥을 같은 아이보리 결로 맞춰, 라운지 전체가 하나의 면으로 이어져 보이게 마감했습니다.",
+      "color": {
+        "code": "WM085",
+        "exact": false
+      },
+      "similar": [
+        "ST109",
+        "CC101",
+        "CC102"
+      ],
+      "photos": [
+        {
+          "src": "images/cases/hannamdong/01.jpg",
+          "pos": "50% 55%"
+        },
+        {
+          "src": "images/cases/hannamdong/02.jpg"
+        }
+      ],
+      "en": {
+        "tone": "Ivory White",
+        "use": "Lounge Counter",
+        "region": "Hannam-dong, Seoul",
+        "scope": "Bar counter tops, flooring",
+        "desc": "The bar counters and floor share one ivory grain, so the whole lounge reads as a single continuous surface."
+      }
+    },
+    {
+      "id": "gwanggyo",
+      "tone": "칼라카타 비올라",
+      "use": "주방 상판",
+      "space": "kitchen",
+      "toneGroup": "white",
+      "region": "경기 광교",
+      "material": "포세린 12T",
+      "scope": "주방 상판, 아일랜드, 벽면",
+      "desc": "아일랜드와 벽면의 마블 결이 이어지도록 맞춰 붙인 주방입니다.",
+      "color": {
+        "code": "WM105",
+        "exact": false
+      },
+      "similar": [
+        "WM101",
+        "WM084",
+        "WM083"
+      ],
+      "photos": [
+        {
+          "src": "images/cases/gwanggyo/01.jpg"
+        },
+        {
+          "src": "images/cases/gwanggyo/02.jpg"
+        }
+      ],
+      "en": {
+        "tone": "Calacatta Viola",
+        "use": "Kitchen Worktop",
+        "region": "Gwanggyo, Gyeonggi",
+        "scope": "Worktop, island, backsplash wall",
+        "desc": "The veining is matched so it flows from the island up the wall."
+      }
+    },
+    {
+      "id": "bundang",
+      "tone": "크림 마블",
+      "use": "주방 상판",
+      "space": "kitchen",
+      "toneGroup": "beige",
+      "region": "경기 분당",
+      "material": "포세린 12T",
+      "scope": "주방 상판, 백스플래시",
+      "desc": "상판과 백스플래시를 같은 결로 이어 마감했습니다.",
+      "color": {
+        "code": "WM083",
+        "exact": false
+      },
+      "similar": [
+        "WM101",
+        "WM084",
+        "ST107"
+      ],
+      "photos": [
+        {
+          "src": "images/cases/bundang/01.jpg",
+          "pos": "50% 70%"
+        }
+      ],
+      "en": {
+        "tone": "Cream Marble",
+        "use": "Kitchen Worktop",
+        "region": "Bundang, Gyeonggi",
+        "scope": "Worktop, backsplash",
+        "desc": "Worktop and backsplash finished in the same continuous grain."
+      }
+    },
+    {
+      "id": "hanam",
+      "tone": "화이트 마블",
+      "use": "아일랜드",
+      "space": "kitchen",
+      "toneGroup": "white",
+      "region": "경기 하남",
+      "material": "포세린 12T",
+      "scope": "주방 상판, 아일랜드",
+      "desc": "벽 쪽 상판부터 아일랜드까지 같은 마블로 이어지게 시공한 주방입니다.",
+      "color": {
+        "code": "WM084",
+        "exact": false
+      },
+      "similar": [
+        "WM101",
+        "WM086",
+        "WM083"
+      ],
+      "photos": [
+        {
+          "src": "images/cases/hanam/02.jpg"
+        },
+        {
+          "src": "images/cases/hanam/01.jpg"
+        }
+      ],
+      "en": {
+        "tone": "White Marble",
+        "use": "Island",
+        "region": "Hanam, Gyeonggi",
+        "scope": "Worktop, island",
+        "desc": "One marble runs from the wall-side worktop through to the island."
+      }
+    },
+    {
+      "id": "samsong",
+      "tone": "칼라카타 비올라",
+      "use": "욕실 카운터",
+      "space": "bath",
+      "toneGroup": "white",
+      "region": "경기 삼송",
+      "material": "포세린 12T",
+      "scope": "욕조 전면, 카운터 상판",
+      "desc": "욕조와 카운터를 같은 마블 결로 감싸 한 덩어리처럼 보이게 마감했습니다.",
+      "color": {
+        "code": "WM105",
+        "exact": false
+      },
+      "similar": [
+        "WM101",
+        "WM084",
+        "WM083"
+      ],
+      "photos": [
+        {
+          "src": "images/cases/samsong/01.jpg"
+        }
+      ],
+      "en": {
+        "tone": "Calacatta Viola",
+        "use": "Bathroom Counter",
+        "region": "Samsong, Gyeonggi",
+        "scope": "Bath front, counter top",
+        "desc": "Bath and counter are wrapped in the same marble grain so they read as one piece."
+      }
+    },
+    {
+      "id": "unjeong",
+      "tone": "화이트 마블",
+      "use": "거실 아트월",
+      "space": "wall",
+      "toneGroup": "white",
+      "region": "경기 운정",
+      "material": "포세린 12T",
+      "scope": "거실 벽면 양쪽",
+      "desc": "거실 양쪽 벽을 바닥부터 천장까지 대판 슬랩으로 마감해 이음을 최소화했습니다.",
+      "color": {
+        "code": "WM101",
+        "exact": false
+      },
+      "similar": [
+        "WM084",
+        "WM083",
+        "WM105"
+      ],
+      "photos": [
+        {
+          "src": "images/cases/unjeong/01.jpg"
+        },
+        {
+          "src": "images/cases/misa/01.jpg"
+        }
+      ],
+      "en": {
+        "tone": "White Marble",
+        "use": "Living Room Feature Wall",
+        "region": "Unjeong, Gyeonggi",
+        "scope": "Both living room walls",
+        "desc": "Both living room walls are clad floor to ceiling in large-format slabs to keep joints to a minimum."
+      }
+    },
+    {
+      "id": "gimpo",
+      "tone": "퓨어 화이트",
+      "use": "ㄷ자 주방 상판",
+      "space": "kitchen",
+      "toneGroup": "white",
+      "region": "경기 김포",
+      "material": "포세린 12T",
+      "scope": "ㄷ자 주방 상판",
+      "desc": "세 면의 상판이 한 바퀴 이어지도록 시공한 ㄷ자 주방입니다.",
+      "color": {
+        "code": "ST086",
+        "exact": false
+      },
+      "similar": [
+        "ST110",
+        "WM086",
+        "WM084"
+      ],
+      "photos": [
+        {
+          "src": "images/cases/gimpo/01.jpg"
+        }
+      ],
+      "en": {
+        "tone": "Pure White",
+        "use": "U-shaped Kitchen Worktop",
+        "region": "Gimpo, Gyeonggi",
+        "scope": "U-shaped worktop",
+        "desc": "A U-shaped kitchen where the worktop runs around all three sides."
+      }
+    },
+    {
+      "id": "ilsan",
+      "tone": "블랙 마블",
+      "use": "세면대 상판",
+      "space": "bath",
+      "toneGroup": "dark",
+      "region": "경기 일산",
+      "material": "포세린 12T",
+      "scope": "세면대 상판",
+      "desc": "세면대 상판을 블랙 마블 한 장으로 마감했습니다.",
+      "color": {
+        "code": "CM104",
+        "exact": false
+      },
+      "similar": [
+        "CM072",
+        "ST076",
+        "ST111"
+      ],
+      "photos": [
+        {
+          "src": "images/cases/ilsan/01.jpg"
+        }
+      ],
+      "en": {
+        "tone": "Black Marble",
+        "use": "Vanity Top",
+        "region": "Ilsan, Gyeonggi",
+        "scope": "Vanity top",
+        "desc": "The vanity top is finished in a single piece of black marble."
+      }
+    },
+    {
+      "id": "dongtan",
+      "tone": "칼라카타 화이트",
+      "use": "회의 테이블",
+      "space": "commercial",
+      "toneGroup": "white",
+      "region": "경기 동탄",
+      "material": "포세린 12T",
+      "scope": "회의 테이블 상판",
+      "desc": "원장 한 장으로 만든 회의 테이블입니다. 배선 홀까지 함께 가공했습니다.",
+      "color": {
+        "code": "WM101",
+        "exact": false
+      },
+      "similar": [
+        "WM084",
+        "WM083",
+        "WM086"
+      ],
+      "photos": [
+        {
+          "src": "images/cases/dongtan/01.jpg",
+          "pos": "30% 50%"
+        }
+      ],
+      "en": {
+        "tone": "Calacatta White",
+        "use": "Conference Table",
+        "region": "Dongtan, Gyeonggi",
+        "scope": "Conference table top",
+        "desc": "A conference table cut from a single full slab, with the cable openings fabricated in."
+      }
+    },
+    {
+      "id": "pangyo",
+      "tone": "라이트 그레이",
+      "use": "아일랜드",
+      "space": "kitchen",
+      "toneGroup": "gray",
+      "region": "경기 판교",
+      "material": "포세린 12T",
+      "scope": "아일랜드 상판",
+      "desc": "싱크와 인덕션 자리를 한 장의 슬랩에 함께 가공한 아일랜드입니다.",
+      "color": {
+        "code": "ST111",
+        "exact": false
+      },
+      "similar": [
+        "CC101",
+        "ST110",
+        "ST076"
+      ],
+      "photos": [
+        {
+          "src": "images/cases/pangyo/01.jpg",
+          "pos": "50% 45%"
+        },
+        {
+          "src": "images/cases/pangyo/02.jpg"
+        }
+      ],
+      "en": {
+        "tone": "Light Grey",
+        "use": "Island",
+        "region": "Pangyo, Gyeonggi",
+        "scope": "Island top",
+        "desc": "Sink and induction cut-outs are fabricated into a single slab."
+      }
+    },
+    {
+      "id": "chuncheon",
+      "tone": "칼라카타 화이트",
+      "use": "주방 상판",
+      "space": "kitchen",
+      "toneGroup": "white",
+      "region": "강원 춘천",
+      "material": "포세린 12T",
+      "scope": "주방 상판, 벽면",
+      "desc": "짙은 월넛 도어와 대비되도록 화이트 마블로 상판과 벽면을 마감했습니다.",
+      "color": {
+        "code": "WM101",
+        "exact": false
+      },
+      "similar": [
+        "WM105",
+        "WM084",
+        "WM083"
+      ],
+      "photos": [
+        {
+          "src": "images/cases/chuncheon/01.jpg",
+          "pos": "50% 62%"
+        }
+      ],
+      "en": {
+        "tone": "Calacatta White",
+        "use": "Kitchen Worktop",
+        "region": "Chuncheon, Gangwon",
+        "scope": "Worktop, wall",
+        "desc": "White marble on the worktop and wall, set against dark walnut doors."
+      }
+    },
+    {
+      "id": "gwacheon",
+      "tone": "그레이 콘크리트",
+      "use": "세면대",
+      "space": "bath",
+      "toneGroup": "gray",
+      "region": "경기 과천",
+      "material": "포세린 12T",
+      "scope": "세면대 상판, 전면",
+      "desc": "세면볼과 상판을 일체로 가공한 세면대입니다.",
+      "color": {
+        "code": "ST111",
+        "exact": false
+      },
+      "similar": [
+        "ST076",
+        "CC101",
+        "CM072"
+      ],
+      "photos": [
+        {
+          "src": "images/cases/gwacheon/01.jpg"
+        }
+      ],
+      "en": {
+        "tone": "Grey Concrete",
+        "use": "Vanity",
+        "region": "Gwacheon, Gyeonggi",
+        "scope": "Vanity top and front",
+        "desc": "A vanity with the basin and top fabricated as one piece."
+      }
+    },
+    {
+      "id": "dasan",
+      "tone": "소프트 그레이",
+      "use": "2구 세면대",
+      "space": "bath",
+      "toneGroup": "gray",
+      "region": "경기 다산",
+      "material": "포세린 12T",
+      "scope": "세면대 상판",
+      "desc": "세면볼 두 개를 한 장의 상판에 함께 담았습니다.",
+      "color": {
+        "code": "CC101",
+        "exact": false
+      },
+      "similar": [
+        "ST110",
+        "ST111",
+        "WM086"
+      ],
+      "photos": [
+        {
+          "src": "images/cases/dasan/01.jpg"
+        }
+      ],
+      "en": {
+        "tone": "Soft Grey",
+        "use": "Double Vanity",
+        "region": "Dasan, Gyeonggi",
+        "scope": "Vanity top",
+        "desc": "Two basins set into a single top."
+      }
+    },
+    {
+      "id": "wirye",
+      "tone": "라이트 콘크리트",
+      "use": "아트월",
+      "space": "wall",
+      "toneGroup": "gray",
+      "region": "경기 위례",
+      "material": "포세린 12T",
+      "scope": "벽면, 기둥",
+      "desc": "벽과 기둥을 같은 무광 슬랩으로 감싸 마감했습니다.",
+      "color": {
+        "code": "CC101",
+        "exact": false
+      },
+      "similar": [
+        "ST111",
+        "ST110",
+        "CC102"
+      ],
+      "photos": [
+        {
+          "src": "images/cases/wirye/02.jpg"
+        },
+        {
+          "src": "images/cases/wirye/01.jpg"
+        }
+      ],
+      "en": {
+        "tone": "Light Concrete",
+        "use": "Feature Wall",
+        "region": "Wirye, Gyeonggi",
+        "scope": "Wall, column",
+        "desc": "Wall and column are wrapped in the same matt slab."
+      }
+    },
+    {
+      "id": "byeollae",
+      "tone": "라이트 베이지",
+      "use": "주방 상판",
+      "space": "kitchen",
+      "toneGroup": "beige",
+      "region": "경기 별내",
+      "material": "포세린 12T",
+      "scope": "주방 상판",
+      "desc": "세이지 그린 도어에 맞춰 밝은 스톤 톤으로 상판을 올렸습니다.",
+      "color": {
+        "code": "ST107",
+        "exact": false
+      },
+      "similar": [
+        "CC102",
+        "ST104",
+        "WM083"
+      ],
+      "photos": [
+        {
+          "src": "images/cases/byeollae/01.jpg",
+          "pos": "50% 58%"
+        }
+      ],
+      "en": {
+        "tone": "Light Beige",
+        "use": "Kitchen Worktop",
+        "region": "Byeollae, Gyeonggi",
+        "scope": "Worktop",
+        "desc": "A light stone-tone worktop chosen to sit with sage green doors."
+      }
+    },
+    {
+      "id": "dokgok",
+      "tone": "크림 마블",
+      "use": "아일랜드",
+      "space": "kitchen",
+      "toneGroup": "beige",
+      "region": "서울 도곡동",
+      "material": "포세린 12T",
+      "scope": "아일랜드, 주방 상판",
+      "desc": "창으로 들어오는 자연광에 맞춰 마블 결의 방향을 배치한 주방입니다.",
+      "color": {
+        "code": "WM083",
+        "exact": false
+      },
+      "similar": [
+        "ST107",
+        "WM085",
+        "WM101"
+      ],
+      "photos": [
+        {
+          "src": "images/cases/dokgok/01.jpg",
+          "pos": "55% 50%"
+        },
+        {
+          "src": "images/cases/dokgok/02.jpg"
+        }
+      ],
+      "en": {
+        "tone": "Cream Marble",
+        "use": "Island",
+        "region": "Dogok-dong, Seoul",
+        "scope": "Island, worktop",
+        "desc": "The direction of the veining is laid out to follow the natural light from the window."
+      }
+    },
+    {
+      "id": "namyangju",
+      "tone": "크림 화이트",
+      "use": "주방 상판",
+      "space": "kitchen",
+      "toneGroup": "beige",
+      "region": "경기 남양주",
+      "material": "포세린 12T",
+      "scope": "주방 상판",
+      "desc": "빌트인 기기 자리까지 도면 단계에서 반영해 가공한 신축 주방입니다.",
+      "color": {
+        "code": "ST109",
+        "exact": false
+      },
+      "similar": [
+        "WM085",
+        "CC101",
+        "ST086"
+      ],
+      "photos": [
+        {
+          "src": "images/cases/namyangju/01.webp",
+          "pos": "50% 60%"
+        }
+      ],
+      "en": {
+        "tone": "Cream White",
+        "use": "Kitchen Worktop",
+        "region": "Namyangju, Gyeonggi",
+        "scope": "Worktop",
+        "desc": "A new-build kitchen with the built-in appliance cut-outs planned in at drawing stage."
+      }
+    },
+    {
+      "id": "seongsu",
+      "tone": "크림 베이지",
+      "use": "아일랜드",
+      "space": "kitchen",
+      "toneGroup": "beige",
+      "region": "서울 성수동",
+      "material": "포세린 12T",
+      "scope": "아일랜드 상판, 측면",
+      "desc": "싱크와 인덕션을 한 장의 슬랩에 함께 가공한 대형 아일랜드입니다.",
+      "color": {
+        "code": "CC072",
+        "exact": false
+      },
+      "similar": [
+        "CC102",
+        "ST104",
+        "ST109"
+      ],
+      "photos": [
+        {
+          "src": "images/cases/seongsu/01.jpg",
+          "pos": "50% 58%"
+        },
+        {
+          "src": "images/cases/seongsu/02.webp",
+          "pos": "50% 60%"
+        },
+        {
+          "src": "images/cases/seongsu/03.webp",
+          "pos": "50% 62%"
+        }
+      ],
+      "en": {
+        "tone": "Cream Beige",
+        "use": "Island",
+        "region": "Seongsu-dong, Seoul",
+        "scope": "Island top and sides",
+        "desc": "A large island with the sink and induction hob fabricated into one slab."
+      }
+    },
+    {
+      "id": "dongdaemun",
+      "tone": "라이트 마블",
+      "use": "주방 상판",
+      "space": "kitchen",
+      "toneGroup": "beige",
+      "region": "서울 동대문",
+      "material": "포세린 12T",
+      "scope": "주방 상판",
+      "desc": "크리미한 마블 상판에 싱크 자리를 일체로 가공했습니다.",
+      "color": {
+        "code": "ST107",
+        "exact": false
+      },
+      "similar": [
+        "WM083",
+        "CC102",
+        "ST104"
+      ],
+      "photos": [
+        {
+          "src": "images/cases/dongdaemun/01.jpg",
+          "pos": "50% 60%"
+        },
+        {
+          "src": "images/cases/dongdaemun/02.jpg",
+          "pos": "50% 50%"
+        }
+      ],
+      "en": {
+        "tone": "Light Marble",
+        "use": "Kitchen Worktop",
+        "region": "Dongdaemun, Seoul",
+        "scope": "Worktop",
+        "desc": "A creamy marble worktop with the sink cut-out fabricated in."
+      }
+    },
+    {
+      "id": "cheongna",
+      "tone": "라이트 베이지",
+      "use": "매장 카운터",
+      "space": "commercial",
+      "toneGroup": "beige",
+      "region": "인천 청라",
+      "material": "포세린 12T",
+      "scope": "카운터 전면, 상판",
+      "desc": "매장 카운터 전면과 상판을 한 결로 감싸 마감했습니다.",
+      "color": {
+        "code": "ST107",
+        "exact": false
+      },
+      "similar": [
+        "ST104",
+        "CC102",
+        "ST087"
+      ],
+      "photos": [
+        {
+          "src": "images/cases/cheongna/01.jpg"
+        }
+      ],
+      "en": {
+        "tone": "Light Beige",
+        "use": "Shop Counter",
+        "region": "Cheongna, Incheon",
+        "scope": "Counter front and top",
+        "desc": "The shop counter front and top are wrapped in one continuous grain."
+      }
+    },
+    {
+      "id": "hongdae",
+      "tone": "화이트 마블",
+      "use": "주방 상판",
+      "space": "kitchen",
+      "toneGroup": "white",
+      "region": "서울 홍대",
+      "material": "포세린 12T",
+      "scope": "주방 상판, 벽면",
+      "desc": "위쪽부터 카운터까지 같은 마블로 맞춘 주방입니다.",
+      "color": {
+        "code": "WM084",
+        "exact": false
+      },
+      "similar": [
+        "WM086",
+        "WM101",
+        "WM083"
+      ],
+      "photos": [
+        {
+          "src": "images/cases/hongdae/02.jpg",
+          "pos": "50% 68%"
+        },
+        {
+          "src": "images/cases/hongdae/01.jpg"
+        }
+      ],
+      "en": {
+        "tone": "White Marble",
+        "use": "Kitchen Worktop",
+        "region": "Hongdae, Seoul",
+        "scope": "Worktop, wall",
+        "desc": "A kitchen matched in the same marble from the upper wall down to the counter."
+      }
+    },
+    {
+      "id": "mapo",
+      "tone": "화이트 마블",
+      "use": "상판 교체",
+      "space": "kitchen",
+      "toneGroup": "white",
+      "region": "서울 마포",
+      "material": "포세린 12T",
+      "scope": "주방 상판, 아일랜드",
+      "desc": "기존 캐비닛은 그대로 두고 상판만 화이트 마블로 새로 올렸습니다.",
+      "color": {
+        "code": "WM086",
+        "exact": false
+      },
+      "similar": [
+        "WM084",
+        "ST110",
+        "WM101"
+      ],
+      "photos": [
+        {
+          "src": "images/cases/mapo/02.jpg",
+          "pos": "60% 50%"
+        },
+        {
+          "src": "images/cases/mapo/01.jpg"
+        }
+      ],
+      "en": {
+        "tone": "White Marble",
+        "use": "Worktop Replacement",
+        "region": "Mapo, Seoul",
+        "scope": "Worktop, island",
+        "desc": "The existing cabinets stay; only the worktop is replaced with white marble."
+      }
+    },
+    {
+      "id": "yeoju",
+      "tone": "다크 그레이",
+      "use": "아일랜드",
+      "space": "kitchen",
+      "toneGroup": "dark",
+      "region": "경기 여주",
+      "material": "포세린 12T",
+      "scope": "아일랜드, 주방 상판",
+      "desc": "아일랜드와 카운터를 다크 그레이로 통일한 오픈 키친입니다.",
+      "color": {
+        "code": "CM072",
+        "exact": false
+      },
+      "similar": [
+        "ST076",
+        "ST111",
+        "CM104"
+      ],
+      "photos": [
+        {
+          "src": "images/cases/yeoju/02.webp"
+        },
+        {
+          "src": "images/cases/yeoju/01.webp"
+        },
+        {
+          "src": "images/cases/yeoju/03.webp"
+        }
+      ],
+      "en": {
+        "tone": "Dark Grey",
+        "use": "Island",
+        "region": "Yeoju, Gyeonggi",
+        "scope": "Island, worktop",
+        "desc": "An open kitchen with the island and counter unified in dark grey."
+      }
+    }
+  ]
+}

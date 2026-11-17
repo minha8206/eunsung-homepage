@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "description": "esstone.co.kr — 정적 사이트(scandi/) + Netlify Functions(문의 접수·알림)",
   "scripts": {
-    "dev": "netlify dev"
+    "dev": "netlify dev",
+    "build:portfolio": "node scandi/scripts/build-portfolio.js"
   },
   "dependencies": {
     "@netlify/functions": "^3.1.10",

@@ -1,0 +1,283 @@
+/* ===== 시공사례 — 목록(portfolio.html) + 상세(portfolio/<id>.html) · 2026-11 개편 =====
+
+   메인 리디자인과 같은 밝은 톤 토큰을 쓴다(흰 바탕 · 잉크 · 레이크 블루 · 미스트).
+   글꼴은 Pretendard 하나. 금색 · 자간 넓힌 영문 소제목 · 번호 장식은 쓰지 않는다.
+
+   이 파일은 /assets/ 아래라 1년 immutable 캐시다 — 고치면 scripts/build-portfolio.js 의
+   ASSET_V 를 올리고 다시 빌드할 것(참조의 ?v= 가 바뀐다).
+
+   클래스 접두사는 .pfx — site.css(mobile-pages.css)에 남아 있는 옛 .pf-* 규칙과 겹치지 않게 했다. */
+
+:root{
+  --ink:#16202A;--body:#3A4552;--mute:#6B7785;--line:#E2E8EC;--mist:#F0F5F8;
+  --lake:#2C6E96;--lake-d:#225A7C;
+  --sans:'Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,system-ui,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  --serif:'Noto Serif KR','Noto Serif CJK KR',serif;
+  --hu-ink:#16202A;--hu-tint:rgba(22,32,42,.06);--hu-tint-strong:rgba(22,32,42,.1);
+}
+*,*::before,*::after{box-sizing:border-box}
+body.pfx-page{margin:0;background:#fff;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+
+/* ── 헤더 (index.html 과 같은 마크업 · 같은 규칙) ──
+   다른 페이지는 position:fixed 인데, 여기서는 sticky 로 흐름 안에 둔다 — 헤더 높이만큼
+   본문을 밀어 줄 필요가 없어 화면 폭이 바뀌어도 어긋나지 않는다. */
+.pfx-page .site-hd{position:sticky!important}
+.nav-mid{display:flex;align-items:center;gap:28px}
+@media (max-width:1400px){.nav-mid{gap:22px}}
+.nav-mid a{color:inherit;font:500 15px/1 var(--sans);letter-spacing:-.005em;text-decoration:none;position:relative;padding:4px 0;white-space:nowrap}
+.nav-mid a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:1.5px;background:currentColor;transition:width .35s}
+.nav-mid a:hover::after{width:100%}
+.nav-mid a[aria-current]{color:var(--lake);font-weight:600}
+.nav-burger{display:none}
+.nav-mobile-panel{display:none}
+@media (max-width:1279px){
+  .nav-mid{display:none}
+  .nav-burger{display:inline-flex}
+}
+.brand-logo{display:flex;align-items:baseline;gap:.6em;font-size:1.75rem;transition:opacity .3s ease}
+.brand-logo:hover{opacity:.7}
+.brand-en{font:600 1.75rem 'Cormorant Garamond',serif;letter-spacing:.15em;text-transform:uppercase;color:var(--ink);line-height:1}
+.brand-kr{font:400 .85rem var(--serif);opacity:.55;color:var(--ink);line-height:1;white-space:nowrap}
+.hd-quote{display:inline-flex;align-items:center;height:38px;margin-left:12px;padding:0 18px;border-radius:999px;background:var(--ink);color:#fff;font:600 14px/1 var(--sans);text-decoration:none;white-space:nowrap}
+.hd-quote:hover{opacity:.86;color:#fff}
+@media (max-width:640px){
+  .brand-logo{font-size:1.35rem}
+  .brand-en{font-size:1.35rem;letter-spacing:.12em}
+  .brand-kr{font-size:.72rem}
+  .hd-quote{display:none}
+}
+
+/* ── 공통 ── */
+.pfx{display:block}
+.pfx-wrap{width:min(calc(100% - 2 * max(20px, 5vw)), 1296px);margin-inline:auto}
+.pfx a:focus-visible,.pfx button:focus-visible,.pfx-lb button:focus-visible{outline:2px solid var(--lake);outline-offset:3px}
+.pfx-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ── 목록 · 머리 ── */
+.pfx-head{padding:64px 0 36px}
+.pfx-head h1{margin:0;font:700 40px/1.2 var(--sans);letter-spacing:-.02em;color:var(--ink)}
+.pfx-head p{margin:12px 0 0;font:400 17px/1.6 var(--sans);color:var(--mute)}
+
+/* ── 목록 · 필터 ── */
+.pfx-filter{border-top:1px solid var(--ink);border-bottom:1px solid var(--line);margin-bottom:44px}
+.pfx-frow{display:flex;align-items:center;min-height:58px}
+.pfx-frow + .pfx-frow{border-top:1px solid var(--line)}
+.pfx-flab{flex:none;width:84px;font:500 14px/1 var(--sans);color:var(--mute)}
+.pfx-opts{display:flex;align-items:center;gap:30px;min-width:0;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.pfx-opts::-webkit-scrollbar{display:none}
+.pfx-tab,.pfx-tone{-webkit-appearance:none;appearance:none;flex:none;position:relative;display:inline-flex;align-items:center;height:58px;margin:0;padding:0;border:0;background:none;font:400 16px/1 var(--sans);color:var(--mute);white-space:nowrap;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.pfx-tab i{margin-left:5px;font:400 13px/1 var(--sans);font-style:normal;color:#8A95A1}
+.pfx-tab:hover,.pfx-tone:hover{color:var(--ink)}
+.pfx-tab[aria-pressed="true"],.pfx-tone[aria-pressed="true"]{color:var(--ink);font-weight:700}
+.pfx-tab[aria-pressed="true"]::after{content:'';position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--ink)}
+.pfx-tone{gap:9px}
+.pfx-dot{flex:none;width:24px;height:24px;border-radius:50%;background-size:cover;background-position:center;box-shadow:inset 0 0 0 1px rgba(22,32,42,.16)}
+.pfx-tone[aria-pressed="true"] .pfx-dot{box-shadow:inset 0 0 0 1px rgba(22,32,42,.16),0 0 0 2px #fff,0 0 0 4px var(--ink)}
+.pfx-count{flex:none;margin-left:auto;padding-left:16px;font:400 14px/1 var(--sans);color:var(--mute);white-space:nowrap}
+.pfx-count b{font-weight:400}
+
+/* ── 카드 (목록 · 상세의 "다른 사례" 공용) ── */
+.pfx-grid{list-style:none;margin:0;padding:0 0 96px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:56px 32px}
+.pfx-card[hidden]{display:none}
+.pfx-grid[hidden]{display:none}
+.pfx-card a{display:block;color:inherit;text-decoration:none}
+.pfx-pic{position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:3px;background:var(--mist)}
+.pfx-pic img{display:block;width:100%;height:100%;object-fit:cover}
+.pfx-n{position:absolute;right:12px;bottom:12px;display:flex;align-items:center;gap:6px;padding:5px 9px;border-radius:3px;background:rgba(22,32,42,.72);color:#fff;font:500 13px/1 var(--sans)}
+.pfx-n svg{display:block}
+.pfx-cap{display:flex;align-items:flex-start;gap:14px;margin-top:16px}
+.pfx-sw{flex:none;display:block;width:46px;height:46px;border-radius:2px;object-fit:cover;background:var(--mist);box-shadow:0 0 0 1px rgba(22,32,42,.14)}
+.pfx-name{margin:0;font:650 19px/1.3 var(--sans);letter-spacing:-.01em;color:var(--ink)}
+.pfx-card a:hover .pfx-name{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px}
+.pfx-meta{display:flex;align-items:center;gap:12px;margin-top:7px;font:400 15px/1 var(--sans);color:var(--mute)}
+.pfx-meta span + span{padding-left:12px;border-left:1px solid #CBD3D9}
+.pfx-empty{margin:0;padding:24px 0 120px;font:400 16px/1.6 var(--sans);color:var(--mute)}
+.pfx-empty button{-webkit-appearance:none;appearance:none;margin-left:8px;padding:0;border:0;background:none;font:600 16px/1.6 var(--sans);color:var(--lake);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+
+/* ── 상세 · 위쪽 줄(위치 · 이전/다음) ── */
+.pfx-top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:26px 0 22px;font:400 14px/1.4 var(--sans);color:var(--mute)}
+.pfx-bc{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;margin:0;padding:0;list-style:none}
+.pfx-bc a{color:inherit;text-decoration:none}
+.pfx-bc a:hover{color:var(--ink)}
+.pfx-bc [aria-current]{color:var(--ink);font-weight:500}
+.pfx-pn{flex:none;display:flex;align-items:center}
+.pfx-pn a{display:flex;align-items:center;gap:6px;padding:0 16px;font-weight:500;color:var(--body);text-decoration:none;white-space:nowrap}
+.pfx-pn a:hover{color:var(--ink)}
+.pfx-pn a + a{border-left:1px solid #CBD3D9}
+.pfx-pn a:last-child{padding-right:0}
+.pfx-pn svg{display:block}
+
+/* ── 상세 · 본문 2단 ── */
+.pfx-main{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:56px;align-items:start}
+.pfx-gal{min-width:0}
+.pfx-stage{position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:3px;background:var(--mist)}
+.pfx-track{display:flex;height:100%;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none}
+.pfx-track::-webkit-scrollbar{display:none}
+.pfx-slide{flex:0 0 100%;height:100%;margin:0;scroll-snap-align:start;scroll-snap-stop:always}
+.pfx-slide img{display:block;width:100%;height:100%;object-fit:cover;cursor:zoom-in}
+.pfx-arr{-webkit-appearance:none;appearance:none;position:absolute;top:50%;width:44px;height:44px;margin-top:-22px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.92);color:var(--ink);display:grid;place-items:center;cursor:pointer}
+.pfx-arr:hover{background:#fff}
+.pfx-arr.is-prev{left:16px}
+.pfx-arr.is-next{right:16px}
+.pfx-zoom{-webkit-appearance:none;appearance:none;position:absolute;right:16px;bottom:16px;display:flex;align-items:center;gap:7px;padding:9px 14px;border:0;border-radius:3px;background:#fff;color:var(--ink);font:600 14px/1 var(--sans);cursor:pointer}
+.pfx-thumbs{display:flex;align-items:center;gap:10px;margin-top:12px}
+.pfx-thumb{-webkit-appearance:none;appearance:none;flex:none;width:112px;aspect-ratio:4/3;padding:0;border:0;border-radius:2px;overflow:hidden;background:var(--mist);opacity:.6;cursor:pointer}
+.pfx-thumb:hover{opacity:.85}
+.pfx-thumb img{display:block;width:100%;height:100%;object-fit:cover}
+.pfx-thumb[aria-current="true"]{opacity:1;outline:2px solid var(--ink);outline-offset:2px}
+.pfx-cnt{margin-left:auto;font:400 14px/1 var(--sans);color:var(--mute);white-space:nowrap}
+.pfx-cnt b{font-weight:600;color:var(--ink)}
+
+.pfx-info{min-width:0}
+.pfx-kind{font:600 14px/1 var(--sans);color:var(--lake);text-decoration:none}
+.pfx-kind:hover{color:var(--lake-d);text-decoration:underline;text-underline-offset:3px}
+.pfx-ttl{margin:10px 0 0;font:700 32px/1.28 var(--sans);letter-spacing:-.02em;color:var(--ink)}
+.pfx-ttl span{display:block}
+.pfx-desc{margin:14px 0 0;font:400 16px/1.7 var(--sans);color:var(--body)}
+
+/* 컬러 카드 — 견본 사진 + 제품명, 누르면 그 컬러의 제품 페이지로 */
+.pfx-color{display:flex;align-items:center;gap:16px;margin-top:24px;padding:12px 16px 12px 12px;border:1px solid var(--line);border-radius:3px;color:inherit;text-decoration:none;transition:border-color .2s}
+.pfx-color:hover{border-color:var(--ink)}
+.pfx-color img{flex:none;display:block;width:76px;height:76px;border-radius:2px;object-fit:cover;background:var(--mist);box-shadow:0 0 0 1px rgba(22,32,42,.12)}
+.pfx-color-t{min-width:0}
+.pfx-color-l{display:block;font:500 13px/1 var(--sans);color:var(--mute)}
+.pfx-color-n{display:block;margin-top:8px;font:650 18px/1.25 var(--sans);color:var(--ink)}
+.pfx-color-c{display:flex;flex-wrap:wrap;gap:4px 10px;margin-top:6px;font:400 14px/1 var(--sans);color:var(--mute)}
+.pfx-color-c span + span,.pfx-colors i span + span{padding-left:10px;border-left:1px solid #CBD3D9}
+.pfx-color-go{flex:none;display:flex;align-items:center;gap:3px;margin-left:auto;font:600 14px/1 var(--sans);color:var(--lake);white-space:nowrap}
+
+.pfx-spec{margin:24px 0 0;border-top:1px solid var(--ink)}
+.pfx-spec div{display:flex;align-items:center;min-height:50px;border-bottom:1px solid var(--line)}
+.pfx-spec dt{flex:none;width:92px;font:500 14px/1.4 var(--sans);color:var(--mute)}
+.pfx-spec dd{margin:0;padding:10px 0;font:400 16px/1.45 var(--sans);color:var(--ink)}
+.pfx-cta{display:flex;flex-direction:column;gap:10px;margin-top:24px}
+.pfx-b1,.pfx-b2{display:flex;align-items:center;justify-content:center;gap:8px;min-height:54px;padding:0 20px;border-radius:4px;font:650 16px/1 var(--sans);text-decoration:none}
+.pfx-b1{background:var(--ink);color:#fff}
+.pfx-b1:hover{background:#243240;color:#fff}
+.pfx-b2{border:1px solid #C4CCD3;color:var(--ink);font-weight:600}
+.pfx-b2:hover{border-color:var(--ink);color:var(--ink)}
+.pfx-kk{flex:none;width:22px;height:22px;border-radius:50%;background:#FEE500;color:#191919;display:grid;place-items:center}
+.pfx-kk svg{width:13px;height:13px;display:block}
+.pfx-tel{margin:14px 0 0;text-align:center;font:400 14px/1.5 var(--sans);color:var(--mute)}
+.pfx-tel a{color:inherit;text-decoration:none}
+
+/* ── 상세 · 아래 구역 ── */
+.pfx-sec{margin-top:72px;padding-top:26px;border-top:1px solid var(--ink)}
+.pfx-sec h2{margin:0;font:700 24px/1.3 var(--sans);letter-spacing:-.02em;color:var(--ink)}
+.pfx-lead{margin:6px 0 0;font:400 16px/1.6 var(--sans);color:var(--mute)}
+.pfx-colors{list-style:none;margin:26px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px}
+.pfx-colors a{display:block;color:inherit;text-decoration:none}
+.pfx-tile{position:relative;aspect-ratio:3/2;overflow:hidden;border-radius:3px;background:var(--mist)}
+.pfx-tile img{display:block;width:100%;height:100%;object-fit:cover}
+.pfx-tile::after{content:'';position:absolute;inset:0;border-radius:3px;box-shadow:inset 0 0 0 1px rgba(22,32,42,.12);pointer-events:none}
+.pfx-badge{position:absolute;left:12px;top:12px;z-index:1;padding:6px 10px;border-radius:3px;background:#fff;font:600 13px/1 var(--sans);color:var(--ink)}
+.pfx-colors b{display:block;margin-top:14px;font:650 18px/1.3 var(--sans);color:var(--ink)}
+.pfx-colors a:hover b{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px}
+.pfx-colors i{display:flex;flex-wrap:wrap;gap:4px 10px;margin-top:6px;font:400 14px/1 var(--sans);font-style:normal;color:var(--mute)}
+.pfx-rel{padding-bottom:0;margin-top:26px}
+.pfx-end{display:flex;justify-content:center;margin:72px 0 96px}
+.pfx-end a{display:flex;align-items:center;min-height:52px;padding:0 28px;border:1px solid #C4CCD3;border-radius:4px;font:600 16px/1 var(--sans);color:var(--ink);text-decoration:none}
+.pfx-end a:hover{border-color:var(--ink)}
+
+/* ── 크게 보기 (전체 화면) ── */
+.pfx-lb{position:fixed;inset:0;z-index:10002;display:flex;align-items:center;justify-content:center;background:rgba(13,18,24,.96)}
+.pfx-lb[hidden]{display:none}
+.pfx-lb img{display:block;max-width:calc(100vw - 168px);max-height:calc(100vh - 112px);max-height:calc(100dvh - 112px);object-fit:contain;border-radius:2px}
+.pfx-lb button{-webkit-appearance:none;appearance:none;position:absolute;width:48px;height:48px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;display:grid;place-items:center;cursor:pointer}
+.pfx-lb button:hover{background:rgba(255,255,255,.22)}
+.pfx-lb-x{top:20px;right:20px}
+.pfx-lb-prev{left:20px;top:50%;margin-top:-24px}
+.pfx-lb-next{right:20px;top:50%;margin-top:-24px}
+.pfx-lb-cnt{position:absolute;left:0;right:0;bottom:22px;text-align:center;font:400 14px/1 var(--sans);color:rgba(255,255,255,.72)}
+
+/* ── 푸터 (index.html 밝은 톤과 같은 규칙) ── */
+.hf{background:#fff;border-top:1px solid var(--line);color:var(--body)}
+.hf-brand{display:inline-flex;align-items:baseline;gap:.55em;margin-bottom:18px;text-decoration:none;color:var(--ink)}
+.hf-en{font:600 1.45rem/1 'Cormorant Garamond',serif;letter-spacing:.15em}
+.hf-kr{font:400 .8rem/1 var(--serif);opacity:.55}
+.hf-desc{margin:0;font:400 13.5px/1.85 var(--sans);color:var(--mute)}
+.hf-h{margin-bottom:16px;font:600 13.5px/1.3 var(--sans);color:var(--ink)}
+.hf-col{display:flex;flex-direction:column;gap:11px}
+.pfx-page .hf .ft-link{font:400 14px/1.5 var(--sans);color:var(--body)}
+.pfx-page .hf .ft-link:hover,.pfx-page .hf .ft-link:focus-visible{color:var(--lake)}
+.hf-bottom{max-width:1280px;margin:48px auto 0;padding-top:26px;border-top:1px solid var(--line)}
+.hf-small{font:400 12.5px/1.75 var(--sans);color:var(--mute)}
+@media (max-width:769px){.hf-col{gap:0}}
+
+/* 플로팅 상담 버튼 · 모바일 하단 바를 밝은 톤에 맞춘다 */
+.pfx-page .iw-btn--quote{background:var(--ink)}
+.pfx-page .iw-label{color:var(--ink);font-family:var(--sans)}
+.pfx-page .es-ctabar a{font-family:var(--sans);letter-spacing:.01em}
+.pfx-page .es-ctabar-tel{background:var(--ink);color:#fff}
+.pfx-page .es-ctabar-kakao{background:#FEE500;color:#191919}
+.pfx-page .es-ctabar.pfx-bar{grid-template-columns:2fr 3fr}
+/* 플로팅 버튼의 글자 라벨은 화면이 넓을 때만 늘 보인다. 본문이 화면 끝 가까이 오는 폭(≤1700px)에서는
+   사진·문의 버튼을 가리므로 아이콘만 두고, 올리거나 포커스하면 라벨이 나온다. */
+@media (max-width:1700px){
+  .pfx-page .iw-item{position:relative}
+  .pfx-page .iw-label{position:absolute;right:58px;top:50%;transform:translateY(-50%);opacity:0;visibility:hidden;transition:opacity .15s ease}
+  .pfx-page .iw-item:hover .iw-label,.pfx-page .iw-item:focus-visible .iw-label{opacity:1;visibility:visible}
+}
+
+/* 상세에서는 연말 프로모션의 작은 탭(.esh-mini, holiday-popup.js)도 같은 이유로 아이콘 크기로 줄인다 —
+   300px 알약 그대로면 오른쪽 단의 문의 버튼을 덮는다. 누르면 평소처럼 카드가 열린다. */
+@media (max-width:1700px){
+  .pfx-case .esh-mini{width:46px;height:46px;padding:0;gap:0;justify-content:center}
+  .pfx-case .esh-mini .m-t,.pfx-case .esh-mini .m-up{display:none}
+}
+
+/* ── 반응형 ── */
+@media (max-width:1180px){
+  .pfx-main{grid-template-columns:minmax(0,1fr) 360px;gap:40px}
+  .pfx-grid{gap:48px 24px}
+  .pfx-colors{gap:24px}
+}
+@media (max-width:960px){
+  .pfx-main{grid-template-columns:1fr;gap:28px}
+  .pfx-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pfx-colors{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pfx-head{padding:44px 0 28px}
+  .pfx-head h1{font-size:32px}
+  .pfx-head p{font-size:16px}
+}
+@media (max-width:768px){
+  /* 하단 고정 바(전화·카톡 / 상세는 카톡·견적)가 같은 일을 하므로 본문 버튼은 접는다 */
+  .pfx-cta{display:none}
+  .pfx-tel{text-align:left}
+  .pfx-tel a{color:var(--lake);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+  .pfx-end{margin:56px 0 72px}
+  .pfx-sec{margin-top:56px}
+  .pfx-sec h2{font-size:21px}
+}
+@media (max-width:640px){
+  .pfx-head{padding:32px 0 22px}
+  .pfx-head h1{font-size:28px}
+  .pfx-head p{font-size:15px}
+  .pfx-head p span{display:block}
+  .pfx-color img{width:64px;height:64px}
+  .pfx-color{gap:12px}
+  .pfx-filter{margin-bottom:28px}
+  .pfx-flab{width:48px}
+  .pfx-opts{gap:22px;margin-right:calc(-1 * max(20px, 5vw));padding-right:max(20px, 5vw)}
+  .pfx-count{display:none}
+  .pfx-grid{grid-template-columns:1fr;gap:36px;padding-bottom:72px}
+  .pfx-name{font-size:18px}
+  .pfx-top{padding:16px 0 14px}
+  .pfx-bc li:nth-child(n+4){display:none}
+  .pfx-pn a{padding:0 12px}
+  .pfx-stage{margin-inline:calc(-1 * max(20px, 5vw));border-radius:0}
+  .pfx-arr{display:none}
+  .pfx-zoom{right:12px;bottom:12px;padding:8px 12px}
+  .pfx-thumb{width:72px}
+  .pfx-ttl{font-size:26px}
+  .pfx-colors{gap:24px 14px}
+  .pfx-colors b{font-size:16px;margin-top:10px}
+  .pfx-badge{left:8px;top:8px;font-size:12px;padding:5px 8px}
+  .pfx-lb img{max-width:100vw;max-height:calc(100dvh - 140px)}
+  .pfx-lb-prev{left:8px}
+  .pfx-lb-next{right:8px}
+  .pfx-lb-x{top:12px;right:12px}
+}
+@media (prefers-reduced-motion:reduce){
+  .pfx-color,.nav-mid a::after,.brand-logo{transition:none}
+}

@@ -1,5 +1,23 @@
 # CHANGELOG — esstone.co.kr (scandi/)
 
+## 2026-11-17 · 시공사례 전면 개편 — 정적 목록 + 사례별 상세 페이지 (밝은 톤)
+
+- **kevin 요청**: "깔끔해 보이면서도 정리가 안 된 느낌", 표기를 컬러 + 용도 + 지역으로, 상세는 "확대하기" 말고 완전히 분리, 사용한 컬러를 사진과 함께 올리고 바로 그 컬러로 들어가게. 시안으로 고른 것 — 표기 "두 줄 + 컬러 칩", 목록 시안, 상세 **B-1 갤러리형**(독립 페이지 · 대표사진 한 장 + 작은 사진). 팝업 창(A)과 모자이크(B-2)는 탈락.
+- **구조가 바뀌었다 — x-dc(React) 를 걷어내고 정적 생성으로.** `data/cases.json`(사례 한 건 = 한 묶음, 위에서부터 목록 순서) → `node scandi/scripts/build-portfolio.js` → `portfolio.html`(목록) + `portfolio/<id>.html` 23개(상세, 주소 `/portfolio/<id>`) + `js/i18n-portfolio.js`(EN 사전) + `sitemap.xml` 의 PORTFOLIO-CASES 구간. **이 네 가지는 생성물이라 직접 고치지 않는다.** 예전엔 초기 HTML 에 템플릿 문법만 있어 사례가 검색에 안 잡혔고 `#case/..` 주소는 공유 미리보기가 전부 같았다 — 이제 사례마다 title · description · og:image(대표사진) · JSON-LD(BreadcrumbList + CreativeWork)가 있다.
+- **표기**: 제목 = `tone` + `use`(예: 아이보리 화이트 라운지 카운터), 아랫줄 = 지역 | 소재, 왼쪽에 컬러 칩. 분류는 한글로 — 공간(주방 14 · 욕실 4 · 아트월 2 · 상업 공간 3) + 컬러 톤(화이트 · 베이지·크림 · 그레이 · 다크) 필터. 고른 값은 주소(`?space=&tone=`)에 남는다. 사진이 깔끔한 사례를 앞에, 보양 필름·박스가 보이는 사례를 뒤에 뒀다.
+- **상세(B-1)**: 왼쪽 대표사진 틀(4:3 고정, 가로 스크롤 스냅 — 손가락으로 넘김) + 작은 사진 줄 + "크게 보기"(전체 화면, 키보드 ←/→/ESC), 오른쪽에 제목 · 설명 · **컬러 카드**(견본 사진 + 제품명 + 코드 → `product-detail.html?code=`) · 소재/시공 범위/지역 표 · "이 컬러로 견적 문의" · 카카오톡. 아래 "비슷한 컬러" 4종 → "비슷한 톤의 다른 사례" 3건. 사진이 1장이면 작은 사진 줄만 빠진다.
+- **컬러는 지금 전부 추정이다.** `color.code` 는 사진을 보고 고른 LX 포세린(kevin 선택 "다")이라 `exact:false` → "비슷한 컬러 / 가장 비슷한 컬러"로 표시된다. 실제 사용 컬러가 확인되면 코드를 맞추고 `exact:true` 로 바꾸면 "사용 컬러"로 바뀐다. **지역도 예전 값 그대로**(kevin 이 나중에 고칠 예정) — 판교 사진은 `images/cases/yeouido` 와 같은 주방, 동탄은 `seolleung` 과 같은 회의실, 운정 2번째 사진은 `misa` 폴더다.
+- **견적 연결**: "이 컬러로 견적 문의"는 `contact.html?case=<제목 · 지역 · 컬러명 코드>` — contact.html 의 기존 prefillFromCase 가 문의 내용에 채운다(contact.html 무변경). 상세에서는 헤더 "견적 문의" · 플로팅 "견적 문의" · 모바일 하단 바도 같은 주소를 쓴다: `portfolio.js` 가 inquiry-widget.js 가 만든 `#esCtabar` 의 전화 버튼을 "이 컬러로 견적 문의"로 바꾸고 카카오톡을 앞에 둔다(바 크기·층위는 그대로).
+- **신규** `assets/css/portfolio.css` · `assets/js/portfolio.js`(참조 `?v=20261117` — 고치면 build-portfolio.js 의 `ASSET_V` 를 올리고 다시 빌드). 클래스 접두사 `.pfx`(site.css 에 남은 옛 `.pf-*` 와 안 겹침). 헤더·푸터는 index.html 밝은 톤과 같은 마크업, 헤더만 `position:sticky`. 글꼴 Pretendard 1종, 금색 · 영문 소제목 · 세리프 제목 제거.
+- **상세는 `<base href="/">`** — 한 단계 아래 폴더인데 공통 스크립트(상담 버튼 · 모바일 메뉴 · 검색)가 `contact.html` 같은 상대 주소를 쓰기 때문. 그래서 상세 안에서는 `#..` 만 적은 링크를 쓰면 안 된다(홈으로 간다).
+- **사진**: 카드·작은 사진용 축소본 `images/cases/<id>/<이름>-card.webp`(37장, 합계 1.3MB)와 컬러 칩 `images/cases/_sw/<코드>.webp`(120px, 23장)를 추가. 둘 다 "있으면 쓰고 없으면 원본" — 새 사진을 넣고 축소본을 안 만들어도 페이지는 정상이다(이 머신엔 python 이 없으므로 축소본은 원격 세션에서 만들었다). 세로·파노라마 사진은 `photos[].pos` 로 4:3 틀에서 보일 위치를 잡는다.
+- **연말 팝업과의 충돌 처리(상세만)**: holiday-popup.js 카드(오른쪽 아래 380px)가 상세의 컬러·문의 영역을 통째로 덮어서, 상세에서는 작은 탭으로 시작하게 했다(인라인 스크립트가 `esh_minimized` 를 잠깐 켰다가 load 뒤에 끈다 — 다른 페이지에서는 평소대로 뜬다). 작은 탭과 플로팅 버튼 라벨도 ≤1700px 에서는 아이콘 크기로 줄였다(portfolio.css). 되돌리려면 build-portfolio.js 의 `quietPopup: true` 한 줄과 portfolio.css 의 `.pfx-case .esh-mini` 블록을 지우면 된다. holiday-popup.js 자체는 무변경.
+- **EN**: `js/i18n-portfolio.js` 가 사전 본체(i18n-en.js, EN 을 고를 때만 받음)가 `window.I18N_EN` 에 대입되는 순간 끼어들어 사례 제목·설명·라벨을 합친다(본체에 있는 키는 안 건드림). 사례 영문은 cases.json 의 `en`.
+- **옛 주소**: `portfolio#case/<id>` 로 들어오면 `portfolio/<id>.html` 로 보낸다(id 는 예전과 같다). canonical 은 목록 `/portfolio.html` 그대로, 상세는 `/portfolio/<id>`. sitemap 에 사례 23건 추가.
+- 무변경: contact.html · index.html · site.css · inquiry-widget.js · holiday-popup.js · mobile-nav.js · search-overlay.js · **보호 파일 showroom.html · product-detail.html**. `scripts/build-seo.js` 는 portfolio.html 의 SEO-JSONLD 구간을 계속 관리한다(build-portfolio.js 가 그 구간을 그대로 옮겨 싣는다). ⚠ build-seo.js 를 돌리면 보호 파일 2개의 JSON-LD 도 다시 써진다 — 이번에 확인차 돌렸다가 두 파일은 `git checkout` 으로 되돌렸다.
+- 남은 것(미수정): `js/i18n-en.js` 의 옛 시공사례 키(사례 제목 23개 등)와 `site.css` 의 옛 `.pf-*` 모바일 규칙, 루트의 `scandi/portfolio.js`(옛 11건 목록, 어디서도 안 씀), index.html 로직의 PORTFOLIO 배열(템플릿에서 안 씀)은 죽은 코드로 남아 있다. `assets/js/search-overlay.js` 색인에는 사례가 없다(immutable 캐시 + 보호 파일 참조 때문에 손대지 않음). 769~1400px 폭에서는 플로팅 아이콘이 본문 오른쪽 끝을 10~30px 겹친다(전 페이지 공통 동작).
+- 확인(로컬 서버 + 헤드리스 크롬): 1440 · 1920 · 1024 · 390 폭, 필터(공간·톤·주소 진입·빈 결과·초기화), 옛 해시 이동, 카드 → 상세, 작은 사진·화살표(끝에서 처음으로)·크게 보기·ESC, 문의 폼 미리 채움, 컬러 카드 → 제품 페이지, 모바일 하단 바 교체, 모바일 메뉴, KO/EN 전환, 가로 넘침 없음, JS 오류 없음. 외부 CDN(Pretendard · Google Fonts)은 원격 세션에서 막혀 있어 같은 글꼴을 로컬에 깔고 봤다 — **실제 기기 확인 필요**.
+
 ## 2026-11-17 · 모바일 메뉴 v3 — 2단 배열 (글꼴·크기 하나로, 금색 제거)
 
 - **`assets/js/mobile-nav.js` 다시 그림** (kevin 요청: "글씨체·크기 하나로, AI 티 안 나게, 금색 배열 빼고" → 시안 A/B/C 중 C 선택). 왼쪽 단 메뉴(회사소개·시공 과정·시공사례·스토어·문의) / 오른쪽 단 소재(포세린·엔지니어드 스톤·인조대리석·BMC), 아래 미스트 박스에 대표전화·휴대전화·카카오톡 상담, 맨 아래 검색·로그인·KO/EN.
