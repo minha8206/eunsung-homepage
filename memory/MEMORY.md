@@ -27,6 +27,8 @@
 
 - 오른쪽 아래는 플로팅 상담 버튼(.iw-root, z 9999, 높이 약 162px)·모바일 하단 CTA 바(.es-ctabar, z 9000) 자리 — 새 고정 요소(팝업 등)는 이 둘을 피하거나 같은 z 로 DOM 뒤에 붙일 것 (2026-11 holiday-popup.js)
 
+- 모바일 메뉴(mobile-nav.js v3, 2026-11)는 CSS 를 스스로 주입한다(.mnv). site.css 의 옛 .mnav-* 는 보호 파일 2개(showroom·product-detail, ?v= 못 붙임)의 캐시된 옛 JS 용이라 그 참조를 바꾸기 전엔 지우지 말 것
+
 <!-- 도구 quirk, 유용한 패턴, 발견된 단축경로 -->
 
 ## 교훈 (Lessons Learned)

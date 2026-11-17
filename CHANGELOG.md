@@ -1,5 +1,15 @@
 # CHANGELOG — esstone.co.kr (scandi/)
 
+## 2026-11-17 · 모바일 메뉴 v3 — 2단 배열 (글꼴·크기 하나로, 금색 제거)
+
+- **`assets/js/mobile-nav.js` 다시 그림** (kevin 요청: "글씨체·크기 하나로, AI 티 안 나게, 금색 배열 빼고" → 시안 A/B/C 중 C 선택). 왼쪽 단 메뉴(회사소개·시공 과정·시공사례·스토어·문의) / 오른쪽 단 소재(포세린·엔지니어드 스톤·인조대리석·BMC), 아래 미스트 박스에 대표전화·휴대전화·카카오톡 상담, 맨 아래 검색·로그인·KO/EN.
+- 글꼴 Pretendard 1종 · 글자 크기 17px 1종(로고 워드마크만 Cormorant 유지). 위계는 굵기와 회색으로만. 색은 잉크 #16202A · 미스트 #F0F5F8, 레이크 블루 #2C6E96 은 "현재 페이지" 표시에만. 금색 · 01~05 번호 · MENU/MATERIALS/CONSULTATION 영문 소제목 · 순차 등장 애니메이션 · 알약 버튼 제거.
+- **스타일을 JS 가 직접 주입**(`<style id="esMnavCss">`, 클래스 접두사 `.mnv`). /assets/* 1년 immutable 캐시 때문에 JS 와 site.css 세대가 섞여도 깨지지 않게 한 파일로 묶었다. Pretendard 는 페이지에 없으면 같은 jsDelivr 주소를 스크립트가 붙인다.
+- 참조를 `mobile-nav.js?v=20261117` 로 — about · bmc · bmc/products · contact · facility · index · portfolio · privacy · store · store-gorilla-grip. **보호 파일 showroom.html · product-detail.html 은 손대지 않음** → 이 두 페이지는 `?v=` 가 없어, 예전에 방문한 브라우저는 캐시가 풀릴 때까지 옛 메뉴(v2)가 보인다(처음 방문자는 새 메뉴). 그래서 `mobile.css`/`site.css` 의 옛 `.mnav-*` 규칙은 **일부러 남겨 뒀다** — 두 보호 파일의 참조에 `?v=` 를 붙인 뒤에 지울 것.
+- `js/i18n-en.js`: '메뉴' → Menu, '대표전화' → Office, '휴대전화' → Mobile.
+- 확인: 320 · 360 · 390 · 768 폭, KO/EN, 버거 열기·닫기·ESC, 검색/로그인 연결, 링크 이동, 현재 페이지 표시(showroom ?cat= 포함).
+- 참고(미수정): EN 모드에서 모바일 헤더(.nav-right)가 화면 폭을 넘겨 가로 스크롤이 생기는 것이 테스트 중 보였다 — 메뉴와 무관하게 이전 코드에서도 동일. 실제 기기에서 확인 필요.
+
 ## 2026-11-10 · 연말 프로모션 팝업 (실측 방문 무료 · 11/30 자동 종료)
 
 - **`assets/js/holiday-popup.js` 신규** — 마크업·CSS·가랜드 SVG를 스스로 주입하는 단일 스크립트(x-dc 밖, body 끝). 데스크톱은 오른쪽 아래 380px 카드(접속 3초 후), 모바일(≤768)은 하단 시트 + 어두운 배경(스크롤 30% 또는 6초 후). 닫기/X/ESC/배경 → 작은 알약 탭으로 줄어듦(sessionStorage `esh_minimized`, 같은 방문 동안 유지), "오늘 하루 보지 않기" → 24시간 숨김(localStorage `esh_hide_until`). `CONFIG.END_AT` = 2026-12-01 00:00 KST 부터 아무것도 띄우지 않는다. 동작 줄이기 설정이면 눈·전구 애니메이션 없음.

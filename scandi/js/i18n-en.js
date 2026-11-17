@@ -21,6 +21,10 @@ window.I18N_EN = {
   '시공사례': 'Projects',
   '스토어': 'Store',
   '문의': 'Contact',
+  /* 모바일 메뉴(mobile-nav.js v3) 라벨 */
+  '메뉴': 'Menu',
+  '대표전화': 'Office',
+  '휴대전화': 'Mobile',
   '메뉴 열기': 'Open menu',
   '홈': 'Home',
   '쇼룸': 'Showroom',
