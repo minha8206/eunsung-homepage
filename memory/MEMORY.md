@@ -38,6 +38,7 @@
 
 - `node scripts/build-seo.js` 는 **보호 파일 showroom.html · product-detail.html 의 JSON-LD 도 다시 쓴다** — 다른 페이지 때문에 돌렸으면 두 파일은 `git checkout -- ` 로 되돌릴 것 (2026-11 시공사례 개편)
 - 원격(클라우드) 세션은 이 repo 를 GitHub 에서 직접 받아 push 까지 된다(2026-11-17) — device_bash 의 "push 불가"와 다른 경로
+- 원격 세션에서 kevin PC 폴더는 못 읽지만 구글 드라이브 커넥터가 붙으면 `직접 수정한거`(현장 사진) 폴더를 바로 받을 수 있다 — 스크린샷만 왔을 땐 드라이브부터 찾아볼 것 (2026-11-26)
 - 원격 세션에서는 jsDelivr · Google Fonts 가 막혀 있다 — 화면 확인은 Pretendard 를 npm 으로 받아 로컬 글꼴로 깔고 본다. 연말 팝업(holiday-popup.js)은 오른쪽 아래를 크게 덮으니 새 페이지 첫 화면과 겹치는지 꼭 볼 것
 
 <!-- 실수에서 배운 것, 예상과 달랐던 것 -->

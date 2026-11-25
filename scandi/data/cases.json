@@ -11,6 +11,214 @@
   ],
   "cases": [
     {
+      "id": "yangpyeong-island",
+      "tone": "베이지 바살트",
+      "use": "아일랜드 주방",
+      "space": "kitchen",
+      "toneGroup": "beige",
+      "region": "경기 양평",
+      "material": "포세린 12T",
+      "scope": "아일랜드, 주방 상판",
+      "desc": "오크 가구에 베이지 바살트 상판을 올려, 아일랜드와 벽 쪽 상판을 같은 톤으로 맞춘 주방입니다.",
+      "color": {
+        "code": "ST104",
+        "exact": true
+      },
+      "similar": [
+        "CC072",
+        "ST109",
+        "ST087"
+      ],
+      "photos": [
+        {
+          "src": "images/cases/yangpyeong-island/01.jpg"
+        }
+      ],
+      "en": {
+        "tone": "Beige Basalt",
+        "use": "Island Kitchen",
+        "region": "Yangpyeong, Gyeonggi",
+        "scope": "Island, worktop",
+        "desc": "Beige Basalt tops on oak cabinetry, with the island and the wall-side worktop kept in one tone."
+      }
+    },
+    {
+      "id": "incheon-showroom",
+      "tone": "라임스톤 화이트",
+      "use": "쇼룸 주방",
+      "space": "kitchen",
+      "toneGroup": "white",
+      "region": "인천",
+      "material": "포세린 12T",
+      "scope": "주방 상판, 벽면",
+      "desc": "상판과 벽면을 같은 라임스톤 화이트로 이어 붙인 주방 전시장 시공입니다.",
+      "color": {
+        "code": "ST110",
+        "exact": true
+      },
+      "similar": [
+        "ST086",
+        "CC101",
+        "ST109"
+      ],
+      "photos": [
+        {
+          "src": "images/cases/incheon-showroom/01.jpg"
+        },
+        {
+          "src": "images/cases/incheon-showroom/02.jpg"
+        }
+      ],
+      "en": {
+        "tone": "Limestone White",
+        "use": "Showroom Kitchen",
+        "region": "Incheon",
+        "scope": "Worktop, backsplash wall",
+        "desc": "A kitchen showroom display with the worktop and the wall behind it finished in the same Limestone White."
+      }
+    },
+    {
+      "id": "yangpyeong-kitchen-bath",
+      "tone": "크림 마블",
+      "use": "주방·세면대",
+      "space": "kitchen",
+      "toneGroup": "beige",
+      "region": "경기 양평",
+      "material": "포세린 12T",
+      "scope": "아일랜드, 주방 상판, 세면대 상판",
+      "desc": "주방 아일랜드와 상판, 세면대까지 같은 마블 결로 맞춰 집 전체의 톤을 하나로 이었습니다.",
+      "color": {
+        "code": "WM083",
+        "exact": false
+      },
+      "similar": [
+        "WM101",
+        "WM084",
+        "ST107"
+      ],
+      "photos": [
+        {
+          "src": "images/cases/yangpyeong-kitchen-bath/01.jpg"
+        },
+        {
+          "src": "images/cases/yangpyeong-kitchen-bath/02.jpg"
+        },
+        {
+          "src": "images/cases/yangpyeong-kitchen-bath/03.jpg",
+          "pos": "50% 62%"
+        }
+      ],
+      "en": {
+        "tone": "Cream Marble",
+        "use": "Kitchen & Vanity",
+        "region": "Yangpyeong, Gyeonggi",
+        "scope": "Island, worktop, vanity top",
+        "desc": "The kitchen island, the worktop and the vanity share one marble grain, tying the tone of the whole house together."
+      }
+    },
+    {
+      "id": "gongneung",
+      "tone": "트라몬토",
+      "use": "일자 주방",
+      "space": "kitchen",
+      "toneGroup": "beige",
+      "region": "서울 공릉동",
+      "material": "포세린 12T",
+      "scope": "주방 상판",
+      "desc": "하이글로시 화이트 가구에 은은한 결의 트라몬토 상판을 올린 일자 주방입니다.",
+      "color": {
+        "code": "ST107",
+        "exact": true
+      },
+      "similar": [
+        "WM083",
+        "CC102",
+        "ST104"
+      ],
+      "photos": [
+        {
+          "src": "images/cases/gongneung/01.jpg"
+        }
+      ],
+      "en": {
+        "tone": "Tramonto",
+        "use": "Single-wall Kitchen",
+        "region": "Gongneung-dong, Seoul",
+        "scope": "Worktop",
+        "desc": "A single-wall kitchen with a softly veined Tramonto worktop on high-gloss white cabinetry."
+      }
+    },
+    {
+      "id": "incheon-seogu",
+      "tone": "라임스톤 화이트",
+      "use": "ㄷ자 주방",
+      "space": "kitchen",
+      "toneGroup": "white",
+      "region": "인천 서구",
+      "material": "포세린 12T",
+      "scope": "주방 상판",
+      "desc": "벽 쪽 상판에서 홈바까지 ㄷ자로 이어지는 상판을 라임스톤 화이트로 마감했습니다.",
+      "color": {
+        "code": "ST110",
+        "exact": true
+      },
+      "similar": [
+        "ST086",
+        "CC101",
+        "ST109"
+      ],
+      "photos": [
+        {
+          "src": "images/cases/incheon-seogu/01.jpg"
+        },
+        {
+          "src": "images/cases/incheon-seogu/02.jpg"
+        }
+      ],
+      "en": {
+        "tone": "Limestone White",
+        "use": "U-shaped Kitchen",
+        "region": "Seo-gu, Incheon",
+        "scope": "Worktop",
+        "desc": "A U-shaped worktop running from the wall side round to the breakfast bar, finished in Limestone White."
+      }
+    },
+    {
+      "id": "yongsan",
+      "tone": "베이지 바살트",
+      "use": "ㄷ자 주방",
+      "space": "kitchen",
+      "toneGroup": "beige",
+      "region": "서울 용산",
+      "material": "포세린 12T",
+      "scope": "주방 상판",
+      "desc": "싱크대에서 홈바까지 이어지는 ㄷ자 상판을 베이지 바살트로 시공했습니다.",
+      "color": {
+        "code": "ST104",
+        "exact": true
+      },
+      "similar": [
+        "CC072",
+        "ST109",
+        "ST087"
+      ],
+      "photos": [
+        {
+          "src": "images/cases/yongsan/01.jpg"
+        },
+        {
+          "src": "images/cases/yongsan/02.jpg"
+        }
+      ],
+      "en": {
+        "tone": "Beige Basalt",
+        "use": "U-shaped Kitchen",
+        "region": "Yongsan, Seoul",
+        "scope": "Worktop",
+        "desc": "A U-shaped worktop from the sink run round to the breakfast bar, in Beige Basalt."
+      }
+    },
+    {
       "id": "hannamdong",
       "tone": "아이보리 화이트",
       "use": "라운지 카운터",

@@ -17,7 +17,7 @@ skills/
 | 파일 | 설명 | 마지막 개선 |
 |------|------|------------|
 | [web-dev/local-preview.md](web-dev/local-preview.md) | file:// 대신 node로 로컬 서버 띄워 브라우저 미리보기 | 2026-07-02 |
-| [web-dev/portfolio-cases.md](web-dev/portfolio-cases.md) | 시공사례 수정·추가 — cases.json 고치고 build-portfolio.js 실행 | 2026-11-17 |
+| [web-dev/portfolio-cases.md](web-dev/portfolio-cases.md) | 시공사례 수정·추가 — cases.json 고치고 build-portfolio.js 실행 (드라이브 사진 받기 포함) | 2026-11-26 |
 
 ## 스킬 추가 기준
 

@@ -1,8 +1,8 @@
 # 시공사례 고치기 · 추가하기
 
 **언제 사용**: 시공사례의 제목·지역·컬러·설명·사진을 바꾸거나, 사례를 새로 넣거나 뺄 때
-**마지막 개선**: 2026-11-17
-**성공 횟수**: 1
+**마지막 개선**: 2026-11-26
+**성공 횟수**: 2
 
 ## 절차
 
@@ -25,6 +25,9 @@
 - `portfolio.html` · `portfolio/*.html` · `js/i18n-portfolio.js` 는 생성물이다. 직접 고치면 다음 빌드에 지워진다. 화면 문구·구조는 `scripts/build-portfolio.js`, 모양은 `assets/css/portfolio.css`, 동작은 `assets/js/portfolio.js`.
 - `portfolio.css` · `portfolio.js` 를 고쳤으면 build-portfolio.js 의 `ASSET_V` 를 올리고 다시 빌드한다(`/assets/*` 1년 immutable 캐시).
 - 카드용 축소 사진(`<이름>-card.webp`, 800×600 을 덮는 크기)과 컬러 칩(`images/cases/_sw/<코드>.webp`, 120px)은 있으면 쓰고 없으면 원본을 쓴다. 이 머신엔 python 이 없어 축소본을 못 만든다 — 안 만들어도 정상 동작하고, 만들려면 원격 세션(PIL)에서.
+- 새 사진이 구글 드라이브에 있으면(원격 세션): Drive 커넥터로 폴더를 찾아 `download_file_content` → 받은 파일이 `/tmp/claude-tool-results/…` 에 저장된다 → PIL 로 `NN.jpg`(긴 변 1600 이하, EXIF 제거) + `NN-card.webp`(800×600 을 덮는 크기) 를 만든다. 파일 크기가 바이트까지 같은 사진은 중복이니 한 번만 받는다.
+- 폴더 이름의 컬러와 사진이 눈에 띄게 다르면 `exact:true` 로 올리지 말 것 — 가장 가까운 컬러를 `exact:false` 로 두고 kevin 에게 확인한다(견본과 사진이 어긋나면 "관리 안 된" 인상).
+- 화면 확인: `/portfolio` 는 폴더와 이름이 겹치니 로컬 서버에서는 `/portfolio.html` 로 연다.
 - 상세 페이지는 `<base href="/">` 다. 템플릿에 `href="#..."` 만 적으면 홈으로 간다.
 - `scripts/build-seo.js` 는 돌릴 필요 없다(build-portfolio.js 가 portfolio.html 의 SEO-JSONLD 구간을 그대로 옮겨 싣는다). 돌리면 보호 파일 showroom.html · product-detail.html 까지 다시 써지니 그 둘은 `git checkout --` 으로 되돌린다.
 - 포세린 말고 비아테라·하이막스 사례를 넣을 때: `color.code` 에 그 제품 코드를 쓰면 브랜드 표기(LX 비아테라 / LX 하이막스)와 제품 링크가 따라온다. `material` 문구(예: `비아테라 20T`)와 EN 사전(`build-portfolio.js` 의 `put('포세린 12T', …)` 옆에 한 줄)을 같이 넣는다.
@@ -32,3 +35,5 @@
 ## 결과 예시
 
 2026-11-17 개편 때 사례 23건을 이 방식으로 옮겼다. 제목 한 줄 수정 → 빌드 1초 → 목록 카드 · 상세 제목 · 브라우저 탭 제목 · 공유 미리보기 · 문의 폼에 실리는 사례명 · EN 사전이 한 번에 바뀐다.
+
+2026-11-26 드라이브 폴더 7개(사진 14장, 중복 3장) → 사례 6건 추가. 사진 받기부터 빌드·화면 확인·push 까지 한 세션.
